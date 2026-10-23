@@ -1,8 +1,7 @@
-# Contratações PNCP – Prefeitura de João Pessoa
+# Contratações PNCP 
 
-Scripts para coletar as contratações (Lei 14.133/2021) da Prefeitura Municipal de João Pessoa
-(CNPJ 08.778.326/0001-56) na API de Dados Abertos do Compras.gov.br, filtrar os pregões com modo
-de disputa **Aberto-Fechado** e organizar o zip "Todos os relatórios e termos" de cada compra.
+Scripts para coletar as contratações (Lei 14.133/2021)  na API de Dados Abertos do Compras.gov.br, filtrar os pregões com modo
+de disputa  e organizar o zip "Todos os relatórios e termos" de cada compra.
 
 ## Requisitos
 
