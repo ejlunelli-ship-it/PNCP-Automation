@@ -9,7 +9,7 @@ from openpyxl.utils import get_column_letter
 from . import VERSAO_PARSER
 from .validacao import COLUNAS, OK
 
-COLUNAS_MONETARIAS = {c for c in COLUNAS if c.startswith(("valor_", "menor_lance", "melhor_lance")) or c == "lance_aceito"}
+COLUNAS_MONETARIAS = {c for c in COLUNAS if c.startswith(("valor_", "melhor_lance")) or c == "lance_aceito"}
 FORMATO_MOEDA = '#,##0.0000'
 LARGURA_MAX = 60
 

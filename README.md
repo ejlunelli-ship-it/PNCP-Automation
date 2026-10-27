@@ -80,9 +80,10 @@ Lê todos os PDFs da pasta (padrão: `dados/filtrados`, todas as subpastas) e ge
   iniciada/reiniciada…", "…foi encerrada") — ou dos "Eventos do Item" como alternativa. A lista de
   valores da mensagem de encerramento serve só para conferir (e para desempatar lances no mesmo
   segundo da troca de etapa), nunca é contada como lance. Lances de desempate (art. 60 / ME/EPP)
-  ficam em `menor_lance_desempate`, fora das colunas da etapa fechada. Lances marcados com `*`
+  ficam em `melhor_lance_desempate`, fora das colunas da etapa fechada. Lances marcados com `*`
   (excluídos) são desconsiderados.
-- `menor_lance_*`: menor valor registrado; `melhor_lance_*`: mais vantajoso pelo critério do item.
+- `melhor_lance_*`: lance mais vantajoso registrado na etapa pelo critério do item (menor valor em
+  Menor Preço, maior em Maior Desconto), mesmo que o fornecedor tenha sido desclassificado depois.
 - **Lance aceito**: vem da situação do item ("Aceito e Habilitado / Adjudicado e Homologado por …
   para FORNECEDOR, CNPJ …, melhor lance …[, valor negociado …]"); usa o valor negociado quando
   houver. É conferido com a tabela de propostas e os eventos do item; qualquer contradição (ex.:
