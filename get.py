@@ -1,5 +1,6 @@
+import argparse
 import json
-import sys
+import re
 import time
 import unicodedata
 from datetime import date, timedelta
@@ -8,17 +9,17 @@ from pathlib import Path
 import requests
 
 URL = "https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133"
-CNPJ = "08778326000156"
 TAMANHO = 500
 
-# período: último ano até hoje
-DATA_FINAL = date.today()
-DATA_INICIAL = DATA_FINAL - timedelta(days=365)
+# padrões da linha de comando
+ORGAOS_PADRAO = ["08778326000156"]  # Prefeitura Municipal de João Pessoa
+DIAS_PADRAO = 365                  # período: último ano até hoje
+MODALIDADES_PADRAO = list(range(1, 20))
 
 # pastas de saída
 BASE = Path(__file__).parent / "dados"
 PASTA_BRUTOS = BASE / "brutos"
-PASTA_FILTRADOS = BASE / "filtrados" / "pregao_aberto-fechado"
+PASTA_FILTRADOS = BASE / "filtrados"
 
 session = requests.Session()
 session.headers.update({"Accept": "application/json"})
@@ -43,16 +44,16 @@ def get_json(params, tentativas=5):
     return None
 
 
-def buscar_modalidade(cod):
+def buscar_modalidade(cnpj, cod, inicio, fim):
     registros, vistos = [], set()
     pagina = 1
     while True:
         params = {
             "pagina": pagina,
             "tamanhoPagina": TAMANHO,
-            "orgaoEntidadeCnpj": CNPJ,
-            "dataPublicacaoPncpInicial": DATA_INICIAL.isoformat(),
-            "dataPublicacaoPncpFinal": DATA_FINAL.isoformat(),
+            "orgaoEntidadeCnpj": cnpj,
+            "dataPublicacaoPncpInicial": inicio.isoformat(),
+            "dataPublicacaoPncpFinal": fim.isoformat(),
             "codigoModalidade": cod,
         }
         j = get_json(params)
@@ -89,12 +90,29 @@ def normalizar(texto):
     return "".join(c for c in texto if not unicodedata.combining(c)).lower().strip()
 
 
-def filtrar(registros):
-    return [
-        r for r in registros
-        if "pregao" in normalizar(r.get("amparoLegalDescricao"))
-        and normalizar(r.get("modoDisputaNomePncp")) == "aberto-fechado"
-    ]
+def slug(texto):
+    return "-".join(normalizar(texto).replace("/", " ").split())
+
+
+def grupo(registro):
+    """Pasta da contratação: <modalidade>_<modo de disputa>, ex.: 'pregao_aberto-fechado'.
+
+    A modalidade usa só a parte antes de ' - ' ('Pregão - Eletrônico' -> 'pregao'); modo
+    'Não se aplica' é omitido ('dispensa', 'inexigibilidade').
+    """
+    modalidade = slug(str(registro.get("modalidadeNome") or "sem modalidade").split(" - ")[0])
+    modo = slug(registro.get("modoDisputaNomePncp") or "")
+    modo = modo.removeprefix(modalidade + "-")  # 'Dispensa Com Disputa' -> 'com-disputa'
+    if not modo or modo == "nao-se-aplica":
+        return modalidade
+    return f"{modalidade}_{modo}"
+
+
+def agrupar(registros):
+    grupos = {}
+    for r in registros:
+        grupos.setdefault(grupo(r), []).append(r)
+    return dict(sorted(grupos.items()))
 
 
 def salvar(registros, pasta, nome):
@@ -109,30 +127,90 @@ def salvar(registros, pasta, nome):
         print("pandas não instalado, só o JSON foi salvo.")
 
 
+def ler_orgaos(valores):
+    """CNPJs informados diretamente e/ou em arquivos (um por linha; '#' inicia comentário)."""
+    cnpjs = []
+    for v in valores:
+        caminho = Path(v)
+        if caminho.is_file():
+            linhas = caminho.read_text(encoding="utf-8").splitlines()
+            itens = [l.split("#")[0] for l in linhas]
+        else:
+            itens = v.split(",")
+        for item in itens:
+            digitos = re.sub(r"\D", "", item)
+            if not digitos:
+                continue
+            if len(digitos) != 14:
+                raise SystemExit(f"CNPJ inválido: {item.strip()!r}")
+            if digitos not in cnpjs:
+                cnpjs.append(digitos)
+    return cnpjs
+
+
+def filtrar_modos(registros, modos):
+    """Mantém só os modos de disputa pedidos (comparação sem acento/maiúsculas, ex.: 'aberto-fechado')."""
+    if not modos:
+        return registros
+    pedidos = {slug(m) for m in modos}
+    return [r for r in registros if slug(r.get("modoDisputaNomePncp") or "nao se aplica") in pedidos]
+
+
+def argumentos():
+    ap = argparse.ArgumentParser(description="Coleta contratações (Lei 14.133) no Compras.gov.br e separa por modalidade/modo.")
+    ap.add_argument("--orgaos", nargs="+", default=ORGAOS_PADRAO, metavar="CNPJ|ARQUIVO",
+                    help="CNPJs dos órgãos (separados por espaço/vírgula) ou arquivo com um CNPJ por linha "
+                         "(padrão: Prefeitura de João Pessoa)")
+    ap.add_argument("--inicio", type=date.fromisoformat, help=f"data inicial AAAA-MM-DD (padrão: hoje - {DIAS_PADRAO} dias)")
+    ap.add_argument("--fim", type=date.fromisoformat, default=date.today(), help="data final AAAA-MM-DD (padrão: hoje)")
+    ap.add_argument("--modos", nargs="+", metavar="MODO",
+                    help="modos de disputa a manter, ex.: aberto-fechado aberto fechado-aberto "
+                         "'dispensa com disputa' 'nao se aplica' (padrão: todos)")
+    ap.add_argument("--modalidades", nargs="+", type=int, default=MODALIDADES_PADRAO, metavar="COD",
+                    help="códigos de modalidade da API (padrão: 1 a 19)")
+    ap.add_argument("--relatorios", action="store_true", help="em seguida, abre o navegador para baixar os relatórios")
+    args = ap.parse_args()
+    args.inicio = args.inicio or args.fim - timedelta(days=DIAS_PADRAO)
+    if args.inicio > args.fim:
+        ap.error("--inicio maior que --fim")
+    args.orgaos = ler_orgaos(args.orgaos)
+    return args
+
+
 def main():
-    print(f"Período: {DATA_INICIAL} a {DATA_FINAL}")
+    args = argumentos()
+    print(f"Período: {args.inicio} a {args.fim} | órgãos: {', '.join(args.orgaos)}")
     todos = []
-    for cod in range(1, 20):
-        print(f"codigoModalidade={cod}")
-        regs = buscar_modalidade(cod)
-        print(f"  -> {len(regs)} registros")
-        todos.extend(regs)
+    for cnpj in args.orgaos:
+        print(f"== órgão {cnpj}")
+        for cod in args.modalidades:
+            print(f"codigoModalidade={cod}")
+            regs = buscar_modalidade(cnpj, cod, args.inicio, args.fim)
+            print(f"  -> {len(regs)} registros")
+            todos.extend(regs)
 
     # dedup global por idCompra
     unicos = {r["idCompra"]: r for r in todos}
     todos = list(unicos.values())
 
-    salvar(todos, PASTA_BRUTOS, "contratacoes_joao_pessoa")
+    salvar(todos, PASTA_BRUTOS, "contratacoes")
     print(f"Total final: {len(todos)} contratações -> {PASTA_BRUTOS}")
 
-    filtrados = filtrar(todos)
-    salvar(filtrados, PASTA_FILTRADOS, "contratacoes_pregao_aberto-fechado")
-    print(f"Filtrados (pregão + Aberto-Fechado): {len(filtrados)} -> {PASTA_FILTRADOS}")
+    selecionados = filtrar_modos(todos, args.modos)
+    if args.modos:
+        print(f"Modos {args.modos}: {len(selecionados)} contratações")
 
-    # opcional: abre o navegador para baixar os zips de relatórios dos filtrados
-    if "--relatorios" in sys.argv:
+    grupos = agrupar(selecionados)
+    for nome, registros in grupos.items():
+        salvar(registros, PASTA_FILTRADOS / nome, f"contratacoes_{nome}")
+        print(f"  {nome}: {len(registros)} -> {PASTA_FILTRADOS / nome}")
+
+    # opcional: abre o navegador para baixar os zips de relatórios das contratações selecionadas
+    if args.relatorios:
         from relatorios import baixar_relatorios
-        baixar_relatorios(filtrados, PASTA_FILTRADOS / "relatorios")
+        for nome, registros in grupos.items():
+            print(f"== {nome}")
+            baixar_relatorios(registros, PASTA_FILTRADOS / nome / "relatorios")
 
 
 if __name__ == "__main__":

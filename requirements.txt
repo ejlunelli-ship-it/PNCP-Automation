@@ -1,2 +1,6 @@
 requests
 pandas
+pymupdf
+openpyxl
+pydantic
+# OCR opcional (PDFs digitalizados): instalar OCRmyPDF e Tesseract (idioma "por") no sistema
