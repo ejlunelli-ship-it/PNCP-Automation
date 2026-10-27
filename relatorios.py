@@ -84,9 +84,13 @@ def baixar_relatorios(registros, pasta_base):
 
 
 if __name__ == "__main__":
-    padrao = Path(__file__).parent / "dados" / "filtrados" / "pregao_aberto-fechado" / \
-        "contratacoes_pregao_aberto-fechado.json"
-    origem = Path(sys.argv[1]) if len(sys.argv) > 1 else padrao
-    with open(origem, encoding="utf-8") as f:
-        registros = json.load(f)
-    baixar_relatorios(registros, origem.parent / "relatorios")
+    # sem argumento: todas as pastas geradas pelo get.py (dados/filtrados/<grupo>/contratacoes_<grupo>.json)
+    if len(sys.argv) > 1:
+        origens = [Path(a) for a in sys.argv[1:]]
+    else:
+        origens = sorted((Path(__file__).parent / "dados" / "filtrados").glob("*/contratacoes_*.json"))
+    for origem in origens:
+        print(f"== {origem.parent.name}")
+        with open(origem, encoding="utf-8") as f:
+            registros = json.load(f)
+        baixar_relatorios(registros, origem.parent / "relatorios")
