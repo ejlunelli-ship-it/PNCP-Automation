@@ -1,7 +1,10 @@
 # Contratações PNCP 
 
-Scripts para coletar as contratações (Lei 14.133/2021)  na API de Dados Abertos do Compras.gov.br, filtrar os pregões com modo
-de disputa  e organizar o zip "Todos os relatórios e termos" de cada compra.
+Scripts para coletar as contratações (Lei 14.133/2021) de um ou mais órgãos (padrão: Prefeitura
+Municipal de João Pessoa, CNPJ 08.778.326/0001-56) na API de Dados Abertos do Compras.gov.br,
+separá-las em pastas por modalidade e modo de disputa, organizar o zip "Todos os relatórios e
+termos" de cada compra e extrair os campos dos relatórios para Excel.
+
 
 ## Requisitos
 
@@ -10,29 +13,34 @@ de disputa  e organizar o zip "Todos os relatórios e termos" de cada compra.
 
 ## Uso
 
-### 1. Coletar e filtrar — `get.py`
+### 1. Coletar e separar — `get.py`
 
 ```bash
-python get.py
+python get.py [--orgaos CNPJ|ARQUIVO ...] [--inicio AAAA-MM-DD] [--fim AAAA-MM-DD]
+              [--modos MODO ...] [--modalidades COD ...] [--relatorios]
 ```
 
-- Consulta a API `modulo-contratacoes/1_consultarContratacoes_PNCP_14133` para as modalidades
-  1 a 19, com paginação e retry em erros temporários (429/5xx/timeout).
-- Período: últimos 365 dias até a data da execução.
-- Filtro: `amparoLegalDescricao` contém "pregão" (sem diferenciar acento/maiúsculas) **e**
-  `modoDisputaNomePncp` = "Aberto-Fechado".
+| Opção | Padrão | Exemplo |
+|---|---|---|
+| `--orgaos` | `08778326000156` (João Pessoa) | `--orgaos 08778326000156 09012345000199` ou `--orgaos orgaos.txt` (um CNPJ por linha, `#` comenta) |
+| `--inicio` / `--fim` | últimos 365 dias até hoje | `--inicio 2026-01-01 --fim 2026-06-30` |
+| `--modos` | todos | `--modos aberto-fechado aberto` (sem acento/maiúsculas; também `fechado-aberto`, `"dispensa com disputa"`, `"nao se aplica"`) |
+| `--modalidades` | 1 a 19 | `--modalidades 6 8` |
+| `--relatorios` | — | baixa os relatórios das contratações selecionadas logo em seguida |
 
-Para coletar e já baixar os relatórios em seguida:
-
-```bash
-python get.py --relatorios
-```
+- Consulta a API `modulo-contratacoes/1_consultarContratacoes_PNCP_14133`, com paginação e retry
+  em erros temporários (429/5xx/timeout), e remove duplicadas por `idCompra`.
+- Cada contratação vai para a pasta `<modalidade>_<modo de disputa>`, ex.: `pregao_aberto-fechado`,
+  `pregao_aberto`, `concorrencia_fechado-aberto`, `dispensa_com-disputa`; quando o modo é
+  "Não se aplica", só a modalidade (`dispensa`, `inexigibilidade`).
 
 ### 2. Baixar os relatórios — `relatorios.py`
 
 ```bash
-python relatorios.py [caminho/para/filtrados.json]
+python relatorios.py [dados/filtrados/<pasta>/contratacoes_<pasta>.json ...]
 ```
+
+Sem argumento, percorre todas as pastas de `dados/filtrados/`.
 
 O download no Compras.gov.br é protegido por hCaptcha, por isso ele é feito **manualmente**:
 
@@ -48,22 +56,65 @@ Detalhes:
 - Compras que já têm zip na pasta são puladas, então pode rodar de novo para baixar só o que falta.
 - Se o download não acontecer em 5 minutos, a compra é pulada.
 
+### 3. Extrair os campos dos relatórios — `extrator_homologacao`
+
+```bash
+python -m extrator_homologacao [pasta] [--saida dados/extracao/homologacoes.xlsx] [--padrao "*.pdf"] [--reprocessar] [--sem-ocr] [--workers 4] [--sem-separar]
+```
+
+Lê todos os PDFs da pasta (padrão: `dados/filtrados`, todas as subpastas) e gera
+`dados/extracao/homologacoes.xlsx` consolidado e um Excel por subpasta
+(`dados/extracao/<pasta>.xlsx`), com **uma linha por PDF**, abas `relatorios`, `revisar`
+(status ≠ OK) e `metadados`, além de `homologacoes.log` e `homologacoes.cache.json`.
+
+- Separação dos lances por etapa conforme o modo de disputa do cabeçalho: `Aberto/Fechado` (janelas
+  do chat, abaixo), `Aberto` ou `Fechado` (etapa única; desempates à parte). Outros modos (ex.:
+  `Fechado/Aberto`) vão para `REVISAR` com os campos de lance vazios.
+- O parser foi construído e validado com relatórios de **pregão Aberto/Fechado**. Os de outras
+  modalidades/modos ainda não foram baixados e podem ter layout diferente: confira a aba `revisar`
+  na primeira execução.
+
+- Extração determinística (PyMuPDF + regex). OCRmyPDF/Tesseract só entram se o PDF não tiver texto.
+- Valores monetários são **unitários**, em `Decimal`; ausente = célula vazia, nunca zero.
+- **Etapas dos lances**: o relatório tem uma única tabela "Lances do Item N" sem indicação de etapa.
+  A etapa de cada lance vem das janelas de tempo anunciadas no chat do item ("A etapa fechada foi
+  iniciada/reiniciada…", "…foi encerrada") — ou dos "Eventos do Item" como alternativa. A lista de
+  valores da mensagem de encerramento serve só para conferir (e para desempatar lances no mesmo
+  segundo da troca de etapa), nunca é contada como lance. Lances de desempate (art. 60 / ME/EPP)
+  ficam em `menor_lance_desempate`, fora das colunas da etapa fechada. Lances marcados com `*`
+  (excluídos) são desconsiderados.
+- `menor_lance_*`: menor valor registrado; `melhor_lance_*`: mais vantajoso pelo critério do item.
+- **Lance aceito**: vem da situação do item ("Aceito e Habilitado / Adjudicado e Homologado por …
+  para FORNECEDOR, CNPJ …, melhor lance …[, valor negociado …]"); usa o valor negociado quando
+  houver. É conferido com a tabela de propostas e os eventos do item; qualquer contradição (ex.:
+  aceito depois inabilitado) deixa o valor vazio e marca `REVISAR`. Mensagens do chat não são prova.
+- `quantidade_fornecedores`: CNPJs/CPFs distintos na tabela de propostas do item.
+- Status: `OK`, `REVISAR` (motivos em `erros_extracao`), `ERRO` (ex.: relatórios de diligência,
+  que não trazem dados do item). `fontes_extracao` registra página/seção de cada campo.
+- Cache por SHA-256 + versão do parser (`extrator_homologacao/__init__.py`): arquivos idênticos não
+  são reprocessados; ao mudar o parser, incremente `VERSAO_PARSER` ou use `--reprocessar`.
+
 ## Saída
 
 ```
 dados/
 ├── brutos/
-│   └── contratacoes_joao_pessoa.{json,csv}            # todas as contratações do período
-└── filtrados/
-    └── pregao_aberto-fechado/
-        ├── contratacoes_pregao_aberto-fechado.{json,csv}
-        └── relatorios/
-            └── <numeroCompra>-<ano>_<idCompra>/       # zip + arquivos extraídos
+│   └── contratacoes.{json,csv}                         # tudo o que foi coletado na última execução
+├── filtrados/
+│   └── <modalidade>_<modo>/                            # ex.: pregao_aberto-fechado
+│       ├── contratacoes_<modalidade>_<modo>.{json,csv}
+│       └── relatorios/
+│           └── <numeroCompra>-<ano>_<idCompra>/       # zip + arquivos extraídos
+└── extracao/
+    ├── homologacoes.xlsx                               # consolidado
+    └── <modalidade>_<modo>.xlsx                        # um por pasta
 ```
 
 Os CSVs são gravados em UTF-8 com BOM (abrem direto no Excel). A pasta `dados/` não é versionada.
+Cada execução do `get.py` regrava os JSON/CSV das pastas com a seleção atual; os relatórios já
+baixados são mantidos.
 
-## Novos filtros
+## Outros agrupamentos
 
-Crie outra função no molde de `filtrar` em `get.py` e salve o resultado com
-`salvar(registros, BASE / "filtrados" / "<nome>", "<arquivo>")`.
+A pasta de cada contratação é definida pela função `grupo` em `get.py`; altere-a para separar por
+outro critério (ex.: incluir o CNPJ do órgão no nome da pasta).
