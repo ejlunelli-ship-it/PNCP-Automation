@@ -111,7 +111,8 @@ Lê os relatórios da pasta (padrão: `dados/filtrados`, todas as subpastas) e g
 (status ≠ OK) e `metadados`, além de `homologacoes.log` e `homologacoes.cache.json`.
 
 Também grava `dados/extracao/homologacoes.db` (SQLite; outro arquivo com `--db`), tabela `itens`
-com as mesmas colunas e **uma linha por item** (chave `uasg` + `numero_compra` + `item`). Cada
+com as mesmas colunas e **uma linha por item** (chave `uasg` + `modalidade_compra` +
+`numero_compra` + `item`; o número da compra se repete entre modalidades da mesma UASG). Cada
 execução atualiza os itens processados e mantém os demais, então o banco acumula execuções de
 pastas ou órgãos diferentes; colunas novas do parser são adicionadas a um banco existente. Com
 `--todos` o banco não é atualizado (haveria vários relatórios por item).
