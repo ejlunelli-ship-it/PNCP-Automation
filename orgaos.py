@@ -1,9 +1,9 @@
-"""Lista os órgãos que publicaram contratações (Lei 14.133) no Compras.gov.br no período.
+"""Lista os órgãos que publicaram pregões (Lei 14.133) no Compras.gov.br no período.
 
 Consulta a mesma API do get.py sem filtrar CNPJ, mês a mês, e agrega por órgão. Gera
 dados/orgaos/orgaos.txt (um CNPJ por linha, pronto para `get.py --orgaos dados/orgaos/orgaos.txt`)
-e orgaos.csv com os detalhes. Cada mês concluído fica em orgaos.parcial.json, então uma execução
-interrompida continua de onde parou.
+e orgaos.csv com os detalhes; só entram órgãos com pelo menos MINIMO pregões. Cada mês concluído
+fica em orgaos.parcial.json, então uma execução interrompida continua de onde parou.
 """
 import argparse
 import csv
@@ -14,10 +14,9 @@ from collections import Counter
 from datetime import date, timedelta
 
 from config import DADOS
-from get import DIAS_PADRAO, TAMANHO, get_json
+from get import DIAS_PADRAO, MODALIDADES, TAMANHO, get_json
 
-MODALIDADES_PADRAO = [5]  # Pregão (Eletrônico e Presencial)
-MINIMO_PADRAO = 5
+MINIMO = 5  # pregões no período para o órgão entrar na lista
 PASTA = DADOS / "orgaos"
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -95,7 +94,7 @@ def salvar(orgaos, inicio, fim, modalidades, minimo):
                         o["ufs"].most_common(1)[0][0], o["municipios"].most_common(1)[0][0],
                         o["contratacoes"], o["homologadas"]] + [o["modos"][m] for m in modos])
     with open(PASTA / "orgaos.txt", "w", encoding="utf-8") as f:
-        f.write(f"# órgãos com {minimo}+ contratações | modalidades {modalidades} | {inicio} a {fim}\n")
+        f.write(f"# órgãos com {minimo}+ pregões | modalidades {modalidades} | {inicio} a {fim}\n")
         f.write("# CNPJ  # contratações | homologadas | município | nome\n")
         for o in orgaos:
             f.write(f"{o['cnpj']}  # {o['contratacoes']} | {o['homologadas']} | "
@@ -103,13 +102,9 @@ def salvar(orgaos, inicio, fim, modalidades, minimo):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Lista os órgãos com contratações no período (Brasil todo).")
+    ap = argparse.ArgumentParser(description=f"Lista os órgãos com {MINIMO}+ pregões no período (Brasil todo).")
     ap.add_argument("--inicio", type=date.fromisoformat, help=f"data inicial AAAA-MM-DD (padrão: hoje - {DIAS_PADRAO} dias)")
     ap.add_argument("--fim", type=date.fromisoformat, default=date.today(), help="data final AAAA-MM-DD (padrão: hoje)")
-    ap.add_argument("--modalidades", nargs="+", type=int, default=MODALIDADES_PADRAO, metavar="COD",
-                    help="códigos de modalidade da API (padrão: 5, Pregão)")
-    ap.add_argument("--minimo", type=int, default=MINIMO_PADRAO,
-                    help=f"mínimo de contratações para o órgão entrar na lista (padrão: {MINIMO_PADRAO})")
     args = ap.parse_args()
     args.inicio = args.inicio or args.fim - timedelta(days=DIAS_PADRAO)
     if args.inicio > args.fim:
@@ -120,7 +115,7 @@ def main():
     feitos = json.loads(parcial.read_text(encoding="utf-8")) if parcial.exists() else {}
 
     falhas = []
-    for cod in args.modalidades:
+    for cod in MODALIDADES:
         for ini, fim in meses(args.inicio, args.fim):
             chave = f"{cod}|{ini}|{fim}"
             if chave in feitos:
@@ -135,14 +130,14 @@ def main():
             parcial.write_text(json.dumps(feitos, ensure_ascii=False), encoding="utf-8")
 
     contratacoes = {}
-    for cod in args.modalidades:
+    for cod in MODALIDADES:
         for ini, fim in meses(args.inicio, args.fim):
             contratacoes.update(feitos.get(f"{cod}|{ini}|{fim}", {}))
     todos = agregar(contratacoes)
-    orgaos = [o for o in todos if o["contratacoes"] >= args.minimo]
-    salvar(orgaos, args.inicio, args.fim, args.modalidades, args.minimo)
+    orgaos = [o for o in todos if o["contratacoes"] >= MINIMO]
+    salvar(orgaos, args.inicio, args.fim, MODALIDADES, MINIMO)
 
-    print(f"{len(contratacoes)} contratações, {len(todos)} órgãos; {len(orgaos)} com {args.minimo}+ "
+    print(f"{len(contratacoes)} contratações, {len(todos)} órgãos; {len(orgaos)} com {MINIMO}+ "
           f"-> {PASTA / 'orgaos.txt'}")
     if falhas:
         print(f"ATENÇÃO: {len(falhas)} mês(es) falharam, lista incompleta: {', '.join(falhas)}")

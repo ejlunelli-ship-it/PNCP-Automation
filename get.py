@@ -16,7 +16,7 @@ TAMANHO = 500
 # padrões da linha de comando
 ORGAOS_PADRAO = ["08778326000156"]  # Prefeitura Municipal de João Pessoa
 DIAS_PADRAO = 365                  # período: último ano até hoje
-MODALIDADES_PADRAO = list(range(1, 20))
+MODALIDADES = [5]  # só Pregão (Eletrônico e Presencial); nessa API 6 é Dispensa e 7 Inexigibilidade
 
 # pastas de saída
 PASTA_BRUTOS = DADOS / "brutos"
@@ -158,17 +158,14 @@ def filtrar_modos(registros, modos):
 
 
 def argumentos():
-    ap = argparse.ArgumentParser(description="Coleta contratações (Lei 14.133) no Compras.gov.br e separa por modalidade/modo.")
+    ap = argparse.ArgumentParser(description="Coleta os pregões (Lei 14.133) no Compras.gov.br e separa por modo de disputa.")
     ap.add_argument("--orgaos", nargs="+", default=ORGAOS_PADRAO, metavar="CNPJ|ARQUIVO",
                     help="CNPJs dos órgãos (separados por espaço/vírgula) ou arquivo com um CNPJ por linha "
                          "(padrão: Prefeitura de João Pessoa)")
     ap.add_argument("--inicio", type=date.fromisoformat, help=f"data inicial AAAA-MM-DD (padrão: hoje - {DIAS_PADRAO} dias)")
     ap.add_argument("--fim", type=date.fromisoformat, default=date.today(), help="data final AAAA-MM-DD (padrão: hoje)")
     ap.add_argument("--modos", nargs="+", metavar="MODO",
-                    help="modos de disputa a manter, ex.: aberto-fechado aberto fechado-aberto "
-                         "'dispensa com disputa' 'nao se aplica' (padrão: todos)")
-    ap.add_argument("--modalidades", nargs="+", type=int, default=MODALIDADES_PADRAO, metavar="COD",
-                    help="códigos de modalidade da API (padrão: 1 a 19)")
+                    help="modos de disputa a manter, ex.: aberto-fechado aberto fechado-aberto (padrão: todos)")
     ap.add_argument("--relatorios", action="store_true", help="em seguida, abre o navegador para baixar os relatórios")
     args = ap.parse_args()
     args.inicio = args.inicio or args.fim - timedelta(days=DIAS_PADRAO)
@@ -184,7 +181,7 @@ def main():
     todos = []
     for cnpj in args.orgaos:
         print(f"== órgão {cnpj}")
-        for cod in args.modalidades:
+        for cod in MODALIDADES:
             print(f"codigoModalidade={cod}")
             regs = buscar_modalidade(cnpj, cod, args.inicio, args.fim)
             print(f"  -> {len(regs)} registros")

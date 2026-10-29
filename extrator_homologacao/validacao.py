@@ -21,6 +21,8 @@ class RegistroExtracao(BaseModel):
 
     # campos de negócio
     uasg: str | None = None
+    esfera: str | None = None             # do get.py: Federal, Estadual, Municipal, Distrital
+    uf: str | None = None                 # do get.py: UF da unidade compradora
     pregao: str | None = None
     modo_disputa: str | None = None
     valor_estimado: Dinheiro | None = None

@@ -1,6 +1,7 @@
 """CLI: python -m extrator_homologacao [pasta] [--saida arquivo.xlsx] ..."""
 
 import argparse
+import json
 import logging
 import sys
 from pathlib import Path
@@ -10,11 +11,12 @@ from config import DADOS
 from . import VERSAO_PARSER
 from .excel import gerar_excel
 from .lote import descobrir_pdfs, processar_lote
-from .selecao import selecionar
+from .selecao import id_compra, selecionar
 from .sqlite import gravar_sqlite
 
 PASTA_PADRAO = DADOS / "filtrados"
 SAIDA_PADRAO = DADOS / "extracao" / "homologacoes.xlsx"
+ESFERAS = {"F": "Federal", "E": "Estadual", "M": "Municipal", "D": "Distrital", "N": "Não se aplica"}
 
 
 def configurar_log(arquivo):
@@ -35,6 +37,16 @@ def pasta_de(pdf, raiz):
     """Primeira subpasta abaixo da raiz (ex.: 'pregao_aberto-fechado'); None se o PDF estiver na raiz."""
     partes = Path(pdf).relative_to(raiz).parts
     return partes[0] if len(partes) > 1 else None
+
+
+def dados_das_compras(*pastas):
+    """idCompra -> esfera e UF, a partir dos contratacoes_*.json gravados pelo get.py."""
+    compras = {}
+    for arq in {a.resolve() for p in pastas if Path(p).is_dir() for a in Path(p).rglob("contratacoes_*.json")}:
+        for c in json.loads(arq.read_text(encoding="utf-8")):
+            esfera = c.get("orgaoEntidadeEsferaId")
+            compras[str(c["idCompra"])] = {"esfera": ESFERAS.get(esfera, esfera), "uf": c.get("unidadeOrgaoUfSigla")}
+    return compras
 
 
 def main(argv=None):
@@ -72,7 +84,13 @@ def main(argv=None):
         ocr=not args.sem_ocr,
         workers=args.workers,
     )
-    registros = [r.model_copy(update={"pasta": pasta_de(p, args.pasta)}) for r, p in zip(registros, pdfs)]
+    compras = dados_das_compras(args.pasta, PASTA_PADRAO)
+    vazio = {"esfera": None, "uf": None}
+    registros = [r.model_copy(update={"pasta": pasta_de(p, args.pasta), **compras.get(id_compra(p), vazio)})
+                 for r, p in zip(registros, pdfs)]
+    sem_compra = sum(r.uf is None for r in registros)
+    if sem_compra:
+        print(f"  {sem_compra} PDF(s) sem a compra nos contratacoes_*.json do get.py: esfera/uf vazias")
     gerar_excel(registros, args.saida)
 
     # o banco tem uma linha por item; com --todos haveria vários relatórios por item

@@ -1,7 +1,7 @@
 # Contratações PNCP 
 
-Scripts para coletar as contratações (Lei 14.133/2021) dos órgãos filtrados (`--orgaos`) na API de
-Dados Abertos do Compras.gov.br, separá-las em pastas por modalidade e modo de disputa, organizar o zip "Todos os relatórios e
+Scripts para coletar os **pregões** (Lei 14.133/2021) dos órgãos filtrados (`--orgaos`) na API de
+Dados Abertos do Compras.gov.br, separá-los em pastas por modo de disputa, organizar o zip "Todos os relatórios e
 termos" de cada compra e extrair os campos dos relatórios para Excel e SQLite.
 
 
@@ -30,18 +30,12 @@ junto, ou os relatórios já baixados serão pedidos de novo.
 ### 0. Listar órgãos — `orgaos.py` (opcional)
 
 ```bash
-python orgaos.py [--inicio AAAA-MM-DD] [--fim AAAA-MM-DD] [--modalidades COD ...] [--minimo 5]
+python orgaos.py [--inicio AAAA-MM-DD] [--fim AAAA-MM-DD]
 ```
 
-Lista os órgãos do **Brasil todo** que publicaram contratações no período, para usar em
-`get.py --orgaos dados/orgaos/orgaos.txt`. Consulta a mesma API do `get.py` sem filtrar CNPJ, mês a
-mês, e agrega por órgão.
-
-| Opção | Padrão |
-|---|---|
-| `--inicio` / `--fim` | últimos 365 dias até hoje |
-| `--modalidades` | `5` (Pregão Eletrônico e Presencial; nessa API, `6` é Dispensa e `7` Inexigibilidade) |
-| `--minimo` | `5`: só entram órgãos com pelo menos 5 contratações no período |
+Lista os órgãos do **Brasil todo** com **5 ou mais pregões** no período (padrão: últimos 365 dias),
+para usar em `get.py --orgaos dados/orgaos/orgaos.txt`. Consulta a mesma API do `get.py` sem
+filtrar CNPJ, mês a mês, e agrega por órgão. O mínimo fica na constante `MINIMO` de `orgaos.py`.
 
 - Gera `dados/orgaos/orgaos.txt` (CNPJ por linha; contratações, homologadas, município e nome em
   comentário) e `orgaos.csv` (com esfera, poder e contagem por modo de disputa).
@@ -54,22 +48,22 @@ mês, e agrega por órgão.
 
 ```bash
 python get.py [--orgaos CNPJ|ARQUIVO ...] [--inicio AAAA-MM-DD] [--fim AAAA-MM-DD]
-              [--modos MODO ...] [--modalidades COD ...] [--relatorios]
+              [--modos MODO ...] [--relatorios]
 ```
 
 | Opção | Padrão | Exemplo |
 |---|---|---|
 | `--orgaos` | `08778326000156` (João Pessoa) | `--orgaos 08778326000156 09012345000199` ou `--orgaos orgaos.txt` (um CNPJ por linha, `#` comenta) |
 | `--inicio` / `--fim` | últimos 365 dias até hoje | `--inicio 2026-01-01 --fim 2026-06-30` |
-| `--modos` | todos | `--modos aberto-fechado aberto` (sem acento/maiúsculas; também `fechado-aberto`, `"dispensa com disputa"`, `"nao se aplica"`) |
-| `--modalidades` | 1 a 19 | `--modalidades 6 8` |
+| `--modos` | todos | `--modos aberto-fechado aberto` (sem acento/maiúsculas; também `fechado-aberto`) |
 | `--relatorios` | — | baixa os relatórios das contratações selecionadas logo em seguida |
 
+- Coleta **só pregões** (código de modalidade `5`, Eletrônico e Presencial; nessa API `6` é Dispensa
+  e `7` Inexigibilidade), fixado em `MODALIDADES` no `get.py` e usado também pelo `orgaos.py`.
 - Consulta a API `modulo-contratacoes/1_consultarContratacoes_PNCP_14133`, com paginação e retry
   em erros temporários (429/5xx/timeout), e remove duplicadas por `idCompra`.
-- Cada contratação vai para a pasta `<modalidade>_<modo de disputa>`, ex.: `pregao_aberto-fechado`,
-  `pregao_aberto`, `concorrencia_fechado-aberto`, `dispensa_com-disputa`; quando o modo é
-  "Não se aplica", só a modalidade (`dispensa`, `inexigibilidade`).
+- Cada pregão vai para a pasta `pregao_<modo de disputa>`, ex.: `pregao_aberto-fechado`,
+  `pregao_aberto`.
 
 ### 2. Baixar os relatórios — `relatorios.py`
 
@@ -77,7 +71,7 @@ python get.py [--orgaos CNPJ|ARQUIVO ...] [--inicio AAAA-MM-DD] [--fim AAAA-MM-D
 python relatorios.py [dados/filtrados/<pasta>/contratacoes_<pasta>.json ...]
 ```
 
-Sem argumento, percorre todas as pastas de `dados/filtrados/`.
+Sem argumento, percorre as pastas `dados/filtrados/pregao_*`.
 
 O download no Compras.gov.br é protegido por hCaptcha, por isso ele é feito **manualmente**:
 
@@ -145,6 +139,9 @@ pastas ou órgãos diferentes; colunas novas do parser são adicionadas a um ban
   para FORNECEDOR, CNPJ …, melhor lance …[, valor negociado …]"); usa o valor negociado quando
   houver. É conferido com a tabela de propostas e os eventos do item; qualquer contradição (ex.:
   aceito depois inabilitado) deixa o valor vazio e marca `REVISAR`. Mensagens do chat não são prova.
+- `esfera` (Federal, Estadual, Municipal, Distrital) e `uf`: do órgão/unidade compradora, tirados
+  dos `contratacoes_*.json` do `get.py` pelo `idCompra` do nome do relatório (não estão no PDF).
+  Ficam vazios se a compra não estiver nesses arquivos.
 - `resultado`: resultado do item, padronizado a partir da "Situação:" (mantida em `situacao_item`):
   `HOMOLOGADO`, `ADJUDICADO`, `FRACASSADO`, `DESERTO`, `REVOGADO`, `ANULADO`, `CANCELADO`, `SUSPENSO`
   ou `EM ANDAMENTO` (aceito, aberto para recursos, aguardando adjudicação…). Situação desconhecida

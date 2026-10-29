@@ -116,11 +116,11 @@ def baixar_relatorios(registros, pasta_base):
 
 
 if __name__ == "__main__":
-    # sem argumento: todas as pastas geradas pelo get.py (dados/filtrados/<grupo>/contratacoes_<grupo>.json)
+    # sem argumento: as pastas de pregão geradas pelo get.py (dados/filtrados/pregao_<modo>/contratacoes_*.json)
     if len(sys.argv) > 1:
         origens = [Path(a) for a in sys.argv[1:]]
     else:
-        origens = sorted((DADOS / "filtrados").glob("*/contratacoes_*.json"))
+        origens = sorted((DADOS / "filtrados").glob("pregao_*/contratacoes_*.json"))
     for origem in origens:
         print(f"== {origem.parent.name}")
         with open(origem, encoding="utf-8") as f:

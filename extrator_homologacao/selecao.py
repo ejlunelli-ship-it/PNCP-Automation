@@ -12,6 +12,13 @@ HOMOLOGACAO = re.compile(r"^relatorio-termo-homologacao-(?P<compra>\d+)-item-(?P
 JULGAMENTO = re.compile(r"^relatorio-julg-hab-(?P<compra>\d+)-s(?P<sessao>\d+)-item-(?P<item>\d+)\.pdf$", re.I)
 
 
+def id_compra(caminho):
+    """idCompra do Compras.gov.br no nome do relatório (ex.: 98205105911072026), ou None."""
+    nome = PurePath(caminho).name
+    m = HOMOLOGACAO.match(nome) or JULGAMENTO.match(nome)
+    return m["compra"] if m else None
+
+
 def selecionar(caminhos):
     """Subconjunto de `caminhos` (str ou Path, em qualquer pasta) com um relatório por item, na ordem recebida."""
     escolhido = {}  # (compra, item) -> (prioridade, caminho); maior prioridade vence
