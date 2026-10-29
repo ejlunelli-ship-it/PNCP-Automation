@@ -137,6 +137,9 @@ pastas ou órgãos diferentes; colunas novas do parser são adicionadas a um ban
   (excluídos) são desconsiderados.
 - `melhor_lance_*`: lance mais vantajoso registrado na etapa pelo critério do item (menor valor em
   Menor Preço, maior em Maior Desconto), mesmo que o fornecedor tenha sido desclassificado depois.
+  Em `melhor_lance_modo_aberto` (modos Aberto e Aberto/Fechado) entram também as propostas
+  iniciais (`Valor proposta` da tabela de propostas), pois elas abrem a etapa aberta; num item sem
+  lances, o campo é a melhor proposta.
 - **Lance aceito**: vem da situação do item ("Aceito e Habilitado / Adjudicado e Homologado por …
   para FORNECEDOR, CNPJ …, melhor lance …[, valor negociado …]"); usa o valor negociado quando
   houver. É conferido com a tabela de propostas e os eventos do item; qualquer contradição (ex.:

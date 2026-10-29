@@ -146,6 +146,19 @@ class ResumoLances:
     nao_classificados: int = 0
 
 
+def mais_vantajoso(valores, criterio):
+    """Menor valor em Menor Preço, maior em Maior Desconto; None sem valores ou com critério desconhecido."""
+    valores = [v for v in valores if v is not None]
+    criterio = (criterio or "").lower()
+    if not valores:
+        return None
+    if "menor preço" in criterio:
+        return min(valores)
+    if "maior desconto" in criterio:
+        return max(valores)
+    return None
+
+
 def resumir_lances(classificados, criterio):
     """classificados: lista de (lance, etapa). Lances marcados com '*' (excluídos) são ignorados.
 
@@ -157,14 +170,7 @@ def resumir_lances(classificados, criterio):
     for etapa in (ABERTA, FECHADA, DESEMPATE):
         valores = [l.valor for l, e in classificados if e == etapa and not l.excluido]
         resumo.menor[etapa] = min(valores) if valores else None
-        if not valores:
-            resumo.melhor[etapa] = None
-        elif "menor preço" in criterio:
-            resumo.melhor[etapa] = min(valores)
-        elif "maior desconto" in criterio:
-            resumo.melhor[etapa] = max(valores)
-        else:
-            resumo.melhor[etapa] = None
+        resumo.melhor[etapa] = mais_vantajoso(valores, criterio)
     resumo.excluidos = sum(1 for l, _ in classificados if l.excluido)
     resumo.nao_classificados = sum(1 for l, e in classificados if e is None and not l.excluido)
     return resumo

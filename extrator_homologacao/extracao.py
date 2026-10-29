@@ -86,7 +86,7 @@ def extrair_item(bloco, r):
     r.fontes.append(f"quantidade_fornecedores: Propostas do Item {bloco.numero} {bloco.propostas.paginas}")
 
     eventos = tabelas.ler_registros(bloco.eventos, com_responsavel=False)
-    extrair_lances(bloco, lances, eventos, situacao.criterio, d.get("modo_disputa"), r)
+    extrair_lances(bloco, lances, propostas, eventos, situacao.criterio, d.get("modo_disputa"), r)
 
     aceito = campos.lance_aceito(situacao, propostas, eventos)
     d["lance_aceito"] = aceito.valor
@@ -100,23 +100,23 @@ def extrair_item(bloco, r):
         r.fontes.append(f"lance_aceito: {aceito.fonte}")
 
 
-def extrair_lances(bloco, lances, eventos, criterio, modo, r):
+def extrair_lances(bloco, lances, propostas, eventos, criterio, modo, r):
     d = r.dados
     for campo in ("melhor_lance_modo_aberto", "melhor_lance_modo_fechado", "melhor_lance_desempate"):
         d[campo] = None
     d["lances_excluidos"] = sum(1 for l in lances if l.excluido)
+    modo_norm = (modo or "").strip().lower()
+    # as propostas iniciais ("Valor proposta") abrem a etapa aberta e contam no melhor valor dela
+    iniciais = [p.valor_proposta for p in propostas] if modo_norm in ("aberto", "aberto/fechado") else []
 
-    if not bloco.lances:
-        r.avisos.append("item sem tabela de lances")
-        return
-    if not lances:
-        r.avisos.append("tabela de lances sem lances")
+    if not bloco.lances or not lances:
+        r.avisos.append("item sem tabela de lances" if not bloco.lances else "tabela de lances sem lances")
+        d["melhor_lance_modo_aberto"] = campos.mais_vantajoso(iniciais, criterio)
         return
 
     chat = tabelas.ler_registros(bloco.chat, com_responsavel=True)
     marcos, probs = etapas.identificar_etapas(chat, eventos, bloco.numero)
     r.problemas.extend(probs)
-    modo_norm = (modo or "").strip().lower()
     if modo_norm in ("aberto", "fechado"):
         # etapa única: todos os lances são dela, exceto os que caem numa janela de desempate
         unica = etapas.ABERTA if modo_norm == "aberto" else etapas.FECHADA
@@ -140,7 +140,7 @@ def extrair_lances(bloco, lances, eventos, criterio, modo, r):
         return
     r.problemas.extend(etapas.conferir_com_chat(classificados, marcos))
 
-    d["melhor_lance_modo_aberto"] = resumo.melhor[etapas.ABERTA]
+    d["melhor_lance_modo_aberto"] = campos.mais_vantajoso(iniciais + [resumo.melhor[etapas.ABERTA]], criterio)
     d["melhor_lance_modo_fechado"] = resumo.melhor[etapas.FECHADA]
     d["melhor_lance_desempate"] = resumo.melhor[etapas.DESEMPATE]
     if modo_norm == "aberto/fechado" and resumo.menor[etapas.FECHADA] is None:
