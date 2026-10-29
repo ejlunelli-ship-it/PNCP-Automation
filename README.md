@@ -12,6 +12,29 @@ termos" de cada compra e extrair os campos dos relatórios para Excel.
 
 ## Uso
 
+### 0. Listar órgãos — `orgaos.py` (opcional)
+
+```bash
+python orgaos.py [--inicio AAAA-MM-DD] [--fim AAAA-MM-DD] [--modalidades COD ...] [--minimo 5]
+```
+
+Lista os órgãos do **Brasil todo** que publicaram contratações no período, para usar em
+`get.py --orgaos dados/orgaos/orgaos.txt`. Consulta a mesma API do `get.py` sem filtrar CNPJ, mês a
+mês, e agrega por órgão.
+
+| Opção | Padrão |
+|---|---|
+| `--inicio` / `--fim` | últimos 365 dias até hoje |
+| `--modalidades` | `5` (Pregão Eletrônico e Presencial; nessa API, `6` é Dispensa e `7` Inexigibilidade) |
+| `--minimo` | `5`: só entram órgãos com pelo menos 5 contratações no período |
+
+- Gera `dados/orgaos/orgaos.txt` (CNPJ por linha; contratações, homologadas, município e nome em
+  comentário) e `orgaos.csv` (com esfera, poder e contagem por modo de disputa).
+- Cada mês concluído fica em `orgaos.parcial.json`: se cair no meio, rode de novo que ele continua
+  de onde parou. Meses com falha são avisados no fim.
+- Volume: ~9 mil pregões por mês no país (~200 páginas por ano). A API costuma estar cerca de um
+  mês atrasada, e a paginação dela não é estável (perde-se menos de 1% dos registros).
+
 ### 1. Coletar e separar — `get.py`
 
 ```bash
@@ -110,6 +133,8 @@ Lê os relatórios da pasta (padrão: `dados/filtrados`, todas as subpastas) e g
 
 ```
 dados/
+├── orgaos/
+│   └── orgaos.{txt,csv}                                # lista de órgãos (orgaos.py)
 ├── brutos/
 │   └── contratacoes.{json,csv}                         # tudo o que foi coletado na última execução
 ├── filtrados/
