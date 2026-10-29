@@ -16,6 +16,7 @@ RE_RESPONSAVEL = re.compile(
     r"Agente de contratação.*|" + norm.RE_DOCUMENTO.pattern + r")$"
 )
 NOTA_LANCES_EXCLUIDOS = "(lances com * foram excluídos)"
+RE_SEM_LANCES = re.compile(r"^Nenhum lance foi registrado para o Item \d+\.?$")  # item sem disputa
 
 
 @dataclass
@@ -108,7 +109,7 @@ def ler_lances(secao):
                 ))
                 i += 3
                 continue
-        if textos[i].texto != NOTA_LANCES_EXCLUIDOS:
+        if textos[i].texto != NOTA_LANCES_EXCLUIDOS and not RE_SEM_LANCES.match(textos[i].texto):
             sobras.append(textos[i].texto)
         i += 1
     return lances, sobras

@@ -118,14 +118,19 @@ def situacao_item(secao):
 
 # --------------------------------------------------------------------------- fornecedores
 
-def quantidade_fornecedores(propostas, lances):
-    """Fornecedores distintos (por CNPJ/CPF) com proposta no item. Retorna (quantidade, problemas)."""
+def quantidade_fornecedores(propostas, lances, deserto=False):
+    """Fornecedores distintos (por CNPJ/CPF) com proposta no item. Retorna (quantidade, problemas).
+
+    Item deserto não recebeu propostas: a quantidade é 0, não um problema de leitura.
+    """
     problemas = []
     docs = {norm.digitos(p.documento) for p in propostas}
     sem_proposta = {norm.digitos(l.participante) for l in lances} - docs
     if sem_proposta:
         problemas.append(f"{len(sem_proposta)} participante(s) com lance sem proposta listada no item")
     if not docs:
+        if deserto:
+            return 0, problemas
         problemas.append("nenhuma proposta identificada no item")
         return None, problemas
     return len(docs), problemas
@@ -180,6 +185,9 @@ RESULTADOS = [
     ("aguardando adjudica", EM_ANDAMENTO), ("adjudicad", ADJUDICADO),
     ("recurso", EM_ANDAMENTO), ("aceit", EM_ANDAMENTO), ("habilita", EM_ANDAMENTO), ("julgamento", EM_ANDAMENTO),
 ]
+
+
+SEM_ACEITE = {FRACASSADO, DESERTO, REVOGADO, ANULADO, CANCELADO}
 
 
 def resultado_item(situacao):
@@ -237,8 +245,10 @@ def lance_aceito(situacao, propostas, eventos, pagina_eventos=""):
     tipo = classificar_acao(situacao.acao)
     fonte = f"situação do item (p.{situacao.pagina})" if situacao.pagina else "situação do item"
 
-    if tipo == FRACASSADO or (situacao.situacao or "").lower().startswith("fracassad"):
-        r.situacao = FRACASSADO
+    # fracassado, deserto, revogado etc.: o item terminou sem proposta aceita
+    resultado = resultado_item(situacao.situacao)
+    if tipo == FRACASSADO or resultado in SEM_ACEITE:
+        r.situacao = FRACASSADO if tipo == FRACASSADO else resultado
         r.fonte = fonte
         r.avisos.append(f"item '{situacao.situacao}': nenhuma proposta aceita")
         return r

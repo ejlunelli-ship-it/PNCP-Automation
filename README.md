@@ -120,9 +120,11 @@ pastas ou órgãos diferentes; colunas novas do parser são adicionadas a um ban
 - Separação dos lances por etapa conforme o modo de disputa do cabeçalho: `Aberto/Fechado` (janelas
   do chat, abaixo), `Aberto` ou `Fechado` (etapa única; desempates à parte). Outros modos (ex.:
   `Fechado/Aberto`) vão para `REVISAR` com os campos de lance vazios.
-- O parser foi construído e validado com relatórios de **pregão Aberto/Fechado**. Os de outras
-  modalidades/modos ainda não foram baixados e podem ter layout diferente: confira a aba `revisar`
-  na primeira execução.
+- O parser foi validado com relatórios de pregão **Aberto/Fechado** e **Aberto**. Outros modos
+  (ex.: `Fechado/Aberto`) ainda não foram baixados: confira a aba `revisar` na primeira execução.
+- Itens sem disputa ("Nenhum lance foi registrado para o Item N.") ficam com os campos de lance
+  vazios; itens desertos, revogados, anulados ou cancelados ficam sem lance aceito (situação igual
+  ao `resultado`), e desertos têm `quantidade_fornecedores` = 0.
 
 - Extração determinística (PyMuPDF + regex). OCRmyPDF/Tesseract só entram se o PDF não tiver texto.
 - Valores monetários são **unitários**, em `Decimal`; ausente = célula vazia, nunca zero.
