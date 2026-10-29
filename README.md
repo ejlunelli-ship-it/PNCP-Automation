@@ -46,13 +46,17 @@ O download no Compras.gov.br é protegido por hCaptcha, por isso ele é feito **
 1. O script abre cada compra no navegador padrão.
 2. Você clica em **Downloads → Todos os relatórios e termos**.
 3. O script detecta `relatorios-compra-<idCompra>.zip` na pasta Downloads, move para a pasta da
-   compra, extrai e abre a próxima.
+   compra, extrai só os termos de homologação e abre a próxima.
 
 Detalhes:
 
 - Compras ainda não homologadas (sem `existeResultado`/`valorTotalHomologado`) são puladas, pois
   o site não oferece os relatórios para elas.
-- Compras que já têm zip na pasta são puladas, então pode rodar de novo para baixar só o que falta.
+- Para economizar espaço, só os `relatorio-termo-homologacao-*.pdf` são mantidos (é o que o
+  extrator usa); o zip e os demais relatórios (julgamento, diligências etc.) são apagados. Se o zip
+  não tiver nenhum termo de homologação, nada é apagado.
+- Compras que já têm termo de homologação (ou zip) na pasta são puladas, então pode rodar de novo
+  para baixar só o que falta; nessas pastas o que sobrou além dos termos também é apagado.
 - Se o download não acontecer em 5 minutos, a compra é pulada.
 
 ### 3. Extrair os campos dos relatórios — `extrator_homologacao`
@@ -110,7 +114,7 @@ dados/
 │   └── <modalidade>_<modo>/                            # ex.: pregao_aberto-fechado
 │       ├── contratacoes_<modalidade>_<modo>.{json,csv}
 │       └── relatorios/
-│           └── <numeroCompra>-<ano>_<idCompra>/       # zip + arquivos extraídos
+│           └── <numeroCompra>-<ano>_<idCompra>/       # relatorio-termo-homologacao-*.pdf
 └── extracao/
     ├── homologacoes.xlsx                               # consolidado
     └── <modalidade>_<modo>.xlsx                        # um por pasta
