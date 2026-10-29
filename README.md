@@ -123,6 +123,11 @@ Lê os relatórios da pasta (padrão: `dados/filtrados`, todas as subpastas) e g
   para FORNECEDOR, CNPJ …, melhor lance …[, valor negociado …]"); usa o valor negociado quando
   houver. É conferido com a tabela de propostas e os eventos do item; qualquer contradição (ex.:
   aceito depois inabilitado) deixa o valor vazio e marca `REVISAR`. Mensagens do chat não são prova.
+- `resultado`: resultado do item, padronizado a partir da "Situação:" (mantida em `situacao_item`):
+  `HOMOLOGADO`, `ADJUDICADO`, `FRACASSADO`, `DESERTO`, `REVOGADO`, `ANULADO`, `CANCELADO`, `SUSPENSO`
+  ou `EM ANDAMENTO` (aceito, aberto para recursos, aguardando adjudicação…). Situação desconhecida
+  vira `NÃO IDENTIFICADO`, com aviso em `erros_extracao`. Diferente de `situacao_lance_aceito`, que
+  é a validação do lance aceito.
 - `quantidade_fornecedores`: CNPJs/CPFs distintos na tabela de propostas do item.
 - Status: `OK`, `REVISAR` (motivos em `erros_extracao`), `ERRO` (ex.: relatórios de diligência,
   que não trazem dados do item). `fontes_extracao` registra página/seção de cada campo.

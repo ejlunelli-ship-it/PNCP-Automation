@@ -32,6 +32,7 @@ class RegistroExtracao(BaseModel):
     fornecedor_lance_aceito: str | None = None
     cnpj_fornecedor_lance_aceito: str | None = None
     situacao_lance_aceito: str | None = None
+    resultado: str | None = None  # HOMOLOGADO, ADJUDICADO, FRACASSADO, DESERTO, EM ANDAMENTO etc.
 
     # complementares, para auditoria
     pasta: str | None = None              # subpasta de origem (ex.: pregao_aberto-fechado)

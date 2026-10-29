@@ -70,6 +70,9 @@ def extrair_item(bloco, r):
 
     situacao = campos.situacao_item(bloco.cabecalho)
     d["situacao_item"] = situacao.situacao
+    d["resultado"] = campos.resultado_item(situacao.situacao)
+    if d["resultado"] == campos.NAO_IDENTIFICADO:
+        r.avisos.append(f"resultado do item não reconhecido na situação {situacao.situacao!r}")
     d["criterio_julgamento_item"] = situacao.criterio
 
     propostas = tabelas.ler_propostas(bloco.propostas)

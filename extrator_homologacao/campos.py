@@ -170,6 +170,26 @@ def resumir_lances(classificados, criterio):
 ACEITO, ADJUDICADO, HOMOLOGADO = "ACEITO", "ADJUDICADO", "HOMOLOGADO"
 DESCLASSIFICADO, FRACASSADO = "DESCLASSIFICADO", "FRACASSADO"
 NAO_IDENTIFICADO, REVISAR = "NÃO IDENTIFICADO", "REVISAR"
+EM_ANDAMENTO, DESERTO, CANCELADO = "EM ANDAMENTO", "DESERTO", "CANCELADO"
+REVOGADO, ANULADO, SUSPENSO = "REVOGADO", "ANULADO", "SUSPENSO"
+
+# (trecho da "Situação:" do item, resultado), na ordem de teste: o primeiro que bater vence
+RESULTADOS = [
+    ("fracassad", FRACASSADO), ("desert", DESERTO), ("revogad", REVOGADO), ("anulad", ANULADO),
+    ("cancelad", CANCELADO), ("suspens", SUSPENSO), ("homologad", HOMOLOGADO),
+    ("aguardando adjudica", EM_ANDAMENTO), ("adjudicad", ADJUDICADO),
+    ("recurso", EM_ANDAMENTO), ("aceit", EM_ANDAMENTO), ("habilita", EM_ANDAMENTO), ("julgamento", EM_ANDAMENTO),
+]
+
+
+def resultado_item(situacao):
+    """Resultado do item a partir da "Situação:" ("Fracassado e Homologado" -> FRACASSADO,
+    "Adjudicado e Homologado" -> HOMOLOGADO, "Aguardando adjudicação" -> EM ANDAMENTO)."""
+    texto = (situacao or "").lower()  # os trechos param antes de acentos ("adjudica|ção")
+    for trecho, resultado in RESULTADOS:
+        if trecho in texto:
+            return resultado
+    return NAO_IDENTIFICADO
 
 RE_EVENTO_PROPOSTA = re.compile(
     r"^Fornecedor (?P<fornecedor>.+?), (?:CNPJ|CPF) (?P<documento>" + norm.RE_DOCUMENTO.pattern + r") "
