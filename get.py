@@ -8,6 +8,8 @@ from pathlib import Path
 
 import requests
 
+from config import DADOS
+
 URL = "https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133"
 TAMANHO = 500
 
@@ -17,9 +19,8 @@ DIAS_PADRAO = 365                  # período: último ano até hoje
 MODALIDADES_PADRAO = list(range(1, 20))
 
 # pastas de saída
-BASE = Path(__file__).parent / "dados"
-PASTA_BRUTOS = BASE / "brutos"
-PASTA_FILTRADOS = BASE / "filtrados"
+PASTA_BRUTOS = DADOS / "brutos"
+PASTA_FILTRADOS = DADOS / "filtrados"
 
 session = requests.Session()
 session.headers.update({"Accept": "application/json"})

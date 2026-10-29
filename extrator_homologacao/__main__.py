@@ -5,13 +5,16 @@ import logging
 import sys
 from pathlib import Path
 
+from config import DADOS
+
 from . import VERSAO_PARSER
 from .excel import gerar_excel
 from .lote import descobrir_pdfs, processar_lote
 from .selecao import selecionar
+from .sqlite import gravar_sqlite
 
-PASTA_PADRAO = Path("dados") / "filtrados"
-SAIDA_PADRAO = Path("dados") / "extracao" / "homologacoes.xlsx"
+PASTA_PADRAO = DADOS / "filtrados"
+SAIDA_PADRAO = DADOS / "extracao" / "homologacoes.xlsx"
 
 
 def configurar_log(arquivo):
@@ -47,6 +50,8 @@ def main(argv=None):
     ap.add_argument("--workers", type=int, default=1, help="processos paralelos (padrão: 1)")
     ap.add_argument("--sem-separar", action="store_true",
                     help="gera só o Excel consolidado, sem um Excel por subpasta")
+    ap.add_argument("--db", type=Path,
+                    help="banco SQLite, uma linha por item (padrão: --saida com extensão .db)")
     args = ap.parse_args(argv)
 
     configurar_log(args.saida.with_suffix(".log"))
@@ -69,6 +74,16 @@ def main(argv=None):
     )
     registros = [r.model_copy(update={"pasta": pasta_de(p, args.pasta)}) for r, p in zip(registros, pdfs)]
     gerar_excel(registros, args.saida)
+
+    # o banco tem uma linha por item; com --todos haveria vários relatórios por item
+    db = args.db or args.saida.with_suffix(".db")
+    if args.todos:
+        print(f"--todos: SQLite não atualizado ({db})")
+    else:
+        gravados, ignorados = gravar_sqlite(registros, db)
+        sem_chave = f", {ignorados} sem uasg/compra/item ignorado(s)" if ignorados else ""
+        log.info("sqlite - %d item(ns) gravado(s)%s - %s", gravados, sem_chave, db)
+        print(f"SQLite: {gravados} item(ns) gravado(s){sem_chave} -> {db}")
 
     # um Excel por subpasta (ex.: dados/extracao/pregao_aberto-fechado.xlsx)
     if not args.sem_separar:

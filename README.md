@@ -2,13 +2,28 @@
 
 Scripts para coletar as contratações (Lei 14.133/2021) dos órgãos filtrados (`--orgaos`) na API de
 Dados Abertos do Compras.gov.br, separá-las em pastas por modalidade e modo de disputa, organizar o zip "Todos os relatórios e
-termos" de cada compra e extrair os campos dos relatórios para Excel.
+termos" de cada compra e extrair os campos dos relatórios para Excel e SQLite.
 
 
 ## Requisitos
 
 - Python 3.10+
 - `pip install -r requirements.txt`
+- Rodar os comandos a partir da pasta do projeto.
+
+### Onde ficam os dados
+
+Por padrão em `dados/`, dentro do projeto. Para usar outra pasta (outro disco, pasta de backup
+etc.), defina a variável de ambiente `PNCP_DADOS`; todos os scripts passam a ler e gravar lá
+(`<PNCP_DADOS>/brutos`, `filtrados`, `orgaos`, `extracao`):
+
+```powershell
+$env:PNCP_DADOS = "D:\pncp"                                          # só nesta sessão
+[Environment]::SetEnvironmentVariable("PNCP_DADOS", "D:\pncp", "User")  # permanente (abra outro terminal)
+```
+
+Nos exemplos abaixo, `dados/` significa essa pasta. Ao mudar de pasta, mova o conteúdo de `dados/`
+junto, ou os relatórios já baixados serão pedidos de novo.
 
 ## Uso
 
@@ -87,13 +102,19 @@ Detalhes:
 ### 3. Extrair os campos dos relatórios — `extrator_homologacao`
 
 ```bash
-python -m extrator_homologacao [pasta] [--saida dados/extracao/homologacoes.xlsx] [--padrao "*.pdf"] [--todos] [--reprocessar] [--sem-ocr] [--workers 4] [--sem-separar]
+python -m extrator_homologacao [pasta] [--saida dados/extracao/homologacoes.xlsx] [--padrao "*.pdf"] [--todos] [--reprocessar] [--sem-ocr] [--workers 4] [--sem-separar] [--db arquivo.db]
 ```
 
 Lê os relatórios da pasta (padrão: `dados/filtrados`, todas as subpastas) e gera
 `dados/extracao/homologacoes.xlsx` consolidado e um Excel por subpasta
 (`dados/extracao/<pasta>.xlsx`), com **uma linha por PDF**, abas `relatorios`, `revisar`
 (status ≠ OK) e `metadados`, além de `homologacoes.log` e `homologacoes.cache.json`.
+
+Também grava `dados/extracao/homologacoes.db` (SQLite; outro arquivo com `--db`), tabela `itens`
+com as mesmas colunas e **uma linha por item** (chave `uasg` + `numero_compra` + `item`). Cada
+execução atualiza os itens processados e mantém os demais, então o banco acumula execuções de
+pastas ou órgãos diferentes; colunas novas do parser são adicionadas a um banco existente. Com
+`--todos` o banco não é atualizado (haveria vários relatórios por item).
 
 - Por padrão entra **um relatório por item**: o termo de homologação, que traz os mesmos campos do
   julgamento já com a situação final (`Adjudicado e Homologado`, `Fracassado e Homologado`); sem
@@ -149,6 +170,7 @@ dados/
 │           └── <numeroCompra>-<ano>_<idCompra>/       # um relatório por item (homologação ou julgamento)
 └── extracao/
     ├── homologacoes.xlsx                               # consolidado
+    ├── homologacoes.db                                 # SQLite, tabela itens (acumula execuções)
     └── <modalidade>_<modo>.xlsx                        # um por pasta
 ```
 

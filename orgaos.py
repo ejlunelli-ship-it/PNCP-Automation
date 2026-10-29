@@ -12,13 +12,13 @@ import sys
 import time
 from collections import Counter
 from datetime import date, timedelta
-from pathlib import Path
 
+from config import DADOS
 from get import DIAS_PADRAO, TAMANHO, get_json
 
 MODALIDADES_PADRAO = [5]  # Pregão (Eletrônico e Presencial)
 MINIMO_PADRAO = 5
-PASTA = Path(__file__).parent / "dados" / "orgaos"
+PASTA = DADOS / "orgaos"
 
 sys.stdout.reconfigure(encoding="utf-8")
 

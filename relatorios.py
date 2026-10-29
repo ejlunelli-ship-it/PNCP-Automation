@@ -14,6 +14,7 @@ import webbrowser
 import zipfile
 from pathlib import Path
 
+from config import DADOS
 from extrator_homologacao.selecao import selecionar
 
 URL_COMPRA = ("https://cnetmobile.estaleiro.serpro.gov.br/comprasnet-web/public/compras/"
@@ -119,7 +120,7 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         origens = [Path(a) for a in sys.argv[1:]]
     else:
-        origens = sorted((Path(__file__).parent / "dados" / "filtrados").glob("*/contratacoes_*.json"))
+        origens = sorted((DADOS / "filtrados").glob("*/contratacoes_*.json"))
     for origem in origens:
         print(f"== {origem.parent.name}")
         with open(origem, encoding="utf-8") as f:
