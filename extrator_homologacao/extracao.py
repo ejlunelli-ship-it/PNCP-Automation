@@ -98,8 +98,7 @@ def extrair_item(bloco, r):
 
 def extrair_lances(bloco, lances, eventos, criterio, modo, r):
     d = r.dados
-    for campo in ("menor_lance_modo_aberto", "menor_lance_modo_fechado", "melhor_lance_modo_aberto",
-                  "melhor_lance_modo_fechado", "menor_lance_desempate"):
+    for campo in ("melhor_lance_modo_aberto", "melhor_lance_modo_fechado", "melhor_lance_desempate"):
         d[campo] = None
     d["lances_excluidos"] = sum(1 for l in lances if l.excluido)
 
@@ -137,11 +136,9 @@ def extrair_lances(bloco, lances, eventos, criterio, modo, r):
         return
     r.problemas.extend(etapas.conferir_com_chat(classificados, marcos))
 
-    d["menor_lance_modo_aberto"] = resumo.menor[etapas.ABERTA]
-    d["menor_lance_modo_fechado"] = resumo.menor[etapas.FECHADA]
-    d["menor_lance_desempate"] = resumo.menor[etapas.DESEMPATE]
     d["melhor_lance_modo_aberto"] = resumo.melhor[etapas.ABERTA]
     d["melhor_lance_modo_fechado"] = resumo.melhor[etapas.FECHADA]
+    d["melhor_lance_desempate"] = resumo.melhor[etapas.DESEMPATE]
     if modo_norm == "aberto/fechado" and resumo.menor[etapas.FECHADA] is None:
         r.avisos.append("nenhum lance registrado na etapa fechada")
     if resumo.excluidos:

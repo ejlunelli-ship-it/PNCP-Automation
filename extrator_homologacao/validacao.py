@@ -24,12 +24,10 @@ class RegistroExtracao(BaseModel):
     pregao: str | None = None
     modo_disputa: str | None = None
     valor_estimado: Dinheiro | None = None
-    menor_lance_modo_aberto: Dinheiro | None = None
-    menor_lance_modo_fechado: Dinheiro | None = None
-    quantidade_fornecedores: Annotated[int, Field(ge=0)] | None = None
-    descricao_item: str | None = None
     melhor_lance_modo_aberto: Dinheiro | None = None
     melhor_lance_modo_fechado: Dinheiro | None = None
+    quantidade_fornecedores: Annotated[int, Field(ge=0)] | None = None
+    descricao_item: str | None = None
     lance_aceito: Dinheiro | None = None
     fornecedor_lance_aceito: str | None = None
     cnpj_fornecedor_lance_aceito: str | None = None
@@ -44,7 +42,7 @@ class RegistroExtracao(BaseModel):
     situacao_item: str | None = None
     criterio_julgamento_item: str | None = None
     valor_estimado_total: Dinheiro | None = None
-    menor_lance_desempate: Dinheiro | None = None
+    melhor_lance_desempate: Dinheiro | None = None
     valor_negociado_aceito: Dinheiro | None = None
     lances_excluidos: Annotated[int, Field(ge=0)] | None = None
     fontes_extracao: str | None = None

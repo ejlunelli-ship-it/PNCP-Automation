@@ -59,13 +59,19 @@ Detalhes:
 ### 3. Extrair os campos dos relatórios — `extrator_homologacao`
 
 ```bash
-python -m extrator_homologacao [pasta] [--saida dados/extracao/homologacoes.xlsx] [--padrao "*.pdf"] [--reprocessar] [--sem-ocr] [--workers 4] [--sem-separar]
+python -m extrator_homologacao [pasta] [--saida dados/extracao/homologacoes.xlsx] [--padrao "relatorio-termo-homologacao-*.pdf"] [--reprocessar] [--sem-ocr] [--workers 4] [--sem-separar]
 ```
 
-Lê todos os PDFs da pasta (padrão: `dados/filtrados`, todas as subpastas) e gera
+Lê os termos de homologação da pasta (padrão: `dados/filtrados`, todas as subpastas) e gera
 `dados/extracao/homologacoes.xlsx` consolidado e um Excel por subpasta
 (`dados/extracao/<pasta>.xlsx`), com **uma linha por PDF**, abas `relatorios`, `revisar`
 (status ≠ OK) e `metadados`, além de `homologacoes.log` e `homologacoes.cache.json`.
+
+- Por padrão só entram os `relatorio-termo-homologacao-*.pdf` (um por item): eles trazem os mesmos
+  campos do termo de julgamento, mas com a situação final do item (`Adjudicado e Homologado`,
+  `Fracassado e Homologado`). Os julgamentos repetem o item, e há um por sessão (`-s1-`, `-s2-`):
+  uma sessão anterior pode mostrar um lance aceito que depois fracassou. Use `--padrao "*.pdf"`
+  para processar todos os relatórios, incluindo julgamentos e diligências.
 
 - Separação dos lances por etapa conforme o modo de disputa do cabeçalho: `Aberto/Fechado` (janelas
   do chat, abaixo), `Aberto` ou `Fechado` (etapa única; desempates à parte). Outros modos (ex.:
@@ -81,9 +87,10 @@ Lê todos os PDFs da pasta (padrão: `dados/filtrados`, todas as subpastas) e ge
   iniciada/reiniciada…", "…foi encerrada") — ou dos "Eventos do Item" como alternativa. A lista de
   valores da mensagem de encerramento serve só para conferir (e para desempatar lances no mesmo
   segundo da troca de etapa), nunca é contada como lance. Lances de desempate (art. 60 / ME/EPP)
-  ficam em `menor_lance_desempate`, fora das colunas da etapa fechada. Lances marcados com `*`
+  ficam em `melhor_lance_desempate`, fora das colunas da etapa fechada. Lances marcados com `*`
   (excluídos) são desconsiderados.
-- `menor_lance_*`: menor valor registrado; `melhor_lance_*`: mais vantajoso pelo critério do item.
+- `melhor_lance_*`: lance mais vantajoso registrado na etapa pelo critério do item (menor valor em
+  Menor Preço, maior em Maior Desconto), mesmo que o fornecedor tenha sido desclassificado depois.
 - **Lance aceito**: vem da situação do item ("Aceito e Habilitado / Adjudicado e Homologado por …
   para FORNECEDOR, CNPJ …, melhor lance …[, valor negociado …]"); usa o valor negociado quando
   houver. É conferido com a tabela de propostas e os eventos do item; qualquer contradição (ex.:
