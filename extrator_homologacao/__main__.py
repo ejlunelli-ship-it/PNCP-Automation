@@ -8,11 +8,10 @@ from pathlib import Path
 from . import VERSAO_PARSER
 from .excel import gerar_excel
 from .lote import descobrir_pdfs, processar_lote
+from .selecao import selecionar
 
 PASTA_PADRAO = Path("dados") / "filtrados"
 SAIDA_PADRAO = Path("dados") / "extracao" / "homologacoes.xlsx"
-# só o termo de homologação: traz os mesmos campos do julgamento, já com a situação final do item
-PADRAO_PADRAO = "relatorio-termo-homologacao-*.pdf"
 
 
 def configurar_log(arquivo):
@@ -39,8 +38,10 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description="Extrai campos dos relatórios de julgamento/homologação para Excel.")
     ap.add_argument("pasta", nargs="?", default=PASTA_PADRAO, type=Path, help=f"pasta com os PDFs (padrão: {PASTA_PADRAO})")
     ap.add_argument("--saida", default=SAIDA_PADRAO, type=Path, help=f"arquivo Excel (padrão: {SAIDA_PADRAO})")
-    ap.add_argument("--padrao", default=PADRAO_PADRAO,
-                    help=f'glob dos arquivos (padrão: "{PADRAO_PADRAO}"; "*.pdf" inclui julgamentos e diligências)')
+    ap.add_argument("--padrao", default="*.pdf", help='glob dos arquivos, ex.: "relatorio-termo-homologacao-*.pdf"')
+    ap.add_argument("--todos", action="store_true",
+                    help="processa todos os PDFs; sem ela, um relatório por item (homologação ou, sem ela, "
+                         "o julgamento da última sessão)")
     ap.add_argument("--reprocessar", action="store_true", help="ignora o cache e extrai todos os PDFs novamente")
     ap.add_argument("--sem-ocr", action="store_true", help="não tenta OCR em PDFs sem camada de texto")
     ap.add_argument("--workers", type=int, default=1, help="processos paralelos (padrão: 1)")
@@ -53,6 +54,8 @@ def main(argv=None):
     log.info("início - versão do parser %s - pasta %s", VERSAO_PARSER, args.pasta)
 
     pdfs = descobrir_pdfs(args.pasta, args.padrao)
+    if not args.todos:
+        pdfs = selecionar(pdfs)
     if not pdfs:
         print(f"Nenhum PDF encontrado em {args.pasta} ({args.padrao})")
         return 1

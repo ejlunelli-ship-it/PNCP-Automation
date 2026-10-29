@@ -46,35 +46,37 @@ O download no Compras.gov.br é protegido por hCaptcha, por isso ele é feito **
 1. O script abre cada compra no navegador padrão.
 2. Você clica em **Downloads → Todos os relatórios e termos**.
 3. O script detecta `relatorios-compra-<idCompra>.zip` na pasta Downloads, move para a pasta da
-   compra, extrai só os termos de homologação e abre a próxima.
+   compra, extrai só o relatório escolhido para cada item (regra abaixo) e abre a próxima.
 
 Detalhes:
 
 - Compras ainda não homologadas (sem `existeResultado`/`valorTotalHomologado`) são puladas, pois
   o site não oferece os relatórios para elas.
-- Para economizar espaço, só os `relatorio-termo-homologacao-*.pdf` são mantidos (é o que o
-  extrator usa); o zip e os demais relatórios (julgamento, diligências etc.) são apagados. Se o zip
-  não tiver nenhum termo de homologação, nada é apagado.
-- Compras que já têm termo de homologação (ou zip) na pasta são puladas, então pode rodar de novo
-  para baixar só o que falta; nessas pastas o que sobrou além dos termos também é apagado.
+- Para economizar espaço, fica **um relatório por item**: o termo de homologação
+  (`relatorio-termo-homologacao-*.pdf`) ou, se o item não tiver, o termo de julgamento da última
+  sessão (`relatorio-julg-hab-*-s<N>-*.pdf`). O zip e o resto (outras sessões, diligências etc.)
+  são apagados. Se nenhum relatório se encaixar nessa regra, nada é apagado. A regra fica em
+  `extrator_homologacao/selecao.py` e é a mesma usada pelo extrator.
+- Compras que já têm relatório (ou zip) na pasta são puladas, então pode rodar de novo para baixar
+  só o que falta; nessas pastas o que estiver fora da regra também é apagado.
 - Se o download não acontecer em 5 minutos, a compra é pulada.
 
 ### 3. Extrair os campos dos relatórios — `extrator_homologacao`
 
 ```bash
-python -m extrator_homologacao [pasta] [--saida dados/extracao/homologacoes.xlsx] [--padrao "relatorio-termo-homologacao-*.pdf"] [--reprocessar] [--sem-ocr] [--workers 4] [--sem-separar]
+python -m extrator_homologacao [pasta] [--saida dados/extracao/homologacoes.xlsx] [--padrao "*.pdf"] [--todos] [--reprocessar] [--sem-ocr] [--workers 4] [--sem-separar]
 ```
 
-Lê os termos de homologação da pasta (padrão: `dados/filtrados`, todas as subpastas) e gera
+Lê os relatórios da pasta (padrão: `dados/filtrados`, todas as subpastas) e gera
 `dados/extracao/homologacoes.xlsx` consolidado e um Excel por subpasta
 (`dados/extracao/<pasta>.xlsx`), com **uma linha por PDF**, abas `relatorios`, `revisar`
 (status ≠ OK) e `metadados`, além de `homologacoes.log` e `homologacoes.cache.json`.
 
-- Por padrão só entram os `relatorio-termo-homologacao-*.pdf` (um por item): eles trazem os mesmos
-  campos do termo de julgamento, mas com a situação final do item (`Adjudicado e Homologado`,
-  `Fracassado e Homologado`). Os julgamentos repetem o item, e há um por sessão (`-s1-`, `-s2-`):
-  uma sessão anterior pode mostrar um lance aceito que depois fracassou. Use `--padrao "*.pdf"`
-  para processar todos os relatórios, incluindo julgamentos e diligências.
+- Por padrão entra **um relatório por item**: o termo de homologação, que traz os mesmos campos do
+  julgamento já com a situação final (`Adjudicado e Homologado`, `Fracassado e Homologado`); sem
+  ele, o termo de julgamento da última sessão. Os julgamentos repetem o item e há um por sessão
+  (`-s1-`, `-s2-`): uma sessão anterior pode mostrar um lance aceito que depois fracassou.
+  Use `--todos` para processar todos os PDFs, incluindo todas as sessões e diligências.
 
 - Separação dos lances por etapa conforme o modo de disputa do cabeçalho: `Aberto/Fechado` (janelas
   do chat, abaixo), `Aberto` ou `Fechado` (etapa única; desempates à parte). Outros modos (ex.:
@@ -114,7 +116,7 @@ dados/
 │   └── <modalidade>_<modo>/                            # ex.: pregao_aberto-fechado
 │       ├── contratacoes_<modalidade>_<modo>.{json,csv}
 │       └── relatorios/
-│           └── <numeroCompra>-<ano>_<idCompra>/       # relatorio-termo-homologacao-*.pdf
+│           └── <numeroCompra>-<ano>_<idCompra>/       # um relatório por item (homologação ou julgamento)
 └── extracao/
     ├── homologacoes.xlsx                               # consolidado
     └── <modalidade>_<modo>.xlsx                        # um por pasta

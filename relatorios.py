@@ -3,7 +3,8 @@
 Abre cada compra no navegador padrão (sem automação, então sem captcha extra).
 Você clica em Downloads > "Todos os relatórios e termos"; o script detecta o zip
 na pasta Downloads, move para a pasta da compra, extrai e abre a próxima.
-Só os termos de homologação são mantidos; o zip e os demais relatórios são apagados.
+Só um relatório por item é mantido (o termo de homologação ou, sem ele, o de julgamento
+da última sessão); o zip e os demais relatórios são apagados.
 """
 import json
 import shutil
@@ -13,11 +14,12 @@ import webbrowser
 import zipfile
 from pathlib import Path
 
+from extrator_homologacao.selecao import selecionar
+
 URL_COMPRA = ("https://cnetmobile.estaleiro.serpro.gov.br/comprasnet-web/public/compras/"
               "acompanhamento-compra/item/1?compra={}")
 DOWNLOADS = Path.home() / "Downloads"
 ESPERA = 5 * 60  # segundos aguardando o download antes de pular a compra
-MANTER = "relatorio-termo-homologacao-*.pdf"  # o que o extrator_homologacao usa
 
 sys.stdout.reconfigure(encoding="utf-8")
 
@@ -47,22 +49,29 @@ def esperar_novo_zip(id_compra, antes):
     return None
 
 
-def manter_so_homologacao(destino):
-    """Extrai do zip só os termos de homologação e apaga o resto da pasta da compra.
+def manter_selecionados(destino):
+    """Deixa na pasta da compra só o relatório escolhido para cada item (ver extrator_homologacao.selecao).
 
-    Se não houver nenhum termo de homologação (nem no zip nem já extraído), não apaga nada.
+    Extrai do zip os escolhidos que faltam e apaga o resto (zip incluído). Se nenhum relatório
+    se encaixar na regra, não apaga nada.
     """
+    no_zip = {}  # nome -> (zip, membro)
     for zp in destino.glob("*.zip"):
         if zipfile.is_zipfile(zp):
             with zipfile.ZipFile(zp) as z:
-                for nome in z.namelist():
-                    if Path(nome).match(MANTER):
-                        z.extract(nome, destino)
-    if not any(destino.rglob(MANTER)):
-        print("  nenhum termo de homologação no zip; arquivos mantidos")
+                for membro in z.namelist():
+                    no_zip.setdefault(Path(membro).name, (zp, membro))
+    extraidos = {p.name: p for p in destino.rglob("*.pdf")}
+    manter = set(selecionar(sorted(no_zip.keys() | extraidos.keys())))
+    if not manter:
+        print("  nenhum termo de homologação ou julgamento; arquivos mantidos")
         return
+    for nome in manter - extraidos.keys():
+        zp, membro = no_zip[nome]
+        with zipfile.ZipFile(zp) as z, z.open(membro) as origem, open(destino / nome, "wb") as saida:
+            shutil.copyfileobj(origem, saida)
     for arq in sorted(destino.rglob("*"), reverse=True):  # arquivos antes das pastas
-        if arq.is_file() and not arq.match(MANTER):
+        if arq.is_file() and arq.name not in manter:
             arq.unlink()
         elif arq.is_dir() and not any(arq.iterdir()):
             arq.rmdir()
@@ -75,9 +84,9 @@ def baixar_relatorios(registros, pasta_base):
     for i, r in enumerate(registros, 1):
         destino = pasta_da_compra(r, pasta_base)
         print(f"[{i}/{len(registros)}] {r['idCompra']} - {r['objetoCompra'][:60]}")
-        if destino.exists() and (any(destino.rglob(MANTER)) or any(destino.glob("*.zip"))):
+        if destino.exists() and (selecionar(list(destino.rglob("*.pdf"))) or any(destino.glob("*.zip"))):
             print("  já baixado, pulando")
-            manter_so_homologacao(destino)
+            manter_selecionados(destino)
             ok += 1
             continue
         # sem resultado homologado o site não oferece "Todos os relatórios e termos"
@@ -98,7 +107,7 @@ def baixar_relatorios(registros, pasta_base):
         destino.mkdir(parents=True, exist_ok=True)
         # nome limpo, sem o " (n)" que o navegador adiciona em downloads repetidos
         shutil.move(str(arq), destino / f"relatorios-compra-{r['idCompra']}.zip")
-        manter_so_homologacao(destino)
+        manter_selecionados(destino)
         print(f"  {arq.name} -> {destino}")
         ok += 1
 
