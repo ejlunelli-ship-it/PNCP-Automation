@@ -58,13 +58,19 @@ Detalhes:
 ### 3. Extrair os campos dos relatórios — `extrator_homologacao`
 
 ```bash
-python -m extrator_homologacao [pasta] [--saida dados/extracao/homologacoes.xlsx] [--padrao "*.pdf"] [--reprocessar] [--sem-ocr] [--workers 4] [--sem-separar]
+python -m extrator_homologacao [pasta] [--saida dados/extracao/homologacoes.xlsx] [--padrao "relatorio-termo-homologacao-*.pdf"] [--reprocessar] [--sem-ocr] [--workers 4] [--sem-separar]
 ```
 
-Lê todos os PDFs da pasta (padrão: `dados/filtrados`, todas as subpastas) e gera
+Lê os termos de homologação da pasta (padrão: `dados/filtrados`, todas as subpastas) e gera
 `dados/extracao/homologacoes.xlsx` consolidado e um Excel por subpasta
 (`dados/extracao/<pasta>.xlsx`), com **uma linha por PDF**, abas `relatorios`, `revisar`
 (status ≠ OK) e `metadados`, além de `homologacoes.log` e `homologacoes.cache.json`.
+
+- Por padrão só entram os `relatorio-termo-homologacao-*.pdf` (um por item): eles trazem os mesmos
+  campos do termo de julgamento, mas com a situação final do item (`Adjudicado e Homologado`,
+  `Fracassado e Homologado`). Os julgamentos repetem o item, e há um por sessão (`-s1-`, `-s2-`):
+  uma sessão anterior pode mostrar um lance aceito que depois fracassou. Use `--padrao "*.pdf"`
+  para processar todos os relatórios, incluindo julgamentos e diligências.
 
 - Separação dos lances por etapa conforme o modo de disputa do cabeçalho: `Aberto/Fechado` (janelas
   do chat, abaixo), `Aberto` ou `Fechado` (etapa única; desempates à parte). Outros modos (ex.:
