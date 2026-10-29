@@ -1,8 +1,7 @@
 # Contratações PNCP 
 
-Scripts para coletar as contratações (Lei 14.133/2021) de um ou mais órgãos (padrão: Prefeitura
-Municipal de João Pessoa, CNPJ 08.778.326/0001-56) na API de Dados Abertos do Compras.gov.br,
-separá-las em pastas por modalidade e modo de disputa, organizar o zip "Todos os relatórios e
+Scripts para coletar as contratações (Lei 14.133/2021) dos órgãos filtrados (`--orgaos`) na API de
+Dados Abertos do Compras.gov.br, separá-las em pastas por modalidade e modo de disputa, organizar o zip "Todos os relatórios e
 termos" de cada compra e extrair os campos dos relatórios para Excel.
 
 
