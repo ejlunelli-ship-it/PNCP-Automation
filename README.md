@@ -61,7 +61,8 @@ python get.py [--orgaos CNPJ|ARQUIVO ...] [--inicio AAAA-MM-DD] [--fim AAAA-MM-D
 - Coleta **só pregões** (código de modalidade `5`, Eletrônico e Presencial; nessa API `6` é Dispensa
   e `7` Inexigibilidade), fixado em `MODALIDADES` no `get.py` e usado também pelo `orgaos.py`.
 - Consulta a API `modulo-contratacoes/1_consultarContratacoes_PNCP_14133`, com paginação e retry
-  em erros temporários (429/5xx/timeout), e remove duplicadas por `idCompra`.
+  em erros temporários (429/5xx/timeout), e remove duplicadas por `numeroControlePNCP` (o
+  `idCompra` se repete entre contratações distintas).
 - Cada pregão vai para a pasta `pregao_<modo de disputa>`, ex.: `pregao_aberto-fechado`,
   `pregao_aberto`.
 
@@ -158,6 +159,46 @@ pastas ou órgãos diferentes; colunas novas do parser são adicionadas a um ban
 - Cache por SHA-256 + versão do parser (`extrator_homologacao/__init__.py`): arquivos idênticos não
   são reprocessados; ao mudar o parser, incremente `VERSAO_PARSER` ou use `--reprocessar`.
 
+### 4. Base nacional de pregões e itens — `coleta_anos.py` e `coleta_itens.py`
+
+```bash
+python coleta_anos.py    # pregões de todos os órgãos, mês a mês (nov/2022 em diante)
+python coleta_itens.py   # itens desses pregões
+```
+
+Coleta para análise estatística, sem filtro de órgão; não passa pelas pastas `filtrados`.
+
+- `coleta_anos.py`: todos os pregões (`codigoModalidade=5`) do país, mês a mês, de novembro de
+  2022 (antes disso a API não tem pregões) até hoje, em
+  `dados/brutos/<ano>/contratacoes_pregao_<ano>-<mês>.{json,csv}`. Cada mês é conferido com o
+  `totalRegistros` da API (aviso `INCOMPLETO` se faltar). ~330 mil pregões, ~1,1 GB.
+- `coleta_itens.py`: itens pela consulta por período
+  (`modulo-contratacoes/2_consultarItensContratacoes_PNCP_14133`), dia a dia pela data de inclusão
+  do item, 3 meses em paralelo; mantém só os itens cuja compra está nos pregões coletados. Grava
+  `dados/brutos/<ano>/itens_pregao_<ano>-<mês>.{json,csv}` (mês de inclusão do item). ~6,3 milhões
+  de itens, ~15 GB. Meses já gravados são pulados (exceto o corrente), então pode rodar de novo.
+- A data final dessas APIs é **exclusiva**: os scripts consultam até o 1º dia do mês seguinte.
+- A API de itens repete linhas idênticas e o `totalRegistros` conta as repetições; a conferência é
+  pelas linhas recebidas e as repetidas são descartadas. Em consultas com muitas páginas a
+  paginação também não é estável (itens repetidos entre páginas no lugar de outros): perde-se de
+  1% a 3% dos itens. Dias muito grandes podem sair `INCOMPLETO`; nesse caso, consulte o dia de novo
+  separando `materialOuServico=M` e `S`.
+
+### 5. Análises — `matching_*.py`
+
+Comparação dos modos **Aberto** e **Aberto-Fechado** no Pregão Eletrônico, com os dados do passo 4
+(precisam de `scipy`). Pareamento exato: só entram as células com itens nos dois modos; efeito
+estimado por regressão com efeito fixo da célula e erro-padrão agrupado por UASG.
+
+| Script | Variável dependente | Pareamento |
+|---|---|---|
+| `matching_desconto.py` | desconto sobre o estimado (1 − unitário homologado ÷ unitário estimado), todos os pregões | UASG × item |
+| `matching_homologado.py` | log do valor unitário homologado, em R$ e desconto; só pregões homologados | UASG × item × ano (também sem ano e com unidade de medida) |
+| `matching_normalizado.py` | log do unitário homologado ÷ mediana nacional do item no ano (exclui fora de 0,1x–10x) | UASG × item × ano, UASG × ano × classe, UASG × ano |
+
+Os resultados saem no terminal. Excluem itens com orçamento sigiloso (no desconto) e descontos
+fora de −100% a 99%.
+
 ## Saída
 
 ```
@@ -165,7 +206,10 @@ dados/
 ├── orgaos/
 │   └── orgaos.{txt,csv}                                # lista de órgãos (orgaos.py)
 ├── brutos/
-│   └── contratacoes.{json,csv}                         # tudo o que foi coletado na última execução
+│   ├── contratacoes.{json,csv}                         # tudo o que foi coletado na última execução
+│   └── <ano>/                                          # base nacional (coleta_anos.py / coleta_itens.py)
+│       ├── contratacoes_pregao_<ano>-<mês>.{json,csv}
+│       └── itens_pregao_<ano>-<mês>.{json,csv}
 ├── filtrados/
 │   └── <modalidade>_<modo>/                            # ex.: pregao_aberto-fechado
 │       ├── contratacoes_<modalidade>_<modo>.{json,csv}

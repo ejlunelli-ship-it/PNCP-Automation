@@ -26,11 +26,11 @@ session = requests.Session()
 session.headers.update({"Accept": "application/json"})
 
 
-def get_json(params, tentativas=5):
+def get_json(params, tentativas=5, url=URL):
     """GET com retry para erros temporários (429, 5xx, timeout)."""
     for i in range(tentativas):
         try:
-            r = session.get(URL, params=params, timeout=90)
+            r = session.get(url, params=params, timeout=90)
             if r.status_code == 200:
                 return r.json()
             if r.status_code in (429, 500, 502, 503, 504):
@@ -65,12 +65,13 @@ def buscar_modalidade(cnpj, cod, inicio, fim):
         if not resultado:
             break
 
-        # só conta o que ainda não foi visto; se nada novo, a paginação parou de mudar
-        novos = [x for x in resultado if x.get("idCompra") not in vistos]
+        # só conta o que ainda não foi visto; se nada novo, a paginação parou de mudar.
+        # Chave é o numeroControlePNCP: o idCompra se repete entre contratações distintas.
+        novos = [x for x in resultado if x.get("numeroControlePNCP") not in vistos]
         if not novos:
             break
         for x in novos:
-            vistos.add(x.get("idCompra"))
+            vistos.add(x.get("numeroControlePNCP"))
             registros.append(x)
 
         print(f"  modalidade {cod} | pág {pagina}: +{len(novos)} "
@@ -187,8 +188,8 @@ def main():
             print(f"  -> {len(regs)} registros")
             todos.extend(regs)
 
-    # dedup global por idCompra
-    unicos = {r["idCompra"]: r for r in todos}
+    # dedup global por numeroControlePNCP (idCompra não é único)
+    unicos = {r["numeroControlePNCP"]: r for r in todos}
     todos = list(unicos.values())
 
     salvar(todos, PASTA_BRUTOS, "contratacoes")

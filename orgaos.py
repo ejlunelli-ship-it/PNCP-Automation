@@ -46,7 +46,7 @@ def buscar_periodo(cod, inicio, fim):
             return None
         resultado = j.get("resultado") or []
         for r in resultado:
-            registros[r["idCompra"]] = r
+            registros[r["numeroControlePNCP"]] = r  # idCompra se repete entre contratações distintas
         print(f"  pág {pagina}/{j.get('totalPaginas')}: {len(registros)}/{j.get('totalRegistros')}")
         if not resultado or j.get("paginasRestantes", 0) == 0 or pagina >= j.get("totalPaginas", pagina):
             return list(registros.values())
@@ -56,7 +56,7 @@ def buscar_periodo(cod, inicio, fim):
 
 def resumir(registros):
     """Só o necessário por contratação, para o checkpoint não crescer demais."""
-    return {r["idCompra"]: {
+    return {r["numeroControlePNCP"]: {
         "cnpj": r.get("orgaoEntidadeCnpj"),
         "nome": r.get("orgaoEntidadeRazaoSocial"),
         "esfera": r.get("orgaoEntidadeEsferaId"),
