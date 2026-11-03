@@ -11,6 +11,9 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
 | 2026-11-02 | Validar os PDFs do PNCP pelo **conteúdo** (tipo + UASG + número), não pelo título | Cada órgão nomeia de um jeito |
 | 2026-11-02 | Procurar contratações "irmãs" no PNCP (mesmo CNPJ, número e abertura) | Órgãos como Fortaleza publicam o mesmo pregão duas vezes; os termos ficam na do órgão |
 | 2026-11-02 | `pendentes.csv` por pasta, refeito a cada rodada | Saber o que falta baixar à mão |
+| 2026-11-03 | Banco SQLite unificado (ainda não criado): carregar **todos os modos de disputa** e filtrar na view; guardar o fornecedor vencedor do item | Evita recarregar a base; a análise escolhe os modos depois |
+| 2026-11-03 | `melhor_lance_modo_fechado` em grupo = **só lances enviados na janela** da etapa fechada, igual ao item avulso. Na view do banco, `melhor_lance_apos_fechada` = melhor valor entre etapa aberta e fechada, e `ganho_fechada` parte dele (item AF sem melhora entra com ganho zero) | A coluna guarda o que aconteceu; calcular o ganho só com ela excluiria os itens sem lance fechado e superestimaria a média |
+| 2026-11-03 | `dados/pncp.db` criado por `banco_unificado.py`: `id` próprio e `registro_principal` (uma linha por item), `homologado` = situação do item "Homologado", valores em `REAL`, descontos por etapa só em Menor preço | Um item pode ter mais de um registro na API; `NUMERIC` causava divisão inteira; em Maior desconto o lance do PDF pode ser percentual |
 | — | Melhor lance da etapa conta mesmo se o fornecedor for desclassificado depois; propostas iniciais entram na etapa aberta | Medir a dinâmica da disputa, não só o resultado |
 
 ## Pendências e próximos passos (por prioridade)
@@ -21,9 +24,8 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
    - conferir a lista do encerramento pela **soma do grupo** (último valor de cada convocado por
      item × quantidade);
    - nova coluna `grupo` (ex.: `G1`), vazia para item avulso;
-   - **decidir**: `melhor_lance_modo_fechado` em grupo = só lances enviados na janela (recomendado,
-     coerente com item avulso) **ou** valor efetivo de cada convocado (incluindo o que ficou do
-     aberto)?
+   - `melhor_lance_modo_fechado` em grupo = só lances enviados na janela (decidido em 2026-11-03,
+     ver tabela acima);
    - `pncp_arquivos._identificar` também deve aceitar grupos. Hoje Fortaleza 90119 aparece como
      "parcial 3/9", mas o PNCP tem os 9 itens.
    - Verificar se os outros "parciais" de Fortaleza (90122, 90124, 90128) também são grupos.
@@ -46,6 +48,8 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
    resolve. Avaliar uma opção `--reconsultar-pncp`.
 7. Prototipar o Playwright com perfil persistente para abrir a compra e clicar no menu, com o
    captcha resolvido pelo usuário. Risco: a automação pode aumentar os desafios do hCaptcha.
+
+8. **Revisar a chave de dedup do `coleta_itens.py`**: `(compra, item, idCompraItem)` guarda um só registro quando o item tem mais de um resultado, e isso aparece nos arquivos `adicional_correspondencias`, que não têm script no repositório. Verificar se os meses perdem o segundo resultado.
 
 ## Questões em aberto
 

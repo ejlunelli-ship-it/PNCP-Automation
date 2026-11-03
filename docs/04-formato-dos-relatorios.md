@@ -90,6 +90,25 @@ Lances do exemplo (janela fechada 10:23:50–10:28:51):
 | 5 | 11 | 0,85 | ALPHA 0,78 |
 | 6 | 11 | 0,92 | MULTIPLA 0,88 |
 
+### Lances: item avulso × item em grupo
+
+| Aspecto | Item avulso | Item em grupo |
+|---|---|---|
+| Lance da etapa fechada | Um lance para o item | Um lance para o grupo, composto de valores por item |
+| Tabela de lances | Valores unitários do item | Valores unitários por item; um item cujo valor o convocado não mudou fica com o último lance aberto e **não ganha linha nova** |
+| Marcos da etapa fechada | Chat do item | Chat do grupo (`item G1`); cada item herda a janela |
+| Valores na mensagem de encerramento | Lances dos convocados, comparáveis valor a valor | Totais do grupo: soma de valor × quantidade de cada item |
+| Vencedor | Melhor lance do item | Melhor total do grupo; pode ter valor pior em um item (Fortaleza 90119/2025, item 6: ALPHA 0,99 contra MULTIPLA 0,88) |
+
+**Regra de `melhor_lance_modo_fechado`** (decidida em 2026-11-03, ver
+[05](05-decisoes-e-pendencias.md)): nos dois casos, só os lances enviados na janela da etapa
+fechada. O item sem lance na janela fica vazio.
+
+Consequência para a análise: um lance na janela pode ser pior que o melhor aberto, e o item sem
+lance ficaria fora de uma média calculada só com essa coluna. Por isso a view `analise_itens`
+calcula `ganho_fechada` a partir de `melhor_lance_apos_fechada`, o melhor valor entre as duas
+etapas: um item Aberto-Fechado sem melhora entra com ganho zero.
+
 ## 4.3 "Ata Final" do Portal de Compras Públicas — **não suportado**
 
 Plataforma diferente, com o rodapé `validaarquivo.portaldecompraspublicas.com.br`. Aparece no PNCP

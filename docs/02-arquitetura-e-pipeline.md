@@ -31,6 +31,7 @@ final. O trilho B tem as etapas, mas só numa amostra.
 | `pncp_arquivos.py` | Busca os termos no PNCP: arquivos da contratação **e das irmãs**, filtro por tipo/título, validação pelo conteúdo (UASG + número), renomeia no padrão do zip |
 | `extrator_homologacao/` | Parser determinístico dos PDFs (PyMuPDF + regex) → Excel e SQLite |
 | `coleta_anos.py` / `coleta_itens.py` | Base nacional de pregões (nov/2022+) e itens (dia a dia, 3 meses em paralelo) |
+| `banco_unificado.py` | Banco SQLite `dados/pncp.db`: tabelas `compras` e `itens`, view `analise_itens`. Colunas de lance vazias até a carga dos PDFs; `--recriar` as apaga |
 | `matching_*.py` | Análises estatísticas Aberto vs Aberto-Fechado (precisam de `scipy`) |
 
 ## Regras de seleção do relatório (`extrator_homologacao/selecao.py`)

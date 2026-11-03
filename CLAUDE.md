@@ -21,6 +21,7 @@ Detalhes: [docs/README.md](docs/README.md) (índice). Comece por
 | Baixar PDFs (PNCP automático → navegador manual) | `relatorios.py` + `pncp_arquivos.py` | `dados/filtrados/<pasta>/relatorios/`, `pendentes.csv` |
 | Extrair campos dos PDFs | `python -m extrator_homologacao` | `dados/extracao/homologacoes.{xlsx,db}` |
 | Base nacional (API, sem PDF) | `coleta_anos.py`, `coleta_itens.py` | `dados/brutos/<ano>/` |
+| Banco unificado da base nacional | `banco_unificado.py` | `dados/pncp.db` |
 | Análises | `matching_*.py` | terminal |
 
 ## Ambiente (máquina do usuário, Windows)
