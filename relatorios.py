@@ -1,11 +1,15 @@
 """Organiza o zip "Todos os relatórios e termos" de cada compra do Compras.gov.br.
 
-Abre cada compra no navegador padrão (sem automação, então sem captcha extra).
+Antes, procura os termos no PNCP (pncp_arquivos.py): se o órgão os publicou lá para todos os
+itens, a compra é baixada sem navegador nem captcha. Senão (ou se faltarem itens):
+abre cada compra no navegador padrão (sem automação, então sem captcha extra).
 Você clica em Downloads > "Todos os relatórios e termos"; o script detecta o zip
 na pasta Downloads, move para a pasta da compra, extrai e abre a próxima.
 Só um relatório por item é mantido (o termo de homologação ou, sem ele, o de julgamento
 da última sessão); o zip e os demais relatórios são apagados.
 """
+import argparse
+import csv
 import json
 import shutil
 import sys
@@ -78,14 +82,62 @@ def manter_selecionados(destino):
             arq.rmdir()
 
 
-def baixar_relatorios(registros, pasta_base):
+PARCIAL = ".pncp_parcial"  # marca a pasta cujos termos do PNCP não cobrem todos os itens
+
+
+def tentar_pncp(registro, destino):
+    """Baixa os termos publicados no PNCP. Devolve 'completo', 'parcial' ou None (nada achado)."""
+    from pncp_arquivos import baixar_do_pncp, quantidade_itens
+    cobertos = baixar_do_pncp(registro, destino)
+    if not cobertos:
+        return None
+    manter_selecionados(destino)  # julgamento sai quando o item tem termo de homologação
+    total = quantidade_itens(registro)
+    if total is not None and len(cobertos) < total:
+        print(f"  PNCP cobre {len(cobertos)} de {total} itens; o resto precisa do zip (navegador)")
+        (destino / PARCIAL).write_text(f"{len(cobertos)}/{total}\n", encoding="utf-8")
+        return "parcial"
+    (destino / PARCIAL).unlink(missing_ok=True)
+    return "completo"
+
+
+COLUNAS_PENDENTES = ["idCompra", "numeroControlePNCP", "numeroCompra", "anoCompraPncp",
+                     "orgaoEntidadeRazaoSocial", "unidadeOrgaoCodigoUnidade", "unidadeOrgaoUfSigla",
+                     "modoDisputaNomePncp", "motivo", "itens_no_pncp", "link_compra", "objetoCompra"]
+
+
+def salvar_pendentes(pendentes, arquivo):
+    """Grava (ou apaga, se vazia) a lista das compras sem relatório completo nesta rodada."""
+    if not pendentes:
+        arquivo.unlink(missing_ok=True)
+        return
+    arquivo.parent.mkdir(parents=True, exist_ok=True)
+    with open(arquivo, "w", newline="", encoding="utf-8-sig") as f:  # BOM: abre direto no Excel
+        w = csv.DictWriter(f, fieldnames=COLUNAS_PENDENTES, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(pendentes)
+
+
+def baixar_relatorios(registros, pasta_base, usar_pncp=True, so_pncp=False):
+    """Baixa os relatórios das compras e grava <pasta>/pendentes.csv com as que ficaram sem eles."""
     pasta_base = Path(pasta_base)
-    print(f"Vigiando downloads em: {DOWNLOADS}")
+    if not so_pncp:
+        print(f"Vigiando downloads em: {DOWNLOADS}")
     ok = 0
+    pendentes = []
+
+    def pendente(r, destino, motivo):
+        marca = destino / PARCIAL
+        pendentes.append({**r, "motivo": motivo,
+                          "itens_no_pncp": marca.read_text(encoding="utf-8").strip() if marca.exists() else "",
+                          "link_compra": URL_COMPRA.format(r["idCompra"])})
+
     for i, r in enumerate(registros, 1):
         destino = pasta_da_compra(r, pasta_base)
         print(f"[{i}/{len(registros)}] {r['idCompra']} - {r['objetoCompra'][:60]}")
-        if destino.exists() and (selecionar(list(destino.rglob("*.pdf"))) or any(destino.glob("*.zip"))):
+        parcial = (destino / PARCIAL).exists()
+        if (destino.exists() and not parcial
+                and (selecionar(list(destino.rglob("*.pdf"))) or any(destino.glob("*.zip")))):
             print("  já baixado, pulando")
             manter_selecionados(destino)
             ok += 1
@@ -93,6 +145,22 @@ def baixar_relatorios(registros, pasta_base):
         # sem resultado homologado o site não oferece "Todos os relatórios e termos"
         if not r.get("existeResultado") and not r.get("valorTotalHomologado"):
             print("  ainda não homologada (sem relatórios), pulando")
+            pendente(r, destino, "ainda não homologada")
+            continue
+
+        situacao = "parcial" if parcial else None
+        if (usar_pncp or so_pncp) and not parcial:
+            situacao = tentar_pncp(r, destino)
+            if situacao == "completo":
+                print(f"  baixado do PNCP -> {destino}")
+                ok += 1
+                continue
+        motivo = ("PNCP não consultado" if not (usar_pncp or so_pncp)
+                  else "termos incompletos no PNCP" if situacao == "parcial"
+                  else "sem termos no PNCP")
+        if so_pncp:
+            print(f"  {motivo}; falta o zip")
+            pendente(r, destino, motivo)
             continue
 
         antes = zips_em_downloads(r["idCompra"])
@@ -103,26 +171,37 @@ def baixar_relatorios(registros, pasta_base):
         arq = esperar_novo_zip(r["idCompra"], antes)
         if not arq:
             print("  nenhum zip recebido, pulando")
+            pendente(r, destino, f"{motivo}; zip não recebido no navegador")
             continue
 
         destino.mkdir(parents=True, exist_ok=True)
         # nome limpo, sem o " (n)" que o navegador adiciona em downloads repetidos
         shutil.move(str(arq), destino / f"relatorios-compra-{r['idCompra']}.zip")
         manter_selecionados(destino)
+        (destino / PARCIAL).unlink(missing_ok=True)
         print(f"  {arq.name} -> {destino}")
         ok += 1
 
+    arquivo = pasta_base.parent / "pendentes.csv"
+    salvar_pendentes(pendentes, arquivo)
     print(f"Relatórios organizados: {ok}/{len(registros)}")
+    if pendentes:
+        print(f"Pendentes: {len(pendentes)} -> {arquivo}"
+              + (" (rode sem --so-pncp para pedir os zips no navegador)" if so_pncp else ""))
 
 
 if __name__ == "__main__":
-    # sem argumento: as pastas de pregão geradas pelo get.py (dados/filtrados/pregao_<modo>/contratacoes_*.json)
-    if len(sys.argv) > 1:
-        origens = [Path(a) for a in sys.argv[1:]]
-    else:
-        origens = sorted((DADOS / "filtrados").glob("pregao_*/contratacoes_*.json"))
+    ap = argparse.ArgumentParser(description="Baixa os relatórios de cada compra: do PNCP quando houver, senão pelo navegador.")
+    ap.add_argument("origens", nargs="*", type=Path, metavar="contratacoes_<pasta>.json",
+                    help="sem argumento: dados/filtrados/pregao_*/contratacoes_*.json")
+    grupo = ap.add_mutually_exclusive_group()
+    grupo.add_argument("--so-pncp", action="store_true", help="só baixa do PNCP, sem abrir o navegador")
+    grupo.add_argument("--sem-pncp", action="store_true", help="não consulta o PNCP (só navegador, como antes)")
+    args = ap.parse_args()
+    origens = args.origens or sorted((DADOS / "filtrados").glob("pregao_*/contratacoes_*.json"))
     for origem in origens:
         print(f"== {origem.parent.name}")
         with open(origem, encoding="utf-8") as f:
             registros = json.load(f)
-        baixar_relatorios(registros, origem.parent / "relatorios")
+        baixar_relatorios(registros, origem.parent / "relatorios",
+                          usar_pncp=not args.sem_pncp, so_pncp=args.so_pncp)

@@ -69,12 +69,33 @@ python get.py [--orgaos CNPJ|ARQUIVO ...] [--inicio AAAA-MM-DD] [--fim AAAA-MM-D
 ### 2. Baixar os relatórios — `relatorios.py`
 
 ```bash
-python relatorios.py [dados/filtrados/<pasta>/contratacoes_<pasta>.json ...]
+python relatorios.py [dados/filtrados/<pasta>/contratacoes_<pasta>.json ...] [--so-pncp | --sem-pncp]
 ```
 
 Sem argumento, percorre as pastas `dados/filtrados/pregao_*`.
 
-O download no Compras.gov.br é protegido por hCaptcha, por isso ele é feito **manualmente**:
+**Primeiro, o PNCP (automático, sem captcha)** — `pncp_arquivos.py`. Alguns órgãos (ex.: Prefeitura
+de Fortaleza) publicam no PNCP os próprios termos de homologação/julgamento do Compras.gov.br. Para
+cada compra, o script lista os arquivos da contratação na API do PNCP
+(`/api/pncp/v1/orgaos/{cnpj}/compras/{ano}/{sequencial}/arquivos`) e também das contratações
+"irmãs" (o mesmo pregão publicado de novo pelo sistema do órgão: mesmo CNPJ, número de compra e
+data de abertura). Baixa os candidatos (tipos Termo de Homologação/Ata de sessão ou título
+parecido; nunca edital, TR etc.), confere pelo **conteúdo** que é o termo daquela compra
+(UASG + número do pregão) e grava com o nome que o zip usaria, então o extrator os trata igual.
+
+- Se os termos cobrem todos os itens (conferido em `/itens/quantidade`), a compra não vai para o
+  navegador. Se cobrem só parte, a pasta fica marcada com `.pncp_parcial` e o zip ainda é pedido;
+  ao chegar, a marca sai.
+- `--so-pncp`: só o PNCP, sem abrir o navegador (bom para rodar em lote e ver o que sobra).
+  `--sem-pncp`: comportamento antigo, só navegador.
+- Cobertura depende do órgão: na maioria, o PNCP só tem o edital.
+- Ao fim de cada rodada, `dados/filtrados/<pasta>/pendentes.csv` lista as compras que ficaram sem
+  relatório completo, com `motivo` (`sem termos no PNCP`, `termos incompletos no PNCP`,
+  `ainda não homologada`, `...; zip não recebido no navegador`), `itens_no_pncp` (ex.: `3/9`) e
+  `link_compra` (página da compra no Compras.gov.br para baixar o zip). A lista é refeita a cada
+  execução: o que foi baixado sai dela, e o arquivo é apagado quando não sobra nada.
+
+**Depois, o navegador.** O download no Compras.gov.br é protegido por hCaptcha, por isso ele é feito **manualmente**:
 
 1. O script abre cada compra no navegador padrão.
 2. Você clica em **Downloads → Todos os relatórios e termos**.
