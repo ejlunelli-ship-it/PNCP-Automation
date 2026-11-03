@@ -39,6 +39,32 @@ obtido pela administração?
   - Lances marcados como excluídos (`*`) não contam.
 - **Lance aceito**: vem da situação do item; usa o valor negociado quando houver.
 
+## Critérios de julgamento
+
+| | Menor Preço | Maior Desconto |
+|---|---|---|
+| **O que o fornecedor oferece** | Um valor em reais | Um percentual sobre uma referência |
+| **Quem vence** | O menor valor | O maior percentual |
+| **Referência** | O valor estimado serve de parâmetro | O edital fixa um preço ou tabela de referência |
+| **Quando costuma ser usado** | Quando o item é bem definido | Quando a demanda varia ou há muitos itens numa tabela |
+
+Exemplos:
+
+- **Menor Preço**: compra de 1.000 resmas de papel. Entre R$ 25,00 e R$ 23,50 por resma, vence
+  R$ 23,50.
+- **Maior Desconto**: peças para a frota, sem saber quais vão quebrar, com a tabela do fabricante
+  como referência. Entre 20% e 30% de desconto, vence 30%, e cada peça sai pelo preço de tabela
+  menos 30%.
+
+Na base, Menor preço tem 6.278.387 linhas (98,6%), Maior desconto 86.427 (1,4%) e Não se aplica 226,
+cujo significado não foi investigado.
+
+**Efeito na análise**: em Menor Preço, o desconto é calculado comparando o resultado com o estimado.
+Em Maior Desconto, ele é o próprio lance e é medido sobre uma tabela do edital, que pode estar
+inflada. Por isso os dois critérios não devem ser misturados na mesma média. Recomendação: analisar
+só Menor Preço e citar a exclusão como limitação. Na view `analise_itens`, os descontos por etapa
+já ficam vazios fora de Menor Preço (ver [06](06-banco-de-dados.md)).
+
 ## Por que ler o PDF
 
 As APIs (Dados Abertos e PNCP) só dão o **valor estimado** e o **valor homologado** de cada item.

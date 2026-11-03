@@ -37,6 +37,7 @@ Detalhes: [docs/README.md](docs/README.md) (índice). Comece por
 
 - **Não contornar o hCaptcha** do Compras.gov.br (sem solvers, sem chamar endpoints internos sem o
   token). Automação permitida: PNCP (público) e abrir a página para o usuário clicar.
+- **Consultas aos dados: use `dados/pncp.db`** (somente leitura), que é mais rápido e menos custoso que varrer `dados/brutos/`. Os brutos só valem para campos fora do banco (ver [docs/06](docs/06-banco-de-dados.md)) ou para conferir uma carga.
 - Valores monetários são unitários, em `Decimal`; ausente = vazio, nunca zero.
 - Ao mudar o parser, incremente `VERSAO_PARSER` em `extrator_homologacao/__init__.py`.
 - Decisões em aberto e próximos passos: [docs/05-decisoes-e-pendencias.md](docs/05-decisoes-e-pendencias.md).

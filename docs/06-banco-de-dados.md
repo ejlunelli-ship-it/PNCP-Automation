@@ -63,7 +63,7 @@ Uma linha por registro da API, e não por item. Fonte: `itens_pregao_*.csv`, inc
 | `unidade_medida`, `descricao_resumida` | `unidadeMedida`, `descricaoResumida` | |
 | `criterio_julgamento` | `criterioJulgamentoNome` | Menor preço, Maior desconto, Não se aplica |
 | `tipo_beneficio` | `tipoBeneficioNome` | Exclusividade ME/EPP, cota etc. |
-| `numero_grupo` | `numeroGrupo` | Grupo (lote) da disputa |
+| `numero_grupo` | `numeroGrupo` | Sempre 0 na base, mesmo em itens de grupo; o grupo só vem do PDF |
 | `orcamento_sigiloso` | `orcamentoSigiloso` | 0 ou 1 |
 | `situacao_item` | `situacaoCompraItemNome` | Em andamento, Homologado, Anulado/Revogado/Cancelado, Deserto, Fracassado |
 | `homologado` | derivada | 1 se `situacao_item = 'Homologado'` |
