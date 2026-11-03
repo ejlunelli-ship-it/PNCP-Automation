@@ -32,6 +32,7 @@ final. O trilho B tem as etapas, mas só numa amostra.
 | `extrator_homologacao/` | Parser determinístico dos PDFs (PyMuPDF + regex) → Excel e SQLite |
 | `coleta_anos.py` / `coleta_itens.py` | Base nacional de pregões (nov/2022+) e itens (dia a dia, 3 meses em paralelo) |
 | `baixar_api.py` | Baixa do PNCP os relatórios dos pregões Aberto-Fechado homologados de um mês, com motivo por compra e retomada |
+| `inventario_pdfs.py` | Registra os relatórios baixados em `relatorios_pdf` (`pncp.db`) e em `dados/inventario_pdfs.csv`, a partir do disco |
 | `banco_unificado.py` | Banco SQLite `dados/pncp.db`: tabelas `compras` e `itens`, view `analise_itens`. Colunas de lance vazias até a carga dos PDFs; `--recriar` as apaga |
 | `matching_*.py` | Análises estatísticas Aberto vs Aberto-Fechado (precisam de `scipy`) |
 

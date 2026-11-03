@@ -69,7 +69,10 @@ Automático, pela API pública, sem navegador e sem tocar no captcha.
 
 1. **Passada própria:** lista os arquivos da contratação. É rápida.
 2. **Passada das irmãs (`--irmas`):** busca contratações do mesmo CNPJ, ano, número e abertura, só nas
-   compras ainda incompletas. É lenta: cerca de 12 s por página da consulta.
+   compras ainda incompletas. É lenta: cerca de 12 s por página da consulta. Dá para restringir a um
+   órgão (`--cnpj`) ou a órgãos sorteados com semente fixa (`--amostra-orgaos N`).
+
+No fim de cada rodada, `inventario_pdfs.py` registra o que há em disco na tabela `relatorios_pdf`.
 
 Para cada arquivo:
 
@@ -148,3 +151,5 @@ ainda não decidida, só Menor Preço.
 | 2026-11-03 | 5 | Filtro de título passa a reconhecer `AtaTotal_<n>`, `Ata_Final` e títulos com "lance" |
 | 2026-11-03 | 6 | Parser 1.6.0: itens em grupo; cache passa a considerar o item |
 | 2026-11-03 | 6 | OCR pelo PyMuPDF no lugar de OCRmyPDF; extração de escaneados ainda não funciona |
+| 2026-11-03 | 5 | `--cnpj`, `--amostra-orgaos` e inventário dos PDFs em `relatorios_pdf` |
+| 2026-11-03 | 5 | Passada própria de janeiro/2026: 2.364 compras, nenhum candidato. A busca de termos depende da passada das irmãs |

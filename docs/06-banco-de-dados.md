@@ -84,6 +84,23 @@ Têm os nomes do extrator (ver [02](02-arquitetura-e-pipeline.md)). A carga aind
 Ligação com o PDF: `compras.uasg` + `numero_compra` + `ano_compra` e `itens.numero_item`. Como
 `id_compra` se repete e há contratações irmãs, valide a ligação ao fazer a carga.
 
+## Tabela `relatorios_pdf`
+
+Inventário dos relatórios já baixados, gerado por `inventario_pdfs.py` a partir do disco. Uma linha
+por arquivo. O `baixar_api.py` a atualiza no fim de cada rodada. **`banco_unificado.py --recriar`
+apaga a tabela**: rode `python inventario_pdfs.py` em seguida. Uma cópia fica em
+`dados/inventario_pdfs.csv`.
+
+| Coluna | Conteúdo |
+|---|---|
+| `id_compra` | Do nome do arquivo ou da pasta |
+| `numero_controle_pncp` | Preenchido só quando `id_compra` aponta para uma única compra |
+| `item` | Número do item; vazio em outros formatos |
+| `tipo` | Termo de homologação, termo de julgamento ou outro formato |
+| `arquivo` | Caminho relativo a `dados/`; chave primária |
+| `tamanho`, `sha256` | O PDF de um grupo se repete, com o mesmo hash, em cada item |
+| `pasta` | Rodada de origem, ex.: `aberto-fechado_2026-01` |
+
 ## View `analise_itens`
 
 Junta `itens` e `compras`, só com `registro_principal = 1`. Descontos em %.

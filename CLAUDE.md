@@ -23,6 +23,7 @@ Detalhes: [docs/README.md](docs/README.md) (índice). Comece por
 | Base nacional (API, sem PDF) | `coleta_anos.py`, `coleta_itens.py` | `dados/brutos/<ano>/` |
 | Banco unificado da base nacional | `banco_unificado.py` | `dados/pncp.db` |
 | Baixar relatórios do PNCP por mês (Aberto-Fechado homologado) | `baixar_api.py` | `dados/filtrados/aberto-fechado_<mês>/` |
+| Inventário dos PDFs baixados | `inventario_pdfs.py` | tabela `relatorios_pdf` em `dados/pncp.db`, `dados/inventario_pdfs.csv` |
 | Análises | `matching_*.py` | terminal |
 
 ## Ambiente (máquina do usuário, Windows)

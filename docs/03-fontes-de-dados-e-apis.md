@@ -92,6 +92,9 @@ O `numeroControlePNCP` `CNPJ-1-SEQUENCIAL/ANO` se decompõe na URL. Exemplo:
    com status e chat, mas o layout é outro e **o parser atual não lê**. Ver
    [04](04-formato-dos-relatorios.md).
 
+6. **A API Dados Abertos parece cobrir só compras feitas no Compras.gov.br.** Vitória não tem nenhuma compra na base, e João Pessoa só aparece a partir de 2025-12, com UASG própria. Logo, as Atas Finais de outras plataformas ficam fora da base nacional. Verificado nesses dois órgãos.
+7. **Em 2026-11-03, nenhuma das 2.364 compras Aberto-Fechado com resultado em janeiro/2026 tinha termos na própria contratação**: 2.343 tinham um único arquivo, e as demais, edital, TR, ETP e afins. Sem as irmãs, o PNCP não acrescenta nada nesse recorte.
+
 ### Nem toda compra tem PDF na API
 
 Publicar os termos no PNCP é opcional. Na maioria das compras eles só existem no zip do

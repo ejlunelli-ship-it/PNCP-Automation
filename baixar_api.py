@@ -8,24 +8,29 @@ interrompida e retomada.
 A 1ª passada olha só a própria contratação, que é rápida. Com --irmas, a 2ª passada busca as
 contratações irmãs das compras ainda sem termos; é bem mais lenta, pois lista os pregões do órgão.
 
-Uso: python baixar_api.py 2026-01 [--irmas] [--limite N]
+Uso: python baixar_api.py 2026-01 [--irmas] [--cnpj CNPJ] [--amostra-orgaos N] [--limite N]
 """
 import argparse
 import csv
+import random
 import re
 import sqlite3
 import sys
 import time
 
 from config import DADOS
+from inventario_pdfs import atualizar as atualizar_inventario
 from relatorios import pasta_da_compra, tentar_pncp
+
+SEMENTE_AMOSTRA = 20260103  # fixa, para a amostra de órgãos ser reproduzível
 
 COLUNAS = ["numeroControlePNCP", "idCompra", "passada", "situacao", "motivo", "itens_cobertos", "publicados",
            "candidatos", "outros_guardados", "erros"]
 SELECAO = """
 SELECT DISTINCT c.numero_controle_pncp AS numeroControlePNCP, c.id_compra AS idCompra,
        c.numero_compra AS numeroCompra, c.ano_compra AS anoCompraPncp, c.objeto_compra AS objetoCompra,
-       c.data_publicacao AS dataPublicacaoPncp, c.data_abertura_proposta AS dataAberturaPropostaPncp
+       c.data_publicacao AS dataPublicacaoPncp, c.data_abertura_proposta AS dataAberturaPropostaPncp,
+       c.orgao_cnpj AS orgaoEntidadeCnpj
 FROM compras c JOIN itens i USING (numero_controle_pncp)
 WHERE i.registro_principal = 1 AND i.homologado = 1 AND c.modo_disputa = 'Aberto-Fechado'
   AND i.data_resultado LIKE ?
@@ -51,6 +56,8 @@ def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("mes", help="mês do resultado, ex.: 2026-01")
     p.add_argument("--irmas", action="store_true", help="2ª passada: busca as irmãs das compras ainda sem termos")
+    p.add_argument("--cnpj", help="só as compras deste órgão")
+    p.add_argument("--amostra-orgaos", type=int, metavar="N", help="só as compras de N órgãos sorteados (semente fixa)")
     p.add_argument("--limite", type=int, help="processa só as N primeiras compras pendentes")
     args = p.parse_args()
     if not re.fullmatch(r"\d{4}-\d{2}", args.mes):
@@ -65,7 +72,15 @@ def main():
     ultimo = {l["numeroControlePNCP"]: l for l in historico}
     feitas = {l["numeroControlePNCP"] for l in historico if l["passada"] == passada and l["motivo"] != "erro na API"}
 
-    compras = [c for c in compras_do_mes(args.mes) if c["numeroControlePNCP"] not in feitas]
+    compras = compras_do_mes(args.mes)
+    if args.cnpj:
+        compras = [c for c in compras if c["orgaoEntidadeCnpj"] == args.cnpj]
+    if args.amostra_orgaos:
+        orgaos = sorted({c["orgaoEntidadeCnpj"] for c in compras})
+        sorteados = set(random.Random(SEMENTE_AMOSTRA).sample(orgaos, min(args.amostra_orgaos, len(orgaos))))
+        compras = [c for c in compras if c["orgaoEntidadeCnpj"] in sorteados]
+        print(f"Amostra: {len(sorteados)} de {len(orgaos)} órgãos, {len(compras)} compras")
+    compras = [c for c in compras if c["numeroControlePNCP"] not in feitas]
     if args.irmas:
         compras = [c for c in compras if ultimo.get(c["numeroControlePNCP"], {}).get("situacao") != "completo"]
     if args.limite:
@@ -89,6 +104,7 @@ def main():
             contagem[busca.motivo] = contagem.get(busca.motivo, 0) + 1
             print(f"[{i}/{len(compras)}] {c['idCompra']} {busca.motivo} ({time.time() - inicio:.0f}s)")
     print("Resumo:", dict(sorted(contagem.items(), key=lambda x: -x[1])))
+    atualizar_inventario()
 
 
 if __name__ == "__main__":
