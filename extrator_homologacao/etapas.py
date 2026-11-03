@@ -10,6 +10,7 @@ nunca como lances.
 
 import re
 from dataclasses import dataclass, field
+from decimal import Decimal
 
 from . import normalizacao as norm
 
@@ -181,6 +182,40 @@ def classificar_lances(lances, etapas):
                 cands[i] = cands[i] - {j.etapa}
                 resolvidos += len(cands[i]) == 1
     return [(l, next(iter(c)) if len(c) == 1 else None) for l, c in zip(lances, cands)], resolvidos
+
+
+def conferir_grupo(itens, etapas):
+    """Confere a mensagem de encerramento da etapa fechada de um grupo, que informa totais do grupo.
+
+    `itens`: (quantidade, lances, propostas) de cada item. Para cada convocado que deu lance na
+    janela, soma por item o último valor dele até o fim da janela (lance fechado ou, se não mudou o
+    valor daquele item, o último lance aberto; sem lance, a proposta) vezes a quantidade.
+    """
+    problemas = []
+    for j in etapas.fechadas():
+        if j.lances_informados is None or j.fim is None:
+            continue
+        if any(q is None for q, _, _ in itens):
+            problemas.append("quantidade de item do grupo não lida: totais da etapa fechada não conferidos")
+            continue
+        validos = [(q, [l for l in lances if not l.excluido], propostas) for q, lances, propostas in itens]
+        convocados = {norm.digitos(l.participante) for _, lances, _ in validos for l in lances if j.contem(l.data_hora)}
+        totais = []
+        for doc in convocados:
+            total = Decimal(0)
+            for q, lances, propostas in validos:
+                seus = [l for l in lances if norm.digitos(l.participante) == doc and l.data_hora <= j.fim]
+                if seus:
+                    total += q * max(seus, key=lambda l: l.data_hora).valor
+                else:
+                    total += q * next((p.valor_proposta or 0 for p in propostas if norm.digitos(p.documento) == doc), 0)
+            totais.append(total)
+        informados = sorted(j.lances_informados)
+        totais.sort()
+        if len(totais) != len(informados) or any(abs(a - b) > Decimal("0.01") for a, b in zip(totais, informados)):
+            problemas.append(f"{j.descricao} do grupo: soma dos itens {[str(t) for t in totais]}, "
+                             f"mensagem de encerramento informa {[str(v) for v in informados]}")
+    return problemas
 
 
 def conferir_com_chat(classificados, etapas):

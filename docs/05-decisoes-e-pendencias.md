@@ -14,22 +14,19 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
 | 2026-11-03 | Banco SQLite unificado (ainda não criado): carregar **todos os modos de disputa** e filtrar na view; guardar o fornecedor vencedor do item | Evita recarregar a base; a análise escolhe os modos depois |
 | 2026-11-03 | `melhor_lance_modo_fechado` em grupo = **só lances enviados na janela** da etapa fechada, igual ao item avulso. Na view do banco, `melhor_lance_apos_fechada` = melhor valor entre etapa aberta e fechada, e `ganho_fechada` parte dele (item AF sem melhora entra com ganho zero) | A coluna guarda o que aconteceu; calcular o ganho só com ela excluiria os itens sem lance fechado e superestimaria a média |
 | 2026-11-03 | `dados/pncp.db` criado por `banco_unificado.py`: `id` próprio e `registro_principal` (uma linha por item), `homologado` = situação do item "Homologado", valores em `REAL`, descontos por etapa só em Menor preço | Um item pode ter mais de um registro na API; `NUMERIC` causava divisão inteira; em Maior desconto o lance do PDF pode ser percentual |
+| 2026-11-03 | OCR pelo PyMuPDF com `por.traineddata`, no lugar de OCRmyPDF + Tesseract + Ghostscript | Não exige instalar nada no sistema |
 | — | Melhor lance da etapa conta mesmo se o fornecedor for desclassificado depois; propostas iniciais entram na etapa aberta | Medir a dinâmica da disputa, não só o resultado |
 
 ## Pendências e próximos passos (por prioridade)
 
-1. **Suporte a itens em grupo no extrator** (ver [04 §4.2](04-formato-dos-relatorios.md)):
-   - reconhecer `Item N do Grupo GX - …` em `secoes.py`;
-   - herdar do bloco do grupo a janela da etapa fechada e, se preciso, o fornecedor aceito;
-   - conferir a lista do encerramento pela **soma do grupo** (último valor de cada convocado por
-     item × quantidade);
-   - nova coluna `grupo` (ex.: `G1`), vazia para item avulso;
+1. **Fechar o suporte a itens em grupo** (parser 1.6.0 lê os PDFs de grupo; ver [04 §4.2](04-formato-dos-relatorios.md)):
    - `melhor_lance_modo_fechado` em grupo = só lances enviados na janela (decidido em 2026-11-03,
      ver tabela acima);
-   - `pncp_arquivos._identificar` também deve aceitar grupos. Hoje Fortaleza 90119 aparece como
-     "parcial 3/9", mas o PNCP tem os 9 itens.
-   - Verificar se os outros "parciais" de Fortaleza (90122, 90124, 90128) também são grupos.
-   - Incrementar `VERSAO_PARSER`.
+   - testado só em Fortaleza 90119/2025 (Aberto-Fechado, um grupo). Falta testar em outros órgãos e
+     em grupo no modo Aberto;
+   - o nome do arquivo de grupo dentro do zip do Compras.gov.br é desconhecido, e `selecao.py` só
+     aceita `...-item-N.pdf`;
+   - verificar se os "parciais" de Fortaleza (90122, 90124, 90128) também são grupos.
 2. **Juntar a base do PDF com a base da API** para o matching por etapa:
    - chave `uasg` + `numero_compra` + `item`; via `idCompra`, chega-se ao `numeroControlePNCP` e
      ao `codItemCatalogo`;
@@ -52,9 +49,15 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
 9. **Registrar o motivo por compra em `pncp_arquivos.py`** (a fazer depois do piloto de janeiro/2026): separar erro na API,
    nenhum arquivo publicado, nenhum candidato e candidato rejeitado (grupo, sem texto, outra compra).
    Sem isso, "sem termos no PNCP" mistura ausência real com falha. Ver [03 §3.4](03-fontes-de-dados-e-apis.md).
+10. **OCR de PDF escaneado**: o PyMuPDF lê o texto, mas perde a linha do título e muda as quebras de linha
+    (130 de 427 linhas idênticas num teste com páginas convertidas em imagem), e o parser depende
+    delas. O resultado é `ERRO`, sem dado errado. Falta adaptar o parser, de preferência com um PDF
+    escaneado real, e aplicar OCR em `pncp_arquivos._identificar`.
 
 ## Questões em aberto
 
+- Proposta inicial de fornecedor depois inabilitado deve definir o melhor lance aberto? Em Fortaleza
+  90119/2025, item 1, ela dá 0,53 contra 0,74 dos lances, e o `ganho_fechada` zera.
 - Quanto do desconto do AF vem da etapa fechada (ganho médio da fechada sobre a aberta)?
 - O efeito Aberto vs AF difere entre material e serviço, e por esfera?
 - A amostra com PDF (órgãos que publicam ou zips baixados à mão) é representativa da base nacional?

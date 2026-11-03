@@ -43,7 +43,7 @@ lance que caiu no mesmo segundo da troca de etapa. Ela nunca conta como lance.
 `SUSPENSO`, `EM ANDAMENTO`. Uma situação desconhecida vira `NÃO IDENTIFICADO`.
 "Nenhum lance foi registrado para o Item N." → os campos de lance ficam vazios.
 
-## 4.2 Itens em grupo (lote) — **ainda não suportado**
+## 4.2 Itens em grupo (lote) — suportado desde o parser 1.6.0
 
 Encontrado em Fortaleza 90119/2025, no arquivo "TERMO DE HOMOLOGAÇÃO-grupo1", de 20 páginas, que
 cobre os itens 1 a 6.
@@ -64,8 +64,7 @@ Fase Recursal do Item/Grupo
 ```
 
 O que muda em relação ao item comum:
-1. O título é `Item N do Grupo GX - …`, que não casa com `RE_INICIO_ITEM` (`^Item (\d+) - `).
-   Hoje o PDF é descartado (sem itens reconhecidos).
+1. O título é `Item N do Grupo GX - …`, e o bloco `Grupo N` vem antes dos itens.
 2. A **janela da etapa fechada** está no chat do **grupo**:
    `A etapa fechada foi iniciada para o item G1…` / `A etapa fechada do item G1 foi encerrada…`.
    Cada item precisa herdá-la.
@@ -74,12 +73,14 @@ O que muda em relação ao item comum:
      fechado naquele item, o último lance aberto) × quantidade;
    - resultado: ALPHA R$ 46.680,00 e MULTIPLA R$ 52.591,25, **exatamente** os valores do chat;
    - a conferência por grupo deve usar essa soma, não a comparação valor a valor.
-4. O fornecedor aceito e o texto "… para FORNECEDOR, CNPJ …" provavelmente estão no bloco do grupo.
-   Ainda não verificado se cada item repete essa informação.
+4. O fornecedor aceito aparece no bloco do grupo, com o total, e **cada item repete** a informação
+   com o valor unitário: `… melhor lance: R$ 0,6900 (unitário) / R$ 6.555,0000 (total)`.
 5. O vencedor é definido pelo total do grupo, então um item pode ter lance aceito pior que o de
    outro fornecedor.
 
-Lances do exemplo (janela fechada 10:23:50–10:28:51):
+Lances do exemplo (janela fechada 10:23:50–10:28:51). A coluna "Melhor aberto" considera só a
+tabela de lances; `melhor_lance_modo_aberto` inclui as propostas iniciais e, por isso, é menor
+(0,53 no item 1, proposta da GIRASSOL, depois inabilitada):
 
 | Item | Abertos | Melhor aberto | Fechados (na janela) |
 |---|---|---|---|

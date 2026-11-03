@@ -2,6 +2,7 @@
 
 import re
 from dataclasses import dataclass, field
+from decimal import Decimal, InvalidOperation
 
 from . import normalizacao as norm
 from .etapas import ABERTA, DESEMPATE, FECHADA
@@ -45,8 +46,17 @@ def descricao_item(secao):
     fim = textos.index("Quantidade:") if "Quantidade:" in textos else len(textos)
     if not textos:
         return None
-    primeira = re.sub(r"^Item \d+ - ", "", textos[0])
+    primeira = re.sub(r"^Item \d+(?: do Grupo G\d+)? - ", "", textos[0])
     return norm.espacos(" ".join([primeira, *textos[1:fim]])) or None
+
+
+def quantidade_item(secao):
+    """Quantidade do item como Decimal, ou None se não der para ler."""
+    texto = apos_rotulo(secao.textos, "Quantidade:")
+    try:
+        return Decimal(texto.replace(".", "").replace(",", "."))
+    except (AttributeError, InvalidOperation):
+        return None
 
 
 def valor_estimado(secao):

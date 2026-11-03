@@ -11,7 +11,7 @@ from pathlib import Path
 from pydantic import ValidationError
 
 from . import VERSAO_PARSER
-from .extracao import RelatorioNaoSuportado, extrair_documento
+from .extracao import RE_ITEM_ARQUIVO, RelatorioNaoSuportado, extrair_documento
 from .texto import extrair_paginas
 from .validacao import ERRO, OK, REVISAR, RegistroExtracao, validar
 
@@ -31,6 +31,12 @@ def sha256(caminho):
     return h.hexdigest()
 
 
+def chave_cache(hash_arquivo, caminho):
+    """Hash + item do nome: o PDF de um grupo é o mesmo arquivo para todos os itens dele."""
+    m = RE_ITEM_ARQUIVO.search(Path(caminho).name)
+    return f"{hash_arquivo}:{m.group(1) if m else ''}"
+
+
 def processar_pdf(caminho, ocr=True):
     """Extrai um PDF e devolve o RegistroExtracao. Nunca lança exceção: erros viram status ERRO."""
     caminho = Path(caminho)
@@ -44,6 +50,8 @@ def processar_pdf(caminho, ocr=True):
         paginas, usou_ocr = extrair_paginas(caminho, ocr=ocr)
         base["usou_ocr"] = usou_ocr
         r = extrair_documento(paginas, caminho.name)
+        if usou_ocr:
+            r.avisos.append("texto obtido por OCR: conferir valores")
         problemas = r.problemas + validar(r.dados)
         mensagens = problemas + [f"[aviso] {a}" for a in r.avisos]
         return RegistroExtracao(
@@ -98,16 +106,16 @@ def salvar_cache(caminho, cache):
 def processar_lote(pdfs, cache_path=None, reprocessar=False, ocr=True, workers=1):
     """Processa os PDFs e retorna a lista de RegistroExtracao, um por PDF, na ordem recebida.
 
-    Arquivos idênticos (mesmo SHA-256) já extraídos pela versão atual do parser são reaproveitados
-    do cache, inclusive cópias com outro nome; erros (status ERRO) não entram no cache para que o
-    arquivo seja tentado novamente na próxima execução.
+    Arquivos idênticos (mesmo SHA-256 e mesmo item no nome) já extraídos pela versão atual do parser
+    são reaproveitados do cache, inclusive cópias em outra pasta; erros (status ERRO) não entram no
+    cache para que o arquivo seja tentado novamente na próxima execução.
     """
     cache = {} if (reprocessar or not cache_path) else carregar_cache(cache_path)
     registros = [None] * len(pdfs)
     pendentes = {}  # hash -> índices
     for i, pdf in enumerate(pdfs):
         try:
-            h = sha256(pdf)
+            h = chave_cache(sha256(pdf), pdf)
         except OSError as e:
             registros[i] = RegistroExtracao(arquivo_origem=str(pdf), versao_parser=VERSAO_PARSER,
                                             status_extracao=ERRO, erros_extracao=f"leitura: {e}")

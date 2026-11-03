@@ -30,7 +30,8 @@ Detalhes: [docs/README.md](docs/README.md) (índice). Comece por
 - Git em `C:\Program Files\Git\cmd\git.exe` (pode não estar no PATH de sessões antigas).
 - Dados em `dados/` (não versionado) ou na pasta da variável `PNCP_DADOS`. Para testes, use
   `PNCP_DADOS` apontando para uma pasta temporária para não misturar com os dados reais.
-- Sem OCR instalado (OCRmyPDF/Tesseract); use `--sem-ocr` no extrator.
+- OCR pelo PyMuPDF, com `por.traineddata` em `dados/tessdata` (fora do git). Lê o texto, mas o parser
+  ainda não entende esse texto: PDF escaneado sai como `ERRO`. Ver [docs/05](docs/05-decisoes-e-pendencias.md).
 
 ## Regras
 

@@ -101,8 +101,7 @@ Compras.gov.br, protegido por hCaptcha. A cobertura pela API é parcial e depend
 Causas conhecidas de falso negativo em `pncp_arquivos.py`:
 
 - falha da API depois das tentativas, tratada hoje como se não houvesse arquivo;
-- itens em grupo, que o parser ainda não reconhece;
-- PDF escaneado, sem texto (não há OCR instalado);
+- PDF escaneado, sem texto (`pncp_arquivos.py` não aplica OCR);
 - termo em "Outros Documentos" com título genérico, que nem é baixado;
 - contratação irmã fora da janela de busca ou com número ou abertura diferentes;
 - arquivo acima de 50 MB;

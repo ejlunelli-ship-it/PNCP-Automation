@@ -53,13 +53,14 @@ def extrair_documento(paginas, nome_arquivo):
     if bloco is None:
         r.problemas.append(problema)
         return r
-    extrair_item(bloco, r)
+    extrair_item(bloco, r, documento)
     return r
 
 
-def extrair_item(bloco, r):
+def extrair_item(bloco, r, documento):
     d = r.dados
     d["item"] = bloco.numero
+    d["grupo"] = bloco.grupo
     d["descricao_item"] = campos.descricao_item(bloco.cabecalho)
 
     unitario, total, original = campos.valor_estimado(bloco.cabecalho)
@@ -86,7 +87,7 @@ def extrair_item(bloco, r):
     r.fontes.append(f"quantidade_fornecedores: Propostas do Item {bloco.numero} {bloco.propostas.paginas}")
 
     eventos = tabelas.ler_registros(bloco.eventos, com_responsavel=False)
-    extrair_lances(bloco, lances, propostas, eventos, situacao.criterio, d.get("modo_disputa"), r)
+    extrair_lances(bloco, lances, propostas, eventos, situacao.criterio, d.get("modo_disputa"), r, documento)
 
     aceito = campos.lance_aceito(situacao, propostas, eventos)
     d["lance_aceito"] = aceito.valor
@@ -100,7 +101,13 @@ def extrair_item(bloco, r):
         r.fontes.append(f"lance_aceito: {aceito.fonte}")
 
 
-def extrair_lances(bloco, lances, propostas, eventos, criterio, modo, r):
+def itens_do_grupo(documento, rotulo):
+    """(quantidade, lances, propostas) de cada item do grupo, para conferir os totais da etapa fechada."""
+    return [(campos.quantidade_item(b.cabecalho), tabelas.ler_lances(b.lances)[0], tabelas.ler_propostas(b.propostas))
+            for b in documento.itens.values() if b.grupo == rotulo]
+
+
+def extrair_lances(bloco, lances, propostas, eventos, criterio, modo, r, documento):
     d = r.dados
     for campo in ("melhor_lance_modo_aberto", "melhor_lance_modo_fechado", "melhor_lance_desempate"):
         d[campo] = None
@@ -114,8 +121,12 @@ def extrair_lances(bloco, lances, propostas, eventos, criterio, modo, r):
         d["melhor_lance_modo_aberto"] = campos.mais_vantajoso(iniciais, criterio)
         return
 
-    chat = tabelas.ler_registros(bloco.chat, com_responsavel=True)
-    marcos, probs = etapas.identificar_etapas(chat, eventos, bloco.numero)
+    # em grupo, os marcos das etapas ficam no chat e nos eventos do grupo, com o rótulo "item G1"
+    grupo = documento.grupos.get(bloco.grupo)
+    origem = grupo or bloco
+    chat = tabelas.ler_registros(origem.chat, com_responsavel=True)
+    eventos_etapas = tabelas.ler_registros(grupo.eventos, com_responsavel=False) if grupo else eventos
+    marcos, probs = etapas.identificar_etapas(chat, eventos_etapas, bloco.grupo if grupo else bloco.numero)
     r.problemas.extend(probs)
     if modo_norm in ("aberto", "fechado"):
         # etapa única: todos os lances são dela, exceto os que caem numa janela de desempate
@@ -127,6 +138,11 @@ def extrair_lances(bloco, lances, propostas, eventos, criterio, modo, r):
         if not marcos.fechadas():
             r.problemas.append("não foi possível identificar a etapa fechada no chat nem nos eventos do item")
             return
+        if grupo:
+            # a mensagem de encerramento traz totais do grupo: não serve para conferir valores do item
+            r.problemas.extend(etapas.conferir_grupo(itens_do_grupo(documento, bloco.grupo), marcos))
+            for j in marcos.janelas:
+                j.lances_informados = None
         classificados, resolvidos = etapas.classificar_lances(lances, marcos)
     else:
         r.problemas.append(f"modo de disputa {modo!r} sem regra de separação de lances por etapa")

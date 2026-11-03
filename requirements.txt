@@ -4,4 +4,4 @@ pymupdf
 openpyxl
 scipy
 pydantic
-# OCR opcional (PDFs digitalizados): instalar OCRmyPDF e Tesseract (idioma "por") no sistema
+# OCR opcional (PDFs digitalizados): por.traineddata em dados/tessdata (ver extrator_homologacao/texto.py)

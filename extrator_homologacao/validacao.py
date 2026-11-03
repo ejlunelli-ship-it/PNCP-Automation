@@ -41,6 +41,7 @@ class RegistroExtracao(BaseModel):
     modalidade_compra: str | None = None  # ex.: PREGÃO, CONCORRÊNCIA
     numero_compra: str | None = None
     item: int | None = None
+    grupo: str | None = None              # ex.: G1; vazio em item avulso
     tipo_relatorio: str | None = None
     situacao_item: str | None = None
     criterio_julgamento_item: str | None = None

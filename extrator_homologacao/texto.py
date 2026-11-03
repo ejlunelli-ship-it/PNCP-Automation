@@ -1,16 +1,22 @@
-"""Extração do texto dos PDFs (PyMuPDF), com OCR opcional e limpeza de cabeçalho/rodapé de página."""
+"""Extração do texto dos PDFs (PyMuPDF), com OCR opcional e limpeza de cabeçalho/rodapé de página.
+
+O OCR é o do próprio PyMuPDF e só precisa do idioma: por.traineddata em dados/tessdata (baixe de
+https://github.com/tesseract-ocr/tessdata_fast) ou na pasta da variável TESSDATA_PREFIX.
+"""
 
 import logging
+import os
 import re
-import shutil
-import subprocess
-import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 
 import pymupdf
 
+from config import DADOS
+
 log = logging.getLogger(__name__)
+
+DPI_OCR = 300
 
 # abaixo disso por página consideramos que o PDF não tem camada de texto utilizável
 MIN_CARACTERES_POR_PAGINA = 40
@@ -43,20 +49,22 @@ def tem_texto_utilizavel(paginas):
     return total >= MIN_CARACTERES_POR_PAGINA * len(paginas)
 
 
+def pasta_tessdata():
+    return Path(os.environ.get("TESSDATA_PREFIX") or DADOS / "tessdata")
+
+
 def ocr_disponivel():
-    return shutil.which("ocrmypdf") is not None and shutil.which("tesseract") is not None
+    return (pasta_tessdata() / "por.traineddata").is_file()
 
 
 def paginas_com_ocr(caminho):
-    """Roda OCRmyPDF (Tesseract, português) numa cópia temporária e extrai o texto resultante."""
-    with tempfile.TemporaryDirectory() as tmp:
-        saida = Path(tmp) / "ocr.pdf"
-        subprocess.run(
-            ["ocrmypdf", "--force-ocr", "-l", "por", "--quiet", str(caminho), str(saida)],
-            check=True,
-            capture_output=True,
-        )
-        return paginas_do_pdf(saida)
+    """Texto de cada página pelo OCR do PyMuPDF (Tesseract embutido, português)."""
+    with pymupdf.open(caminho) as doc:
+        paginas = []
+        for pagina in doc:
+            camada = pagina.get_textpage_ocr(language="por", dpi=DPI_OCR, full=True, tessdata=str(pasta_tessdata()))
+            paginas.append(pagina.get_text(textpage=camada))
+        return paginas
 
 
 def extrair_paginas(caminho, ocr=True):
@@ -67,7 +75,7 @@ def extrair_paginas(caminho, ocr=True):
     if not ocr:
         raise SemTextoError("PDF sem camada de texto utilizável e OCR desabilitado")
     if not ocr_disponivel():
-        raise SemTextoError("PDF sem camada de texto utilizável e OCRmyPDF/Tesseract não instalados")
+        raise SemTextoError(f"PDF sem camada de texto utilizável e sem por.traineddata em {pasta_tessdata()}")
     log.info("aplicando OCR em %s", caminho)
     paginas = paginas_com_ocr(caminho)
     if not tem_texto_utilizavel(paginas):

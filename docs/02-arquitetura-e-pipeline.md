@@ -85,11 +85,14 @@ O `pendentes.csv` é refeito a cada rodada e apagado quando fica vazio.
 `melhor_lance_modo_fechado`, `melhor_lance_desempate`, `lance_aceito`, `valor_negociado_aceito`,
 `fornecedor_lance_aceito`, `cnpj_fornecedor_lance_aceito`, `quantidade_fornecedores`, `resultado`,
 `situacao_item`, `criterio_julgamento_item`, `esfera`, `uf` (essas duas vêm do JSON do `get.py`),
-`status_extracao`, `erros_extracao`, `fontes_extracao`, `versao_parser`.
+`status_extracao`, `erros_extracao`, `fontes_extracao`, `versao_parser`, `grupo` (ex.: `G1`, vazio em
+item avulso).
 
 ## Validação feita até agora
 
+- Em 03/11/2026: Fortaleza 90119/2025, grupo G1 (itens 1 a 6), todos `OK`, com os totais da etapa
+  fechada conferidos pela soma. Outros 4 PDFs de item avulso deram resultado idêntico ao do parser 1.5.0.
 - Parser validado com pregões Aberto/Fechado e Aberto do Compras.gov.br. A versão atual do parser
-  é 1.5.0.
+  é 1.6.0.
 - Em 02/11/2026: 82 PDFs de Fortaleza (12 pregões AF de 01–10/08/2025) baixados do PNCP, todos
   `OK` no extrator.
