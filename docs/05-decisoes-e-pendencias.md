@@ -48,8 +48,10 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
    resolve. Avaliar uma opção `--reconsultar-pncp`.
 7. Prototipar o Playwright com perfil persistente para abrir a compra e clicar no menu, com o
    captcha resolvido pelo usuário. Risco: a automação pode aumentar os desafios do hCaptcha.
-
 8. **Revisar a chave de dedup do `coleta_itens.py`**: `(compra, item, idCompraItem)` guarda um só registro quando o item tem mais de um resultado, e isso aparece nos arquivos `adicional_correspondencias`, que não têm script no repositório. Verificar se os meses perdem o segundo resultado.
+9. **Registrar o motivo por compra em `pncp_arquivos.py`** (a fazer depois do piloto de janeiro/2026): separar erro na API,
+   nenhum arquivo publicado, nenhum candidato e candidato rejeitado (grupo, sem texto, outra compra).
+   Sem isso, "sem termos no PNCP" mistura ausência real com falha. Ver [03 §3.4](03-fontes-de-dados-e-apis.md).
 
 ## Questões em aberto
 

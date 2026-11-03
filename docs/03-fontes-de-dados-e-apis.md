@@ -92,6 +92,22 @@ O `numeroControlePNCP` `CNPJ-1-SEQUENCIAL/ANO` se decompõe na URL. Exemplo:
    com status e chat, mas o layout é outro e **o parser atual não lê**. Ver
    [04](04-formato-dos-relatorios.md).
 
+### Nem toda compra tem PDF na API
+
+Publicar os termos no PNCP é opcional. Na maioria das compras eles só existem no zip do
+Compras.gov.br, protegido por hCaptcha. A cobertura pela API é parcial e depende do órgão.
+
+"Sem termos no PNCP" significa que **nenhum arquivo passou pela busca**, não que o PDF não exista.
+Causas conhecidas de falso negativo em `pncp_arquivos.py`:
+
+- falha da API depois das tentativas, tratada hoje como se não houvesse arquivo;
+- itens em grupo, que o parser ainda não reconhece;
+- PDF escaneado, sem texto (não há OCR instalado);
+- termo em "Outros Documentos" com título genérico, que nem é baixado;
+- contratação irmã fora da janela de busca ou com número ou abertura diferentes;
+- arquivo acima de 50 MB;
+- Ata Final de outra plataforma, que tem lances mas não é lida pelo parser.
+
 ## 3.5 Compras.gov.br (Comprasnet) — download manual
 
 - Página da compra:
