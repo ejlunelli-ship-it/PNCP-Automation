@@ -10,12 +10,18 @@ Esses órgãos costumam ter DUAS contratações no PNCP para o mesmo pregão: a 
 publica sozinho (a do get.py, só com o edital) e a do sistema do próprio órgão, com os demais
 documentos. Por isso, além da própria contratação, são vasculhadas as "irmãs": mesmo CNPJ,
 mesmo número de compra e data de abertura das propostas, publicadas por outro sistema.
+
+Candidatos que o extrator não lê (outra plataforma, PDF escaneado, outro formato) não são
+descartados: vão para a pasta `outros`, fora de relatorios/, com uma linha em manifesto.csv.
 """
+import csv
 import io
 import re
 import time
 import zipfile
+from dataclasses import dataclass, field
 from datetime import datetime, timedelta
+from pathlib import Path
 
 import pymupdf
 import requests
@@ -34,14 +40,45 @@ RE_CONTROLE = re.compile(r"^(\d{14})-\d+-(\d+)/(\d{4})$")
 # só se o título lembrar um termo. Edital, TR, ETP, minutas, pesquisa de preços etc. nunca.
 TIPOS_CANDIDATOS = {26, 27, 28}
 TIPOS_IGNORADOS = {2, 3, 4, 5, 6, 7, 8, 9, 10, 19, 29, 30, 31, 32, 33, 34, 36, 39, 40}
-RE_TITULO = re.compile(r"(?i)homolog|julg|\bata\b|relat[oó]rio|termo|sess[aã]o")
+RE_TITULO = re.compile(r"(?i)homolog|julg|(?<![a-zà-ú])ata(?![a-zà-ú])|atatotal|relat[oó]rio|termo|sess[aã]o|lance")
 TAMANHO_MAXIMO = 50 * 1024 * 1024
+RE_LANCES = re.compile(r"(?i)\blances?\b")
+MIN_CARACTERES_POR_PAGINA = 40  # abaixo disso o PDF é tratado como escaneado
+COLUNAS_MANIFESTO = ["numeroControlePNCP", "idCompra", "titulo", "tipoDocumentoId", "tipoDocumentoNome", "url",
+                     "membro", "tamanho", "motivo", "guardado", "arquivo"]
 
 session = requests.Session()
 session.headers.update({"User-Agent": "Mozilla/5.0", "Accept": "application/json"})
 
 
-def _get(url, tentativas=3):
+class FalhaAPI(Exception):
+    """A consulta falhou depois das tentativas: não dá para dizer que o arquivo não existe."""
+
+
+@dataclass
+class Busca:
+    """Resultado da busca de uma compra no PNCP."""
+    cobertos: set = field(default_factory=set)
+    publicados: int = 0   # arquivos listados na contratação e nas irmãs
+    candidatos: int = 0   # arquivos que passaram pelo filtro de tipo e título
+    guardados: int = 0    # arquivos gravados em `outros`
+    erros: list = field(default_factory=list)
+
+    @property
+    def motivo(self):
+        if self.cobertos:
+            return "termos encontrados"
+        if self.erros:
+            return "erro na API"
+        if not self.publicados:
+            return "nenhum arquivo publicado"
+        if not self.candidatos:
+            return "nenhum candidato"
+        return "outros formatos guardados" if self.guardados else "candidatos sem lances"
+
+
+def _get(url, tentativas=3, exigir=False):
+    """Resposta 200/204, ou None. Com `exigir`, falha de rede ou do servidor lança FalhaAPI."""
     for i in range(tentativas):
         try:
             r = session.get(url, timeout=90)
@@ -52,18 +89,59 @@ def _get(url, tentativas=3):
         except (requests.Timeout, requests.ConnectionError):
             pass
         time.sleep(2 ** i)
+    if exigir:
+        raise FalhaAPI(url)
     return None
 
 
-def _pdfs(conteudo, nome):
-    """PDFs dentro do arquivo baixado: o próprio PDF ou os PDFs de um zip."""
-    if conteudo[:4] == b"%PDF":
-        yield nome, conteudo
-    elif zipfile.is_zipfile(io.BytesIO(conteudo)):
-        with zipfile.ZipFile(io.BytesIO(conteudo)) as z:
-            for membro in z.namelist():
-                if membro.lower().endswith(".pdf"):
-                    yield membro, z.read(membro)
+def _partes(conteudo, nome):
+    """(nome, bytes) do arquivo baixado; um zip com PDFs é aberto, e qualquer outro formato vem inteiro."""
+    if zipfile.is_zipfile(io.BytesIO(conteudo)):
+        try:
+            with zipfile.ZipFile(io.BytesIO(conteudo)) as z:
+                membros = [m for m in z.infolist() if not m.is_dir() and m.file_size <= TAMANHO_MAXIMO]
+                if any(m.filename.lower().endswith(".pdf") for m in membros):
+                    return [(m.filename, z.read(m)) for m in membros]
+        except (zipfile.BadZipFile, RuntimeError, NotImplementedError):
+            pass  # zip protegido ou corrompido: guarda o arquivo inteiro
+    return [(nome, conteudo)]
+
+
+def _motivo_para_guardar(dados):
+    """Por que guardar um arquivo que o extrator não lê; None se for PDF legível sem menção a lances."""
+    if dados[:4] != b"%PDF":
+        return "formato não PDF"
+    try:
+        with pymupdf.open(stream=dados, filetype="pdf") as doc:
+            paginas = [p.get_text() for p in doc]
+    except Exception:
+        return "PDF ilegível"
+    texto = "".join(paginas)
+    if len(texto.strip()) < MIN_CARACTERES_POR_PAGINA * max(len(paginas), 1):
+        return "PDF sem texto"
+    return "menciona lances" if RE_LANCES.search(texto) else None
+
+
+def _registrar(outros, linha):
+    outros.mkdir(parents=True, exist_ok=True)
+    arquivo = outros / "manifesto.csv"
+    novo = not arquivo.exists()
+    with open(arquivo, "a", newline="", encoding="utf-8-sig" if novo else "utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=COLUNAS_MANIFESTO, extrasaction="ignore")
+        if novo:
+            w.writeheader()
+        w.writerow(linha)
+
+
+def _guardar(outros, registro, ordem, nome, dados):
+    """Grava em <outros>/<compra>/ com um nome que o seletor do extrator não confunde com um termo."""
+    pasta = outros / f"{registro['numeroCompra']}-{registro['anoCompraPncp']}_{registro['idCompra']}"
+    pasta.mkdir(parents=True, exist_ok=True)
+    caminho = Path(re.sub(r"[\\/]+", "/", nome or "arquivo"))
+    extensao = ".pdf" if dados[:4] == b"%PDF" else (caminho.suffix[:8] or ".bin")
+    saida = pasta / f"{ordem:03d}-{re.sub(r'[^\w.-]+', '_', caminho.stem)[:80]}{extensao}"
+    saida.write_bytes(dados)
+    return saida
 
 
 def _identificar(pdf, id_compra):
@@ -109,7 +187,7 @@ def _publicadas_no_periodo(cnpj, inicio, fim):
             lista, pagina = [], 1
             while True:
                 r = _get(f"{CONSULTA}?dataInicial={inicio:%Y%m%d}&dataFinal={fim:%Y%m%d}&cnpj={cnpj}"
-                         f"&codigoModalidadeContratacao={modalidade}&pagina={pagina}&tamanhoPagina=50")
+                         f"&codigoModalidadeContratacao={modalidade}&pagina={pagina}&tamanhoPagina=50", exigir=True)
                 if r is None or r.status_code == 204 or not r.content:
                     break
                 j = r.json()
@@ -127,13 +205,15 @@ def _numero(texto):
     return re.sub(r"\D", "", str(texto or "").split("/")[0]).lstrip("0")
 
 
-def contratacoes_candidatas(registro):
-    """(cnpj, ano, sequencial) da própria contratação e das irmãs publicadas por outro sistema."""
+def contratacoes_candidatas(registro, irmas=True):
+    """(cnpj, ano, sequencial) da própria contratação e, com `irmas`, das publicadas por outro sistema."""
     m = RE_CONTROLE.match(registro.get("numeroControlePNCP") or "")
     if not m:
         return []
     cnpj, seq, ano = m.groups()
     candidatas = [(cnpj, ano, int(seq))]
+    if not irmas:
+        return candidatas
     try:
         publicada = datetime.fromisoformat(registro["dataPublicacaoPncp"]).date()
     except (KeyError, TypeError, ValueError):
@@ -153,27 +233,59 @@ def contratacoes_candidatas(registro):
     return candidatas
 
 
-def baixar_do_pncp(registro, destino):
-    """Grava em `destino` os termos desta compra encontrados no PNCP. Devolve os itens cobertos."""
+def baixar_do_pncp(registro, destino, outros=None, irmas=True):
+    """Grava em `destino` os termos desta compra encontrados no PNCP e, em `outros`, os demais
+    candidatos que possam ter lances. Devolve a Busca, com os itens cobertos e o motivo."""
     id_compra = str(registro["idCompra"])
+    busca = Busca()
+    try:
+        contratacoes = contratacoes_candidatas(registro, irmas)
+    except FalhaAPI as e:
+        busca.erros.append(f"irmãs: {e}")
+        contratacoes = contratacoes_candidatas(registro, irmas=False)
     arquivos = []
-    for cnpj, ano, seq in contratacoes_candidatas(registro):
-        r = _get(f"{API}/orgaos/{cnpj}/compras/{ano}/{seq}/arquivos")
+    for cnpj, ano, seq in contratacoes:
+        try:
+            r = _get(f"{API}/orgaos/{cnpj}/compras/{ano}/{seq}/arquivos", exigir=True)
+        except FalhaAPI as e:
+            busca.erros.append(f"lista: {e}")
+            continue
         if r is not None and r.status_code == 200 and r.content:
             arquivos += r.json()
+    busca.publicados = len(arquivos)
 
-    cobertos = set()
     for arq in arquivos:
         tipo_doc = arq.get("tipoDocumentoId")
         if tipo_doc in TIPOS_IGNORADOS or (tipo_doc not in TIPOS_CANDIDATOS
                                            and not RE_TITULO.search(arq.get("titulo") or "")):
             continue
-        baixado = _get(arq["url"])
-        if baixado is None or not baixado.content or len(baixado.content) > TAMANHO_MAXIMO:
+        busca.candidatos += 1
+        linha = {"numeroControlePNCP": registro.get("numeroControlePNCP"), "idCompra": id_compra,
+                 "titulo": arq.get("titulo"), "tipoDocumentoId": tipo_doc,
+                 "tipoDocumentoNome": arq.get("tipoDocumentoNome"), "url": arq.get("url"), "guardado": "não"}
+        try:
+            baixado = _get(arq["url"], exigir=True)
+        except FalhaAPI as e:
+            busca.erros.append(f"download: {e}")
             continue
-        for nome, pdf in _pdfs(baixado.content, arq.get("titulo") or ""):
-            achado = _identificar(pdf, id_compra)
+        if baixado is None or not baixado.content or len(baixado.content) > TAMANHO_MAXIMO:
+            tamanho = len(baixado.content) if baixado is not None else 0
+            if outros:
+                _registrar(outros, {**linha, "tamanho": tamanho,
+                                    "motivo": "acima do limite" if tamanho else "download indisponível"})
+            continue
+        for nome, pdf in _partes(baixado.content, arq.get("titulo") or ""):
+            achado = _identificar(pdf, id_compra) if pdf[:4] == b"%PDF" else None
             if not achado:
+                if outros:
+                    motivo = _motivo_para_guardar(pdf)
+                    saida = None
+                    if motivo:
+                        busca.guardados += 1
+                        saida = _guardar(outros, registro, busca.guardados, nome, pdf)
+                    _registrar(outros, {**linha, "membro": nome, "tamanho": len(pdf),
+                                        "motivo": motivo or "sem menção a lances",
+                                        "guardado": "sim" if saida else "não", "arquivo": saida or ""})
                 continue
             tipo, itens = achado
             for item in itens:
@@ -184,7 +296,7 @@ def baixar_do_pncp(registro, destino):
                     saida = f"relatorio-julg-hab-{id_compra}-s0-item-{item}.pdf"
                 destino.mkdir(parents=True, exist_ok=True)
                 (destino / saida).write_bytes(pdf)
-                cobertos.add(item)
+                busca.cobertos.add(item)
             print(f"  PNCP: {arq.get('titulo') or nome} -> {tipo.lower()}, itens {itens}")
         time.sleep(0.2)
-    return cobertos
+    return busca

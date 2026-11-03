@@ -16,6 +16,7 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
 | 2026-11-03 | `dados/pncp.db` criado por `banco_unificado.py`: `id` próprio e `registro_principal` (uma linha por item), `homologado` = situação do item "Homologado", valores em `REAL`, descontos por etapa só em Menor preço | Um item pode ter mais de um registro na API; `NUMERIC` causava divisão inteira; em Maior desconto o lance do PDF pode ser percentual |
 | 2026-11-03 | OCR pelo PyMuPDF com `por.traineddata`, no lugar de OCRmyPDF + Tesseract + Ghostscript | Não exige instalar nada no sistema |
 | 2026-11-03 | Baixar relatórios **só de pregões Aberto-Fechado com item homologado** (98.461 pregões e 1.779.542 itens na base de 2026-11-03) | No Aberto-Fechado o melhor lance de cada etapa só existe no PDF. No Aberto, usa-se o resultado da API, que é o valor homologado e pode diferir do melhor lance (negociação ou desclassificação) |
+| 2026-11-03 | Guardar candidatos que o extrator não lê em `outros_formatos/`, com manifesto; registrar o motivo por compra em `motivos.csv` | O objetivo é ter todo formato com lances e adaptar o leitor depois; "sem termos" misturava ausência real com falha |
 | — | Melhor lance da etapa conta mesmo se o fornecedor for desclassificado depois; propostas iniciais entram na etapa aberta | Medir a dinâmica da disputa, não só o resultado |
 
 ## Pendências e próximos passos (por prioridade)
@@ -47,9 +48,6 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
 7. Prototipar o Playwright com perfil persistente para abrir a compra e clicar no menu, com o
    captcha resolvido pelo usuário. Risco: a automação pode aumentar os desafios do hCaptcha.
 8. **Revisar a chave de dedup do `coleta_itens.py`**: `(compra, item, idCompraItem)` guarda um só registro quando o item tem mais de um resultado, e isso aparece nos arquivos `adicional_correspondencias`, que não têm script no repositório. Verificar se os meses perdem o segundo resultado.
-9. **Registrar o motivo por compra em `pncp_arquivos.py`** (a fazer depois do piloto de janeiro/2026): separar erro na API,
-   nenhum arquivo publicado, nenhum candidato e candidato rejeitado (grupo, sem texto, outra compra).
-   Sem isso, "sem termos no PNCP" mistura ausência real com falha. Ver [03 §3.4](03-fontes-de-dados-e-apis.md).
 10. **OCR de PDF escaneado**: o PyMuPDF lê o texto, mas perde a linha do título e muda as quebras de linha
     (130 de 427 linhas idênticas num teste com páginas convertidas em imagem), e o parser depende
     delas. O resultado é `ERRO`, sem dado errado. Falta adaptar o parser, de preferência com um PDF

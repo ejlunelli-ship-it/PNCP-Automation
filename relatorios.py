@@ -85,20 +85,21 @@ def manter_selecionados(destino):
 PARCIAL = ".pncp_parcial"  # marca a pasta cujos termos do PNCP não cobrem todos os itens
 
 
-def tentar_pncp(registro, destino):
-    """Baixa os termos publicados no PNCP. Devolve 'completo', 'parcial' ou None (nada achado)."""
+def tentar_pncp(registro, destino, outros=None, irmas=True):
+    """Baixa o que houver no PNCP. Devolve ('completo', 'parcial' ou None, Busca)."""
     from pncp_arquivos import baixar_do_pncp, quantidade_itens
-    cobertos = baixar_do_pncp(registro, destino)
+    busca = baixar_do_pncp(registro, destino, outros, irmas)
+    cobertos = busca.cobertos
     if not cobertos:
-        return None
+        return None, busca
     manter_selecionados(destino)  # julgamento sai quando o item tem termo de homologação
     total = quantidade_itens(registro)
     if total is not None and len(cobertos) < total:
         print(f"  PNCP cobre {len(cobertos)} de {total} itens; o resto precisa do zip (navegador)")
         (destino / PARCIAL).write_text(f"{len(cobertos)}/{total}\n", encoding="utf-8")
-        return "parcial"
+        return "parcial", busca
     (destino / PARCIAL).unlink(missing_ok=True)
-    return "completo"
+    return "completo", busca
 
 
 COLUNAS_PENDENTES = ["idCompra", "numeroControlePNCP", "numeroCompra", "anoCompraPncp",
@@ -148,16 +149,16 @@ def baixar_relatorios(registros, pasta_base, usar_pncp=True, so_pncp=False):
             pendente(r, destino, "ainda não homologada")
             continue
 
-        situacao = "parcial" if parcial else None
+        situacao, busca = ("parcial" if parcial else None), None
         if (usar_pncp or so_pncp) and not parcial:
-            situacao = tentar_pncp(r, destino)
+            situacao, busca = tentar_pncp(r, destino, pasta_base.parent / "outros_formatos")
             if situacao == "completo":
                 print(f"  baixado do PNCP -> {destino}")
                 ok += 1
                 continue
         motivo = ("PNCP não consultado" if not (usar_pncp or so_pncp)
                   else "termos incompletos no PNCP" if situacao == "parcial"
-                  else "sem termos no PNCP")
+                  else busca.motivo)
         if so_pncp:
             print(f"  {motivo}; falta o zip")
             pendente(r, destino, motivo)
