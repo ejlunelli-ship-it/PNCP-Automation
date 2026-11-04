@@ -85,10 +85,10 @@ def manter_selecionados(destino):
 PARCIAL = ".pncp_parcial"  # marca a pasta cujos termos do PNCP não cobrem todos os itens
 
 
-def tentar_pncp(registro, destino, outros=None, irmas=True):
+def tentar_pncp(registro, destino, outros=None, irmas=True, indice=None):
     """Baixa o que houver no PNCP. Devolve ('completo', 'parcial' ou None, Busca)."""
     from pncp_arquivos import baixar_do_pncp, quantidade_itens
-    busca = baixar_do_pncp(registro, destino, outros, irmas)
+    busca = baixar_do_pncp(registro, destino, outros, irmas, indice)
     cobertos = busca.cobertos
     if not cobertos:
         return None, busca

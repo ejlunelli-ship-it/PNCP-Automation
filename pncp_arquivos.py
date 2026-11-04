@@ -14,18 +14,22 @@ mesmo número de compra e data de abertura das propostas, publicadas por outro s
 Candidatos que o extrator não lê (outra plataforma, PDF escaneado, outro formato) não são
 descartados: vão para a pasta `outros`, fora de relatorios/, com uma linha em manifesto.csv.
 """
+import calendar
 import csv
 import io
+import json
 import re
 import time
 import zipfile
+from collections import defaultdict
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 import pymupdf
 import requests
 
+from config import DADOS
 from extrator_homologacao.campos import campos_cabecalho
 from extrator_homologacao.secoes import segmentar
 from extrator_homologacao.texto import linhas_limpas
@@ -212,7 +216,89 @@ def _numero(texto):
     return re.sub(r"\D", "", str(texto or "").split("/")[0]).lstrip("0")
 
 
-def contratacoes_candidatas(registro, irmas=True):
+class IndicePublicadas:
+    """Pregões Aberto-Fechado publicados no PNCP por mês, em dados/pncp_publicadas/<AAAA-MM>.json.
+
+    Lista cada mês uma vez, para todos os órgãos, o que é muito mais barato que consultar órgão por
+    órgão. Só o modo Aberto-Fechado: corta 3/4 das páginas, e as irmãs conferidas têm o mesmo modo.
+    Vai devagar de propósito: o PNCP responde 429 depois de umas 9 requisições seguidas.
+    """
+    PASTA = DADOS / "pncp_publicadas"
+    ESPERA_PAGINA = 2
+    MODO_ABERTO_FECHADO = 3
+
+    def __init__(self):
+        self.por_chave = defaultdict(list)
+        self.meses = set()
+
+    def _pagina(self, params):
+        for i in range(8):
+            try:
+                r = session.get(CONSULTA, params=params, timeout=120)
+                if r.status_code in (200, 204):
+                    return r
+                if r.status_code == 429:
+                    espera = int(r.headers.get("Retry-After") or 20 * (i + 1))
+                    print(f"  PNCP pediu para esperar ({espera}s)", flush=True)
+                    time.sleep(espera)
+                    continue
+                if r.status_code not in (500, 502, 503, 504):
+                    break
+            except (requests.Timeout, requests.ConnectionError):
+                pass
+            time.sleep(5 * 2 ** i)
+        raise FalhaAPI(f"{CONSULTA} {params}")
+
+    def _baixar(self, ano_mes):
+        ano, mes = map(int, ano_mes.split("-"))
+        fim = calendar.monthrange(ano, mes)[1]
+        registros = []
+        for modalidade in MODALIDADES_PNCP:
+            pagina = 1
+            while True:
+                r = self._pagina({"dataInicial": f"{ano}{mes:02d}01", "dataFinal": f"{ano}{mes:02d}{fim}",
+                                  "codigoModalidadeContratacao": modalidade, "codigoModoDisputa": self.MODO_ABERTO_FECHADO,
+                                  "pagina": pagina, "tamanhoPagina": 50})
+                if r.status_code == 204 or not r.content:
+                    break
+                j = r.json()
+                registros += [{"numeroControlePNCP": x.get("numeroControlePNCP"), "cnpj": (x.get("orgaoEntidade") or {}).get("cnpj"),
+                               "anoCompra": x.get("anoCompra"), "sequencialCompra": x.get("sequencialCompra"),
+                               "numeroCompra": x.get("numeroCompra"), "dataAberturaProposta": x.get("dataAberturaProposta"),
+                               "usuarioNome": x.get("usuarioNome")} for x in j.get("data") or []]
+                if pagina >= (j.get("totalPaginas") or 1):
+                    break
+                if pagina % 100 == 0:
+                    print(f"  índice {ano_mes}: página {pagina}/{j.get('totalPaginas')}", flush=True)
+                pagina += 1
+                time.sleep(self.ESPERA_PAGINA)
+        return registros
+
+    def carregar(self, ano_mes):
+        if ano_mes in self.meses:
+            return
+        arquivo = self.PASTA / f"{ano_mes}.json"
+        if arquivo.exists():
+            registros = json.loads(arquivo.read_text(encoding="utf-8"))
+        else:
+            registros = self._baixar(ano_mes)
+            if ano_mes < f"{date.today():%Y-%m}":  # mês em aberto ainda muda: não fica gravado
+                self.PASTA.mkdir(parents=True, exist_ok=True)
+                arquivo.write_text(json.dumps(registros, ensure_ascii=False), encoding="utf-8")
+            print(f"  índice {ano_mes}: {len(registros)} contratações", flush=True)
+        for c in registros:
+            self.por_chave[(c["cnpj"], str(c["anoCompra"]), _numero(c["numeroCompra"]))].append(c)
+        self.meses.add(ano_mes)
+
+    def irmas(self, registro, cnpj, ano):
+        """Sequenciais das contratações com mesmo CNPJ, ano, número e abertura desta compra."""
+        abertura = registro.get("dataAberturaPropostaPncp")
+        return sorted({c["sequencialCompra"] for c in self.por_chave[(cnpj, ano, _numero(registro.get("numeroCompra")))]
+                       if c["numeroControlePNCP"] != registro["numeroControlePNCP"]
+                       and not (abertura and c["dataAberturaProposta"] and c["dataAberturaProposta"] != abertura)})
+
+
+def contratacoes_candidatas(registro, irmas=True, indice=None):
     """(cnpj, ano, sequencial) da própria contratação e, com `irmas`, das publicadas por outro sistema."""
     m = RE_CONTROLE.match(registro.get("numeroControlePNCP") or "")
     if not m:
@@ -221,6 +307,8 @@ def contratacoes_candidatas(registro, irmas=True):
     candidatas = [(cnpj, ano, int(seq))]
     if not irmas:
         return candidatas
+    if indice is not None:
+        return candidatas + [(cnpj, ano, int(s)) for s in indice.irmas(registro, cnpj, ano)]
     try:
         publicada = datetime.fromisoformat(registro["dataPublicacaoPncp"]).date()
     except (KeyError, TypeError, ValueError):
@@ -240,13 +328,13 @@ def contratacoes_candidatas(registro, irmas=True):
     return candidatas
 
 
-def baixar_do_pncp(registro, destino, outros=None, irmas=True):
+def baixar_do_pncp(registro, destino, outros=None, irmas=True, indice=None):
     """Grava em `destino` os termos desta compra encontrados no PNCP e, em `outros`, os demais
     candidatos que possam ter lances. Devolve a Busca, com os itens cobertos e o motivo."""
     id_compra = str(registro["idCompra"])
     busca = Busca()
     try:
-        contratacoes = contratacoes_candidatas(registro, irmas)
+        contratacoes = contratacoes_candidatas(registro, irmas, indice)
     except FalhaAPI as e:
         busca.erros.append(f"irmãs: {e}")
         contratacoes = contratacoes_candidatas(registro, irmas=False)

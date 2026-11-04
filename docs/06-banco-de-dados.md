@@ -114,6 +114,16 @@ apaga a tabela**: rode `python inventario_pdfs.py` em seguida. Uma cópia fica e
 | `tamanho`, `sha256` | O PDF de um grupo se repete, com o mesmo hash, em cada item |
 | `pasta` | Rodada de origem, ex.: `aberto-fechado_2026-01` |
 
+## Tabela `busca_pdf`
+
+Última busca de cada compra no PNCP, refeita por `inventario_pdfs.py` a partir dos `motivos.csv`. Uma
+compra completa em qualquer mês fica como completa. `baixar_api.py` não busca de novo uma compra já
+buscada, e **`dados/pendentes_manual.csv` é a lista a usar no download manual**: traz as compras
+buscadas sem todos os termos, com o link. Compras com `situacao = 'completo'` não entram nela.
+
+Colunas: `numero_controle_pncp`, `id_compra`, `mes`, `passada`, `situacao`, `motivo`, `itens_cobertos`,
+`outros_guardados`.
+
 ## View `analise_itens`
 
 Junta `itens` e `compras`, só com `registro_principal = 1`. Descontos em %.

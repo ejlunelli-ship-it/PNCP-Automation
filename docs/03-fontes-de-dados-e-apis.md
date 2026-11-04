@@ -97,6 +97,14 @@ O `numeroControlePNCP` `CNPJ-1-SEQUENCIAL/ANO` se decompõe na URL. Exemplo:
 
 8. **Em 2026-11-03, a busca nas irmãs achou termos em 25 de 26 compras de Fortaleza e em nenhuma das 359 compras de uma amostra de 40 órgãos** (39 com busca completa; o Estado do Ceará teve 7 falhas da API). Publicar termos no PNCP parece ser exceção de poucos órgãos.
 
+9. **A base cobre só parte dos pregões do PNCP.** Nas 400 primeiras contratações de 05–09/01/2026 (amostra
+   não aleatória), 283 estão fora da base, publicadas por BLL, Licitanet, Licitar Digital, Betha, IPM e
+   outras plataformas. Essas compras são consultáveis pelo PNCP e podem ter atas com lances.
+10. **Limite de requisições:** `contratacoes/publicacao` responde 429 depois de umas 9 requisições seguidas,
+    sem `Retry-After`. `codigoModoDisputa=3` reduz o mês a cerca de 1/4 das páginas (534 para 136).
+
+11. **Medição de 2026-11-03 (pregões Aberto-Fechado publicados em 2025-12):** 6.785 no PNCP, 2.737 na base (40%) e 4.048 fora (60%). Numa amostra aleatória de 300 entre os 2.269 fora da base com valor homologado, 47 (15,7%) têm PDF com indício de tabela de lances, por critério automático (5 ou mais menções a lance e 10 ou mais valores). Dos 12 exemplos abertos, todos têm tabela de lances com data e hora. O Portal de Compras Públicas (usuário `ECustomize Consultoria em Software S.A`) concentra 34 dos 47: 34 de 38 compras dele (89%).
+
 ### Nem toda compra tem PDF na API
 
 Publicar os termos no PNCP é opcional. Na maioria das compras eles só existem no zip do

@@ -76,12 +76,21 @@ Só pregões **Aberto-Fechado com item homologado**: `modo_disputa = 'Aberto-Fec
 
 Automático, pela API pública, sem navegador e sem tocar no captcha.
 
-1. **Passada própria:** lista os arquivos da contratação. É rápida.
-2. **Passada das irmãs (`--irmas`):** busca contratações do mesmo CNPJ, ano, número e abertura, só nas
-   compras ainda incompletas. É lenta: cerca de 12 s por página da consulta. Dá para restringir a um
-   órgão (`--cnpj`) ou a órgãos sorteados com semente fixa (`--amostra-orgaos N`).
+Varredura mês a mês: `python baixar_api.py <mês>`, e o mês seguinte só roda por comando do usuário.
 
-No fim de cada rodada, `inventario_pdfs.py` registra o que há em disco na tabela `relatorios_pdf`.
+1. **Índice de publicações:** `dados/pncp_publicadas/<AAAA-MM>.json` lista os pregões Aberto-Fechado
+   publicados no mês, de todos os órgãos, uma única vez. Respeita o limite do PNCP, com 2 s entre
+   páginas. Cada compra usa o mês da publicação e os vizinhos.
+2. **Por compra:** olha a própria contratação e as irmãs do índice, com mesmo CNPJ, ano, número e
+   abertura.
+3. **Sem repetição:** compra já buscada em qualquer mês não é buscada de novo.
+4. **Registro:** `inventario_pdfs.py` atualiza `relatorios_pdf`, `busca_pdf` e
+   `dados/pendentes_manual.csv`, que é a lista do download manual.
+
+Opções: `--sem-irmas`, `--cnpj`, `--amostra-orgaos N`, `--limite N`.
+
+**Limitação do índice:** uma irmã cadastrada com outro modo de disputa não é encontrada. As 3 irmãs
+conferidas de Fortaleza têm o mesmo modo.
 
 Para cada arquivo:
 
@@ -161,6 +170,7 @@ ainda não decidida, só Menor Preço.
 | 2026-11-03 | 6 | Parser 1.6.0: itens em grupo; cache passa a considerar o item |
 | 2026-11-03 | 6 | OCR pelo PyMuPDF no lugar de OCRmyPDF; extração de escaneados ainda não funciona |
 | 2026-11-03 | 2 | Chave de duplicados dos itens inclui fornecedor e valor; nova coleta de resultados e tabela `resultados` |
+| 2026-11-03 | 5 | Irmãs pelo índice mensal de publicações, só Aberto-Fechado, no lugar da consulta por órgão; compra já buscada não repete; `busca_pdf` e `pendentes_manual.csv` |
 | 2026-11-03 | 5 | `--cnpj`, `--amostra-orgaos` e inventário dos PDFs em `relatorios_pdf` |
 | 2026-11-03 | 5 | Lista de órgão que falhou não é repetida na mesma rodada; as compras seguem como `erro na API` |
 | 2026-11-03 | 5 | Irmãs de janeiro/2026: Fortaleza 25 de 26 compras com termos; amostra de 40 órgãos (359 compras), nenhuma |

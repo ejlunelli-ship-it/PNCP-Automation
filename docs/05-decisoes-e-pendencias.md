@@ -39,7 +39,8 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
      que têm termo (tipo 16/26 com conteúdo válido);
    - priorizá-los no `get.py --orgaos`.
 4. **Parser da "Ata Final" do Portal de Compras Públicas** (ver [04 §4.3](04-formato-dos-relatorios.md)).
-   Prioridade reduzida: essas compras parecem estar fora da base nacional (ver [03 §3.4](03-fontes-de-dados-e-apis.md)).
+   Essas compras estão fora da base, mas são consultáveis pelo PNCP e podem ser boa parte dos pregões do país
+   (ver [03 §3.4](03-fontes-de-dados-e-apis.md)). Avaliar trazê-las para a base e medir quantas têm atas com lances.
    Estudar primeiro o exemplo AF de Vitória 123/2025. O modo vem da API; a etapa de cada lance
    precisa de marcos no chat dessa plataforma.
 5. **Atas de registro de preços** (PNCP `/atas`, Dados Abertos `modulo-arp`): o usuário perguntou;
