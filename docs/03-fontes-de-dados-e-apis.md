@@ -3,6 +3,30 @@
 Todas as APIs abaixo são públicas, sem autenticação. Use `User-Agent` de navegador no PNCP;
 alguns caminhos respondem 403 ou 301 sem ele.
 
+## Glossário: base, PNCP e plataformas
+
+**"Nossa base"** é o `dados/pncp.db`, coletado da API Dados Abertos do Compras.gov.br. Pelo que foi
+verificado, ela traz só os pregões feitos no sistema Compras.gov.br, e não todos os do PNCP.
+
+| Nome | O que é | Na nossa base? |
+|---|---|---|
+| **PNCP** | Portal nacional que reúne as contratações de todas as plataformas | É a fonte mais ampla, mas não é a origem da base |
+| **Compras.gov.br** | Sistema do governo federal onde o pregão acontece; também usado por estados e municípios | Sim |
+| **Portal de Compras Públicas** | Plataforma privada usada por vários municípios; no PNCP aparece como `ECustomize Consultoria em Software S.A` | Não |
+| **BLL, Licitanet, Licitar Digital e outras** | Outras plataformas privadas ou estaduais | Não |
+
+O pregão acontece em uma plataforma, e ela publica os dados no PNCP. Em dezembro/2025, a base tinha
+40% dos pregões Aberto-Fechado do PNCP (ver §3.4).
+
+Onde estão os lances em cada caso:
+
+- **Compras.gov.br:** nos relatórios do zip protegido por captcha; poucos órgãos publicam no PNCP.
+- **Portal de Compras Públicas:** a Ata Final costuma estar no PNCP, sem captcha, mas essas compras
+  ainda não estão na base.
+
+"Portal de compras" é ambíguo, porque há portais estaduais, como o de Minas Gerais. Nestes documentos,
+**Portal de Compras Públicas** é sempre a plataforma específica.
+
 ## 3.1 API Dados Abertos do Compras.gov.br (usada por `get.py`, `orgaos.py`, `coleta_*`)
 
 Base: `https://dadosabertos.compras.gov.br`
