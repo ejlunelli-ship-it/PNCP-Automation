@@ -176,6 +176,7 @@ def quantidade_itens(registro):
 
 
 _publicadas = {}  # (cnpj, modalidade, data inicial, data final) -> contratações do PNCP
+_listas_com_falha = set()  # mesmas chaves: não repete, a cada compra do órgão, uma lista que já falhou
 
 
 def _publicadas_no_periodo(cnpj, inicio, fim):
@@ -183,11 +184,17 @@ def _publicadas_no_periodo(cnpj, inicio, fim):
     todas = []
     for modalidade in MODALIDADES_PNCP:
         chave = (cnpj, modalidade, inicio, fim)
+        if chave in _listas_com_falha:
+            raise FalhaAPI(f"lista do órgão {cnpj} já falhou nesta rodada")
         if chave not in _publicadas:
             lista, pagina = [], 1
             while True:
-                r = _get(f"{CONSULTA}?dataInicial={inicio:%Y%m%d}&dataFinal={fim:%Y%m%d}&cnpj={cnpj}"
-                         f"&codigoModalidadeContratacao={modalidade}&pagina={pagina}&tamanhoPagina=50", exigir=True)
+                try:
+                    r = _get(f"{CONSULTA}?dataInicial={inicio:%Y%m%d}&dataFinal={fim:%Y%m%d}&cnpj={cnpj}"
+                             f"&codigoModalidadeContratacao={modalidade}&pagina={pagina}&tamanhoPagina=50", exigir=True)
+                except FalhaAPI:
+                    _listas_com_falha.add(chave)
+                    raise
                 if r is None or r.status_code == 204 or not r.content:
                     break
                 j = r.json()

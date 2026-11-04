@@ -34,7 +34,8 @@ banco: [06](06-banco-de-dados.md). Formato dos PDFs: [04](04-formato-dos-relator
 
 - **Fonte:** `2_consultarItensContratacoes_PNCP_14133`, dia a dia pela data de inclusão.
 - **Recorte:** mantém só os itens das compras coletadas na etapa 1.
-- **Duplicados:** chave `numeroControlePNCPCompra` + `numeroItemPncp` + `idCompraItem`.
+- **Duplicados:** chave `numeroControlePNCPCompra` + `numeroItemPncp` + `idCompraItem` + fornecedor +
+  valor do resultado. Os meses coletados antes de 2026-11-03 usaram a chave sem fornecedor e valor.
 - **Conferência:** pelas linhas recebidas, porque `totalRegistros` conta repetições.
 - **Retomada:** meses gravados são pulados, exceto o corrente; para atualizar um mês, apague o arquivo.
 - **Saída:** `dados/brutos/<ano>/itens_pregao_<ano>-<mês>.{json,csv}`.
@@ -43,8 +44,16 @@ Também existem `itens_pregao_adicional_correspondencias_<ano>`, que entram no b
 itens dos mensais. **Nenhum script do repositório os gera, e a origem deles não está documentada.**
 
 **Limitações conhecidas:** a paginação perde menos de 1% das contratações e de 1% a 3% dos itens; a
-API costuma atrasar cerca de um mês; os meses recentes têm poucos valores homologados; a chave de
-duplicados pode descartar um segundo resultado do item (pendência 8).
+API costuma atrasar cerca de um mês; os meses recentes têm poucos valores homologados.
+
+### 2.1 Coleta dos resultados (`coleta_resultados.py`)
+
+- **Fonte:** `3_consultarResultadoItensContratacoes_PNCP_14133`, dia a dia pela data de resultado.
+- **Por quê:** `itens` não separa resultado ativo de cancelado, e o valor diferiu em cerca de 1% dos
+  itens (pendência 8).
+- **Recorte:** só as compras de `pncp.db`; duplicados por compra, item e `sequencialResultado`.
+- **Retomada:** mês com falha não é gravado e é refeito ao rodar de novo.
+- **Saída:** `dados/brutos/<ano>/resultados_pregao_<ano>-<mês>.json`, depois tabela `resultados`.
 
 ## 3. Banco unificado (`banco_unificado.py`)
 
@@ -151,5 +160,8 @@ ainda não decidida, só Menor Preço.
 | 2026-11-03 | 5 | Filtro de título passa a reconhecer `AtaTotal_<n>`, `Ata_Final` e títulos com "lance" |
 | 2026-11-03 | 6 | Parser 1.6.0: itens em grupo; cache passa a considerar o item |
 | 2026-11-03 | 6 | OCR pelo PyMuPDF no lugar de OCRmyPDF; extração de escaneados ainda não funciona |
+| 2026-11-03 | 2 | Chave de duplicados dos itens inclui fornecedor e valor; nova coleta de resultados e tabela `resultados` |
 | 2026-11-03 | 5 | `--cnpj`, `--amostra-orgaos` e inventário dos PDFs em `relatorios_pdf` |
+| 2026-11-03 | 5 | Lista de órgão que falhou não é repetida na mesma rodada; as compras seguem como `erro na API` |
+| 2026-11-03 | 5 | Irmãs de janeiro/2026: Fortaleza 25 de 26 compras com termos; amostra de 40 órgãos (359 compras), nenhuma |
 | 2026-11-03 | 5 | Passada própria de janeiro/2026: 2.364 compras, nenhum candidato. A busca de termos depende da passada das irmãs |

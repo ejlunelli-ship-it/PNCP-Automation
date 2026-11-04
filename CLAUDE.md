@@ -20,7 +20,7 @@ Detalhes: [docs/README.md](docs/README.md) (índice). Comece por
 | Coletar pregões de órgãos | `get.py` | `dados/brutos/`, `dados/filtrados/pregao_<modo>/` |
 | Baixar PDFs (PNCP automático → navegador manual) | `relatorios.py` + `pncp_arquivos.py` | `dados/filtrados/<pasta>/relatorios/`, `pendentes.csv` |
 | Extrair campos dos PDFs | `python -m extrator_homologacao` | `dados/extracao/homologacoes.{xlsx,db}` |
-| Base nacional (API, sem PDF) | `coleta_anos.py`, `coleta_itens.py` | `dados/brutos/<ano>/` |
+| Base nacional (API, sem PDF) | `coleta_anos.py`, `coleta_itens.py`, `coleta_resultados.py` | `dados/brutos/<ano>/` |
 | Banco unificado da base nacional | `banco_unificado.py` | `dados/pncp.db` |
 | Baixar relatórios do PNCP por mês (Aberto-Fechado homologado) | `baixar_api.py` | `dados/filtrados/aberto-fechado_<mês>/` |
 | Inventário dos PDFs baixados | `inventario_pdfs.py` | tabela `relatorios_pdf` em `dados/pncp.db`, `dados/inventario_pdfs.csv` |

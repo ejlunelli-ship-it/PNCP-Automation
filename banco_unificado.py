@@ -9,7 +9,10 @@ Um item pode ter mais de um registro na API (idCompraItem duplicado ou mais de u
 As colunas de lance por etapa (melhor_lance_*, etc.) nascem vazias e vêm dos PDFs. Como recriar o
 banco apaga o que estiver nelas, o script só sobrescreve um banco existente com --recriar.
 
-Uso: python banco_unificado.py [--recriar]
+A tabela resultados vem de coleta_resultados.py. Depois da coleta, --resultados a carrega no banco
+existente, sem mexer nas outras tabelas.
+
+Uso: python banco_unificado.py [--recriar | --resultados]
 """
 import argparse
 import glob
@@ -165,10 +168,52 @@ def carregar_itens(con):
         print(f"{os.path.basename(f)}: {len(df):,} (acumulado {total:,})", flush=True)
 
 
+RESULTADOS = {
+    "numero_controle_pncp": "numeroControlePNCPCompra", "numero_item": "numeroItemPncp",
+    "sequencial_resultado": "sequencialResultado", "id_compra_item": "idCompraItem",
+    "situacao_resultado": "situacaoCompraItemResultadoNome", "motivo_cancelamento": "motivoCancelamento",
+    "ni_fornecedor": "niFornecedor", "nome_fornecedor": "nomeRazaoSocialFornecedor",
+    "porte_fornecedor": "porteFornecedorNome", "quantidade_homologada": "quantidadeHomologada",
+    "valor_unitario_homologado": "valorUnitarioHomologado", "valor_total_homologado": "valorTotalHomologado",
+    "data_resultado": "dataResultadoPncp", "data_atualizacao": "dataAtualizacaoPncp",
+    "data_cancelamento": "dataCancelamentoPncp",
+}
+
+
+def carregar_resultados(con):
+    """Refaz a tabela resultados. Um resultado pode aparecer em mais de um mês: vale o mais recente."""
+    con.executescript("""
+        DROP TABLE IF EXISTS resultados;
+        CREATE TABLE resultados (
+            numero_controle_pncp TEXT NOT NULL, numero_item INTEGER NOT NULL, sequencial_resultado INTEGER NOT NULL,
+            id_compra_item TEXT, situacao_resultado TEXT, motivo_cancelamento TEXT, ni_fornecedor TEXT,
+            nome_fornecedor TEXT, porte_fornecedor TEXT, quantidade_homologada REAL, valor_unitario_homologado REAL,
+            valor_total_homologado REAL, data_resultado TEXT, data_atualizacao TEXT, data_cancelamento TEXT,
+            PRIMARY KEY (numero_controle_pncp, numero_item, sequencial_resultado));
+    """)
+    colunas = ", ".join(RESULTADOS)
+    atualizar = ", ".join(f"{c} = excluded.{c}" for c in RESULTADOS if c not in list(RESULTADOS)[:3])
+    sql = (f"INSERT INTO resultados ({colunas}) VALUES ({', '.join('?' * len(RESULTADOS))}) "
+           f"ON CONFLICT DO UPDATE SET {atualizar} WHERE excluded.data_atualizacao >= resultados.data_atualizacao")
+    total = 0
+    for f in sorted(glob.glob(str(BRUTOS / "20*" / "resultados_pregao_*.json"))):
+        registros = json.load(open(f, encoding="utf-8"))
+        con.executemany(sql, [[x.get(c) for c in RESULTADOS.values()] for x in registros])
+        total += len(registros)
+    con.commit()
+    print(f"resultados: {total:,} lidos, {con.execute('SELECT COUNT(*) FROM resultados').fetchone()[0]:,} na tabela")
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--recriar", action="store_true", help="sobrescreve o banco existente, inclusive as colunas de lance")
+    p.add_argument("--resultados", action="store_true", help="só recarrega a tabela resultados no banco existente")
     args = p.parse_args()
+    if args.resultados:
+        con = sqlite3.connect(DESTINO)
+        carregar_resultados(con)
+        con.close()
+        return
     if DESTINO.exists() and not args.recriar:
         sys.exit(f"{DESTINO} já existe. Use --recriar para sobrescrever (apaga as colunas de lance já carregadas).")
 
@@ -185,6 +230,7 @@ def main():
     print("marcando registros principais e criando índices...", flush=True)
     con.executescript(POS_CARGA)
     con.commit()
+    carregar_resultados(con)
     con.close()
     os.replace(temporario, DESTINO)
     print(f"pronto: {DESTINO} ({DESTINO.stat().st_size / 2**30:.2f} GiB)")

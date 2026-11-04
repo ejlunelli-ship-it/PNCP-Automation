@@ -40,7 +40,9 @@ def buscar_dia(dia):
             total = j.get("totalRegistros")
             linhas += len(j.get("resultado") or [])
             for x in j.get("resultado") or []:
-                itens[(x.get("numeroControlePNCPCompra"), x.get("numeroItemPncp"), x.get("idCompraItem"))] = x
+                # fornecedor e valor na chave: um item pode ter mais de um resultado
+                itens[(x.get("numeroControlePNCPCompra"), x.get("numeroItemPncp"), x.get("idCompraItem"),
+                       x.get("codFornecedor"), x.get("valorUnitarioResultado"))] = x
             if not j.get("resultado") or j.get("paginasRestantes", 0) == 0:
                 break
             pagina += 1

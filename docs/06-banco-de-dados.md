@@ -84,6 +84,19 @@ Têm os nomes do extrator (ver [02](02-arquitetura-e-pipeline.md)). A carga aind
 Ligação com o PDF: `compras.uasg` + `numero_compra` + `ano_compra` e `itens.numero_item`. Como
 `id_compra` se repete e há contratações irmãs, valide a ligação ao fazer a carga.
 
+## Tabela `resultados`
+
+Um registro por resultado do item, de `coleta_resultados.py`. Chave: `numero_controle_pncp`,
+`numero_item`, `sequencial_resultado`. Carregada por `banco_unificado.py --resultados`.
+
+`situacao_resultado` separa `Informado` (ativo) de `Cancelado`, o que a tabela `itens` não faz. Em
+dois dias testados, o valor de `itens` diferiu do resultado ativo em 1,0% dos itens. A view
+`analise_itens` ainda usa o valor de `itens` (pendência 8).
+
+Colunas: `id_compra_item`, `situacao_resultado`, `motivo_cancelamento`, `ni_fornecedor`,
+`nome_fornecedor`, `porte_fornecedor`, `quantidade_homologada`, `valor_unitario_homologado`,
+`valor_total_homologado`, `data_resultado`, `data_atualizacao`, `data_cancelamento`.
+
 ## Tabela `relatorios_pdf`
 
 Inventário dos relatórios já baixados, gerado por `inventario_pdfs.py` a partir do disco. Uma linha

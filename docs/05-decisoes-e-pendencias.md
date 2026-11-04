@@ -48,7 +48,9 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
    resolve. Avaliar uma opção `--reconsultar-pncp`.
 7. Prototipar o Playwright com perfil persistente para abrir a compra e clicar no menu, com o
    captcha resolvido pelo usuário. Risco: a automação pode aumentar os desafios do hCaptcha.
-8. **Revisar a chave de dedup do `coleta_itens.py`**: `(compra, item, idCompraItem)` guarda um só registro quando o item tem mais de um resultado, e isso aparece nos arquivos `adicional_correspondencias`, que não têm script no repositório. Verificar se os meses perdem o segundo resultado.
+8. **Usar a tabela `resultados` na análise**: o valor de `itens` diferiu do resultado ativo em 118 de 11.639 itens (1,0%) em dois dias testados.
+   Depois da coleta (`coleta_resultados.py`) e da carga (`banco_unificado.py --resultados`), medir a diferença na base toda e decidir
+   se `desconto_final` passa a usar o resultado ativo. Os meses de itens já coletados não foram refeitos com a nova chave.
 10. **OCR de PDF escaneado**: o PyMuPDF lê o texto, mas perde a linha do título e muda as quebras de linha
     (130 de 427 linhas idênticas num teste com páginas convertidas em imagem), e o parser depende
     delas. O resultado é `ERRO`, sem dado errado. Falta adaptar o parser, de preferência com um PDF

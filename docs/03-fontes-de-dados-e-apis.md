@@ -17,7 +17,7 @@ Base: `https://dadosabertos.compras.gov.br`
 7 = Inexigibilidade.
 
 **Armadilhas**:
-- A data final é **exclusiva**.
+- A data final é **exclusiva**, exceto em `3_consultarResultadoItensContratacoes`, onde é **inclusiva**. Essa consulta aceita no máximo 365 dias.
 - A paginação não é estável: perde-se menos de 1% das contratações e de 1% a 3% dos itens.
 - A API de itens repete linhas idênticas, e o `totalRegistros` conta as repetições.
 - O `idCompra` se repete entre contratações distintas. A chave única é o `numeroControlePNCP`.
@@ -95,6 +95,8 @@ O `numeroControlePNCP` `CNPJ-1-SEQUENCIAL/ANO` se decompõe na URL. Exemplo:
 6. **A API Dados Abertos parece cobrir só compras feitas no Compras.gov.br.** Vitória não tem nenhuma compra na base, e João Pessoa só aparece a partir de 2025-12, com UASG própria. Logo, as Atas Finais de outras plataformas ficam fora da base nacional. Verificado nesses dois órgãos.
 7. **Em 2026-11-03, nenhuma das 2.364 compras Aberto-Fechado com resultado em janeiro/2026 tinha termos na própria contratação**: 2.343 tinham um único arquivo, e as demais, edital, TR, ETP e afins. Sem as irmãs, o PNCP não acrescenta nada nesse recorte.
 
+8. **Em 2026-11-03, a busca nas irmãs achou termos em 25 de 26 compras de Fortaleza e em nenhuma das 359 compras de uma amostra de 40 órgãos** (39 com busca completa; o Estado do Ceará teve 7 falhas da API). Publicar termos no PNCP parece ser exceção de poucos órgãos.
+
 ### Nem toda compra tem PDF na API
 
 Publicar os termos no PNCP é opcional. Na maioria das compras eles só existem no zip do
@@ -109,6 +111,19 @@ Causas conhecidas de falso negativo em `pncp_arquivos.py`:
 - contratação irmã fora da janela de busca ou com número ou abertura diferentes;
 - arquivo acima de 50 MB;
 - Ata Final de outra plataforma, que tem lances mas não é lida pelo parser.
+
+### Outras fontes de lances investigadas (2026-11-03)
+
+Busca nas especificações públicas (`/v3/api-docs`) das três APIs: **nenhum endpoint público traz os
+lances por etapa**. Só os PDFs de relatório têm essa informação.
+
+| Endpoint | O que traz | Serve para lances por etapa? |
+|---|---|---|
+| Dados Abertos `modulo-legado/4_consultarItensPregoes` | `menor_lance`, `valor_negociado`, `valor_homologado_item` | Não: um valor só, sem etapa. Sistema antigo: nenhum dado nas datas testadas de 2025 e 2026, e nenhuma das 42 compras de um lote de janeiro/2024 estava na base |
+| Dados Abertos `modulo-ocds/1_releases` | `tender` e `awards` | Não pelo esquema, que não tem `bids`. As consultas de teste deram erro 400, então o conteúdo real não foi visto |
+| Dados Abertos `modulo-contratacoes/3_consultarResultadoItensContratacoes_PNCP_14133` | Um registro por resultado (`sequencialResultado`), valor homologado | Não; é a fonte da tabela `resultados` |
+| Dados Abertos `alice/*` e `usuarios/*` | Restritos (autenticação `bearerAuth`) | Não testados; fora do acesso público |
+| PNCP `.../itens/{n}/resultados` | Fornecedor e valor homologado | Não |
 
 ## 3.5 Compras.gov.br (Comprasnet) — download manual
 
