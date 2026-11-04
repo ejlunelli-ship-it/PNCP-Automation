@@ -15,8 +15,25 @@ verificado, ela traz só os pregões feitos no sistema Compras.gov.br, e não to
 | **Portal de Compras Públicas** | Plataforma privada usada por vários municípios; no PNCP aparece como `ECustomize Consultoria em Software S.A` | Não |
 | **BLL, Licitanet, Licitar Digital e outras** | Outras plataformas privadas ou estaduais | Não |
 
-O pregão acontece em uma plataforma, e ela publica os dados no PNCP. Em dezembro/2025, a base tinha
-40% dos pregões Aberto-Fechado do PNCP (ver §3.4).
+O pregão acontece em uma plataforma, e ela publica os dados no PNCP. O PNCP inclui os pregões do
+Compras.gov.br e os das demais plataformas.
+
+Pregões Eletrônicos publicados de 2022-11 a 2026-10, medidos em 2026-11-03 pelo `totalRegistros` de
+`contratacoes/publicacao` e comparados com `compras`:
+
+| Ano | PNCP | Base | Base / PNCP | AF no PNCP | AF na base | Base / PNCP (AF) |
+|---|---|---|---|---|---|---|
+| 2022 (nov–dez) | 806 | 162 | 20,1% | 196 | 45 | 23,0% |
+| 2023 | 55.044 | 23.550 | 42,8% | 16.306 | 9.862 | 60,5% |
+| 2024 | 329.671 | 103.987 | 31,5% | 84.162 | 37.697 | 44,8% |
+| 2025 | 396.625 | 114.759 | 28,9% | 100.917 | 42.970 | 42,6% |
+| 2026 (jan–out) | 315.685 | 85.092 | 27,0% | 81.099 | 33.120 | 40,8% |
+| **Total** | **1.097.831** | **327.550** | **29,8%** | **282.680** | **123.694** | **43,8%** |
+
+No modo Aberto, a base tem 202.057 de 805.219 (25,1%). O Aberto-Fechado é 37,8% da base e 25,7% do
+PNCP, então a base **super-representa** esse modo. A base representa os pregões feitos no
+Compras.gov.br, não todos os do país: isso é limitação do estudo (ver §3.4). A comparação é de
+totais, não compra por compra.
 
 Onde estão os lances em cada caso:
 

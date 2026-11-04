@@ -111,6 +111,8 @@ pela chave `uasg` + `numero_compra` + `item`, que identifica o item. Ver
   item. Os itens em que ele não muda o valor ficam com o último lance aberto, e esses **não
   aparecem** como lances novos na tabela. Ver a regra de "melhor lance fechado" em
   [05](05-decisoes-e-pendencias.md).
+- A base nacional cobre só os pregões do Compras.gov.br (29,8% dos Pregões Eletrônicos do PNCP de 2022-11 a 2026-10;
+  ver [03](03-fontes-de-dados-e-apis.md)). Os resultados valem para esse universo, não para todo o país.
 - Viés de seleção da amostra de PDFs: só há PDF para compras homologadas. Os PDFs vindos do PNCP
   dependem do órgão publicá-los (ex.: Fortaleza). Comparar a amostra com PDF contra a base
   nacional.
