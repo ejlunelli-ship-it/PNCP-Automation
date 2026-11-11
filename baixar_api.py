@@ -35,7 +35,7 @@ SELECT DISTINCT c.numero_controle_pncp AS numeroControlePNCP, c.id_compra AS idC
        c.orgao_cnpj AS orgaoEntidadeCnpj
 FROM compras c JOIN itens i USING (numero_controle_pncp)
 WHERE i.registro_principal = 1 AND i.homologado = 1 AND c.modo_disputa = 'Aberto-Fechado'
-  AND i.data_resultado LIKE ?
+  AND c.id_compra IS NOT NULL AND i.data_resultado LIKE ?
 ORDER BY 1
 """
 

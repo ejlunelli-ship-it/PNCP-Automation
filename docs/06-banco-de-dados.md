@@ -1,20 +1,22 @@
 # 6. Banco de dados (`dados/pncp.db`)
 
-Banco SQLite da base nacional, gerado por `banco_unificado.py` a partir de `dados/brutos/<ano>/`.
-Reúne compras e itens de pregão de 2022-11 a 2026-10, em todos os modos de disputa.
+Banco SQLite da base nacional, gerado por `banco_unificado.py` a partir de `dados/brutos/<ano>/` e
+`dados/brutos_pncp/<ano>/`. Reúne compras e itens de pregão de 2022-11 a 2026-10, em todos os modos de
+disputa. A coluna `compras.fonte` separa a API Dados Abertos (`dados_abertos`) do PNCP (`pncp`).
 
 Não é o mesmo arquivo que `dados/extracao/homologacoes.db`, que guarda a extração dos PDFs.
 
 ```
 python banco_unificado.py            # cria; recusa se o banco já existir
 python banco_unificado.py --recriar  # sobrescreve, inclusive as colunas de lance
+python banco_unificado.py --pncp     # carrega os meses completos do PNCP que faltam no banco
 ```
 
 O banco fica fora do git, como toda a pasta `dados/`. A carga leva alguns minutos e gera cerca de
 2,4 GB. Ela grava em `pncp.db.tmp` e só troca o arquivo no fim; se a troca falhar com acesso
 negado, feche os programas que estejam com o banco aberto.
 
-## Conteúdo (carga de 2026-11-03)
+## Conteúdo (carga de 2026-11-03, antes da coleta do PNCP)
 
 | Medida | Total |
 |---|---|
@@ -23,6 +25,27 @@ negado, feche os programas que estejam com o banco aberto.
 | Itens distintos (`registro_principal = 1`) | 6.362.668 |
 | Itens homologados, uma linha por item | 4.606.939 |
 | Compras Aberto / Aberto-Fechado / Fechado-Aberto | 202.480 / 123.777 / 1.912 |
+
+## Conteúdo depois da coleta do PNCP (2026-11-10)
+
+Os 48 meses (2022-11 a 2026-10) estão em `coleta_pncp_meses`. O banco tem cerca de 16 GB.
+
+| Medida | `dados_abertos` | `pncp` | Total |
+|---|---|---|---|
+| Compras | 328.169 | 772.894 | 1.101.063 |
+| Pregão Eletrônico / Presencial | 327.550 / 619 | 745.106 / 27.788 | 1.072.656 / 28.407 |
+| Linhas em `itens` | 6.365.040 | 25.132.497 | 31.497.537 |
+| Linhas em `resultados` | — | 12.521.130 | 12.521.130 |
+| Compras sem itens | — | 20 | |
+| Irmãs em `compras_duplicadas` | | 25.118 | |
+
+O PNCP listou 1.126.094 pregões no período, dos quais 328.082 já estavam na base pela API Dados
+Abertos. No Pregão Eletrônico, os modos com `fonte = 'pncp'` são: Aberto 582.898, Aberto-Fechado
+154.310, Fechado-Aberto 6.149, Fechado 917, Não se aplica 792 e Dispensa Com Disputa 40.
+
+Os meses recentes vieram com poucos resultados porque muitos pregões ainda não tinham sido homologados.
+Por exemplo, 2026-10 tem 112.394 resultados para 713.639 itens, contra cerca de 420 mil para 710 mil
+em 2026-06. Ver a pendência 12 em [05](05-decisoes-e-pendencias.md).
 
 ## Tabela `compras`
 
@@ -44,6 +67,13 @@ Uma linha por `numero_controle_pncp`. Fonte: `contratacoes_pregao_*.json`.
 | `data_publicacao`, `data_abertura_proposta` | `dataPublicacaoPncp`, `dataAberturaPropostaPncp` | Texto ISO |
 | `ano_publicacao` | derivada | Ano de `data_publicacao`; usado no pareamento |
 | `objeto_compra` | `objetoCompra` | |
+| `fonte` | gerada | `dados_abertos` ou `pncp` |
+| `usuario_nome` | `usuarioNome` | Plataforma que publicou; só em `fonte = 'pncp'` |
+| `codigo_unidade`, `nome_unidade` | `unidadeOrgao` | Só em `fonte = 'pncp'`; o código pode não ser UASG |
+| `situacao_compra` | `situacaoCompraNome` | Divulgada, Revogada, Anulada, Suspensa; só em `fonte = 'pncp'` |
+
+Em `fonte = 'pncp'`, `id_compra` fica vazio, e `uasg` só é preenchida se a plataforma for o
+Compras.gov.br. `baixar_api.py` ignora as compras sem `id_compra`.
 
 ## Tabela `itens`
 
@@ -97,6 +127,28 @@ Colunas: `id_compra_item`, `situacao_resultado`, `motivo_cancelamento`, `ni_forn
 `nome_fornecedor`, `porte_fornecedor`, `quantidade_homologada`, `valor_unitario_homologado`,
 `valor_total_homologado`, `data_resultado`, `data_atualizacao`, `data_cancelamento`.
 
+Compras do PNCP entram nessa mesma tabela, e `--resultados` não as apaga.
+
+## Compras do PNCP (`fonte = 'pncp'`)
+
+Carga de `coleta_pncp.py`, um mês por transação. Diferenças em relação à API Dados Abertos:
+
+- **Uma linha por item em `itens`**, sempre com `registro_principal = 1`. Todos os resultados ficam em
+  `resultados`.
+- **Resultado do item:** o ativo com valor positivo, atualização mais recente, maior quantidade e menor
+  valor. Item só com resultado cancelado fica com os campos de resultado vazios.
+- **Vazias:** `id_compra_item`, `cod_item_catalogo`, `codigo_classe`, `codigo_grupo`, `codigo_pdm`,
+  `numero_grupo`. Sem código de catálogo, essas compras ficam fora do pareamento UASG × item.
+- **`descricao_resumida`** guarda a descrição completa do PNCP.
+- **`modo_disputa`** pode ter valores que a outra fonte não tem, como `Fechado`.
+
+Tabelas de apoio:
+
+| Tabela | Conteúdo |
+|---|---|
+| `compras_duplicadas` | Irmãs que não entraram em `compras`: `numero_controle_pncp`, `duplicata_de`, `usuario_nome`, `mes` |
+| `coleta_pncp_meses` | Um registro por mês carregado: `publicadas`, `ja_na_base`, `duplicadas`, `novas`, `itens`, `resultados`, `sem_itens`, `carregado_em` |
+
 ## Tabela `relatorios_pdf`
 
 Inventário dos relatórios já baixados, gerado por `inventario_pdfs.py` a partir do disco. Uma linha
@@ -139,6 +191,12 @@ Junta `itens` e `compras`, só com `registro_principal = 1`. Descontos em %.
 
 ## Regras e cuidados
 
+- **Fonte:** `analise_itens` traz as duas fontes e as colunas `fonte`, `usuario_nome` e
+  `situacao_compra`. Para repetir os números anteriores à coleta do PNCP, use
+  `fonte = 'dados_abertos'`. Os `matching_*.py` leem `dados/brutos/` e seguem só com essa fonte.
+- **Sigilo no PNCP:** `orcamento_sigiloso` vem falso em parte dos itens que a API Dados Abertos marca
+  como sigilosos (167 de 2.266 numa amostra). Assim, `elegivel` pode incluir no PNCP itens que seriam
+  excluídos na outra fonte.
 - **Filtro de homologados:** `elegivel` repete os filtros do `matching_desconto.py` e não exige
   homologação. Use `elegivel = 1 AND homologado = 1`. Há 10.865 linhas com resultado e valor que
   não estão homologadas.

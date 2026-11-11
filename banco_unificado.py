@@ -12,20 +12,28 @@ banco apaga o que estiver nelas, o script só sobrescreve um banco existente com
 A tabela resultados vem de coleta_resultados.py. Depois da coleta, --resultados a carrega no banco
 existente, sem mexer nas outras tabelas.
 
-Uso: python banco_unificado.py [--recriar | --resultados]
+As compras das demais plataformas vêm do PNCP (coleta_pncp.py), com compras.fonte = 'pncp'. Os brutos
+ficam em dados/brutos_pncp/ e são recarregados por --recriar; --pncp carrega os meses que faltam.
+
+Uso: python banco_unificado.py [--recriar | --resultados | --pncp]
 """
 import argparse
 import glob
+import gzip
 import json
 import os
+import re
 import sqlite3
 import sys
+import zlib
+from datetime import datetime
 
 import pandas as pd
 
 from config import DADOS
 
 BRUTOS = DADOS / "brutos"
+BRUTOS_PNCP = DADOS / "brutos_pncp"
 DESTINO = DADOS / "pncp.db"
 sys.stdout.reconfigure(encoding="utf-8")
 
@@ -101,7 +109,10 @@ CREATE INDEX ix_itens_compra ON itens (numero_controle_pncp, numero_item);
 CREATE INDEX ix_itens_pareamento ON itens (uasg_item, cod_item_catalogo);
 CREATE INDEX ix_compras_id_compra ON compras (id_compra);
 CREATE INDEX ix_compras_pdf ON compras (uasg, numero_compra, ano_compra);
+"""
 
+VIEW = """
+DROP VIEW IF EXISTS analise_itens;
 -- Descontos em %. Por etapa, só Menor preço: em Maior desconto o lance do PDF pode ser percentual.
 CREATE VIEW analise_itens AS
 SELECT b.*,
@@ -123,6 +134,7 @@ FROM (
     SELECT i.*, c.id_compra, c.uasg, c.numero_compra, c.ano_compra, c.orgao_cnpj, c.orgao_nome, c.esfera, c.poder,
            c.uf, c.municipio, c.codigo_ibge, c.modalidade_nome, c.modo_disputa, c.srp, c.existe_resultado,
            c.data_publicacao, c.data_abertura_proposta, c.ano_publicacao,
+           c.fonte, c.usuario_nome, c.situacao_compra,
            i.criterio_julgamento = 'Menor preço' AS por_preco,
            CASE WHEN i.valor_unitario_estimado > 0 AND i.valor_unitario_resultado > 0
                 THEN 100.0 * (1 - i.valor_unitario_resultado / i.valor_unitario_estimado) END AS desconto_final
@@ -181,16 +193,11 @@ RESULTADOS = {
 
 
 def carregar_resultados(con):
-    """Refaz a tabela resultados. Um resultado pode aparecer em mais de um mês: vale o mais recente."""
-    con.executescript("""
-        DROP TABLE IF EXISTS resultados;
-        CREATE TABLE resultados (
-            numero_controle_pncp TEXT NOT NULL, numero_item INTEGER NOT NULL, sequencial_resultado INTEGER NOT NULL,
-            id_compra_item TEXT, situacao_resultado TEXT, motivo_cancelamento TEXT, ni_fornecedor TEXT,
-            nome_fornecedor TEXT, porte_fornecedor TEXT, quantidade_homologada REAL, valor_unitario_homologado REAL,
-            valor_total_homologado REAL, data_resultado TEXT, data_atualizacao TEXT, data_cancelamento TEXT,
-            PRIMARY KEY (numero_controle_pncp, numero_item, sequencial_resultado));
-    """)
+    """Refaz os resultados da API Dados Abertos, sem tocar nos do PNCP. Um resultado pode aparecer em
+    mais de um mês: vale o mais recente."""
+    preparar_pncp(con)
+    con.execute("DELETE FROM resultados WHERE numero_controle_pncp NOT IN "
+                "(SELECT numero_controle_pncp FROM compras WHERE fonte = 'pncp')")
     colunas = ", ".join(RESULTADOS)
     atualizar = ", ".join(f"{c} = excluded.{c}" for c in RESULTADOS if c not in list(RESULTADOS)[:3])
     sql = (f"INSERT INTO resultados ({colunas}) VALUES ({', '.join('?' * len(RESULTADOS))}) "
@@ -204,14 +211,194 @@ def carregar_resultados(con):
     print(f"resultados: {total:,} lidos, {con.execute('SELECT COUNT(*) FROM resultados').fetchone()[0]:,} na tabela")
 
 
+# --- Compras do PNCP fora da API Dados Abertos (coleta_pncp.py) ---
+
+TABELAS_PNCP = """
+CREATE TABLE IF NOT EXISTS resultados (
+    numero_controle_pncp TEXT NOT NULL, numero_item INTEGER NOT NULL, sequencial_resultado INTEGER NOT NULL,
+    id_compra_item TEXT, situacao_resultado TEXT, motivo_cancelamento TEXT, ni_fornecedor TEXT,
+    nome_fornecedor TEXT, porte_fornecedor TEXT, quantidade_homologada REAL, valor_unitario_homologado REAL,
+    valor_total_homologado REAL, data_resultado TEXT, data_atualizacao TEXT, data_cancelamento TEXT,
+    PRIMARY KEY (numero_controle_pncp, numero_item, sequencial_resultado));
+CREATE TABLE IF NOT EXISTS compras_duplicadas (
+    numero_controle_pncp TEXT PRIMARY KEY, duplicata_de TEXT NOT NULL, usuario_nome TEXT, mes TEXT);
+CREATE TABLE IF NOT EXISTS coleta_pncp_meses (
+    mes TEXT PRIMARY KEY, publicadas INTEGER, ja_na_base INTEGER, duplicadas INTEGER, novas INTEGER,
+    itens INTEGER, resultados INTEGER, sem_itens INTEGER, carregado_em TEXT);
+"""
+COLUNAS_PNCP = {"fonte": "TEXT NOT NULL DEFAULT 'dados_abertos'", "usuario_nome": "TEXT", "codigo_unidade": "TEXT",
+                "nome_unidade": "TEXT", "situacao_compra": "TEXT"}
+PLATAFORMA_UASG = "Compras.gov.br"  # só nela o codigoUnidade é UASG; nas outras pode ser "1", em vários órgãos
+
+
+def preparar_pncp(con):
+    """Acrescenta ao banco o que a carga do PNCP usa. Pode rodar mais de uma vez."""
+    existentes = {x[1] for x in con.execute("PRAGMA table_info(compras)")}
+    for coluna, tipo in COLUNAS_PNCP.items():
+        if coluna not in existentes:
+            con.execute(f"ALTER TABLE compras ADD COLUMN {coluna} {tipo}")
+    con.executescript(TABELAS_PNCP + VIEW)
+
+
+def chave_pregao(cnpj, ano, numero, abertura):
+    """Identifica o pregão entre contratações irmãs; None se faltar número ou abertura."""
+    numero = re.sub(r"\D", "", str(numero or "").split("/")[0]).lstrip("0")
+    return (cnpj, int(ano), numero, abertura) if numero and abertura else None
+
+
+def separar_novas(con, registros):
+    """(novas, duplicadas, quantas já na base). duplicadas: pares (registro, numeroControlePNCP da irmã)."""
+    presentes, chaves = set(), {}
+    for controle, cnpj, ano, numero, abertura in con.execute(
+            "SELECT numero_controle_pncp, orgao_cnpj, ano_compra, numero_compra, data_abertura_proposta FROM compras"):
+        presentes.add(controle)
+        chaves[chave_pregao(cnpj, ano, numero, abertura)] = controle
+    chaves.pop(None, None)
+    novas, duplicadas, na_base = [], [], 0
+    for x in sorted(registros, key=lambda r: r["numeroControlePNCP"]):
+        if x["numeroControlePNCP"] in presentes:
+            na_base += 1
+            continue
+        chave = chave_pregao(x["orgaoEntidade"]["cnpj"], x["anoCompra"], x["numeroCompra"], x["dataAberturaProposta"])
+        if chave in chaves:
+            duplicadas.append((x, chaves[chave]))
+            continue
+        if chave:
+            chaves[chave] = x["numeroControlePNCP"]
+        novas.append(x)
+    return novas, duplicadas, na_base
+
+
+def ler_jsonl_gz(arquivo):
+    """Linhas JSON do arquivo. Para na primeira linha cortada, de uma gravação interrompida."""
+    try:
+        with gzip.open(arquivo, "rt", encoding="utf-8") as f:
+            for linha in f:
+                yield json.loads(linha)
+    except (EOFError, gzip.BadGzipFile, zlib.error, json.JSONDecodeError):
+        return
+
+
+def resultado_principal(resultados):
+    """O resultado ativo que representa o item, pela ordem de registro_principal; None se não houver."""
+    ativos = [r for r in resultados if r.get("situacaoCompraItemResultadoNome") != "Cancelado"
+              and not r.get("dataCancelamento")]
+    ativos.sort(key=lambda r: r.get("valorUnitarioHomologado") or 0)
+    ativos.sort(key=lambda r: r.get("quantidadeHomologada") or 0, reverse=True)
+    ativos.sort(key=lambda r: r.get("dataAtualizacao") or "", reverse=True)
+    ativos.sort(key=lambda r: (r.get("valorUnitarioHomologado") or 0) > 0, reverse=True)
+    return ativos[0] if ativos else None
+
+
+def linha_compra(x, itens):
+    unidade, orgao = x.get("unidadeOrgao") or {}, x.get("orgaoEntidade") or {}
+    usuario, codigo = x.get("usuarioNome"), unidade.get("codigoUnidade")
+    ibge = unidade.get("codigoIbge")
+    return {
+        "numero_controle_pncp": x["numeroControlePNCP"], "uasg": codigo if usuario == PLATAFORMA_UASG else None,
+        "numero_compra": x.get("numeroCompra"), "ano_compra": x.get("anoCompra"), "orgao_cnpj": orgao.get("cnpj"),
+        "orgao_nome": orgao.get("razaoSocial"), "esfera": orgao.get("esferaId"), "poder": orgao.get("poderId"),
+        "uf": unidade.get("ufSigla"), "municipio": unidade.get("municipioNome"),
+        "codigo_ibge": int(ibge) if str(ibge or "").isdigit() else None, "modalidade_nome": x.get("modalidadeNome"),
+        "modo_disputa": x.get("modoDisputaNome"), "srp": int(bool(x.get("srp"))),
+        "existe_resultado": int(any(resultado_principal(i.get("resultados") or []) for i in itens)),
+        "valor_total_estimado": x.get("valorTotalEstimado"), "valor_total_homologado": x.get("valorTotalHomologado"),
+        "data_publicacao": x.get("dataPublicacaoPncp"), "data_abertura_proposta": x.get("dataAberturaProposta"),
+        "ano_publicacao": int(x["dataPublicacaoPncp"][:4]), "objeto_compra": x.get("objetoCompra"), "fonte": "pncp",
+        "usuario_nome": usuario, "codigo_unidade": codigo, "nome_unidade": unidade.get("nomeUnidade"),
+        "situacao_compra": x.get("situacaoCompraNome"),
+    }
+
+
+def linha_item(controle, uasg, i):
+    """Uma linha por item, já como registro principal; os demais resultados ficam em `resultados`."""
+    r = resultado_principal(i.get("resultados") or []) or {}
+    situacao = i.get("situacaoCompraItemNome")
+    return {
+        "numero_controle_pncp": controle, "numero_item": i["numeroItem"], "registro_principal": 1, "uasg_item": uasg,
+        "material_ou_servico": i.get("materialOuServico"), "unidade_medida": i.get("unidadeMedida"),
+        "descricao_resumida": i.get("descricao"), "criterio_julgamento": i.get("criterioJulgamentoNome"),
+        "tipo_beneficio": i.get("tipoBeneficioNome"), "orcamento_sigiloso": int(bool(i.get("orcamentoSigiloso"))),
+        "situacao_item": situacao, "homologado": int(situacao == "Homologado"), "quantidade": i.get("quantidade"),
+        "valor_unitario_estimado": i.get("valorUnitarioEstimado"), "tem_resultado": 1 if r else None,
+        "quantidade_resultado": r.get("quantidadeHomologada"), "valor_unitario_resultado": r.get("valorUnitarioHomologado"),
+        "valor_total_resultado": r.get("valorTotalHomologado"), "data_resultado": r.get("dataResultado"),
+        "data_atualizacao": i.get("dataAtualizacao"), "cod_fornecedor": r.get("niFornecedor"),
+        "nome_fornecedor": r.get("nomeRazaoSocialFornecedor"),
+    }
+
+
+def linha_resultado(controle, r):
+    return [controle, r.get("numeroItem"), r.get("sequencialResultado"), None, r.get("situacaoCompraItemResultadoNome"),
+            r.get("motivoCancelamento"), r.get("niFornecedor"), r.get("nomeRazaoSocialFornecedor"),
+            r.get("porteFornecedorNome"), r.get("quantidadeHomologada"), r.get("valorUnitarioHomologado"),
+            r.get("valorTotalHomologado"), r.get("dataResultado"), r.get("dataAtualizacao"), r.get("dataCancelamento")]
+
+
+def _inserir_dict(con, tabela, linhas):
+    if linhas:
+        colunas = list(linhas[0])
+        con.executemany(f"INSERT INTO {tabela} ({', '.join(colunas)}) VALUES ({', '.join('?' * len(colunas))})",
+                        [[l[c] for c in colunas] for l in linhas])
+
+
+def arquivos_pncp(mes):
+    pasta = BRUTOS_PNCP / mes[:4]
+    return pasta / f"contratacoes_{mes}.json.gz", pasta / f"itens_{mes}.jsonl.gz"
+
+
+def carregar_mes_pncp(con, mes):
+    """Carrega um mês de dados/brutos_pncp/ numa única transação; devolve o resumo gravado."""
+    contratacoes, detalhes = arquivos_pncp(mes)
+    with gzip.open(contratacoes, "rt", encoding="utf-8") as f:
+        registros = json.load(f)
+    novas, duplicadas, na_base = separar_novas(con, registros)
+    pendentes = {x["numeroControlePNCP"]: x for x in novas}
+    itens = resultados = sem_itens = 0
+    with con:
+        con.executemany("INSERT OR REPLACE INTO compras_duplicadas VALUES (?, ?, ?, ?)",
+                        [(x["numeroControlePNCP"], irma, x.get("usuarioNome"), mes) for x, irma in duplicadas])
+        for d in ler_jsonl_gz(detalhes):
+            x = pendentes.pop(d["numeroControlePNCP"], None)
+            if x is None:
+                continue
+            compra = linha_compra(x, d["itens"])
+            _inserir_dict(con, "compras", [compra])
+            _inserir_dict(con, "itens", [linha_item(compra["numero_controle_pncp"], compra["uasg"], i) for i in d["itens"]])
+            linhas = [linha_resultado(compra["numero_controle_pncp"], r) for i in d["itens"] for r in i.get("resultados") or []]
+            con.executemany(f"INSERT OR REPLACE INTO resultados VALUES ({', '.join('?' * len(RESULTADOS))})", linhas)
+            itens += len(d["itens"])
+            resultados += len(linhas)
+            sem_itens += not d["itens"]
+        _inserir_dict(con, "compras", [linha_compra(x, []) for x in pendentes.values()])
+        sem_itens += len(pendentes)
+        resumo = {"mes": mes, "publicadas": len(registros), "ja_na_base": na_base, "duplicadas": len(duplicadas),
+                  "novas": len(novas), "itens": itens, "resultados": resultados, "sem_itens": sem_itens,
+                  "carregado_em": datetime.now().isoformat(timespec="seconds")}
+        con.execute("DELETE FROM coleta_pncp_meses WHERE mes = ?", (mes,))
+        _inserir_dict(con, "coleta_pncp_meses", [resumo])
+    return resumo
+
+
+def carregar_pncp(con):
+    """Carrega os meses completos de dados/brutos_pncp/ que ainda não estão no banco."""
+    preparar_pncp(con)
+    feitos = {x[0] for x in con.execute("SELECT mes FROM coleta_pncp_meses")}
+    for f in sorted(BRUTOS_PNCP.glob("20*/itens_*.completo")):
+        mes = f.name[len("itens_"):-len(".completo")]
+        if mes not in feitos:
+            print(carregar_mes_pncp(con, mes), flush=True)
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--recriar", action="store_true", help="sobrescreve o banco existente, inclusive as colunas de lance")
     p.add_argument("--resultados", action="store_true", help="só recarrega a tabela resultados no banco existente")
+    p.add_argument("--pncp", action="store_true", help="só carrega no banco existente os meses do PNCP que faltam")
     args = p.parse_args()
-    if args.resultados:
+    if args.resultados or args.pncp:
         con = sqlite3.connect(DESTINO)
-        carregar_resultados(con)
+        (carregar_resultados if args.resultados else carregar_pncp)(con)
         con.close()
         return
     if DESTINO.exists() and not args.recriar:
@@ -231,6 +418,7 @@ def main():
     con.executescript(POS_CARGA)
     con.commit()
     carregar_resultados(con)
+    carregar_pncp(con)
     con.close()
     os.replace(temporario, DESTINO)
     print(f"pronto: {DESTINO} ({DESTINO.stat().st_size / 2**30:.2f} GiB)")

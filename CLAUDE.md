@@ -22,6 +22,7 @@ Detalhes: [docs/README.md](docs/README.md) (índice). Comece por
 | Extrair campos dos PDFs | `python -m extrator_homologacao` | `dados/extracao/homologacoes.{xlsx,db}` |
 | Base nacional (API, sem PDF) | `coleta_anos.py`, `coleta_itens.py`, `coleta_resultados.py` | `dados/brutos/<ano>/` |
 | Banco unificado da base nacional | `banco_unificado.py` | `dados/pncp.db` |
+| Pregões das demais plataformas (PNCP, por mês) | `coleta_pncp.py <início> [fim]` | `dados/brutos_pncp/<ano>/`, `dados/pncp.db` (`fonte = 'pncp'`) |
 | Varrer o PNCP por mês (Aberto-Fechado homologado) | `baixar_api.py <mês>` | `dados/filtrados/aberto-fechado_<mês>/`, `dados/pendentes_manual.csv` |
 | Inventário dos PDFs baixados | `inventario_pdfs.py` | tabela `relatorios_pdf` em `dados/pncp.db`, `dados/inventario_pdfs.csv` |
 | Análises | `matching_*.py` | terminal |

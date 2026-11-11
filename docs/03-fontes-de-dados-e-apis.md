@@ -5,15 +5,17 @@ alguns caminhos respondem 403 ou 301 sem ele.
 
 ## Glossário: base, PNCP e plataformas
 
-**"Nossa base"** é o `dados/pncp.db`, coletado da API Dados Abertos do Compras.gov.br. Pelo que foi
-verificado, ela traz só os pregões feitos no sistema Compras.gov.br, e não todos os do PNCP.
+**"Nossa base"** é o `dados/pncp.db`. A origem principal é a API Dados Abertos do Compras.gov.br, que
+traz só os pregões feitos nesse sistema. Desde 2026-11-06, `coleta_pncp.py` acrescenta os das demais
+plataformas pela API do PNCP (`compras.fonte = 'pncp'`). A tabela abaixo mostra a base **antes** dessa
+coleta.
 
 | Nome | O que é | Na nossa base? |
 |---|---|---|
-| **PNCP** | Portal nacional que reúne as contratações de todas as plataformas | É a fonte mais ampla, mas não é a origem da base |
+| **PNCP** | Portal nacional que reúne as contratações de todas as plataformas | Sim, com `fonte = 'pncp'`, para o que a API Dados Abertos não tem |
 | **Compras.gov.br** | Sistema do governo federal onde o pregão acontece; também usado por estados e municípios | Sim |
-| **Portal de Compras Públicas** | Plataforma privada usada por vários municípios; no PNCP aparece como `ECustomize Consultoria em Software S.A` | Não |
-| **BLL, Licitanet, Licitar Digital e outras** | Outras plataformas privadas ou estaduais | Não |
+| **Portal de Compras Públicas** | Plataforma privada usada por vários municípios; no PNCP aparece como `ECustomize Consultoria em Software S.A` | Pelo PNCP |
+| **BLL, Licitanet, Licitar Digital e outras** | Outras plataformas privadas ou estaduais | Pelo PNCP |
 
 O pregão acontece em uma plataforma, e ela publica os dados no PNCP. O PNCP inclui os pregões do
 Compras.gov.br e os das demais plataformas.
@@ -29,6 +31,24 @@ Pregões Eletrônicos publicados de 2022-11 a 2026-10, medidos em 2026-11-03 pel
 | 2025 | 396.625 | 114.759 | 28,9% | 100.917 | 42.970 | 42,6% |
 | 2026 (jan–out) | 315.685 | 85.092 | 27,0% | 81.099 | 33.120 | 40,8% |
 | **Total** | **1.097.831** | **327.550** | **29,8%** | **282.680** | **123.694** | **43,8%** |
+
+**Depois da coleta do PNCP** (concluída em 2026-11-10), a base tem 1.072.656 Pregões Eletrônicos,
+97,7% do total acima; 772.894 compras de todos os pregões entraram com `fonte = 'pncp'`, de 234
+plataformas (`usuario_nome`):
+
+| Ano | Base | Base / PNCP | AF na base | Base / PNCP (AF) |
+|---|---|---|---|---|
+| 2022 (nov–dez) | 806 | 100% | 196 | 100% |
+| 2023 | 54.368 | 98,8% | 16.187 | 99,3% |
+| 2024 | 323.456 | 98,1% | 82.921 | 98,5% |
+| 2025 | 387.988 | 97,8% | 99.331 | 98,4% |
+| 2026 (jan–out) | 306.038 | 96,9% | 79.369 | 97,9% |
+| **Total** | **1.072.656** | **97,7%** | **277.804** | **98,3%** |
+
+A diferença vem quase toda das 25.118 irmãs, que não entram em `compras` (ficam em
+`compras_duplicadas`). As porcentagens comparam com o `totalRegistros` de 2026-11-03. No Aberto, a base
+passou a ter 784.955 (97,5%). Os parágrafos abaixo descrevem a base **só com `fonte =
+'dados_abertos'`**, que é o que as análises antigas usavam.
 
 No modo Aberto, a base tem 202.057 de 805.219 (25,1%). O Aberto-Fechado é 37,8% da base e 25,7% do
 PNCP, então a base **super-representa** esse modo. A base representa os pregões feitos no
@@ -145,6 +165,14 @@ O `numeroControlePNCP` `CNPJ-1-SEQUENCIAL/ANO` se decompõe na URL. Exemplo:
     sem `Retry-After`. `codigoModoDisputa=3` reduz o mês a cerca de 1/4 das páginas (534 para 136).
 
 11. **Medição de 2026-11-03 (pregões Aberto-Fechado publicados em 2025-12):** 6.785 no PNCP, 2.737 na base (40%) e 4.048 fora (60%). Numa amostra aleatória de 300 entre os 2.269 fora da base com valor homologado, 47 (15,7%) têm PDF com indício de tabela de lances, por critério automático (5 ou mais menções a lance e 10 ou mais valores). Dos 12 exemplos abertos, todos têm tabela de lances com data e hora. O Portal de Compras Públicas (usuário `ECustomize Consultoria em Software S.A`) concentra 34 dos 47: 34 de 38 compras dele (89%).
+
+12. **Itens e resultados só vêm compra a compra (medição de 2026-11-06).** Não há consulta em lote: é uma chamada de `/itens` por compra e uma de `/itens/{n}/resultados` por item. Sem 429 em 3 threads, a cerca de 80 requisições por segundo. Só `contratacoes/publicacao` tem o limite do item 10. A API Dados Abertos devolveu zero registros para os órgãos de outras plataformas testados (Pernambuco e `92123900000144`).
+13. **O PNCP não traz código de catálogo (2026-11-06).** Em 4.121 itens de 120 compras de 2026-06, `catalogoCodigoItem` veio vazio em todos, inclusive nos 382 do Compras.gov.br. Compras com `fonte = 'pncp'` ficam fora do pareamento UASG × item. Na coleta completa, 0 de 9,5 milhões de itens do PNCP vieram com código (2026-11-07). O campo existe em `/itens` e `/itens/{n}` (com `catalogo`, `categoriaItemCatalogo` e `ncmNbsCodigo`, todos vazios), e no envio (`IncluirCompraItemDTO`) é opcional: as plataformas não o preenchem, e o PNCP devolve o que recebeu. Nenhum outro GET da contratação tem campo de catálogo; no PNCP, código de catálogo só aparece no Plano de Contratação Anual (`pdmCodigo`, `codigoItem`) e nos itens de IRP (`codigoItemCatalogo`). A descrição é texto livre: numa amostra de 189.551 itens, 94% das descrições são únicas e só 1,2% traz o código CATMAT escrito no texto ("CATMAT 335113", "BR0268076").
+14. **`codigoUnidade` só é UASG no Compras.gov.br.** Nas outras plataformas pode ser `1`, em vários órgãos. Por isso `uasg` fica vazia nelas, e o código vai para `codigo_unidade`.
+15. **Comparação das duas fontes em 40 compras de 2025-03 (2.266 itens, 2026-11-06):** o resultado foi igual em 1.825 de 1.828 itens com valor nas duas. Outros 139 itens têm valor só na Dados Abertos, porque o resultado foi cancelado ou a compra anulada. `orcamentoSigiloso` veio falso no PNCP em 167 itens marcados como sigilosos na Dados Abertos, todos com estimado preenchido; a explicação provável é o sigilo já ter sido levantado, o que não foi confirmado.
+16. **`temResultado` e item homologado sem resultado.** `temResultado` fica falso quando o único resultado foi cancelado. Em 2022-11, 1.000 itens homologados da plataforma Licita + Brasil não têm resultado: nos 60 conferidos, `/resultados` respondeu 204.
+17. **Página funda é lenta em `contratacoes/publicacao` (2026-11-07).** No mês inteiro de 2026-09 (667 páginas), a página 5 respondeu em 0,5 s, a 300 em 1,9 s e a 600 em 3,8 s. Consultando um dia por vez (cerca de 30 páginas), as mesmas compras saem a 2,4 s por página, contando a pausa de 2 s; em 2024-07-01 e 2024-07-31, a lista por dia bateu exatamente com a do mês. Dois processos listando ao mesmo tempo receberam 429 quase a cada página.
+18. **O Plano de Contratação Anual (PCA) não serve de ponte para o catálogo (2026-11-07).** Os itens do PCA (`/orgaos/{cnpj}/pca/{ano}/{sequencial}/itens`) têm `codigoItem` e `pdmCodigo`, mas: só 10 de 60 órgãos sorteados entre as compras `fonte = 'pncp'` de 2025 tinham PCA de 2025; nos 449 itens desses PCAs, 190 (42%) eram do catálogo do Compras.gov.br, e o resto usa o catálogo "Outros", com código próprio ou vazio; e o item do PCA não aponta para o item da compra. `/pca/{ano}/{sequencial}/itens/contratacao` respondeu 404 para o número da compra em todos os formatos testados, e o item do PCA é uma linha de planejamento (ex.: "Aquisição de material de expediente - diversos", R$ 18.000), não o item licitado. Ligar os dois exigiria casar descrições, o que dá para fazer direto com os nomes de PDM da base.
 
 ### Nem toda compra tem PDF na API
 

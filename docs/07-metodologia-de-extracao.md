@@ -12,6 +12,7 @@ banco: [06](06-banco-de-dados.md). Formato dos PDFs: [04](04-formato-dos-relator
 ```
 1. Contratações (API Dados Abertos)  ─┐
 2. Itens (API Dados Abertos)         ─┴─> dados/brutos/ ─> 3. Banco dados/pncp.db
+2.2 Demais plataformas (API do PNCP) ───> dados/brutos_pncp/ ──────────┤
                                                                    │ 4. seleção
                                                                    ▼
                 5. Download dos relatórios (PNCP; depois zip manual)
@@ -55,16 +56,43 @@ API costuma atrasar cerca de um mês; os meses recentes têm poucos valores homo
 - **Retomada:** mês com falha não é gravado e é refeito ao rodar de novo.
 - **Saída:** `dados/brutos/<ano>/resultados_pregao_<ano>-<mês>.json`, depois tabela `resultados`.
 
+### 2.2 Coleta das demais plataformas (`coleta_pncp.py`)
+
+- **Fonte:** API do PNCP. `contratacoes/publicacao` para a lista; `/itens` e `/itens/{n}/resultados`
+  compra a compra.
+- **Recorte:** modalidades 6 e 7 (Pregão Eletrônico e Presencial), todos os modos, de 2022-11 a 2026-10.
+- **Corte temporal:** mês de `dataPublicacaoPncp`.
+- **Duplicados:** descarta o `numeroControlePNCP` já presente e a irmã com mesmo CNPJ, ano, número e
+  abertura, comparando com todo o banco. A irmã fica em `compras_duplicadas`, sem baixar itens. Entre
+  irmãs novas, fica a de menor `numeroControlePNCP`. Compra sem número ou abertura não é comparada.
+- **Lista dia a dia:** cada dia é uma consulta, porque a página funda é lenta (ver docs/03, item 17).
+- **Conferência:** a lista de cada dia é repetida uma vez se vier menos que `totalRegistros`, e o log registra a
+  diferença. Depois de 3 tentativas, até 50 compras com falha entram sem itens, contadas em
+  `coleta_pncp_meses.sem_itens`; acima disso, o mês não é carregado.
+- **Velocidade:** 2 s entre páginas da lista e 8 threads nos itens (`--threads`). Um 429 pausa todas as
+  threads. Só um processo pode listar por vez: dois juntos levam a 429 seguidos.
+- **Retomada:** compra baixada não se repete, e mês carregado é pulado.
+- **Saída:** `dados/brutos_pncp/<ano>/contratacoes_<mês>.json.gz` e `itens_<mês>.jsonl.gz`, depois o
+  banco, numa transação por mês. `itens_<mês>.completo` marca o mês baixado por inteiro.
+
+**Limitações conhecidas:** o PNCP não traz o item do catálogo (`catalogoCodigoItem` existe, é opcional
+no envio e vem sempre vazio), então `cod_item_catalogo` fica vazio e a compra fica fora do pareamento UASG × item; os
+meses recentes têm poucos resultados e não são atualizados depois de carregados; `orcamento_sigiloso`
+não equivale ao da API Dados Abertos (ver [06](06-banco-de-dados.md)); a chave de irmãs foi conferida
+em poucos casos.
+
 ## 3. Banco unificado (`banco_unificado.py`)
 
 Carrega os brutos em `dados/pncp.db`, sem filtrar modos. Marca `registro_principal` (uma linha por
-item) e `homologado`. Regras completas em [06](06-banco-de-dados.md). Depois de uma nova coleta, o
-banco precisa ser recriado.
+item) e `homologado`. Regras completas em [06](06-banco-de-dados.md). Depois de uma nova coleta da API
+Dados Abertos, o banco precisa ser recriado. A coleta do PNCP entra direto no banco existente, e
+`--recriar` a recarrega de `dados/brutos_pncp/`.
 
 ## 4. Seleção das compras para download
 
 Só pregões **Aberto-Fechado com item homologado**: `modo_disputa = 'Aberto-Fechado'`,
-`homologado = 1`, `registro_principal = 1`, com o mês definido por `data_resultado`.
+`homologado = 1`, `registro_principal = 1`, com o mês definido por `data_resultado`. Compras sem
+`id_compra`, que são as vindas do PNCP, ainda ficam de fora.
 
 - **Motivo:** o melhor lance de cada etapa só existe no relatório.
 - **Pregão Aberto:** usa o resultado da API, que é o valor homologado e pode diferir do melhor lance
@@ -175,3 +203,6 @@ ainda não decidida, só Menor Preço.
 | 2026-11-03 | 5 | Lista de órgão que falhou não é repetida na mesma rodada; as compras seguem como `erro na API` |
 | 2026-11-03 | 5 | Irmãs de janeiro/2026: Fortaleza 25 de 26 compras com termos; amostra de 40 órgãos (359 compras), nenhuma |
 | 2026-11-03 | 5 | Passada própria de janeiro/2026: 2.364 compras, nenhum candidato. A busca de termos depende da passada das irmãs |
+| 2026-11-06 | 2.2 e 3 | `coleta_pncp.py`: pregões fora da API Dados Abertos entram pelo PNCP, com `compras.fonte`, `compras_duplicadas`, `coleta_pncp_meses` e brutos em `dados/brutos_pncp/`; `--pncp`; `--recriar` recarrega esses brutos; `--resultados` preserva os do PNCP |
+| 2026-11-06 | 4 | `baixar_api.py` ignora compras sem `id_compra` |
+| 2026-11-07 | 2.2 | `coleta_pncp.py` lista o mês dia a dia, e não mais o mês inteiro de uma vez: mesmas compras, cerca de 40% menos tempo |

@@ -113,6 +113,13 @@ pela chave `uasg` + `numero_compra` + `item`, que identifica o item. Ver
   [05](05-decisoes-e-pendencias.md).
 - A base nacional cobre só os pregões do Compras.gov.br (29,8% dos Pregões Eletrônicos do PNCP de 2022-11 a 2026-10;
   ver [03](03-fontes-de-dados-e-apis.md)). Os resultados valem para esse universo, não para todo o país.
+- **O PNCP não traz o item do catálogo.** O campo `catalogoCodigoItem` existe nos itens da compra, mas
+  é opcional no envio e as plataformas não o preenchem: nos itens vindos do PNCP (`compras.fonte =
+  'pncp'`) ele vem sempre vazio, inclusive nos publicados pelo Compras.gov.br. Por isso
+  `cod_item_catalogo` fica vazio. Essas compras ficam fora do pareamento UASG × item, que fica
+  restrito às compras da API Dados Abertos. A descrição é texto livre do órgão: 94% das descrições
+  são únicas numa amostra de 189.551 itens, e só cerca de 1% traz o código CATMAT escrito no texto.
+  Ver [03](03-fontes-de-dados-e-apis.md), item 13 de §3.4.
 - Viés de seleção da amostra de PDFs: só há PDF para compras homologadas. Os PDFs vindos do PNCP
   dependem do órgão publicá-los (ex.: Fortaleza). Comparar a amostra com PDF contra a base
   nacional.
