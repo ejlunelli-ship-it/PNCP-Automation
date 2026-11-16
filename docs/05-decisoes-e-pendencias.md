@@ -43,10 +43,20 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
      que têm termo (tipo 16/26 com conteúdo válido);
    - priorizá-los no `get.py --orgaos`.
 4. **Parser da "Ata Final" do Portal de Compras Públicas** (ver [04 §4.3](04-formato-dos-relatorios.md)).
-   Essas compras estão fora da base, mas são consultáveis pelo PNCP e podem ser boa parte dos pregões do país
-   (ver [03 §3.4](03-fontes-de-dados-e-apis.md)). Avaliar trazê-las para a base e medir quantas têm atas com lances.
-   Estudar primeiro o exemplo AF de Vitória 123/2025. O modo vem da API; a etapa de cada lance
-   precisa de marcos no chat dessa plataforma.
+   Essas compras já estão na base (`fonte = 'pncp'`, `usuario_nome` = "ECustomize Consultoria em Software S.A"),
+   mas o `baixar_api.py` não as seleciona (sem `id_compra`) e `_identificar` só reconhece termos do
+   Compras.gov.br. Estudar primeiro o exemplo AF de Vitória 123/2025. O modo vem da API; a etapa de cada
+   lance precisa de marcos no chat dessa plataforma.
+
+   **Amostra de 2026-11-16** (3 compras AF com resultado de cada uma das 10 plataformas com mais compras na
+   base `fonte = 'pncp'`): no período de nov/2025 a out/2026 são ~32 mil compras AF homologadas fora do
+   Compras.gov.br, contra ~36 mil dentro.
+   - ECustomize (Portal de Compras Públicas, a maior): as 3 com `Ata_Final_*.zip` e `Ata_Parcial_*.zip`.
+     É a fonte mais promissora; medir numa amostra maior quantas trazem os lances por etapa.
+   - Licitações-e (BB): "Ata do Processo" em PDF com texto, com proposta e melhor lance por fornecedor,
+     sem separar etapa aberta e fechada (o histórico de lances só fica no site). Não serve para a etapa.
+   - BLL: termos de adjudicação e homologação, sem lances.
+   - IPM, Licitanet, Licitar Digital, Betha, Governançabrasil, Portal MG, Bahia: só o edital.
 5. **Atas de registro de preços** (PNCP `/atas`, Dados Abertos `modulo-arp`): o usuário perguntou;
    ainda não implementado nem priorizado.
 6. Compra marcada `.pncp_parcial` não é reconsultada no PNCP. Se o órgão publicar depois, só o zip
