@@ -23,7 +23,8 @@ from config import DADOS
 from inventario_pdfs import atualizar as atualizar_inventario
 from inventario_pdfs import ler_motivos
 from pncp_arquivos import IndicePublicadas
-from relatorios import pasta_da_compra, tentar_pncp
+from extrator_homologacao.selecao import selecionar
+from relatorios import PARCIAL, pasta_da_compra, tentar_pncp
 
 SEMENTE_AMOSTRA = 20260103  # fixa, para a amostra de órgãos ser reproduzível
 COLUNAS = ["numeroControlePNCP", "idCompra", "passada", "situacao", "motivo", "itens_cobertos", "publicados",
@@ -103,6 +104,11 @@ def main():
         if novo:
             w.writeheader()
         for i, c in enumerate(compras, 1):
+            # o baixar_manual.py pode ter baixado o zip desde o início desta rodada
+            destino = pasta_da_compra(c, pasta / "relatorios")
+            if destino.exists() and not (destino / PARCIAL).exists() and selecionar(list(destino.rglob("*.pdf"))):
+                print(f"[{i}/{len(compras)}] {c['idCompra']} já baixada (manual), pulando")
+                continue
             situacao, busca = tentar_pncp(c, pasta_da_compra(c, pasta / "relatorios"), pasta / "outros_formatos",
                                           irmas=not args.sem_irmas, indice=indice)
             w.writerow({"numeroControlePNCP": c["numeroControlePNCP"], "idCompra": c["idCompra"], "passada": passada,

@@ -37,9 +37,11 @@ def sha256(caminho):
 
 
 def ler_motivos():
-    """Linhas de todos os motivos.csv, em ordem cronológica de rodada, com o mês em `mes`."""
+    """Linhas de todos os motivos.csv (baixar_api.py) e manual.csv (baixar_manual.py), com o mês em `mes`.
+    Por arquivo, em ordem de rodada; entre os dois arquivos a ordem não vale (completo prevalece)."""
     linhas = []
-    for arquivo in sorted((DADOS / "filtrados").glob("aberto-fechado_*/motivos.csv")):
+    for arquivo in sorted((DADOS / "filtrados").glob("aberto-fechado_*/motivos.csv")) + \
+            sorted((DADOS / "filtrados").glob("aberto-fechado_*/manual.csv")):
         with open(arquivo, newline="", encoding="utf-8-sig") as f:
             linhas += [{**l, "mes": arquivo.parent.name.split("_")[-1]} for l in csv.DictReader(f)]
     return linhas

@@ -150,6 +150,21 @@ a pessoa resolve o captcha e clica no download. **O hCaptcha não é contornado.
 
 Mantém o termo de homologação; sem ele, o termo de julgamento da última sessão.
 
+### 5.3 Manual em paralelo (`baixar_manual.py`)
+
+Abre a página de cada compra no navegador; o usuário clica em Downloads > "Todos os relatórios e
+termos", e o script pega o zip na pasta Downloads, move para a pasta da compra e deixa um termo por
+item (`manter_selecionados`). Mesmas compras do 5.1, do mês mais recente para o mais antigo
+(`--de`, `--ate`), para rodar junto com o `baixar_api.py`, que anda no sentido contrário.
+
+- **Anotação compartilhada:** compra com termos na pasta (sem `.pncp_parcial`) ou com `completo` em
+  `motivos.csv`/`manual.csv` está resolvida para os dois scripts. O `baixar_api.py` confere o disco antes
+  de cada compra; o manual relê os registros antes de cada uma.
+- **`manual.csv`** por mês, no formato do `motivos.csv` (passada `manual`; motivos `zip baixado à mão`,
+  `zip sem termos`, `pulada no site`, `zip não recebido`). Entra em `busca_pdf` e no `pendentes_manual.csv`.
+- Compra pulada ([p]) ou sem zip no tempo-limite não é reaberta, salvo com `--repetir`.
+- Não consulta o PNCP nem grava no `pncp.db`.
+
 ## 6. Extração dos PDFs (`extrator_homologacao`)
 
 Parser determinístico, com PyMuPDF e regex. Sem modelos de linguagem.
@@ -206,3 +221,4 @@ ainda não decidida, só Menor Preço.
 | 2026-11-06 | 2.2 e 3 | `coleta_pncp.py`: pregões fora da API Dados Abertos entram pelo PNCP, com `compras.fonte`, `compras_duplicadas`, `coleta_pncp_meses` e brutos em `dados/brutos_pncp/`; `--pncp`; `--recriar` recarrega esses brutos; `--resultados` preserva os do PNCP |
 | 2026-11-06 | 4 | `baixar_api.py` ignora compras sem `id_compra` |
 | 2026-11-07 | 2.2 | `coleta_pncp.py` lista o mês dia a dia, e não mais o mês inteiro de uma vez: mesmas compras, cerca de 40% menos tempo |
+| 2026-11-16 | 5 | `baixar_manual.py`: download manual do mais recente para o mais antigo, em paralelo ao `baixar_api.py`, anotado em `manual.csv`; o `baixar_api.py` pula compra já baixada à mão |
