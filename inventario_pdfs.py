@@ -45,6 +45,8 @@ def ler_motivos():
 
 def varrer():
     linhas = []
+    if not (DADOS / "filtrados").exists():  # máquina nova, nada baixado ainda
+        return linhas
     for pasta in sorted(p for p in (DADOS / "filtrados").iterdir() if p.is_dir()):
         for sub in ("relatorios", "outros_formatos"):
             for arq in sorted((pasta / sub).rglob("*")):
@@ -83,26 +85,29 @@ def buscas():
 def atualizar():
     linhas = varrer()
     busca = buscas()
-    con = sqlite3.connect(DADOS / "pncp.db")
-    # id_compra se repete entre contratações: só preenche quando aponta para uma única
-    unicos = dict(con.execute("SELECT id_compra, MIN(numero_controle_pncp) FROM compras GROUP BY 1 HAVING COUNT(*) = 1"))
-    for l in linhas:
-        l["numero_controle_pncp"] = unicos.get(l["id_compra"])
-    with con:
-        con.execute("DROP TABLE IF EXISTS relatorios_pdf")
-        con.execute("""CREATE TABLE relatorios_pdf (
-            id_compra TEXT, numero_controle_pncp TEXT, item INTEGER, tipo TEXT, arquivo TEXT PRIMARY KEY,
-            tamanho INTEGER, sha256 TEXT, pasta TEXT)""")
-        con.executemany(f"INSERT INTO relatorios_pdf VALUES ({', '.join('?' * len(COLUNAS))})",
-                        [[l[c] for c in COLUNAS] for l in linhas])
-        con.execute("CREATE INDEX ix_relatorios_pdf_compra ON relatorios_pdf (numero_controle_pncp, item)")
-        con.execute("DROP TABLE IF EXISTS busca_pdf")
-        con.execute("""CREATE TABLE busca_pdf (
-            numero_controle_pncp TEXT PRIMARY KEY, id_compra TEXT, mes TEXT, passada TEXT, situacao TEXT, motivo TEXT,
-            itens_cobertos INTEGER, outros_guardados INTEGER)""")
-        con.executemany(f"INSERT INTO busca_pdf VALUES ({', '.join('?' * len(COLUNAS_BUSCA))})",
-                        [[l[c] for c in COLUNAS_BUSCA] for l in busca])
-    con.close()
+    # sem o pncp.db (máquina que só baixa, com a lista de registro/compras/), só os CSVs são gerados
+    if (DADOS / "pncp.db").exists():
+        con = sqlite3.connect(DADOS / "pncp.db")
+        # id_compra se repete entre contratações: só preenche quando aponta para uma única
+        unicos = dict(con.execute("SELECT id_compra, MIN(numero_controle_pncp) FROM compras GROUP BY 1 HAVING COUNT(*) = 1"))
+        for l in linhas:
+            l["numero_controle_pncp"] = unicos.get(l["id_compra"])
+        with con:
+            con.execute("DROP TABLE IF EXISTS relatorios_pdf")
+            con.execute("""CREATE TABLE relatorios_pdf (
+                id_compra TEXT, numero_controle_pncp TEXT, item INTEGER, tipo TEXT, arquivo TEXT PRIMARY KEY,
+                tamanho INTEGER, sha256 TEXT, pasta TEXT)""")
+            con.executemany(f"INSERT INTO relatorios_pdf VALUES ({', '.join('?' * len(COLUNAS))})",
+                            [[l[c] for c in COLUNAS] for l in linhas])
+            con.execute("CREATE INDEX ix_relatorios_pdf_compra ON relatorios_pdf (numero_controle_pncp, item)")
+            con.execute("DROP TABLE IF EXISTS busca_pdf")
+            con.execute("""CREATE TABLE busca_pdf (
+                numero_controle_pncp TEXT PRIMARY KEY, id_compra TEXT, mes TEXT, passada TEXT, situacao TEXT, motivo TEXT,
+                itens_cobertos INTEGER, outros_guardados INTEGER)""")
+            con.executemany(f"INSERT INTO busca_pdf VALUES ({', '.join('?' * len(COLUNAS_BUSCA))})",
+                            [[l[c] for c in COLUNAS_BUSCA] for l in busca])
+        con.close()
+    DADOS.mkdir(parents=True, exist_ok=True)
     with open(DADOS / "inventario_pdfs.csv", "w", newline="", encoding="utf-8-sig") as f:
         w = csv.DictWriter(f, fieldnames=COLUNAS)
         w.writeheader()

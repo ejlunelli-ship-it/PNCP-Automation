@@ -186,6 +186,10 @@ registro/aberto-fechado_<AAAA-MM>/<usuario>_manual.csv   baixar_manual.py
 - **Divisão do trabalho:** o git não é tempo real, então dois usuários podem pegar a mesma compra entre
   um push e um pull. Com `--parte k/n` nos dois scripts, cada compra cai sempre na mesma parte (SHA-1 do
   `numeroControlePNCP`), e cada pessoa fica com a sua.
+- **Lista de compras:** `registro/compras/<AAAA-MM>.csv` (mês do resultado do item) traz as compras
+  Aberto-Fechado com item homologado e com `idCompra`, com os campos que os scripts usam (objeto cortado em
+  100 caracteres). Sem `dados/pncp.db`, `baixar_api.py` e `baixar_manual.py` usam essa lista, e
+  `inventario_pdfs.py` só gera os CSVs. Quem tem o banco regera com `python registro.py compras` e faz commit.
 - **Migração:** `python registro.py migrar [AAAA-MM ...]` passa os antigos `motivos.csv`/`manual.csv` de
   `dados/filtrados/` para `registro/`, no nome do usuário atual, e deixa uma cópia `.migrado`. Enquanto não
   migrados, eles continuam sendo lidos. Janeiro/2026 foi migrado sem `data_hora`, `itens` e `sha256`.
@@ -248,3 +252,4 @@ ainda não decidida, só Menor Preço.
 | 2026-11-07 | 2.2 | `coleta_pncp.py` lista o mês dia a dia, e não mais o mês inteiro de uma vez: mesmas compras, cerca de 40% menos tempo |
 | 2026-11-16 | 5 | `baixar_manual.py`: download manual do mais recente para o mais antigo, em paralelo ao `baixar_api.py`, anotado em `manual.csv`; o `baixar_api.py` pula compra já baixada à mão |
 | 2026-11-16 | 5 | Registro compartilhado em `registro/` (versionado), um arquivo por usuário, mês e origem, no lugar de `motivos.csv`/`manual.csv` em `dados/`; `--parte k/n` nos dois scripts; janeiro/2026 migrado |
+| 2026-11-16 | 5 | Lista de compras a baixar em `registro/compras/<mês>.csv` (`registro.py compras`), usada quando não há `dados/pncp.db` |

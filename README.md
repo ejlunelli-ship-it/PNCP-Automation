@@ -42,14 +42,11 @@ python -m venv .venv
 
 # 2. Nome da pessoa (vira o nome do arquivo dela em registro/)
 git config user.name "Nome da Pessoa"
-
-# 3. Copiar o banco para dados\pncp.db (pendrive, rede, Drive...)
-mkdir dados
-copy <origem>\pncp.db dados\pncp.db
 ```
 
-O `dados/pncp.db` (~16 GB) não vai para o git: os scripts tiram dele a lista de compras. Copie de quem
-já o tem ou gere com `banco_unificado.py` (exige a coleta da base nacional, passo 4).
+Não precisa do `dados/pncp.db` (~16 GB, fora do git): sem ele, os scripts tiram a lista de compras de
+`registro/compras/<mês>.csv`, que vem com o `git pull`. Quem tem o banco regera essa lista com
+`python registro.py compras` (consulta demorada) e faz commit dela.
 
 **Em toda sessão de trabalho:**
 

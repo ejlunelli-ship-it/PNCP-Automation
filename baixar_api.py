@@ -1,7 +1,7 @@
 """Varre o PNCP atrás dos relatórios dos pregões Aberto-Fechado com item homologado em um mês.
 
 Só usa a API pública: não abre navegador nem toca no captcha do Compras.gov.br. As compras vêm de
-dados/pncp.db, pela data de resultado do item. Para cada uma, olha a própria contratação e as irmãs,
+dados/pncp.db (ou, sem ele, de registro/compras/), pela data de resultado do item. Para cada uma, olha a própria contratação e as irmãs,
 achadas no índice mensal de publicações (dados/pncp_publicadas/). Na primeira vez, montar o índice dos
 meses de publicação leva mais tempo; depois ele é reaproveitado.
 
@@ -15,7 +15,6 @@ Uso: python baixar_api.py 2026-01 [--parte k/n] [--sem-irmas] [--cnpj CNPJ] [--a
 import argparse
 import random
 import re
-import sqlite3
 import sys
 import time
 
@@ -24,28 +23,10 @@ from inventario_pdfs import atualizar as atualizar_inventario
 from inventario_pdfs import ler_motivos
 from pncp_arquivos import IndicePublicadas
 from extrator_homologacao.selecao import selecionar
-from registro import anotar, na_parte, parte, termos
+from registro import anotar, compras_do_mes, na_parte, parte, termos
 from relatorios import PARCIAL, pasta_da_compra, tentar_pncp
 
 SEMENTE_AMOSTRA = 20260103  # fixa, para a amostra de órgãos ser reproduzível
-SELECAO = """
-SELECT DISTINCT c.numero_controle_pncp AS numeroControlePNCP, c.id_compra AS idCompra,
-       c.numero_compra AS numeroCompra, c.ano_compra AS anoCompraPncp, c.objeto_compra AS objetoCompra,
-       c.data_publicacao AS dataPublicacaoPncp, c.data_abertura_proposta AS dataAberturaPropostaPncp,
-       c.orgao_cnpj AS orgaoEntidadeCnpj
-FROM compras c JOIN itens i USING (numero_controle_pncp)
-WHERE i.registro_principal = 1 AND i.homologado = 1 AND c.modo_disputa = 'Aberto-Fechado'
-  AND c.id_compra IS NOT NULL AND i.data_resultado LIKE ?
-ORDER BY 1
-"""
-
-
-def compras_do_mes(mes):
-    con = sqlite3.connect(f"file:{(DADOS / 'pncp.db').as_posix()}?mode=ro", uri=True)
-    con.row_factory = sqlite3.Row
-    return [dict(r) for r in con.execute(SELECAO, (f"{mes}%",))]
-
-
 def meses_ao_redor(ano_mes):
     """O mês e os vizinhos: a irmã costuma ser publicada perto da contratação."""
     ano, mes = map(int, ano_mes.split("-"))

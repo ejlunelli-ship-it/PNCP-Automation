@@ -24,10 +24,9 @@ import time
 import webbrowser
 
 from config import DADOS
-from baixar_api import compras_do_mes
 from extrator_homologacao.selecao import selecionar
 from inventario_pdfs import ler_motivos
-from registro import anotar, na_parte, parte, termos
+from registro import anotar, compras_do_mes, na_parte, parte, termos
 from relatorios import DOWNLOADS, ESPERA, PARCIAL, URL_COMPRA, manter_selecionados, pasta_da_compra, \
     zips_em_downloads
 
