@@ -168,8 +168,9 @@ apaga a tabela**: rode `python inventario_pdfs.py` em seguida. Uma cópia fica e
 
 ## Tabela `busca_pdf`
 
-Última busca de cada compra no PNCP, refeita por `inventario_pdfs.py` a partir dos `motivos.csv`. Uma
-compra completa em qualquer mês fica como completa. `baixar_api.py` não busca de novo uma compra já
+Última busca de cada compra no PNCP, refeita por `inventario_pdfs.py` a partir do registro compartilhado
+(`registro/`, de todos os usuários; ver [07 §5.4](07-metodologia-de-extracao.md)). Uma compra completa em
+qualquer mês, por qualquer usuário, fica como completa. `baixar_api.py` não busca de novo uma compra já
 buscada, e **`dados/pendentes_manual.csv` é a lista a usar no download manual**: traz as compras
 buscadas sem todos os termos, com o link. Compras com `situacao = 'completo'` não entram nela.
 

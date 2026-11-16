@@ -2,7 +2,8 @@
 
 - tabela relatorios_pdf (pncp.db) e dados/inventario_pdfs.csv: os arquivos em disco, de
   dados/filtrados/*/relatorios (termos, um arquivo por item) e */outros_formatos;
-- tabela busca_pdf (pncp.db): a última busca de cada compra, a partir dos motivos.csv das rodadas;
+- tabela busca_pdf (pncp.db): a última busca de cada compra, a partir do registro compartilhado
+  (registro/, ver registro.py), de todos os usuários;
 - dados/pendentes_manual.csv: compras buscadas e ainda sem todos os termos. **É a lista a usar no
   download manual**; quem não está nela já foi resolvido ou ainda não foi buscado.
 
@@ -18,6 +19,7 @@ import sqlite3
 import sys
 
 from config import DADOS
+from registro import ler as ler_registro
 
 RE_TERMO = re.compile(r"^relatorio-(termo-homologacao|julg-hab)-(\d+)(?:-s\d+)?-item-(\d+)\.pdf$", re.I)
 RE_PASTA = re.compile(r"_(\d+)$")
@@ -37,14 +39,8 @@ def sha256(caminho):
 
 
 def ler_motivos():
-    """Linhas de todos os motivos.csv (baixar_api.py) e manual.csv (baixar_manual.py), com o mês em `mes`.
-    Por arquivo, em ordem de rodada; entre os dois arquivos a ordem não vale (completo prevalece)."""
-    linhas = []
-    for arquivo in sorted((DADOS / "filtrados").glob("aberto-fechado_*/motivos.csv")) + \
-            sorted((DADOS / "filtrados").glob("aberto-fechado_*/manual.csv")):
-        with open(arquivo, newline="", encoding="utf-8-sig") as f:
-            linhas += [{**l, "mes": arquivo.parent.name.split("_")[-1]} for l in csv.DictReader(f)]
-    return linhas
+    """Linhas do registro compartilhado (registro.py), de todos os usuários, com o mês em `mes`."""
+    return ler_registro()
 
 
 def varrer():
@@ -73,7 +69,8 @@ def varrer():
 def buscas():
     """Melhor registro de cada compra: completo vale sobre os demais; senão, a busca mais recente."""
     por_compra = {}
-    for l in ler_motivos():
+    # entre usuários, a ordem é a data_hora (linhas antigas, sem ela, ficam antes e na ordem do arquivo)
+    for l in sorted(ler_motivos(), key=lambda l: l.get("data_hora") or ""):
         atual = por_compra.get(l["numeroControlePNCP"])
         if atual is None or atual["situacao"] != "completo":
             por_compra[l["numeroControlePNCP"]] = l

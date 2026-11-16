@@ -111,11 +111,11 @@ Varredura mês a mês: `python baixar_api.py <mês>`, e o mês seguinte só roda
    páginas. Cada compra usa o mês da publicação e os vizinhos.
 2. **Por compra:** olha a própria contratação e as irmãs do índice, com mesmo CNPJ, ano, número e
    abertura.
-3. **Sem repetição:** compra já buscada em qualquer mês não é buscada de novo.
-4. **Registro:** `inventario_pdfs.py` atualiza `relatorios_pdf`, `busca_pdf` e
+3. **Sem repetição:** compra já buscada em qualquer mês, por qualquer usuário, não é buscada de novo.
+4. **Registro:** cada compra vai para o registro compartilhado (5.4); no fim, `inventario_pdfs.py` atualiza `relatorios_pdf`, `busca_pdf` e
    `dados/pendentes_manual.csv`, que é a lista do download manual.
 
-Opções: `--sem-irmas`, `--cnpj`, `--amostra-orgaos N`, `--limite N`.
+Opções: `--parte k/n`, `--sem-irmas`, `--cnpj`, `--amostra-orgaos N`, `--limite N`.
 
 **Limitação do índice:** uma irmã cadastrada com outro modo de disputa não é encontrada. As 3 irmãs
 conferidas de Fortaleza têm o mesmo modo.
@@ -128,7 +128,7 @@ Para cada arquivo:
 | Termo reconhecido | Conteúdo é termo de homologação ou julgamento, com itens e com UASG e número da compra certos. Vai para `relatorios/`, um arquivo por item, com o nome do padrão do zip |
 | Outro formato | Candidato não reconhecido é guardado em `outros_formatos/` se mencionar lances, não tiver texto, for ilegível ou não for PDF. Todos entram em `manifesto.csv` |
 
-Cada compra grava em `motivos.csv`:
+Cada compra grava no registro (`<usuario>_api.csv`, ver 5.4):
 
 | Motivo | Significado |
 |---|---|
@@ -157,13 +157,38 @@ termos", e o script pega o zip na pasta Downloads, move para a pasta da compra e
 item (`manter_selecionados`). Mesmas compras do 5.1, do mês mais recente para o mais antigo
 (`--de`, `--ate`), para rodar junto com o `baixar_api.py`, que anda no sentido contrário.
 
-- **Anotação compartilhada:** compra com termos na pasta (sem `.pncp_parcial`) ou com `completo` em
-  `motivos.csv`/`manual.csv` está resolvida para os dois scripts. O `baixar_api.py` confere o disco antes
-  de cada compra; o manual relê os registros antes de cada uma.
-- **`manual.csv`** por mês, no formato do `motivos.csv` (passada `manual`; motivos `zip baixado à mão`,
-  `zip sem termos`, `pulada no site`, `zip não recebido`). Entra em `busca_pdf` e no `pendentes_manual.csv`.
+- **Anotação compartilhada:** compra com termos na pasta (sem `.pncp_parcial`) ou com `completo` no
+  registro (5.4) está resolvida para os dois scripts. O `baixar_api.py` confere o disco antes de cada
+  compra; o manual relê o registro antes de cada uma.
+- **Registro** em `<usuario>_manual.csv` (passada `manual`; motivos `zip baixado à mão`, `zip sem termos`,
+  `pulada no site`, `zip não recebido`). Entra em `busca_pdf` e no `pendentes_manual.csv`.
 - Compra pulada ([p]) ou sem zip no tempo-limite não é reaberta, salvo com `--repetir`.
-- Não consulta o PNCP nem grava no `pncp.db`.
+- Não consulta o PNCP nem grava no `pncp.db`. Opções: `--de`, `--ate`, `--parte k/n`, `--repetir`.
+
+### 5.4 Registro compartilhado (`registro.py`, pasta `registro/`, versionada)
+
+O que já foi buscado e baixado fica no git, para mais de um usuário dividir o download; os PDFs e o
+`pncp.db` ficam em `dados/`, fora do git.
+
+```
+registro/aberto-fechado_<AAAA-MM>/<usuario>_api.csv      baixar_api.py
+registro/aberto-fechado_<AAAA-MM>/<usuario>_manual.csv   baixar_manual.py
+```
+
+- **Sem conflito de merge:** cada usuário só acrescenta linhas aos próprios arquivos. O usuário é o
+  `git config user.name` em minúsculas, sem acento, com hífens (ou a variável `PNCP_USUARIO`).
+- **Estado = união de todos os arquivos.** Depois de `git pull`, os scripts pulam o que qualquer usuário
+  resolveu; `inventario_pdfs.py` monta `busca_pdf` e `pendentes_manual.csv` a partir dele. Entre usuários,
+  a ordem das linhas é a `data_hora`; `completo` prevalece sobre as demais.
+- **Colunas:** `numeroControlePNCP`, `idCompra`, `usuario`, `data_hora`, `passada`, `situacao`, `motivo`,
+  `itens_cobertos`, `itens` (ex.: `1;2;5`), `sha256` (do conjunto de termos: nome + hash de cada arquivo,
+  para conferir PDFs trocados por outro meio), `publicados`, `candidatos`, `outros_guardados`, `erros`.
+- **Divisão do trabalho:** o git não é tempo real, então dois usuários podem pegar a mesma compra entre
+  um push e um pull. Com `--parte k/n` nos dois scripts, cada compra cai sempre na mesma parte (SHA-1 do
+  `numeroControlePNCP`), e cada pessoa fica com a sua.
+- **Migração:** `python registro.py migrar [AAAA-MM ...]` passa os antigos `motivos.csv`/`manual.csv` de
+  `dados/filtrados/` para `registro/`, no nome do usuário atual, e deixa uma cópia `.migrado`. Enquanto não
+  migrados, eles continuam sendo lidos. Janeiro/2026 foi migrado sem `data_hora`, `itens` e `sha256`.
 
 ## 6. Extração dos PDFs (`extrator_homologacao`)
 
@@ -222,3 +247,4 @@ ainda não decidida, só Menor Preço.
 | 2026-11-06 | 4 | `baixar_api.py` ignora compras sem `id_compra` |
 | 2026-11-07 | 2.2 | `coleta_pncp.py` lista o mês dia a dia, e não mais o mês inteiro de uma vez: mesmas compras, cerca de 40% menos tempo |
 | 2026-11-16 | 5 | `baixar_manual.py`: download manual do mais recente para o mais antigo, em paralelo ao `baixar_api.py`, anotado em `manual.csv`; o `baixar_api.py` pula compra já baixada à mão |
+| 2026-11-16 | 5 | Registro compartilhado em `registro/` (versionado), um arquivo por usuário, mês e origem, no lugar de `motivos.csv`/`manual.csv` em `dados/`; `--parte k/n` nos dois scripts; janeiro/2026 migrado |

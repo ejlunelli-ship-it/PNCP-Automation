@@ -5,14 +5,14 @@ dados/pncp.db, pela data de resultado do item. Para cada uma, olha a própria co
 achadas no índice mensal de publicações (dados/pncp_publicadas/). Na primeira vez, montar o índice dos
 meses de publicação leva mais tempo; depois ele é reaproveitado.
 
-Cada compra entra em dados/filtrados/aberto-fechado_<mês>/motivos.csv assim que termina, então a
-rodada pode ser interrompida e retomada. Compra já buscada em qualquer mês não é buscada de novo. No
-fim, o inventário atualiza relatorios_pdf, busca_pdf e dados/pendentes_manual.csv.
+Cada compra entra no registro compartilhado (registro/aberto-fechado_<mês>/<usuario>_api.csv, ver
+registro.py) assim que termina, então a rodada pode ser interrompida e retomada. Compra já buscada em
+qualquer mês, por qualquer usuário, não é buscada de novo. No fim, o inventário atualiza relatorios_pdf,
+busca_pdf e dados/pendentes_manual.csv.
 
-Uso: python baixar_api.py 2026-01 [--sem-irmas] [--cnpj CNPJ] [--amostra-orgaos N] [--limite N]
+Uso: python baixar_api.py 2026-01 [--parte k/n] [--sem-irmas] [--cnpj CNPJ] [--amostra-orgaos N] [--limite N]
 """
 import argparse
-import csv
 import random
 import re
 import sqlite3
@@ -24,11 +24,10 @@ from inventario_pdfs import atualizar as atualizar_inventario
 from inventario_pdfs import ler_motivos
 from pncp_arquivos import IndicePublicadas
 from extrator_homologacao.selecao import selecionar
+from registro import anotar, na_parte, parte, termos
 from relatorios import PARCIAL, pasta_da_compra, tentar_pncp
 
 SEMENTE_AMOSTRA = 20260103  # fixa, para a amostra de órgãos ser reproduzível
-COLUNAS = ["numeroControlePNCP", "idCompra", "passada", "situacao", "motivo", "itens_cobertos", "publicados",
-           "candidatos", "outros_guardados", "erros"]
 SELECAO = """
 SELECT DISTINCT c.numero_controle_pncp AS numeroControlePNCP, c.id_compra AS idCompra,
        c.numero_compra AS numeroCompra, c.ano_compra AS anoCompraPncp, c.objeto_compra AS objetoCompra,
@@ -61,13 +60,13 @@ def main():
     p.add_argument("--cnpj", help="só as compras deste órgão")
     p.add_argument("--amostra-orgaos", type=int, metavar="N", help="só as compras de N órgãos sorteados (semente fixa)")
     p.add_argument("--limite", type=int, help="processa só as N primeiras compras pendentes")
+    p.add_argument("--parte", type=parte, metavar="k/n", help="só a parte k de n das compras (divisão entre usuários)")
     args = p.parse_args()
     if not re.fullmatch(r"\d{4}-\d{2}", args.mes):
         p.error("mês no formato AAAA-MM")
 
     pasta = DADOS / "filtrados" / f"aberto-fechado_{args.mes}"
     pasta.mkdir(parents=True, exist_ok=True)
-    arquivo = pasta / "motivos.csv"
     passada = "propria" if args.sem_irmas else "irmas"
     # vale o histórico de todos os meses: compra já buscada não é buscada de novo
     historico = ler_motivos()
@@ -83,7 +82,7 @@ def main():
         sorteados = set(random.Random(SEMENTE_AMOSTRA).sample(orgaos, min(args.amostra_orgaos, len(orgaos))))
         compras = [c for c in compras if c["orgaoEntidadeCnpj"] in sorteados]
         print(f"Amostra: {len(sorteados)} de {len(orgaos)} órgãos, {len(compras)} compras")
-    compras = [c for c in compras if c["numeroControlePNCP"] not in feitas]
+    compras = [c for c in compras if c["numeroControlePNCP"] not in feitas and na_parte(c["numeroControlePNCP"], args.parte)]
     if args.limite:
         compras = compras[:args.limite]
     print(f"{args.mes}: {total_mes} compra(s) no mês, {len(compras)} a buscar (passada '{passada}')")
@@ -98,26 +97,21 @@ def main():
 
     inicio = time.time()
     contagem = {}
-    novo = not arquivo.exists()
-    with open(arquivo, "a", newline="", encoding="utf-8-sig" if novo else "utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=COLUNAS)
-        if novo:
-            w.writeheader()
-        for i, c in enumerate(compras, 1):
-            # o baixar_manual.py pode ter baixado o zip desde o início desta rodada
-            destino = pasta_da_compra(c, pasta / "relatorios")
-            if destino.exists() and not (destino / PARCIAL).exists() and selecionar(list(destino.rglob("*.pdf"))):
-                print(f"[{i}/{len(compras)}] {c['idCompra']} já baixada (manual), pulando")
-                continue
-            situacao, busca = tentar_pncp(c, pasta_da_compra(c, pasta / "relatorios"), pasta / "outros_formatos",
-                                          irmas=not args.sem_irmas, indice=indice)
-            w.writerow({"numeroControlePNCP": c["numeroControlePNCP"], "idCompra": c["idCompra"], "passada": passada,
-                        "situacao": situacao or "", "motivo": busca.motivo, "itens_cobertos": len(busca.cobertos),
-                        "publicados": busca.publicados, "candidatos": busca.candidatos,
-                        "outros_guardados": busca.guardados, "erros": " | ".join(busca.erros)})
-            f.flush()
-            contagem[busca.motivo] = contagem.get(busca.motivo, 0) + 1
-            print(f"[{i}/{len(compras)}] {c['idCompra']} {busca.motivo} ({time.time() - inicio:.0f}s)")
+    for i, c in enumerate(compras, 1):
+        # o baixar_manual.py pode ter baixado o zip desde o início desta rodada
+        destino = pasta_da_compra(c, pasta / "relatorios")
+        if destino.exists() and not (destino / PARCIAL).exists() and selecionar(list(destino.rglob("*.pdf"))):
+            print(f"[{i}/{len(compras)}] {c['idCompra']} já baixada (manual), pulando")
+            continue
+        situacao, busca = tentar_pncp(c, destino, pasta / "outros_formatos", irmas=not args.sem_irmas, indice=indice)
+        itens, sha = termos(selecionar(list(destino.rglob("*.pdf")))) if destino.exists() else ("", "")
+        anotar(args.mes, "api", {
+            "numeroControlePNCP": c["numeroControlePNCP"], "idCompra": c["idCompra"], "passada": passada,
+            "situacao": situacao or "", "motivo": busca.motivo, "itens_cobertos": len(busca.cobertos),
+            "itens": itens, "sha256": sha, "publicados": busca.publicados, "candidatos": busca.candidatos,
+            "outros_guardados": busca.guardados, "erros": " | ".join(busca.erros)})
+        contagem[busca.motivo] = contagem.get(busca.motivo, 0) + 1
+        print(f"[{i}/{len(compras)}] {c['idCompra']} {busca.motivo} ({time.time() - inicio:.0f}s)")
     print("Resumo:", dict(sorted(contagem.items(), key=lambda x: -x[1])))
     atualizar_inventario()
 

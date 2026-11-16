@@ -21,6 +21,7 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
 | 2026-11-06 | Duplicado é o mesmo `numeroControlePNCP` ou a irmã com mesmo CNPJ, ano, número e abertura. A irmã não entra em `compras` e fica em `compras_duplicadas` | O mesmo pregão publicado por dois sistemas contaria duas vezes |
 | 2026-11-06 | Brutos do PNCP em `dados/brutos_pncp/` (JSON com gzip, sem CSV), recarregados por `--recriar` | A coleta leva dias; sem os brutos, recriar o banco a perderia |
 | 2026-11-16 | Varrer o PNCP de 2026-03 a 2026-10 (`baixar_api.py`) e, em paralelo, baixar os zips à mão de 2026-10 para trás (`baixar_manual.py`), com o que já foi feito anotado em disco e em `manual.csv` | Pedido do usuário: as duas frentes andam juntas sem repetir compra |
+| 2026-11-16 | Registro do que foi buscado/baixado versionado em `registro/`, um CSV por usuário, mês e origem (`api`/`manual`), só com acréscimo de linhas; divisão entre usuários por `--parte k/n`; inclui as buscas do PNCP sem resultado | Download colaborativo com mais de um usuário sem conflito de merge e sem repetir busca; os PDFs ficam fora do git |
 | — | Melhor lance da etapa conta mesmo se o fornecedor for desclassificado depois; propostas iniciais entram na etapa aberta | Medir a dinâmica da disputa, não só o resultado |
 
 ## Pendências e próximos passos (por prioridade)

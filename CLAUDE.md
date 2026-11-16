@@ -23,8 +23,9 @@ Detalhes: [docs/README.md](docs/README.md) (índice). Comece por
 | Base nacional (API, sem PDF) | `coleta_anos.py`, `coleta_itens.py`, `coleta_resultados.py` | `dados/brutos/<ano>/` |
 | Banco unificado da base nacional | `banco_unificado.py` | `dados/pncp.db` |
 | Pregões das demais plataformas (PNCP, por mês) | `coleta_pncp.py <início> [fim]` | `dados/brutos_pncp/<ano>/`, `dados/pncp.db` (`fonte = 'pncp'`) |
-| Varrer o PNCP por mês (Aberto-Fechado homologado) | `baixar_api.py <mês>` | `dados/filtrados/aberto-fechado_<mês>/`, `dados/pendentes_manual.csv` |
-| Download manual em paralelo (mês mais recente → mais antigo) | `baixar_manual.py` | `dados/filtrados/aberto-fechado_<mês>/relatorios/`, `manual.csv` |
+| Varrer o PNCP por mês (Aberto-Fechado homologado) | `baixar_api.py <mês>` | `dados/filtrados/aberto-fechado_<mês>/`, `registro/`, `dados/pendentes_manual.csv` |
+| Download manual em paralelo (mês mais recente → mais antigo) | `baixar_manual.py` | `dados/filtrados/aberto-fechado_<mês>/relatorios/`, `registro/` |
+| Registro compartilhado do que já foi buscado/baixado (versionado) | `registro.py` | `registro/aberto-fechado_<mês>/<usuario>_{api,manual}.csv` |
 | Inventário dos PDFs baixados | `inventario_pdfs.py` | tabela `relatorios_pdf` em `dados/pncp.db`, `dados/inventario_pdfs.csv` |
 | Análises | `matching_*.py` | terminal |
 
@@ -41,6 +42,9 @@ Detalhes: [docs/README.md](docs/README.md) (índice). Comece por
 
 - **Não contornar o hCaptcha** do Compras.gov.br (sem solvers, sem chamar endpoints internos sem o
   token). Automação permitida: PNCP (público) e abrir a página para o usuário clicar.
+- **Download colaborativo:** o registro do que já foi buscado/baixado fica em `registro/` (versionado,
+  um arquivo por usuário); os PDFs ficam em `dados/`. Faça `git pull` antes e commit do `registro/` depois.
+  Com mais de um usuário, use `--parte k/n`. Ver [docs/07 §5.4](docs/07-metodologia-de-extracao.md).
 - **Consultas aos dados: use `dados/pncp.db`** (somente leitura), que é mais rápido e menos custoso que varrer `dados/brutos/`. Os brutos só valem para campos fora do banco (ver [docs/06](docs/06-banco-de-dados.md)) ou para conferir uma carga.
 - **Metodologia:** toda mudança na coleta, no banco, no download ou na extração atualiza
   [docs/07-metodologia-de-extracao.md](docs/07-metodologia-de-extracao.md), inclusive o histórico.

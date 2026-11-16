@@ -4,8 +4,9 @@ Pega as mesmas compras do baixar_api.py (Aberto-Fechado com item homologado, pel
 pode rodar junto com ele, que anda no sentido contrário. O que já foi feito fica anotado:
 - termos na pasta da compra (dados/filtrados/aberto-fechado_<mês>/relatorios/<compra>/), sem a marca
   de parcial: compra resolvida, por qualquer um dos dois;
-- dados/filtrados/aberto-fechado_<mês>/manual.csv: uma linha por compra tentada aqui, no formato do
-  motivos.csv (passada 'manual'), lida pelo inventario_pdfs.py e pelo baixar_api.py.
+- registro compartilhado (registro/aberto-fechado_<mês>/<usuario>_manual.csv, ver registro.py): uma
+  linha por compra tentada aqui (passada 'manual'), lida pelo inventario_pdfs.py e pelo baixar_api.py
+  de todos os usuários depois do `git pull`. Com mais de uma pessoa, usem --parte k/n.
 
 Não consulta o PNCP (o automático já faz isso, e os dois juntos estourariam o limite de requisições)
 nem grava no pncp.db. Só abre a página da compra no navegador: você clica em Downloads >
@@ -14,19 +15,19 @@ nem grava no pncp.db. Só abre a página da compra no navegador: você clica em 
 Enquanto espera o zip: [p] pula a compra (sem a opção no site), [s] encerra.
 Compras puladas ou sem zip não são reabertas, salvo com --repetir.
 
-Uso: python baixar_manual.py [--de 2026-10] [--ate 2025-11] [--repetir]
+Uso: python baixar_manual.py [--de 2026-10] [--ate 2025-11] [--parte k/n] [--repetir]
 """
 import argparse
-import csv
 import shutil
 import sys
 import time
 import webbrowser
 
 from config import DADOS
-from baixar_api import COLUNAS, compras_do_mes
+from baixar_api import compras_do_mes
 from extrator_homologacao.selecao import selecionar
 from inventario_pdfs import ler_motivos
+from registro import anotar, na_parte, parte, termos
 from relatorios import DOWNLOADS, ESPERA, PARCIAL, URL_COMPRA, manter_selecionados, pasta_da_compra, \
     zips_em_downloads
 
@@ -75,13 +76,14 @@ def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--de", default="2026-10", help="primeiro mês (o mais recente)")
     p.add_argument("--ate", default="2025-11", help="último mês (o mais antigo)")
+    p.add_argument("--parte", type=parte, metavar="k/n", help="só a parte k de n das compras (divisão entre usuários)")
     p.add_argument("--repetir", action="store_true", help="reabre compras puladas ou sem zip em rodadas anteriores")
     args = p.parse_args()
     print(f"Vigiando downloads em: {DOWNLOADS}. Durante a espera: [p] pula, [s] encerra.")
 
     for mes in meses_decrescentes(args.de, args.ate):
         pasta = DADOS / "filtrados" / f"aberto-fechado_{mes}"
-        compras = list(reversed(compras_do_mes(mes)))
+        compras = [c for c in reversed(compras_do_mes(mes)) if na_parte(c["numeroControlePNCP"], args.parte)]
         print(f"== {mes}: {len(compras)} compra(s)")
         for i, c in enumerate(compras, 1):
             # relido a cada compra: o automático pode ter acabado de completar esta
@@ -102,28 +104,21 @@ def main():
                 print("Encerrado.")
                 return
             linha = {"numeroControlePNCP": c["numeroControlePNCP"], "idCompra": c["idCompra"], "passada": "manual",
-                     "situacao": "", "itens_cobertos": 0, "publicados": "", "candidatos": "",
-                     "outros_guardados": 0, "erros": ""}
+                     "situacao": "", "itens_cobertos": 0, "outros_guardados": 0}
             if arq:
                 destino.mkdir(parents=True, exist_ok=True)
                 shutil.move(str(arq), destino / f"relatorios-compra-{c['idCompra']}.zip")
                 manter_selecionados(destino)
                 (destino / PARCIAL).unlink(missing_ok=True)
-                termos = selecionar(list(destino.rglob("*.pdf")))
-                linha.update(situacao="completo" if termos else "", itens_cobertos=len(termos),
-                             motivo="zip baixado à mão" if termos else "zip sem termos")
-                print(f"  {len(termos)} termo(s) -> {destino}")
+                escolhidos = selecionar(list(destino.rglob("*.pdf")))
+                itens, sha = termos(escolhidos)
+                linha.update(situacao="completo" if escolhidos else "", itens_cobertos=len(escolhidos),
+                             itens=itens, sha256=sha, motivo="zip baixado à mão" if escolhidos else "zip sem termos")
+                print(f"  {len(escolhidos)} termo(s) -> {destino}")
             else:
                 linha["motivo"] = "pulada no site" if comando == "p" else "zip não recebido"
                 print(f"  {linha['motivo']}")
-            pasta.mkdir(parents=True, exist_ok=True)
-            arquivo = pasta / "manual.csv"
-            novo = not arquivo.exists()
-            with open(arquivo, "a", newline="", encoding="utf-8-sig" if novo else "utf-8") as f:
-                w = csv.DictWriter(f, fieldnames=COLUNAS)
-                if novo:
-                    w.writeheader()
-                w.writerow(linha)
+            anotar(mes, "manual", linha)
 
 
 if __name__ == "__main__":
