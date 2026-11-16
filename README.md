@@ -25,6 +25,53 @@ $env:PNCP_DADOS = "D:\pncp"                                          # só nesta
 Nos exemplos abaixo, `dados/` significa essa pasta. Ao mudar de pasta, mova o conteúdo de `dados/`
 junto, ou os relatórios já baixados serão pedidos de novo.
 
+## Download colaborativo (em outro computador)
+
+Mais de uma pessoa pode baixar os relatórios dos pregões Aberto-Fechado homologados. O que cada uma
+já buscou/baixou fica em `registro/` (versionado, um arquivo por pessoa: sem conflito de merge); os
+PDFs ficam em `dados/`, fora do git. Detalhes em [docs/07 §5.4](docs/07-metodologia-de-extracao.md).
+
+**Uma vez, na máquina nova** (PowerShell, com Python 3.13 e Git instalados):
+
+```powershell
+# 1. Clonar e preparar o ambiente
+git clone https://github.com/ejlunelli-ship-it/PNCP-Automation.git
+cd PNCP-Automation
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+
+# 2. Nome da pessoa (vira o nome do arquivo dela em registro/)
+git config user.name "Nome da Pessoa"
+
+# 3. Copiar o banco para dados\pncp.db (pendrive, rede, Drive...)
+mkdir dados
+copy <origem>\pncp.db dados\pncp.db
+```
+
+O `dados/pncp.db` (~16 GB) não vai para o git: os scripts tiram dele a lista de compras. Copie de quem
+já o tem ou gere com `banco_unificado.py` (exige a coleta da base nacional, passo 4).
+
+**Em toda sessão de trabalho:**
+
+```powershell
+git pull
+.\.venv\Scripts\python.exe baixar_manual.py --parte 2/2
+git add registro/
+git commit -m "Downloads manuais"
+git push
+```
+
+- `--parte k/n` divide as compras entre as pessoas: com duas, uma usa `--parte 1/2` e a outra
+  `--parte 2/2`; com três, `1/3`, `2/3`, `3/3`. Cada compra cai sempre na mesma parte, então ninguém
+  pega a mesma compra mesmo sem sincronizar.
+- O `baixar_manual.py` abre cada compra no navegador; clique em **Downloads → Todos os relatórios e
+  termos**. Durante a espera, `p` pula a compra (sem a opção no site) e `s` encerra. Vai do mês mais
+  recente para o mais antigo (`--de`, `--ate`); compras puladas só voltam com `--repetir`.
+- Para dar push, a pessoa precisa ser colaboradora do repositório no GitHub.
+- Os PDFs ficam só na máquina de quem baixou (`dados/filtrados/`); o `sha256` no registro serve para
+  conferi-los se forem juntados depois.
+- A busca automática no PNCP (`baixar_api.py <mês>`) também aceita `--parte k/n` e grava no registro.
+
 ## Uso
 
 ### 0. Listar órgãos — `orgaos.py` (opcional)
