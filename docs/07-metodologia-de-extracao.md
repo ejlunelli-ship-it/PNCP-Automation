@@ -232,8 +232,11 @@ ainda não decidida, só Menor Preço.
 
 ## Histórico de mudanças
 
+**Análise de médias de 17/11/2026:** nova leitura somente leitura deste `dados/pncp.db`, registrada em [testes de médias](../../analise/testes_medias_20261117/relatorio_completo.md). Mantém pregão eletrônico, materiais homologados, Menor preço, identidade de catálogo/apresentação e coorte madura; compara A/AF por produto×mês×UF. A recorrência foi novamente verificada somente nesses dois modos. Há desfechos separados para log do preço, desconto e razão para mediana contemporânea de outros órgãos. Protocolo, emenda anterior à estimação, consulta, amostras, validação direta no SQLite e inferência com agrupamentos estão na pasta da análise. Não altera coleta, parser ou banco.
+
 | Data | Etapa | Mudança |
 |---|---|---|
+| 2026-11-17 | Análise | Nova extração somente leitura para testes de médias A/AF; três desfechos, padronização de produto/mês/UF, testes com agrupamentos CNPJ/CATMAT e Holm; benchmark fora do órgão e bootstrap complementar com recálculo; protocolo e auditorias em `analise/testes_medias_20261117` no workspace |
 | 2026-11-03 | 3 | Banco unificado criado; valores em `REAL` depois de erro de divisão inteira na primeira carga |
 | 2026-11-03 | 4 | Download restrito a Aberto-Fechado com item homologado |
 | 2026-11-03 | 5 | `baixar_api.py`: seleção pelo banco, duas passadas, motivo por compra e retomada |
