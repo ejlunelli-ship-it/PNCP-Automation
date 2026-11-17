@@ -32,4 +32,13 @@ guarda a própria cópia.
 .\.venv\Scripts\python.exe baixar_manual.py --auto --intervalo 0   # próxima compra assim que o zip chega
 ```
 
+**Vários meses ao mesmo tempo:** um terminal por mês, cada um com `--navegador chrome`, `edge` ou
+`firefox` (o padrão é o navegador do sistema). Instale o Tampermonkey e o userscript em cada navegador.
+Todos baixam na mesma pasta Downloads, e cada processo só pega os arquivos das próprias compras.
+
+```
+.\.venv\Scripts\python.exe baixar_manual.py --auto --intervalo 0 --de 2026-04 --ate 2026-04 --navegador chrome
+.\.venv\Scripts\python.exe baixar_manual.py --auto --intervalo 0 --de 2026-03 --ate 2026-03 --navegador edge
+```
+
 Detalhes, motivos registrados e resultados do teste: [docs/07 §5.3](../docs/07-metodologia-de-extracao.md).

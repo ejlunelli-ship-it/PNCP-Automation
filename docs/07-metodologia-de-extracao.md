@@ -189,6 +189,9 @@ Downloads > "Todos os relatórios e termos" é feito pelo userscript `navegador/
 - **Ritmo:** espera aleatória de `--intervalo` segundos entre compras (padrão 20 a 60). Depois de
   `--max-falhas` compras seguidas sem zip (padrão 3; `sem a opção no site` não conta), o script pausa e
   pergunta se continua, porque isso pode indicar bloqueio.
+- **Meses em paralelo:** `--navegador chrome|edge|firefox` abre as compras naquele navegador, e não no
+  padrão do sistema. Um terminal por mês, um navegador por terminal, cada um com o userscript instalado.
+  Todos baixam em Downloads; cada processo só reconhece os arquivos das próprias compras (pelo `idCompra`).
 - `idCompra` fora do formato de 17 dígitos (UASG, modalidade, número e ano) não é aberto: fica anotado como
   `idCompra inválido`.
 - Sem o userscript instalado, o `--auto` funciona como o modo manual: você clica e o zip é recolhido igual.

@@ -21,15 +21,21 @@ Enquanto espera o zip: [p] pula a compra (sem a opção no site), [s] encerra.
 Compras puladas ou sem zip não são reabertas, salvo com --repetir.
 
 Uso: python baixar_manual.py [--de 2026-10] [--ate 2025-11] [--parte k/n] [--repetir]
-                             [--auto [--intervalo 20-60] [--max-falhas 3]]
+                             [--auto [--intervalo 20-60] [--max-falhas 3]] [--navegador chrome|edge|firefox]
+
+Meses em paralelo: um terminal por mês, cada um com --navegador diferente (e o userscript instalado em
+cada navegador). Todos vigiam a pasta Downloads, mas cada um só pega os arquivos das próprias compras.
 """
 import argparse
+import os
 import random
 import re
 import shutil
+import subprocess
 import sys
 import time
 import webbrowser
+from pathlib import Path
 
 from config import DADOS
 from extrator_homologacao.selecao import selecionar
@@ -50,6 +56,16 @@ MOTIVOS_AUTO = {
     "acesso-nao-autorizado": "acesso não autorizado no site",
     "compra-nao-encontrada": "compra não encontrada no site",
     "erro-download": "erro do site no download",
+}
+# --navegador: onde cada um costuma ficar no Windows (o primeiro que existir)
+NAVEGADORES = {
+    "chrome": [r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+               r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+               r"%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe"],
+    "edge": [r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+             r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"],
+    "firefox": [r"C:\Program Files\Mozilla Firefox\firefox.exe",
+                r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"],
 }
 ID_COMPRA = re.compile(r"\d{17}")  # UASG (6) + modalidade (2) + número (5) + ano (4)
 AVISO_DESAFIO = 60  # segundos sem zip no --auto antes de lembrar de olhar a aba (desafio do captcha)
@@ -72,6 +88,17 @@ def intervalo(texto):
     if minimo < 0 or maximo < minimo:
         raise argparse.ArgumentTypeError("use segundos como 20-60 ou 30")
     return minimo, maximo
+
+
+def abridor(nome):
+    """Função que abre uma URL: no navegador padrão ('padrao') ou no executável de --navegador."""
+    if nome == "padrao":
+        return webbrowser.open
+    for caminho in NAVEGADORES[nome]:
+        exe = Path(os.path.expandvars(caminho))
+        if exe.exists():
+            return lambda url: subprocess.Popen([str(exe), url])
+    sys.exit(f"{nome} não encontrado em: {', '.join(NAVEGADORES[nome])}")
 
 
 def resolvida(destino):
@@ -169,7 +196,11 @@ def main():
                    help="no --auto, segundos de espera aleatória entre compras (padrão 20-60)")
     p.add_argument("--max-falhas", type=int, default=3, metavar="N",
                    help="no --auto, pausa depois de N compras seguidas sem zip (padrão 3; 0 desliga)")
+    p.add_argument("--navegador", choices=["padrao", *NAVEGADORES], default="padrao",
+                   help="navegador que abre as compras (padrão: o do sistema); permite rodar meses em paralelo, "
+                        "um navegador por mês, todos baixando na pasta Downloads")
     args = p.parse_args()
+    abrir = abridor(args.navegador)
     print(f"Vigiando downloads em: {DOWNLOADS}. Durante a espera: [p] pula, [s] encerra.")
     if args.auto:
         print("Modo --auto: o userscript navegador/compras_auto.user.js precisa estar ativo no navegador padrão, "
@@ -212,7 +243,7 @@ def main():
                 for velho in avisos_em_downloads(c["idCompra"]):  # de uma rodada anterior
                     velho.unlink(missing_ok=True)
                 url += "&pncpauto=1"
-            webbrowser.open(url)
+            abrir(url)
             abertas += 1
             arq, comando = esperar_zip(c["idCompra"], antes, args.auto)
             if comando == "s":
