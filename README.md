@@ -64,6 +64,10 @@ git push
 - O `baixar_manual.py` abre cada compra no navegador; clique em **Downloads → Todos os relatórios e
   termos**. Durante a espera, `p` pula a compra (sem a opção no site) e `s` encerra. Vai do mês mais
   recente para o mais antigo (`--de`, `--ate`); compras puladas só voltam com `--repetir`.
+- **Sem clicar:** com o userscript `navegador/compras_auto.user.js` instalado no Tampermonkey (ver
+  [navegador/README.md](navegador/README.md)), `baixar_manual.py --auto --intervalo 0` abre cada compra,
+  clica no download sozinho e passa para a próxima assim que o zip chega (cerca de 6 s por compra). O
+  hCaptcha não é contornado; se ele pedir um desafio, a aba espera você resolver.
 - Para dar push, a pessoa precisa ser colaboradora do repositório no GitHub.
 - Os PDFs ficam só na máquina de quem baixou (`dados/filtrados/`); o `sha256` no registro serve para
   conferi-los se forem juntados depois.

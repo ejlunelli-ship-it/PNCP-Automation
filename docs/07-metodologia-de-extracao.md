@@ -160,10 +160,53 @@ item (`manter_selecionados`). Mesmas compras do 5.1, do mês mais recente para o
 - **Anotação compartilhada:** compra com termos na pasta (sem `.pncp_parcial`) ou com `completo` no
   registro (5.4) está resolvida para os dois scripts. O `baixar_api.py` confere o disco antes de cada
   compra; o manual relê o registro antes de cada uma.
-- **Registro** em `<usuario>_manual.csv` (passada `manual`; motivos `zip baixado à mão`, `zip sem termos`,
-  `pulada no site`, `zip não recebido`). Entra em `busca_pdf` e no `pendentes_manual.csv`.
+- **Registro** em `<usuario>_manual.csv` (passada `manual`; motivos `zip baixado à mão`, `zip baixado (auto)`,
+  `zip sem termos`, `pulada no site`, `zip não recebido` e, no `--auto`, `sem a opção no site`,
+  `sem botão de downloads no site`, `acesso não autorizado no site`, `compra não encontrada no site`,
+  `erro do site no download`).
+  Entra em `busca_pdf` e no `pendentes_manual.csv`.
 - Compra pulada ([p]) ou sem zip no tempo-limite não é reaberta, salvo com `--repetir`.
-- Não consulta o PNCP nem grava no `pncp.db`. Opções: `--de`, `--ate`, `--parte k/n`, `--repetir`.
+- Não consulta o PNCP nem grava no `pncp.db`. Opções: `--de`, `--ate`, `--parte k/n`, `--repetir`, `--auto`.
+
+**Modo `--auto`** (`python baixar_manual.py --auto [--intervalo 20-60] [--max-falhas 3]`): o clique em
+Downloads > "Todos os relatórios e termos" é feito pelo userscript `navegador/compras_auto.user.js`.
+
+- **Instalação, uma vez:** instale a extensão Tampermonkey no navegador padrão (é o que o `webbrowser.open`
+  abre; no Chrome, ative também "Permitir scripts de usuário" ou o modo de desenvolvedor). Depois crie um
+  script novo com o conteúdo do arquivo. A cada versão nova (`@version`), cole o arquivo de novo: o
+  Tampermonkey guarda a própria cópia. Desligue a pergunta de onde salvar cada arquivo (Firefox:
+  Configurações > Geral > Arquivos e aplicativos; Chrome: Configurações > Downloads).
+- O userscript só age em abas abertas com `&pncpauto=1` na URL, que o `--auto` acrescenta. Ele espera o
+  botão de downloads, abre o menu, clica na opção e fecha a aba quando o site entrega o arquivo.
+- **hCaptcha:** não é contornado. O site gera o token do hCaptcha invisível como num clique feito à mão.
+  Se aparecer um desafio, o título da aba muda para `[PNCP auto] resolva o captcha` e você o resolve ali.
+  Depois de 60 s sem zip, o terminal lembra de olhar a aba.
+- **Sem zip:** o userscript baixa um aviso `pncp-auto-<idCompra>-<motivo>.txt` na pasta Downloads. O
+  script lê o aviso, move o arquivo para `dados/avisos_auto/` e anota o motivo. Os códigos são `sem-opcao`,
+  `sem-botao`, `acesso-nao-autorizado`, `compra-nao-encontrada` e `erro-download` (só `sem-opcao` e
+  `compra-nao-encontrada` não contam como falha). O aviso traz um diagnóstico da página (botões,
+  iframes e começo do texto) para ajustar os seletores.
+- **Ritmo:** espera aleatória de `--intervalo` segundos entre compras (padrão 20 a 60). Depois de
+  `--max-falhas` compras seguidas sem zip (padrão 3; `sem a opção no site` não conta), o script pausa e
+  pergunta se continua, porque isso pode indicar bloqueio.
+- `idCompra` fora do formato de 17 dígitos (UASG, modalidade, número e ano) não é aberto: fica anotado como
+  `idCompra inválido`.
+- Sem o userscript instalado, o `--auto` funciona como o modo manual: você clica e o zip é recolhido igual.
+- **Teste de 17/11/2026** (agosto de 2026, Firefox, uma pessoa), com `--intervalo 0`, ou seja, a próxima
+  compra abre assim que o zip chega:
+  - cerca de 6 s por compra, perto de 600 compras por hora. Mais de 800 zips sem nenhum desafio do hCaptcha.
+    Com o padrão de 20 a 60 s, eram cerca de 80 por hora;
+  - cerca de 12% dos zips só têm relatórios por grupo (`...-grupoN.pdf`). O `selecao.py` ainda não os
+    escolhe, então saem como `zip sem termos`, com o zip guardado inteiro na pasta da compra (ver
+    [05](05-decisoes-e-pendencias.md), pendência 1);
+  - casos raros: compra que o site não encontra (UASGs `000xxx` e 180211, por exemplo); página que fica
+    só no cabeçalho, sem carregar a compra, e volta ao normal na seguinte; compra ainda "aguardando
+    julgamento" no site (`sem a opção no site`).
+- Rodando sem terminal (em segundo plano), a pausa de `--max-falhas` não consegue ler a tecla: encerre o
+  processo e rode de novo. As compras já anotadas não são reabertas.
+- Seletores usados: o botão dentro de `app-botao-relatorios-compra` (na falta dele, botão com `aria-label`
+  começando por "Downloads" ou com o ícone `fa-download`) e o item do menu com o texto
+  "Todos os relatórios e termos". Se o site mudar, ajuste as constantes no topo do userscript.
 
 ### 5.4 Registro compartilhado (`registro.py`, pasta `registro/`, versionada)
 
@@ -258,3 +301,4 @@ ainda não decidida, só Menor Preço.
 | 2026-11-16 | 5 | `baixar_manual.py`: download manual do mais recente para o mais antigo, em paralelo ao `baixar_api.py`, anotado em `manual.csv`; o `baixar_api.py` pula compra já baixada à mão |
 | 2026-11-16 | 5 | Registro compartilhado em `registro/` (versionado), um arquivo por usuário, mês e origem, no lugar de `motivos.csv`/`manual.csv` em `dados/`; `--parte k/n` nos dois scripts; janeiro/2026 migrado |
 | 2026-11-16 | 5 | Lista de compras a baixar em `registro/compras/<mês>.csv` (`registro.py compras`), usada quando não há `dados/pncp.db` |
+| 2026-11-17 | 5.3 | `baixar_manual.py --auto`: o userscript `navegador/compras_auto.user.js` clica no download do zip e avisa quando a compra não o tem; intervalo aleatório entre compras e pausa após falhas seguidas; hCaptcha não contornado. Testado em 2026-08 com `--intervalo 0`: cerca de 6 s por compra, sem desafios; `idCompra` inválido é pulado |

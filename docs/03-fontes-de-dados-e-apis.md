@@ -208,6 +208,10 @@ lances por etapa**. Só os PDFs de relatório têm essa informação.
   `https://cnetmobile.estaleiro.serpro.gov.br/comprasnet-web/public/compras/acompanhamento-compra/item/1?compra=<idCompra>`
 - Menu **Downloads → Todos os relatórios e termos** → `relatorios-compra-<idCompra>.zip`.
 - Protegido por **hCaptcha**. Decisão do projeto: **não contornar** (ver [05](05-decisoes-e-pendencias.md)).
+- O botão chama `GET .../v2/compras/<idCompra>/zip-relatorios-compra?captcha=<token>`. O token vem do hCaptcha
+  invisível e é novo a cada requisição; o site também o exige para abrir a compra e listar os itens. Por isso
+  a URL não é chamada direto. O clique pode ser automatizado no navegador real com `baixar_manual.py --auto`
+  (ver [07 §5.3](07-metodologia-de-extracao.md)).
 - O zip só existe para compras com resultado (homologadas).
 
 ## Exemplos para teste

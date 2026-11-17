@@ -23,6 +23,7 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
 | 2026-11-16 | Varrer o PNCP de 2026-03 a 2026-10 (`baixar_api.py`) e, em paralelo, baixar os zips à mão de 2026-10 para trás (`baixar_manual.py`), com o que já foi feito anotado em disco e em `manual.csv` | Pedido do usuário: as duas frentes andam juntas sem repetir compra |
 | 2026-11-16 | Registro do que foi buscado/baixado versionado em `registro/`, um CSV por usuário, mês e origem (`api`/`manual`), só com acréscimo de linhas; divisão entre usuários por `--parte k/n`; inclui as buscas do PNCP sem resultado | Download colaborativo com mais de um usuário sem conflito de merge e sem repetir busca; os PDFs ficam fora do git |
 | 2026-11-16 | Lista das compras a baixar versionada em `registro/compras/<mês>.csv`, usada quando não há `pncp.db` | Quem só baixa não precisa copiar os 16 GB do banco |
+| 2026-11-17 | Automatizar o clique do download do zip com userscript no navegador real (`baixar_manual.py --auto`, `navegador/compras_auto.user.js`) em vez de Playwright; chamar a URL do zip direto foi descartado | A URL exige um token novo do hCaptcha a cada requisição; o userscript usa o token gerado pelo próprio site, sem marcas de automação, e o usuário resolve os desafios |
 | — | Melhor lance da etapa conta mesmo se o fornecedor for desclassificado depois; propostas iniciais entram na etapa aberta | Medir a dinâmica da disputa, não só o resultado |
 
 ## Pendências e próximos passos (por prioridade)
@@ -63,8 +64,11 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
    ainda não implementado nem priorizado.
 6. Compra marcada `.pncp_parcial` não é reconsultada no PNCP. Se o órgão publicar depois, só o zip
    resolve. Avaliar uma opção `--reconsultar-pncp`.
-7. Prototipar o Playwright com perfil persistente para abrir a compra e clicar no menu, com o
-   captcha resolvido pelo usuário. Risco: a automação pode aumentar os desafios do hCaptcha.
+7. **`baixar_manual.py --auto`** (userscript, desde 2026-11-17). Primeiro teste em 2026-08, com
+   `--intervalo 0`: cerca de 6 s por compra e nenhum desafio do hCaptcha em mais de 800 zips. Falta ver
+   se o ritmo se mantém em rodadas longas e com mais de um usuário (`--parte`). O Playwright com perfil
+   persistente fica como alternativa se o userscript deixar de bastar (risco: mais desafios do hCaptcha).
+   Os zips só com relatórios por grupo (cerca de 12%) dependem da pendência 1.
 8. **Usar a tabela `resultados` na análise** (coleta interrompida em 2026-11-03 a pedido do usuário; retoma com `python coleta_resultados.py`): o valor de `itens` diferiu do resultado ativo em 118 de 11.639 itens (1,0%) em dois dias testados.
    Depois da coleta (`coleta_resultados.py`) e da carga (`banco_unificado.py --resultados`), medir a diferença na base toda e decidir
    se `desconto_final` passa a usar o resultado ativo. Os meses de itens já coletados não foram refeitos com a nova chave.
