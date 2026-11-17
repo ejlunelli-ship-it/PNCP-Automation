@@ -79,7 +79,9 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
 
 ## Questões em aberto
 
-- **17/11/2026 — testes de médias concluídos:** [relatório e arquivos](../../analise/testes_medias_20261117/relatorio_completo.md). Log do preço: associação negativa no teste principal, com sensibilidade à inferência; desconto e razão preço/mediana sem diferença significativa no principal após Holm. A razão em nível é dominada por extremos confirmados no cadastro, ainda sem certificação de equivalência física. Prioridade de auditoria: CATMAT 268493, item `id=1114157`, preço registrado 16.100, quantidade 1 e apresentação COMPRIMIDO versus mediana 0,068; não corrigido por conjectura. Banco preservado; testes não identificam efeito causal.
+- **17/11/2026 — comparação anual por sigilo concluída:** [testes e documentação versionados](08-testes-medias-precos.md), com 30 especificações, seis testes principais, Holm e bootstrap complementar. O desconto dos sigilosos utiliza apenas estimados positivos disponíveis no snapshot. Resultados e limitações não identificam efeito causal. A auditoria dos índices extremos continua pendente de documentação física do fornecimento.
+
+- **17/11/2026 — testes de médias concluídos:** [relatório e arquivos](../analises/testes_medias_20261117/relatorio_completo.md). Log do preço: associação negativa no teste principal, com sensibilidade à inferência; desconto e razão preço/mediana sem diferença significativa no principal após Holm. A razão em nível é dominada por extremos confirmados no cadastro, ainda sem certificação de equivalência física. Prioridade de auditoria: CATMAT 268493, item `id=1114157`, preço registrado 16.100, quantidade 1 e apresentação COMPRIMIDO versus mediana 0,068; não corrigido por conjectura. Banco preservado; testes não identificam efeito causal.
 
 - Proposta inicial de fornecedor depois inabilitado deve definir o melhor lance aberto? Em Fortaleza
   90119/2025, item 1, ela dá 0,53 contra 0,74 dos lances, e o `ganho_fechada` zera.

@@ -1,0 +1,16 @@
+{
+  "especificacoes": 15,
+  "principal_testes": 3,
+  "amostras_pesos_elegibilidade_verificados": true,
+  "amostra_comum_mesmos_itens": true,
+  "Holm_reproduzido": true,
+  "JSON_CSV_XLSX_coincidem": true,
+  "arquivos_entrada_preservados": true,
+  "hashes_entrega": {
+    "relatorio_completo.md": "1684cb58145bfa80eddd6dddb1bc606536b68659a2ce1174282338f327b2a049",
+    "resultados_completos.xlsx": "1577690be50bfc790d35a39d217a6260c2d3abc35e22e447e658e298463f29d5",
+    "resultados.json": "733e03d9676fcf28081aae6d6df16e473eaa707b64943e80f8ff662e2c0046fc",
+    "todas_estimativas.csv": "c41461c610e69dba1a93d09d7ee6d80d44bc249257a7e4dd28788efa14f05ab5",
+    "validacao_final.json": "3c122149280a7b59adae948d50da12406ee87822895fe099f36d0c5d3c961446"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "data": "2026-11-17T10:00:50",
+  "hashes": {
+    "protocolo.md": "93f076376a288a364c87a1429fbe7f490952a455ab38699d2e6e7023781a43f8",
+    "emenda_antes_estimacao.md": "46b286aa234e3becdb8b8a028d3ec531df6fe0b311a5365a328ee2ab3ae47c33",
+    "preparar.py": "d9aa7f7256a920b6f09f172b216049ea30c8019f4a9a257c4ec51e21d39f2370",
+    "estatistica.py": "0a8be9dec26eb1c7d88ca9ee1a9ed3372bf4ada90f8efbb431c8ed3aa37c0ca5",
+    "executar.py": "0a9e17039a3d31311db6c495f960a2ac434d5f5ad016f204bd8f3712703fdace",
+    "base_principal.pkl": "468566e0aecf82996f5d6ddef6af7f130e7da213ba554928f074f5c314b57147",
+    "base_ampliada.pkl": "942b88649e15fca64629fb3fbfc117f99cd78564f4a67c36e06da22c28ccd7ab"
+  },
+  "replicacoes": 1999,
+  "seed": 20261117
+}

@@ -1,0 +1,16 @@
+{
+  "wls_sintetico": {
+    "itens": 60,
+    "estratos": 12,
+    "erro_coeficiente": 0.0,
+    "erro_variancia": 6.938893903907228e-17
+  },
+  "wls_dados_reais": {
+    "itens": 148,
+    "estratos": 35,
+    "erro_coeficiente": 2.498001805406602e-16,
+    "erro_variancia": 2.6020852139652106e-18
+  },
+  "medianas_bootstrap_expansao_literal": 16,
+  "bootstrap_unitario_reproduz_original": true
+}

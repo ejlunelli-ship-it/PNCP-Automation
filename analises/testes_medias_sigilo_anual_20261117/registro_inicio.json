@@ -1,0 +1,18 @@
+{
+  "data": "2026-11-17T10:22:49",
+  "banco": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\dados\\pncp.db",
+  "bytes": 16048373760,
+  "mtime_ns": 1794341025272657700,
+  "origem_extracao": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\analise\\testes_medias_20261117",
+  "hashes_bases": {
+    "base_ampliada.pkl": "942b88649e15fca64629fb3fbfc117f99cd78564f4a67c36e06da22c28ccd7ab",
+    "base_principal.pkl": "468566e0aecf82996f5d6ddef6af7f130e7da213ba554928f074f5c314b57147"
+  },
+  "hashes_scripts": {
+    "protocolo.md": "8a8bf5e415b3269ba10c266787cc4e9b687ac22864db6628d0d5f9a267f90183",
+    "estatistica.py": "4604f7b4c294f2fb42e0223810c8fdc8be1201c4bf1fb5d12dba9dc157939d55",
+    "executar.py": "70779b3c8cdf5f3b69479e831c3fa301577c598987f54ecab7c29b6a19b4fdbe"
+  },
+  "replicacoes": 1999,
+  "seed": 20261117
+}

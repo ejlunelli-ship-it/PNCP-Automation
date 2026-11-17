@@ -1,0 +1,24 @@
+{
+  "banco": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\dados\\pncp.db",
+  "bytes": 16048373760,
+  "mtime_ns": 1794341025272657700,
+  "execucao": "2026-11-17T09:53:54",
+  "criterios_modos": {
+    "Aberto|Maior desconto": 15727,
+    "Aberto|Menor preço": 2435069,
+    "Aberto-Fechado|Maior desconto": 23990,
+    "Aberto-Fechado|Menor preço": 1500493,
+    "Fechado-Aberto|Maior desconto": 265,
+    "Fechado-Aberto|Menor preço": 20021,
+    "Aberto|Não se aplica": 2
+  },
+  "linhas": 3955583,
+  "compras": 181555,
+  "duplicatas_compra_item": 0,
+  "codigo_positivo_por_modo": {
+    "0": 2122094,
+    "1": 1299483,
+    "2": 17740
+  },
+  "pdm_classe_validos": 3439317
+}

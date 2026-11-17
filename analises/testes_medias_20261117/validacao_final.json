@@ -1,0 +1,10 @@
+{
+  "itens_conferidos_SQLite": 179,
+  "campos_precos_quantidades_status_identidades_coincidem": true,
+  "referencias_cnpj_excluido": true,
+  "hashes_entradas_scripts_protocolo_preservados": true,
+  "banco_preservado": true,
+  "maior_razao": 236764.70588235292,
+  "maior_preco": 16100.0,
+  "mediana_doadora_maior_razao": 0.068
+}

@@ -232,7 +232,9 @@ ainda não decidida, só Menor Preço.
 
 ## Histórico de mudanças
 
-**Análise de médias de 17/11/2026:** nova leitura somente leitura deste `dados/pncp.db`, registrada em [testes de médias](../../analise/testes_medias_20261117/relatorio_completo.md). Mantém pregão eletrônico, materiais homologados, Menor preço, identidade de catálogo/apresentação e coorte madura; compara A/AF por produto×mês×UF. A recorrência foi novamente verificada somente nesses dois modos. Há desfechos separados para log do preço, desconto e razão para mediana contemporânea de outros órgãos. Protocolo, emenda anterior à estimação, consulta, amostras, validação direta no SQLite e inferência com agrupamentos estão na pasta da análise. Não altera coleta, parser ou banco.
+**Análise anual por sigilo de 17/11/2026:** [documentação, resultados e reprodução](08-testes-medias-precos.md). As extrações anteriores foram preservadas por hash; 305 registros foram conferidos novamente no SQLite. Mês foi substituído por ano nos estratos e referências, com análises separadas para sigilo 0/1 e desconto calculado quando o estimado é positivo em cada grupo. Metodologia, 30 testes e validações estão versionados em `analises/`; os arquivos volumosos permanecem locais.
+
+**Análise de médias de 17/11/2026:** nova leitura somente leitura deste `dados/pncp.db`, registrada em [testes de médias](../analises/testes_medias_20261117/relatorio_completo.md). Mantém pregão eletrônico, materiais homologados, Menor preço, identidade de catálogo/apresentação e coorte madura; compara A/AF por produto×mês×UF. A recorrência foi novamente verificada somente nesses dois modos. Há desfechos separados para log do preço, desconto e razão para mediana contemporânea de outros órgãos. Protocolo, emenda anterior à estimação, consulta, amostras, validação direta no SQLite e inferência com agrupamentos estão na pasta da análise. Não altera coleta, parser ou banco.
 
 | Data | Etapa | Mudança |
 |---|---|---|

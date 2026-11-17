@@ -1,0 +1,3662 @@
+{
+  "principal_s0_A": {
+    "estimavel": true,
+    "analise": "principal_s0_A",
+    "familia": "principal",
+    "sigilo": 0,
+    "codigo": "A",
+    "desfecho": "logp",
+    "itens": 75930,
+    "pregoes": 8252,
+    "orgaos": 534,
+    "catmats": 2146,
+    "produtos": 2725,
+    "estratos": 15552,
+    "media_A": 0.8526590631520002,
+    "media_AF": 0.7613849135930106,
+    "diferenca": -0.09127414955898981,
+    "infer_duplo": {
+      "ep": 0.03020746006166677,
+      "t": -3.021576437497855,
+      "gl": 533,
+      "p": 0.002635388888236453,
+      "ic95": [
+        -0.15061443104404362,
+        -0.03193386807393599
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.029824661312984956,
+      "t": -3.060358292124216,
+      "gl": 533,
+      "p": 0.00232205775668019,
+      "ic95": [
+        -0.14986245171666776,
+        -0.032685847401311856
+      ]
+    },
+    "variancias": {
+      "orgao": 0.0008895104224342615,
+      "catmat": 6.044420907027007e-05,
+      "intersecao": 3.746398812733868e-05,
+      "duplo": 0.000912490643377193
+    },
+    "descritivas": {
+      "0": {
+        "itens": 46044,
+        "pregoes": 5136,
+        "orgaos": 390,
+        "produtos": 2725,
+        "media_bruta": 0.46802499802283704,
+        "dp": 2.1033300824027323,
+        "mediana": 0.6151856390902335,
+        "min": -5.809142990314028,
+        "max": 13.69040074692143,
+        "q01": -3.506557897319982,
+        "q25": -1.2039728043259361,
+        "q75": 1.7867469274045107,
+        "q99": 6.2197004513866,
+        "assimetria": 0.4304329767809895,
+        "curtose_excesso": 0.8939458476289817,
+        "media_padronizada": 0.8526590631520002,
+        "media_logq_padronizada": 7.246274714762554,
+        "srp_padronizado": 0.8745215020509334
+      },
+      "1": {
+        "itens": 29886,
+        "pregoes": 3116,
+        "orgaos": 241,
+        "produtos": 2725,
+        "media_bruta": 0.5312435732417996,
+        "dp": 2.07155533000739,
+        "mediana": 0.6626879730752367,
+        "min": -5.952243833954701,
+        "max": 13.227911875392369,
+        "q01": -3.4112477175156566,
+        "q25": -1.0216512475319814,
+        "q75": 1.7867469274045107,
+        "q99": 6.431772515626564,
+        "assimetria": 0.4263079113836602,
+        "curtose_excesso": 0.8303672522691756,
+        "media_padronizada": 0.7613849135930106,
+        "media_logq_padronizada": 7.257694254620254,
+        "srp_padronizado": 0.9418989003359182
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 7,
+        "peso_maior": 0.2733073870393716,
+        "peso_top10": 0.5035829329783142,
+        "orgaos_equivalentes_concentracao": 11.770898119182464
+      },
+      "1": {
+        "maior_orgao": 7,
+        "peso_maior": 0.3190473594264104,
+        "peso_top10": 0.5904418480325117,
+        "orgaos_equivalentes_concentracao": 8.64457998675864
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.31147119341563784,
+    "concentracao_score_quadrado_max": 0.29029546736496203,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -0.13443327858369924,
+        0.007791628932879213
+      ],
+      "ic_percentil": [
+        -0.19033992805085884,
+        -0.04811502053428037
+      ],
+      "p": 0.074,
+      "dp": 0.03656724794520172,
+      "media": -0.1016685049185551,
+      "fracao_media_estratos_retidos": 0.5980411116051854,
+      "fracao_min_estratos_retidos": 0.23707561728395063
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.01581233332941872,
+    "p_holm3": 0.00790616666470936,
+    "p_bootstrap_holm6": 0.37,
+    "p_bootstrap_holm3": 0.148
+  },
+  "principal_s0_B": {
+    "estimavel": true,
+    "analise": "principal_s0_B",
+    "familia": "principal",
+    "sigilo": 0,
+    "codigo": "B",
+    "desfecho": "desconto",
+    "itens": 75930,
+    "pregoes": 8252,
+    "orgaos": 534,
+    "catmats": 2146,
+    "produtos": 2725,
+    "estratos": 15552,
+    "media_A": 0.3203601274796545,
+    "media_AF": 0.35321927831936883,
+    "diferenca": 0.03285915083971433,
+    "infer_duplo": {
+      "ep": 0.011043161786314117,
+      "t": 2.97552018846966,
+      "gl": 533,
+      "p": 0.003057611644777989,
+      "ic95": [
+        0.011165690762398865,
+        0.054552610917029794
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.010930364389577991,
+      "t": 3.006226477778293,
+      "gl": 533,
+      "p": 0.0027697729667515813,
+      "ic95": [
+        0.011387272757688728,
+        0.05433102892173993
+      ]
+    },
+    "variancias": {
+      "orgao": 0.00011947286568895464,
+      "catmat": 6.910765232075576e-06,
+      "intersecao": 4.432208682321827e-06,
+      "duplo": 0.00012195142223870839
+    },
+    "descritivas": {
+      "0": {
+        "itens": 46044,
+        "pregoes": 5136,
+        "orgaos": 390,
+        "produtos": 2725,
+        "media_bruta": 0.3225823473571483,
+        "dp": 0.25468337366989546,
+        "mediana": 0.28971275426058274,
+        "min": -1.6712328767123288,
+        "max": 0.9999992888433749,
+        "q01": 0.0,
+        "q25": 0.0965762385471628,
+        "q75": 0.5059580355170141,
+        "q99": 0.9179632855420071,
+        "assimetria": 0.4494292073058453,
+        "curtose_excesso": -0.618037760642113,
+        "media_padronizada": 0.3203601274796545,
+        "media_logq_padronizada": 7.246274714762554,
+        "srp_padronizado": 0.8745215020509334
+      },
+      "1": {
+        "itens": 29886,
+        "pregoes": 3116,
+        "orgaos": 241,
+        "produtos": 2725,
+        "media_bruta": 0.357978675696017,
+        "dp": 0.264458826855032,
+        "mediana": 0.33368045780757644,
+        "min": -11.857142857142856,
+        "max": 0.9975964793500338,
+        "q01": 0.0,
+        "q25": 0.14732409063804414,
+        "q75": 0.5416666666666666,
+        "q99": 0.9302691029900335,
+        "assimetria": -3.004389296100121,
+        "curtose_excesso": 151.4152009218872,
+        "media_padronizada": 0.35321927831936883,
+        "media_logq_padronizada": 7.257694254620254,
+        "srp_padronizado": 0.9418989003359182
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 7,
+        "peso_maior": 0.2733073870393716,
+        "peso_top10": 0.5035829329783142,
+        "orgaos_equivalentes_concentracao": 11.770898119182464
+      },
+      "1": {
+        "maior_orgao": 7,
+        "peso_maior": 0.3190473594264104,
+        "peso_top10": 0.5904418480325117,
+        "orgaos_equivalentes_concentracao": 8.64457998675864
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.31147119341563784,
+    "concentracao_score_quadrado_max": 0.34634116808150855,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        0.014593353773357326,
+        0.06566115911239091
+      ],
+      "ic_percentil": [
+        5.714256703774577e-05,
+        0.05112494790607133
+      ],
+      "p": 0.003,
+      "dp": 0.012925138161388915,
+      "media": 0.030433857596435483,
+      "fracao_media_estratos_retidos": 0.5980411116051854,
+      "fracao_min_estratos_retidos": 0.23707561728395063
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.01581233332941872,
+    "p_holm3": 0.00790616666470936,
+    "p_bootstrap_holm6": 0.018000000000000002,
+    "p_bootstrap_holm3": 0.009000000000000001
+  },
+  "principal_s0_C": {
+    "estimavel": true,
+    "analise": "principal_s0_C",
+    "familia": "principal",
+    "sigilo": 0,
+    "codigo": "C",
+    "desfecho": "relativo",
+    "itens": 39971,
+    "pregoes": 4711,
+    "orgaos": 367,
+    "catmats": 858,
+    "produtos": 966,
+    "estratos": 4673,
+    "media_A": 362.1782266818621,
+    "media_AF": 86.30004709935811,
+    "diferenca": -275.87817958250395,
+    "infer_duplo": {
+      "ep": 208.90438890176316,
+      "t": -1.3205954218234979,
+      "gl": 366,
+      "p": 0.1874614663005264,
+      "ic95": [
+        -686.6817085386188,
+        134.9253493736109
+      ]
+    },
+    "infer_orgao": {
+      "ep": 201.1628726073434,
+      "t": -1.3714169817061614,
+      "gl": 366,
+      "p": 0.1710851946888156,
+      "ic95": [
+        -671.4582743640769,
+        119.70191519906899
+      ]
+    },
+    "variancias": {
+      "orgao": 40466.50131563827,
+      "catmat": 13954.259733487004,
+      "intersecao": 10779.717346706162,
+      "duplo": 43641.043702419105
+    },
+    "descritivas": {
+      "0": {
+        "itens": 26078,
+        "pregoes": 3142,
+        "orgaos": 271,
+        "produtos": 966,
+        "media_bruta": 512.5622462317107,
+        "dp": 23367.490077535465,
+        "mediana": 1.0057581786030063,
+        "min": 0.004197080291970802,
+        "max": 2459243.58974359,
+        "q01": 0.4285714285714285,
+        "q25": 0.9139090056079742,
+        "q75": 1.1633823529411766,
+        "q99": 84.22222222222223,
+        "assimetria": 69.88952531418573,
+        "curtose_excesso": 5947.013379153957,
+        "media_padronizada": 362.1782266818621,
+        "media_logq_padronizada": 7.827012068131368,
+        "srp_padronizado": 0.8228535861780488
+      },
+      "1": {
+        "itens": 13893,
+        "pregoes": 1569,
+        "orgaos": 155,
+        "produtos": 966,
+        "media_bruta": 180.2558164253728,
+        "dp": 11640.789940278302,
+        "mediana": 0.9962506695232994,
+        "min": 0.008992131884600974,
+        "max": 1006630.4347826086,
+        "q01": 0.42193615857826383,
+        "q25": 0.885558583106267,
+        "q75": 1.1428571428571428,
+        "q99": 9.045341730717434,
+        "assimetria": 72.87205528320193,
+        "curtose_excesso": 5628.450174533507,
+        "media_padronizada": 86.30004709935811,
+        "media_logq_padronizada": 7.7693949006785,
+        "srp_padronizado": 0.9502848582214087
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 7,
+        "peso_maior": 0.14635797394406916,
+        "peso_top10": 0.3929465597438573,
+        "orgaos_equivalentes_concentracao": 29.843594355823946
+      },
+      "1": {
+        "maior_orgao": 7,
+        "peso_maior": 0.17493527705383044,
+        "peso_top10": 0.495516064350325,
+        "orgaos_equivalentes_concentracao": 20.125966761442417
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.07425636635994008,
+    "concentracao_score_quadrado_max": 0.3280871958784003,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -827.1045224236461,
+        322.94430463600463
+      ],
+      "ic_percentil": [
+        -874.7006638010125,
+        275.3481632586382
+      ],
+      "p": 0.281,
+      "dp": 292.6946557825487,
+      "media": -247.5618581247545,
+      "fracao_media_estratos_retidos": 0.48362497105603947,
+      "fracao_min_estratos_retidos": 0.2240530708324417
+    },
+    "bootstrap_recalcula_referencia": true,
+    "p_holm6": 0.7173632238835664,
+    "p_holm3": 0.1874614663005264,
+    "p_bootstrap_holm6": 1.0,
+    "p_bootstrap_holm3": 0.281
+  },
+  "principal_s1_A": {
+    "estimavel": true,
+    "analise": "principal_s1_A",
+    "familia": "principal",
+    "sigilo": 1,
+    "codigo": "A",
+    "desfecho": "logp",
+    "itens": 33425,
+    "pregoes": 6930,
+    "orgaos": 105,
+    "catmats": 1612,
+    "produtos": 2032,
+    "estratos": 7654,
+    "media_A": 1.0962258848077302,
+    "media_AF": 1.0613668856522198,
+    "diferenca": -0.03485899915551036,
+    "infer_duplo": {
+      "ep": 0.025785230811872704,
+      "t": -1.3518978910772317,
+      "gl": 104,
+      "p": 0.1793408059708916,
+      "ic95": [
+        -0.08599207948449836,
+        0.01627408117347763
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.02546292718737553,
+      "t": -1.3690098903001766,
+      "gl": 104,
+      "p": 0.17394567920160273,
+      "ic95": [
+        -0.08535293930219875,
+        0.01563494099117802
+      ]
+    },
+    "variancias": {
+      "orgao": 0.000648360660949588,
+      "catmat": 5.605460109212163e-05,
+      "intersecao": 3.953713402016014e-05,
+      "duplo": 0.0006648781280215495
+    },
+    "descritivas": {
+      "0": {
+        "itens": 18033,
+        "pregoes": 3797,
+        "orgaos": 73,
+        "produtos": 2032,
+        "media_bruta": 1.0370313564365985,
+        "dp": 2.4331136546874457,
+        "mediana": 1.0337892826241002,
+        "min": -4.199705077879927,
+        "max": 14.698753166992192,
+        "q01": -3.3524072174927233,
+        "q25": -0.6733445532637656,
+        "q75": 2.302585092994046,
+        "q99": 8.258298102394878,
+        "assimetria": 0.645228231223611,
+        "curtose_excesso": 0.8939744813604245,
+        "media_padronizada": 1.0962258848077302,
+        "media_logq_padronizada": 7.769264143406612,
+        "srp_padronizado": 0.8040930296769417
+      },
+      "1": {
+        "itens": 15392,
+        "pregoes": 3133,
+        "orgaos": 60,
+        "produtos": 2032,
+        "media_bruta": 1.2393542378157805,
+        "dp": 2.631999600744801,
+        "mediana": 1.1314021114911006,
+        "min": -4.104394898075602,
+        "max": 11.982929094215963,
+        "q01": -3.356305925239152,
+        "q25": -0.5108256237659907,
+        "q75": 2.4501426573516603,
+        "q99": 9.405156874129453,
+        "assimetria": 0.7289387999274848,
+        "curtose_excesso": 0.7954658403323975,
+        "media_padronizada": 1.0613668856522198,
+        "media_logq_padronizada": 7.762862837536799,
+        "srp_padronizado": 0.7569113372856133
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 8,
+        "peso_maior": 0.3039889595216096,
+        "peso_top10": 0.8593639561167267,
+        "orgaos_equivalentes_concentracao": 5.5775917668694595
+      },
+      "1": {
+        "maior_orgao": 8,
+        "peso_maior": 0.21279769681585722,
+        "peso_top10": 0.8107489137898073,
+        "orgaos_equivalentes_concentracao": 8.870204348085036
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.3035014371570421,
+    "concentracao_score_quadrado_max": 0.7376821633389059,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -0.09250691515833294,
+        0.015531024411528385
+      ],
+      "ic_percentil": [
+        -0.08524902272254911,
+        0.022788916847312213
+      ],
+      "p": 0.269,
+      "dp": 0.029203631027239708,
+      "media": -0.033749954283174725,
+      "fracao_media_estratos_retidos": 0.5985675748770648,
+      "fracao_min_estratos_retidos": 0.0799581917951398
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.7173632238835664,
+    "p_holm3": 0.5380224179126748,
+    "p_bootstrap_holm6": 1.0,
+    "p_bootstrap_holm3": 0.807
+  },
+  "principal_s1_B": {
+    "estimavel": true,
+    "analise": "principal_s1_B",
+    "familia": "principal",
+    "sigilo": 1,
+    "codigo": "B",
+    "desfecho": "desconto",
+    "itens": 32896,
+    "pregoes": 6881,
+    "orgaos": 105,
+    "catmats": 1606,
+    "produtos": 2026,
+    "estratos": 7474,
+    "media_A": 0.30670234006855057,
+    "media_AF": 0.32364749494617123,
+    "diferenca": 0.016945154877620727,
+    "infer_duplo": {
+      "ep": 0.015505832770958317,
+      "t": 1.0928245601460498,
+      "gl": 104,
+      "p": 0.27699579581990563,
+      "ic95": [
+        -0.013803493386570748,
+        0.0476938031418122
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.015394030385105634,
+      "t": 1.1007614285350424,
+      "gl": 104,
+      "p": 0.2735417420603363,
+      "ic95": [
+        -0.013581785059874465,
+        0.04747209481511592
+      ]
+    },
+    "variancias": {
+      "orgao": 0.0002369761714975555,
+      "catmat": 1.2289952363092594e-05,
+      "intersecao": 8.835273939723257e-06,
+      "duplo": 0.00024043084992092487
+    },
+    "descritivas": {
+      "0": {
+        "itens": 17791,
+        "pregoes": 3777,
+        "orgaos": 73,
+        "produtos": 2026,
+        "media_bruta": 0.315373339098016,
+        "dp": 0.2546149436776323,
+        "mediana": 0.2805000000000001,
+        "min": -2.529411764705882,
+        "max": 0.9996196943972835,
+        "q01": 0.0,
+        "q25": 0.10169385261144465,
+        "q75": 0.4856112426917535,
+        "q99": 0.9487788501517218,
+        "assimetria": 0.4323087312899154,
+        "curtose_excesso": 0.9241167225931717,
+        "media_padronizada": 0.30670234006855057,
+        "media_logq_padronizada": 7.772018106241841,
+        "srp_padronizado": 0.7996425005548986
+      },
+      "1": {
+        "itens": 15105,
+        "pregoes": 3104,
+        "orgaos": 60,
+        "produtos": 2026,
+        "media_bruta": 0.33486231345523215,
+        "dp": 0.25235578062174063,
+        "mediana": 0.29999999999999993,
+        "min": -2.6607142857142856,
+        "max": 0.99964647009061,
+        "q01": 0.0,
+        "q25": 0.13043478260869568,
+        "q75": 0.5027436527436526,
+        "q99": 0.9454842511978485,
+        "assimetria": 0.31251545664547997,
+        "curtose_excesso": 2.0340412392843614,
+        "media_padronizada": 0.32364749494617123,
+        "media_logq_padronizada": 7.764016065142655,
+        "srp_padronizado": 0.7514137064825731
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 8,
+        "peso_maior": 0.2884307594565695,
+        "peso_top10": 0.8559546499131335,
+        "orgaos_equivalentes_concentracao": 5.740368646941542
+      },
+      "1": {
+        "maior_orgao": 8,
+        "peso_maior": 0.1973847433005849,
+        "peso_top10": 0.8078858513264452,
+        "orgaos_equivalentes_concentracao": 9.131192375205156
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.30131121220230134,
+    "concentracao_score_quadrado_max": 0.32044045348829914,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -0.025250991670783735,
+        0.047589345328649446
+      ],
+      "ic_percentil": [
+        -0.01369903557340799,
+        0.05914130142602519
+      ],
+      "p": 0.355,
+      "dp": 0.018695878002455608,
+      "media": 0.019832304559153337,
+      "fracao_media_estratos_retidos": 0.5983011575362206,
+      "fracao_min_estratos_retidos": 0.08188386406208188
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.7173632238835664,
+    "p_holm3": 0.5539915916398113,
+    "p_bootstrap_holm6": 1.0,
+    "p_bootstrap_holm3": 0.807
+  },
+  "principal_s1_C": {
+    "estimavel": true,
+    "analise": "principal_s1_C",
+    "familia": "principal",
+    "sigilo": 1,
+    "codigo": "C",
+    "desfecho": "relativo",
+    "itens": 16932,
+    "pregoes": 4130,
+    "orgaos": 98,
+    "catmats": 737,
+    "produtos": 810,
+    "estratos": 2856,
+    "media_A": 6.162426025193637,
+    "media_AF": 935.0331345096671,
+    "diferenca": 928.8707084844734,
+    "infer_duplo": {
+      "ep": 1046.0819871231265,
+      "t": 0.8879521107508975,
+      "gl": 97,
+      "p": 0.3767630382534822,
+      "ic95": [
+        -1147.312465830378,
+        3005.053882799325
+      ]
+    },
+    "infer_orgao": {
+      "ep": 690.1233517298135,
+      "t": 1.3459488164778557,
+      "gl": 97,
+      "p": 0.18145637152095012,
+      "ic95": [
+        -440.83310890337157,
+        2298.574525872318
+      ]
+    },
+    "variancias": {
+      "orgao": 476270.2406027919,
+      "catmat": 1044000.981315686,
+      "intersecao": 425983.6981350087,
+      "duplo": 1094287.523783469
+    },
+    "descritivas": {
+      "0": {
+        "itens": 9993,
+        "pregoes": 2480,
+        "orgaos": 64,
+        "produtos": 810,
+        "media_bruta": 3.7671548807508386,
+        "dp": 150.86008913067383,
+        "mediana": 1.0035223670306446,
+        "min": 0.0040882917466410745,
+        "max": 13261.275675675675,
+        "q01": 0.34362991967871487,
+        "q25": 0.9035532994923858,
+        "q75": 1.1864406779661016,
+        "q99": 5.947232295586725,
+        "assimetria": 77.08711611124727,
+        "curtose_excesso": 6367.062878719732,
+        "media_padronizada": 6.162426025193637,
+        "media_logq_padronizada": 8.182012599914728,
+        "srp_padronizado": 0.7891199096098478
+      },
+      "1": {
+        "itens": 6939,
+        "pregoes": 1650,
+        "orgaos": 53,
+        "produtos": 810,
+        "media_bruta": 385.7247179321672,
+        "dp": 32012.534724519042,
+        "mediana": 0.9770453207769275,
+        "min": 0.015125324114088162,
+        "max": 2666666.666666667,
+        "q01": 0.39999999999999997,
+        "q25": 0.8598245614035087,
+        "q75": 1.1009637661013807,
+        "q99": 8.155072612921657,
+        "assimetria": 83.3006568718953,
+        "curtose_excesso": 6938.999623460543,
+        "media_padronizada": 935.0331345096671,
+        "media_logq_padronizada": 8.328519751917113,
+        "srp_padronizado": 0.7559189233459372
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 8,
+        "peso_maior": 0.21242057522586374,
+        "peso_top10": 0.7951452663378407,
+        "orgaos_equivalentes_concentracao": 8.792678945284894
+      },
+      "1": {
+        "maior_orgao": 497,
+        "peso_maior": 0.176837499930444,
+        "peso_top10": 0.7978606594152813,
+        "orgaos_equivalentes_concentracao": 12.379979946696634
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.14635854341736695,
+    "concentracao_score_quadrado_max": 0.5528692917729434,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -1853.4449454867836,
+        1869.4957355375043
+      ],
+      "ic_percentil": [
+        -11.754318568557412,
+        3711.1863624557304
+      ],
+      "p": 0.549,
+      "dp": 1236.100111452953,
+      "media": 988.02537932043,
+      "fracao_media_estratos_retidos": 0.44926735076221586,
+      "fracao_min_estratos_retidos": 0.10259103641456582
+    },
+    "bootstrap_recalcula_referencia": true,
+    "p_holm6": 0.7173632238835664,
+    "p_holm3": 0.5539915916398113,
+    "p_bootstrap_holm6": 1.0,
+    "p_bootstrap_holm3": 0.807
+  },
+  "condicoes_compra_s0_A": {
+    "estimavel": true,
+    "analise": "condicoes_compra_s0_A",
+    "familia": "condicoes_compra",
+    "sigilo": 0,
+    "codigo": "A",
+    "desfecho": "logp",
+    "itens": 12618,
+    "pregoes": 2812,
+    "orgaos": 298,
+    "catmats": 1068,
+    "produtos": 1234,
+    "estratos": 5269,
+    "media_A": 0.44819196212768486,
+    "media_AF": 0.3866888088955318,
+    "diferenca": -0.061503153232152996,
+    "infer_duplo": {
+      "ep": 0.012383595741559079,
+      "t": -4.966502017321976,
+      "gl": 297,
+      "p": 1.1520568307926118e-06,
+      "ic95": [
+        -0.08587386563646032,
+        -0.03713244082784566
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.011456436159870943,
+      "t": -5.36843677858419,
+      "gl": 297,
+      "p": 1.6035778071942734e-07,
+      "ic95": [
+        -0.08404923085430338,
+        -0.03895707561000262
+      ]
+    },
+    "variancias": {
+      "orgao": 0.0001312499294851985,
+      "catmat": 6.939420734587233e-05,
+      "intersecao": 4.729069334071064e-05,
+      "duplo": 0.00015335344349036017
+    },
+    "descritivas": {
+      "0": {
+        "itens": 6637,
+        "pregoes": 1608,
+        "orgaos": 212,
+        "produtos": 1234,
+        "media_bruta": 0.4375272665178364,
+        "dp": 1.9927859299177222,
+        "mediana": 0.5596157879354227,
+        "min": -4.074541934925921,
+        "max": 10.37785134991846,
+        "q01": -3.40907248431151,
+        "q25": -1.0498221244986778,
+        "q75": 1.6863989535702288,
+        "q99": 5.941827082673461,
+        "assimetria": 0.38739847225695173,
+        "curtose_excesso": 0.8522692452467617,
+        "media_padronizada": 0.44819196212768486,
+        "media_logq_padronizada": 7.562951078574865,
+        "srp_padronizado": 0.9612829758967545
+      },
+      "1": {
+        "itens": 5981,
+        "pregoes": 1204,
+        "orgaos": 144,
+        "produtos": 1234,
+        "media_bruta": 0.37353989088728795,
+        "dp": 2.0225973910494432,
+        "mediana": 0.4637340162321402,
+        "min": -4.074541934925921,
+        "max": 10.37785134991846,
+        "q01": -3.4420193761824103,
+        "q25": -1.1394342831883648,
+        "q75": 1.6582280766035324,
+        "q99": 6.121428969745058,
+        "assimetria": 0.4648424938941579,
+        "curtose_excesso": 0.9734853903356666,
+        "media_padronizada": 0.3866888088955318,
+        "media_logq_padronizada": 7.57424837885918,
+        "srp_padronizado": 0.9612829758967545
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 7,
+        "peso_maior": 0.25872398304548616,
+        "peso_top10": 0.5026163815307865,
+        "orgaos_equivalentes_concentracao": 12.756893834429057
+      },
+      "1": {
+        "maior_orgao": 7,
+        "peso_maior": 0.25498197001328526,
+        "peso_top10": 0.5412633643322579,
+        "orgaos_equivalentes_concentracao": 12.500145107218621
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.7287910419434428,
+    "concentracao_score_quadrado_max": 0.5460872056382209,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -0.08634481864376209,
+        -0.04048671290881738
+      ],
+      "ic_percentil": [
+        -0.08251959355548862,
+        -0.0366614878205439
+      ],
+      "p": 0.001,
+      "dp": 0.011538299728774489,
+      "media": -0.06017526249466618,
+      "fracao_media_estratos_retidos": 0.4854460823123651,
+      "fracao_min_estratos_retidos": 0.1806794458151452
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 5.760284153963059e-06,
+    "p_holm3": 3.4561704923778353e-06,
+    "p_bootstrap_holm6": 0.006,
+    "p_bootstrap_holm3": 0.003
+  },
+  "condicoes_compra_s0_B": {
+    "estimavel": true,
+    "analise": "condicoes_compra_s0_B",
+    "familia": "condicoes_compra",
+    "sigilo": 0,
+    "codigo": "B",
+    "desfecho": "desconto",
+    "itens": 12618,
+    "pregoes": 2812,
+    "orgaos": 298,
+    "catmats": 1068,
+    "produtos": 1234,
+    "estratos": 5269,
+    "media_A": 0.32157002125681694,
+    "media_AF": 0.3642743574693298,
+    "diferenca": 0.04270433621251286,
+    "infer_duplo": {
+      "ep": 0.01434005920981456,
+      "t": 2.9779748875294283,
+      "gl": 297,
+      "p": 0.003140746827816399,
+      "ic95": [
+        0.01448333593467832,
+        0.0709253364903474
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.013653535839668607,
+      "t": 3.1277126096846546,
+      "gl": 297,
+      "p": 0.0019364891521403205,
+      "ic95": [
+        0.015834402616911318,
+        0.0695742698081144
+      ]
+    },
+    "variancias": {
+      "orgao": 0.00018641904092511514,
+      "catmat": 4.292583727927098e-05,
+      "intersecao": 2.370758006339875e-05,
+      "duplo": 0.00020563729814098737
+    },
+    "descritivas": {
+      "0": {
+        "itens": 6637,
+        "pregoes": 1608,
+        "orgaos": 212,
+        "produtos": 1234,
+        "media_bruta": 0.3176889123552194,
+        "dp": 0.2504278969195368,
+        "mediana": 0.2880886426592798,
+        "min": -1.6712328767123288,
+        "max": 0.9887678692988427,
+        "q01": 0.0,
+        "q25": 0.09806835066864783,
+        "q75": 0.5,
+        "q99": 0.9182138308507677,
+        "assimetria": 0.38837409826554065,
+        "curtose_excesso": -0.11978889662327896,
+        "media_padronizada": 0.32157002125681694,
+        "media_logq_padronizada": 7.562951078574865,
+        "srp_padronizado": 0.9612829758967545
+      },
+      "1": {
+        "itens": 5981,
+        "pregoes": 1204,
+        "orgaos": 144,
+        "produtos": 1234,
+        "media_bruta": 0.36398497293988924,
+        "dp": 0.29677486318313423,
+        "mediana": 0.3411764705882353,
+        "min": -11.857142857142856,
+        "max": 0.9974358974358974,
+        "q01": 0.0,
+        "q25": 0.16515837104072395,
+        "q75": 0.5454545454545454,
+        "q99": 0.9333333333333333,
+        "assimetria": -11.48526293733146,
+        "curtose_excesso": 479.7096397203553,
+        "media_padronizada": 0.3642743574693298,
+        "media_logq_padronizada": 7.57424837885918,
+        "srp_padronizado": 0.9612829758967545
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 7,
+        "peso_maior": 0.25872398304548616,
+        "peso_top10": 0.5026163815307865,
+        "orgaos_equivalentes_concentracao": 12.756893834429057
+      },
+      "1": {
+        "maior_orgao": 7,
+        "peso_maior": 0.25498197001328526,
+        "peso_top10": 0.5412633643322579,
+        "orgaos_equivalentes_concentracao": 12.500145107218621
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.7287910419434428,
+    "concentracao_score_quadrado_max": 0.20044428006516155,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        0.012683235458821815,
+        0.07640280252794854
+      ],
+      "ic_percentil": [
+        0.009005869897077171,
+        0.0727254369662039
+      ],
+      "p": 0.009,
+      "dp": 0.015539183401764026,
+      "media": 0.0446587891349964,
+      "fracao_media_estratos_retidos": 0.4854460823123651,
+      "fracao_min_estratos_retidos": 0.1806794458151452
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.012562987311265596,
+    "p_holm3": 0.006281493655632798,
+    "p_bootstrap_holm6": 0.036,
+    "p_bootstrap_holm3": 0.018
+  },
+  "condicoes_compra_s0_C": {
+    "estimavel": true,
+    "analise": "condicoes_compra_s0_C",
+    "familia": "condicoes_compra",
+    "sigilo": 0,
+    "codigo": "C",
+    "desfecho": "relativo",
+    "itens": 8125,
+    "pregoes": 1719,
+    "orgaos": 223,
+    "catmats": 583,
+    "produtos": 634,
+    "estratos": 3218,
+    "media_A": 1.3249467069710013,
+    "media_AF": 1.2298959179018547,
+    "diferenca": -0.09505078906914657,
+    "infer_duplo": {
+      "ep": 0.0957744890172194,
+      "t": -0.9924437085961094,
+      "gl": 222,
+      "p": 0.32206160479164336,
+      "ic95": [
+        -0.2837942828584125,
+        0.09369270472011937
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.07980705960763333,
+      "t": -1.1910072810157164,
+      "gl": 222,
+      "p": 0.23492258121678886,
+      "ic95": [
+        -0.25232715163668495,
+        0.06222557349839178
+      ]
+    },
+    "variancias": {
+      "orgao": 0.006369166763216339,
+      "catmat": 0.006845698815269513,
+      "intersecao": 0.004042112831976374,
+      "duplo": 0.009172752746509479
+    },
+    "descritivas": {
+      "0": {
+        "itens": 4342,
+        "pregoes": 962,
+        "orgaos": 161,
+        "produtos": 634,
+        "media_bruta": 1.283489600395561,
+        "dp": 3.3928675431686264,
+        "mediana": 1.007888888888889,
+        "min": 0.008544979824353191,
+        "max": 117.6923076923077,
+        "q01": 0.5182124753127058,
+        "q25": 0.9333333333333335,
+        "q75": 1.1363258834189067,
+        "q99": 4.266560606060612,
+        "assimetria": 23.34426715700575,
+        "curtose_excesso": 659.6663289756962,
+        "media_padronizada": 1.3249467069710013,
+        "media_logq_padronizada": 7.940269092491728,
+        "srp_padronizado": 0.9645742697327533
+      },
+      "1": {
+        "itens": 3783,
+        "pregoes": 757,
+        "orgaos": 101,
+        "produtos": 634,
+        "media_bruta": 1.2309808721860067,
+        "dp": 3.2107797371008795,
+        "mediana": 0.9867519415258109,
+        "min": 0.016765957446808512,
+        "max": 110.3097157403479,
+        "q01": 0.5,
+        "q25": 0.8947368421052632,
+        "q75": 1.0835860506030923,
+        "q99": 3.2482116661603224,
+        "assimetria": 20.787390523719537,
+        "curtose_excesso": 524.1141752169491,
+        "media_padronizada": 1.2298959179018547,
+        "media_logq_padronizada": 7.952800118777317,
+        "srp_padronizado": 0.9645742697327534
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 7,
+        "peso_maior": 0.171343484565983,
+        "peso_top10": 0.4664890940838734,
+        "orgaos_equivalentes_concentracao": 22.113986611637454
+      },
+      "1": {
+        "maior_orgao": 7,
+        "peso_maior": 0.14926455355293142,
+        "peso_top10": 0.48057799875699186,
+        "orgaos_equivalentes_concentracao": 23.083899309378904
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.6460534493474207,
+    "concentracao_score_quadrado_max": 0.34640497733994663,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -0.2690664103456405,
+        0.13818594768870163
+      ],
+      "ic_percentil": [
+        -0.3282875258269948,
+        0.07896483220734736
+      ],
+      "p": 0.436,
+      "dp": 0.11201507065282189,
+      "media": -0.09255357926832813,
+      "fracao_media_estratos_retidos": 0.38848681643494215,
+      "fracao_min_estratos_retidos": 0.13175885643256682
+    },
+    "bootstrap_recalcula_referencia": true,
+    "p_holm6": 0.35484503706312553,
+    "p_holm3": 0.32206160479164336,
+    "p_bootstrap_holm6": 0.436,
+    "p_bootstrap_holm3": 0.436
+  },
+  "condicoes_compra_s1_A": {
+    "estimavel": true,
+    "analise": "condicoes_compra_s1_A",
+    "familia": "condicoes_compra",
+    "sigilo": 1,
+    "codigo": "A",
+    "desfecho": "logp",
+    "itens": 5677,
+    "pregoes": 2553,
+    "orgaos": 57,
+    "catmats": 809,
+    "produtos": 942,
+    "estratos": 2317,
+    "media_A": 1.5917873383038954,
+    "media_AF": 1.5418147822277224,
+    "diferenca": -0.04997255607617292,
+    "infer_duplo": {
+      "ep": 0.0075856246177486465,
+      "t": -6.587797128696356,
+      "gl": 56,
+      "p": 1.6566307172430933e-08,
+      "ic95": [
+        -0.06516838818834184,
+        -0.03477672396400401
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.006933649843705779,
+      "t": -7.207251188425236,
+      "gl": 56,
+      "p": 1.5727211058691493e-09,
+      "ic95": [
+        -0.06386232577331752,
+        -0.03608278637902833
+      ]
+    },
+    "variancias": {
+      "orgao": 4.807550015512117e-05,
+      "catmat": 9.247039202950879e-05,
+      "intersecao": 8.300419134323567e-05,
+      "duplo": 5.75417008413943e-05
+    },
+    "descritivas": {
+      "0": {
+        "itens": 2830,
+        "pregoes": 1314,
+        "orgaos": 37,
+        "produtos": 942,
+        "media_bruta": 1.618631630944364,
+        "dp": 2.643947236294248,
+        "mediana": 1.3737155789130306,
+        "min": -3.96859335691654,
+        "max": 11.497411747138841,
+        "q01": -3.2188758248682006,
+        "q25": -0.06187540371808753,
+        "q75": 2.833213344056216,
+        "q99": 9.51264091251044,
+        "assimetria": 0.7463748717734805,
+        "curtose_excesso": 0.7517058648937098,
+        "media_padronizada": 1.5917873383038954,
+        "media_logq_padronizada": 7.299735269939298,
+        "srp_padronizado": 0.5787656452309019
+      },
+      "1": {
+        "itens": 2847,
+        "pregoes": 1239,
+        "orgaos": 35,
+        "produtos": 942,
+        "media_bruta": 1.8027233959989104,
+        "dp": 2.852186204665069,
+        "mediana": 1.3862943611198906,
+        "min": -3.9633162998156966,
+        "max": 10.47397799647982,
+        "q01": -3.2188758248682006,
+        "q25": 0.01980262729617973,
+        "q75": 3.0438078684003465,
+        "q99": 9.51935037844041,
+        "assimetria": 0.7433645410825374,
+        "curtose_excesso": 0.4102023244270234,
+        "media_padronizada": 1.5418147822277224,
+        "media_logq_padronizada": 7.307163629612891,
+        "srp_padronizado": 0.578765645230902
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 497,
+        "peso_maior": 0.39667673716012086,
+        "peso_top10": 0.9318371457344268,
+        "orgaos_equivalentes_concentracao": 4.208630700078579
+      },
+      "1": {
+        "maior_orgao": 497,
+        "peso_maior": 0.3954107322687383,
+        "peso_top10": 0.9111638613149188,
+        "orgaos_equivalentes_concentracao": 4.843973037001194
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.7047906776003453,
+    "concentracao_score_quadrado_max": 0.2483547623156721,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -0.08163886959439647,
+        -0.0377510961690389
+      ],
+      "ic_percentil": [
+        -0.06219401598330695,
+        -0.018306242557949385
+      ],
+      "p": 0.001,
+      "dp": 0.011084865983413935,
+      "media": -0.04853286922308258,
+      "fracao_media_estratos_retidos": 0.553308376242502,
+      "fracao_min_estratos_retidos": 0.031937850668968495
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 9.93978430345856e-08,
+    "p_holm3": 4.96989215172928e-08,
+    "p_bootstrap_holm6": 0.006,
+    "p_bootstrap_holm3": 0.003
+  },
+  "condicoes_compra_s1_B": {
+    "estimavel": true,
+    "analise": "condicoes_compra_s1_B",
+    "familia": "condicoes_compra",
+    "sigilo": 1,
+    "codigo": "B",
+    "desfecho": "desconto",
+    "itens": 5578,
+    "pregoes": 2527,
+    "orgaos": 57,
+    "catmats": 800,
+    "produtos": 932,
+    "estratos": 2272,
+    "media_A": 0.3007963429805303,
+    "media_AF": 0.3327355246801874,
+    "diferenca": 0.03193918169965707,
+    "infer_duplo": {
+      "ep": 0.019468613822683747,
+      "t": 1.6405472927118885,
+      "gl": 56,
+      "p": 0.10649709914355854,
+      "ic95": [
+        -0.0070611382494675315,
+        0.07093950164878168
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.019303092018038256,
+      "t": 1.6546147979717813,
+      "gl": 56,
+      "p": 0.1035975174843305,
+      "ic95": [
+        -0.006729558230544497,
+        0.07060792162985864
+      ]
+    },
+    "variancias": {
+      "orgao": 0.00037260936145685217,
+      "catmat": 5.396046218137816e-05,
+      "intersecao": 4.754289946143768e-05,
+      "duplo": 0.0003790269241767927
+    },
+    "descritivas": {
+      "0": {
+        "itens": 2782,
+        "pregoes": 1303,
+        "orgaos": 37,
+        "produtos": 932,
+        "media_bruta": 0.30038392776873457,
+        "dp": 0.24352462346739945,
+        "mediana": 0.2666666666666667,
+        "min": -1.496,
+        "max": 0.9986945169712794,
+        "q01": 0.0,
+        "q25": 0.09434281302441927,
+        "q75": 0.46114088654546087,
+        "q99": 0.9244828885400314,
+        "assimetria": 0.4550331387821099,
+        "curtose_excesso": 0.5990000217035836,
+        "media_padronizada": 0.3007963429805303,
+        "media_logq_padronizada": 7.295715541241055,
+        "srp_padronizado": 0.5704225352112675
+      },
+      "1": {
+        "itens": 2796,
+        "pregoes": 1224,
+        "orgaos": 35,
+        "produtos": 932,
+        "media_bruta": 0.3291864328641273,
+        "dp": 0.24576621708950716,
+        "mediana": 0.2936753648827952,
+        "min": -0.0006349206349207659,
+        "max": 0.99964647009061,
+        "q01": 0.0,
+        "q25": 0.12960080254600806,
+        "q75": 0.4898200627484227,
+        "q99": 0.9283797448901192,
+        "assimetria": 0.5574087919501229,
+        "curtose_excesso": -0.5032328832082742,
+        "media_padronizada": 0.3327355246801874,
+        "media_logq_padronizada": 7.303228593583372,
+        "srp_padronizado": 0.5704225352112675
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 497,
+        "peso_maior": 0.40453345070422536,
+        "peso_top10": 0.9309272300469486,
+        "orgaos_equivalentes_concentracao": 4.186164883564741
+      },
+      "1": {
+        "maior_orgao": 497,
+        "peso_maior": 0.4032423708920188,
+        "peso_top10": 0.909844483568075,
+        "orgaos_equivalentes_concentracao": 4.796637635181552
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.702024647887324,
+    "concentracao_score_quadrado_max": 0.47045204578220795,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        0.0026138657001363794,
+        0.08235947311683679
+      ],
+      "ic_percentil": [
+        -0.01848110971752265,
+        0.061264497699177765
+      ],
+      "p": 0.034,
+      "dp": 0.02189833614419359,
+      "media": 0.0270766183594299,
+      "fracao_media_estratos_retidos": 0.5523778614659443,
+      "fracao_min_estratos_retidos": 0.032570422535211266
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.3194912974306756,
+    "p_holm3": 0.21299419828711708,
+    "p_bootstrap_holm6": 0.10200000000000001,
+    "p_bootstrap_holm3": 0.068
+  },
+  "condicoes_compra_s1_C": {
+    "estimavel": true,
+    "analise": "condicoes_compra_s1_C",
+    "familia": "condicoes_compra",
+    "sigilo": 1,
+    "codigo": "C",
+    "desfecho": "relativo",
+    "itens": 2984,
+    "pregoes": 1406,
+    "orgaos": 51,
+    "catmats": 422,
+    "produtos": 448,
+    "estratos": 1196,
+    "media_A": 1.5491574055280093,
+    "media_AF": 1.1460258930842144,
+    "diferenca": -0.4031315124437952,
+    "infer_duplo": {
+      "ep": 0.29468229920137246,
+      "t": -1.3680207923459748,
+      "gl": 50,
+      "p": 0.17742251853156277,
+      "ic95": [
+        -0.9950183296795145,
+        0.18875530479192415
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.29289172872410457,
+      "t": -1.3763840795365487,
+      "gl": 50,
+      "p": 0.17483576309876325,
+      "ic95": [
+        -0.9914218630315396,
+        0.18515883814394918
+      ]
+    },
+    "variancias": {
+      "orgao": 0.08578556475499446,
+      "catmat": 0.2065669117729059,
+      "intersecao": 0.20551481906529318,
+      "duplo": 0.08683765746260719
+    },
+    "descritivas": {
+      "0": {
+        "itens": 1540,
+        "pregoes": 779,
+        "orgaos": 33,
+        "produtos": 448,
+        "media_bruta": 1.5116487299548922,
+        "dp": 10.983178480689894,
+        "mediana": 1.0108857241349591,
+        "min": 0.01675094816687737,
+        "max": 420.0,
+        "q01": 0.5415047619047619,
+        "q25": 0.913756072214032,
+        "q75": 1.1769608214357308,
+        "q99": 3.9644036697247635,
+        "assimetria": 36.31812943834595,
+        "curtose_excesso": 1373.9702717727084,
+        "media_padronizada": 1.5491574055280093,
+        "media_logq_padronizada": 7.799787228286501,
+        "srp_padronizado": 0.5719063545150502
+      },
+      "1": {
+        "itens": 1444,
+        "pregoes": 627,
+        "orgaos": 30,
+        "produtos": 448,
+        "media_bruta": 1.1528416522288631,
+        "dp": 1.6304151106505442,
+        "mediana": 0.9823231109402037,
+        "min": 0.019319148936170212,
+        "max": 40.888888888888886,
+        "q01": 0.47551190476190475,
+        "q25": 0.8738697568352065,
+        "q75": 1.0962846107817006,
+        "q99": 4.208140589569125,
+        "assimetria": 17.156575391762715,
+        "curtose_excesso": 354.6875703718597,
+        "media_padronizada": 1.1460258930842144,
+        "media_logq_padronizada": 7.806074064846179,
+        "srp_padronizado": 0.5719063545150502
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 497,
+        "peso_maior": 0.3951505016722408,
+        "peso_top10": 0.8928929765886288,
+        "orgaos_equivalentes_concentracao": 5.013597472690046
+      },
+      "1": {
+        "maior_orgao": 497,
+        "peso_maior": 0.3914437012263099,
+        "peso_top10": 0.8940914158305463,
+        "orgaos_equivalentes_concentracao": 5.425433807069083
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.6789297658862876,
+    "concentracao_score_quadrado_max": 0.923368366624558,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -0.8426568409300351,
+        0.046556620098097246
+      ],
+      "ic_percentil": [
+        -0.8528196449856876,
+        0.0363938160424447
+      ],
+      "p": 0.079,
+      "dp": 0.2584673396183616,
+      "media": -0.15099580629503642,
+      "fracao_media_estratos_retidos": 0.3906037466893982,
+      "fracao_min_estratos_retidos": 0.021739130434782608
+    },
+    "bootstrap_recalcula_referencia": true,
+    "p_holm6": 0.35484503706312553,
+    "p_holm3": 0.21299419828711708,
+    "p_bootstrap_holm6": 0.158,
+    "p_bootstrap_holm3": 0.079
+  },
+  "ampliado_s0_A": {
+    "estimavel": true,
+    "analise": "ampliado_s0_A",
+    "familia": "ampliado",
+    "sigilo": 0,
+    "codigo": "A",
+    "desfecho": "logp",
+    "itens": 414681,
+    "pregoes": 36313,
+    "orgaos": 1170,
+    "catmats": 17459,
+    "produtos": 20370,
+    "estratos": 75466,
+    "media_A": 2.43489441741596,
+    "media_AF": 2.362728787720356,
+    "diferenca": -0.07216562969560324,
+    "infer_duplo": {
+      "ep": 0.011510047129517285,
+      "t": -6.269794457273414,
+      "gl": 1169,
+      "p": 5.07724628548137e-10,
+      "ic95": [
+        -0.09474828885205794,
+        -0.049582970539148535
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.011263471536112337,
+      "t": -6.4070503897692355,
+      "gl": 1169,
+      "p": 2.1462428614643083e-10,
+      "ic95": [
+        -0.09426450867987388,
+        -0.0500667507113326
+      ]
+    },
+    "variancias": {
+      "orgao": 0.00012686579104481284,
+      "catmat": 1.542579732692564e-05,
+      "intersecao": 9.810403448029367e-06,
+      "duplo": 0.0001324811849237091
+    },
+    "descritivas": {
+      "0": {
+        "itens": 255575,
+        "pregoes": 23410,
+        "orgaos": 943,
+        "produtos": 20370,
+        "media_bruta": 2.153332648202849,
+        "dp": 2.0658689858816115,
+        "mediana": 2.0149030205422647,
+        "min": -9.210340371976182,
+        "max": 15.945277458608276,
+        "q01": -2.8134107167600364,
+        "q25": 1.0986122886681098,
+        "q75": 3.1126260250254902,
+        "q99": 8.318742252692399,
+        "assimetria": 0.5229331057461071,
+        "curtose_excesso": 1.944280831977716,
+        "media_padronizada": 2.43489441741596,
+        "media_logq_padronizada": 5.421028420132188,
+        "srp_padronizado": 0.8332950333109076
+      },
+      "1": {
+        "itens": 159106,
+        "pregoes": 12903,
+        "orgaos": 509,
+        "produtos": 20370,
+        "media_bruta": 2.236624898395185,
+        "dp": 2.1670386071232715,
+        "mediana": 2.066862759472976,
+        "min": -9.210340371976182,
+        "max": 15.71851320600831,
+        "q01": -2.8134107167600364,
+        "q25": 1.0986122886681098,
+        "q75": 3.217675104291682,
+        "q99": 8.49593980441458,
+        "assimetria": 0.5550238781356873,
+        "curtose_excesso": 1.6265488993910688,
+        "media_padronizada": 2.362728787720356,
+        "media_logq_padronizada": 5.523505287184356,
+        "srp_padronizado": 0.9039327542418337
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 7,
+        "peso_maior": 0.3294010928468649,
+        "peso_top10": 0.5828188055337008,
+        "orgaos_equivalentes_concentracao": 8.296659022343487
+      },
+      "1": {
+        "maior_orgao": 7,
+        "peso_maior": 0.4173288652453757,
+        "peso_top10": 0.6479087596375057,
+        "orgaos_equivalentes_concentracao": 5.360537571225212
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.3418228076219755,
+    "concentracao_score_quadrado_max": 0.21113252845051034,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -0.10284827414077119,
+        -0.04755527163157479
+      ],
+      "ic_percentil": [
+        -0.09677598775963168,
+        -0.041482985250435284
+      ],
+      "p": 0.001,
+      "dp": 0.013914190630980422,
+      "media": -0.07248389942636382,
+      "fracao_media_estratos_retidos": 0.5779960581621211,
+      "fracao_min_estratos_retidos": 0.19496196962870696
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 2.5386231427406847e-09,
+    "p_holm3": 1.015449257096274e-09,
+    "p_bootstrap_holm6": 0.006,
+    "p_bootstrap_holm3": 0.003
+  },
+  "ampliado_s0_B": {
+    "estimavel": true,
+    "analise": "ampliado_s0_B",
+    "familia": "ampliado",
+    "sigilo": 0,
+    "codigo": "B",
+    "desfecho": "desconto",
+    "itens": 414676,
+    "pregoes": 36311,
+    "orgaos": 1170,
+    "catmats": 17458,
+    "produtos": 20369,
+    "estratos": 75465,
+    "media_A": 0.29112110806367325,
+    "media_AF": 0.33946542161746734,
+    "diferenca": 0.048344313553794066,
+    "infer_duplo": {
+      "ep": 0.006882929676497195,
+      "t": 7.023798851072536,
+      "gl": 1169,
+      "p": 3.656467278685035e-12,
+      "ic95": [
+        0.03484003740851456,
+        0.06184858969907357
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.006375837110935831,
+      "t": 7.582426074040369,
+      "gl": 1169,
+      "p": 6.887044923186775e-14,
+      "ic95": [
+        0.035834950673420074,
+        0.06085367643416806
+      ]
+    },
+    "variancias": {
+      "orgao": 4.065129886518657e-05,
+      "catmat": 1.1823765843899758e-05,
+      "intersecao": 5.100343777480529e-06,
+      "duplo": 4.737472093160579e-05
+    },
+    "descritivas": {
+      "0": {
+        "itens": 255571,
+        "pregoes": 23409,
+        "orgaos": 943,
+        "produtos": 20369,
+        "media_bruta": 0.2773639404183585,
+        "dp": 1.1683235672723418,
+        "mediana": 0.2500000000000001,
+        "min": -439.0,
+        "max": 0.9999993333333334,
+        "q01": 0.0,
+        "q25": 0.05500000000000005,
+        "q75": 0.4627743551803375,
+        "q99": 0.8679688551379406,
+        "assimetria": -268.124162458647,
+        "curtose_excesso": 88017.79637556616,
+        "media_padronizada": 0.29112110806367325,
+        "media_logq_padronizada": 5.421098454320035,
+        "srp_padronizado": 0.8333063228042272
+      },
+      "1": {
+        "itens": 159105,
+        "pregoes": 12902,
+        "orgaos": 509,
+        "produtos": 20369,
+        "media_bruta": 0.334116415224311,
+        "dp": 0.26657434677865455,
+        "mediana": 0.31818181818181823,
+        "min": -41.4975,
+        "max": 0.9999953079178886,
+        "q01": 0.0,
+        "q25": 0.12721893491124248,
+        "q75": 0.5093540416519591,
+        "q99": 0.896589049255192,
+        "assimetria": -24.667944838941374,
+        "curtose_excesso": 3838.0323906948106,
+        "media_padronizada": 0.33946542161746734,
+        "media_logq_padronizada": 5.5235150402294035,
+        "srp_padronizado": 0.9039314812378483
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 7,
+        "peso_maior": 0.3294054577987346,
+        "peso_top10": 0.5828132773922514,
+        "orgaos_equivalentes_concentracao": 8.296477068513695
+      },
+      "1": {
+        "maior_orgao": 7,
+        "peso_maior": 0.4173343953436365,
+        "peso_top10": 0.6479173451905389,
+        "orgaos_equivalentes_concentracao": 5.3603955389093665
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.3418140860001325,
+    "concentracao_score_quadrado_max": 0.4399713511686843,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        0.03874977191945533,
+        0.07714332633199278
+      ],
+      "ic_percentil": [
+        0.019545300775595357,
+        0.057938855188132805
+      ],
+      "p": 0.001,
+      "dp": 0.009774115865775894,
+      "media": 0.045092361812486756,
+      "fracao_media_estratos_retidos": 0.5779984075387591,
+      "fracao_min_estratos_retidos": 0.194964553104088
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 2.193880367211021e-11,
+    "p_holm3": 1.0969401836055106e-11,
+    "p_bootstrap_holm6": 0.006,
+    "p_bootstrap_holm3": 0.003
+  },
+  "ampliado_s0_C": {
+    "estimavel": true,
+    "analise": "ampliado_s0_C",
+    "familia": "ampliado",
+    "sigilo": 0,
+    "codigo": "C",
+    "desfecho": "relativo",
+    "itens": 175352,
+    "pregoes": 20463,
+    "orgaos": 1006,
+    "catmats": 3416,
+    "produtos": 3852,
+    "estratos": 13779,
+    "media_A": 146.21576469776258,
+    "media_AF": 34.333941994374925,
+    "diferenca": -111.88182270338766,
+    "infer_duplo": {
+      "ep": 71.90757026468762,
+      "t": -1.555911600010362,
+      "gl": 1005,
+      "p": 0.1200439471169132,
+      "ic95": [
+        -252.988007345943,
+        29.224361939167693
+      ]
+    },
+    "infer_orgao": {
+      "ep": 69.3880732160132,
+      "t": -1.6124071114510765,
+      "gl": 1005,
+      "p": 0.10718733458621563,
+      "ic95": [
+        -248.043929629953,
+        24.280284223177688
+      ]
+    },
+    "variancias": {
+      "orgao": 4814.704704630807,
+      "catmat": 1780.1896528259365,
+      "intersecao": 1424.195696085757,
+      "duplo": 5170.698661370987
+    },
+    "descritivas": {
+      "0": {
+        "itens": 121738,
+        "pregoes": 14492,
+        "orgaos": 816,
+        "produtos": 3852,
+        "media_bruta": 127.87976099048986,
+        "dp": 11687.97839879671,
+        "mediana": 0.9818181818181819,
+        "min": 5e-07,
+        "max": 2459243.58974359,
+        "q01": 0.2119848484848485,
+        "q25": 0.7975460122699387,
+        "q75": 1.202145732174802,
+        "q99": 26.06797179741819,
+        "assimetria": 138.43417888322534,
+        "curtose_excesso": 22834.45696824347,
+        "media_padronizada": 146.21576469776258,
+        "media_logq_padronizada": 6.377818306143525,
+        "srp_padronizado": 0.7449973473544445
+      },
+      "1": {
+        "itens": 53614,
+        "pregoes": 5971,
+        "orgaos": 410,
+        "produtos": 3852,
+        "media_bruta": 56.456265049296064,
+        "dp": 6141.29335189391,
+        "mediana": 0.9876543209876544,
+        "min": 0.0005172413793103448,
+        "max": 1006630.4347826086,
+        "q01": 0.18858544474393532,
+        "q25": 0.8290620161142168,
+        "q75": 1.2000000000000002,
+        "q99": 18.30692175703532,
+        "assimetria": 132.7867015514614,
+        "curtose_excesso": 19089.407475834443,
+        "media_padronizada": 34.333941994374925,
+        "media_logq_padronizada": 6.500062076926166,
+        "srp_padronizado": 0.8717589168441456
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 7,
+        "peso_maior": 0.11989446203593988,
+        "peso_top10": 0.3933660105556519,
+        "orgaos_equivalentes_concentracao": 38.09848808530347
+      },
+      "1": {
+        "maior_orgao": 7,
+        "peso_maior": 0.18973833205221222,
+        "peso_top10": 0.46117650459705206,
+        "orgaos_equivalentes_concentracao": 19.363143208219185
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.07446113651208361,
+    "concentracao_score_quadrado_max": 0.29397585615977445,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -322.01912464860425,
+        209.28451445583403
+      ],
+      "ic_percentil": [
+        -433.04815986260934,
+        98.25547924182894
+      ],
+      "p": 0.38,
+      "dp": 133.01712796138466,
+      "media": -121.32931091831851,
+      "fracao_media_estratos_retidos": 0.45359954089825233,
+      "fracao_min_estratos_retidos": 0.21489222730241672
+    },
+    "bootstrap_recalcula_referencia": true,
+    "p_holm6": 0.2400878942338264,
+    "p_holm3": 0.1200439471169132,
+    "p_bootstrap_holm6": 0.76,
+    "p_bootstrap_holm3": 0.38
+  },
+  "ampliado_s1_A": {
+    "estimavel": true,
+    "analise": "ampliado_s1_A",
+    "familia": "ampliado",
+    "sigilo": 1,
+    "codigo": "A",
+    "desfecho": "logp",
+    "itens": 95775,
+    "pregoes": 20152,
+    "orgaos": 250,
+    "catmats": 7410,
+    "produtos": 8339,
+    "estratos": 20553,
+    "media_A": 2.1657506633345895,
+    "media_AF": 2.057822552665629,
+    "diferenca": -0.10792811066896071,
+    "infer_duplo": {
+      "ep": 0.04555779590077366,
+      "t": -2.3690371435885877,
+      "gl": 249,
+      "p": 0.018598171085444034,
+      "ic95": [
+        -0.19765586930396886,
+        -0.018200352033952566
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.045338450233583454,
+      "t": -2.3804984535844445,
+      "gl": 249,
+      "p": 0.01804234228791309,
+      "ic95": [
+        -0.1972238599256806,
+        -0.01863236141224084
+      ]
+    },
+    "variancias": {
+      "orgao": 0.0020555750695831236,
+      "catmat": 7.839276670121936e-05,
+      "intersecao": 5.8455068947793975e-05,
+      "duplo": 0.002075512767336549
+    },
+    "descritivas": {
+      "0": {
+        "itens": 57575,
+        "pregoes": 12054,
+        "orgaos": 192,
+        "produtos": 8339,
+        "media_bruta": 1.9214266158849158,
+        "dp": 2.489630930441638,
+        "mediana": 1.7387102481382397,
+        "min": -4.710530701645918,
+        "max": 16.06258294102806,
+        "q01": -3.2188758248682006,
+        "q25": 0.412109650826833,
+        "q75": 3.1354942159291497,
+        "q99": 8.808406776857863,
+        "assimetria": 0.520018012382487,
+        "curtose_excesso": 0.6801932827008024,
+        "media_padronizada": 2.1657506633345895,
+        "media_logq_padronizada": 6.374743656737858,
+        "srp_padronizado": 0.7052027024371863
+      },
+      "1": {
+        "itens": 38200,
+        "pregoes": 8098,
+        "orgaos": 114,
+        "produtos": 8339,
+        "media_bruta": 1.970231021259875,
+        "dp": 2.771466789759039,
+        "mediana": 1.7029282555214393,
+        "min": -4.710530701645918,
+        "max": 14.904913907547074,
+        "q01": -3.278121744968753,
+        "q25": 0.12221763272424911,
+        "q75": 3.4965075614664802,
+        "q99": 9.305650551780507,
+        "assimetria": 0.4800718082539644,
+        "curtose_excesso": 0.13675978143704182,
+        "media_padronizada": 2.057822552665629,
+        "media_logq_padronizada": 6.44427138189285,
+        "srp_padronizado": 0.6903885247352961
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 8,
+        "peso_maior": 0.28428187747003714,
+        "peso_top10": 0.848324422331604,
+        "orgaos_equivalentes_concentracao": 5.782527102460507
+      },
+      "1": {
+        "maior_orgao": 8,
+        "peso_maior": 0.22451511206416028,
+        "peso_top10": 0.8367730449324376,
+        "orgaos_equivalentes_concentracao": 7.623408265071546
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.35824453851019317,
+    "concentracao_score_quadrado_max": 0.6875562592258431,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -0.1781992781106198,
+        0.0030049603560741434
+      ],
+      "ic_percentil": [
+        -0.21886118169399557,
+        -0.037656943227301634
+      ],
+      "p": 0.053,
+      "dp": 0.05296403186011884,
+      "media": -0.11910393616131154,
+      "fracao_media_estratos_retidos": 0.5893800303547871,
+      "fracao_min_estratos_retidos": 0.06923563470053033
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.0557945132563321,
+    "p_holm3": 0.03719634217088807,
+    "p_bootstrap_holm6": 0.212,
+    "p_bootstrap_holm3": 0.159
+  },
+  "ampliado_s1_B": {
+    "estimavel": true,
+    "analise": "ampliado_s1_B",
+    "familia": "ampliado",
+    "sigilo": 1,
+    "codigo": "B",
+    "desfecho": "desconto",
+    "itens": 94603,
+    "pregoes": 20013,
+    "orgaos": 249,
+    "catmats": 7377,
+    "produtos": 8300,
+    "estratos": 20138,
+    "media_A": 0.3119525427451205,
+    "media_AF": 0.34213687344590005,
+    "diferenca": 0.030184330700779576,
+    "infer_duplo": {
+      "ep": 0.011758584694101041,
+      "t": 2.567003724174579,
+      "gl": 248,
+      "p": 0.010845765342411755,
+      "ic95": [
+        0.007024908566177716,
+        0.05334375283538144
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.011460203000719142,
+      "t": 2.633839095074099,
+      "gl": 248,
+      "p": 0.008973421877287351,
+      "ic95": [
+        0.007612593884950433,
+        0.05275606751660872
+      ]
+    },
+    "variancias": {
+      "orgao": 0.00013133625281769204,
+      "catmat": 4.8170581390485845e-05,
+      "intersecao": 4.124252019983061e-05,
+      "duplo": 0.0001382643140083473
+    },
+    "descritivas": {
+      "0": {
+        "itens": 57027,
+        "pregoes": 11998,
+        "orgaos": 192,
+        "produtos": 8300,
+        "media_bruta": 0.3139655043122798,
+        "dp": 0.31522121244855394,
+        "mediana": 0.288911495422177,
+        "min": -43.083333333333336,
+        "max": 0.9999934887355124,
+        "q01": 0.0,
+        "q25": 0.10000000000000009,
+        "q75": 0.4954865341663902,
+        "q99": 0.9118181083861958,
+        "assimetria": -46.812146361971216,
+        "curtose_excesso": 6337.637333826113,
+        "media_padronizada": 0.3119525427451205,
+        "media_logq_padronizada": 6.379300030925481,
+        "srp_padronizado": 0.6993262393861577
+      },
+      "1": {
+        "itens": 37576,
+        "pregoes": 8015,
+        "orgaos": 113,
+        "produtos": 8300,
+        "media_bruta": 0.34089186468899396,
+        "dp": 2.3943190196487825,
+        "mediana": 0.33366389777710986,
+        "min": -461.08,
+        "max": 0.9999978298611111,
+        "q01": 0.0,
+        "q25": 0.14341579386197958,
+        "q75": 0.5384337826855916,
+        "q99": 0.9309101832382096,
+        "assimetria": -190.48893812907124,
+        "curtose_excesso": 36710.96791941649,
+        "media_padronizada": 0.34213687344590005,
+        "media_logq_padronizada": 6.45226761657551,
+        "srp_padronizado": 0.6843143318875363
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 8,
+        "peso_maior": 0.2702773576145433,
+        "peso_top10": 0.8454883467798802,
+        "orgaos_equivalentes_concentracao": 5.917725402643432
+      },
+      "1": {
+        "maior_orgao": 497,
+        "peso_maior": 0.22226006714949556,
+        "peso_top10": 0.8351224745504217,
+        "orgaos_equivalentes_concentracao": 7.777826087337674
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.35519912603039033,
+    "concentracao_score_quadrado_max": 0.26807696985733537,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -0.0026083843834998482,
+        0.08593156637218537
+      ],
+      "ic_percentil": [
+        -0.02556290497062622,
+        0.062977045785059
+      ],
+      "p": 0.064,
+      "dp": 0.02030843370041709,
+      "media": 0.02821311204327276,
+      "fracao_media_estratos_retidos": 0.5890474038290373,
+      "fracao_min_estratos_retidos": 0.07061277187406892
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.04338306136964702,
+    "p_holm3": 0.03253729602723526,
+    "p_bootstrap_holm6": 0.212,
+    "p_bootstrap_holm3": 0.159
+  },
+  "ampliado_s1_C": {
+    "estimavel": true,
+    "analise": "ampliado_s1_C",
+    "familia": "ampliado",
+    "sigilo": 1,
+    "codigo": "C",
+    "desfecho": "relativo",
+    "itens": 39566,
+    "pregoes": 10466,
+    "orgaos": 216,
+    "catmats": 1918,
+    "produtos": 2060,
+    "estratos": 5138,
+    "media_A": 9.305052489339191,
+    "media_AF": 521.9732012638525,
+    "diferenca": 512.6681487745134,
+    "infer_duplo": {
+      "ep": 567.9173176372981,
+      "t": 0.9027161751421187,
+      "gl": 215,
+      "p": 0.3676867858760526,
+      "ic95": [
+        -606.7304607721544,
+        1632.0667583211812
+      ]
+    },
+    "infer_orgao": {
+      "ep": 373.68480994384737,
+      "t": 1.3719266481598507,
+      "gl": 215,
+      "p": 0.1715160885802325,
+      "ic95": [
+        -223.8867046680848,
+        1249.2230022171116
+      ]
+    },
+    "variancias": {
+      "orgao": 139640.33718276935,
+      "catmat": 308651.3663484158,
+      "intersecao": 125761.62385884144,
+      "duplo": 322530.07967234374
+    },
+    "descritivas": {
+      "0": {
+        "itens": 26967,
+        "pregoes": 6902,
+        "orgaos": 159,
+        "produtos": 2060,
+        "media_bruta": 4.457978089565599,
+        "dp": 174.60077615264353,
+        "mediana": 0.9413793103448276,
+        "min": 0.00013650013650013648,
+        "max": 16072.624999999998,
+        "q01": 0.10534784917684548,
+        "q25": 0.7369488856589148,
+        "q75": 1.1301376771753662,
+        "q99": 8.698511479270039,
+        "assimetria": 77.13305780300692,
+        "curtose_excesso": 6499.131781670298,
+        "media_padronizada": 9.305052489339191,
+        "media_logq_padronizada": 7.242684988584728,
+        "srp_padronizado": 0.6756323050160237
+      },
+      "1": {
+        "itens": 12599,
+        "pregoes": 3564,
+        "orgaos": 93,
+        "produtos": 2060,
+        "media_bruta": 215.03752415686995,
+        "dp": 23757.83084119763,
+        "mediana": 0.9714285714285714,
+        "min": 0.0009119927040583675,
+        "max": 2666666.666666667,
+        "q01": 0.0736248024682068,
+        "q25": 0.8315714977464894,
+        "q75": 1.1364152939523429,
+        "q99": 16.898483601582896,
+        "assimetria": 112.24013367184222,
+        "curtose_excesso": 12598.229097202764,
+        "media_padronizada": 521.9732012638525,
+        "media_logq_padronizada": 7.438944837466726,
+        "srp_padronizado": 0.6748077694148211
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 497,
+        "peso_maior": 0.1928641687603765,
+        "peso_top10": 0.7205530464031887,
+        "orgaos_equivalentes_concentracao": 10.788015088542977
+      },
+      "1": {
+        "maior_orgao": 497,
+        "peso_maior": 0.2120775701709854,
+        "peso_top10": 0.7317816293390447,
+        "orgaos_equivalentes_concentracao": 12.019023298964044
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.15122615803814715,
+    "concentracao_score_quadrado_max": 0.5517804653062124,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -1290.8992038045312,
+        1035.9604523109113
+      ],
+      "ic_percentil": [
+        -10.624154761884558,
+        2316.235501353558
+      ],
+      "p": 0.625,
+      "dp": 740.128029914601,
+      "media": 590.0743888943792,
+      "fracao_media_estratos_retidos": 0.4208057707327778,
+      "fracao_min_estratos_retidos": 0.12709225379525108
+    },
+    "bootstrap_recalcula_referencia": true,
+    "p_holm6": 0.3676867858760526,
+    "p_holm3": 0.3676867858760526,
+    "p_bootstrap_holm6": 0.76,
+    "p_bootstrap_holm3": 0.625
+  },
+  "amostra_comum_s0_A": {
+    "estimavel": true,
+    "analise": "amostra_comum_s0_A",
+    "familia": "amostra_comum",
+    "sigilo": 0,
+    "codigo": "A",
+    "desfecho": "logp",
+    "itens": 39971,
+    "pregoes": 4711,
+    "orgaos": 367,
+    "catmats": 858,
+    "produtos": 966,
+    "estratos": 4673,
+    "media_A": 0.3627178282736979,
+    "media_AF": 0.25656165537155967,
+    "diferenca": -0.10615617290213819,
+    "infer_duplo": {
+      "ep": 0.04272385148590263,
+      "t": -2.4847051286367754,
+      "gl": 366,
+      "p": 0.013412123566880608,
+      "ic95": [
+        -0.1901712051055024,
+        -0.022141140698773973
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.04229873091178054,
+      "t": -2.5096774918268965,
+      "gl": 366,
+      "p": 0.012515157320026534,
+      "ic95": [
+        -0.18933521964344813,
+        -0.02297712616082824
+      ]
+    },
+    "variancias": {
+      "orgao": 0.0017891826367472188,
+      "catmat": 0.00010879661740915587,
+      "intersecao": 7.26517683669102e-05,
+      "duplo": 0.0018253274857894645
+    },
+    "descritivas": {
+      "0": {
+        "itens": 26078,
+        "pregoes": 3142,
+        "orgaos": 271,
+        "produtos": 966,
+        "media_bruta": 0.060028121829590976,
+        "dp": 2.0368498507580832,
+        "mediana": 0.08617769624105241,
+        "min": -4.605170185988091,
+        "max": 13.366024594431455,
+        "q01": -3.506557897319982,
+        "q25": -1.6094379124341003,
+        "q75": 1.5151272329628591,
+        "q99": 5.333790030179469,
+        "assimetria": 0.5025016094645336,
+        "curtose_excesso": 0.8998795507635893,
+        "media_padronizada": 0.3627178282736979,
+        "media_logq_padronizada": 7.827012068131368,
+        "srp_padronizado": 0.8228535861780488
+      },
+      "1": {
+        "itens": 13893,
+        "pregoes": 1569,
+        "orgaos": 155,
+        "produtos": 966,
+        "media_bruta": 0.11120665784651065,
+        "dp": 1.9591454738035374,
+        "mediana": 0.15990551750962245,
+        "min": -5.952243833954701,
+        "max": 13.227911875392369,
+        "q01": -3.506557897319982,
+        "q25": -1.4696759700589417,
+        "q75": 1.4996230464268938,
+        "q99": 5.322880955331326,
+        "assimetria": 0.3976581332758935,
+        "curtose_excesso": 0.7803058577746471,
+        "media_padronizada": 0.25656165537155967,
+        "media_logq_padronizada": 7.7693949006785,
+        "srp_padronizado": 0.9502848582214087
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 7,
+        "peso_maior": 0.14635797394406916,
+        "peso_top10": 0.3929465597438573,
+        "orgaos_equivalentes_concentracao": 29.843594355823946
+      },
+      "1": {
+        "maior_orgao": 7,
+        "peso_maior": 0.17493527705383044,
+        "peso_top10": 0.495516064350325,
+        "orgaos_equivalentes_concentracao": 20.125966761442417
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.07425636635994008,
+    "concentracao_score_quadrado_max": 0.36903781815855907,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -0.1755871334098899,
+        -0.000531570530977965
+      ],
+      "ic_percentil": [
+        -0.21178077527329842,
+        -0.03672521239438646
+      ],
+      "p": 0.05,
+      "dp": 0.04496851274622063,
+      "media": -0.11184051885314893,
+      "fracao_media_estratos_retidos": 0.7425167751862235,
+      "fracao_min_estratos_retidos": 0.43441044297025466
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.08047274140128365,
+    "p_holm3": 0.04023637070064182,
+    "p_bootstrap_holm6": 0.30000000000000004,
+    "p_bootstrap_holm3": 0.15000000000000002
+  },
+  "amostra_comum_s0_B": {
+    "estimavel": true,
+    "analise": "amostra_comum_s0_B",
+    "familia": "amostra_comum",
+    "sigilo": 0,
+    "codigo": "B",
+    "desfecho": "desconto",
+    "itens": 39971,
+    "pregoes": 4711,
+    "orgaos": 367,
+    "catmats": 858,
+    "produtos": 966,
+    "estratos": 4673,
+    "media_A": 0.3266379778038974,
+    "media_AF": 0.35224843497132835,
+    "diferenca": 0.025610457167430947,
+    "infer_duplo": {
+      "ep": 0.01493130290493493,
+      "t": 1.7152191828461574,
+      "gl": 366,
+      "p": 0.08715142788036724,
+      "ic95": [
+        -0.0037514531184481108,
+        0.05497236745331001
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.014733435245805063,
+      "t": 1.7382542998397346,
+      "gl": 366,
+      "p": 0.08300701111471949,
+      "ic95": [
+        -0.0033623529513134784,
+        0.05458326728617537
+      ]
+    },
+    "variancias": {
+      "orgao": 0.00021707411414233088,
+      "catmat": 1.44907388408291e-05,
+      "intersecao": 8.621046544241703e-06,
+      "duplo": 0.00022294380643891827
+    },
+    "descritivas": {
+      "0": {
+        "itens": 26078,
+        "pregoes": 3142,
+        "orgaos": 271,
+        "produtos": 966,
+        "media_bruta": 0.3226102693069526,
+        "dp": 0.25315319280424675,
+        "mediana": 0.2869495265238577,
+        "min": -1.6712328767123288,
+        "max": 0.9999992888433749,
+        "q01": 0.0,
+        "q25": 0.10129381992136355,
+        "q75": 0.5039213519056515,
+        "q99": 0.915552420274589,
+        "assimetria": 0.45465755702954785,
+        "curtose_excesso": -0.5385244368816875,
+        "media_padronizada": 0.3266379778038974,
+        "media_logq_padronizada": 7.827012068131368,
+        "srp_padronizado": 0.8228535861780488
+      },
+      "1": {
+        "itens": 13893,
+        "pregoes": 1569,
+        "orgaos": 155,
+        "produtos": 966,
+        "media_bruta": 0.35904964299492265,
+        "dp": 0.2755587001360047,
+        "mediana": 0.33139534883720934,
+        "min": -11.857142857142856,
+        "max": 0.9974358974358974,
+        "q01": 0.0,
+        "q25": 0.15384615384615385,
+        "q75": 0.5384615384615385,
+        "q99": 0.9363572560386474,
+        "assimetria": -5.95697109757529,
+        "curtose_excesso": 276.99809045654933,
+        "media_padronizada": 0.35224843497132835,
+        "media_logq_padronizada": 7.7693949006785,
+        "srp_padronizado": 0.9502848582214087
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 7,
+        "peso_maior": 0.14635797394406916,
+        "peso_top10": 0.3929465597438573,
+        "orgaos_equivalentes_concentracao": 29.843594355823946
+      },
+      "1": {
+        "maior_orgao": 7,
+        "peso_maior": 0.17493527705383044,
+        "peso_top10": 0.495516064350325,
+        "orgaos_equivalentes_concentracao": 20.125966761442417
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.07425636635994008,
+    "concentracao_score_quadrado_max": 0.10916528097695331,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -0.006528353790187021,
+        0.05869702548301641
+      ],
+      "ic_percentil": [
+        -0.007476111148154515,
+        0.057749268125048915
+      ],
+      "p": 0.103,
+      "dp": 0.016340944697249334,
+      "media": 0.025181062046745924,
+      "fracao_media_estratos_retidos": 0.7425167751862235,
+      "fracao_min_estratos_retidos": 0.43441044297025466
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.4357571394018362,
+    "p_holm3": 0.17430285576073448,
+    "p_bootstrap_holm6": 0.515,
+    "p_bootstrap_holm3": 0.206
+  },
+  "amostra_comum_s0_C": {
+    "estimavel": true,
+    "analise": "amostra_comum_s0_C",
+    "familia": "amostra_comum",
+    "sigilo": 0,
+    "codigo": "C",
+    "desfecho": "relativo",
+    "itens": 39971,
+    "pregoes": 4711,
+    "orgaos": 367,
+    "catmats": 858,
+    "produtos": 966,
+    "estratos": 4673,
+    "media_A": 362.1782266818621,
+    "media_AF": 86.30004709935811,
+    "diferenca": -275.87817958250395,
+    "infer_duplo": {
+      "ep": 208.90438890176316,
+      "t": -1.3205954218234979,
+      "gl": 366,
+      "p": 0.1874614663005264,
+      "ic95": [
+        -686.6817085386188,
+        134.9253493736109
+      ]
+    },
+    "infer_orgao": {
+      "ep": 201.1628726073434,
+      "t": -1.3714169817061614,
+      "gl": 366,
+      "p": 0.1710851946888156,
+      "ic95": [
+        -671.4582743640769,
+        119.70191519906899
+      ]
+    },
+    "variancias": {
+      "orgao": 40466.50131563827,
+      "catmat": 13954.259733487004,
+      "intersecao": 10779.717346706162,
+      "duplo": 43641.043702419105
+    },
+    "descritivas": {
+      "0": {
+        "itens": 26078,
+        "pregoes": 3142,
+        "orgaos": 271,
+        "produtos": 966,
+        "media_bruta": 512.5622462317107,
+        "dp": 23367.490077535465,
+        "mediana": 1.0057581786030063,
+        "min": 0.004197080291970802,
+        "max": 2459243.58974359,
+        "q01": 0.4285714285714285,
+        "q25": 0.9139090056079742,
+        "q75": 1.1633823529411766,
+        "q99": 84.22222222222223,
+        "assimetria": 69.88952531418573,
+        "curtose_excesso": 5947.013379153957,
+        "media_padronizada": 362.1782266818621,
+        "media_logq_padronizada": 7.827012068131368,
+        "srp_padronizado": 0.8228535861780488
+      },
+      "1": {
+        "itens": 13893,
+        "pregoes": 1569,
+        "orgaos": 155,
+        "produtos": 966,
+        "media_bruta": 180.2558164253728,
+        "dp": 11640.789940278302,
+        "mediana": 0.9962506695232994,
+        "min": 0.008992131884600974,
+        "max": 1006630.4347826086,
+        "q01": 0.42193615857826383,
+        "q25": 0.885558583106267,
+        "q75": 1.1428571428571428,
+        "q99": 9.045341730717434,
+        "assimetria": 72.87205528320193,
+        "curtose_excesso": 5628.450174533507,
+        "media_padronizada": 86.30004709935811,
+        "media_logq_padronizada": 7.7693949006785,
+        "srp_padronizado": 0.9502848582214087
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 7,
+        "peso_maior": 0.14635797394406916,
+        "peso_top10": 0.3929465597438573,
+        "orgaos_equivalentes_concentracao": 29.843594355823946
+      },
+      "1": {
+        "maior_orgao": 7,
+        "peso_maior": 0.17493527705383044,
+        "peso_top10": 0.495516064350325,
+        "orgaos_equivalentes_concentracao": 20.125966761442417
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.07425636635994008,
+    "concentracao_score_quadrado_max": 0.3280871958784003,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -827.1045224236461,
+        322.94430463600463
+      ],
+      "ic_percentil": [
+        -874.7006638010125,
+        275.3481632586382
+      ],
+      "p": 0.281,
+      "dp": 292.6946557825487,
+      "media": -247.5618581247545,
+      "fracao_media_estratos_retidos": 0.48362497105603947,
+      "fracao_min_estratos_retidos": 0.2240530708324417
+    },
+    "bootstrap_recalcula_referencia": true,
+    "p_holm6": 0.7498458652021056,
+    "p_holm3": 0.1874614663005264,
+    "p_bootstrap_holm6": 1.0,
+    "p_bootstrap_holm3": 0.281
+  },
+  "amostra_comum_s1_A": {
+    "estimavel": true,
+    "analise": "amostra_comum_s1_A",
+    "familia": "amostra_comum",
+    "sigilo": 1,
+    "codigo": "A",
+    "desfecho": "logp",
+    "itens": 16839,
+    "pregoes": 4118,
+    "orgaos": 98,
+    "catmats": 737,
+    "produtos": 810,
+    "estratos": 2831,
+    "media_A": 0.29458050867017843,
+    "media_AF": 0.263003322061162,
+    "diferenca": -0.031577186609016476,
+    "infer_duplo": {
+      "ep": 0.03300158919867265,
+      "t": -0.956838363719967,
+      "gl": 97,
+      "p": 0.34102755979575755,
+      "ic95": [
+        -0.09707620586693075,
+        0.0339218326488978
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.032144464232426485,
+      "t": -0.9823522451857277,
+      "gl": 97,
+      "p": 0.3283702350812921,
+      "ic95": [
+        -0.09537505007311053,
+        0.03222067685507759
+      ]
+    },
+    "variancias": {
+      "orgao": 0.0010332665807897459,
+      "catmat": 0.00013252931908510658,
+      "intersecao": 7.669101023690497e-05,
+      "duplo": 0.0010891048896379475
+    },
+    "descritivas": {
+      "0": {
+        "itens": 9949,
+        "pregoes": 2475,
+        "orgaos": 64,
+        "produtos": 810,
+        "media_bruta": 0.4337544363380088,
+        "dp": 2.1118074441381163,
+        "mediana": 0.5007752879124892,
+        "min": -4.199705077879927,
+        "max": 11.497411747138841,
+        "q01": -3.421972851634813,
+        "q25": -1.1789550413506482,
+        "q75": 1.7227665977411035,
+        "q99": 6.502312187221474,
+        "assimetria": 0.4572696760795906,
+        "curtose_excesso": 0.6522942457318934,
+        "media_padronizada": 0.29458050867017843,
+        "media_logq_padronizada": 8.179175019350863,
+        "srp_padronizado": 0.7872576693202844
+      },
+      "1": {
+        "itens": 6890,
+        "pregoes": 1643,
+        "orgaos": 53,
+        "produtos": 810,
+        "media_bruta": 0.43019080600466114,
+        "dp": 2.1614375612732366,
+        "mediana": 0.4762341789963717,
+        "min": -4.104394898075602,
+        "max": 11.982929094215963,
+        "q01": -3.506557897319982,
+        "q25": -1.1907275775759154,
+        "q75": 1.6653452088321985,
+        "q99": 6.7173692919061,
+        "assimetria": 0.5814831692062616,
+        "curtose_excesso": 0.9740377162343776,
+        "media_padronizada": 0.263003322061162,
+        "media_logq_padronizada": 8.331199636619601,
+        "srp_padronizado": 0.7537634917258907
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 8,
+        "peso_maior": 0.20752613782352533,
+        "peso_top10": 0.7931007467305569,
+        "orgaos_equivalentes_concentracao": 8.873655725209332
+      },
+      "1": {
+        "maior_orgao": 497,
+        "peso_maior": 0.1783991168496461,
+        "peso_top10": 0.7999611597633499,
+        "orgaos_equivalentes_concentracao": 12.340024158117302
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.14623807841752032,
+    "concentracao_score_quadrado_max": 0.6612484583368132,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -0.09603634834114987,
+        0.050222357518362515
+      ],
+      "ic_percentil": [
+        -0.11337673073639547,
+        0.03288197512311691
+      ],
+      "p": 0.493,
+      "dp": 0.038286622739321256,
+      "media": -0.03339513677846858,
+      "fracao_media_estratos_retidos": 0.6578372195635084,
+      "fracao_min_estratos_retidos": 0.14659131049099258
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.7955502003567341,
+    "p_holm3": 0.7955502003567341,
+    "p_bootstrap_holm6": 1.0,
+    "p_bootstrap_holm3": 0.986
+  },
+  "amostra_comum_s1_B": {
+    "estimavel": true,
+    "analise": "amostra_comum_s1_B",
+    "familia": "amostra_comum",
+    "sigilo": 1,
+    "codigo": "B",
+    "desfecho": "desconto",
+    "itens": 16839,
+    "pregoes": 4118,
+    "orgaos": 98,
+    "catmats": 737,
+    "produtos": 810,
+    "estratos": 2831,
+    "media_A": 0.3260000212044461,
+    "media_AF": 0.3527034228281205,
+    "diferenca": 0.026703401623674357,
+    "infer_duplo": {
+      "ep": 0.023827471896590242,
+      "t": 1.12069806396438,
+      "gl": 97,
+      "p": 0.26518340011891134,
+      "ic95": [
+        -0.020587534313584906,
+        0.07399433756093363
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.023678976333006738,
+      "t": 1.127726184110915,
+      "gl": 97,
+      "p": 0.26221734286182224,
+      "ic95": [
+        -0.020292811725520513,
+        0.07369961497286923
+      ]
+    },
+    "variancias": {
+      "orgao": 0.0005606939201790932,
+      "catmat": 2.371645989236602e-05,
+      "intersecao": 1.6661963088661418e-05,
+      "duplo": 0.0005677484169827979
+    },
+    "descritivas": {
+      "0": {
+        "itens": 9949,
+        "pregoes": 2475,
+        "orgaos": 64,
+        "produtos": 810,
+        "media_bruta": 0.3370905011930875,
+        "dp": 0.2577929639731698,
+        "mediana": 0.30257510729613735,
+        "min": -2.529411764705882,
+        "max": 0.9996196943972835,
+        "q01": 0.0,
+        "q25": 0.12534386682655008,
+        "q75": 0.514018691588785,
+        "q99": 0.9560113682104828,
+        "assimetria": 0.32686319778805195,
+        "curtose_excesso": 1.185047514443287,
+        "media_padronizada": 0.3260000212044461,
+        "media_logq_padronizada": 8.179175019350863,
+        "srp_padronizado": 0.7872576693202844
+      },
+      "1": {
+        "itens": 6890,
+        "pregoes": 1643,
+        "orgaos": 53,
+        "produtos": 810,
+        "media_bruta": 0.36533617437995924,
+        "dp": 0.26368733457218835,
+        "mediana": 0.3248697033035642,
+        "min": -2.6515151515151514,
+        "max": 0.99964647009061,
+        "q01": 0.0,
+        "q25": 0.15260489510489503,
+        "q75": 0.5481802444557549,
+        "q99": 0.9546080292583413,
+        "assimetria": 0.2719315014334266,
+        "curtose_excesso": 1.7245374056946527,
+        "media_padronizada": 0.3527034228281205,
+        "media_logq_padronizada": 8.331199636619601,
+        "srp_padronizado": 0.7537634917258907
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 8,
+        "peso_maior": 0.20752613782352533,
+        "peso_top10": 0.7931007467305569,
+        "orgaos_equivalentes_concentracao": 8.873655725209332
+      },
+      "1": {
+        "maior_orgao": 497,
+        "peso_maior": 0.1783991168496461,
+        "peso_top10": 0.7999611597633499,
+        "orgaos_equivalentes_concentracao": 12.340024158117302
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.14623807841752032,
+    "concentracao_score_quadrado_max": 0.45520003666456466,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -0.023777532078601255,
+        0.0800706031683775
+      ],
+      "ic_percentil": [
+        -0.026663799921028786,
+        0.07718433532594997
+      ],
+      "p": 0.279,
+      "dp": 0.027222280084550254,
+      "media": 0.025603470786845314,
+      "fracao_media_estratos_retidos": 0.6578372195635084,
+      "fracao_min_estratos_retidos": 0.14659131049099258
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.7955502003567341,
+    "p_holm3": 0.7955502003567341,
+    "p_bootstrap_holm6": 1.0,
+    "p_bootstrap_holm3": 0.8370000000000001
+  },
+  "amostra_comum_s1_C": {
+    "estimavel": true,
+    "analise": "amostra_comum_s1_C",
+    "familia": "amostra_comum",
+    "sigilo": 1,
+    "codigo": "C",
+    "desfecho": "relativo",
+    "itens": 16839,
+    "pregoes": 4118,
+    "orgaos": 98,
+    "catmats": 737,
+    "produtos": 810,
+    "estratos": 2831,
+    "media_A": 6.206257381527379,
+    "media_AF": 943.2793946709597,
+    "diferenca": 937.0731372894322,
+    "infer_duplo": {
+      "ep": 1055.2196877402419,
+      "t": 0.8880360631786344,
+      "gl": 97,
+      "p": 0.3767181057851445,
+      "ic95": [
+        -1157.2458433070626,
+        3031.3921178859273
+      ]
+    },
+    "infer_orgao": {
+      "ep": 696.4285719018491,
+      "t": 1.3455409141678614,
+      "gl": 97,
+      "p": 0.1815875088043217,
+      "ic95": [
+        -445.144796766775,
+        2319.2910713456395
+      ]
+    },
+    "variancias": {
+      "orgao": 485012.755761249,
+      "catmat": 1061721.1425175676,
+      "intersecao": 433245.30888420297,
+      "duplo": 1113488.5893946136
+    },
+    "descritivas": {
+      "0": {
+        "itens": 9949,
+        "pregoes": 2475,
+        "orgaos": 64,
+        "produtos": 810,
+        "media_bruta": 3.778688025261999,
+        "dp": 151.19324560602465,
+        "mediana": 1.0035223670306446,
+        "min": 0.0040882917466410745,
+        "max": 13261.275675675675,
+        "q01": 0.3429694779116466,
+        "q25": 0.9034653465346535,
+        "q75": 1.1864406779661016,
+        "q99": 5.9543072186110235,
+        "assimetria": 76.91719705901184,
+        "curtose_excesso": 6339.02271465393,
+        "media_padronizada": 6.206257381527379,
+        "media_logq_padronizada": 8.179175019350863,
+        "srp_padronizado": 0.7872576693202844
+      },
+      "1": {
+        "itens": 6890,
+        "pregoes": 1643,
+        "orgaos": 53,
+        "produtos": 810,
+        "media_bruta": 388.45908718749337,
+        "dp": 32126.165707966888,
+        "mediana": 0.9770312588162275,
+        "min": 0.015125324114088162,
+        "max": 2666666.666666667,
+        "q01": 0.39999999999999997,
+        "q25": 0.859599140401146,
+        "q75": 1.1008360023885781,
+        "q99": 8.097307604345302,
+        "assimetria": 83.00602050252797,
+        "curtose_excesso": 6889.999626378563,
+        "media_padronizada": 943.2793946709597,
+        "media_logq_padronizada": 8.331199636619601,
+        "srp_padronizado": 0.7537634917258907
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 8,
+        "peso_maior": 0.20752613782352533,
+        "peso_top10": 0.7931007467305569,
+        "orgaos_equivalentes_concentracao": 8.873655725209332
+      },
+      "1": {
+        "maior_orgao": 497,
+        "peso_maior": 0.1783991168496461,
+        "peso_top10": 0.7999611597633499,
+        "orgaos_equivalentes_concentracao": 12.340024158117302
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.14623807841752032,
+    "concentracao_score_quadrado_max": 0.5521382243503251,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -1837.0400495883164,
+        1885.9226753732612
+      ],
+      "ic_percentil": [
+        -11.776400794396825,
+        3711.186324167181
+      ],
+      "p": 0.548,
+      "dp": 1241.1001042031342,
+      "media": 992.6065443054339,
+      "fracao_media_estratos_retidos": 0.45107647430214576,
+      "fracao_min_estratos_retidos": 0.10349699752737548
+    },
+    "bootstrap_recalcula_referencia": true,
+    "p_holm6": 0.7955502003567341,
+    "p_holm3": 0.7955502003567341,
+    "p_bootstrap_holm6": 1.0,
+    "p_bootstrap_holm3": 0.986
+  },
+  "winsor_s0_A": {
+    "estimavel": true,
+    "analise": "winsor_s0_A",
+    "familia": "winsor",
+    "sigilo": 0,
+    "codigo": "A",
+    "desfecho": "y_win",
+    "itens": 75930,
+    "pregoes": 8252,
+    "orgaos": 534,
+    "catmats": 2146,
+    "produtos": 2725,
+    "estratos": 15552,
+    "media_A": 0.8434161624538933,
+    "media_AF": 0.7583444628515029,
+    "diferenca": -0.08507169960239044,
+    "infer_duplo": {
+      "ep": 0.027882634715225053,
+      "t": -3.05106387797484,
+      "gl": 533,
+      "p": 0.002393865470562595,
+      "ic95": [
+        -0.1398450366909339,
+        -0.03029836251384698
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.02749791915637702,
+      "t": -3.0937504441190247,
+      "gl": 533,
+      "p": 0.0020800864023191607,
+      "ic95": [
+        -0.13908929193427055,
+        -0.03105410727051032
+      ]
+    },
+    "variancias": {
+      "orgao": 0.0007561355579306465,
+      "catmat": 5.293423944212913e-05,
+      "intersecao": 3.162847871010226e-05,
+      "duplo": 0.0007774413186626733
+    },
+    "descritivas": {
+      "0": {
+        "itens": 46044,
+        "pregoes": 5136,
+        "orgaos": 390,
+        "produtos": 2725,
+        "media_bruta": 0.4577331462311538,
+        "dp": 2.0728084563113334,
+        "mediana": 0.6151856390902335,
+        "min": -4.101823014743316,
+        "max": 12.172681607486501,
+        "q01": -3.506557897319982,
+        "q25": -1.2039728043259361,
+        "q75": 1.7833912195575383,
+        "q99": 6.004689008580539,
+        "assimetria": 0.33896008114946014,
+        "curtose_excesso": 0.4776522137416408,
+        "media_padronizada": 0.8434161624538933,
+        "media_logq_padronizada": 7.246274714762554,
+        "srp_padronizado": 0.8745215020509334
+      },
+      "1": {
+        "itens": 29886,
+        "pregoes": 3116,
+        "orgaos": 241,
+        "produtos": 2725,
+        "media_bruta": 0.5275654246239362,
+        "dp": 2.061008786123384,
+        "mediana": 0.6626879730752367,
+        "min": -4.101823014743316,
+        "max": 10.81773579995831,
+        "q01": -3.3843402645957323,
+        "q25": -1.0216512475319814,
+        "q75": 1.7817091333745536,
+        "q99": 6.401139434731798,
+        "assimetria": 0.40827261360066675,
+        "curtose_excesso": 0.7393815129299024,
+        "media_padronizada": 0.7583444628515029,
+        "media_logq_padronizada": 7.257694254620254,
+        "srp_padronizado": 0.9418989003359182
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 7,
+        "peso_maior": 0.2733073870393716,
+        "peso_top10": 0.5035829329783142,
+        "orgaos_equivalentes_concentracao": 11.770898119182464
+      },
+      "1": {
+        "maior_orgao": 7,
+        "peso_maior": 0.3190473594264104,
+        "peso_top10": 0.5904418480325117,
+        "orgaos_equivalentes_concentracao": 8.64457998675864
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.31147119341563784,
+    "concentracao_score_quadrado_max": 0.2917723879446622,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -0.1253169066225414,
+        0.0050044694251003
+      ],
+      "ic_percentil": [
+        -0.1751478686298812,
+        -0.04482649258223946
+      ],
+      "p": 0.069,
+      "dp": 0.033826007228473794,
+      "media": -0.0940013345326486,
+      "fracao_media_estratos_retidos": 0.5980411116051854,
+      "fracao_min_estratos_retidos": 0.23707561728395063
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.014363192823375571,
+    "p_holm3": 0.007181596411687786,
+    "p_bootstrap_holm6": 0.34500000000000003,
+    "p_bootstrap_holm3": 0.138
+  },
+  "winsor_s0_B": {
+    "estimavel": true,
+    "analise": "winsor_s0_B",
+    "familia": "winsor",
+    "sigilo": 0,
+    "codigo": "B",
+    "desfecho": "y_win",
+    "itens": 75930,
+    "pregoes": 8252,
+    "orgaos": 534,
+    "catmats": 2146,
+    "produtos": 2725,
+    "estratos": 15552,
+    "media_A": 0.3200215377526394,
+    "media_AF": 0.35297934463917563,
+    "diferenca": 0.03295780688653629,
+    "infer_duplo": {
+      "ep": 0.01090074074319958,
+      "t": 3.0234465402818604,
+      "gl": 533,
+      "p": 0.002619431716633942,
+      "ic95": [
+        0.01154412222796039,
+        0.054371491545112186
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.010793145677970692,
+      "t": 3.0535867734839055,
+      "gl": 533,
+      "p": 0.0023741748982997204,
+      "ic95": [
+        0.011755484634599377,
+        0.0541601291384732
+      ]
+    },
+    "variancias": {
+      "orgao": 0.00011649199362589744,
+      "catmat": 6.642392611209641e-06,
+      "intersecao": 4.308237486655732e-06,
+      "duplo": 0.00011882614875045135
+    },
+    "descritivas": {
+      "0": {
+        "itens": 46044,
+        "pregoes": 5136,
+        "orgaos": 390,
+        "produtos": 2725,
+        "media_bruta": 0.32236858906482707,
+        "dp": 0.253008244666909,
+        "mediana": 0.2896752181807532,
+        "min": -0.7339449541284402,
+        "max": 0.9905016379663092,
+        "q01": 0.0,
+        "q25": 0.09668956451866481,
+        "q75": 0.5058173415731555,
+        "q99": 0.9104477611940298,
+        "assimetria": 0.46342328174666464,
+        "curtose_excesso": -0.766295380615424,
+        "media_padronizada": 0.3200215377526394,
+        "media_logq_padronizada": 7.246274714762554,
+        "srp_padronizado": 0.8745215020509334
+      },
+      "1": {
+        "itens": 29886,
+        "pregoes": 3116,
+        "orgaos": 241,
+        "produtos": 2725,
+        "media_bruta": 0.358136532660247,
+        "dp": 0.2525607759343014,
+        "mediana": 0.3334145040386592,
+        "min": -0.3533333333333332,
+        "max": 0.993971464934021,
+        "q01": 0.0,
+        "q25": 0.14732409063804414,
+        "q75": 0.5414349745559937,
+        "q99": 0.9220857436167231,
+        "assimetria": 0.3555438539861942,
+        "curtose_excesso": -0.7971107383466465,
+        "media_padronizada": 0.35297934463917563,
+        "media_logq_padronizada": 7.257694254620254,
+        "srp_padronizado": 0.9418989003359182
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 7,
+        "peso_maior": 0.2733073870393716,
+        "peso_top10": 0.5035829329783142,
+        "orgaos_equivalentes_concentracao": 11.770898119182464
+      },
+      "1": {
+        "maior_orgao": 7,
+        "peso_maior": 0.3190473594264104,
+        "peso_top10": 0.5904418480325117,
+        "orgaos_equivalentes_concentracao": 8.64457998675864
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.31147119341563784,
+    "concentracao_score_quadrado_max": 0.3388872335245259,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        0.014761984566744712,
+        0.06551966212815599
+      ],
+      "ic_percentil": [
+        0.0003959516449165844,
+        0.051153629206327864
+      ],
+      "p": 0.003,
+      "dp": 0.012780019583146436,
+      "media": 0.030614560929167506,
+      "fracao_media_estratos_retidos": 0.5980411116051854,
+      "fracao_min_estratos_retidos": 0.23707561728395063
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.014363192823375571,
+    "p_holm3": 0.007181596411687786,
+    "p_bootstrap_holm6": 0.018000000000000002,
+    "p_bootstrap_holm3": 0.009000000000000001
+  },
+  "winsor_s0_C": {
+    "estimavel": true,
+    "analise": "winsor_s0_C",
+    "familia": "winsor",
+    "sigilo": 0,
+    "codigo": "C",
+    "desfecho": "y_win",
+    "itens": 39971,
+    "pregoes": 4711,
+    "orgaos": 367,
+    "catmats": 858,
+    "produtos": 966,
+    "estratos": 4673,
+    "media_A": 77.0496405746446,
+    "media_AF": 1.6037589670132655,
+    "diferenca": -75.44588160763132,
+    "infer_duplo": {
+      "ep": 60.76416795618941,
+      "t": -1.241617949282665,
+      "gl": 366,
+      "p": 0.21517265458043416,
+      "ic95": [
+        -194.9365958128895,
+        44.044832597626836
+      ]
+    },
+    "infer_orgao": {
+      "ep": 55.033788167591865,
+      "t": -1.370901115835956,
+      "gl": 366,
+      "p": 0.17124583666713994,
+      "ic95": [
+        -183.66799465141912,
+        32.776231436156465
+      ]
+    },
+    "variancias": {
+      "orgao": 3028.7178400753746,
+      "catmat": 2745.260190528959,
+      "intersecao": 2081.693923196338,
+      "duplo": 3692.284107407996
+    },
+    "descritivas": {
+      "0": {
+        "itens": 26078,
+        "pregoes": 3142,
+        "orgaos": 271,
+        "produtos": 966,
+        "media_bruta": 52.428848291148064,
+        "dp": 3610.6445402626478,
+        "mediana": 1.0057581786030063,
+        "min": 0.01715438950554995,
+        "max": 446806.96574980626,
+        "q01": 0.47030988003427593,
+        "q25": 0.913978494623656,
+        "q75": 1.1633201834710105,
+        "q99": 74.30962343096235,
+        "assimetria": 97.94408128339423,
+        "curtose_excesso": 10677.929502139537,
+        "media_padronizada": 77.0496405746446,
+        "media_logq_padronizada": 7.827012068131368,
+        "srp_padronizado": 0.8228535861780488
+      },
+      "1": {
+        "itens": 13893,
+        "pregoes": 1569,
+        "orgaos": 155,
+        "produtos": 966,
+        "media_bruta": 1.7445422184506738,
+        "dp": 24.41247221452781,
+        "mediana": 0.9962506695232994,
+        "min": 0.009034068357083562,
+        "max": 2668.4982307619266,
+        "q01": 0.45170101806239743,
+        "q25": 0.8857395925597875,
+        "q75": 1.1428571428571428,
+        "q99": 7.667419269164681,
+        "assimetria": 96.20763538805696,
+        "curtose_excesso": 10303.145499801334,
+        "media_padronizada": 1.6037589670132655,
+        "media_logq_padronizada": 7.7693949006785,
+        "srp_padronizado": 0.9502848582214087
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 7,
+        "peso_maior": 0.14635797394406916,
+        "peso_top10": 0.3929465597438573,
+        "orgaos_equivalentes_concentracao": 29.843594355823946
+      },
+      "1": {
+        "maior_orgao": 7,
+        "peso_maior": 0.17493527705383044,
+        "peso_top10": 0.495516064350325,
+        "orgaos_equivalentes_concentracao": 20.125966761442417
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.07425636635994008,
+    "concentracao_score_quadrado_max": 0.7443069917138646,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -149.79694177695043,
+        47.99641160300453
+      ],
+      "ic_percentil": [
+        -198.88817481826717,
+        -1.0948214383121992
+      ],
+      "p": 0.339,
+      "dp": 62.25834877474295,
+      "media": -79.21368098263983,
+      "fracao_media_estratos_retidos": 0.7425167751862235,
+      "fracao_min_estratos_retidos": 0.43441044297025466
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.6455179637413024,
+    "p_holm3": 0.21517265458043416,
+    "p_bootstrap_holm6": 0.716,
+    "p_bootstrap_holm3": 0.339
+  },
+  "winsor_s1_A": {
+    "estimavel": true,
+    "analise": "winsor_s1_A",
+    "familia": "winsor",
+    "sigilo": 1,
+    "codigo": "A",
+    "desfecho": "y_win",
+    "itens": 33425,
+    "pregoes": 6930,
+    "orgaos": 105,
+    "catmats": 1612,
+    "produtos": 2032,
+    "estratos": 7654,
+    "media_A": 1.0969417579642,
+    "media_AF": 1.0602193048572977,
+    "diferenca": -0.03672245310690249,
+    "infer_duplo": {
+      "ep": 0.024582120215314997,
+      "t": -1.493868420838,
+      "gl": 104,
+      "p": 0.13823787221069428,
+      "ic95": [
+        -0.08546971997440633,
+        0.012024813760601355
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.024355771371985704,
+      "t": -1.5077515939052166,
+      "gl": 104,
+      "p": 0.13464990355780934,
+      "ic95": [
+        -0.08502086172400816,
+        0.011575955510203177
+      ]
+    },
+    "variancias": {
+      "orgao": 0.0005932035991244384,
+      "catmat": 4.458994795082357e-05,
+      "intersecao": 3.351291279506373e-05,
+      "duplo": 0.0006042806342801983
+    },
+    "descritivas": {
+      "0": {
+        "itens": 18033,
+        "pregoes": 3797,
+        "orgaos": 73,
+        "produtos": 2032,
+        "media_bruta": 1.036543977911095,
+        "dp": 2.4258014052969457,
+        "mediana": 1.0331844833456545,
+        "min": -4.081760954090592,
+        "max": 11.767244897614791,
+        "q01": -3.3298073855754824,
+        "q25": -0.6616485135005743,
+        "q75": 2.302585092994046,
+        "q99": 8.258298102394878,
+        "assimetria": 0.642117967873644,
+        "curtose_excesso": 0.8667018797350146,
+        "media_padronizada": 1.0969417579642,
+        "media_logq_padronizada": 7.769264143406612,
+        "srp_padronizado": 0.8040930296769417
+      },
+      "1": {
+        "itens": 15392,
+        "pregoes": 3133,
+        "orgaos": 60,
+        "produtos": 2032,
+        "media_bruta": 1.238733545229076,
+        "dp": 2.6291557810653248,
+        "mediana": 1.1314021114911006,
+        "min": -4.081760954090592,
+        "max": 11.035288455467093,
+        "q01": -3.3526647283980164,
+        "q25": -0.5108256237659907,
+        "q75": 2.446035805051916,
+        "q99": 9.371504352608591,
+        "assimetria": 0.727097639488282,
+        "curtose_excesso": 0.7873420771863979,
+        "media_padronizada": 1.0602193048572977,
+        "media_logq_padronizada": 7.762862837536799,
+        "srp_padronizado": 0.7569113372856133
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 8,
+        "peso_maior": 0.3039889595216096,
+        "peso_top10": 0.8593639561167267,
+        "orgaos_equivalentes_concentracao": 5.5775917668694595
+      },
+      "1": {
+        "maior_orgao": 8,
+        "peso_maior": 0.21279769681585722,
+        "peso_top10": 0.8107489137898073,
+        "orgaos_equivalentes_concentracao": 8.870204348085036
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.3035014371570421,
+    "concentracao_score_quadrado_max": 0.7452094189980004,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -0.09133201342758478,
+        0.009670992254536062
+      ],
+      "ic_percentil": [
+        -0.08311589846834104,
+        0.0178871072137798
+      ],
+      "p": 0.18,
+      "dp": 0.02762111754688538,
+      "media": -0.03516719993575751,
+      "fracao_media_estratos_retidos": 0.5985675748770648,
+      "fracao_min_estratos_retidos": 0.0799581917951398
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.5529514888427771,
+    "p_holm3": 0.41471361663208284,
+    "p_bootstrap_holm6": 0.716,
+    "p_bootstrap_holm3": 0.5369999999999999
+  },
+  "winsor_s1_B": {
+    "estimavel": true,
+    "analise": "winsor_s1_B",
+    "familia": "winsor",
+    "sigilo": 1,
+    "codigo": "B",
+    "desfecho": "y_win",
+    "itens": 32896,
+    "pregoes": 6881,
+    "orgaos": 105,
+    "catmats": 1606,
+    "produtos": 2026,
+    "estratos": 7474,
+    "media_A": 0.3065591764613395,
+    "media_AF": 0.3235557839741565,
+    "diferenca": 0.016996607512817074,
+    "infer_duplo": {
+      "ep": 0.01526284887386582,
+      "t": 1.113593383075418,
+      "gl": 104,
+      "p": 0.26802079608783935,
+      "ic95": [
+        -0.01327019456510872,
+        0.047263409590742864
+      ]
+    },
+    "infer_orgao": {
+      "ep": 0.015153542663016674,
+      "t": 1.1216260046106932,
+      "gl": 104,
+      "p": 0.26460455086003987,
+      "ic95": [
+        -0.01305343624711712,
+        0.04704665127275127
+      ]
+    },
+    "variancias": {
+      "orgao": 0.00022962985523986644,
+      "catmat": 1.1917767193216319e-05,
+      "intersecao": 8.593066686615642e-06,
+      "duplo": 0.00023295455574646714
+    },
+    "descritivas": {
+      "0": {
+        "itens": 17791,
+        "pregoes": 3777,
+        "orgaos": 73,
+        "produtos": 2026,
+        "media_bruta": 0.31534209943457703,
+        "dp": 0.25200852447626554,
+        "mediana": 0.2804878048780488,
+        "min": -1.6947058823529408,
+        "max": 0.9978545454545454,
+        "q01": 0.0,
+        "q25": 0.10191874108498594,
+        "q75": 0.48513694335859425,
+        "q99": 0.9416086230849346,
+        "assimetria": 0.5417897059210597,
+        "curtose_excesso": -0.19278406355455235,
+        "media_padronizada": 0.3065591764613395,
+        "media_logq_padronizada": 7.772018106241841,
+        "srp_padronizado": 0.7996425005548986
+      },
+      "1": {
+        "itens": 15105,
+        "pregoes": 3104,
+        "orgaos": 60,
+        "produtos": 2026,
+        "media_bruta": 0.334680842326991,
+        "dp": 0.24833811608606002,
+        "mediana": 0.29999999999999993,
+        "min": -0.08833333333333336,
+        "max": 0.9915424633357146,
+        "q01": 0.0,
+        "q25": 0.13043478260869568,
+        "q75": 0.5024390243902439,
+        "q99": 0.9399471181474683,
+        "assimetria": 0.5430119856582958,
+        "curtose_excesso": -0.5340200335816965,
+        "media_padronizada": 0.3235557839741565,
+        "media_logq_padronizada": 7.764016065142655,
+        "srp_padronizado": 0.7514137064825731
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 8,
+        "peso_maior": 0.2884307594565695,
+        "peso_top10": 0.8559546499131335,
+        "orgaos_equivalentes_concentracao": 5.740368646941542
+      },
+      "1": {
+        "maior_orgao": 8,
+        "peso_maior": 0.1973847433005849,
+        "peso_top10": 0.8078858513264452,
+        "orgaos_equivalentes_concentracao": 9.131192375205156
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.30131121220230134,
+    "concentracao_score_quadrado_max": 0.3197996630647912,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -0.024416126477771145,
+        0.04735257813007146
+      ],
+      "ic_percentil": [
+        -0.013359363104437312,
+        0.05840934150340529
+      ],
+      "p": 0.338,
+      "dp": 0.01840301965429498,
+      "media": 0.01964982713551709,
+      "fracao_media_estratos_retidos": 0.5983011575362206,
+      "fracao_min_estratos_retidos": 0.08188386406208188
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.6455179637413024,
+    "p_holm3": 0.5360415921756787,
+    "p_bootstrap_holm6": 0.716,
+    "p_bootstrap_holm3": 0.5369999999999999
+  },
+  "winsor_s1_C": {
+    "estimavel": true,
+    "analise": "winsor_s1_C",
+    "familia": "winsor",
+    "sigilo": 1,
+    "codigo": "C",
+    "desfecho": "y_win",
+    "itens": 16932,
+    "pregoes": 4130,
+    "orgaos": 98,
+    "catmats": 737,
+    "produtos": 810,
+    "estratos": 2856,
+    "media_A": 5.812242786097621,
+    "media_AF": 57.31858588830038,
+    "diferenca": 51.506343102202784,
+    "infer_duplo": {
+      "ep": 62.79056355536905,
+      "t": 0.8202879570715148,
+      "gl": 97,
+      "p": 0.41406318882205684,
+      "ic95": [
+        -73.11554424902286,
+        176.12823045342842
+      ]
+    },
+    "infer_orgao": {
+      "ep": 41.27271889388329,
+      "t": 1.2479512976751368,
+      "gl": 97,
+      "p": 0.21505302159481915,
+      "ic95": [
+        -30.40857903632483,
+        133.4212652407304
+      ]
+    },
+    "variancias": {
+      "orgao": 1703.4373248935103,
+      "catmat": 3785.50522385123,
+      "intersecao": 1546.2876771439014,
+      "duplo": 3942.654871600839
+    },
+    "descritivas": {
+      "0": {
+        "itens": 9993,
+        "pregoes": 2480,
+        "orgaos": 64,
+        "produtos": 810,
+        "media_bruta": 2.7975025306325096,
+        "dp": 130.46266119794868,
+        "mediana": 1.0035223670306446,
+        "min": 0.0040882917466410745,
+        "max": 12996.081513513513,
+        "q01": 0.39174984327290124,
+        "q25": 0.9037191518943344,
+        "q75": 1.1857229280096793,
+        "q99": 5.690058839250621,
+        "assimetria": 98.92587689744569,
+        "curtose_excesso": 9849.60091827863,
+        "media_padronizada": 5.812242786097621,
+        "media_logq_padronizada": 8.182012599914728,
+        "srp_padronizado": 0.7891199096098478
+      },
+      "1": {
+        "itens": 6939,
+        "pregoes": 1650,
+        "orgaos": 53,
+        "produtos": 810,
+        "media_bruta": 24.452021472461308,
+        "dp": 1920.9438374981878,
+        "mediana": 0.9770453207769275,
+        "min": 0.015526409074796169,
+        "max": 160016.73972603347,
+        "q01": 0.4293801324569014,
+        "q25": 0.8605621088630229,
+        "q75": 1.1009637661013807,
+        "q99": 8.006833333333322,
+        "assimetria": 83.29981399502928,
+        "curtose_excesso": 6938.905946605343,
+        "media_padronizada": 57.31858588830038,
+        "media_logq_padronizada": 8.328519751917113,
+        "srp_padronizado": 0.7559189233459372
+      }
+    },
+    "concentracao": {
+      "0": {
+        "maior_orgao": 8,
+        "peso_maior": 0.21242057522586374,
+        "peso_top10": 0.7951452663378407,
+        "orgaos_equivalentes_concentracao": 8.792678945284894
+      },
+      "1": {
+        "maior_orgao": 497,
+        "peso_maior": 0.176837499930444,
+        "peso_top10": 0.7978606594152813,
+        "orgaos_equivalentes_concentracao": 12.379979946696634
+      }
+    },
+    "fracao_estratos_um_item_cada": 0.14635854341736695,
+    "concentracao_score_quadrado_max": 0.5568834021059132,
+    "bootstrap": {
+      "replicacoes_validas": 1999,
+      "ic_basico": [
+        -33.03075544913948,
+        112.0825452208709
+      ],
+      "ic_percentil": [
+        -9.069859016465324,
+        136.04344165354505
+      ],
+      "p": 0.179,
+      "dp": 47.363826976181144,
+      "media": 44.6309520987445,
+      "fracao_media_estratos_retidos": 0.6565394041558594,
+      "fracao_min_estratos_retidos": 0.14530812324929973
+    },
+    "bootstrap_recalcula_referencia": false,
+    "p_holm6": 0.6455179637413024,
+    "p_holm3": 0.5360415921756787,
+    "p_bootstrap_holm6": 0.716,
+    "p_bootstrap_holm3": 0.5369999999999999
+  }
+}

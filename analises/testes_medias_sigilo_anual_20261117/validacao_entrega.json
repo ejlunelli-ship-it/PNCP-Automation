@@ -1,0 +1,16 @@
+{
+  "especificacoes": 30,
+  "principais": 6,
+  "amostras_anuais_sigilo_e_pesos_verificados": true,
+  "Holm_seis_reproduzido": true,
+  "estimados_positivos_nos_dois_sigilos": true,
+  "benchmarks_bootstrap_reproduzidos_por_expansao_literal": 36,
+  "JSON_CSV_XLSX_coincidem": true,
+  "hashes_scripts_preservados": true,
+  "hashes_entrega": {
+    "relatorio_completo.md": "6dfa31b687976b3fe9c50b68af38b1bc003f21637d6be0d9b3030d68a03f5f3f",
+    "resultados_completos.xlsx": "1f3e99c30ff82916449f70051f07d7d0d9fa571d06709038c2fa68bb6eda83c2",
+    "resultados.json": "1d06c359d433550ffbec3c94da0e26fef2002013559d5c0f8ced0c662a77a104",
+    "todas_estimativas.csv": "9165d2953bd300ae5472091b8ce00aa7fb25bbe1777be50dc655e2ee7b97f2ce"
+  }
+}
