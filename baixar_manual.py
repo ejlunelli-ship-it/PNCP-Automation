@@ -190,6 +190,8 @@ def main():
     p.add_argument("--ate", default="2025-11", help="último mês (o mais antigo)")
     p.add_argument("--parte", type=parte, metavar="k/n", help="só a parte k de n das compras (divisão entre usuários)")
     p.add_argument("--repetir", action="store_true", help="reabre compras puladas ou sem zip em rodadas anteriores")
+    p.add_argument("--motivo", metavar="TEXTO",
+                   help='com --repetir, só reabre as compras cujo último motivo é este (ex.: "zip não recebido")')
     p.add_argument("--auto", action="store_true",
                    help="o userscript navegador/compras_auto.user.js clica no download (instale no Tampermonkey)")
     p.add_argument("--intervalo", type=intervalo, default=(20.0, 60.0), metavar="MIN-MAX",
@@ -200,6 +202,8 @@ def main():
                    help="navegador que abre as compras (padrão: o do sistema); permite rodar meses em paralelo, "
                         "um navegador por mês, todos baixando na pasta Downloads")
     args = p.parse_args()
+    if args.motivo and not args.repetir:
+        p.error("--motivo só vale junto com --repetir")
     abrir = abridor(args.navegador)
     print(f"Vigiando downloads em: {DOWNLOADS}. Durante a espera: [p] pula, [s] encerra.")
     if args.auto:
@@ -211,6 +215,10 @@ def main():
     for mes in meses_decrescentes(args.de, args.ate):
         pasta = DADOS / "filtrados" / f"aberto-fechado_{mes}"
         compras = [c for c in reversed(compras_do_mes(mes)) if na_parte(c["numeroControlePNCP"], args.parte)]
+        if args.motivo:
+            # filtra antes do laço: reler o registro a cada uma das milhares de compras é lento
+            ultimo = {l["numeroControlePNCP"]: l["motivo"] for l in ler_motivos()}
+            compras = [c for c in compras if ultimo.get(c["numeroControlePNCP"]) == args.motivo]
         print(f"== {mes}: {len(compras)} compra(s)")
         for i, c in enumerate(compras, 1):
             # relido a cada compra: o automático pode ter acabado de completar esta
@@ -219,6 +227,10 @@ def main():
                     l["situacao"] == "completo" or (l["passada"] == "manual" and not args.repetir))
                    for l in historico):
                 continue
+            if args.motivo:
+                minhas = [l for l in historico if l["numeroControlePNCP"] == c["numeroControlePNCP"]]
+                if not minhas or minhas[-1]["motivo"] != args.motivo:
+                    continue
             destino = pasta_da_compra(c, pasta / "relatorios")
             if resolvida(destino):
                 continue

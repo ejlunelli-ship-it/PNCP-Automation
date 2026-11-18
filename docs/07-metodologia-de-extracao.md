@@ -165,8 +165,11 @@ item (`manter_selecionados`). Mesmas compras do 5.1, do mês mais recente para o
   `sem botão de downloads no site`, `acesso não autorizado no site`, `compra não encontrada no site`,
   `erro do site no download`).
   Entra em `busca_pdf` e no `pendentes_manual.csv`.
-- Compra pulada ([p]) ou sem zip no tempo-limite não é reaberta, salvo com `--repetir`.
-- Não consulta o PNCP nem grava no `pncp.db`. Opções: `--de`, `--ate`, `--parte k/n`, `--repetir`, `--auto`.
+- Compra pulada ([p]) ou sem zip no tempo-limite não é reaberta, salvo com `--repetir`. O `--repetir` sozinho
+  reabre todas as não completas (inclusive "zip sem termos" e "sem a opção no site"); com
+  `--motivo "zip não recebido"` reabre só as que têm esse último motivo no registro (filtradas antes do laço).
+- Não consulta o PNCP nem grava no `pncp.db`. Opções: `--de`, `--ate`, `--parte k/n`, `--repetir`, `--motivo`,
+  `--auto`.
 
 **Modo `--auto`** (`python baixar_manual.py --auto [--intervalo 20-60] [--max-falhas 3]`): o clique em
 Downloads > "Todos os relatórios e termos" é feito pelo userscript `navegador/compras_auto.user.js`.
@@ -312,6 +315,7 @@ ainda não decidida, só Menor Preço.
 
 | Data | Etapa | Mudança |
 |---|---|---|
+| 2026-11-18 | 4 | `baixar_manual.py --repetir --motivo TEXTO`: repete só as compras com aquele último motivo; usado nas 12 "zip não recebido" de 2026-02 a 04 |
 | 2026-11-17 | Análise | Nova extração somente leitura para testes de médias A/AF; três desfechos, padronização de produto/mês/UF, testes com agrupamentos CNPJ/CATMAT e Holm; benchmark fora do órgão e bootstrap complementar com recálculo; protocolo e auditorias em `analise/testes_medias_20261117` no workspace |
 | 2026-11-03 | 3 | Banco unificado criado; valores em `REAL` depois de erro de divisão inteira na primeira carga |
 | 2026-11-03 | 4 | Download restrito a Aberto-Fechado com item homologado |
