@@ -195,6 +195,21 @@ Downloads > "Todos os relatórios e termos" é feito pelo userscript `navegador/
 - **Meses em paralelo:** `--navegador chrome|edge|firefox` abre as compras naquele navegador, e não no
   padrão do sistema. Um terminal por mês, um navegador por terminal, cada um com o userscript instalado.
   Todos baixam em Downloads; cada processo só reconhece os arquivos das próprias compras (pelo `idCompra`).
+  Dois navegadores no mesmo mês: um com `--parte 1/2`, outro com `--parte 2/2` (as compras não se cruzam).
+- **Velocidade (desde 18/11/2026):** o registro é lido inteiro uma vez e depois só nos bytes novos de cada
+  arquivo (até a última linha completa; antes, ~1 s de releitura por compra); a pasta Downloads é olhada a
+  cada 0,25 s (antes 1 s); o arquivo é dado por gravado com o tamanho parado por 0,3 s (antes 1 s), sem
+  `.part` ao lado e, no zip, com o diretório central legível; o zip recebido é movido para a pasta da compra
+  e aberto/anotado numa fila de segundo plano (uma tarefa por vez) enquanto a próxima compra já carrega;
+  ao sair, o script espera a fila esvaziar. Zip que falhar ao abrir não é anotado (volta numa próxima
+  rodada). O userscript 1.3 confere a página a cada 150 ms (antes 500 ms). Medido com Chrome + Edge
+  (`--parte 1/2` e `2/2`, `--intervalo 0`): 16,6 → 28,3 compras/min, sem mudança nos motivos.
+  Não deixe a 1.2 e a 1.3 ativas juntas: as duas clicam no botão, o menu abre e fecha, e a compra sai
+  como `sem botão de downloads no site`.
+- **`--abas N`** (padrão 1): mantém N compras abertas ao mesmo tempo no mesmo navegador. Testado em
+  18/11/2026 com 2 abas: 22% das compras saíram como `sem botão` (a aba em segundo plano não abre o menu de
+  downloads) e o ritmo não subiu (29,4/min). **Não usar**; a opção fica para um teste futuro com janelas
+  separadas ou o navegador sem suspensão de abas em segundo plano.
 - `idCompra` fora do formato de 17 dígitos (UASG, modalidade, número e ano) não é aberto: fica anotado como
   `idCompra inválido`.
 - Sem o userscript instalado, o `--auto` funciona como o modo manual: você clica e o zip é recolhido igual.
@@ -357,6 +372,7 @@ Conferência: com 2026-02 e `--pncp-db`, o script reproduz exatamente `analises/
 |---|---|---|
 | 2026-11-18 | Análise | `analise_etapas.py`: procedimento replicável do desconto por etapa nos PDFs, com as duas medidas principais (todos os fornecedores e só válidos), decomposição, marcas do parser, regressão e resultados por mês. Exige parser ≥ 1.8.0. Ver seção "Análise" |
 | 2026-11-18 | 5 | Parser 1.8.0: colunas novas de liderança da etapa aberta e quedas (`cnpj_melhor_lance_aberto`, `melhor_lance_modo_aberto_outro_fornecedor`, `lider_aberto_lance_fechado`, `reinicios_etapa_fechada`, `fornecedores_desclassificados`, `quantidade_desclassificados`, `melhor_lance_modo_aberto_validos`, `melhor_lance_modo_fechado_validos`; ver §6, item 6a). Só 2026-02 reprocessado no `aberto-fechado_2026-08.db` (backup em `aberto-fechado_2026-08.antes-1.8.0_20261118.db`) e no Excel do mês; conferido contra a versão anterior: nenhuma coluna antiga nem status mudou (1 item com fornecedor `ESTRANG` passou a contar 20 fornecedores, efeito da 1.7.2). 2026-03, 04 e 08 seguem em 1.7.x com as colunas novas vazias até serem reprocessados (docs/05, pendência 14) |
+| 2026-11-18 | 4 | `baixar_manual.py` mais rápido, sem mudar o que é baixado nem o registro: leitura incremental do registro, Downloads olhado a cada 0,25 s, arquivo firme em 0,3 s (com teste do zip), zip aberto e anotado em segundo plano; userscript 1.3 (passo de 150 ms); `--abas N` testado e não recomendado (abas em segundo plano saem como "sem botão"). Ver §5.3 |
 | 2026-11-18 | 5 | Parser 1.7.2: aceita `Identificador ESTRANG…` (fornecedor estrangeiro) onde se esperava CNPJ/CPF (`RE_DOCUMENTO` e os padrões "para X, CNPJ…"/"Fornecedor X, CNPJ…"); "participante com lance sem proposta listada" passa de problema a aviso. Reprocessados só os 28 itens REVISAR afetados no `aberto-fechado_2026-08.db` (todos viraram OK; backup em `aberto-fechado_2026-08.antes-1.7.2_20261118.db`); o Excel por mês não foi refeito. Restam 110 REVISAR, excluídos da análise (ver docs/05, decisão de 2026-11-18) |
 | 2026-11-18 | 5 | Extração (parser 1.7.1) de 2026-02, 03 e 04 gravada no mesmo `dados/extracao/aberto-fechado_2026-08.db` (`--db`), e 2026-08 reprocessado com `--reprocessar`: 180.909 itens, todos em 1.7.1 (02: 34.933; 03: 45.625; 04: 47.808; 08: 52.543); o mês sai do caminho em `arquivo_origem`. Backup do banco anterior em `aberto-fechado_2026-08.antes-fev-abr_20261118.db`. 2026-01 fica de fora (download incompleto) |
 | 2026-11-18 | 4 | `baixar_manual.py --repetir --motivo TEXTO`: repete só as compras com aquele último motivo; usado nas 12 "zip não recebido" de 2026-02 a 04 |

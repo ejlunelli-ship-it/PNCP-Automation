@@ -25,22 +25,30 @@ Uso: python baixar_manual.py [--de 2026-10] [--ate 2025-11] [--parte k/n] [--rep
 
 Meses em paralelo: um terminal por mês, cada um com --navegador diferente (e o userscript instalado em
 cada navegador). Todos vigiam a pasta Downloads, mas cada um só pega os arquivos das próprias compras.
+Dois navegadores no mesmo mês: um com --parte 1/2, outro com --parte 2/2.
+
+Ritmo: o registro é lido inteiro uma vez e depois só nas linhas novas; a pasta Downloads é olhada a cada
+0,25 s; o zip recebido é aberto e anotado em segundo plano, enquanto a próxima compra já carrega.
 """
 import argparse
+import csv
+import io
 import os
 import random
 import re
 import shutil
 import subprocess
 import sys
+import threading
 import time
 import webbrowser
+import zipfile
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from config import DADOS
 from extrator_homologacao.selecao import selecionar
-from inventario_pdfs import ler_motivos
-from registro import anotar, compras_do_mes, na_parte, parte, termos
+from registro import REGISTRO, _legados, anotar, compras_do_mes, na_parte, parte, termos
 from relatorios import DOWNLOADS, ESPERA, PARCIAL, URL_COMPRA, manter_selecionados, pasta_da_compra, \
     zips_em_downloads
 
@@ -69,6 +77,57 @@ NAVEGADORES = {
 }
 ID_COMPRA = re.compile(r"\d{17}")  # UASG (6) + modalidade (2) + número (5) + ano (4)
 AVISO_DESAFIO = 60  # segundos sem zip no --auto antes de lembrar de olhar a aba (desafio do captcha)
+PASSO = 0.25  # segundos entre olhadas na pasta Downloads
+FIRME = 0.3  # segundos com o tamanho parado para dar o arquivo por gravado
+ESCALONA = 1.0  # com --abas > 1, segundos mínimos entre abrir uma aba e a seguinte
+
+
+class Historico:
+    """O registro compartilhado (registro.ler), lido aos poucos.
+
+    Os arquivos do registro só crescem: na primeira vez cada um é lido inteiro, depois só os bytes
+    novos, até a última linha completa (outro processo pode estar no meio de uma escrita). Reler tudo
+    antes de cada compra custava ~1 s com 30 mil linhas, e crescia a cada mês.
+    """
+
+    def __init__(self):
+        self.lido = {}  # arquivo -> (bytes já lidos, cabeçalho)
+        self.completas = set()  # numeroControlePNCP com alguma linha 'completo'
+        self.manuais = set()  # ... com alguma linha da passada 'manual'
+        self.ultimo_motivo = {}  # ... -> motivo da linha mais recente lida
+
+    def atualizar(self):
+        for arquivo in sorted(REGISTRO.glob("aberto-fechado_*/*.csv")) + _legados():
+            pos, cabecalho = self.lido.get(arquivo, (0, None))
+            try:
+                if arquivo.stat().st_size <= pos:
+                    continue
+                with open(arquivo, "rb") as f:
+                    f.seek(pos)
+                    bruto = f.read()
+            except OSError:
+                continue
+            fim = bruto.rfind(b"\n") + 1
+            if not fim:
+                continue
+            texto = bruto[:fim].decode("utf-8", errors="replace")
+            if pos == 0:
+                texto = texto.lstrip("﻿")
+            leitor = csv.reader(io.StringIO(texto))
+            if cabecalho is None:
+                cabecalho = next(leitor, None)
+            for valores in leitor:
+                l = dict(zip(cabecalho, valores))
+                controle = l.get("numeroControlePNCP")
+                if not controle:
+                    continue  # linha quebrada
+                if l.get("situacao") == "completo":
+                    self.completas.add(controle)
+                if l.get("passada") == "manual":
+                    self.manuais.add(controle)
+                self.ultimo_motivo[controle] = l.get("motivo", "")
+            self.lido[arquivo] = (pos + fim, cabecalho)
+        return self
 
 
 def meses_decrescentes(de, ate):
@@ -132,35 +191,68 @@ def guardar_aviso(aviso):
     shutil.move(str(aviso), pasta / aviso.name.replace(" ", ""))
 
 
-def esperar_zip(id_compra, antes, auto=False):
-    """(zip, None) quando chega; (None, 'p'/'s') se o usuário pular/encerrar; (None, None) no tempo-limite;
-    no --auto, (None, motivo) quando o userscript avisa que a compra não tem zip."""
-    limite = time.time() + ESPERA
-    lembrete = time.time() + AVISO_DESAFIO
-    while time.time() < limite:
-        t = tecla()
-        if t in ("p", "s"):
-            return None, t
-        for arq in zips_em_downloads(id_compra) - antes:
-            tamanho = arq.stat().st_size
-            time.sleep(1)
-            if tamanho > 0 and arq.exists() and arq.stat().st_size == tamanho:
-                return arq, None
-        if auto:
-            for aviso in avisos_em_downloads(id_compra):
-                # o Firefox cria o arquivo vazio e só depois grava: espera o tamanho firmar
-                tamanho = aviso.stat().st_size
-                time.sleep(1)
-                if tamanho == 0 or not aviso.exists() or aviso.stat().st_size != tamanho:
-                    continue
+def gravado(arq, zip_=False):
+    """O navegador terminou de gravar o arquivo? Chrome e Edge só dão o nome final no fim (antes é
+    .crdownload); o Firefox cria o arquivo vazio e grava aos poucos, com um .part ao lado. Tamanho
+    parado por FIRME segundos e, no zip, o diretório central legível (fica no fim do arquivo)."""
+    try:
+        tamanho = arq.stat().st_size
+        if tamanho == 0 or Path(f"{arq}.part").exists():
+            return False
+        time.sleep(FIRME)
+        return arq.stat().st_size == tamanho and (not zip_ or zipfile.is_zipfile(arq))
+    except OSError:
+        return False
+
+
+class Voo:
+    """Compra com a aba aberta, à espera do zip ou do aviso do userscript."""
+
+    def __init__(self, mes, i, n, c, destino, linha):
+        self.mes, self.i, self.n, self.c, self.destino, self.linha = mes, i, n, c, destino, linha
+        self.id = c["idCompra"]
+        self.antes = zips_em_downloads(self.id)
+        self.limite = time.time() + ESPERA
+        self.lembrete = time.time() + AVISO_DESAFIO
+
+
+def chegou(voo, auto):
+    """(zip, None) quando o zip chega; no --auto, (None, motivo) quando o userscript avisa que a compra
+    não tem zip; None enquanto nada chegou."""
+    for arq in zips_em_downloads(voo.id) - voo.antes:
+        if gravado(arq, zip_=True):
+            return arq, None
+    if auto:
+        for aviso in avisos_em_downloads(voo.id):
+            if gravado(aviso):
                 motivo = motivo_do_aviso(aviso)
                 guardar_aviso(aviso)
                 return None, motivo
-            if lembrete and time.time() > lembrete:
-                print(f"  sem zip há {AVISO_DESAFIO} s: veja se a aba pede o captcha ([p] pula, [s] encerra)")
-                lembrete = None
-        time.sleep(1)
-    return None, None
+    return None
+
+
+_trava = threading.Lock()  # o laço e o processamento em segundo plano escrevem no mesmo arquivo
+
+
+def anotar_manual(mes, linha):
+    with _trava:
+        anotar(mes, "manual", linha)
+
+
+def processar_zip(mes, destino, linha, auto):
+    """Abre o zip já movido para a pasta da compra, guarda os termos escolhidos e anota (em segundo plano)."""
+    try:
+        manter_selecionados(destino)
+        (destino / PARCIAL).unlink(missing_ok=True)
+        escolhidos = selecionar(list(destino.rglob("*.pdf")))
+        itens, sha = termos(escolhidos)
+        baixado = "zip baixado (auto)" if auto else "zip baixado à mão"
+        linha.update(situacao="completo" if escolhidos else "", itens_cobertos=len(escolhidos),
+                     itens=itens, sha256=sha, motivo=baixado if escolhidos else "zip sem termos")
+        anotar_manual(mes, linha)
+        print(f"  {linha['idCompra']}: {len(escolhidos)} termo(s) -> {destino}")
+    except Exception as e:  # sem anotar: a compra volta numa próxima rodada; o zip fica na pasta
+        print(f"  {linha['idCompra']}: erro ao abrir o zip ({e!r}); ficou em {destino}")
 
 
 def pausar(segundos):
@@ -201,94 +293,127 @@ def main():
     p.add_argument("--navegador", choices=["padrao", *NAVEGADORES], default="padrao",
                    help="navegador que abre as compras (padrão: o do sistema); permite rodar meses em paralelo, "
                         "um navegador por mês, todos baixando na pasta Downloads")
+    p.add_argument("--abas", type=int, default=1, metavar="N",
+                   help="no --auto, quantas compras ficam abertas ao mesmo tempo neste navegador (padrão 1)")
     args = p.parse_args()
     if args.motivo and not args.repetir:
         p.error("--motivo só vale junto com --repetir")
+    if args.abas < 1 or (args.abas > 1 and not args.auto):
+        p.error("--abas N precisa de N >= 1, e mais de uma aba só com --auto")
     abrir = abridor(args.navegador)
     print(f"Vigiando downloads em: {DOWNLOADS}. Durante a espera: [p] pula, [s] encerra.")
     if args.auto:
         print("Modo --auto: o userscript navegador/compras_auto.user.js precisa estar ativo no navegador padrão, "
               "e o navegador não pode perguntar onde salvar cada arquivo.")
 
-    abertas = 0
-    falhas = 0
+    # um só processamento de zip por vez em segundo plano: mantém a ordem das anotações e não disputa
+    # a CPU com o navegador; ao sair (fim, [s] ou erro), o with espera os que faltam
+    with ThreadPoolExecutor(max_workers=1) as fila:
+        baixar(args, abrir, fila)
+
+
+def pendentes(args, historico):
+    """(mês, i, total, compra) na ordem do download: meses do mais recente ao mais antigo."""
     for mes in meses_decrescentes(args.de, args.ate):
-        pasta = DADOS / "filtrados" / f"aberto-fechado_{mes}"
         compras = [c for c in reversed(compras_do_mes(mes)) if na_parte(c["numeroControlePNCP"], args.parte)]
         if args.motivo:
-            # filtra antes do laço: reler o registro a cada uma das milhares de compras é lento
-            ultimo = {l["numeroControlePNCP"]: l["motivo"] for l in ler_motivos()}
+            ultimo = historico.atualizar().ultimo_motivo
             compras = [c for c in compras if ultimo.get(c["numeroControlePNCP"]) == args.motivo]
         print(f"== {mes}: {len(compras)} compra(s)")
         for i, c in enumerate(compras, 1):
-            # relido a cada compra: o automático pode ter acabado de completar esta
-            historico = ler_motivos()
-            if any(l["numeroControlePNCP"] == c["numeroControlePNCP"] and (
-                    l["situacao"] == "completo" or (l["passada"] == "manual" and not args.repetir))
-                   for l in historico):
+            yield mes, i, len(compras), c
+
+
+def baixar(args, abrir, fila):
+    """Mantém até --abas compras abertas ao mesmo tempo e recolhe o que chega na pasta Downloads.
+
+    Com --abas 1 é o laço de sempre: abre, espera o zip, anota, abre a próxima."""
+    historico = Historico()
+    fonte = pendentes(args, historico)
+    voando = []  # em ordem de abertura
+    esgotou = False
+    falhas = 0
+    proxima = 0.0  # hora em que a próxima aba pode abrir
+    while True:
+        while not esgotou and len(voando) < args.abas and time.time() >= proxima:
+            item = next(fonte, None)
+            if item is None:
+                esgotou = True
+                break
+            mes, i, n, c = item
+            # atualizado a cada compra: o automático ou outro processo pode ter acabado de fazer esta
+            historico.atualizar()
+            controle = c["numeroControlePNCP"]
+            if controle in historico.completas or (controle in historico.manuais and not args.repetir):
                 continue
-            if args.motivo:
-                minhas = [l for l in historico if l["numeroControlePNCP"] == c["numeroControlePNCP"]]
-                if not minhas or minhas[-1]["motivo"] != args.motivo:
-                    continue
-            destino = pasta_da_compra(c, pasta / "relatorios")
+            if args.motivo and historico.ultimo_motivo.get(controle) != args.motivo:
+                continue
+            destino = pasta_da_compra(c, DADOS / "filtrados" / f"aberto-fechado_{mes}" / "relatorios")
             if resolvida(destino):
                 continue
-
-            linha = {"numeroControlePNCP": c["numeroControlePNCP"], "idCompra": c["idCompra"], "passada": "manual",
+            linha = {"numeroControlePNCP": controle, "idCompra": c["idCompra"], "passada": "manual",
                      "situacao": "", "itens_cobertos": 0, "outros_guardados": 0}
             if not ID_COMPRA.fullmatch(c["idCompra"] or ""):
                 # o site responde "compra não encontrada"; não vale abrir
-                print(f"[{mes} {i}/{len(compras)}] {c['idCompra']!r}: idCompra inválido, pulando")
-                anotar(mes, "manual", {**linha, "motivo": "idCompra inválido"})
+                print(f"[{mes} {i}/{n}] {c['idCompra']!r}: idCompra inválido, pulando")
+                anotar_manual(mes, {**linha, "motivo": "idCompra inválido"})
                 continue
-
-            if args.auto and abertas:
-                espera = random.uniform(*args.intervalo)
-                if espera and pausar(espera) == "s":
-                    print("Encerrado.")
-                    return
-            print(f"[{mes} {i}/{len(compras)}] {c['idCompra']} - {(c['objetoCompra'] or '')[:60]}")
-            antes = zips_em_downloads(c["idCompra"])
+            print(f"[{mes} {i}/{n}] {c['idCompra']} - {(c['objetoCompra'] or '')[:60]}")
             url = URL_COMPRA.format(c["idCompra"])
             if args.auto:
                 for velho in avisos_em_downloads(c["idCompra"]):  # de uma rodada anterior
                     velho.unlink(missing_ok=True)
                 url += "&pncpauto=1"
+            voando.append(Voo(mes, i, n, c, destino, linha))
             abrir(url)
-            abertas += 1
-            arq, comando = esperar_zip(c["idCompra"], antes, args.auto)
-            if comando == "s":
+            # entre uma aba e a seguinte: --intervalo; com várias abas, ao menos ESCALONA s
+            proxima = time.time() + max(random.uniform(*args.intervalo) if args.auto else 0,
+                                        ESCALONA if args.abas > 1 else 0)
+        if esgotou and not voando:
+            return
+
+        t = tecla()
+        if t == "s":
+            print("Encerrado.")
+            return
+        resolvidos = []
+        for voo in voando:
+            r = chegou(voo, args.auto)
+            if r is None and t == "p" and voo is voando[0]:
+                r = (None, "p")  # [p] pula a mais antiga das abertas
+            if r is None and time.time() > voo.limite:
+                r = (None, None)
+            if r is None:
+                if args.auto and voo.lembrete and time.time() > voo.lembrete:
+                    print(f"  {voo.id}: sem zip há {AVISO_DESAFIO} s: veja se a aba pede o captcha "
+                          "([p] pula a mais antiga, [s] encerra)")
+                    voo.lembrete = None
+                continue
+            resolvidos.append(voo)
+            arq, comando = r
+            if arq:
+                voo.destino.mkdir(parents=True, exist_ok=True)
+                shutil.move(str(arq), voo.destino / f"relatorios-compra-{voo.id}.zip")
+                fila.submit(processar_zip, voo.mes, voo.destino, voo.linha, args.auto)  # anota quando terminar
+                falhas = 0
+                continue
+            voo.linha["motivo"] = ("pulada no site" if comando == "p"
+                                   else comando if comando else "zip não recebido")
+            print(f"  {voo.id}: {voo.linha['motivo']}")
+            # sem a opção no site é resposta normal; o resto pode indicar bloqueio
+            if comando in (None, MOTIVOS_AUTO["sem-botao"], MOTIVOS_AUTO["erro-download"],
+                           MOTIVOS_AUTO["acesso-nao-autorizado"]):
+                falhas += 1
+            else:
+                falhas = 0
+            anotar_manual(voo.mes, voo.linha)
+        voando = [v for v in voando if v not in resolvidos]
+        if args.auto and args.max_falhas and falhas >= args.max_falhas:
+            if confirmar_continuacao(falhas) == "s":
                 print("Encerrado.")
                 return
-            if arq:
-                destino.mkdir(parents=True, exist_ok=True)
-                shutil.move(str(arq), destino / f"relatorios-compra-{c['idCompra']}.zip")
-                manter_selecionados(destino)
-                (destino / PARCIAL).unlink(missing_ok=True)
-                escolhidos = selecionar(list(destino.rglob("*.pdf")))
-                itens, sha = termos(escolhidos)
-                baixado = "zip baixado (auto)" if args.auto else "zip baixado à mão"
-                linha.update(situacao="completo" if escolhidos else "", itens_cobertos=len(escolhidos),
-                             itens=itens, sha256=sha, motivo=baixado if escolhidos else "zip sem termos")
-                print(f"  {len(escolhidos)} termo(s) -> {destino}")
-                falhas = 0
-            else:
-                linha["motivo"] = ("pulada no site" if comando == "p"
-                                   else comando if comando else "zip não recebido")
-                print(f"  {linha['motivo']}")
-                # sem a opção no site é resposta normal; o resto pode indicar bloqueio
-                if comando in (None, MOTIVOS_AUTO["sem-botao"], MOTIVOS_AUTO["erro-download"],
-                               MOTIVOS_AUTO["acesso-nao-autorizado"]):
-                    falhas += 1
-                else:
-                    falhas = 0
-            anotar(mes, "manual", linha)
-            if args.auto and args.max_falhas and falhas >= args.max_falhas:
-                if confirmar_continuacao(falhas) == "s":
-                    print("Encerrado.")
-                    return
-                falhas = 0
+            falhas = 0
+        time.sleep(PASSO)
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PNCP-Automation: Todos os relatórios e termos
 // @namespace    pncp-automation
-// @version      1.2
+// @version      1.3
 // @description  Clica em Downloads > "Todos os relatórios e termos" nas compras abertas por `baixar_manual.py --auto`.
 // @match        https://cnetmobile.estaleiro.serpro.gov.br/comprasnet-web/*
 // @run-at       document-start
@@ -27,7 +27,7 @@
   const OPCAO = 'todos os relatórios e termos';
   const BOTAO = 'app-botao-relatorios-compra button';
   const ERRO_DOWNLOAD = 'não foi possível realizar o download';
-  const PASSO = 500;              // ms entre verificações
+  const PASSO = 150;              // ms entre verificações (1.3: era 500)
   const SEM_BOTAO = 90 * 1000;    // sem o botão depois disso (e sem desafio na tela): desiste
   const SEM_ARQUIVO = 3 * 60 * 1000;  // depois do clique, sem download nem erro: deixa a aba aberta
 
