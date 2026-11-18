@@ -204,6 +204,9 @@ Downloads > "Todos os relatórios e termos" é feito pelo userscript `navegador/
   ao sair, o script espera a fila esvaziar. Zip que falhar ao abrir não é anotado (volta numa próxima
   rodada). O userscript 1.3 confere a página a cada 150 ms (antes 500 ms). Medido com Chrome + Edge
   (`--parte 1/2` e `2/2`, `--intervalo 0`): 16,6 → 28,3 compras/min, sem mudança nos motivos.
+  Com um terceiro navegador (Chrome `--parte 1/3`, Edge `2/3`, Firefox `3/3`): 31,2 compras/min (+10%),
+  sem mudança nos motivos; cada navegador cai de ~14 para ~11/min, sinal de gargalo no site ou na rede.
+  Ao mudar o número de partes, pare e relance todos juntos (senão dois processos abrem a mesma compra).
   Não deixe a 1.2 e a 1.3 ativas juntas: as duas clicam no botão, o menu abre e fecha, e a compra sai
   como `sem botão de downloads no site`.
 - **`--abas N`** (padrão 1): mantém N compras abertas ao mesmo tempo no mesmo navegador. Testado em
