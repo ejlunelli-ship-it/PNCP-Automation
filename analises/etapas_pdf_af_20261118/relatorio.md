@@ -366,6 +366,84 @@ Regressão principal P (100·ln preço, FE de item, EP por UASG) nos recortes:
    (b) `fechada_reiniciada`, lida do chat (grupo B); (c) CNPJs desclassificados/recusados, para medir as etapas só com
    fornecedores válidos como sensibilidade (grupo A3). Exige os PDFs de 03, 04 e 08 de volta no disco.
 
+## Fevereiro com os campos do parser 1.8.0
+
+Script `fevereiro_campos_novos.py`; saídas `fevereiro_campos_novos.{json,xlsx}`. Só 2026-02 está reprocessado em 1.8.0
+(docs/05, pendência 14), então esta seção usa só fevereiro: 32.222 itens da amostra (mesmos filtros), 1.664 compras,
+534 UASGs. Em fevereiro, o principal dá ganho de 14,8 p.p. (contra 15,4 nos quatro meses).
+
+As marcas provisórias foram trocadas pelas do parser:
+
+| Grupo | Marca do parser | Itens na amostra | Nos 2.679 com fechado > aberto |
+|---|---|---|---|
+| A | líder da aberta não deu lance fechado (`lider_aberto_lance_fechado = 0`) | 9.079 (28,2%) | **2.679 (todos)** |
+| A3 | líder da aberta desclassificado (`cnpj_melhor_lance_aberto` em `fornecedores_desclassificados`) | 9.195 (28,5%) | 1.517 |
+| B | etapa fechada reiniciada (`reinicios_etapa_fechada > 0`) | 3.195 (9,9%) | 822 |
+| C | aberto isolado: < 50% do melhor aberto de outro fornecedor | 1.606 (5,0%) | 515 |
+| D | fechado > 3 × aberto | 425 (1,3%) | 425 |
+
+- **O lance fechado acima do aberto só acontece quando o líder não dá lance fechado:** em 100% dos 2.679 casos. Em 1.060
+  o líder venceu com o lance aberto (caso A puro); nos demais ele caiu depois ou houve negociação.
+- **As marcas provisórias erravam bastante.** "Vencedor caiu" (final > após) e "líder desclassificado" concordam em
+  26.000 de 32.222 itens, mas 4.276 líderes desclassificados não aparecem na provisória (o segundo colocado tinha o
+  mesmo valor ou a fechada já estava abaixo) e 1.967 "vencedor caiu" não têm líder desclassificado (caiu quem ganhou a
+  fechada, ou houve recusa sem registro na proposta). O aberto isolado provisório (< 50% do final) marca 545 itens e o
+  do parser 1.606, com só 284 em comum: a regra do parser não depende do resultado.
+
+### Só fornecedores válidos
+
+Sensibilidade sem os desclassificados, recusados e inabilitados da tabela de propostas (28.230 itens com medidas válidas):
+
+| Variante | Itens | Aberta | Após a fechada | Ganho (p.p.) | Ganho relativo (%) | Final |
+|---|---|---|---|---|---|---|
+| Principal (fevereiro) | 32.222 | 19,1 | 33,9 | 14,8 [14,1; 15,5] | 18,1 | 33,1 |
+| **Só fornecedores válidos** | 28.230 | 19,0 | 32,3 | **13,2 [12,6; 13,9]** | **16,0** | 33,2 |
+| Sem C do parser | 30.616 | 18,7 | 33,9 | 15,2 | 18,5 | 33,2 |
+| Sem B (reiniciada) | 29.027 | 18,1 | 33,5 | 15,4 | 18,7 | 33,4 |
+| Sem A3 do parser | 23.027 | 19,0 | 35,2 | 16,2 | 19,7 | 34,7 |
+| Sem D | 31.797 | 18,6 | 33,6 | 15,0 | 18,3 | 33,0 |
+| Sem A3, B, C e D | 21.716 | 18,5 | 35,3 | 16,8 | 20,5 | 34,7 |
+
+Decomposição do desconto final nos 27.915 itens com valor final e medidas válidas (p.p. do estimado):
+
+| Medida | Aberta | + Fechada | + Pós-disputa | = Final | Final = melhor lance | Final acima | Final abaixo |
+|---|---|---|---|---|---|---|---|
+| Todos os fornecedores | 21,8 | 15,5 | −4,1 | 33,2 | 70,5% | 24,5% | 4,9% |
+| Só fornecedores válidos | 19,1 | 13,3 | +0,8 | 33,2 | 92,7% | 0,1% | 7,0% |
+
+Regressão principal P em fevereiro (100·ln preço, FE de item, EP por UASG; 534 UASGs):
+
+| Recorte | n | β fechada | F × ln licitantes | F × sigiloso | F × serviço |
+|---|---|---|---|---|---|
+| Fevereiro, todos | 31.174 | −23,99\*\*\* (0,68) | −6,40\*\*\* (0,74) | 0,80 (1,49) | 1,13 (3,04) |
+| Sem C (parser) | 29.628 | −24,62\*\*\* (0,70) | −6,27\*\*\* (0,76) | 0,54 (1,59) | 1,43 (2,96) |
+| Sem B | 28.057 | −24,79\*\*\* (0,68) | −7,71\*\*\* (0,74) | −0,17 (1,45) | 0,76 (3,14) |
+| Sem A3 (parser) | 22.278 | −25,73\*\*\* (0,78) | −6,20\*\*\* (0,85) | 1,23 (1,82) | −1,57 (3,71) |
+| Sem D | 30.761 | −24,31\*\*\* (0,68) | −6,50\*\*\* (0,74) | 0,06 (1,47) | 1,21 (3,04) |
+| Sem A3, B, C e D | 21.005 | −26,80\*\*\* (0,76) | −6,70\*\*\* (0,84) | 0,18 (1,83) | −1,12 (3,56) |
+| **Só fornecedores válidos** | 27.338 | **−20,58\*\*\* (0,70)** | **−2,54\*\* (0,73)** | 0,75 (1,50) | −1,20 (3,35) |
+
+Teste direto fechado × aberto: 15,0 p.p. (mediana 11,5) com todos; 14,5 (10,5) só com válidos, com o fechado pior que o
+aberto em 7,2% dos itens (8,7% com todos).
+
+### Leitura
+
+1. **O ajuste pós-disputa é quase todo desclassificação.** Com só os fornecedores válidos, o valor final é o melhor
+   lance da disputa em 92,7% dos itens e fica acima dele em 0,1%; o ajuste pós-disputa passa de −4,1 para +0,8 p.p.
+   (a negociação). A soma final é a mesma (33,2), só muda a atribuição entre as etapas.
+2. **Parte do ganho da fechada vinha de lances de quem depois caiu.** Só com válidos, o ganho cai de 14,8 para 13,2 p.p.
+   (de 18,1% para 16,0% abaixo do melhor aberto) e β de −24,0 para −20,6 log-pontos (≈ −19% no preço). Cerca de um
+   décimo do ganho medido com todos os fornecedores corresponde a lances fechados de fornecedores desclassificados. A
+   etapa fechada continua relevante: cerca de 40% do desconto final válido (13,3 de 33,2).
+3. **O efeito do número de licitantes encolhe com os válidos** (−6,4 para −2,5): com mais licitantes há mais lances
+   baixos de quem não se habilita. O moderador continua significativo (p = 0,001), mas é bem menor.
+4. **Sigilo e tipo de objeto não moderam o ganho em nenhum recorte de fevereiro.**
+5. **Recomendação:** reportar as duas medidas. "Todos os fornecedores" descreve a dinâmica da disputa (regra do
+   docs/05); "só válidos" é o desconto que o órgão efetivamente obtém de cada etapa. Para comparar com o modo Aberto
+   (API, valor homologado), o desconto final é o mesmo nas duas.
+6. **Limites:** só fevereiro; a tabela de propostas não registra a desistência sem desclassificação nem a recusa da
+   negociação, que ficam no ajuste pós-disputa. Refazer com 03, 04 e 08 depois do reprocessamento (docs/05, pendência 14).
+
 ## Sensibilidade
 
 | Variante | Ganho relativo médio | Mediana |

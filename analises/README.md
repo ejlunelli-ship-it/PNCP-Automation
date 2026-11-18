@@ -37,5 +37,6 @@ Para repetir somente a análise anual com as bases mensais preservadas e verific
 | `testes_grupos.py` | Diferenças de médias entre grupos, ajustadas pelo nº de licitantes | `testes_grupos.{csv,xlsx}`, `estatisticas_grupos.csv` |
 | `regressao_etapas.py` | Regressão empilhada (FE de item) com interações e 13 sensibilidades | `regressao_etapas.{json,xlsx}` |
 | `decomposicao_marcas.py` | Decomposição aberta + fechada + pós-disputa; marcas dos casos com fechado acima do aberto | `decomposicao_marcas.{json,xlsx}`, `marcas_por_item.csv.gz` |
+| `fevereiro_campos_novos.py` | 2026-02 com os campos do parser 1.8.0: marcas do parser e sensibilidade "só fornecedores válidos" | `fevereiro_campos_novos.{json,xlsx}` |
 
 Os `.csv.gz` (dados por item) ficam fora do Git. Para reexecutar, copie a pasta para `../analise/etapas_pdf_af_20261118/` (irmã de `PNCP-Automation/`) e rode, nesta ordem, `ligar_pncp.py`, `analisar.py`, `testes_grupos.py`, `regressao_etapas.py` e `decomposicao_marcas.py` com o Python do `.venv` (precisa de `openpyxl`). Exige `PNCP-Automation/dados/extracao/aberto-fechado_2026-08.db` e `dados/pncp.db` na raiz do workspace. Resultados descritivos da dinâmica dentro do Aberto-Fechado, não efeito causal do modo de disputa.

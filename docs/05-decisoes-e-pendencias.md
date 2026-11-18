@@ -94,6 +94,11 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
     - **Feito (18/11/2026):** 2026-02 reprocessado em `dados/extracao/aberto-fechado_2026-08.db` (34.933 itens, OK 34.917);
       as colunas anteriores ficaram idênticas às da 1.7.x. O banco hoje mistura 1.8.0 (fevereiro) e 1.7.x (demais meses,
       com as colunas novas vazias): filtre por `versao_parser` ao usar os campos novos.
+    - **Análise de fevereiro feita (18/11/2026):** `analises/etapas_pdf_af_20261118/fevereiro_campos_novos.py` e a
+      seção "Fevereiro com os campos do parser 1.8.0" do `relatorio.md`. Só com fornecedores válidos, o ganho da fechada
+      cai de 14,8 para 13,2 p.p. (β de −24,0 para −20,6 log-pontos), o ajuste pós-disputa vai de −4,1 para +0,8 p.p. e a
+      moderação pelo nº de licitantes de −6,4 para −2,5. **Decisão em aberto:** qual das duas medidas (todos os
+      fornecedores ou só válidos) é a principal; a recomendação é reportar as duas.
     - **Falta:** trazer de volta a `dados/filtrados/` os PDFs de 2026-03, 04 e 08 (ausentes em 18/11/2026) e rodar
       `python -m extrator_homologacao dados/filtrados/aberto-fechado_<mês>/relatorios --saida dados/extracao/aberto-fechado_<mês>.xlsx --db dados/extracao/aberto-fechado_2026-08.db --workers 7 --sem-separar`
       para cada mês (a versão nova invalida o cache; não precisa de `--reprocessar`). Depois, refazer
