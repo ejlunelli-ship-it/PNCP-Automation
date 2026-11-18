@@ -56,6 +56,15 @@ class RegistroExtracao(BaseModel):
     valor_negociado_aceito: Dinheiro | None = None
     valor_negociado_aceito_percentual: Percentual | None = None
     lances_excluidos: Annotated[int, Field(ge=0)] | None = None
+    # liderança da etapa aberta e fornecedores que caíram (parser 1.8.0)
+    cnpj_melhor_lance_aberto: str | None = None                      # fornecedor do melhor valor da aberta
+    melhor_lance_modo_aberto_outro_fornecedor: Dinheiro | None = None  # melhor valor aberto de outro fornecedor
+    lider_aberto_lance_fechado: bool | None = None                   # líder da aberta deu lance fechado (AF)
+    reinicios_etapa_fechada: Annotated[int, Field(ge=0)] | None = None  # AF: reinícios/retornos da etapa fechada
+    fornecedores_desclassificados: str | None = None                 # documentos separados por "; "
+    quantidade_desclassificados: Annotated[int, Field(ge=0)] | None = None
+    melhor_lance_modo_aberto_validos: Dinheiro | None = None          # sem os desclassificados
+    melhor_lance_modo_fechado_validos: Dinheiro | None = None         # sem os desclassificados (AF)
     fontes_extracao: str | None = None
 
     # técnicos

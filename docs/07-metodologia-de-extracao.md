@@ -270,6 +270,19 @@ Parser determinístico, com PyMuPDF e regex. Sem modelos de linguagem.
    - a etapa fechada usa só lances enviados na janela, inclusive em grupo.
 6. **Conferência:** compara com os valores da mensagem de encerramento. Em grupo, pela soma de
    valor × quantidade dos itens de cada convocado.
+6a. **Liderança e quedas (parser 1.8.0),** para auditar os casos com lance fechado acima do aberto
+   (docs/05, decisão de 2026-11-18). Não mudam nenhuma coluna anterior:
+   - `cnpj_melhor_lance_aberto`: fornecedor do melhor valor da etapa aberta (propostas iniciais
+     incluídas; em empate, o registrado primeiro, com a proposta antes dos lances);
+   - `melhor_lance_modo_aberto_outro_fornecedor`: melhor valor aberto de um CNPJ diferente do líder.
+     Serve para marcar o lance aberto isolado (líder muito abaixo do segundo) sem usar o valor final;
+   - `lider_aberto_lance_fechado` (AF): o líder deu lance não excluído na janela fechada;
+   - `reinicios_etapa_fechada` (AF): janelas fechadas abertas por "A etapa fechada foi reiniciada"
+     (chat) ou "Retorno de item do Julgamento para a etapa fechada" (eventos);
+   - `fornecedores_desclassificados` / `quantidade_desclassificados`: documentos com situação
+     "Proposta desclassificada", "recusada" ou "Fornecedor inabilitado" na tabela de propostas;
+   - `melhor_lance_modo_aberto_validos` / `melhor_lance_modo_fechado_validos`: melhores valores sem
+     esses fornecedores (sensibilidade "só fornecedores válidos").
 7. **Status:** `OK`, `REVISAR` (com motivos) ou `ERRO`.
 
 Cache por hash do arquivo, item e `VERSAO_PARSER`. Ao mudar o parser, incremente a versão.
@@ -315,6 +328,7 @@ ainda não decidida, só Menor Preço.
 
 | Data | Etapa | Mudança |
 |---|---|---|
+| 2026-11-18 | 5 | Parser 1.8.0: colunas novas de liderança da etapa aberta e quedas (`cnpj_melhor_lance_aberto`, `melhor_lance_modo_aberto_outro_fornecedor`, `lider_aberto_lance_fechado`, `reinicios_etapa_fechada`, `fornecedores_desclassificados`, `quantidade_desclassificados`, `melhor_lance_modo_aberto_validos`, `melhor_lance_modo_fechado_validos`; ver §6, item 6a). Só 2026-02 reprocessado no `aberto-fechado_2026-08.db` (backup em `aberto-fechado_2026-08.antes-1.8.0_20261118.db`) e no Excel do mês; conferido contra a versão anterior: nenhuma coluna antiga nem status mudou (1 item com fornecedor `ESTRANG` passou a contar 20 fornecedores, efeito da 1.7.2). 2026-03, 04 e 08 seguem em 1.7.x com as colunas novas vazias até serem reprocessados (docs/05, pendência 14) |
 | 2026-11-18 | 5 | Parser 1.7.2: aceita `Identificador ESTRANG…` (fornecedor estrangeiro) onde se esperava CNPJ/CPF (`RE_DOCUMENTO` e os padrões "para X, CNPJ…"/"Fornecedor X, CNPJ…"); "participante com lance sem proposta listada" passa de problema a aviso. Reprocessados só os 28 itens REVISAR afetados no `aberto-fechado_2026-08.db` (todos viraram OK; backup em `aberto-fechado_2026-08.antes-1.7.2_20261118.db`); o Excel por mês não foi refeito. Restam 110 REVISAR, excluídos da análise (ver docs/05, decisão de 2026-11-18) |
 | 2026-11-18 | 5 | Extração (parser 1.7.1) de 2026-02, 03 e 04 gravada no mesmo `dados/extracao/aberto-fechado_2026-08.db` (`--db`), e 2026-08 reprocessado com `--reprocessar`: 180.909 itens, todos em 1.7.1 (02: 34.933; 03: 45.625; 04: 47.808; 08: 52.543); o mês sai do caminho em `arquivo_origem`. Backup do banco anterior em `aberto-fechado_2026-08.antes-fev-abr_20261118.db`. 2026-01 fica de fora (download incompleto) |
 | 2026-11-18 | 4 | `baixar_manual.py --repetir --motivo TEXTO`: repete só as compras com aquele último motivo; usado nas 12 "zip não recebido" de 2026-02 a 04 |

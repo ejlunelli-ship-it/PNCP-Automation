@@ -87,6 +87,9 @@ def extrair_item(bloco, r, documento):
     r.problemas.extend(probs)
     r.avisos.extend(avs)
     r.fontes.append(f"quantidade_fornecedores: Propostas do Item {bloco.numero} {bloco.propostas.paginas}")
+    desclassificados = campos.fornecedores_desclassificados(propostas)
+    d["fornecedores_desclassificados"] = "; ".join(desclassificados) or None
+    d["quantidade_desclassificados"] = len(desclassificados) if propostas else None
 
     eventos = tabelas.ler_registros(bloco.eventos, com_responsavel=False)
     extrair_lances(bloco, lances, propostas, eventos, situacao.criterio, d.get("modo_disputa"), r, documento)
@@ -133,18 +136,39 @@ def itens_do_grupo(documento, rotulo):
             for b in documento.itens.values() if b.grupo == rotulo]
 
 
+CAMPOS_LIDERANCA = ("cnpj_melhor_lance_aberto", "melhor_lance_modo_aberto_outro_fornecedor",
+                    "melhor_lance_modo_aberto_validos", "melhor_lance_modo_fechado_validos",
+                    "lider_aberto_lance_fechado", "reinicios_etapa_fechada")
+
+
+def preencher_lideranca(d, propostas, abertos, fechados, criterio, com_fechada):
+    """Líder da etapa aberta, melhor valor de outro fornecedor e melhores valores sem os desclassificados."""
+    desclassificados = campos.fornecedores_desclassificados(propostas)
+    lid = campos.lideranca_aberta(abertos, fechados, desclassificados, criterio, com_fechada)
+    formatado = {campos.chave_fornecedor(p.documento): p.documento for p in propostas}
+    d["cnpj_melhor_lance_aberto"] = (formatado.get(campos.chave_fornecedor(lid.documento), lid.documento)
+                                     if lid.documento else None)
+    d["melhor_lance_modo_aberto_outro_fornecedor"] = lid.outro_fornecedor
+    d["melhor_lance_modo_aberto_validos"] = lid.aberto_validos
+    d["melhor_lance_modo_fechado_validos"] = lid.fechado_validos
+    d["lider_aberto_lance_fechado"] = lid.lider_lance_fechado
+
+
 def extrair_lances(bloco, lances, propostas, eventos, criterio, modo, r, documento):
     d = r.dados
-    for campo in ("melhor_lance_modo_aberto", "melhor_lance_modo_fechado", "melhor_lance_desempate"):
+    for campo in ("melhor_lance_modo_aberto", "melhor_lance_modo_fechado", "melhor_lance_desempate") + CAMPOS_LIDERANCA:
         d[campo] = None
     d["lances_excluidos"] = sum(1 for l in lances if l.excluido)
     modo_norm = (modo or "").strip().lower()
     # as propostas iniciais ("Valor proposta") abrem a etapa aberta e contam no melhor valor dela
     iniciais = [p.valor_proposta for p in propostas] if modo_norm in ("aberto", "aberto/fechado") else []
+    abertos_iniciais = ([(p.documento, p.valor_proposta, None) for p in propostas]
+                        if modo_norm in ("aberto", "aberto/fechado") else [])
 
     if not bloco.lances or not lances:
         r.avisos.append("item sem tabela de lances" if not bloco.lances else "tabela de lances sem lances")
         d["melhor_lance_modo_aberto"] = campos.mais_vantajoso(iniciais, criterio)
+        preencher_lideranca(d, propostas, abertos_iniciais, [], criterio, com_fechada=False)
         return
 
     # em grupo, os marcos das etapas ficam no chat e nos eventos do grupo, com o rótulo "item G1"
@@ -185,6 +209,13 @@ def extrair_lances(bloco, lances, propostas, eventos, criterio, modo, r, documen
     d["melhor_lance_modo_aberto"] = campos.mais_vantajoso(iniciais + [resumo.melhor[etapas.ABERTA]], criterio)
     d["melhor_lance_modo_fechado"] = resumo.melhor[etapas.FECHADA]
     d["melhor_lance_desempate"] = resumo.melhor[etapas.DESEMPATE]
+    com_fechada = modo_norm == "aberto/fechado"
+    abertos = abertos_iniciais + [(l.participante, l.valor, l.data_hora) for l, e in classificados
+                                  if e == etapas.ABERTA and not l.excluido]
+    fechados = [(l.participante, l.valor) for l, e in classificados if e == etapas.FECHADA and not l.excluido]
+    preencher_lideranca(d, propostas, abertos, fechados, criterio, com_fechada)
+    if com_fechada:
+        d["reinicios_etapa_fechada"] = marcos.reinicios_fechada
     if modo_norm == "aberto/fechado" and resumo.menor[etapas.FECHADA] is None:
         r.avisos.append("nenhum lance registrado na etapa fechada")
     if resumo.excluidos:

@@ -228,6 +228,62 @@ def resumir_lances(classificados, criterio):
     return resumo
 
 
+# --------------------------------------------------------------------------- fornecedores por etapa
+
+RE_SITUACAO_DESCLASSIFICADO = re.compile(r"desclassificad|inabilitad|recusad", re.I)
+
+
+def chave_fornecedor(documento):
+    """Chave de comparação entre a tabela de propostas e a de lances (só os dígitos; o texto se não houver)."""
+    return norm.digitos(documento) or (documento or "").strip()
+
+
+def fornecedores_desclassificados(propostas):
+    """Documentos (formatados, na ordem da tabela) com proposta desclassificada, recusada ou fornecedor
+    inabilitado, pela situação na tabela de propostas do item."""
+    vistos, docs = set(), []
+    for p in propostas:
+        k = chave_fornecedor(p.documento)
+        if RE_SITUACAO_DESCLASSIFICADO.search(p.situacao or "") and k not in vistos:
+            vistos.add(k)
+            docs.append(p.documento)
+    return docs
+
+
+@dataclass
+class Lideranca:
+    """Quem liderou a etapa aberta e o que os demais fizeram (para auditar lances isolados e quedas do líder)."""
+    documento: str | None = None       # fornecedor do melhor valor da etapa aberta
+    outro_fornecedor: object = None    # melhor valor aberto de um fornecedor diferente do líder
+    aberto_validos: object = None      # melhor valor aberto sem os fornecedores desclassificados
+    fechado_validos: object = None     # melhor lance fechado sem os fornecedores desclassificados
+    lider_lance_fechado: bool | None = None  # o líder deu lance (não excluído) na etapa fechada
+
+
+def lideranca_aberta(abertos, fechados, desclassificados, criterio, com_fechada):
+    """abertos: (documento, valor, ordem) da etapa aberta (propostas iniciais com ordem None, antes dos
+    lances); fechados: (documento, valor) dos lances fechados não excluídos.
+
+    O líder é o melhor valor segundo o critério; em empate, o registrado primeiro. Valores None ficam fora.
+    """
+    r = Lideranca()
+    abertos = [(d, v, o) for d, v, o in abertos if v is not None]
+    melhor = mais_vantajoso([v for _, v, _ in abertos], criterio)
+    fora = {chave_fornecedor(d) for d in desclassificados}
+    r.aberto_validos = mais_vantajoso([v for d, v, _ in abertos if chave_fornecedor(d) not in fora], criterio)
+    if com_fechada:
+        r.fechado_validos = mais_vantajoso([v for d, v in fechados if chave_fornecedor(d) not in fora], criterio)
+    if melhor is None:
+        return r
+    empatados = [(o is not None, o, d) for d, v, o in abertos if v == melhor]
+    r.documento = min(empatados, key=lambda t: (t[0], t[1] or 0))[2]
+    lider = chave_fornecedor(r.documento)
+    r.outro_fornecedor = mais_vantajoso([v for d, v, _ in abertos if chave_fornecedor(d) != lider], criterio)
+    if com_fechada:
+        r.lider_lance_fechado = any(chave_fornecedor(d) == lider for d, _ in fechados)
+    return r
+
+
 # --------------------------------------------------------------------------- lance aceito
 
 ACEITO, ADJUDICADO, HOMOLOGADO = "ACEITO", "ADJUDICADO", "HOMOLOGADO"

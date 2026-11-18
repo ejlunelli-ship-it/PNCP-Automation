@@ -86,13 +86,26 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
 11. **Decidir como as análises tratam `fonte = 'pncp'`.** `analise_itens` agora mistura as duas fontes: filtre `fonte` para repetir os números antigos. Ver os cuidados em [06](06-banco-de-dados.md).
 12. **Atualizar compras recentes do PNCP.** A coleta de 2022-11 a 2026-10 terminou em 2026-11-10: 772.894 compras novas, 25,1 milhões de itens e 12,5 milhões de resultados, com 20 compras sem itens. A base passou a ter 97,7% dos Pregões Eletrônicos do PNCP (ver [03](03-fontes-de-dados-e-apis.md) e [06](06-banco-de-dados.md)). `coleta_pncp.py` não recarrega mês já carregado, e os meses recentes têm poucos resultados: 2026-10 tem 112 mil resultados para 714 mil itens, contra 425 mil para 714 mil em 2026-06. Falta uma opção para refazê-los, por exemplo de 2026-06 a 2026-10, daqui a alguns meses.
 13. **Medir falsos positivos das irmãs.** A chave foi conferida em 2 pares de Fortaleza; falta conferir uma amostra de `compras_duplicadas`, por exemplo pelo objeto.
-14. **Parser: campos para os casos com lance fechado acima do aberto** (decisão de 2026-11-18). Hoje as marcas são
-    provisórias e calculadas na análise. Para a próxima versão do parser:
-    - segundo melhor lance aberto de **outro** CNPJ, para marcar o lance aberto isolado (menor que 50% dele) sem usar
-      o valor final e calcular um "melhor aberto efetivo";
-    - `fechada_reiniciada` (chat: "A etapa fechada foi reiniciada");
-    - CNPJs desclassificados ou recusados, para medir as etapas só com fornecedores válidos (sensibilidade).
-    Exige reprocessar 2026-02, 03, 04 e 08; os PDFs de 03, 04 e 08 não estão em `dados/filtrados/` em 18/11/2026.
+14. **Reprocessar 2026-03, 04 e 08 com o parser 1.8.0 e refazer a análise com os campos novos.** Os campos para os
+    casos com lance fechado acima do aberto (decisão de 2026-11-18) estão no parser 1.8.0 ([07 §6](07-metodologia-de-extracao.md)):
+    `cnpj_melhor_lance_aberto`, `melhor_lance_modo_aberto_outro_fornecedor`, `lider_aberto_lance_fechado`,
+    `reinicios_etapa_fechada`, `fornecedores_desclassificados`, `quantidade_desclassificados`,
+    `melhor_lance_modo_aberto_validos` e `melhor_lance_modo_fechado_validos`.
+    - **Feito (18/11/2026):** 2026-02 reprocessado em `dados/extracao/aberto-fechado_2026-08.db` (34.933 itens, OK 34.917);
+      as colunas anteriores ficaram idênticas às da 1.7.x. O banco hoje mistura 1.8.0 (fevereiro) e 1.7.x (demais meses,
+      com as colunas novas vazias): filtre por `versao_parser` ao usar os campos novos.
+    - **Falta:** trazer de volta a `dados/filtrados/` os PDFs de 2026-03, 04 e 08 (ausentes em 18/11/2026) e rodar
+      `python -m extrator_homologacao dados/filtrados/aberto-fechado_<mês>/relatorios --saida dados/extracao/aberto-fechado_<mês>.xlsx --db dados/extracao/aberto-fechado_2026-08.db --workers 7 --sem-separar`
+      para cada mês (a versão nova invalida o cache; não precisa de `--reprocessar`). Depois, refazer
+      `analise/etapas_pdf_af_20261118/decomposicao_marcas.py` trocando as marcas provisórias pelas do parser: aberto isolado =
+      melhor aberto < 50% de `melhor_lance_modo_aberto_outro_fornecedor`; etapa reiniciada = `reinicios_etapa_fechada > 0`;
+      sensibilidade "só fornecedores válidos" com os campos `_validos`. Fazer o mesmo para 2026-01 e os meses de 2025 ao
+      extraí-los.
+    - **Primeiros números (fevereiro, 34.436 itens OK de Menor Preço):** nos 2.726 com fechado acima do aberto, o líder da
+      aberta nunca deu lance fechado; em 1.560 deles o líder foi desclassificado e em 830 houve reinício. O líder foi
+      desclassificado em 29% dos itens. Lance aberto isolado (< 50% do outro fornecedor): 1.837 itens, 1.109 com o líder
+      desclassificado. Só com fornecedores válidos, o valor final é o melhor lance da disputa em 92,0% dos itens (69,8%
+      com todos), fica acima em 0,1% e abaixo (negociação) em 7,8%.
 
 ## Questões em aberto
 

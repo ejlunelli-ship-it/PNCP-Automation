@@ -25,6 +25,7 @@ class Janela:
     pagina: int
     fim: object = None
     lances_informados: list | None = None  # valores que a mensagem de encerramento diz terem sido registrados
+    reinicio: bool = False  # etapa fechada reiniciada (chat) ou retorno do julgamento (eventos)
 
     def contem(self, momento):
         return self.inicio <= momento and (self.fim is None or momento <= self.fim)
@@ -43,6 +44,13 @@ class Etapas:
 
     def fechadas(self):
         return [j for j in self.janelas if j.etapa == FECHADA]
+
+    @property
+    def reinicios_fechada(self):
+        """Reinícios da etapa fechada: o chat anuncia "A etapa fechada foi reiniciada" quando nenhum
+        convocado dá lance (convoca os lances seguintes); os eventos registram "Retorno de item do
+        Julgamento para a etapa fechada"."""
+        return sum(1 for j in self.fechadas() if j.reinicio)
 
 
 def padroes_chat(numero):
@@ -69,6 +77,9 @@ PADROES_EVENTOS = {
 }
 
 
+RE_REINICIO = re.compile(r"^(?:A etapa fechada foi reiniciada|Retorno de item do Julgamento para a etapa fechada)")
+
+
 def lances_informados(resto):
     """Valores citados na mensagem de encerramento da etapa (apenas para conferência)."""
     if "Os seguintes lances foram registrados" in resto:
@@ -92,7 +103,8 @@ def montar_etapas(registros, padroes, origem):
             if not m:
                 continue
             if marco == "inicio":
-                etapas.janelas.append(Janela(etapa, descricao, r.data_hora, r.pagina))
+                reinicio = etapa == FECHADA and bool(RE_REINICIO.search(r.texto))
+                etapas.janelas.append(Janela(etapa, descricao, r.data_hora, r.pagina, reinicio=reinicio))
             else:
                 mesmas = [j for j in etapas.janelas if j.descricao == descricao]
                 abertas = [j for j in mesmas if j.fim is None]
