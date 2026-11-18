@@ -103,6 +103,21 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
     - **Feito (18/11/2026):** 2025-11 extraído com o parser 1.8.0 (50.259 itens; OK 50.092 PDFs, REVISAR 265) numa nova
       versão da base, `dados/extracao/aberto-fechado_20261118.db` (base anterior + 2025-11, 231.168 itens). Use essa base
       daqui em diante; `aberto-fechado_2026-08.db` fica como versão anterior.
+    - **Feito (18/11/2026):** 2025-10 extraído com o parser 1.8.0 na mesma base (60.464 itens; OK 60.150 PDFs, REVISAR 410);
+      a base tem 291.632 itens (2025-10, 2025-11 e 2026-02 em 1.8.0; 2026-03, 04 e 08 em 1.7.x).
+    - **Feito (18/11/2026):** nova versão da base, `dados/extracao/aberto-fechado_2025-10_a_2026-08.db` (487.848 itens),
+      somando a base de outra máquina (`dados/filtrados/aberto-fechado_2025-12_a_2026-07.db`: 2025-12, 2026-01, 05, 06 e 07
+      em 1.8.0). Itens repetidos: 1.8.0 substitui 1.7.x, mantendo o mês local (regra em docs/07, histórico). Use esta base
+      daqui em diante. Ainda em 1.7.x: 117.319 itens de 2026-03, 04 e 08 (PDFs ausentes aqui). Juntar as duas bases com
+      `--db` repetido não funciona: os 29.255 itens repetidos fazem o `analise_etapas.py` parar.
+    - **Análise dos 8 meses em 1.8.0 (18/11/2026, com `--pncp-db`):** 2025-10, 11, 12, 2026-01, 02, 05, 06 e 07 da base
+      nova; saída em `dados/analise_etapas/2025-10_a_2026-07/`. 314.257 itens com todos os fornecedores e 277.704 só com
+      os válidos. Aberta 19,0% / 18,9%; após a fechada 34,1% / 32,6%; **ganho da fechada 15,1 p.p. (IC 14,8–15,4) e
+      13,7 p.p. (13,4–14,0)**; ganho relativo 18,4% / 16,3%; final = melhor lance em 70% / 93%. Decomposição (274.302
+      itens): todos 21,7 + 15,8 − 4,1; válidos 19,0 + 13,7 + 0,7 = 33,4. Regressão (1.633 UASGs): β −24,4 e −21,2;
+      licitantes −4,9 e −0,8 (p = 0,02); sigilo n.s. (+1,3, p = 0,10; +0,6); serviço −2,2 (n.s.) e −3,9 (p = 0,005).
+      Ganho por mês (todos), entre 14,5 (2025-12) e 15,7 (2025-10); só válidos, entre 13,1 e 14,5. Isso cumpre o
+      "repetir com `--pncp-db` e juntar" da análise da segunda máquina.
     - **Análise 2025-11 + 2026-02 (18/11/2026):** `analise_etapas.py --db dados/extracao/aberto-fechado_20261118.db --meses 2025-11 2026-02 --pncp-db ../dados/pncp.db`
       (saída em `dados/analise_etapas/2025-11_2026-02/`). 78.273 itens com todos os fornecedores e 68.931 só com os válidos.
       Ganho da fechada: 15,2 p.p. (todos) e 13,7 p.p. (válidos); β −24,4 e −21,1. A moderação pelo nº de licitantes
