@@ -80,11 +80,13 @@ def valor_estimado(secao):
     return unitario, total, " / ".join(originais)
 
 
+JANELA_SITUACAO = 30  # linhas juntadas ao procurar o parágrafo de situação quebrado palavra a palavra
 RE_SITUACAO_RESPONSAVEL = re.compile(r"^(?P<acao>[A-ZÀ-Ú][^:]*?) por (?:CPF|CNPJ) \S+ - ")
 RE_ACEITO = re.compile(
     r" para (?P<fornecedor>.+?), (?:CNPJ|CPF) (?P<documento>" + norm.RE_DOCUMENTO.pattern + r")"
-    r", melhor lance: (?P<melhor>R\$\s*[\d.]+,\d+) \(unitário\)"
-    r"(?:.*?, valor negociado: (?P<negociado>R\$\s*[\d.]+,\d+) \(unitário\))?"
+    r", melhor lance: (?P<melhor>" + norm.PREFIXO_PERCENTUAL + r"R\$\s*[\d.]+,\d+)" + norm.SUFIXO_PERCENTUAL + r" \(unitário\)"
+    r"(?:.*?, valor negociado: (?P<negociado>" + norm.PREFIXO_PERCENTUAL + r"R\$\s*[\d.]+,\d+)"
+    + norm.SUFIXO_PERCENTUAL + r" \(unitário\))?"
 )
 
 
@@ -110,6 +112,10 @@ def situacao_item(secao):
     )
     for i, linha in enumerate(secao.linhas):
         m = RE_SITUACAO_RESPONSAVEL.match(linha.texto)
+        if not m and i > 0 and not textos[i - 1].endswith(":"):
+            # parágrafo justificado pode vir com uma palavra por linha ("Adjudicado", "e", "Homologado",
+            # "por", "CPF", ...); linhas que são o valor de um rótulo ("Situação:") não iniciam o parágrafo
+            m = RE_SITUACAO_RESPONSAVEL.match(norm.espacos(" ".join(textos[i:i + JANELA_SITUACAO])))
         if not m:
             continue
         paragrafo = norm.juntar_quebras(" ".join(textos[i:]))
@@ -157,23 +163,56 @@ class ResumoLances:
 
 
 def mais_vantajoso(valores, criterio):
-    """Menor valor em Menor Preço, maior em Maior Desconto; None sem valores ou com critério desconhecido."""
+    """Menor valor em R$, tanto em Menor Preço quanto em Maior Desconto; None sem valores ou com critério
+    desconhecido.
+
+    Em Maior Desconto os valores lidos são os R$ do par "P% (R$ V)", com V = valor estimado × (1 − P):
+    o maior desconto é o menor valor em R$. O percentual correspondente vem de `percentuais_do_item`.
+    """
     valores = [v for v in valores if v is not None]
     criterio = (criterio or "").lower()
     if not valores:
         return None
-    if "menor preço" in criterio:
+    if "menor preço" in criterio or "maior desconto" in criterio:
         return min(valores)
-    if "maior desconto" in criterio:
-        return max(valores)
     return None
+
+
+# tolerância entre o valor estimado e a base implícita V / (1 − P) de cada par de Maior Desconto
+TOLERANCIA_BASE = Decimal("0.01")
+
+
+def percentuais_do_item(textos, valor_estimado):
+    """{valor em R$: percentual} dos pares "P% (R$ V)" do item, e avisos.
+
+    Um mesmo R$ com percentuais diferentes fica fora do mapa (o percentual não é determinável).
+    Avisa quando a base implícita V / (1 − P) difere do valor estimado do item: nesse caso o
+    percentual não é um desconto sobre o estimado (ex.: tabela de referência do edital).
+    """
+    mapa, conflitos, fora_da_base = {}, set(), []
+    for valor, pct in norm.pares_percentuais(textos):
+        if valor in mapa and mapa[valor] != pct:
+            conflitos.add(valor)
+        mapa.setdefault(valor, pct)
+        if valor_estimado and pct < 100:
+            base = valor / (1 - pct / 100)
+            if abs(base - valor_estimado) > TOLERANCIA_BASE * valor_estimado:
+                fora_da_base.append(f"{pct}% (R$ {valor})")
+    avisos = []
+    for valor in conflitos:
+        del mapa[valor]
+        avisos.append(f"R$ {valor} aparece com percentuais diferentes: percentual não registrado")
+    if fora_da_base:
+        avisos.append(f"{len(fora_da_base)} valor(es) com percentual que não corresponde a desconto sobre o "
+                      f"valor estimado {valor_estimado}: {fora_da_base[:3]}")
+    return mapa, avisos
 
 
 def resumir_lances(classificados, criterio):
     """classificados: lista de (lance, etapa). Lances marcados com '*' (excluídos) são ignorados.
 
     'menor' é o menor valor registrado; 'melhor' é o mais vantajoso segundo o critério do item
-    (menor valor para Menor Preço, maior para Maior Desconto) e fica None se o critério for desconhecido.
+    (o menor R$ nos dois critérios; ver `mais_vantajoso`) e fica None se o critério for desconhecido.
     """
     resumo = ResumoLances()
     criterio = (criterio or "").lower()
@@ -217,7 +256,8 @@ def resultado_item(situacao):
 
 RE_EVENTO_PROPOSTA = re.compile(
     r"^Fornecedor (?P<fornecedor>.+?), (?:CNPJ|CPF) (?P<documento>" + norm.RE_DOCUMENTO.pattern + r") "
-    r"teve a proposta (?P<acao>aceita|adjudicada|desclassificada|recusada), melhor lance: (?P<valor>R\$\s*[\d.]+,\d+)"
+    r"teve a proposta (?P<acao>aceita|adjudicada|desclassificada|recusada), melhor lance: "
+    r"(?P<valor>" + norm.PREFIXO_PERCENTUAL + r"R\$\s*[\d.]+,\d+)"
 )
 RE_EVENTO_INABILITADO = re.compile(
     r"^Fornecedor (?P<fornecedor>.+?), (?:CNPJ|CPF) (?P<documento>" + norm.RE_DOCUMENTO.pattern + r") foi inabilitado"

@@ -10,6 +10,8 @@ from pydantic import BaseModel, ConfigDict, Field
 OK, REVISAR, ERRO = "OK", "REVISAR", "ERRO"
 
 Dinheiro = Annotated[Decimal, Field(ge=0)]
+# desconto em %, só em itens de Maior Desconto (par "P% (R$ V)" do relatório)
+Percentual = Annotated[Decimal, Field(ge=0, le=100)]
 
 RE_PREGAO_VALIDO = re.compile(r"^\d+/\d{4}$")
 
@@ -25,12 +27,16 @@ class RegistroExtracao(BaseModel):
     uf: str | None = None                 # do get.py: UF da unidade compradora
     pregao: str | None = None
     modo_disputa: str | None = None
+    criterio_julgamento_item: str | None = None  # "Menor Preço" ou "Maior Desconto"
     valor_estimado: Dinheiro | None = None
     melhor_lance_modo_aberto: Dinheiro | None = None
+    melhor_lance_modo_aberto_percentual: Percentual | None = None
     melhor_lance_modo_fechado: Dinheiro | None = None
+    melhor_lance_modo_fechado_percentual: Percentual | None = None
     quantidade_fornecedores: Annotated[int, Field(ge=0)] | None = None
     descricao_item: str | None = None
     lance_aceito: Dinheiro | None = None
+    lance_aceito_percentual: Percentual | None = None
     fornecedor_lance_aceito: str | None = None
     cnpj_fornecedor_lance_aceito: str | None = None
     situacao_lance_aceito: str | None = None
@@ -44,10 +50,11 @@ class RegistroExtracao(BaseModel):
     grupo: str | None = None              # ex.: G1; vazio em item avulso
     tipo_relatorio: str | None = None
     situacao_item: str | None = None
-    criterio_julgamento_item: str | None = None
     valor_estimado_total: Dinheiro | None = None
     melhor_lance_desempate: Dinheiro | None = None
+    melhor_lance_desempate_percentual: Percentual | None = None
     valor_negociado_aceito: Dinheiro | None = None
+    valor_negociado_aceito_percentual: Percentual | None = None
     lances_excluidos: Annotated[int, Field(ge=0)] | None = None
     fontes_extracao: str | None = None
 

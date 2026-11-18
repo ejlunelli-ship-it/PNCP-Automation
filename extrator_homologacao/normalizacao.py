@@ -6,6 +6,12 @@ from decimal import Decimal, InvalidOperation
 
 RE_DATA_HORA = re.compile(r"^(\d{2}/\d{2}/\d{4}) às (\d{2}:\d{2}:\d{2})$")
 RE_VALOR = re.compile(r"R\$\s*([\d.]+,\d+)")
+# em Maior Desconto todo valor vem como "<percentual>% (R$ <valor>)", ex.: "55,00% (R$ 3,4155)";
+# PREFIXO_PERCENTUAL é o trecho opcional antes do "R$" e SUFIXO_PERCENTUAL o ")" que fecha o par
+PREFIXO_PERCENTUAL = r"(?:[\d.]+,\d+%\s*\(\s*)?"
+SUFIXO_PERCENTUAL = r"\)?"
+# pares unitários; os "(total)" ficam de fora (base = estimado × quantidade)
+RE_PAR_PERCENTUAL = re.compile(r"([\d.]+,\d+)%\s*\(\s*R\$\s*([\d.]+,\d+)\)(?!\s*\(total\))")
 # CNPJ (00.000.000/0000-00) ou CPF (000.000.000-00)
 RE_DOCUMENTO = re.compile(r"\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}|\d{3}\.\d{3}\.\d{3}-\d{2}")
 
@@ -40,6 +46,15 @@ def valor(texto):
 def valores(texto):
     """Todos os valores monetários de um trecho, na ordem em que aparecem."""
     return [Decimal(v.replace(".", "").replace(",", ".")) for v in RE_VALOR.findall(texto)]
+
+
+def _decimal(numero):
+    return Decimal(numero.replace(".", "").replace(",", "."))
+
+
+def pares_percentuais(textos):
+    """Pares (valor em R$, percentual) dos trechos "P% (R$ V)" de Maior Desconto, na ordem do texto."""
+    return [(_decimal(v), _decimal(p)) for t in textos for p, v in RE_PAR_PERCENTUAL.findall(t)]
 
 
 def data_hora(texto):

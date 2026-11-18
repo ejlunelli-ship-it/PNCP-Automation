@@ -4,13 +4,16 @@ from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
+from openpyxl.cell.cell import ILLEGAL_CHARACTERS_RE
 from openpyxl.utils import get_column_letter
 
 from . import VERSAO_PARSER
 from .validacao import COLUNAS, OK
 
-COLUNAS_MONETARIAS = {c for c in COLUNAS if c.startswith(("valor_", "melhor_lance")) or c == "lance_aceito"}
+COLUNAS_PERCENTUAIS = {c for c in COLUNAS if c.endswith("_percentual")}
+COLUNAS_MONETARIAS = {c for c in COLUNAS if c.startswith(("valor_", "melhor_lance")) or c == "lance_aceito"} - COLUNAS_PERCENTUAIS
 FORMATO_MOEDA = '#,##0.0000'
+FORMATO_PERCENTUAL = '0.00'  # número em %, ex.: 55.00 = 55%
 LARGURA_MAX = 60
 
 
@@ -18,7 +21,10 @@ def para_dataframe(registros):
     linhas = [r.model_dump() for r in registros]
     df = pd.DataFrame(linhas, columns=COLUNAS)
     # mantém Decimal (precisão) e None (célula vazia); o openpyxl grava Decimal como número
-    return df.astype(object).where(df.notna(), None)
+    df = df.astype(object).where(df.notna(), None)
+    # caracteres de controle vindos do PDF (ex.: \x02 em descrições) são recusados pelo openpyxl;
+    # saem só do Excel, o SQLite guarda o texto original
+    return df.map(lambda v: ILLEGAL_CHARACTERS_RE.sub("", v) if isinstance(v, str) else v)
 
 
 def _formatar(ws, df):
@@ -28,9 +34,10 @@ def _formatar(ws, df):
         letra = get_column_letter(i)
         amostra = [len(str(coluna))] + [len(str(v)) for v in df[coluna].head(200) if v is not None]
         ws.column_dimensions[letra].width = min(max(amostra) + 2, LARGURA_MAX)
-        if coluna in COLUNAS_MONETARIAS:
+        formato = FORMATO_MOEDA if coluna in COLUNAS_MONETARIAS else FORMATO_PERCENTUAL if coluna in COLUNAS_PERCENTUAIS else None
+        if formato:
             for celula in ws[letra][1:]:
-                celula.number_format = FORMATO_MOEDA
+                celula.number_format = formato
 
 
 def gerar_excel(registros, destino):

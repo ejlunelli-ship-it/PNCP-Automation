@@ -4,6 +4,7 @@ import re
 from dataclasses import dataclass, field
 
 from . import campos, etapas, tabelas
+from . import normalizacao as norm
 from .secoes import segmentar
 from .texto import linhas_limpas
 
@@ -99,6 +100,30 @@ def extrair_item(bloco, r, documento):
     r.avisos.extend(aceito.avisos)
     if aceito.fonte:
         r.fontes.append(f"lance_aceito: {aceito.fonte}")
+    preencher_percentuais(bloco, r)
+
+
+CAMPOS_COM_PERCENTUAL = ("melhor_lance_modo_aberto", "melhor_lance_modo_fechado", "melhor_lance_desempate",
+                         "lance_aceito", "valor_negociado_aceito")
+
+
+def preencher_percentuais(bloco, r):
+    """Maior Desconto: percentual de cada valor gravado, lido do par "P% (R$ V)" do próprio item."""
+    d = r.dados
+    if "maior desconto" not in (d.get("criterio_julgamento_item") or "").lower():
+        return
+    secoes = (bloco.cabecalho, bloco.propostas, bloco.lances, bloco.chat, bloco.eventos)
+    textos = [norm.juntar_quebras(" ".join(s.textos)) for s in secoes if s]
+    mapa, avisos = campos.percentuais_do_item(textos, d.get("valor_estimado"))
+    r.avisos.extend(avisos)
+    for campo in CAMPOS_COM_PERCENTUAL:
+        valor = d.get(campo)
+        if valor is None:
+            continue
+        d[f"{campo}_percentual"] = mapa.get(valor)
+        if valor not in mapa:
+            r.avisos.append(f"{campo}: percentual não encontrado para R$ {valor}")
+    r.fontes.append(f"percentuais: pares 'P% (R$ V)' do Item {bloco.numero}")
 
 
 def itens_do_grupo(documento, rotulo):

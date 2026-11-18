@@ -7,9 +7,11 @@ from decimal import Decimal
 from . import normalizacao as norm
 
 RE_FORNECEDOR = re.compile(r"^(" + norm.RE_DOCUMENTO.pattern + r") - (.*)$")
-RE_LANCE = re.compile(r"^R\$\s*([\d.]+,\d+)\s*(\*)?$")
-RE_VALOR_UNITARIO = re.compile(r"^R\$\s*[\d.]+,\d+ \(unitário\)$")
-RE_VALOR_TOTAL = re.compile(r"^R\$\s*[\d.]+,\d+ \(total\)$")
+# Menor Preço: "R$ 12,3400"; Maior Desconto: "55,00% (R$ 3,4155)" (o valor em R$ é o que se grava)
+_PCT, _FIM = norm.PREFIXO_PERCENTUAL, norm.SUFIXO_PERCENTUAL
+RE_LANCE = re.compile(r"^" + _PCT + r"R\$\s*([\d.]+,\d+)" + _FIM + r"\s*(\*)?$")
+RE_VALOR_UNITARIO = re.compile(r"^" + _PCT + r"R\$\s*[\d.]+,\d+" + _FIM + r" \(unitário\)$")
+RE_VALOR_TOTAL = re.compile(r"^" + _PCT + r"R\$\s*[\d.]+,\d+" + _FIM + r" \(total\)$")
 # linhas que identificam o autor de uma mensagem do chat (antecedem a data/hora)
 RE_RESPONSAVEL = re.compile(
     r"^(Sistema(\s+para o)?|participante|Pelo participante|Pelo pregoeiro|Pregoeiro.*|"
@@ -54,7 +56,7 @@ def ler_propostas(secao):
     propostas = []
     for pos, ini in enumerate(inicios):
         fim = inicios[pos + 1] if pos + 1 < len(inicios) else len(linhas)
-        bloco = [l.texto for l in linhas[ini:fim]]
+        bloco = juntar_valores_quebrados([l.texto for l in linhas[ini:fim]])
         m = RE_FORNECEDOR.match(bloco[0])
         i = next((j for j, t in enumerate(bloco) if t.startswith("Benefício Me/Epp:")), 1)
         nome = [m.group(2), *bloco[1:i]]
@@ -80,6 +82,25 @@ def ler_propostas(secao):
             pagina=linhas[ini].pagina,
         ))
     return propostas
+
+
+RE_FIM_EM_R = re.compile(r"\(\s*R\$$|R\$$")        # "10,50% (R$" | "R$" + valor na linha seguinte
+RE_FIM_EM_VALOR = re.compile(r"R\$\s*[\d.]+,\d+\)?$")  # valor sem o "(unitário)"/"(total)", que veio abaixo
+
+
+def juntar_valores_quebrados(bloco):
+    """Desfaz as quebras de linha que o PDF insere dentro de um valor da proposta.
+
+    Ex.: ["0,02% (R$ 201.179,2062)", "(unitário)"] e ["10,50% (R$", "180.091,4078) (unitário)"]
+    viram uma linha só, para que o valor seja reconhecido.
+    """
+    saida = []
+    for t in bloco:
+        if saida and (RE_FIM_EM_R.search(saida[-1]) or (t in ("(unitário)", "(total)") and RE_FIM_EM_VALOR.search(saida[-1]))):
+            saida[-1] = f"{saida[-1]} {t}"
+        else:
+            saida.append(t)
+    return saida
 
 
 def valor_apos_rotulo(bloco, rotulo):

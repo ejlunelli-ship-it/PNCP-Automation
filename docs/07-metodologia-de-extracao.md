@@ -252,7 +252,15 @@ Parser determinístico, com PyMuPDF e regex. Sem modelos de linguagem.
 4. **Classificação:** lance antes do início da fechada é da etapa aberta; dentro da janela, da
    fechada; em janela de desempate, vai à parte.
 5. **Melhor lance por etapa:**
-   - menor valor em Menor Preço, maior em Maior Desconto;
+   - menor valor em R$ nos dois critérios: em Maior Desconto o relatório traz `P% (R$ V)` (lance,
+     proposta, situação, eventos e chat), com V = estimado × (1 − P), então o maior desconto é o
+     menor V. Grava-se V nas colunas de valor e P em `<campo>_percentual` (aberto, fechado,
+     desempate, aceito, negociado), lido do par do próprio item; os pares `(total)` não entram. Se um
+     V aparece com dois P, o percentual fica vazio; se V / (1 − P) difere do estimado em mais de 1%,
+     há aviso (parser 1.7.0);
+   - valores da proposta quebrados em duas linhas (`... (R$ V)` + `(unitário)`, ou `(R$` + `V) ...`)
+     e o parágrafo de situação do item com uma palavra por linha (texto justificado) são juntados
+     antes da leitura (parser 1.7.1);
    - conta mesmo que o fornecedor seja desclassificado depois;
    - lances excluídos (`*`) não contam;
    - a etapa aberta inclui as propostas iniciais;
@@ -263,13 +271,33 @@ Parser determinístico, com PyMuPDF e regex. Sem modelos de linguagem.
 
 Cache por hash do arquivo, item e `VERSAO_PARSER`. Ao mudar o parser, incremente a versão.
 
+**Extração por mês:** um banco por mês, para carga posterior no `pncp.db`:
+
+```
+python -m extrator_homologacao dados/filtrados/aberto-fechado_<mês>/relatorios ^
+    --saida dados/extracao/aberto-fechado_<mês>.xlsx --workers 7 --sem-separar
+```
+
+Gera `aberto-fechado_<mês>.db` (tabela `itens`, uma linha por item), `.xlsx`, `.log` e
+`.cache.json`. Use `--sem-separar`: com a pasta `relatorios/` como raiz, cada compra seria uma
+"subpasta" e geraria um Excel próprio. `esfera`/`uf` saem vazias (a pasta não tem os
+`contratacoes_*.json`); vêm do `pncp.db` na carga. No Excel, caracteres de controle do texto do PDF
+são removidos (o openpyxl os recusa); o SQLite guarda o texto original.
+
 **Limitações:** OCR lê o texto, mas o parser ainda não o entende, e o PDF sai como `ERRO`; Ata Final
 de outras plataformas não é lida; grupos foram testados em um único pregão.
 
 ## 7. Carga no banco (ainda não feita)
 
-As colunas de lance de `itens` estão vazias. A carga deve ligar `homologacoes.db` ao banco por UASG,
-número, ano e item, validando a ligação, porque há contratações irmãs.
+As colunas de lance de `itens` estão vazias. A carga deve ligar os bancos da extração
+(`dados/extracao/*.db`) ao `pncp.db`, validando a ligação, porque há contratações irmãs.
+
+**Chave recomendada:** `compras.id_compra` (os 17 dígitos no nome do PDF,
+`relatorio-termo-homologacao-<id_compra>-item-<N>.pdf`, extraídos de `arquivo_origem`) +
+`itens.numero_item` = `item`, com `registro_principal = 1`. Em 2026-08 ligou 51.143 de 52.543 itens
+(97,3%), com uma duplicidade. Por UASG + número + ano ligou só 48.968: `compras.numero_compra` tem
+zeros à esquerda (`00141`) e o extrator grava `1/2026`. Dos 1.400 sem ligação, 1.397 têm a compra
+no banco, mas não o item (a investigar).
 
 ## Análise
 
@@ -305,3 +333,6 @@ ainda não decidida, só Menor Preço.
 | 2026-11-16 | 5 | Registro compartilhado em `registro/` (versionado), um arquivo por usuário, mês e origem, no lugar de `motivos.csv`/`manual.csv` em `dados/`; `--parte k/n` nos dois scripts; janeiro/2026 migrado |
 | 2026-11-16 | 5 | Lista de compras a baixar em `registro/compras/<mês>.csv` (`registro.py compras`), usada quando não há `dados/pncp.db` |
 | 2026-11-17 | 5.3 | `baixar_manual.py --auto`: o userscript `navegador/compras_auto.user.js` clica no download do zip e avisa quando a compra não o tem; intervalo aleatório entre compras e pausa após falhas seguidas; hCaptcha não contornado. Testado em 2026-08 com `--intervalo 0`: cerca de 6 s por compra, sem desafios; `idCompra` inválido é pulado |
+| 2026-11-17 | 6 e 7 | Extração de 2026-08 em `dados/extracao/aberto-fechado_2026-08.db` (52.543 itens; Menor Preço 99,9% OK); Excel remove caracteres de controle; chave de carga por `id_compra` + item |
+| 2026-11-17 | 6 | Parser 1.7.0: lê os valores `P% (R$ V)` de Maior Desconto (antes REVISAR sem lances); melhor lance = menor R$ nos dois critérios; colunas `*_percentual`; `criterio_julgamento_item` passa para o bloco principal; 2026-08 reprocessado |
+| 2026-11-17 | 6 | Parser 1.7.1: junta valores da proposta quebrados em duas linhas e o parágrafo de situação quebrado palavra a palavra (corrige lance aceito, valor negociado e propostas iniciais não lidos); 2026-08 reprocessado |

@@ -37,8 +37,12 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
      aceita `...-item-N.pdf`;
    - verificar se os "parciais" de Fortaleza (90122, 90124, 90128) também são grupos.
 2. **Juntar a base do PDF com a base da API** para o matching por etapa:
-   - chave `uasg` + `numero_compra` + `item`; via `idCompra`, chega-se ao `numeroControlePNCP` e
-     ao `codItemCatalogo`;
+   - extração de 2026-08 feita em `dados/extracao/aberto-fechado_2026-08.db` (17/11/2026); falta a carga
+     no `pncp.db` e os demais meses;
+   - chave `id_compra` (do nome do PDF) + `numero_item`, `registro_principal = 1`: liga 97,3% em 2026-08
+     (UASG + número dá menos, por zeros à esquerda); ver [07 §7](07-metodologia-de-extracao.md);
+   - 1.397 itens de 2026-08 com a compra no banco, mas sem o item: investigar antes da carga;
+   - 97 PDFs de 2026-08 sem bloco de item reconhecido (formato a examinar);
    - criar uma análise (`matching_etapas.py`?) com o desconto da etapa aberta, o desconto da etapa
      fechada e o ganho da fechada, com e sem pareamento UASG × item.
 3. **Ampliar a amostra de PDFs**:

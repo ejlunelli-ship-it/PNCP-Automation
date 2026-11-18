@@ -31,9 +31,12 @@ obtido pela administração?
   itens. Não diz nada sobre as etapas.
 - **Desconto por etapa** (PDF): `melhor_lance_modo_aberto` e `melhor_lance_modo_fechado` sobre
   `valor_estimado`, extraídos pelo `extrator_homologacao`.
-  - O melhor lance da etapa é o mais vantajoso registrado nela, pelo critério do item: menor valor
-    em Menor Preço, maior em Maior Desconto. Conta **mesmo que o fornecedor seja desclassificado
-    depois**.
+  - O melhor lance da etapa é o mais vantajoso registrado nela, pelo critério do item
+    (`criterio_julgamento_item`). Conta **mesmo que o fornecedor seja desclassificado depois**.
+  - Os valores são sempre unitários em R$. Em Maior Desconto o relatório escreve cada valor como
+    `P% (R$ V)`, com V = estimado × (1 − P); grava-se V e, em coluna `<campo>_percentual`, o P. O
+    melhor é o menor V (= maior P) nos dois critérios. As colunas `_percentual` ficam vazias em
+    Menor Preço.
   - `melhor_lance_modo_aberto` inclui as propostas iniciais, que abrem a etapa aberta.
   - Lances de desempate (art. 60, ME/EPP) ficam à parte, em `melhor_lance_desempate`.
   - Lances marcados como excluídos (`*`) não contam.
@@ -61,7 +64,9 @@ cujo significado não foi investigado.
 
 **Efeito na análise**: em Menor Preço, o desconto é calculado comparando o resultado com o estimado.
 Em Maior Desconto, ele é o próprio lance e é medido sobre uma tabela do edital, que pode estar
-inflada. Por isso os dois critérios não devem ser misturados na mesma média. Recomendação: analisar
+inflada. Nos relatórios do Compras.gov.br de 2026-08, porém, o percentual é aplicado sobre o valor
+estimado do item (o R$ do par `P% (R$ V)` é estimado × (1 − P)); o extrator avisa quando isso não
+vale para algum valor ("percentual que não corresponde a desconto sobre o valor estimado"). Por isso os dois critérios não devem ser misturados na mesma média. Recomendação: analisar
 só Menor Preço e citar a exclusão como limitação. Na view `analise_itens`, os descontos por etapa
 já ficam vazios fora de Menor Preço (ver [06](06-banco-de-dados.md)).
 
