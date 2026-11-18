@@ -207,6 +207,9 @@ Downloads > "Todos os relatórios e termos" é feito pelo userscript `navegador/
   Com um terceiro navegador (Chrome `--parte 1/3`, Edge `2/3`, Firefox `3/3`): 31,2 compras/min (+10%),
   sem mudança nos motivos; cada navegador cai de ~14 para ~11/min, sinal de gargalo no site ou na rede.
   Ao mudar o número de partes, pare e relance todos juntos (senão dois processos abrem a mesma compra).
+  No `--auto`, a espera pelo zip caiu de 5 para 2 min (`ESPERA_AUTO`, 18/11/2026): a cada ~15 min algum
+  navegador ficava 5 min parado numa compra; o que passa de 2 min sai como `zip não recebido` e vai para o
+  `--repetir --motivo "zip não recebido"` no fim do mês. O modo manual continua com 5 min.
   Não deixe a 1.2 e a 1.3 ativas juntas: as duas clicam no botão, o menu abre e fecha, e a compra sai
   como `sem botão de downloads no site`.
 - **`--abas N`** (padrão 1): mantém N compras abertas ao mesmo tempo no mesmo navegador. Testado em

@@ -80,6 +80,7 @@ AVISO_DESAFIO = 60  # segundos sem zip no --auto antes de lembrar de olhar a aba
 PASSO = 0.25  # segundos entre olhadas na pasta Downloads
 FIRME = 0.3  # segundos com o tamanho parado para dar o arquivo por gravado
 ESCALONA = 1.0  # com --abas > 1, segundos mínimos entre abrir uma aba e a seguinte
+ESPERA_AUTO = 2 * 60  # no --auto, segundos à espera do zip (no manual, ESPERA); o resto vai para --repetir
 
 
 class Historico:
@@ -208,11 +209,11 @@ def gravado(arq, zip_=False):
 class Voo:
     """Compra com a aba aberta, à espera do zip ou do aviso do userscript."""
 
-    def __init__(self, mes, i, n, c, destino, linha):
+    def __init__(self, mes, i, n, c, destino, linha, espera):
         self.mes, self.i, self.n, self.c, self.destino, self.linha = mes, i, n, c, destino, linha
         self.id = c["idCompra"]
         self.antes = zips_em_downloads(self.id)
-        self.limite = time.time() + ESPERA
+        self.limite = time.time() + espera
         self.lembrete = time.time() + AVISO_DESAFIO
 
 
@@ -364,7 +365,7 @@ def baixar(args, abrir, fila):
                 for velho in avisos_em_downloads(c["idCompra"]):  # de uma rodada anterior
                     velho.unlink(missing_ok=True)
                 url += "&pncpauto=1"
-            voando.append(Voo(mes, i, n, c, destino, linha))
+            voando.append(Voo(mes, i, n, c, destino, linha, ESPERA_AUTO if args.auto else ESPERA))
             abrir(url)
             # entre uma aba e a seguinte: --intervalo; com várias abas, ao menos ESCALONA s
             proxima = time.time() + max(random.uniform(*args.intervalo) if args.auto else 0,
