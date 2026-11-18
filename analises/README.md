@@ -25,3 +25,17 @@ python analises/reproduzir.py --executar
 `--verificar` confere manifesto e dependências, e confere o banco quando estiver disponível, sem rodar os testes. `--executar` exige o banco, copia somente scripts/protocolos para `../analise/`, recusando sobrescrever fontes diferentes, reconstrói a extração mensal e executa as duas análises e suas validações. Gera dados e relatórios fora da árvore versionada; a execução completa demanda vários minutos e espaço para os arquivos locais. Não modifica o SQLite. Resultados locais já existentes nessas pastas são reestimados quando `--executar` é solicitado.
 
 Para repetir somente a análise anual com as bases mensais preservadas e verificadas por hash, use `--executar --somente-anual`. Os resultados detalhados, incluindo amostra por modo, médias, ICs, erros-padrão, estatísticas, significância e todas as sensibilidades, estão nas planilhas e nos CSVs versionados.
+
+**Etapa aberta × etapa fechada nos PDFs Aberto-Fechado — 18/11/2026**
+
+[`etapas_pdf_af_20261118/`](etapas_pdf_af_20261118/relatorio.md): desconto por etapa dentro do Aberto-Fechado, lido dos termos de homologação de 2026-02, 03, 04 e 08 (166.596 itens de Menor Preço, parser 1.7.1/1.7.2). Relatório em [`relatorio.md`](etapas_pdf_af_20261118/relatorio.md); números em `resultados.json`, `regressao_etapas.json` e `decomposicao_marcas.json`; tabelas nos `.xlsx`.
+
+| Script | O que faz | Saídas |
+|---|---|---|
+| `analisar.py` | Descritivas, testes pareados, economia em R$, heterogeneidade, estratos | `resultados.json`, `tabelas.xlsx`, `por_item.csv.gz` |
+| `ligar_pncp.py` | Material/serviço e orçamento sigiloso do `pncp.db` (só leitura) | `ligacao_pncp.csv.gz`, `ligacao_pncp_meta.json` |
+| `testes_grupos.py` | Diferenças de médias entre grupos, ajustadas pelo nº de licitantes | `testes_grupos.{csv,xlsx}`, `estatisticas_grupos.csv` |
+| `regressao_etapas.py` | Regressão empilhada (FE de item) com interações e 13 sensibilidades | `regressao_etapas.{json,xlsx}` |
+| `decomposicao_marcas.py` | Decomposição aberta + fechada + pós-disputa; marcas dos casos com fechado acima do aberto | `decomposicao_marcas.{json,xlsx}`, `marcas_por_item.csv.gz` |
+
+Os `.csv.gz` (dados por item) ficam fora do Git. Para reexecutar, copie a pasta para `../analise/etapas_pdf_af_20261118/` (irmã de `PNCP-Automation/`) e rode, nesta ordem, `ligar_pncp.py`, `analisar.py`, `testes_grupos.py`, `regressao_etapas.py` e `decomposicao_marcas.py` com o Python do `.venv` (precisa de `openpyxl`). Exige `PNCP-Automation/dados/extracao/aberto-fechado_2026-08.db` e `dados/pncp.db` na raiz do workspace. Resultados descritivos da dinâmica dentro do Aberto-Fechado, não efeito causal do modo de disputa.
