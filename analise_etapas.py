@@ -54,7 +54,8 @@ def ler_bancos(caminhos, meses):
         assert os.stat(c).st_mtime_ns == st.st_mtime_ns, f"{c} mudou durante a leitura"
     df = pd.concat(partes, ignore_index=True)
     df["mes"] = df.arquivo_origem.str.extract(r"aberto-fechado_(\d{4}-\d{2})")[0]
-    df["id_compra"] = df.arquivo_origem.str.extract(r"-(\d{17})-item-")[0]
+    df["id_compra"] = df.arquivo_origem.str.extract(r"-(\d{17})-(?:s\d+-)?item-")[0]  # homologação ou julgamento (-sN-)
+    assert df.id_compra.notna().all(), "arquivo_origem sem id da compra: " + str(df.arquivo_origem[df.id_compra.isna()].head(3).tolist())
     if meses:
         df = df[df.mes.isin(meses)]
     if df.empty:

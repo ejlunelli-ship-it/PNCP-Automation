@@ -100,6 +100,14 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       cai de 14,8 para 13,2 p.p. (β de −24,0 para −20,6 log-pontos), o ajuste pós-disputa vai de −4,1 para +0,8 p.p. e a
       moderação pelo nº de licitantes de −6,4 para −2,5. **Decidido (18/11/2026):** as duas medidas são principais
       (tabela de decisões); procedimento replicável em `analise_etapas.py`.
+    - **Feito (18/11/2026):** 2025-11 extraído com o parser 1.8.0 (50.259 itens; OK 50.092 PDFs, REVISAR 265) numa nova
+      versão da base, `dados/extracao/aberto-fechado_20261118.db` (base anterior + 2025-11, 231.168 itens). Use essa base
+      daqui em diante; `aberto-fechado_2026-08.db` fica como versão anterior.
+    - **Análise 2025-11 + 2026-02 (18/11/2026):** `analise_etapas.py --db dados/extracao/aberto-fechado_20261118.db --meses 2025-11 2026-02 --pncp-db ../dados/pncp.db`
+      (saída em `dados/analise_etapas/2025-11_2026-02/`). 78.273 itens com todos os fornecedores e 68.931 só com os válidos.
+      Ganho da fechada: 15,2 p.p. (todos) e 13,7 p.p. (válidos); β −24,4 e −21,1. A moderação pelo nº de licitantes
+      (−4,7) some com só os válidos (−0,5, n.s.); sigilo e serviço n.s. Em 2025-11 sozinho: 15,5 e 14,0 p.p.; fevereiro
+      igual à análise anterior.
     - **Falta:** trazer de volta a `dados/filtrados/` os PDFs de 2026-03, 04 e 08 (ausentes em 18/11/2026) e rodar
       `python -m extrator_homologacao dados/filtrados/aberto-fechado_<mês>/relatorios --saida dados/extracao/aberto-fechado_<mês>.xlsx --db dados/extracao/aberto-fechado_2026-08.db --workers 7 --sem-separar`
       para cada mês (a versão nova invalida o cache; não precisa de `--reprocessar`). Depois, rodar
