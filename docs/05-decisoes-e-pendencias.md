@@ -110,8 +110,19 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       igual à análise anterior.
     - **Feito (18/11/2026, segunda máquina):** 2025-12, 2026-01, 05, 06 e 07 extraídos com o parser 1.8.0 em
       `dados/extracao/aberto-fechado_2025-12_a_2026-07.db` (225.471 itens; OK 225.324, REVISAR 147). Colunas anteriores
-      idênticas às da 1.7.2 nos meses de 2026 (ver [07, histórico](07-metodologia-de-extracao.md)). Falta rodar
-      `analise_etapas.py` nesse banco (sozinho ou com `--db` repetido junto à base da outra máquina).
+      idênticas às da 1.7.2 nos meses de 2026 (ver [07, histórico](07-metodologia-de-extracao.md)).
+    - **Análise 2025-12, 2026-01, 05, 06 e 07 (18/11/2026, segunda máquina):**
+      `analise_etapas.py --db dados/extracao/aberto-fechado_2025-12_a_2026-07.db`, **sem `--pncp-db`** (o `pncp.db` não
+      está nessa máquina: a regressão não tem sigilo nem serviço). Saída em `dados/analise_etapas/2025-12_a_2026-07/`.
+      207.945 itens com todos os fornecedores e 183.786 só com os válidos. Aberta 19,1% / 18,9%; após a fechada 34,1% /
+      32,4%; ganho da fechada 15,0 p.p. (IC 14,6–15,4) e 13,5 p.p. (13,1–13,8); final 33,2% / 33,3%. Decomposição
+      (181.283 itens): todos 21,8 + 15,7 − 4,2; válidos 19,1 + 13,5 + 0,7. β −24,3 e −20,9; moderação pelo nº de
+      licitantes −5,2 e −1,1 (p = 0,007, ainda significativa só com os válidos, ao contrário de 2025-11 + 2026-02).
+      Ganho por mês (todos / válidos): 12: 14,5 / 13,2; 01: 15,2 / 14,1; 05: 15,0 / 13,2; 06: 15,2 / 13,8;
+      07: 15,2 / 13,2. Marcas: líder da aberta sem lance fechado 30%, líder desclassificado 28%, etapa reiniciada 10%,
+      aberto isolado 5%, fechado outlier 1%; fechado acima do aberto 8% (17.310 itens, todos com o líder sem lance
+      fechado). Valor final = melhor lance da disputa em 70% (todos) e 93% (válidos). Falta repetir com `--pncp-db` e
+      juntar com a base da outra máquina (`--db` repetido).
     - **Falta:** trazer de volta a `dados/filtrados/` os PDFs de 2026-03, 04 e 08 (ausentes em 18/11/2026) e rodar
       `python -m extrator_homologacao dados/filtrados/aberto-fechado_<mês>/relatorios --saida dados/extracao/aberto-fechado_<mês>.xlsx --db dados/extracao/aberto-fechado_2026-08.db --workers 7 --sem-separar`
       para cada mês (a versão nova invalida o cache; não precisa de `--reprocessar`). Depois, rodar
