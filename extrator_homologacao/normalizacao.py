@@ -12,8 +12,8 @@ PREFIXO_PERCENTUAL = r"(?:[\d.]+,\d+%\s*\(\s*)?"
 SUFIXO_PERCENTUAL = r"\)?"
 # pares unitários; os "(total)" ficam de fora (base = estimado × quantidade)
 RE_PAR_PERCENTUAL = re.compile(r"([\d.]+,\d+)%\s*\(\s*R\$\s*([\d.]+,\d+)\)(?!\s*\(total\))")
-# CNPJ (00.000.000/0000-00) ou CPF (000.000.000-00)
-RE_DOCUMENTO = re.compile(r"\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}|\d{3}\.\d{3}\.\d{3}-\d{2}")
+# CNPJ (00.000.000/0000-00), CPF (000.000.000-00) ou identificador de fornecedor estrangeiro (ESTRANG0000629)
+RE_DOCUMENTO = re.compile(r"\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}|\d{3}\.\d{3}\.\d{3}-\d{2}|ESTRANG\d+")
 
 
 def espacos(texto):

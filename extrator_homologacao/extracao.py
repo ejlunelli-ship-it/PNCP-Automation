@@ -82,9 +82,10 @@ def extrair_item(bloco, r, documento):
     if sobras:
         r.problemas.append(f"{len(sobras)} linha(s) não reconhecida(s) na tabela de lances: {sobras[:3]}")
 
-    d["quantidade_fornecedores"], probs = campos.quantidade_fornecedores(
+    d["quantidade_fornecedores"], probs, avs = campos.quantidade_fornecedores(
         propostas, lances, deserto=d["resultado"] == campos.DESERTO)
     r.problemas.extend(probs)
+    r.avisos.extend(avs)
     r.fontes.append(f"quantidade_fornecedores: Propostas do Item {bloco.numero} {bloco.propostas.paginas}")
 
     eventos = tabelas.ler_registros(bloco.eventos, com_responsavel=False)

@@ -83,7 +83,7 @@ def valor_estimado(secao):
 JANELA_SITUACAO = 30  # linhas juntadas ao procurar o parágrafo de situação quebrado palavra a palavra
 RE_SITUACAO_RESPONSAVEL = re.compile(r"^(?P<acao>[A-ZÀ-Ú][^:]*?) por (?:CPF|CNPJ) \S+ - ")
 RE_ACEITO = re.compile(
-    r" para (?P<fornecedor>.+?), (?:CNPJ|CPF) (?P<documento>" + norm.RE_DOCUMENTO.pattern + r")"
+    r" para (?P<fornecedor>.+?), (?:CNPJ|CPF|Identificador) (?P<documento>" + norm.RE_DOCUMENTO.pattern + r")"
     r", melhor lance: (?P<melhor>" + norm.PREFIXO_PERCENTUAL + r"R\$\s*[\d.]+,\d+)" + norm.SUFIXO_PERCENTUAL + r" \(unitário\)"
     r"(?:.*?, valor negociado: (?P<negociado>" + norm.PREFIXO_PERCENTUAL + r"R\$\s*[\d.]+,\d+)"
     + norm.SUFIXO_PERCENTUAL + r" \(unitário\))?"
@@ -135,21 +135,24 @@ def situacao_item(secao):
 # --------------------------------------------------------------------------- fornecedores
 
 def quantidade_fornecedores(propostas, lances, deserto=False):
-    """Fornecedores distintos (por CNPJ/CPF) com proposta no item. Retorna (quantidade, problemas).
+    """Fornecedores distintos (por CNPJ/CPF/identificador) com proposta no item.
+    Retorna (quantidade, problemas, avisos).
 
     Item deserto não recebeu propostas: a quantidade é 0, não um problema de leitura.
+    Participante com lance e sem proposta listada é só aviso (decisão de 18/11/2026): os lances
+    e o aceito continuam válidos.
     """
-    problemas = []
+    problemas, avisos = [], []
     docs = {norm.digitos(p.documento) for p in propostas}
     sem_proposta = {norm.digitos(l.participante) for l in lances} - docs
     if sem_proposta:
-        problemas.append(f"{len(sem_proposta)} participante(s) com lance sem proposta listada no item")
+        avisos.append(f"{len(sem_proposta)} participante(s) com lance sem proposta listada no item")
     if not docs:
         if deserto:
-            return 0, problemas
+            return 0, problemas, avisos
         problemas.append("nenhuma proposta identificada no item")
-        return None, problemas
-    return len(docs), problemas
+        return None, problemas, avisos
+    return len(docs), problemas, avisos
 
 
 # --------------------------------------------------------------------------- lances por etapa
@@ -255,12 +258,12 @@ def resultado_item(situacao):
     return NAO_IDENTIFICADO
 
 RE_EVENTO_PROPOSTA = re.compile(
-    r"^Fornecedor (?P<fornecedor>.+?), (?:CNPJ|CPF) (?P<documento>" + norm.RE_DOCUMENTO.pattern + r") "
+    r"^Fornecedor (?P<fornecedor>.+?), (?:CNPJ|CPF|Identificador) (?P<documento>" + norm.RE_DOCUMENTO.pattern + r") "
     r"teve a proposta (?P<acao>aceita|adjudicada|desclassificada|recusada), melhor lance: "
     r"(?P<valor>" + norm.PREFIXO_PERCENTUAL + r"R\$\s*[\d.]+,\d+)"
 )
 RE_EVENTO_INABILITADO = re.compile(
-    r"^Fornecedor (?P<fornecedor>.+?), (?:CNPJ|CPF) (?P<documento>" + norm.RE_DOCUMENTO.pattern + r") foi inabilitado"
+    r"^Fornecedor (?P<fornecedor>.+?), (?:CNPJ|CPF|Identificador) (?P<documento>" + norm.RE_DOCUMENTO.pattern + r") foi inabilitado"
 )
 
 
