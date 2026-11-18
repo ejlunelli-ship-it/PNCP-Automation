@@ -315,6 +315,7 @@ ainda não decidida, só Menor Preço.
 
 | Data | Etapa | Mudança |
 |---|---|---|
+| 2026-11-18 | 5 | Extração (parser 1.7.1) de 2026-02, 03 e 04 gravada no mesmo `dados/extracao/aberto-fechado_2026-08.db` (`--db`), e 2026-08 reprocessado com `--reprocessar`: 180.909 itens, todos em 1.7.1 (02: 34.933; 03: 45.625; 04: 47.808; 08: 52.543); o mês sai do caminho em `arquivo_origem`. Backup do banco anterior em `aberto-fechado_2026-08.antes-fev-abr_20261118.db`. 2026-01 fica de fora (download incompleto) |
 | 2026-11-18 | 4 | `baixar_manual.py --repetir --motivo TEXTO`: repete só as compras com aquele último motivo; usado nas 12 "zip não recebido" de 2026-02 a 04 |
 | 2026-11-17 | Análise | Nova extração somente leitura para testes de médias A/AF; três desfechos, padronização de produto/mês/UF, testes com agrupamentos CNPJ/CATMAT e Holm; benchmark fora do órgão e bootstrap complementar com recálculo; protocolo e auditorias em `analise/testes_medias_20261117` no workspace |
 | 2026-11-03 | 3 | Banco unificado criado; valores em `REAL` depois de erro de divisão inteira na primeira carga |
