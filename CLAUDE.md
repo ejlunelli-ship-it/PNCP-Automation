@@ -27,6 +27,7 @@ Detalhes: [docs/README.md](docs/README.md) (índice). Comece por
 | Download manual em paralelo (mês mais recente → mais antigo); `--auto` clica pelo userscript | `baixar_manual.py` + `navegador/compras_auto.user.js` | `dados/filtrados/aberto-fechado_<mês>/relatorios/`, `registro/` |
 | Registro compartilhado do que já foi buscado/baixado (versionado) | `registro.py` (`compras` regera a lista) | `registro/aberto-fechado_<mês>/<usuario>_{api,manual}.csv`, `registro/compras/<mês>.csv` |
 | Inventário dos PDFs baixados | `inventario_pdfs.py` | tabela `relatorios_pdf` em `dados/pncp.db`, `dados/inventario_pdfs.csv` |
+| Desconto por etapa nos PDFs (duas medidas principais: todos os fornecedores e só válidos; parser ≥ 1.8.0) | `analise_etapas.py --db <extração>.db` | `dados/analise_etapas/<meses>/` |
 | Análises | `matching_*.py` | terminal |
 
 ## Ambiente (máquina do usuário, Windows)

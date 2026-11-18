@@ -320,6 +320,33 @@ no banco, mas não o item (a investigar).
 Regras em [01](01-objetivo-e-metodologia.md). Filtro `elegivel`, `homologado = 1` e, por recomendação
 ainda não decidida, só Menor Preço.
 
+### Desconto por etapa nos PDFs (`analise_etapas.py`)
+
+Procedimento para qualquer máquina que extraiu os PDFs de um mês. Reporta **duas medidas principais**, sempre juntas
+(decisão de 2026-11-18, docs/05):
+
+- **todos os fornecedores:** melhor lance de cada etapa como registrado na disputa, mesmo que o fornecedor caia depois;
+- **só fornecedores válidos:** sem os desclassificados, recusados e inabilitados da tabela de propostas (colunas
+  `_validos` do parser 1.8.0).
+
+Nas duas, após a fechada = mín(melhor aberto, melhor fechado), desconto = 1 − valor / estimado e desconto final =
+aberta + ganho da fechada + ajuste pós-disputa. Amostra: `OK`, Menor Preço, estimado e lance aberto positivos, descontos
+entre −100% e 99%.
+
+1. `git pull` (parser ≥ 1.8.0 e o script).
+2. Extrair o mês (§6): `python -m extrator_homologacao dados/filtrados/aberto-fechado_<mês>/relatorios --saida
+   dados/extracao/aberto-fechado_<mês>.xlsx --workers 7 --sem-separar` (gera `aberto-fechado_<mês>.db`). Um banco
+   extraído com versão anterior é recusado pelo script.
+3. Rodar: `python analise_etapas.py --db dados/extracao/aberto-fechado_<mês>.db`. Opções: `--meses AAAA-MM ...`
+   (filtra um banco com vários meses), `--db` repetido (junta bancos; itens repetidos são recusados) e
+   `--pncp-db dados/pncp.db` (acrescenta sigiloso e serviço na regressão; sem ele, a regressão usa só licitantes,
+   valor e mês).
+4. Saídas em `dados/analise_etapas/<meses>/` (fora do git): `resultados.json`, `tabelas.xlsx` (abas `principais`,
+   `decomposicao`, `teste_direto`, `regressao`, `marcas`, `sensibilidade_todos`, `por_mes`) e `por_item.csv.gz`.
+
+Conferência: com 2026-02 e `--pncp-db`, o script reproduz exatamente `analises/etapas_pdf_af_20261118/fevereiro_campos_novos.py`
+(ganho de 14,8 p.p. com todos e 13,2 só com válidos; β −23,99 e −20,58). Leva ~3 min por mês (bootstrap de 2.000 réplicas).
+
 ## Histórico de mudanças
 
 **Análise anual por sigilo de 17/11/2026:** [documentação, resultados e reprodução](08-testes-medias-precos.md). As extrações anteriores foram preservadas por hash; 305 registros foram conferidos novamente no SQLite. Mês foi substituído por ano nos estratos e referências, com análises separadas para sigilo 0/1 e desconto calculado quando o estimado é positivo em cada grupo. Metodologia, 30 testes e validações estão versionados em `analises/`; os arquivos volumosos permanecem locais.
@@ -328,6 +355,7 @@ ainda não decidida, só Menor Preço.
 
 | Data | Etapa | Mudança |
 |---|---|---|
+| 2026-11-18 | Análise | `analise_etapas.py`: procedimento replicável do desconto por etapa nos PDFs, com as duas medidas principais (todos os fornecedores e só válidos), decomposição, marcas do parser, regressão e resultados por mês. Exige parser ≥ 1.8.0. Ver seção "Análise" |
 | 2026-11-18 | 5 | Parser 1.8.0: colunas novas de liderança da etapa aberta e quedas (`cnpj_melhor_lance_aberto`, `melhor_lance_modo_aberto_outro_fornecedor`, `lider_aberto_lance_fechado`, `reinicios_etapa_fechada`, `fornecedores_desclassificados`, `quantidade_desclassificados`, `melhor_lance_modo_aberto_validos`, `melhor_lance_modo_fechado_validos`; ver §6, item 6a). Só 2026-02 reprocessado no `aberto-fechado_2026-08.db` (backup em `aberto-fechado_2026-08.antes-1.8.0_20261118.db`) e no Excel do mês; conferido contra a versão anterior: nenhuma coluna antiga nem status mudou (1 item com fornecedor `ESTRANG` passou a contar 20 fornecedores, efeito da 1.7.2). 2026-03, 04 e 08 seguem em 1.7.x com as colunas novas vazias até serem reprocessados (docs/05, pendência 14) |
 | 2026-11-18 | 5 | Parser 1.7.2: aceita `Identificador ESTRANG…` (fornecedor estrangeiro) onde se esperava CNPJ/CPF (`RE_DOCUMENTO` e os padrões "para X, CNPJ…"/"Fornecedor X, CNPJ…"); "participante com lance sem proposta listada" passa de problema a aviso. Reprocessados só os 28 itens REVISAR afetados no `aberto-fechado_2026-08.db` (todos viraram OK; backup em `aberto-fechado_2026-08.antes-1.7.2_20261118.db`); o Excel por mês não foi refeito. Restam 110 REVISAR, excluídos da análise (ver docs/05, decisão de 2026-11-18) |
 | 2026-11-18 | 5 | Extração (parser 1.7.1) de 2026-02, 03 e 04 gravada no mesmo `dados/extracao/aberto-fechado_2026-08.db` (`--db`), e 2026-08 reprocessado com `--reprocessar`: 180.909 itens, todos em 1.7.1 (02: 34.933; 03: 45.625; 04: 47.808; 08: 52.543); o mês sai do caminho em `arquivo_origem`. Backup do banco anterior em `aberto-fechado_2026-08.antes-fev-abr_20261118.db`. 2026-01 fica de fora (download incompleto) |

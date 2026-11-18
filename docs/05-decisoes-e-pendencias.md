@@ -26,6 +26,7 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
 | 2026-11-17 | Automatizar o clique do download do zip com userscript no navegador real (`baixar_manual.py --auto`, `navegador/compras_auto.user.js`) em vez de Playwright; chamar a URL do zip direto foi descartado | A URL exige um token novo do hCaptcha a cada requisição; o userscript usa o token gerado pelo próprio site, sem marcas de automação, e o usuário resolve os desafios |
 | 2026-11-18 | Itens REVISAR da extração: **ficam fora da análise** (filtrar `status_extracao = 'OK'`) os de etapa fechada com lances na tabela mas sem lances na mensagem de encerramento, os sem proposta identificada e os de etapa/desempate sem registro de encerramento. Fornecedor estrangeiro (`Identificador ESTRANG…`) passa a ser lido (parser 1.7.2); participante com lance sem proposta listada vira aviso e o item fica OK, sem conferência manual | Decisão do usuário: na dúvida sobre a etapa, excluir; os valores do participante sem proposta são confiáveis. Na base de 2026-02/03/04/08, 110 itens de 180.909 ficam de fora |
 | — | Melhor lance da etapa conta mesmo se o fornecedor for desclassificado depois; propostas iniciais entram na etapa aberta | Medir a dinâmica da disputa, não só o resultado |
+| 2026-11-18 | **Duas medidas principais** do desconto por etapa nos PDFs, sempre reportadas juntas: **todos os fornecedores** (melhor lance de cada etapa como na disputa) e **só fornecedores válidos** (sem desclassificados, recusados e inabilitados; colunas `_validos` do parser 1.8.0). Procedimento em `analise_etapas.py` ([07, Análise](07-metodologia-de-extracao.md)) | Decisão do usuário. A primeira descreve a dinâmica da disputa; a segunda, o desconto que o órgão obtém de cada etapa. O desconto final é o mesmo nas duas. Em 2026-02 o ganho da fechada é 14,8 e 13,2 p.p. |
 | 2026-11-18 | Itens com lance fechado acima do aberto: manter `após a fechada = mín(aberto, fechado)` (líder sem lance fechado e etapa reiniciada são o funcionamento normal). Desconto final decomposto em **aberta + ganho da fechada + ajuste pós-disputa** (desclassificação/negociação). Lance aberto absurdo, fechado absurdo e "vencedor caiu" viram marcas com sensibilidade, sem corrigir valores | Decisão do usuário a partir da revisão de PDFs de 2026-02. Ver `analise/etapas_pdf_af_20261118/relatorio.md` (seção "Casos com lance fechado acima do aberto") |
 
 ## Pendências e próximos passos (por prioridade)
@@ -97,15 +98,13 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
     - **Análise de fevereiro feita (18/11/2026):** `analises/etapas_pdf_af_20261118/fevereiro_campos_novos.py` e a
       seção "Fevereiro com os campos do parser 1.8.0" do `relatorio.md`. Só com fornecedores válidos, o ganho da fechada
       cai de 14,8 para 13,2 p.p. (β de −24,0 para −20,6 log-pontos), o ajuste pós-disputa vai de −4,1 para +0,8 p.p. e a
-      moderação pelo nº de licitantes de −6,4 para −2,5. **Decisão em aberto:** qual das duas medidas (todos os
-      fornecedores ou só válidos) é a principal; a recomendação é reportar as duas.
+      moderação pelo nº de licitantes de −6,4 para −2,5. **Decidido (18/11/2026):** as duas medidas são principais
+      (tabela de decisões); procedimento replicável em `analise_etapas.py`.
     - **Falta:** trazer de volta a `dados/filtrados/` os PDFs de 2026-03, 04 e 08 (ausentes em 18/11/2026) e rodar
       `python -m extrator_homologacao dados/filtrados/aberto-fechado_<mês>/relatorios --saida dados/extracao/aberto-fechado_<mês>.xlsx --db dados/extracao/aberto-fechado_2026-08.db --workers 7 --sem-separar`
-      para cada mês (a versão nova invalida o cache; não precisa de `--reprocessar`). Depois, refazer
-      `analise/etapas_pdf_af_20261118/decomposicao_marcas.py` trocando as marcas provisórias pelas do parser: aberto isolado =
-      melhor aberto < 50% de `melhor_lance_modo_aberto_outro_fornecedor`; etapa reiniciada = `reinicios_etapa_fechada > 0`;
-      sensibilidade "só fornecedores válidos" com os campos `_validos`. Fazer o mesmo para 2026-01 e os meses de 2025 ao
-      extraí-los.
+      para cada mês (a versão nova invalida o cache; não precisa de `--reprocessar`). Depois, rodar
+      `python analise_etapas.py --db dados/extracao/aberto-fechado_2026-08.db --pncp-db ../dados/pncp.db` com todos os
+      meses em 1.8.0. Fazer o mesmo para 2026-01 e os meses de 2025 ao extraí-los (cada máquina com o seu banco).
     - **Primeiros números (fevereiro, 34.436 itens OK de Menor Preço):** nos 2.726 com fechado acima do aberto, o líder da
       aberta nunca deu lance fechado; em 1.560 deles o líder foi desclassificado e em 830 houve reinício. O líder foi
       desclassificado em 29% dos itens. Lance aberto isolado (< 50% do outro fornecedor): 1.837 itens, 1.109 com o líder
