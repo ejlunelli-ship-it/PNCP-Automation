@@ -108,6 +108,10 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       Ganho da fechada: 15,2 p.p. (todos) e 13,7 p.p. (válidos); β −24,4 e −21,1. A moderação pelo nº de licitantes
       (−4,7) some com só os válidos (−0,5, n.s.); sigilo e serviço n.s. Em 2025-11 sozinho: 15,5 e 14,0 p.p.; fevereiro
       igual à análise anterior.
+    - **Feito (18/11/2026, segunda máquina):** 2025-12, 2026-01, 05, 06 e 07 extraídos com o parser 1.8.0 em
+      `dados/extracao/aberto-fechado_2025-12_a_2026-07.db` (225.471 itens; OK 225.324, REVISAR 147). Colunas anteriores
+      idênticas às da 1.7.2 nos meses de 2026 (ver [07, histórico](07-metodologia-de-extracao.md)). Falta rodar
+      `analise_etapas.py` nesse banco (sozinho ou com `--db` repetido junto à base da outra máquina).
     - **Falta:** trazer de volta a `dados/filtrados/` os PDFs de 2026-03, 04 e 08 (ausentes em 18/11/2026) e rodar
       `python -m extrator_homologacao dados/filtrados/aberto-fechado_<mês>/relatorios --saida dados/extracao/aberto-fechado_<mês>.xlsx --db dados/extracao/aberto-fechado_2026-08.db --workers 7 --sem-separar`
       para cada mês (a versão nova invalida o cache; não precisa de `--reprocessar`). Depois, rodar
