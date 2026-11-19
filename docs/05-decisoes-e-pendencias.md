@@ -166,7 +166,18 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       e 2026-10 com 39.018 (todos 1.8.0; 84 REVISAR). 316 itens de 2 compras (`98028605900062025`, 309, e
       `92833305900072025`, 7), que estão nas listas de 2025-04 e de 2026-09, já estavam na base como 2025-04, com os
       mesmos PDFs (hash) e os mesmos valores: ficaram como estavam (`INSERT OR IGNORE`). A base tem 888.681 itens, de
-      2025-03 a 2026-10, sem item repetido; `integrity_check` ok. A análise por etapa ainda não inclui 2026-09 e 10.
+      2025-03 a 2026-10, sem item repetido; `integrity_check` ok.
+    - **Análise dos 17 meses em 1.8.0 (19/11/2026, com `--pncp-db`, base `aberto-fechado_2025-03_a_2026-10.db`):**
+      2025-03 a 2026-02, 2026-05 a 07 e 2026-09 a 10; saída em `dados/analise_etapas/2025-03_a_2026-10/`. 679.977 itens
+      (todos) e 601.186 (válidos), 38.602 compras, 2.099 UASGs. Aberta 19,2% / 19,2%; após a fechada 34,4% / 33,0%;
+      **ganho da fechada 15,2 p.p. (IC 15,0–15,4) e 13,8 p.p. (13,6–14,0)**; ganho relativo 18,5% / 16,6%; final 33,8% /
+      33,9%; final = melhor lance em 70% / 93%. Decomposição (592.998): todos 22,1 + 15,9 − 4,1; válidos 19,4 + 13,9 + 0,7
+      = 33,9. Regressão (2.096 / 2.091 UASGs): β −24,5 e −21,5; licitantes −5,0 e −0,9 (p = 0,001); sigilo +2,0
+      (p = 0,001) e +1,3 (p = 0,014); serviço −0,7 (n.s.) e −2,1 (p = 0,009). 2026-09: aberta 16,6, ganho 15,9 / 14,4;
+      2026-10: aberta 16,7, ganho 16,2 / 14,8 (a etapa aberta desses dois meses é a mais fraca da série, ~3 p.p. abaixo
+      da média). Ganho por mês (todos) entre 14,2 (2025-04) e 16,2 (2025-09 e 2026-10); válidos entre 12,8 e 14,9.
+      Marcas: líder sem lance fechado 29,7%, líder desclassificado 27,8%, reiniciada 9,8%, aberto isolado 5,5%, outlier
+      1,6%; fechado acima do aberto 8,8%.
     - **Feito (19/11/2026, segunda máquina):** 2026-09 e 2026-10 baixados (3 navegadores) e extraídos com o parser 1.8.0
       num banco próprio, `dados/extracao/aberto-fechado_2026-09_a_2026-10.db`: 2026-09 com 44.384 itens (OK 44.321,
       REVISAR 63, 2.265 compras) e 2026-10 com 39.018 (OK 38.997, REVISAR 21, 2.272 compras); nenhum ERRO.
