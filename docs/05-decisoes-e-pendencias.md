@@ -128,6 +128,12 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       junto com 2026-05). Ganho por mês (todos) entre 14,5 (2025-12) e 16,2 (2025-09); válidos entre 13,1 e 14,9.
       Marcas: líder da aberta sem lance fechado 30%, líder desclassificado 28%, reiniciada 10%, aberto isolado 5%,
       fechado outlier 1,5%; fechado acima do aberto 8,7%.
+    - **Feito (19/11/2026):** 2025-06 e 2025-07 (extraídos em 1.8.0 na segunda máquina, banco `junho2025.db`, copiado para
+      `dados/filtrados/junho2025.db` e lido só para leitura) incorporados à base `aberto-fechado_2025-10_a_2026-08.db`
+      (nome mantido): 2025-06 com 40.649 itens (OK 40.175, REVISAR 474, 2.589 compras) e 2025-07 com 48.917 (OK 48.383,
+      REVISAR 534, 2.880 compras, o mês inteiro). Nenhum item repetido. A base tem 684.175 itens, de 2025-06 a 2026-08,
+      12 meses completos em 1.8.0. Backup `aberto-fechado_2025-10_a_2026-08.antes-2025-06-07.db`. A análise por etapa
+      ainda não inclui 2025-06 e 07.
     - **Análise dos 9 meses em 1.8.0 (18/11/2026, com `--pncp-db`):** 2025-09 a 2026-02 e 2026-05 a 07; saída em
       `dados/analise_etapas/2025-09_a_2026-07/`. 365.489 itens (todos) e 323.216 (válidos). Aberta 18,9% / 18,9%; após a
       fechada 34,1% / 32,7%; **ganho da fechada 15,3 p.p. (IC 15,0–15,5) e 13,9 p.p. (13,6–14,1)**; ganho relativo
