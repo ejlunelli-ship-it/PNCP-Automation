@@ -132,8 +132,16 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       `dados/filtrados/junho2025.db` e lido só para leitura) incorporados à base `aberto-fechado_2025-10_a_2026-08.db`
       (nome mantido): 2025-06 com 40.649 itens (OK 40.175, REVISAR 474, 2.589 compras) e 2025-07 com 48.917 (OK 48.383,
       REVISAR 534, 2.880 compras, o mês inteiro). Nenhum item repetido. A base tem 684.175 itens, de 2025-06 a 2026-08,
-      12 meses completos em 1.8.0. Backup `aberto-fechado_2025-10_a_2026-08.antes-2025-06-07.db`. A análise por etapa
-      ainda não inclui 2025-06 e 07.
+      12 meses completos em 1.8.0. Backup `aberto-fechado_2025-10_a_2026-08.antes-2025-06-07.db`.
+    - **Análise dos 12 meses em 1.8.0 (19/11/2026, com `--pncp-db`):** 2025-06 a 2026-02 e 2026-05 a 07; saída em
+      `dados/analise_etapas/2025-06_a_2026-07/`. 494.069 itens (todos) e 438.012 (válidos), 27.674 compras, 1.833 UASGs.
+      Aberta 19,2% / 19,2%; após a fechada 34,5% / 33,0%; **ganho da fechada 15,3 p.p. (IC 15,0–15,5) e 13,9 p.p.
+      (13,6–14,1)**; ganho relativo 18,6% / 16,6%; final 33,8% / 33,9%; final = melhor lance em 70% / 93%. Decomposição
+      (431.974): todos 22,0 + 16,0 − 4,1; válidos 19,3 + 13,9 + 0,7 = 33,9. Regressão (1.831 / 1.828 UASGs): β −24,6 e
+      −21,6; licitantes −4,9 e −0,9 (p = 0,004); sigilo +2,3 (p < 0,001) e +1,5 (p = 0,008, agora significativo também
+      com os válidos); serviço −1,0 (n.s.) e −2,3 (p = 0,033). 2025-06: ganho 14,9 / 13,6; 2025-07: 16,1 / 14,6. Ganho
+      por mês (todos) entre 14,5 (2025-12) e 16,2 (2025-09); válidos entre 13,1 e 14,9. Marcas: líder sem lance fechado
+      29,8%, líder desclassificado 27,5%, reiniciada 9,9%, aberto isolado 5,3%, outlier 1,5%; fechado acima do aberto 8,7%.
     - **Análise dos 9 meses em 1.8.0 (18/11/2026, com `--pncp-db`):** 2025-09 a 2026-02 e 2026-05 a 07; saída em
       `dados/analise_etapas/2025-09_a_2026-07/`. 365.489 itens (todos) e 323.216 (válidos). Aberta 18,9% / 18,9%; após a
       fechada 34,1% / 32,7%; **ganho da fechada 15,3 p.p. (IC 15,0–15,5) e 13,9 p.p. (13,6–14,1)**; ganho relativo
