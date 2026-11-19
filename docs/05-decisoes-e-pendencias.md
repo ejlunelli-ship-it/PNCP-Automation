@@ -110,6 +110,16 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       em 1.8.0). Itens repetidos: 1.8.0 substitui 1.7.x, mantendo o mês local (regra em docs/07, histórico). Use esta base
       daqui em diante. Ainda em 1.7.x: 117.319 itens de 2026-03, 04 e 08 (PDFs ausentes aqui). Juntar as duas bases com
       `--db` repetido não funciona: os 29.255 itens repetidos fazem o `analise_etapas.py` parar.
+    - **Feito (18/11/2026):** 2025-09 extraído com o parser 1.8.0 na mesma base (55.841 itens; OK 55.469 PDFs, REVISAR 497).
+      A base `aberto-fechado_2025-10_a_2026-08.db` (nome mantido) tem 543.689 itens, de 2025-09 a 2026-08. A análise
+      A análise dos 8 meses (abaixo) não inclui 2025-09; a dos 9 meses, sim.
+    - **Análise dos 9 meses em 1.8.0 (18/11/2026, com `--pncp-db`):** 2025-09 a 2026-02 e 2026-05 a 07; saída em
+      `dados/analise_etapas/2025-09_a_2026-07/`. 365.489 itens (todos) e 323.216 (válidos). Aberta 18,9% / 18,9%; após a
+      fechada 34,1% / 32,7%; **ganho da fechada 15,3 p.p. (IC 15,0–15,5) e 13,9 p.p. (13,6–14,1)**; ganho relativo
+      18,5% / 16,5%; final = melhor lance em 70% / 93%. Decomposição (319.078): todos 21,6 + 16,0 − 4,1; válidos
+      19,0 + 13,9 + 0,7 = 33,6. Regressão (1.701 UASGs): β −24,6 e −21,4; licitantes −4,9 e −0,8 (p = 0,013); sigilo
+      +1,5 (p = 0,03) e +0,8 (n.s.); serviço −1,6 (n.s.) e −3,2 (p = 0,012). 2025-09 sozinho: ganho de 16,2 / 14,9 p.p.,
+      o maior dos 9 meses.
     - **Análise dos 8 meses em 1.8.0 (18/11/2026, com `--pncp-db`):** 2025-10, 11, 12, 2026-01, 02, 05, 06 e 07 da base
       nova; saída em `dados/analise_etapas/2025-10_a_2026-07/`. 314.257 itens com todos os fornecedores e 277.704 só com
       os válidos. Aberta 19,0% / 18,9%; após a fechada 34,1% / 32,6%; **ganho da fechada 15,1 p.p. (IC 14,8–15,4) e
