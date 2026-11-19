@@ -76,6 +76,10 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
    se o ritmo se mantém em rodadas longas e com mais de um usuário (`--parte`). O Playwright com perfil
    persistente fica como alternativa se o userscript deixar de bastar (risco: mais desafios do hCaptcha).
    Os zips só com relatórios por grupo (cerca de 12%) dependem da pendência 1.
+   - **Feito (19/11/2026):** download de 2023 concluído (2023-04 a 2023-12, sem pendentes; ver histórico em
+     [07](07-metodologia-de-extracao.md)). Falta extrair 2023 com o parser 1.8.0. Antes de 2023-04 não há compra
+     Aberto-Fechado com item homologado (os itens com resultado estão "Em andamento"); decidir se vale tentar o zip
+     dessas cerca de 77 compras por uma lista à parte.
 8. **Usar a tabela `resultados` na análise** (coleta interrompida em 2026-11-03 a pedido do usuário; retoma com `python coleta_resultados.py`): o valor de `itens` diferiu do resultado ativo em 118 de 11.639 itens (1,0%) em dois dias testados.
    Depois da coleta (`coleta_resultados.py`) e da carga (`banco_unificado.py --resultados`), medir a diferença na base toda e decidir
    se `desconto_final` passa a usar o resultado ativo. Os meses de itens já coletados não foram refeitos com a nova chave.
