@@ -158,6 +158,11 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       desclassificado em 29% dos itens. Lance aberto isolado (< 50% do outro fornecedor): 1.837 itens, 1.109 com o líder
       desclassificado. Só com fornecedores válidos, o valor final é o melhor lance da disputa em 92,0% dos itens (69,8%
       com todos), fica acima em 0,1% e abaixo (negociação) em 7,8%.
+15. **Termos de homologação só com o chat (2025-06).** Na extração de 2025-06 (19/11/2026, `dados/extracao/junho2025.db`,
+    segunda máquina), 1.465 PDFs de 49 compras saíram como "nenhum bloco de item encontrado no relatório" e não foram
+    gravados no banco (nos meses de 2025-09 em diante eram ~100 por mês). São termos de homologação que trazem só o chat
+    da compra (ex.: `90012-2024_16008205900122024`, 270 PDFs, compra de 2024 homologada em 2025). Falta ver se o zip
+    traz outro relatório com o item (termo de julgamento) e ensinar o `selecao.py` ou o parser a usá-lo.
 
 ## Questões em aberto
 
