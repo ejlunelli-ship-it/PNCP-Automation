@@ -160,6 +160,13 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       (p = 0,007). 2025-03: aberta 20,3, ganho 14,7 / 13,5. Ganho por mês (todos) entre 14,2 (2025-04) e 16,2 (2025-09);
       válidos entre 12,8 e 14,9. Marcas: líder sem lance fechado 29,9%, líder desclassificado 27,7%, reiniciada 10,0%,
       aberto isolado 5,4%, outlier 1,6%; fechado acima do aberto 8,9%.
+    - **Nova versão da base (19/11/2026):** `dados/extracao/aberto-fechado_2025-03_a_2026-10.db` = cópia de
+      `aberto-fechado_2025-10_a_2026-08.db` (mantida como estava) + `dados/filtrados/aberto-fechado_2026-09_a_2026-10.db`
+      (extraído em 1.8.0 em outra máquina, lido só para leitura, hash conferido antes e depois). 2026-09 com 44.068 itens
+      e 2026-10 com 39.018 (todos 1.8.0; 84 REVISAR). 316 itens de 2 compras (`98028605900062025`, 309, e
+      `92833305900072025`, 7), que estão nas listas de 2025-04 e de 2026-09, já estavam na base como 2025-04, com os
+      mesmos PDFs (hash) e os mesmos valores: ficaram como estavam (`INSERT OR IGNORE`). A base tem 888.681 itens, de
+      2025-03 a 2026-10, sem item repetido; `integrity_check` ok. A análise por etapa ainda não inclui 2026-09 e 10.
     - **Feito (19/11/2026, segunda máquina):** 2026-09 e 2026-10 baixados (3 navegadores) e extraídos com o parser 1.8.0
       num banco próprio, `dados/extracao/aberto-fechado_2026-09_a_2026-10.db`: 2026-09 com 44.384 itens (OK 44.321,
       REVISAR 63, 2.265 compras) e 2026-10 com 39.018 (OK 38.997, REVISAR 21, 2.272 compras); nenhum ERRO.
