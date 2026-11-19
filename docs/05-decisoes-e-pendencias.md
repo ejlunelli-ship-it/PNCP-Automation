@@ -137,6 +137,12 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       (nome mantido): 2025-06 com 40.649 itens (OK 40.175, REVISAR 474, 2.589 compras) e 2025-07 com 48.917 (OK 48.383,
       REVISAR 534, 2.880 compras, o mês inteiro). Nenhum item repetido. A base tem 684.175 itens, de 2025-06 a 2026-08,
       12 meses completos em 1.8.0. Backup `aberto-fechado_2025-10_a_2026-08.antes-2025-06-07.db`.
+    - **Feito (19/11/2026):** 2025-05 e 2025-04 extraídos com o parser 1.8.0 na mesma base (nome mantido; backup
+      `aberto-fechado_2025-10_a_2026-08.antes-2025-05-04.db`). 2025-05: 46.523 PDFs (OK 43.962, REVISAR 2.561), 44.483 itens
+      gravados (OK 43.962, REVISAR 521), 2.717 compras. 2025-04: 42.563 PDFs (OK 40.354, REVISAR 2.208, ERRO 1), 40.864 itens
+      (OK 40.354, REVISAR 510), 2.449 compras. A base tem 769.522 itens, de 2025-04 a 2026-08; os outros meses não mudaram.
+      O ERRO é um PDF vazio (`90001-2025_16038405900012025/...-item-101.pdf`, 0 byte, gravado quando o download foi
+      encerrado às 14:26): falta baixá-lo de novo.
     - **Análise dos 12 meses em 1.8.0 (19/11/2026, com `--pncp-db`):** 2025-06 a 2026-02 e 2026-05 a 07; saída em
       `dados/analise_etapas/2025-06_a_2026-07/`. 494.069 itens (todos) e 438.012 (válidos), 27.674 compras, 1.833 UASGs.
       Aberta 19,2% / 19,2%; após a fechada 34,5% / 33,0%; **ganho da fechada 15,3 p.p. (IC 15,0–15,5) e 13,9 p.p.
@@ -198,6 +204,9 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
     traz outro relatório com o item (termo de julgamento) e ensinar o `selecao.py` ou o parser a usá-lo.
     - Em 2025-08 (19/11/2026, esta máquina): 315 PDFs de 14 compras com o mesmo motivo, a maior
       `90025-2024_92796905900252024` (179 PDFs).
+    - Em 2025-05 (19/11/2026): 2.040 PDFs de 65 compras, a maior `90055-2024_98991305900552024` (469 PDFs); em 2025-04:
+      1.698 PDFs de 88 compras, a maior `90008-2024_78270005900082024` (186). São quase todo o REVISAR desses meses
+      (5,5% e 5,2% dos PDFs, contra 1,5% em 2025-08); as três maiores de cada mês são compras de 2024.
 
 ## Questões em aberto
 
