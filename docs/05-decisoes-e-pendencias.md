@@ -117,7 +117,17 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       315 PDFs ignorados sem uasg/compra/item, de 14 compras, ver pendência 15). A base (nome mantido) tem 594.609 itens,
       de 2025-08 a 2026-08; backup `aberto-fechado_2025-10_a_2026-08.antes-2025-08.db`. O download de 2025-08 está
       completo: das 3.372 compras, 2.915 completas (nesta pasta ou na de outro mês), 418 zip sem termos, 31 sem a opção
-      no site e 8 sem acesso; nenhuma deixou de ser tentada. Falta a análise por etapa com 2025-08 (10 meses em 1.8.0).
+      no site e 8 sem acesso; nenhuma deixou de ser tentada.
+    - **Análise dos 10 meses em 1.8.0 (19/11/2026, com `--pncp-db`):** 2025-08 a 2026-02 e 2026-05 a 07; saída em
+      `dados/analise_etapas/2025-08_a_2026-07/`. 412.142 itens (todos) e 365.071 (válidos), 22.759 compras, 1.757 UASGs.
+      Aberta 19,1% / 19,1%; após a fechada 34,3% / 32,9%; **ganho da fechada 15,2 p.p. (IC 14,9–15,5) e 13,8 p.p.
+      (13,5–14,1)**; ganho relativo 18,5% / 16,5%; final 33,6% / 33,7%; final = melhor lance em 70% / 93%. Decomposição
+      (360.269): todos 21,9 + 15,9 − 4,1; válidos 19,2 + 13,8 + 0,7 = 33,7. Regressão (1.755 / 1.752 UASGs): β −24,5 e
+      −21,4; licitantes −4,8 e −0,8 (p = 0,010); sigilo +1,9 (p = 0,006) e +1,1 (p = 0,09); serviço −1,2 (n.s.) e −2,8
+      (p = 0,022). 2025-08 sozinho: aberta 21,2 / 20,7, ganho 14,7 / 13,4 p.p. (o mês tem a etapa aberta mais forte,
+      junto com 2026-05). Ganho por mês (todos) entre 14,5 (2025-12) e 16,2 (2025-09); válidos entre 13,1 e 14,9.
+      Marcas: líder da aberta sem lance fechado 30%, líder desclassificado 28%, reiniciada 10%, aberto isolado 5%,
+      fechado outlier 1,5%; fechado acima do aberto 8,7%.
     - **Análise dos 9 meses em 1.8.0 (18/11/2026, com `--pncp-db`):** 2025-09 a 2026-02 e 2026-05 a 07; saída em
       `dados/analise_etapas/2025-09_a_2026-07/`. 365.489 itens (todos) e 323.216 (válidos). Aberta 18,9% / 18,9%; após a
       fechada 34,1% / 32,7%; **ganho da fechada 15,3 p.p. (IC 15,0–15,5) e 13,9 p.p. (13,6–14,1)**; ganho relativo
