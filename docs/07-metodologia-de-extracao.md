@@ -210,6 +210,12 @@ Downloads > "Todos os relatórios e termos" é feito pelo userscript `navegador/
   No `--auto`, a espera pelo zip caiu de 5 para 2 min (`ESPERA_AUTO`, 18/11/2026): a cada ~15 min algum
   navegador ficava 5 min parado numa compra; o que passa de 2 min sai como `zip não recebido` e vai para o
   `--repetir --motivo "zip não recebido"` no fim do mês. O modo manual continua com 5 min.
+  **Zip atrasado (19/11/2026):** o site às vezes entrega o zip depois dos 2 min, e ele ficava esquecido em
+  Downloads (em 2026-09, 20 dos ~70 "zip não recebido" das primeiras horas). Antes de abrir uma compra ainda
+  não completa, o script procura um zip dela já gravado em Downloads (não vazio, diretório central legível);
+  se houver, move para a pasta da compra e processa como um zip recebido, sem abrir o site. Vale inclusive
+  para compras já anotadas na passada manual, então o `--repetir --motivo "zip não recebido"` do fim do mês
+  aproveita esses zips na hora.
   Não deixe a 1.2 e a 1.3 ativas juntas: as duas clicam no botão, o menu abre e fecha, e a compra sai
   como `sem botão de downloads no site`.
 - **`--abas N`** (padrão 1): mantém N compras abertas ao mesmo tempo no mesmo navegador. Testado em
@@ -418,3 +424,4 @@ Conferência: com 2026-02 e `--pncp-db`, o script reproduz exatamente `analises/
 | 2026-11-17 | 6 e 7 | Extração de 2026-08 em `dados/extracao/aberto-fechado_2026-08.db` (52.543 itens; Menor Preço 99,9% OK); Excel remove caracteres de controle; chave de carga por `id_compra` + item |
 | 2026-11-17 | 6 | Parser 1.7.0: lê os valores `P% (R$ V)` de Maior Desconto (antes REVISAR sem lances); melhor lance = menor R$ nos dois critérios; colunas `*_percentual`; `criterio_julgamento_item` passa para o bloco principal; 2026-08 reprocessado |
 | 2026-11-17 | 6 | Parser 1.7.1: junta valores da proposta quebrados em duas linhas e o parágrafo de situação quebrado palavra a palavra (corrige lance aceito, valor negociado e propostas iniciais não lidos); 2026-08 reprocessado |
+| 2026-11-19 | 5 | `baixar_manual.py`: antes de abrir uma compra, usa o zip dela que chegou atrasado em Downloads (depois do `ESPERA_AUTO`) em vez de baixar de novo |

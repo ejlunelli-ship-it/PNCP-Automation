@@ -206,6 +206,16 @@ def gravado(arq, zip_=False):
         return False
 
 
+def zip_atrasado(id_compra):
+    """Zip desta compra que já está completo na pasta Downloads antes de abrir a página: no --auto, o
+    tempo-limite (ESPERA_AUTO) anota "zip não recebido", mas o site às vezes entrega o zip minutos depois,
+    e ele ficava esquecido lá. Arquivos vazios (o Firefox cria o nome antes de gravar) não contam."""
+    for arq in sorted(zips_em_downloads(id_compra)):
+        if gravado(arq, zip_=True):
+            return arq
+    return None
+
+
 class Voo:
     """Compra com a aba aberta, à espera do zip ou do aviso do userscript."""
 
@@ -345,15 +355,25 @@ def baixar(args, abrir, fila):
             # atualizado a cada compra: o automático ou outro processo pode ter acabado de fazer esta
             historico.atualizar()
             controle = c["numeroControlePNCP"]
-            if controle in historico.completas or (controle in historico.manuais and not args.repetir):
-                continue
-            if args.motivo and historico.ultimo_motivo.get(controle) != args.motivo:
+            if controle in historico.completas:
                 continue
             destino = pasta_da_compra(c, DADOS / "filtrados" / f"aberto-fechado_{mes}" / "relatorios")
             if resolvida(destino):
                 continue
             linha = {"numeroControlePNCP": controle, "idCompra": c["idCompra"], "passada": "manual",
                      "situacao": "", "itens_cobertos": 0, "outros_guardados": 0}
+            atrasado = ID_COMPRA.fullmatch(c["idCompra"] or "") and zip_atrasado(c["idCompra"])
+            if atrasado:
+                # chegou depois do tempo-limite numa rodada anterior ("zip não recebido"): usa sem reabrir
+                print(f"[{mes} {i}/{n}] {c['idCompra']}: zip atrasado já em Downloads, sem abrir o site")
+                destino.mkdir(parents=True, exist_ok=True)
+                shutil.move(str(atrasado), destino / f"relatorios-compra-{c['idCompra']}.zip")
+                fila.submit(processar_zip, mes, destino, linha, args.auto)
+                continue
+            if controle in historico.manuais and not args.repetir:
+                continue
+            if args.motivo and historico.ultimo_motivo.get(controle) != args.motivo:
+                continue
             if not ID_COMPRA.fullmatch(c["idCompra"] or ""):
                 # o site responde "compra não encontrada"; não vale abrir
                 print(f"[{mes} {i}/{n}] {c['idCompra']!r}: idCompra inválido, pulando")
