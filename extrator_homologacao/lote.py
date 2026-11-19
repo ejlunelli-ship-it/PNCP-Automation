@@ -3,7 +3,7 @@
 import hashlib
 import json
 import logging
-from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
@@ -16,6 +16,8 @@ from .texto import extrair_paginas
 from .validacao import ERRO, OK, REVISAR, RegistroExtracao, validar
 
 log = logging.getLogger(__name__)
+
+HASH_THREADS = 8  # threads no cálculo do SHA-256 antes da extração (leitura de disco)
 
 
 def descobrir_pdfs(pasta, padrao="*.pdf"):
@@ -113,13 +115,23 @@ def processar_lote(pdfs, cache_path=None, reprocessar=False, ocr=True, workers=1
     cache = {} if (reprocessar or not cache_path) else carregar_cache(cache_path)
     registros = [None] * len(pdfs)
     pendentes = {}  # hash -> índices
-    for i, pdf in enumerate(pdfs):
+
+    def _hash(pdf):
         try:
-            h = chave_cache(sha256(pdf), pdf)
+            return sha256(pdf), None
         except OSError as e:
+            return None, e
+
+    # leitura de disco (e do antivírus, que inspeciona cada arquivo aberto): em threads, o hashlib solta
+    # o GIL; antes, um PDF por vez levava ~10 min num mês de 55 mil PDFs
+    with ThreadPoolExecutor(max_workers=HASH_THREADS) as ex:
+        hashes = list(ex.map(_hash, pdfs, chunksize=64))
+    for i, (pdf, (hash_arquivo, erro)) in enumerate(zip(pdfs, hashes)):
+        if erro is not None:
             registros[i] = RegistroExtracao(arquivo_origem=str(pdf), versao_parser=VERSAO_PARSER,
-                                            status_extracao=ERRO, erros_extracao=f"leitura: {e}")
+                                            status_extracao=ERRO, erros_extracao=f"leitura: {erro}")
             continue
+        h = chave_cache(hash_arquivo, pdf)
         if h in cache:
             registros[i] = RegistroExtracao(**{**cache[h], "arquivo_origem": str(pdf)})
             continue
