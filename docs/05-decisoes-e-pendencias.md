@@ -142,7 +142,24 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       gravados (OK 43.962, REVISAR 521), 2.717 compras. 2025-04: 42.563 PDFs (OK 40.354, REVISAR 2.208, ERRO 1), 40.864 itens
       (OK 40.354, REVISAR 510), 2.449 compras. A base tem 769.522 itens, de 2025-04 a 2026-08; os outros meses não mudaram.
       O ERRO é um PDF vazio (`90001-2025_16038405900012025/...-item-101.pdf`, 0 byte, gravado quando o download foi
-      encerrado às 14:26): falta baixá-lo de novo.
+      encerrado às 14:26). **Resolvido** na extração de 2025-03: a compra também está na lista de março, foi baixada
+      inteira lá (134 PDFs) e os itens passaram a ter `arquivo_origem` em 2025-03 (ver abaixo).
+    - **Feito (19/11/2026):** 2025-03 extraído com o parser 1.8.0 na mesma base (backup
+      `aberto-fechado_2025-10_a_2026-08.antes-2025-03.db`), em duas rodadas: a segunda, pelo cache, só leu os PDFs das
+      repetições baixadas durante a primeira. 39.181 PDFs (OK 35.900, REVISAR 3.281), 36.190 itens gravados (OK 35.900,
+      REVISAR 290), 2.071 compras; 2.991 PDFs de 133 compras sem bloco de item (pendência 15). A compra
+      `16038405900012025` está nas listas de março e de abril: a cópia de março (134 itens) substituiu, pela chave
+      (uasg, modalidade, compra, item), os 117 itens de abril, e 2025-04 passou de 40.864 para 40.747 itens. Nenhum item
+      repetido. A base tem 805.595 itens, de 2025-03 a 2026-08.
+    - **Análise dos 15 meses em 1.8.0 (19/11/2026, com `--pncp-db`):** 2025-03 a 2026-02 e 2026-05 a 07; saída em
+      `dados/analise_etapas/2025-03_a_2026-07/`. 604.924 itens (todos) e 535.367 (válidos), 34.237 compras, 1.934 UASGs.
+      Aberta 19,6% / 19,5%; após a fechada 34,7% / 33,2%; **ganho da fechada 15,1 p.p. (IC 14,9–15,3) e 13,7 p.p.
+      (13,5–13,9)**; ganho relativo 18,4% / 16,5%; final 34,0% / 34,1%; final = melhor lance em 70% / 93%. Decomposição
+      (527.801): todos 22,4 + 15,8 − 4,1; válidos 19,7 + 13,8 + 0,7 = 34,1. Regressão (1.932 / 1.927 UASGs): β −24,4 e
+      −21,4; licitantes −4,8 e −0,8 (p = 0,007); sigilo +2,1 (p < 0,001) e +1,5 (p = 0,007); serviço −1,1 (n.s.) e −2,3
+      (p = 0,007). 2025-03: aberta 20,3, ganho 14,7 / 13,5. Ganho por mês (todos) entre 14,2 (2025-04) e 16,2 (2025-09);
+      válidos entre 12,8 e 14,9. Marcas: líder sem lance fechado 29,9%, líder desclassificado 27,7%, reiniciada 10,0%,
+      aberto isolado 5,4%, outlier 1,6%; fechado acima do aberto 8,9%.
     - **Feito (19/11/2026, segunda máquina):** 2026-09 e 2026-10 baixados (3 navegadores) e extraídos com o parser 1.8.0
       num banco próprio, `dados/extracao/aberto-fechado_2026-09_a_2026-10.db`: 2026-09 com 44.384 itens (OK 44.321,
       REVISAR 63, 2.265 compras) e 2026-10 com 39.018 (OK 38.997, REVISAR 21, 2.272 compras); nenhum ERRO.
@@ -222,6 +239,7 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
     - Em 2025-05 (19/11/2026): 2.040 PDFs de 65 compras, a maior `90055-2024_98991305900552024` (469 PDFs); em 2025-04:
       1.698 PDFs de 88 compras, a maior `90008-2024_78270005900082024` (186). São quase todo o REVISAR desses meses
       (5,5% e 5,2% dos PDFs, contra 1,5% em 2025-08); as três maiores de cada mês são compras de 2024.
+    - Em 2025-03: 2.991 PDFs de 133 compras (7,6% dos PDFs), a maior `90023-2024_78882005900232024` (319 PDFs).
 
 ## Questões em aberto
 
