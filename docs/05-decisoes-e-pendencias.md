@@ -143,6 +143,16 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       (OK 40.354, REVISAR 510), 2.449 compras. A base tem 769.522 itens, de 2025-04 a 2026-08; os outros meses não mudaram.
       O ERRO é um PDF vazio (`90001-2025_16038405900012025/...-item-101.pdf`, 0 byte, gravado quando o download foi
       encerrado às 14:26): falta baixá-lo de novo.
+    - **Análise dos 14 meses em 1.8.0 (19/11/2026, com `--pncp-db`):** 2025-04 a 2026-02 e 2026-05 a 07; saída em
+      `dados/analise_etapas/2025-04_a_2026-07/`. 572.333 itens (todos) e 506.766 (válidos), 32.334 compras, 1.905 UASGs.
+      Aberta 19,5% / 19,5%; após a fechada 34,6% / 33,2%; **ganho da fechada 15,1 p.p. (IC 14,9–15,4) e 13,7 p.p.
+      (13,5–14,0)**; ganho relativo 18,4% / 16,5%; final 34,0% / 34,1%; final = melhor lance em 70% / 93%. Decomposição
+      (499.654): todos 22,3 + 15,8 − 4,1; válidos 19,6 + 13,8 + 0,7 = 34,1. Regressão (1.902 / 1.897 UASGs): β −24,4 e
+      −21,4; licitantes −4,8 e −0,8 (p = 0,007); sigilo +2,0 (p = 0,001) e +1,4 (p = 0,011); serviço −1,2 (n.s.) e −2,4
+      (p = 0,007). 2025-04: aberta 22,0, ganho 14,2 / 12,8 (o menor dos 14 meses); 2025-05: aberta 20,6, ganho 14,4 / 13,1.
+      Ganho por mês (todos) entre 14,2 (2025-04) e 16,2 (2025-09); válidos entre 12,8 e 14,9. Marcas: líder sem lance
+      fechado 29,9%, líder desclassificado 27,7%, reiniciada 10,0%, aberto isolado 5,3%, outlier 1,6%; fechado acima do
+      aberto 8,9%.
     - **Análise dos 12 meses em 1.8.0 (19/11/2026, com `--pncp-db`):** 2025-06 a 2026-02 e 2026-05 a 07; saída em
       `dados/analise_etapas/2025-06_a_2026-07/`. 494.069 itens (todos) e 438.012 (válidos), 27.674 compras, 1.833 UASGs.
       Aberta 19,2% / 19,2%; após a fechada 34,5% / 33,0%; **ganho da fechada 15,3 p.p. (IC 15,0–15,5) e 13,9 p.p.
