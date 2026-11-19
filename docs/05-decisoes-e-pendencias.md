@@ -111,8 +111,13 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       daqui em diante. Ainda em 1.7.x: 117.319 itens de 2026-03, 04 e 08 (PDFs ausentes aqui). Juntar as duas bases com
       `--db` repetido não funciona: os 29.255 itens repetidos fazem o `analise_etapas.py` parar.
     - **Feito (18/11/2026):** 2025-09 extraído com o parser 1.8.0 na mesma base (55.841 itens; OK 55.469 PDFs, REVISAR 497).
-      A base `aberto-fechado_2025-10_a_2026-08.db` (nome mantido) tem 543.689 itens, de 2025-09 a 2026-08. A análise
+      A base `aberto-fechado_2025-10_a_2026-08.db` (nome mantido) tem 543.689 itens, de 2025-09 a 2026-08.
       A análise dos 8 meses (abaixo) não inclui 2025-09; a dos 9 meses, sim.
+    - **Feito (19/11/2026):** 2025-08 extraído com o parser 1.8.0 na mesma base (50.920 itens; OK 50.466 PDFs, REVISAR 769;
+      315 PDFs ignorados sem uasg/compra/item, de 14 compras, ver pendência 15). A base (nome mantido) tem 594.609 itens,
+      de 2025-08 a 2026-08; backup `aberto-fechado_2025-10_a_2026-08.antes-2025-08.db`. O download de 2025-08 está
+      completo: das 3.372 compras, 2.915 completas (nesta pasta ou na de outro mês), 418 zip sem termos, 31 sem a opção
+      no site e 8 sem acesso; nenhuma deixou de ser tentada. Falta a análise por etapa com 2025-08 (10 meses em 1.8.0).
     - **Análise dos 9 meses em 1.8.0 (18/11/2026, com `--pncp-db`):** 2025-09 a 2026-02 e 2026-05 a 07; saída em
       `dados/analise_etapas/2025-09_a_2026-07/`. 365.489 itens (todos) e 323.216 (válidos). Aberta 18,9% / 18,9%; após a
       fechada 34,1% / 32,7%; **ganho da fechada 15,3 p.p. (IC 15,0–15,5) e 13,9 p.p. (13,6–14,1)**; ganho relativo
@@ -163,6 +168,8 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
     gravados no banco (nos meses de 2025-09 em diante eram ~100 por mês). São termos de homologação que trazem só o chat
     da compra (ex.: `90012-2024_16008205900122024`, 270 PDFs, compra de 2024 homologada em 2025). Falta ver se o zip
     traz outro relatório com o item (termo de julgamento) e ensinar o `selecao.py` ou o parser a usá-lo.
+    - Em 2025-08 (19/11/2026, esta máquina): 315 PDFs de 14 compras com o mesmo motivo, a maior
+      `90025-2024_92796905900252024` (179 PDFs).
 
 ## Questões em aberto
 
