@@ -183,6 +183,10 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       REVISAR 63, 2.265 compras) e 2026-10 com 39.018 (OK 38.997, REVISAR 21, 2.272 compras); nenhum ERRO.
       **Falta:** juntar à base `aberto-fechado_2025-10_a_2026-08.db` (como foi feito com `junho2025.db`) e refazer a
       análise com os 16 meses em 1.8.0. Continuam em 1.7.1: 2026-03, 04 e 08 (PDFs fora desta máquina).
+    - **Feito (19/11/2026, segunda máquina):** 2026-03 e 2026-04 reextraídos com o parser 1.8.0 num banco novo,
+      `dados/extracao/aberto-fechado_2026-03_04_08.db`: 2026-03 com 45.602 itens (OK 45.578, REVISAR 24) e 2026-04 com
+      47.784 (OK 47.756, REVISAR 28); nenhum ERRO. **Falta:** 2026-08 (PDFs só na outra máquina; extrair no mesmo banco),
+      trocar os três meses 1.7.1 da base consolidada por estes e refazer a análise.
     - **Análise dos 14 meses em 1.8.0 (19/11/2026, com `--pncp-db`):** 2025-04 a 2026-02 e 2026-05 a 07; saída em
       `dados/analise_etapas/2025-04_a_2026-07/`. 572.333 itens (todos) e 506.766 (válidos), 32.334 compras, 1.905 UASGs.
       Aberta 19,5% / 19,5%; após a fechada 34,6% / 33,2%; **ganho da fechada 15,1 p.p. (IC 14,9–15,4) e 13,7 p.p.
