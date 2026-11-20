@@ -1,4 +1,5 @@
 """Extração do texto dos PDFs (PyMuPDF), com OCR opcional e limpeza de cabeçalho/rodapé de página.
+No layout antigo (ver `layouts`), o texto é refeito na ordem visual da página (`paginas_em_ordem_visual`).
 
 O OCR é o do próprio PyMuPDF e só precisa do idioma: por.traineddata em dados/tessdata (baixe de
 https://github.com/tesseract-ocr/tessdata_fast) ou na pasta da variável TESSDATA_PREFIX.
@@ -81,6 +82,82 @@ def extrair_paginas(caminho, ocr=True):
     if not tem_texto_utilizavel(paginas):
         raise SemTextoError("OCR não produziu texto utilizável")
     return paginas, True
+
+
+# --------------------------------------------------------------------------- ordem visual (layout antigo)
+
+# linhas da mesma célula separadas por mais que isso (pt) na vertical são linhas de células diferentes
+# (as linhas de um parágrafo ficam a ~1,5 pt; as linhas de uma grade de rótulos, a ~6 pt)
+DISTANCIA_LINHAS_CELULA = 3.0
+# células que se sobrepõem na vertical mais que isso (pt) ficam na mesma faixa
+SOBREPOSICAO_FAIXA = 1.0
+
+
+def _linhas_do_bloco(bloco):
+    """(bbox, texto) das linhas de um bloco do PyMuPDF.
+
+    Num parágrafo justificado, o PDF antigo posiciona as palavras uma a uma e cada palavra vira uma
+    linha do PyMuPDF terminada em espaço ("Adjucado ", "e ", "Homologado ", ...): as palavras
+    seguidas na mesma altura voltam a formar uma linha só."""
+    linhas = []
+    for linha in bloco["lines"]:
+        texto = "".join(s["text"] for s in linha["spans"])
+        x0, y0, x1, y1 = linha["bbox"]
+        if linhas:
+            (a0, b0, a1, b1), anterior = linhas[-1]
+            if anterior.endswith(" ") and abs(b0 - y0) < 1 and x0 >= a1:
+                linhas[-1] = ((a0, min(b0, y0), x1, max(b1, y1)), anterior + texto)
+                continue
+        linhas.append(((x0, y0, x1, y1), texto))
+    return [(bbox, texto.strip()) for bbox, texto in linhas if texto.strip()]
+
+
+def _celulas(bloco):
+    """Linhas de um bloco do PyMuPDF agrupadas em células: linhas que se sobrepõem na horizontal e
+    estão encostadas na vertical (um parágrafo, um nome quebrado em várias linhas)."""
+    celulas = []
+    for (x0, y0, x1, y1), texto in _linhas_do_bloco(bloco):
+        alvo = next((c for c in celulas if x0 < c["x1"] and c["x0"] < x1
+                     and y0 - c["y1"] <= DISTANCIA_LINHAS_CELULA and c["y0"] - y1 <= DISTANCIA_LINHAS_CELULA), None)
+        if alvo is None:
+            celulas.append({"x0": x0, "y0": y0, "x1": x1, "y1": y1, "linhas": [(y0, texto)]})
+            continue
+        alvo["linhas"].append((y0, texto))
+        alvo["x0"], alvo["y0"] = min(alvo["x0"], x0), min(alvo["y0"], y0)
+        alvo["x1"], alvo["y1"] = max(alvo["x1"], x1), max(alvo["y1"], y1)
+    return celulas
+
+
+def texto_em_ordem_visual(pagina):
+    """Texto da página na ordem de leitura, uma linha por linha do PDF.
+
+    Faixas de cima para baixo (células que se sobrepõem na vertical formam uma faixa: rótulo e valor,
+    ou "Sistema", data/hora e mensagem de uma linha do chat); em cada faixa, as células da esquerda
+    para a direita; em cada célula, as linhas de cima para baixo. O rodapé sai como no layout atual,
+    "N de M" antes da data de emissão.
+    """
+    celulas = []
+    for bloco in pagina.get_text("dict", flags=pymupdf.TEXTFLAGS_TEXT)["blocks"]:
+        if bloco.get("type") == 0:
+            celulas.extend(_celulas(bloco))
+    faixas = []
+    for c in sorted(celulas, key=lambda c: (c["y0"], c["x0"])):
+        if faixas and c["y0"] < faixas[-1]["y1"] - SOBREPOSICAO_FAIXA:
+            faixas[-1]["celulas"].append(c)
+            faixas[-1]["y1"] = max(faixas[-1]["y1"], c["y1"])
+        else:
+            faixas.append({"y1": c["y1"], "celulas": [c]})
+    linhas = [texto for f in faixas for c in sorted(f["celulas"], key=lambda c: (c["x0"], c["y0"]))
+              for _, texto in sorted(c["linhas"], key=lambda l: l[0])]
+    if len(linhas) >= 2 and RE_RODAPE_EMISSAO.match(linhas[-2]) and RE_RODAPE_PAGINA.match(linhas[-1]):
+        linhas[-2], linhas[-1] = linhas[-1], linhas[-2]
+    return "\n".join(linhas)
+
+
+def paginas_em_ordem_visual(caminho):
+    """Texto de cada página na ordem de leitura (ver `texto_em_ordem_visual`)."""
+    with pymupdf.open(caminho) as doc:
+        return [texto_em_ordem_visual(pagina) for pagina in doc]
 
 
 def linhas_limpas(paginas):

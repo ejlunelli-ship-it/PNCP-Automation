@@ -275,6 +275,9 @@ registro/aberto-fechado_<AAAA-MM>/<usuario>_manual.csv   baixar_manual.py
 Parser determinístico, com PyMuPDF e regex. Sem modelos de linguagem.
 
 1. **Texto:** camada de texto do PDF; sem ela, OCR do PyMuPDF. Remove cabeçalho e rodapé repetidos.
+   **Layout antigo** (PDFs emitidos até fev/2025, ex.: compras de 2023; parser 1.9.0): detectado pela data/hora
+   sem "às" nas tabelas do item ou por `Porte MeEpp/Equiparada:`; o texto é refeito na ordem visual da página e
+   normalizado para o formato atual. Ver [04 §4.1](04-formato-dos-relatorios.md), "Layout antigo".
 2. **Segmentação:** cabeçalho da compra e, por item, propostas, lances, chat e eventos. Grupos têm
    bloco próprio.
 3. **Etapas:** a tabela de lances não indica a etapa, então ela é deduzida pelos marcos de tempo no
@@ -328,7 +331,8 @@ Gera `aberto-fechado_<mês>.db` (tabela `itens`, uma linha por item), `.xlsx`, `
 são removidos (o openpyxl os recusa); o SQLite guarda o texto original.
 
 **Limitações:** OCR lê o texto, mas o parser ainda não o entende, e o PDF sai como `ERRO`; Ata Final
-de outras plataformas não é lida; grupos foram testados em um único pregão.
+de outras plataformas não é lida; grupos foram testados em um único pregão; o layout antigo foi testado só em
+PDFs de compras de 2023 (nenhum item em grupo entre eles).
 
 ## 7. Carga no banco (ainda não feita)
 
@@ -382,6 +386,8 @@ Conferência: com 2026-02 e `--pncp-db`, o script reproduz exatamente `analises/
 
 | Data | Etapa | Mudança |
 |---|---|---|
+| 2026-11-20 | 5 | 2023-04 a 2023-12 extraídos com o parser 1.9.0 num banco próprio, `dados/extracao/aberto-fechado_2023-04_a_2023-12.db` (`--db`, um mês por execução, de 2023-12 para trás, `--workers 7 --sem-separar`; Excel/log/cache `aberto-fechado_2023-<mês>.*`; 33 min no total). 96.758 PDFs (95.796 no layout antigo): OK 96.559, REVISAR 198, ERRO 1 (PDF escaneado, sem camada de texto); 96.757 itens gravados, nenhum repetido entre os meses. Por mês (PDFs / OK / REVISAR): 12: 30.323 / 30.221 / 102; 11: 18.850 / 18.818 / 32; 10: 15.186 / 15.170 / 16; 09: 9.921 / 9.899 / 21 (+1 ERRO); 08: 10.042 / 10.034 / 8; 07: 6.719 / 6.714 / 5; 06: 4.037 / 4.026 / 11; 05: 1.451 / 1.448 / 3; 04: 229 / 229 / 0. Juntado à base `dados/extracao/aberto-fechado_2025-03_a_2026-10.db` (nome mantido; backup `.antes-2023.db`) com `INSERT OR IGNORE` por nome de coluna: 96.754 itens novos; 3 itens de 2023-09 com a mesma chave e o mesmo hash de itens de 2025-09 ficaram como 2025-09. A base tem 985.435 itens (2023-04 a 2023-12 e 2025-03 a 2026-10), os outros meses iguais, `integrity_check` ok. Uma primeira extração de 2023 com o parser 1.8.0 (19/11) gravou só 961 itens (os PDFs do layout atual; o resto saiu "nenhum bloco de item") e foi desfeita restaurando o backup |
+| 2026-11-19 | 6 | **Parser 1.9.0: layout antigo** dos termos (PDFs emitidos até fev/2025), em `extrator_homologacao/layouts.py` ([04 §4.1](04-formato-dos-relatorios.md)): detecção pela data/hora sem "às" nas tabelas de eventos/lances do item ou por `Porte MeEpp/Equiparada:`; texto refeito na ordem visual da página (`texto.paginas_em_ordem_visual`) e normalizado; valores sem `(unitário)`; `valor_estimado_total` = estimado × quantidade e critério do item inferido pelo formato dos valores, anotados em `fontes_extracao` (docs/05, decisão de 2026-11-19); continuação de mensagem/evento na página seguinte juntada; janelas chat × eventos com folga de 2 s; "Adjucado e Homologado". Nos dois layouts: fim do desempate ME/EPP também por "O item N teve o 1º desempate encerrado às … O tempo expirou". Amostra de 3.000 PDFs de 2023: 2.963 de 2.964 OK no layout antigo; melhor lance aberto = valor da mensagem "lance entre R$ X e …" em 470 de 471; nos 962 PDFs do layout atual das pastas de 2023, só 4 REVISAR (desempate ME/EPP) mudaram, para OK |
 | 2026-11-19 | 5.3 | Download manual (`baixar_manual.py --auto --intervalo 0 --abas 2`) de 2023 concluído: nenhuma compra pendente de 2023-04 a 2023-12. Nesta rodada, 2023-09 (100 pendentes) e 2023-08 (820): 2023-08 com 715 de 872 compras com termos (109 zip sem termos, 42 sem a opção no site, 5 acesso não autorizado, 1 não encontrada); 2023-09 com 728 de 880 (108, 41, 1 e 2). As 35 "sem botão de downloads" e 1 "zip não recebido" foram repetidas com `--repetir --motivo` e todas se resolveram. Não há lista antes de 2023-04: os itens Aberto-Fechado com resultado até 2023-03 (cerca de 77 compras, publicadas de 2022-11 a 2023-03) estão todos "Em andamento" nos brutos, nenhum "Homologado", e ficam fora da seleção do `registro.py` |
 | 2026-11-19 | Análise | `analise_etapas.py --db dados/extracao/aberto-fechado_2025-03_a_2026-10.db --meses 2025-03 … 2026-02 2026-05 2026-06 2026-07 2026-09 2026-10 --pncp-db ../dados/pncp.db --saida dados/analise_etapas/2025-03_a_2026-10` (17 meses em 1.8.0; 2026-03, 04 e 08 de fora). Números em [05](05-decisoes-e-pendencias.md), pendência 14 |
 | 2026-11-19 | 5 | **Nova versão da base**, `dados/extracao/aberto-fechado_2025-03_a_2026-10.db` = cópia de `aberto-fechado_2025-10_a_2026-08.db` (mantida) + `dados/filtrados/aberto-fechado_2026-09_a_2026-10.db` (outra máquina, parser 1.8.0, só leitura, hash conferido antes e depois). Mesmas colunas e chave, em outra ordem: inserção por nome de coluna com `INSERT OR IGNORE`. 83.086 itens novos (2026-09: 44.068; 2026-10: 39.018); 316 itens de 2 compras presentes nas listas de 2025-04 e 2026-09, com o mesmo hash e os mesmos valores, mantidos como 2025-04. Resultado: 888.681 itens, 2025-03 a 2026-10, sem item repetido, `integrity_check` ok |

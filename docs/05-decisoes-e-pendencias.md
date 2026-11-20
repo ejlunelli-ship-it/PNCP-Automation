@@ -27,6 +27,7 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
 | 2026-11-18 | Itens REVISAR da extração: **ficam fora da análise** (filtrar `status_extracao = 'OK'`) os de etapa fechada com lances na tabela mas sem lances na mensagem de encerramento, os sem proposta identificada e os de etapa/desempate sem registro de encerramento. Fornecedor estrangeiro (`Identificador ESTRANG…`) passa a ser lido (parser 1.7.2); participante com lance sem proposta listada vira aviso e o item fica OK, sem conferência manual | Decisão do usuário: na dúvida sobre a etapa, excluir; os valores do participante sem proposta são confiáveis. Na base de 2026-02/03/04/08, 110 itens de 180.909 ficam de fora |
 | — | Melhor lance da etapa conta mesmo se o fornecedor for desclassificado depois; propostas iniciais entram na etapa aberta | Medir a dinâmica da disputa, não só o resultado |
 | 2026-11-18 | **Duas medidas principais** do desconto por etapa nos PDFs, sempre reportadas juntas: **todos os fornecedores** (melhor lance de cada etapa como na disputa) e **só fornecedores válidos** (sem desclassificados, recusados e inabilitados; colunas `_validos` do parser 1.8.0). Procedimento em `analise_etapas.py` ([07, Análise](07-metodologia-de-extracao.md)) | Decisão do usuário. A primeira descreve a dinâmica da disputa; a segunda, o desconto que o órgão obtém de cada etapa. O desconto final é o mesmo nas duas. Em 2026-02 o ganho da fechada é 14,8 e 13,2 p.p. |
+| 2026-11-19 | **Layout antigo dos termos** (PDFs emitidos até fev/2025, ex.: compras de 2023): ler pelo texto refeito na ordem visual da página (parser 1.9.0, [04 §4.1](04-formato-dos-relatorios.md)). Onde o relatório não traz o dado: `valor_estimado_total` = estimado × quantidade e, com "Menor Preço / Maior Desconto" na compra, critério do item pelo formato dos valores (`P% (R$ V)` → Maior Desconto; só R$ → Menor Preço; sem valores → vazio). As duas inferências ficam anotadas em `fontes_extracao` | Pedido do usuário (extrair 2023). Sem o total, os itens saem da regressão do `analise_etapas.py` (filtro `valor_estimado_total > 0`); sem o critério, saem da amostra (só Menor Preço). No layout atual, total = unitário × quantidade, e os dois formatos de valor não se misturam num item |
 | 2026-11-18 | Itens com lance fechado acima do aberto: manter `após a fechada = mín(aberto, fechado)` (líder sem lance fechado e etapa reiniciada são o funcionamento normal). Desconto final decomposto em **aberta + ganho da fechada + ajuste pós-disputa** (desclassificação/negociação). Lance aberto absurdo, fechado absurdo e "vencedor caiu" viram marcas com sensibilidade, sem corrigir valores | Decisão do usuário a partir da revisão de PDFs de 2026-02. Ver `analise/etapas_pdf_af_20261118/relatorio.md` (seção "Casos com lance fechado acima do aberto") |
 
 ## Pendências e próximos passos (por prioridade)
@@ -77,9 +78,13 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
    persistente fica como alternativa se o userscript deixar de bastar (risco: mais desafios do hCaptcha).
    Os zips só com relatórios por grupo (cerca de 12%) dependem da pendência 1.
    - **Feito (19/11/2026):** download de 2023 concluído (2023-04 a 2023-12, sem pendentes; ver histórico em
-     [07](07-metodologia-de-extracao.md)). Falta extrair 2023 com o parser 1.8.0. Antes de 2023-04 não há compra
+     [07](07-metodologia-de-extracao.md)). Antes de 2023-04 não há compra
      Aberto-Fechado com item homologado (os itens com resultado estão "Em andamento"); decidir se vale tentar o zip
      dessas cerca de 77 compras por uma lista à parte.
+   - **Feito (20/11/2026):** 2023 extraído com o parser 1.9.0, que lê o layout antigo dos termos (99% dos PDFs de 2023;
+     [04 §4.1](04-formato-dos-relatorios.md)), num banco próprio, `dados/extracao/aberto-fechado_2023-04_a_2023-12.db`:
+     96.758 PDFs, OK 96.559, REVISAR 198, ERRO 1; 96.757 itens. Juntado à base `aberto-fechado_2025-03_a_2026-10.db`
+     (nome mantido; backup `.antes-2023.db`): 96.754 itens novos (3 já estavam em 2025-09), 985.435 no total.
 8. **Usar a tabela `resultados` na análise** (coleta interrompida em 2026-11-03 a pedido do usuário; retoma com `python coleta_resultados.py`): o valor de `itens` diferiu do resultado ativo em 118 de 11.639 itens (1,0%) em dois dias testados.
    Depois da coleta (`coleta_resultados.py`) e da carga (`banco_unificado.py --resultados`), medir a diferença na base toda e decidir
    se `desconto_final` passa a usar o resultado ativo. Os meses de itens já coletados não foram refeitos com a nova chave.
@@ -263,6 +268,11 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       1.698 PDFs de 88 compras, a maior `90008-2024_78270005900082024` (186). São quase todo o REVISAR desses meses
       (5,5% e 5,2% dos PDFs, contra 1,5% em 2025-08); as três maiores de cada mês são compras de 2024.
     - Em 2025-03: 2.991 PDFs de 133 compras (7,6% dos PDFs), a maior `90023-2024_78882005900232024` (319 PDFs).
+    - **Provável causa (19/11/2026):** nos PDFs de 2023, o mesmo motivo vinha do **layout antigo** (termos emitidos até
+      fev/2025), lido desde o parser 1.9.0 ([04 §4.1](04-formato-dos-relatorios.md)): o bloco do item existe, mas fora
+      da ordem de leitura, e o parser via só o chat da compra. Estes PDFs são de compras de 2024 e devem ser do mesmo
+      layout. **Próximo passo:** reextrair 2025-03 a 2025-08 com o parser 1.9.0 na máquina que tem os PDFs (não estão
+      nesta) e conferir se os itens passam a ser gravados.
 
 ## Questões em aberto
 

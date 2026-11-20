@@ -43,6 +43,51 @@ lance que caiu no mesmo segundo da troca de etapa. Ela nunca conta como lance.
 `SUSPENSO`, `EM ANDAMENTO`. Uma situação desconhecida vira `NÃO IDENTIFICADO`.
 "Nenhum lance foi registrado para o Item N." → os campos de lance ficam vazios.
 
+### Layout antigo (PDFs emitidos até fev/2025) — suportado desde o parser 1.9.0
+
+Os termos emitidos até fev/2025 (data de emissão no rodapé) têm as mesmas seções e rótulos, mas outro
+formato. Dos 96.758 PDFs de 2023, 95.796 estão nesse layout (emitidos de nov/2023 a fev/2025, sobretudo em
+nov-dez/2023 e mai-jun/2024) e 962 no atual (emitidos de fev/2025 a out/2026); a troca foi em fev/2025 (5 PDFs
+antigos e 3 atuais emitidos nesse mês). Diferenças, em `extrator_homologacao/layouts.py`:
+
+| | Atual | Antigo |
+|---|---|---|
+| Ordem interna do texto | a de leitura | embaralhada: no bloco do item, valores antes dos rótulos e o título `Item N - …` no fim da página; a continuação de uma tabela (ex.: chat do item) depois da tabela seguinte (eventos) |
+| Data/hora no chat, eventos e lances do item | `28/07/2023 às 11:06:42` | `28/07/2023 11:06:42` (o chat e os eventos **da compra** têm "às") |
+| Valores | `R$ 5,5100 (unitário)` / `R$ 275,5000 (total)` | só `R$ 5,5100`, sem total; Maior Desconto igual, `49,00% (R$ 2,1828)` |
+| Propostas | `Benefício Me/Epp: …` | `Porte MeEpp/Equiparada: Sim (D)`, depois `Marca/Fabricante:` e `Modelo/versão:` |
+| Título da tabela de lances | `Lances do Item 72` | `Lances do Item  72` (dois espaços) |
+| Critério do item | `Critério de julgamento:` no bloco do item | no termo de homologação, só o da compra (`Menor Preço / Maior Desconto`); o termo de julgamento traz o do item |
+| Parágrafo de situação | `Adjudicado e Homologado por …, melhor lance: R$ X (unitário) / R$ Y (total)` | `Adjucado e Homologado por …, melhor lance: R$ X` |
+| Mensagem que não cabe na página | — | continua na seguinte como mensagem nova, com o mesmo autor e a mesma data/hora |
+| Eventos da etapa fechada | `Início da etapa fechada.` | `Convocados os fornecedores para a 1º etapa fechada que apresentaram lance entre …` |
+
+Leitura no parser 1.9.0:
+- **detecção** (`layouts.detectar`, no texto na ordem interna): antigo se uma tabela de eventos ou de lances
+  começa com data/hora sem "às", ou se há `Porte MeEpp/Equiparada:`. Nos PDFs de 2023, a detecção bate com a
+  data de emissão: os emitidos até jan/2025 saem todos antigos e os de mar/2025 em diante, todos atuais;
+- **texto na ordem visual** (`texto.paginas_em_ordem_visual`): linhas do PDF agrupadas em células (linhas
+  encostadas que se sobrepõem na horizontal) e células em faixas (as que se sobrepõem na vertical); faixas de cima
+  para baixo, células da esquerda para a direita. As palavras de um parágrafo justificado, que o PDF posiciona uma a
+  uma, voltam a formar a linha. Depois, data/hora ganha o "às" e os espaços duplos somem (`layouts.normalizar`), e o
+  resto da leitura é a do layout atual;
+- valores sem `(unitário)` são lidos como unitários; `valor_estimado_total` = estimado × quantidade (anotado em
+  `fontes_extracao`);
+- **critério do item** ausente: com `Menor Preço / Maior Desconto` na compra, `Maior Desconto` se as propostas e os
+  lances vêm em `P% (R$ V)`, `Menor Preço` se vêm só em R$; sem valores (item deserto), fica vazio, com aviso;
+- a continuação de uma mensagem ou evento na página seguinte (mesma data/hora, texto anterior sem ponto final ou
+  continuação em minúscula) é juntada ao registro anterior;
+- na comparação das janelas da etapa fechada entre chat e eventos, janelas a até 2 s contam como contíguas (o chat
+  reinicia a fechada 1 s depois de encerrá-la e o evento de encerramento às vezes fica 1 s depois da mensagem);
+- uma mensagem do chat como `Item 67 - Fracassado.` não abre bloco de item (há data/hora antes de `Quantidade:`).
+
+Conferência numa amostra de 3.000 PDFs de 2023: 2.963 dos 2.964 no layout antigo saem OK (o restante, com o último
+evento de adjudicação de outro fornecedor, é REVISAR legítimo); o melhor lance aberto gravado bate com o primeiro
+valor da mensagem "A etapa fechada foi iniciada … lance entre R$ X e …" em 470 de 471 itens (no layout atual, 19 de
+20); nos 962 PDFs do layout atual das pastas de 2023, nenhum resultado mudou, exceto 4 itens REVISAR que passaram a
+OK pela mensagem de fim do desempate ME/EPP sem "Me/Epp" (`O item 7 teve o 1º desempate encerrado às … O tempo
+expirou…`), reconhecida desde a 1.9.0 nos dois layouts.
+
 ## 4.2 Itens em grupo (lote) — suportado desde o parser 1.6.0
 
 Encontrado em Fortaleza 90119/2025, no arquivo "TERMO DE HOMOLOGAÇÃO-grupo1", de 20 páginas, que
