@@ -203,6 +203,20 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       `90227-2026_92500305902272026` (4), `91743-2025_94300105917432025` (4) e `90026-2026_98621905900262026` (3). Enquanto
       estiverem em 1.7.1, o `analise_etapas.py` recusa 2026-03 e 04. **Falta:** 2026-08 (o arquivo trazido não o tem) e
       decidir os 47 itens (reextrair as 6 compras ou tirá-las da base).
+    - **Feito (20/11/2026):** 2026-08 em 1.8.0 incorporado a partir do banco completo da segunda máquina,
+      `dados/filtrados/aberto-fechado_2026-03_04_08.db` (145.929 itens; só leitura, hash conferido; backup `.antes-2026-08.db`):
+      40.617 itens 1.7.x substituídos (colunas antigas iguais, salvo `quantidade_fornecedores` em 1 item), 2026-03 e 04
+      iguais aos já incorporados. A pedido do usuário, as 6 compras sem reextração (47 itens 1.7.1) foram tiradas da base
+      (ficam nos backups). **Pendência 14 concluída:** a base tem 985.388 itens, todos em 1.8.0 ou 1.9.0.
+    - **Análise dos 29 meses (20/11/2026, com `--pncp-db`):** 2023-04 a 2023-12 e 2025-03 a 2026-10, todos; saída em
+      `dados/analise_etapas/2023-04_a_2026-10_29meses/`. 901.622 itens (todos) e 801.986 (válidos), 49.808 compras, 2.272
+      UASGs. Aberta 19,2% / 19,0%; após a fechada 34,6% / 33,0%; **ganho da fechada 15,4 p.p. (IC 15,2–15,6) e 14,0 p.p.
+      (13,8–14,2)**; ganho relativo 18,7% / 16,7%; final 33,9% / 33,9%; final = melhor lance em 71% / 93%. Decomposição
+      (790.759): todos 21,9 + 16,1 − 4,0; válidos 19,1 + 14,0 + 0,8 = 33,9. Regressão (2.271 / 2.266 UASGs): β −24,8 e
+      −21,8; licitantes −5,2 e −1,3 (p < 0,001); sigilo +2,4 (p < 0,001) e +1,7 (p = 0,001); serviço −0,4 (n.s.) e −1,7
+      (p = 0,030). Meses novos: 2026-03 aberta 22,2, ganho 16,0 / 14,3; 2026-04 aberta 21,4, ganho 15,5 / 13,5; 2026-08
+      aberta 18,1, ganho 15,3 / 14,0. Marcas: líder sem lance fechado 29,5%, líder desclassificado 27,0%, reiniciada 9,5%,
+      aberto isolado 5,5%, outlier 1,5%; fechado acima do aberto 8,6%.
     - **Análise dos 26 meses (20/11/2026, com `--pncp-db`, base com 2023):** 2023-04 a 2023-12 (parser 1.9.0) e os 17 meses
       da análise anterior (2026-03, 04 e 08 de fora, ainda em 1.7.x quando rodou); saída em
       `dados/analise_etapas/2023-04_a_2026-10/`. 767.295 itens (todos) e 683.038 (válidos), 43.460 compras, 2.201 UASGs.
