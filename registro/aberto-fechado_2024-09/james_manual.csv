@@ -1,0 +1,3 @@
+numeroControlePNCP,idCompra,usuario,data_hora,passada,situacao,motivo,itens_cobertos,itens,sha256,publicados,candidatos,outros_guardados,erros
+97500037000110-1-000016/2024,92558405900272024,james,2026-11-20T17:13:28,manual,completo,zip baixado (auto),1,1,84929f1527f3b3034b715f32c10f20082354b9ac45f1a1fa7416d315d45eaf34,,,0,
+97500037000110-1-000011/2024,92558405900222024,james,2026-11-20T17:26:47,manual,completo,zip baixado (auto),1,1,d0a9f3052506b4b4b017e0d83e72827a57d851c6943f808bfae4c8265821d5b6,,,0,

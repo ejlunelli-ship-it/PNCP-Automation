@@ -15,9 +15,14 @@ Para duas pessoas não pegarem a mesma compra entre um push e um pull, dividam a
 A lista das compras a baixar (Aberto-Fechado com item homologado, pelo mês do resultado) também fica
 aqui, em registro/compras/<AAAA-MM>.csv: quem não tem o dados/pncp.db (16 GB) usa essa lista.
 
+Modo de disputa (--modo): o padrão é aberto-fechado. Com --modo fechado-aberto vale a mesma seleção,
+para os pregões Fechado-Aberto, com pastas próprias: registro/fechado-aberto_<AAAA-MM>/,
+registro/compras_fechado-aberto/<AAAA-MM>.csv e dados/filtrados/fechado-aberto_<AAAA-MM>/.
+
 Uso: python registro.py migrar [AAAA-MM ...]   passa os motivos.csv/manual.csv antigos de dados/ para
                                                registro/ (sem mês, todos)
      python registro.py compras                regera registro/compras/ a partir do dados/pncp.db
+     python registro.py compras --modo fechado-aberto   idem, em registro/compras_fechado-aberto/
 """
 import csv
 import hashlib
@@ -36,7 +41,9 @@ from config import DADOS
 REGISTRO = Path(os.environ.get("PNCP_REGISTRO") or Path(__file__).parent / "registro")
 COLUNAS = ["numeroControlePNCP", "idCompra", "usuario", "data_hora", "passada", "situacao", "motivo",
            "itens_cobertos", "itens", "sha256", "publicados", "candidatos", "outros_guardados", "erros"]
-COMPRAS = REGISTRO / "compras"
+# modo de disputa da amostra: prefixo das pastas -> valor de compras.modo_disputa no pncp.db
+MODOS = {"aberto-fechado": "Aberto-Fechado", "fechado-aberto": "Fechado-Aberto"}
+MODO = "aberto-fechado"
 CAMPOS_COMPRA = ["numeroControlePNCP", "idCompra", "numeroCompra", "anoCompraPncp", "objetoCompra",
                  "dataPublicacaoPncp", "dataAberturaPropostaPncp", "orgaoEntidadeCnpj"]
 TAMANHO_OBJETO = 100  # o objeto só aparece na tela; cortado, a lista fica com metade do tamanho
@@ -47,13 +54,26 @@ SELECT DISTINCT substr(i.data_resultado, 1, 7) AS mes,
        c.data_publicacao AS dataPublicacaoPncp, c.data_abertura_proposta AS dataAberturaPropostaPncp,
        c.orgao_cnpj AS orgaoEntidadeCnpj
 FROM compras c JOIN itens i USING (numero_controle_pncp)
-WHERE i.registro_principal = 1 AND i.homologado = 1 AND c.modo_disputa = 'Aberto-Fechado'
+WHERE i.registro_principal = 1 AND i.homologado = 1 AND c.modo_disputa = ?
   AND c.id_compra IS NOT NULL AND i.data_resultado LIKE ?
 ORDER BY 2
 """
 RE_ITEM = re.compile(r"-item-(\d+)\.pdf$", re.I)
 GIT = ["git", r"C:\Program Files\Git\cmd\git.exe"]
 _usuario = None
+
+
+def usar_modo(modo):
+    """Troca o modo de disputa (aberto-fechado ou fechado-aberto) usado pelas funções deste módulo."""
+    global MODO
+    if modo not in MODOS:
+        raise ValueError(f"modo desconhecido: {modo!r} (use {', '.join(MODOS)})")
+    MODO = modo
+
+
+def pasta_compras():
+    """registro/compras/ (Aberto-Fechado, nome de sempre) ou registro/compras_<modo>/."""
+    return REGISTRO / ("compras" if MODO == "aberto-fechado" else f"compras_{MODO}")
 
 
 def usuario():
@@ -114,21 +134,21 @@ def _escrever(arquivo, linhas):
 
 
 def anotar(mes, origem, linha):
-    """Acrescenta a linha de uma compra a registro/aberto-fechado_<mes>/<usuario>_<origem>.csv."""
+    """Acrescenta a linha de uma compra a registro/<modo>_<mes>/<usuario>_<origem>.csv."""
     linha = {"usuario": usuario(), "data_hora": datetime.now().isoformat(timespec="seconds"), **linha}
-    _escrever(REGISTRO / f"aberto-fechado_{mes}" / f"{usuario()}_{origem}.csv", [linha])
+    _escrever(REGISTRO / f"{MODO}_{mes}" / f"{usuario()}_{origem}.csv", [linha])
 
 
 def _legados():
     pasta = DADOS / "filtrados"
-    return sorted(pasta.glob("aberto-fechado_*/motivos.csv")) + sorted(pasta.glob("aberto-fechado_*/manual.csv"))
+    return sorted(pasta.glob(f"{MODO}_*/motivos.csv")) + sorted(pasta.glob(f"{MODO}_*/manual.csv"))
 
 
 def ler():
     """Todas as linhas do registro (de todos os usuários) e dos arquivos antigos ainda não migrados,
     com o mês em `mes`. A ordem entre arquivos não vale: quem usa deve dar prioridade a 'completo'."""
     linhas = []
-    for arquivo in sorted(REGISTRO.glob("aberto-fechado_*/*.csv")) + _legados():
+    for arquivo in sorted(REGISTRO.glob(f"{MODO}_*/*.csv")) + _legados():
         with open(arquivo, newline="", encoding="utf-8-sig") as f:
             linhas += [{**l, "mes": arquivo.parent.name.split("_")[-1]} for l in csv.DictReader(f)]
     return linhas
@@ -144,13 +164,15 @@ def _banco():
 
 
 def compras_do_mes(mes):
-    """Compras Aberto-Fechado com item homologado no mês: do dados/pncp.db ou, sem ele, de registro/compras/."""
+    """Compras do modo com item homologado no mês: do dados/pncp.db ou, sem ele, de registro/compras[_<modo>]/."""
     con = _banco()
     if con is not None:
-        linhas = [{k: r[k] for k in CAMPOS_COMPRA} for r in con.execute(SELECAO, (f"{mes}%",))]
+        linhas = [{k: r[k] for k in CAMPOS_COMPRA} for r in con.execute(SELECAO, (MODOS[MODO], f"{mes}%"))]
         con.close()
         return linhas
-    arquivo = COMPRAS / f"{mes}.csv"
+    arquivo = pasta_compras() / f"{mes}.csv"
+    if not arquivo.exists() and arquivo.parent.is_dir():
+        return []  # a lista foi exportada e o mês não tem compra do modo (ex.: Fechado-Aberto em 2023-04)
     if not arquivo.exists():
         sys.exit(f"Sem dados/pncp.db e sem {arquivo.relative_to(REGISTRO.parent)}: rode `git pull`.")
     with open(arquivo, newline="", encoding="utf-8") as f:
@@ -158,24 +180,25 @@ def compras_do_mes(mes):
 
 
 def exportar_compras():
-    """Regrava registro/compras/<mês>.csv com a seleção atual do dados/pncp.db (consulta demorada)."""
+    """Regrava registro/compras[_<modo>]/<mês>.csv com a seleção atual do dados/pncp.db (consulta demorada)."""
     con = _banco()
     if con is None:
         sys.exit("Sem dados/pncp.db.")
     por_mes = {}
-    for r in con.execute(SELECAO, ("%",)):
+    for r in con.execute(SELECAO, (MODOS[MODO], "%")):
         if r["mes"]:
             linha = {k: r[k] for k in CAMPOS_COMPRA}
             linha["objetoCompra"] = " ".join((linha["objetoCompra"] or "").split())[:TAMANHO_OBJETO]
             por_mes.setdefault(r["mes"], []).append(linha)
     con.close()
-    COMPRAS.mkdir(parents=True, exist_ok=True)
+    pasta = pasta_compras()
+    pasta.mkdir(parents=True, exist_ok=True)
     for mes, linhas in sorted(por_mes.items()):
-        with open(COMPRAS / f"{mes}.csv", "w", newline="", encoding="utf-8") as f:
+        with open(pasta / f"{mes}.csv", "w", newline="", encoding="utf-8") as f:
             w = csv.DictWriter(f, fieldnames=CAMPOS_COMPRA, lineterminator="\n")
             w.writeheader()
             w.writerows(linhas)
-    print(f"registro/compras: {sum(map(len, por_mes.values()))} compra(s)-mês em {len(por_mes)} mês(es)")
+    print(f"registro/{pasta.name}: {sum(map(len, por_mes.values()))} compra(s)-mês em {len(por_mes)} mês(es)")
 
 
 def migrar(meses=()):
@@ -197,9 +220,17 @@ def migrar(meses=()):
 
 if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8")
-    if sys.argv[1:2] == ["migrar"]:
-        migrar(sys.argv[2:])
-    elif sys.argv[1:] == ["compras"]:
+    argumentos = sys.argv[1:]
+    if "--modo" in argumentos:
+        i = argumentos.index("--modo")
+        try:
+            usar_modo(argumentos[i + 1] if i + 1 < len(argumentos) else "")
+        except ValueError as e:
+            sys.exit(str(e))
+        del argumentos[i:i + 2]
+    if argumentos[:1] == ["migrar"]:
+        migrar(argumentos[1:])
+    elif argumentos == ["compras"]:
         exportar_compras()
     else:
         print(__doc__)

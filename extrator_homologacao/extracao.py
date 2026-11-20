@@ -3,7 +3,7 @@
 import re
 from dataclasses import dataclass, field
 
-from . import campos, etapas, tabelas
+from . import campos, etapas, layouts, tabelas
 from . import normalizacao as norm
 from .secoes import segmentar
 from .texto import linhas_limpas
@@ -40,14 +40,21 @@ def escolher_item(documento, nome_arquivo):
     return None, f"relatório com vários itens {sorted(itens)} e nenhum item indicado no nome do arquivo"
 
 
-def extrair_documento(paginas, nome_arquivo):
-    documento = segmentar(linhas_limpas(paginas))
+def extrair_documento(paginas, nome_arquivo, layout=layouts.ATUAL):
+    """`paginas`: texto de cada página; no layout antigo, na ordem visual (ver `layouts`)."""
+    linhas = linhas_limpas(paginas)
+    if layout == layouts.ANTIGO:
+        linhas = layouts.normalizar(linhas)
+    documento = segmentar(linhas, antigo=layout == layouts.ANTIGO)
+    documento.layout = layout
     if documento.tipo not in TIPOS_SUPORTADOS:
         raise RelatorioNaoSuportado(f"tipo de relatório não suportado: {documento.tipo or 'não identificado'}")
 
     r = Resultado()
     r.dados["tipo_relatorio"] = documento.tipo
     r.dados.update(campos.campos_cabecalho(documento.cabecalho))
+    if layout == layouts.ANTIGO:
+        r.fontes.append("layout antigo: texto na ordem visual da página")
     r.fontes.append(f"uasg/pregao/modo_disputa: cabeçalho {documento.cabecalho.paginas}")
 
     bloco, problema = escolher_item(documento, nome_arquivo)
@@ -60,27 +67,44 @@ def extrair_documento(paginas, nome_arquivo):
 
 def extrair_item(bloco, r, documento):
     d = r.dados
+    antigo = documento.layout == layouts.ANTIGO
     d["item"] = bloco.numero
     d["grupo"] = bloco.grupo
-    d["descricao_item"] = campos.descricao_item(bloco.cabecalho)
+    d["descricao_item"] = campos.descricao_item(bloco.cabecalho, antigo)
 
-    unitario, total, original = campos.valor_estimado(bloco.cabecalho)
+    unitario, total, original = campos.valor_estimado(bloco.cabecalho, antigo)
     d["valor_estimado"], d["valor_estimado_total"] = unitario, total
     if unitario is None:
         r.avisos.append(f"valor estimado não informado explicitamente ({original or 'campo ausente'})")
     r.fontes.append(f"descricao_item/valor_estimado: Item {bloco.numero} {bloco.cabecalho.paginas}")
+    if antigo and unitario is not None and total is None:
+        # o layout antigo não imprime o total; no atual, total = unitário × quantidade
+        quantidade = campos.quantidade_item(bloco.cabecalho)
+        if quantidade is not None and quantidade > 0:
+            d["valor_estimado_total"] = unitario * quantidade
+            r.fontes.append("valor_estimado_total: valor estimado × quantidade (ausente no layout antigo)")
 
-    situacao = campos.situacao_item(bloco.cabecalho)
+    situacao = campos.situacao_item(bloco.cabecalho, antigo)
     d["situacao_item"] = situacao.situacao
     d["resultado"] = campos.resultado_item(situacao.situacao)
     if d["resultado"] == campos.NAO_IDENTIFICADO:
         r.avisos.append(f"resultado do item não reconhecido na situação {situacao.situacao!r}")
-    d["criterio_julgamento_item"] = situacao.criterio
 
-    propostas = tabelas.ler_propostas(bloco.propostas)
+    propostas = tabelas.ler_propostas(bloco.propostas, antigo)
     lances, sobras = tabelas.ler_lances(bloco.lances)
     if sobras:
         r.problemas.append(f"{len(sobras)} linha(s) não reconhecida(s) na tabela de lances: {sobras[:3]}")
+
+    if situacao.criterio is None and antigo:
+        # o termo de homologação antigo só traz o critério da compra (em geral "Menor Preço / Maior Desconto")
+        situacao.criterio, regra = campos.inferir_criterio(
+            campos.apos_rotulo(documento.cabecalho.textos, "Critério de julgamento:"),
+            bloco.propostas.textos + bloco.lances.textos)
+        if situacao.criterio is None:
+            r.avisos.append(f"critério de julgamento do item ausente no relatório e {regra}")
+        else:
+            r.fontes.append(f"criterio_julgamento_item: ausente no item, inferido {regra}")
+    d["criterio_julgamento_item"] = situacao.criterio
 
     d["quantidade_fornecedores"], probs, avs = campos.quantidade_fornecedores(
         propostas, lances, deserto=d["resultado"] == campos.DESERTO)
@@ -91,7 +115,7 @@ def extrair_item(bloco, r, documento):
     d["fornecedores_desclassificados"] = "; ".join(desclassificados) or None
     d["quantidade_desclassificados"] = len(desclassificados) if propostas else None
 
-    eventos = tabelas.ler_registros(bloco.eventos, com_responsavel=False)
+    eventos = tabelas.ler_registros(bloco.eventos, com_responsavel=False, antigo=antigo)
     extrair_lances(bloco, lances, propostas, eventos, situacao.criterio, d.get("modo_disputa"), r, documento)
 
     aceito = campos.lance_aceito(situacao, propostas, eventos)
@@ -132,7 +156,9 @@ def preencher_percentuais(bloco, r):
 
 def itens_do_grupo(documento, rotulo):
     """(quantidade, lances, propostas) de cada item do grupo, para conferir os totais da etapa fechada."""
-    return [(campos.quantidade_item(b.cabecalho), tabelas.ler_lances(b.lances)[0], tabelas.ler_propostas(b.propostas))
+    antigo = documento.layout == layouts.ANTIGO
+    return [(campos.quantidade_item(b.cabecalho), tabelas.ler_lances(b.lances)[0],
+             tabelas.ler_propostas(b.propostas, antigo))
             for b in documento.itens.values() if b.grupo == rotulo]
 
 
@@ -174,9 +200,10 @@ def extrair_lances(bloco, lances, propostas, eventos, criterio, modo, r, documen
     # em grupo, os marcos das etapas ficam no chat e nos eventos do grupo, com o rótulo "item G1"
     grupo = documento.grupos.get(bloco.grupo)
     origem = grupo or bloco
-    chat = tabelas.ler_registros(origem.chat, com_responsavel=True)
-    eventos_etapas = tabelas.ler_registros(grupo.eventos, com_responsavel=False) if grupo else eventos
-    marcos, probs = etapas.identificar_etapas(chat, eventos_etapas, bloco.grupo if grupo else bloco.numero)
+    antigo = documento.layout == layouts.ANTIGO
+    chat = tabelas.ler_registros(origem.chat, com_responsavel=True, antigo=antigo)
+    eventos_etapas = tabelas.ler_registros(grupo.eventos, com_responsavel=False, antigo=antigo) if grupo else eventos
+    marcos, probs = etapas.identificar_etapas(chat, eventos_etapas, bloco.grupo if grupo else bloco.numero, antigo)
     r.problemas.extend(probs)
     if modo_norm in ("aberto", "fechado"):
         # etapa única: todos os lances são dela, exceto os que caem numa janela de desempate

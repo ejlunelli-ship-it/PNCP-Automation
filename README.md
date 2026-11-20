@@ -72,6 +72,9 @@ git push
 - Os PDFs ficam só na máquina de quem baixou (`dados/filtrados/`); o `sha256` no registro serve para
   conferi-los se forem juntados depois.
 - A busca automática no PNCP (`baixar_api.py <mês>`) também aceita `--parte k/n` e grava no registro.
+- **Pregões Fechado-Aberto:** `baixar_manual.py --modo fechado-aberto ...` baixa a amostra Fechado-Aberto (1.479
+  compras de 2023-04 a 2026-10), com registro e pastas próprios. Passo a passo em
+  [docs/09](docs/09-download-fechado-aberto.md).
 
 ## Uso
 

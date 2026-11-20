@@ -6,6 +6,7 @@ from decimal import Decimal, InvalidOperation
 
 from . import normalizacao as norm
 from .etapas import ABERTA, DESEMPATE, FECHADA
+from .tabelas import RE_VALOR_SOLTO
 
 # --------------------------------------------------------------------------- cabeçalho da compra
 
@@ -40,10 +41,20 @@ def campos_cabecalho(secao):
 
 # --------------------------------------------------------------------------- bloco do item
 
-def descricao_item(secao):
-    """Título ('Item N - ...') e descrição até 'Quantidade:', com quebras de linha removidas."""
+# rótulos do bloco do item; no layout antigo a descrição termina no primeiro deles (no termo de
+# julgamento antigo, "Valor estimado:" e "Critério de julgamento:" vêm antes de "Quantidade:")
+ROTULOS_DO_ITEM = ("Quantidade:", "Valor estimado:", "Critério de julgamento:", "Situação:",
+                   "Unidade de fornecimento:", "Intervalo mínimo entre lances:")
+
+
+def descricao_item(secao, antigo=False):
+    """Título ('Item N - ...') e descrição até 'Quantidade:' (no layout antigo, até o primeiro rótulo do
+    bloco do item), com quebras de linha removidas."""
     textos = secao.textos
-    fim = textos.index("Quantidade:") if "Quantidade:" in textos else len(textos)
+    if antigo:
+        fim = next((i for i, t in enumerate(textos) if i > 0 and t in ROTULOS_DO_ITEM), len(textos))
+    else:
+        fim = textos.index("Quantidade:") if "Quantidade:" in textos else len(textos)
     if not textos:
         return None
     primeira = re.sub(r"^Item \d+(?: do Grupo G\d+)? - ", "", textos[0])
@@ -59,8 +70,10 @@ def quantidade_item(secao):
         return None
 
 
-def valor_estimado(secao):
-    """Retorna (unitario, total, texto_original). Valores None se o relatório não os informar."""
+def valor_estimado(secao, antigo=False):
+    """Retorna (unitario, total, texto_original). Valores None se o relatório não os informar.
+
+    O layout antigo traz só o unitário, sem "(unitário)": "Valor estimado:" "R$ 5,5100"."""
     textos = secao.textos
     if "Valor estimado:" not in textos:
         return None, None, None
@@ -72,6 +85,8 @@ def valor_estimado(secao):
             unitario = norm.valor(t)
         elif t.endswith("(total)"):
             total = norm.valor(t)
+        elif antigo and not originais and t.startswith("R$") and RE_VALOR_SOLTO.match(t):
+            unitario = norm.valor(t)
         else:
             break
         originais.append(t)
@@ -82,12 +97,20 @@ def valor_estimado(secao):
 
 JANELA_SITUACAO = 30  # linhas juntadas ao procurar o parágrafo de situação quebrado palavra a palavra
 RE_SITUACAO_RESPONSAVEL = re.compile(r"^(?P<acao>[A-ZÀ-Ú][^:]*?) por (?:CPF|CNPJ) \S+ - ")
-RE_ACEITO = re.compile(
-    r" para (?P<fornecedor>.+?), (?:CNPJ|CPF|Identificador) (?P<documento>" + norm.RE_DOCUMENTO.pattern + r")"
-    r", melhor lance: (?P<melhor>" + norm.PREFIXO_PERCENTUAL + r"R\$\s*[\d.]+,\d+)" + norm.SUFIXO_PERCENTUAL + r" \(unitário\)"
-    r"(?:.*?, valor negociado: (?P<negociado>" + norm.PREFIXO_PERCENTUAL + r"R\$\s*[\d.]+,\d+)"
-    + norm.SUFIXO_PERCENTUAL + r" \(unitário\))?"
-)
+
+
+def _re_aceito(unitario):
+    """'... para <fornecedor>, CNPJ <doc>, melhor lance: <valor><unitario>[, valor negociado: <valor><unitario>]'."""
+    return re.compile(
+        r" para (?P<fornecedor>.+?), (?:CNPJ|CPF|Identificador) (?P<documento>" + norm.RE_DOCUMENTO.pattern + r")"
+        r", melhor lance: (?P<melhor>" + norm.PREFIXO_PERCENTUAL + r"R\$\s*[\d.]+,\d+)" + norm.SUFIXO_PERCENTUAL + unitario
+        + r"(?:.*?, valor negociado: (?P<negociado>" + norm.PREFIXO_PERCENTUAL + r"R\$\s*[\d.]+,\d+)"
+        + norm.SUFIXO_PERCENTUAL + unitario + r")?"
+    )
+
+
+RE_ACEITO = _re_aceito(r" \(unitário\)")
+RE_ACEITO_ANTIGO = _re_aceito("")  # layout antigo: "melhor lance: R$ 3,5800", sem "(unitário)"
 
 
 @dataclass
@@ -103,8 +126,9 @@ class SituacaoItem:
     pagina: int | None = None
 
 
-def situacao_item(secao):
+def situacao_item(secao, antigo=False):
     """Lê 'Situação:', o critério do item e o parágrafo '<ação> por CPF ... para <fornecedor>, CNPJ ...'."""
+    re_aceito = RE_ACEITO_ANTIGO if antigo else RE_ACEITO
     textos = secao.textos
     resultado = SituacaoItem(
         situacao=apos_rotulo(textos, "Situação:"),
@@ -122,7 +146,7 @@ def situacao_item(secao):
         resultado.acao = m.group("acao")
         resultado.texto = paragrafo
         resultado.pagina = linha.pagina
-        a = RE_ACEITO.search(paragrafo)
+        a = re_aceito.search(paragrafo)
         if a:
             resultado.fornecedor = a.group("fornecedor").strip()
             resultado.documento = a.group("documento")
@@ -130,6 +154,32 @@ def situacao_item(secao):
             resultado.valor_negociado = norm.valor(a.group("negociado"))
         break
     return resultado
+
+
+CRITERIOS_DO_ITEM = ("Menor Preço", "Maior Desconto")
+# valor de Menor Preço: "R$ 5,4800" (ou "R$ 5,4800 (unitário)"/"(total)" nas propostas dos termos de transição)
+RE_VALOR_EM_REAIS = re.compile(r"^R\$\s*[\d.]+,\d+\s*\*?(?: \((?:unitário|total)\))?$")
+
+
+def inferir_criterio(criterio_compra, textos_valores):
+    """Critério do item quando o relatório não o traz (termo de homologação do layout antigo).
+
+    Com um critério só na compra, é ele. Com "Menor Preço / Maior Desconto", decide pelos valores das
+    propostas e dos lances do item (`textos_valores`): em Maior Desconto todos vêm como "P% (R$ V)",
+    em Menor Preço só em R$. Sem valores, ou com os dois formatos, fica None.
+    Retorna (critério | None, descrição da regra usada).
+    """
+    if criterio_compra in CRITERIOS_DO_ITEM:
+        return criterio_compra, f"o da compra ({criterio_compra})"
+    if criterio_compra != "Menor Preço / Maior Desconto":
+        return None, f"não inferido (critério da compra {criterio_compra!r})"
+    pares = any(norm.RE_PAR_PERCENTUAL.search(t) for t in textos_valores)
+    reais = any(RE_VALOR_EM_REAIS.match(t) for t in textos_valores)
+    if pares != reais:
+        criterio = "Maior Desconto" if pares else "Menor Preço"
+        return criterio, f"pelos valores das propostas e lances, em {'P% (R$ V)' if pares else 'R$'}"
+    motivo = "valores em R$ e em P% (R$ V)" if pares else "item sem valores de proposta ou lance"
+    return None, f"não inferido ({motivo})"
 
 
 # --------------------------------------------------------------------------- fornecedores
@@ -336,12 +386,14 @@ class LanceAceito:
 
 
 def classificar_acao(acao):
+    # "adjucad": grafia do parágrafo de situação no layout antigo ("Adjucado e Homologado por ...")
     acao = (acao or "").lower()
+    adjudicado = "adjudicad" in acao or "adjucad" in acao
     if acao.startswith("fracassad"):
         return FRACASSADO
-    if "homologad" in acao and ("aceit" in acao or "adjudicad" in acao):
+    if "homologad" in acao and ("aceit" in acao or adjudicado):
         return HOMOLOGADO
-    if "adjudicad" in acao:
+    if adjudicado:
         return ADJUDICADO
     if "aceit" in acao:
         return ACEITO

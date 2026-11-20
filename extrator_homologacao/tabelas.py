@@ -12,6 +12,13 @@ _PCT, _FIM = norm.PREFIXO_PERCENTUAL, norm.SUFIXO_PERCENTUAL
 RE_LANCE = re.compile(r"^" + _PCT + r"R\$\s*([\d.]+,\d+)" + _FIM + r"\s*(\*)?$")
 RE_VALOR_UNITARIO = re.compile(r"^" + _PCT + r"R\$\s*[\d.]+,\d+" + _FIM + r" \(unitário\)$")
 RE_VALOR_TOTAL = re.compile(r"^" + _PCT + r"R\$\s*[\d.]+,\d+" + _FIM + r" \(total\)$")
+# layout antigo: só o valor unitário, sem "(unitário)" ("R$ 5,5100", "49,00% (R$ 2,1828)")
+RE_VALOR_SOLTO = re.compile(r"^" + _PCT + r"R\$\s*[\d.]+,\d+" + _FIM + r"$")
+# propostas no layout antigo: valor solto ou, nos termos de transição (dez/2024–fev/2025, ainda com
+# "Porte MeEpp/Equiparada:"), já com "(unitário)" ("R$ 10,8800 (unitário)" / "R$ 3.916,8000 (total)")
+RE_VALOR_ANTIGO = re.compile(r"^" + _PCT + r"R\$\s*[\d.]+,\d+" + _FIM + r"(?: \(unitário\))?$")
+# linha que fecha o nome do fornecedor na proposta, no layout atual e no antigo
+FIM_DO_NOME = {False: "Benefício Me/Epp:", True: "Porte MeEpp/Equiparada:"}
 # linhas que identificam o autor de uma mensagem do chat (antecedem a data/hora)
 RE_RESPONSAVEL = re.compile(
     r"^(Sistema(\s+para o)?|participante|Pelo participante|Pelo pregoeiro|Pregoeiro.*|"
@@ -49,22 +56,24 @@ class Registro:
     pagina: int
 
 
-def ler_propostas(secao):
-    """Cada proposta começa em '<CNPJ/CPF> - <nome>'; o nome pode quebrar linha até 'Benefício Me/Epp'."""
+def ler_propostas(secao, antigo=False):
+    """Cada proposta começa em '<CNPJ/CPF> - <nome>'; o nome pode quebrar linha até 'Benefício Me/Epp'
+    ('Porte MeEpp/Equiparada' no layout antigo, que traz os valores sem '(unitário)')."""
     linhas = secao.linhas
+    re_valor = RE_VALOR_ANTIGO if antigo else RE_VALOR_UNITARIO
     inicios = [i for i, l in enumerate(linhas) if RE_FORNECEDOR.match(l.texto)]
     propostas = []
     for pos, ini in enumerate(inicios):
         fim = inicios[pos + 1] if pos + 1 < len(inicios) else len(linhas)
         bloco = juntar_valores_quebrados([l.texto for l in linhas[ini:fim]])
         m = RE_FORNECEDOR.match(bloco[0])
-        i = next((j for j, t in enumerate(bloco) if t.startswith("Benefício Me/Epp:")), 1)
+        i = next((j for j, t in enumerate(bloco) if t.startswith(FIM_DO_NOME[antigo])), 1)
         nome = [m.group(2), *bloco[1:i]]
 
         # valor ofertado: primeiro par unitário/total do bloco; situação: linhas até o próximo rótulo
         valor_ofertado, situacao = None, []
         for j in range(i, len(bloco)):
-            if RE_VALOR_UNITARIO.match(bloco[j]):
+            if re_valor.match(bloco[j]):
                 valor_ofertado = norm.valor(bloco[j])
                 k = j + 2 if j + 1 < len(bloco) and RE_VALOR_TOTAL.match(bloco[j + 1]) else j + 1
                 while k < len(bloco) and not bloco[k].endswith(":"):
@@ -77,8 +86,8 @@ def ler_propostas(secao):
             nome=norm.espacos(" ".join(nome)),
             valor_ofertado=valor_ofertado,
             situacao=norm.espacos(" ".join(situacao)).strip(" -"),
-            valor_proposta=valor_apos_rotulo(bloco, "Valor proposta:"),
-            valor_negociado=valor_apos_rotulo(bloco, "Valor negociado:"),
+            valor_proposta=valor_apos_rotulo(bloco, "Valor proposta:", antigo),
+            valor_negociado=valor_apos_rotulo(bloco, "Valor negociado:", antigo),
             pagina=linhas[ini].pagina,
         ))
     return propostas
@@ -103,11 +112,12 @@ def juntar_valores_quebrados(bloco):
     return saida
 
 
-def valor_apos_rotulo(bloco, rotulo):
-    """Valor unitário logo após o rótulo; None quando ausente ou 'Não Realizado'."""
+def valor_apos_rotulo(bloco, rotulo, antigo=False):
+    """Valor unitário logo após o rótulo; None quando ausente, 'Não Realizado' ou 'Não informado'."""
+    re_valor = RE_VALOR_ANTIGO if antigo else RE_VALOR_UNITARIO
     if rotulo in bloco:
         i = bloco.index(rotulo)
-        if i + 1 < len(bloco) and RE_VALOR_UNITARIO.match(bloco[i + 1]):
+        if i + 1 < len(bloco) and re_valor.match(bloco[i + 1]):
             return norm.valor(bloco[i + 1])
     return None
 
@@ -136,11 +146,31 @@ def ler_lances(secao):
     return lances, sobras
 
 
-def ler_registros(secao, com_responsavel):
+RE_FIM_DE_FRASE = re.compile(r"[.!?]$")
+
+
+def juntar_continuacoes(registros):
+    """Layout antigo: a mensagem (ou evento) que não cabe na página continua na seguinte como um
+    registro novo, com a mesma data/hora e o mesmo autor ("... registrados pelos fornecedores" |
+    "convocados: R$ 80,0000."). Junta a continuação ao registro anterior quando ela abre a página
+    seguinte com a mesma data/hora e o texto anterior ficou sem ponto final ou ela começa em minúscula."""
+    saida = []
+    for r in registros:
+        anterior = saida[-1] if saida else None
+        if (anterior and r.pagina != anterior.pagina and r.data_hora == anterior.data_hora
+                and (not RE_FIM_DE_FRASE.search(anterior.texto) or r.texto[:1].islower())):
+            saida[-1] = Registro(anterior.data_hora, norm.juntar_quebras(f"{anterior.texto} {r.texto}"), anterior.pagina)
+            continue
+        saida.append(r)
+    return saida
+
+
+def ler_registros(secao, com_responsavel, antigo=False):
     """Mensagens do chat (com_responsavel=True) ou eventos: texto entre uma data/hora e a próxima.
 
     No chat, as linhas de autor ('Sistema', 'Pelo participante', CNPJ...) que antecedem a próxima
-    data/hora são removidas do texto da mensagem anterior.
+    data/hora são removidas do texto da mensagem anterior. No layout antigo, as continuações de um
+    registro na página seguinte são juntadas a ele (`juntar_continuacoes`).
     """
     registros, atual, corpo = [], None, []
 
@@ -159,4 +189,4 @@ def ler_registros(secao, com_responsavel):
         else:
             corpo.append(l.texto)
     fechar()
-    return registros
+    return juntar_continuacoes(registros) if antigo else registros

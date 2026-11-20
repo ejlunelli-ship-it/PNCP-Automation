@@ -4,6 +4,8 @@ as propostas, a tabela de lances, o chat do item e os eventos do item."""
 import re
 from dataclasses import dataclass, field
 
+from .normalizacao import data_hora
+
 TIPOS_RELATORIO = ("TERMO DE HOMOLOGAÇÃO", "TERMO DE JULGAMENTO", "RELATÓRIO DE DILIGÊNCIAS")
 
 RE_INICIO_ITEM = re.compile(r"^Item (\d+)(?: do Grupo (G\d+))? - (.*)$")
@@ -68,6 +70,7 @@ class Documento:
     cabecalho: Secao
     itens: dict  # numero -> BlocoItem
     grupos: dict = field(default_factory=dict)  # rótulo -> BlocoGrupo
+    layout: str = "atual"  # layouts.ATUAL ou layouts.ANTIGO
 
 
 def remover_colunas_repetidas(linhas, colunas):
@@ -89,14 +92,19 @@ def tipo_relatorio(linhas):
     return None
 
 
-def inicios_de_item(linhas):
-    """Índices das linhas que abrem o bloco de um item (confirmados pelos rótulos do bloco)."""
+def inicios_de_item(linhas, antigo=False):
+    """Índices das linhas que abrem o bloco de um item (confirmados pelos rótulos do bloco).
+
+    No layout antigo, uma mensagem do chat como "Item 67 - Fracassado." perto do bloco do item não conta:
+    entre o título e "Quantidade:" não pode haver data/hora de mensagem ou evento."""
     inicios = []
     for i, l in enumerate(linhas):
         if not RE_INICIO_ITEM.match(l.texto):
             continue
         janela = [x.texto for x in linhas[i + 1:i + 1 + JANELA_CONFIRMA_ITEM]]
         if "Quantidade:" in janela and "Valor estimado:" in janela:
+            if antigo and any(data_hora(t) for t in janela[:janela.index("Quantidade:")]):
+                continue
             inicios.append(i)
     return inicios
 
@@ -150,9 +158,9 @@ def dividir_grupo(rotulo, linhas):
     return BlocoGrupo(rotulo=rotulo, **partes)
 
 
-def segmentar(linhas):
+def segmentar(linhas, antigo=False):
     de_grupo = set(inicios_de_grupo(linhas))
-    inicios = sorted(de_grupo | set(inicios_de_item(linhas)))
+    inicios = sorted(de_grupo | set(inicios_de_item(linhas, antigo)))
     fim_cabecalho = len(linhas)
     for i, l in enumerate(linhas):
         if l.texto == "Mensagens do chat da compra":

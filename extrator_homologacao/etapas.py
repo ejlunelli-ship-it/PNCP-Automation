@@ -10,6 +10,7 @@ nunca como lances.
 
 import re
 from dataclasses import dataclass, field
+from datetime import timedelta
 from decimal import Decimal
 
 from . import normalizacao as norm
@@ -62,7 +63,8 @@ def padroes_chat(numero):
         (DESEMPATE, "desempate art. 60", "inicio"): re.compile(rf"^O desempate por disputa final do art\. ?60\b.*? foi iniciado para o item {n}\.", re.I),
         (DESEMPATE, "desempate art. 60", "fim"): re.compile(rf"^O desempate por disputa final do art\. ?60\b.*? do item {n} foi encerrado\.(.*)", re.I),
         (DESEMPATE, "desempate ME/EPP", "inicio"): re.compile(rf"^O item {n} terá desempate Me/Epp", re.I),
-        (DESEMPATE, "desempate ME/EPP", "fim"): re.compile(rf"^O item {n} teve o \d+º desempate Me/Epp encerrado(.*)", re.I),
+        # sem "Me/Epp" quando o tempo expira: "O item 7 teve o 1º desempate encerrado às 15:54:38 de 26/06/2023. O tempo expirou..."
+        (DESEMPATE, "desempate ME/EPP", "fim"): re.compile(rf"^O item {n} teve o \d+º desempate (?:Me/Epp )?encerrado(.*)", re.I),
     }
 
 
@@ -76,6 +78,19 @@ PADROES_EVENTOS = {
     (DESEMPATE, "desempate ME/EPP", "fim"): re.compile(r"^Item teve o \d+º desempate Me/Epp encerrado()", re.I),
 }
 
+
+# layout antigo: os eventos anunciam a etapa fechada como "Convocados os fornecedores para a 1º etapa
+# fechada que apresentaram lance entre ..." (no atual, "Início da etapa fechada.")
+PADROES_EVENTOS_ANTIGO = {
+    **PADROES_EVENTOS,
+    (FECHADA, "etapa fechada", "inicio"): re.compile(
+        r"^(?:Início da etapa fechada\.|Retorno de item do Julgamento para a etapa fechada|"
+        r"Convocados os fornecedores para a \d+º etapa fechada)"),
+}
+# layout antigo: o chat reinicia a etapa fechada até 1 s depois de encerrá-la ("encerrada" 08:36:59,
+# "reiniciada" 08:37:00) e os eventos não registram o encerramento intermediário: na comparação das
+# janelas do chat com as dos eventos, janelas a até 2 s uma da outra contam como contíguas
+FOLGA_CONTIGUAS_ANTIGO = timedelta(seconds=2)
 
 RE_REINICIO = re.compile(r"^(?:A etapa fechada foi reiniciada|Retorno de item do Julgamento para a etapa fechada)")
 
@@ -118,15 +133,16 @@ def montar_etapas(registros, padroes, origem):
     return etapas
 
 
-def identificar_etapas(mensagens_chat, eventos, numero_item):
+def identificar_etapas(mensagens_chat, eventos, numero_item, antigo=False):
     """Retorna (etapas, problemas). Prefere o chat do item; usa os eventos como alternativa."""
     problemas = []
     do_chat = montar_etapas(mensagens_chat, padroes_chat(numero_item), "chat do item")
-    dos_eventos = montar_etapas(eventos, PADROES_EVENTOS, "eventos do item")
+    dos_eventos = montar_etapas(eventos, PADROES_EVENTOS_ANTIGO if antigo else PADROES_EVENTOS, "eventos do item")
 
     if do_chat.fechadas() and dos_eventos.fechadas():
         # o chat anuncia cada reinício da etapa fechada; os eventos às vezes os agrupam numa janela só
-        if unir_contiguas(do_chat.fechadas()) != unir_contiguas(dos_eventos.fechadas()):
+        folga = FOLGA_CONTIGUAS_ANTIGO if antigo else timedelta(0)
+        if not mesmas_janelas(unir_contiguas(do_chat.fechadas(), folga), unir_contiguas(dos_eventos.fechadas(), folga), folga):
             problemas.append("janelas da etapa fechada divergem entre o chat e os eventos do item")
     etapas = do_chat if do_chat.fechadas() else dos_eventos
 
@@ -136,16 +152,24 @@ def identificar_etapas(mensagens_chat, eventos, numero_item):
     return etapas, problemas
 
 
-def unir_contiguas(janelas):
-    """Intervalos (inicio, fim) com janelas encostadas/sobrepostas unidas."""
+def unir_contiguas(janelas, folga=timedelta(0)):
+    """Intervalos (inicio, fim) com janelas encostadas/sobrepostas (ou a até `folga` uma da outra) unidas."""
     unidas = []
     for j in sorted(janelas, key=lambda j: j.inicio):
-        if unidas and unidas[-1][1] is not None and j.inicio <= unidas[-1][1]:
+        if unidas and unidas[-1][1] is not None and j.inicio <= unidas[-1][1] + folga:
             fim = None if j.fim is None else max(unidas[-1][1], j.fim)
             unidas[-1] = (unidas[-1][0], fim)
         else:
             unidas.append((j.inicio, j.fim))
     return unidas
+
+
+def mesmas_janelas(a, b, folga=timedelta(0)):
+    """Listas de intervalos (inicio, fim) iguais, com início e fim a até `folga` (no layout antigo, o
+    evento de encerramento às vezes fica 1 s depois da mensagem do chat)."""
+    def perto(x, y):
+        return x == y if x is None or y is None else abs(x - y) <= folga
+    return len(a) == len(b) and all(perto(i, j) and perto(f, g) for (i, f), (j, g) in zip(a, b))
 
 
 def candidatas(lance, etapas):

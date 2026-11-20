@@ -22,6 +22,11 @@ Compras puladas ou sem zip não são reabertas, salvo com --repetir.
 
 Uso: python baixar_manual.py [--de 2026-10] [--ate 2025-11] [--parte k/n] [--repetir]
                              [--auto [--intervalo 20-60] [--max-falhas 3]] [--navegador chrome|edge|firefox]
+                             [--modo aberto-fechado|fechado-aberto]
+
+--modo fechado-aberto: baixa os pregões Fechado-Aberto (mesma seleção), com registro em
+registro/fechado-aberto_<mês>/, lista em registro/compras_fechado-aberto/ e PDFs em
+dados/filtrados/fechado-aberto_<mês>/relatorios/. O padrão é aberto-fechado.
 
 Meses em paralelo: um terminal por mês, cada um com --navegador diferente (e o userscript instalado em
 cada navegador). Todos vigiam a pasta Downloads, mas cada um só pega os arquivos das próprias compras.
@@ -48,7 +53,8 @@ from pathlib import Path
 
 from config import DADOS
 from extrator_homologacao.selecao import selecionar
-from registro import REGISTRO, _legados, anotar, compras_do_mes, na_parte, parte, termos
+import registro
+from registro import MODOS, REGISTRO, _legados, anotar, compras_do_mes, na_parte, parte, termos, usar_modo
 from relatorios import DOWNLOADS, ESPERA, PARCIAL, URL_COMPRA, manter_selecionados, pasta_da_compra, \
     zips_em_downloads
 
@@ -98,7 +104,7 @@ class Historico:
         self.ultimo_motivo = {}  # ... -> motivo da linha mais recente lida
 
     def atualizar(self):
-        for arquivo in sorted(REGISTRO.glob("aberto-fechado_*/*.csv")) + _legados():
+        for arquivo in sorted(REGISTRO.glob(f"{registro.MODO}_*/*.csv")) + _legados():
             pos, cabecalho = self.lido.get(arquivo, (0, None))
             try:
                 if arquivo.stat().st_size <= pos:
@@ -306,13 +312,17 @@ def main():
                         "um navegador por mês, todos baixando na pasta Downloads")
     p.add_argument("--abas", type=int, default=1, metavar="N",
                    help="no --auto, quantas compras ficam abertas ao mesmo tempo neste navegador (padrão 1)")
+    p.add_argument("--modo", choices=list(MODOS), default="aberto-fechado",
+                   help="modo de disputa das compras (padrão aberto-fechado); muda as pastas do registro e dos PDFs")
     args = p.parse_args()
+    usar_modo(args.modo)
     if args.motivo and not args.repetir:
         p.error("--motivo só vale junto com --repetir")
     if args.abas < 1 or (args.abas > 1 and not args.auto):
         p.error("--abas N precisa de N >= 1, e mais de uma aba só com --auto")
     abrir = abridor(args.navegador)
-    print(f"Vigiando downloads em: {DOWNLOADS}. Durante a espera: [p] pula, [s] encerra.")
+    print(f"Modo de disputa: {MODOS[args.modo]}. Vigiando downloads em: {DOWNLOADS}. "
+          "Durante a espera: [p] pula, [s] encerra.")
     if args.auto:
         print("Modo --auto: o userscript navegador/compras_auto.user.js precisa estar ativo no navegador padrão, "
               "e o navegador não pode perguntar onde salvar cada arquivo.")
@@ -357,7 +367,7 @@ def baixar(args, abrir, fila):
             controle = c["numeroControlePNCP"]
             if controle in historico.completas:
                 continue
-            destino = pasta_da_compra(c, DADOS / "filtrados" / f"aberto-fechado_{mes}" / "relatorios")
+            destino = pasta_da_compra(c, DADOS / "filtrados" / f"{registro.MODO}_{mes}" / "relatorios")
             if resolvida(destino):
                 continue
             linha = {"numeroControlePNCP": controle, "idCompra": c["idCompra"], "passada": "manual",

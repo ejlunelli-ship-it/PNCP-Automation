@@ -10,9 +10,9 @@ from pathlib import Path
 
 from pydantic import ValidationError
 
-from . import VERSAO_PARSER
+from . import VERSAO_PARSER, layouts
 from .extracao import RE_ITEM_ARQUIVO, RelatorioNaoSuportado, extrair_documento
-from .texto import extrair_paginas
+from .texto import extrair_paginas, paginas_em_ordem_visual
 from .validacao import ERRO, OK, REVISAR, RegistroExtracao, validar
 
 log = logging.getLogger(__name__)
@@ -51,7 +51,11 @@ def processar_pdf(caminho, ocr=True):
         base["hash_arquivo"] = sha256(caminho)
         paginas, usou_ocr = extrair_paginas(caminho, ocr=ocr)
         base["usou_ocr"] = usou_ocr
-        r = extrair_documento(paginas, caminho.name)
+        layout = layouts.ATUAL if usou_ocr else layouts.detectar(paginas)
+        if layout == layouts.ANTIGO:
+            # a ordem interna do PDF antigo embaralha o bloco do item: texto refeito na ordem visual
+            paginas = paginas_em_ordem_visual(caminho)
+        r = extrair_documento(paginas, caminho.name, layout)
         if usou_ocr:
             r.avisos.append("texto obtido por OCR: conferir valores")
         problemas = r.problemas + validar(r.dados)
