@@ -24,7 +24,7 @@ Detalhes: [docs/README.md](docs/README.md) (índice). Comece por
 | Banco unificado da base nacional | `banco_unificado.py` | `dados/pncp.db` |
 | Pregões das demais plataformas (PNCP, por mês) | `coleta_pncp.py <início> [fim]` | `dados/brutos_pncp/<ano>/`, `dados/pncp.db` (`fonte = 'pncp'`) |
 | Varrer o PNCP por mês (Aberto-Fechado homologado) | `baixar_api.py <mês>` | `dados/filtrados/aberto-fechado_<mês>/`, `registro/`, `dados/pendentes_manual.csv` |
-| Download manual em paralelo (mês mais recente → mais antigo); `--auto` clica pelo userscript | `baixar_manual.py` + `navegador/compras_auto.user.js` | `dados/filtrados/aberto-fechado_<mês>/relatorios/`, `registro/` |
+| Download manual em paralelo (mês mais recente → mais antigo); `--auto` clica pelo userscript; `--modo fechado-aberto` para os pregões Fechado-Aberto ([docs/09](docs/09-download-fechado-aberto.md)) | `baixar_manual.py` + `navegador/compras_auto.user.js` | `dados/filtrados/<modo>_<mês>/relatorios/`, `registro/` |
 | Registro compartilhado do que já foi buscado/baixado (versionado) | `registro.py` (`compras` regera a lista) | `registro/aberto-fechado_<mês>/<usuario>_{api,manual}.csv`, `registro/compras/<mês>.csv` |
 | Inventário dos PDFs baixados | `inventario_pdfs.py` | tabela `relatorios_pdf` em `dados/pncp.db`, `dados/inventario_pdfs.csv` |
 | Desconto por etapa nos PDFs (duas medidas principais: todos os fornecedores e só válidos; parser ≥ 1.8.0) | `analise_etapas.py --db <extração>.db` | `dados/analise_etapas/<meses>/` |

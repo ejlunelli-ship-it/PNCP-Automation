@@ -169,7 +169,11 @@ item (`manter_selecionados`). Mesmas compras do 5.1, do mês mais recente para o
   reabre todas as não completas (inclusive "zip sem termos" e "sem a opção no site"); com
   `--motivo "zip não recebido"` reabre só as que têm esse último motivo no registro (filtradas antes do laço).
 - Não consulta o PNCP nem grava no `pncp.db`. Opções: `--de`, `--ate`, `--parte k/n`, `--repetir`, `--motivo`,
-  `--auto`.
+  `--auto`, `--modo`.
+- **`--modo fechado-aberto`** (desde 20/11/2026): mesma seleção para os pregões Fechado-Aberto. A lista vem de
+  `registro/compras_fechado-aberto/`, o registro vai para `registro/fechado-aberto_<mês>/` e os PDFs para
+  `dados/filtrados/fechado-aberto_<mês>/relatorios/`. O padrão é `aberto-fechado`, com as pastas de sempre. Os dois
+  modos não leem o registro um do outro. Passo a passo em [09](09-download-fechado-aberto.md).
 
 **Modo `--auto`** (`python baixar_manual.py --auto [--intervalo 20-60] [--max-falhas 3]`): o clique em
 Downloads > "Todos os relatórios e termos" é feito pelo userscript `navegador/compras_auto.user.js`.
@@ -266,6 +270,8 @@ registro/aberto-fechado_<AAAA-MM>/<usuario>_manual.csv   baixar_manual.py
   Aberto-Fechado com item homologado e com `idCompra`, com os campos que os scripts usam (objeto cortado em
   100 caracteres). Sem `dados/pncp.db`, `baixar_api.py` e `baixar_manual.py` usam essa lista, e
   `inventario_pdfs.py` só gera os CSVs. Quem tem o banco regera com `python registro.py compras` e faz commit.
+  Fechado-Aberto: `python registro.py compras --modo fechado-aberto` grava em `registro/compras_fechado-aberto/`.
+  Mês sem compra do modo não tem arquivo; se a pasta da lista existe, o mês fica vazio, sem erro.
 - **Migração:** `python registro.py migrar [AAAA-MM ...]` passa os antigos `motivos.csv`/`manual.csv` de
   `dados/filtrados/` para `registro/`, no nome do usuário atual, e deixa uma cópia `.migrado`. Enquanto não
   migrados, eles continuam sendo lidos. Janeiro/2026 foi migrado sem `data_hora`, `itens` e `sha256`.
@@ -412,6 +418,8 @@ Conferência: com 2026-02 e `--pncp-db`, o script reproduz exatamente `analises/
 
 | Data | Etapa | Mudança |
 |---|---|---|
+| 2026-11-20 | 5.3, 5.4 | **Opção `--modo fechado-aberto`** no `registro.py` e no `baixar_manual.py`. A `SELECAO` recebe o modo de disputa como parâmetro; as pastas usam o prefixo do modo (`registro/fechado-aberto_<mês>/`, `dados/filtrados/fechado-aberto_<mês>/`), e a lista fica em `registro/compras_fechado-aberto/`. O padrão `aberto-fechado` não muda nada: conferido que `registro.py compras` regera `registro/compras/` idêntico, 105.360 compra-mês em 43 meses. Lista Fechado-Aberto exportada do `pncp.db`: 1.576 compra-mês em 42 meses (2023-05 a 2026-10), 1.479 compras distintas, todas com `idCompra` válido. Teste sem navegador: `pendentes()` percorre as 1.576, e `--parte k/3` divide em 505, 481 e 493. Mês sem arquivo com a pasta da lista presente passa a ser mês vazio (2023-04 não tem Fechado-Aberto). `baixar_api.py` e `inventario_pdfs.py` seguem só Aberto-Fechado. Guia em [09](09-download-fechado-aberto.md) |
+| 2026-11-20 | 5 | 2024-11 (extraído com o parser 1.9.1 em outra máquina) juntado à base nova `dados/extracao/aberto-fechado_parser-1.9.1.db` (backup `.antes-2024-11.db`) a partir de `dados/filtrados/aberto-fechado_2024-11_a_2024-12.db` (só leitura, hash `577bbf41…` igual antes e depois; mesmas 48 colunas, tudo em 1.9.1). O 2024-12 desse arquivo é idêntico ao da base (53.551 chaves, mesmo hash do PDF, nenhuma coluna diferente fora `processado_em`/`pasta`) e ficou como estava. Inseridos por nome de coluna, sem `OR IGNORE`, os 45.775 itens de 2024-11 (OK 45.502, REVISAR 273; nenhuma chave repetida). Base: 209.876 itens (2024-01 14.076; 02 17.142; 11 45.775; 12 53.551; 2025-01 38.401; 02 40.931), REVISAR 1.143, `integrity_check` ok; linhas anteriores iguais ao backup (`EXCEPT`) e 2024-11 igual à origem nos dois sentidos; sha256 `30004ad5…` |
 | 2026-11-20 | 5 | Segunda máquina: 2024-12 e depois 2024-11 extraídos com o parser 1.9.1 num banco próprio, `dados/extracao/aberto-fechado_2024-11_a_2024-12.db` (`--workers 4 --sem-separar`, um mês por execução; Excel/log/cache `aberto-fechado_2024-1{1,2}.*`). 2024-12 (17:47–18:19): 53.551 PDFs, OK 53.277, REVISAR 274, igual à extração 1.9.1 da outra máquina; 2024-11 (18:19–18:45): 45.775 PDFs, OK 45.502, REVISAR 273; nenhum ERRO. 99.326 itens, `integrity_check` ok, sha256 `577bbf41…` |
 | 2026-11-20 | 5.3 | Download manual (`baixar_manual.py --auto --intervalo 0 --max-falhas 0`, 3 navegadores com `--parte k/3`, uma janela por navegador) de 2025-02 a 2024-10 concluído (2025-03 já estava baixado na outra máquina). Compras com termos / da lista: 2025-02 2.119 / 2.675 (328 zip sem termos, 30 sem a opção no site, 2 sem botão de downloads, 1 não encontrada); 2025-01 1.961 / 2.500 (328, 24, 2 sem botão, 2 zip não recebido, 1 não encontrada, 1 idCompra inválido); 2024-12 2.989 / 3.900 (478 zip sem termos, 49 não encontradas, 38 acesso não autorizado, 36 sem a opção, 7 sem botão, 3 zip não recebido); 2024-11 2.660 / 3.362 (438, 21 sem a opção, 11 zip não recebido, 7 acesso não autorizado, 3 não encontradas, 1 sem botão); 2024-10 2.948 / 3.633 (463, 26, 6 acesso não autorizado, 6 sem botão, 3 não encontradas, 1 zip não recebido, 1 idCompra inválido). As compras da lista sem linha no registro já estavam resolvidas na pasta e foram puladas. Quando um navegador termina antes, o resto da parte k/3 de outro é dividido pelas partes k/6 e (k+3)/6, sem sobreposição. Pausado a pedido no fim de 2024-10; faltam 2024-09 a 2024-06 (o segundo usuário baixa de 2024-01 para cima, já com 2024-03 parcial) e repetir as "zip não recebido" e "sem botão de downloads" com `--repetir --motivo` |
 | 2026-11-20 | Análise | `analise_etapas.py --db dados/extracao/aberto-fechado_2025-03_a_2026-10.db --meses 2023-04 … 2024-02 2024-12 … 2026-10 --pncp-db ../dados/pncp.db --saida dados/analise_etapas/2023-04_a_2026-10_34meses` (34 meses, todos os da base; 2023 e 2024-01/02 em 1.9.0, 2024-12 a 2025-02 em 1.9.1, demais em 1.8.0). Números em [05](05-decisoes-e-pendencias.md), pendência 14 |
