@@ -193,6 +193,34 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       47.784 (OK 47.756, REVISAR 28); nenhum ERRO. 2026-08 extraído depois no mesmo banco (PDFs copiados da outra
       máquina): 52.543 itens (OK 52.501, REVISAR 42), o mesmo total da 1.7.1; o banco tem 145.929 itens. **Falta:** trocar
       os três meses 1.7.1 da base consolidada por estes e refazer a análise.
+    - **Feito em parte (20/11/2026):** 2026-03 e 2026-04 incorporados à base `aberto-fechado_2025-03_a_2026-10.db` (backup
+      `.antes-2026-03_04.db`) a partir de `dados/filtrados/aberto-fechado_2026-03_04_08.antes-2026-08.db`, a cópia da segunda
+      máquina feita antes de 2026-08 entrar (só 03 e 04; lida só para leitura, hash conferido). Regra: 1.8.0 substitui 1.7.x
+      e o que a base já tem em 1.8.0 fica. 76.655 itens 1.7.x substituídos, sem diferença em nenhuma das 34 colunas antigas
+      (a 1.8.0 só preencheu as 8 colunas novas); 16.731 já em 1.8.0, idênticos; nenhum item novo; `arquivo_origem` igual em
+      todos. Ficam em 1.7.1 47 itens de 6 compras que a reextração não tem (os PDFs não estavam na outra máquina):
+      `90006-2026_98742705900062026` (24), `90522-2026_15815405905222026` (7), `90038-2025_92668105900382025` (5),
+      `90227-2026_92500305902272026` (4), `91743-2025_94300105917432025` (4) e `90026-2026_98621905900262026` (3). Enquanto
+      estiverem em 1.7.1, o `analise_etapas.py` recusa 2026-03 e 04. **Falta:** 2026-08 (o arquivo trazido não o tem) e
+      decidir os 47 itens (reextrair as 6 compras ou tirá-las da base).
+    - **Análise dos 26 meses (20/11/2026, com `--pncp-db`, base com 2023):** 2023-04 a 2023-12 (parser 1.9.0) e os 17 meses
+      da análise anterior (2026-03, 04 e 08 de fora, ainda em 1.7.x quando rodou); saída em
+      `dados/analise_etapas/2023-04_a_2026-10/`. 767.295 itens (todos) e 683.038 (válidos), 43.460 compras, 2.201 UASGs.
+      Aberta 18,9% / 18,8%; após a fechada 34,3% / 32,9%; **ganho da fechada 15,4 p.p. (IC 15,2–15,6) e 14,0 p.p.
+      (13,8–14,2)**; ganho relativo 18,6% / 16,7%; final 33,7% / 33,8%; final = melhor lance em 71% / 92%. Decomposição
+      (673.763): todos 21,6 + 16,1 − 3,9; válidos 19,0 + 14,0 + 0,8 = 33,8. Regressão (2.199 / 2.195 UASGs): β −24,6 e
+      −21,7; licitantes −5,2 e −1,4 (p < 0,001); sigilo +2,3 (p < 0,001) e +1,7 (p = 0,001); serviço −0,4 (n.s.) e −1,6
+      (p = 0,045). Marcas: líder sem lance fechado 29,4%, líder desclassificado 26,7%, reiniciada 9,4%, aberto isolado 5,4%,
+      outlier 1,5%; fechado acima do aberto 8,5%.
+    - **Análise só de 2023 (20/11/2026, com `--pncp-db`):** saída em `dados/analise_etapas/2023-04_a_2023-12/`. 87.318 itens
+      (todos) e 81.852 (válidos), 4.858 compras, 673 UASGs. Aberta 16,6% / 16,1%, a mais fraca da série; após a fechada
+      33,2% / 31,5%; **ganho da fechada 16,6 p.p. (IC 15,9–17,2) e 15,4 p.p. (14,8–16,1)**, acima do de 2025-26; final
+      32,8% / 32,9%; final = melhor lance em 74% / 90%. Decomposição (80.765): todos 18,3 + 17,0 − 2,4; válidos
+      16,2 + 15,5 + 1,2 = 32,9. Regressão (673 UASGs): β −25,7 e −23,2; licitantes −6,8 e −4,5; sigilo +4,9 e +4,4
+      (p < 0,001); serviço n.s. Ganho por mês (todos) de 10,4 (2023-04, 224 itens) a 18,1 (2023-10). Marcas: líder sem
+      lance fechado 27,3%, líder desclassificado 18,6%, reiniciada 5,8%, aberto isolado 5,1%, outlier 0,9%; fechado acima
+      do aberto 6,4%. Disputas mais ralas que em 2025-26 (itens OK de Menor Preço com lance aberto): 5,95 fornecedores por
+      item (8,5), 26% com algum desclassificado (37%), etapa fechada reiniciada em 6,5% (11%); não conferido PDF a PDF.
     - **Análise dos 14 meses em 1.8.0 (19/11/2026, com `--pncp-db`):** 2025-04 a 2026-02 e 2026-05 a 07; saída em
       `dados/analise_etapas/2025-04_a_2026-07/`. 572.333 itens (todos) e 506.766 (válidos), 32.334 compras, 1.905 UASGs.
       Aberta 19,5% / 19,5%; após a fechada 34,6% / 33,2%; **ganho da fechada 15,1 p.p. (IC 14,9–15,4) e 13,7 p.p.
