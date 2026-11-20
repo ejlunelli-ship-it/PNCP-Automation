@@ -1,0 +1,16 @@
+Conferência de 20/11/2026: base dados/extracao/aberto-fechado_2025-03_a_2026-10.db, 31 meses (2023-04 a 2024-02 e 2025-03 a 2026-10), com pncp.db.
+PD = primeira diferença (analise_etapas.regressao); FE item = painel empilhado com efeito fixo de item (within),
+erro-padrão agrupado por UASG descontando os efeitos de item nos graus de liberdade (por isso EP x raiz(2)).
+Sem descontar os efeitos de item (aninhados nas UASGs), o EP coincide com o da PD.
+
+todos os fornecedores: n itens 905804, UASGs 2290
+  F (etapa fechada)  PD  -24.850 (0.266)   FE item  -24.850 (0.376)   dif 3.6e-15
+  F_x_ln_lic         PD   -5.197 (0.270)   FE item   -5.197 (0.382)   dif 1.8e-13
+  F_x_sigiloso       PD    2.414 (0.540)   FE item    2.414 (0.764)   dif 6.8e-14
+  F_x_servico        PD   -0.271 (0.811)   FE item   -0.271 (1.147)   dif 1.2e-12
+
+só fornecedores válidos: n itens 806106, UASGs 2284
+  F (etapa fechada)  PD  -21.810 (0.251)   FE item  -21.810 (0.355)   dif 4.3e-14
+  F_x_ln_lic         PD   -1.337 (0.260)   FE item   -1.337 (0.367)   dif 3.0e-13
+  F_x_sigiloso       PD    1.690 (0.500)   FE item    1.690 (0.707)   dif 1.1e-15
+  F_x_servico        PD   -1.620 (0.793)   FE item   -1.620 (1.121)   dif 1.8e-12

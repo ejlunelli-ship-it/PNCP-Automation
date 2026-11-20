@@ -17,8 +17,10 @@ Medidas principais (decisão de 2026-11-18, docs/05), sempre reportadas juntas:
 Amostra: status OK, Menor Preço, estimado > 0, lance aberto > 0, descontos (aberto, após, final) entre −100% e 99%.
 Marcas do parser (sensibilidades): A líder da aberta sem lance fechado; A3 líder desclassificado; B etapa fechada
 reiniciada; C lance aberto isolado (< 50% do melhor aberto de outro fornecedor); D fechado > 3 × aberto.
-Regressão: 100·ln(preço) com efeito fixo de item (= primeira diferença), F × {ln licitantes, ln valor total, mês}
-e, com --pncp-db, F × {sigiloso, serviço}; erro-padrão agrupado por UASG. IC 95% das médias por bootstrap de compra.
+Regressão: 100·ln(preço) com efeito fixo de ITEM, estimada em primeira diferença (2 observações por item: aberta e
+após a fechada; numericamente igual ao painel empilhado com FE de item), F × {ln licitantes, ln valor total, mês}
+centrados e, com --pncp-db, F × {sigiloso, serviço}. A UASG é só o conglomerado do erro-padrão, NÃO um efeito fixo
+(decisão de 2026-11-20, docs/05 e 07). IC 95% das médias por bootstrap de compra.
 Lê os bancos só para leitura. Saídas em --saida: resultados.json, tabelas.xlsx, por_item.csv.gz.
 """
 import argparse, json, os, sqlite3, sys

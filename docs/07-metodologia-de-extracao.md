@@ -375,6 +375,30 @@ entre −100% e 99%.
 4. Saídas em `dados/analise_etapas/<meses>/` (fora do git): `resultados.json`, `tabelas.xlsx` (abas `principais`,
    `decomposicao`, `teste_direto`, `regressao`, `marcas`, `sensibilidade_todos`, `por_mes`) e `por_item.csv.gz`.
 
+**Especificação da regressão (padrão; decisão de 2026-11-20, docs/05).** A comparação entre etapas é **dentro do item**:
+efeito fixo de item, estimado em **primeira diferença**. Cada item tem duas observações, o melhor lance da etapa aberta
+(`F = 0`) e o melhor após a fechada (`F = 1`). Com efeito fixo de item, o modelo
+`100·ln(preço_it) = α_i + β·F_t + Σ γ_k·(F_t × Z_ik) + ε_it` é numericamente igual à regressão da diferença
+`Δy_i = 100·[ln(após_i) − ln(aberto_i)] = β + Σ γ_k·(Z_ik − Z̄_k) + Δε_i`. O efeito fixo `α_i` absorve tudo que é fixo no
+item: produto, quantidade, estimado, órgão, UASG, data, plataforma e o número de licitantes. Por isso:
+
+- **β** = variação média em pontos de log entre as etapas no mesmo item, com os moderadores na média (os `Z` são
+  centrados). Não há efeitos principais de `Z`: eles são absorvidos por `α_i`. Só as interações `F × Z` são identificadas.
+- **Moderadores `Z`:** ln(licitantes), ln(valor estimado total), dummies de mês e, com `--pncp-db`, orçamento sigiloso e
+  serviço.
+- **Erro-padrão** agrupado por **UASG**: a UASG é o conglomerado, não um efeito fixo. Os efeitos fixos de UASG
+  ficariam redundantes, porque cada item pertence a uma só UASG.
+- **Graus de liberdade:** pelo painel empilhado (*within*), não descontar os efeitos fixos de item, que estão aninhados
+  nos conglomerados (convenção de `reghdfe` e Cameron–Miller). Descontá-los infla o erro-padrão em √2 com
+  duas observações por item. A primeira diferença já sai correta.
+- Não usar efeito fixo de UASG (nem de órgão) no lugar do de item para comparar as etapas: ele deixa variação entre itens
+  da mesma UASG no estimador. Efeitos fixos de UASG, órgão ou produto só entram se a pergunta for **entre itens** (ex.:
+  Aberto × Aberto-Fechado), que não é a desta regressão.
+- **Conferência (20/11/2026, 31 meses):** o painel empilhado com efeito fixo de item reproduz os coeficientes da
+  primeira diferença do script, com diferença < 1e-11 (β −24,850 todos / −21,810 válidos). Script e saída em
+  `analises/conferencia_fe_item_20261120/` (`fe_item.py`, `resultado.txt`). Rodar de novo ao mudar a especificação.
+  O erro-padrão coincide quando os efeitos de item não são descontados.
+
 Conferência: com 2026-02 e `--pncp-db`, o script reproduz exatamente `analises/etapas_pdf_af_20261118/fevereiro_campos_novos.py`
 (ganho de 14,8 p.p. com todos e 13,2 só com válidos; β −23,99 e −20,58). Leva ~3 min por mês (bootstrap de 2.000 réplicas).
 
@@ -386,6 +410,9 @@ Conferência: com 2026-02 e `--pncp-db`, o script reproduz exatamente `analises/
 
 | Data | Etapa | Mudança |
 |---|---|---|
+| 2026-11-20 | Análise | Especificação da regressão registrada como padrão (seção *Desconto por etapa nos PDFs*): efeito fixo de item em primeira diferença, erro-padrão agrupado por UASG (conglomerado, não efeito fixo). O código não mudou (só a docstring). Conferido nos 31 meses: o painel empilhado com efeito fixo de item dá os mesmos coeficientes (β −24,850 / −21,810) |
+| 2026-11-20 | Análise | `analise_etapas.py --db dados/extracao/aberto-fechado_2025-03_a_2026-10.db --meses 2023-04 … 2023-12 2024-01 2024-02 2025-03 … 2026-10 --pncp-db ../dados/pncp.db --saida dados/analise_etapas/2023-04_a_2026-10_31meses` (31 meses, todos os da base; 2023 e 2024 em 1.9.0, demais em 1.8.0). Números em [05](05-decisoes-e-pendencias.md), pendência 14 |
+| 2026-11-20 | 5 | 2024-01 e 2024-02 (PDFs baixados pelo segundo usuário, em `dados/filtrados/aberto-fechado_2024-0{1,2}/relatorios`) extraídos com o parser 1.9.0 num banco próprio, `dados/extracao/aberto-fechado_2024-01_a_2024-02.db` (`--workers 6 --sem-separar`; Excel/log/cache `aberto-fechado_2024-<mês>.*`). Antes, teste em amostra de 50 compras por mês (1.756 PDFs): 1.8.0 (código de `fc02441^`) gravou 2 itens (todo o resto "nenhum bloco de item", layout antigo); 1.9.0 gravou 1.756 (OK 1.754). Extração completa: 2024-01 com 14.076 PDFs (OK 14.038, REVISAR 38) e 2024-02 com 17.142 (OK 17.119, REVISAR 23), nenhum ERRO; 31.218 itens, 1.370 compras; esfera/UF vazias como em 2023 (compras fora dos `contratacoes_*.json`). Juntado à base `aberto-fechado_2025-03_a_2026-10.db` (nome mantido; backup `.antes-2024-01_02.db`) com `INSERT OR IGNORE` por nome de coluna: nenhuma chave repetida, 31.218 itens novos; base com 1.016.606 itens, `integrity_check` ok; banco de 2024 com hash igual antes e depois |
 | 2026-11-20 | Análise | `analise_etapas.py --db dados/extracao/aberto-fechado_2025-03_a_2026-10.db --meses 2023-04 … 2023-12 2025-03 … 2026-10 --pncp-db ../dados/pncp.db --saida dados/analise_etapas/2023-04_a_2026-10_29meses` (29 meses, todos os da base; 2023 em 1.9.0, demais em 1.8.0). Números em [05](05-decisoes-e-pendencias.md), pendência 14 |
 | 2026-11-20 | 5 | 2026-08 em 1.8.0 incorporado à base a partir de `dados/filtrados/aberto-fechado_2026-03_04_08.db` (banco completo da segunda máquina, 145.929 itens; só leitura, hash conferido; backup `.antes-2026-08.db`): 40.617 itens 1.7.x substituídos pela regra de 2026-11-18, 105.312 já em 1.8.0 mantidos (2026-03 e 04 iguais), nenhum novo; colunas antigas iguais, salvo `quantidade_fornecedores` em 1 item. A pedido do usuário, removidos os 47 itens 1.7.1 das 6 compras ausentes da reextração. Base: 985.388 itens, nenhum em 1.7.x, `integrity_check` ok |
 | 2026-11-20 | 5 | 2026-03 e 2026-04 em 1.8.0 (reextraídos na segunda máquina) incorporados à base `dados/extracao/aberto-fechado_2025-03_a_2026-10.db` (nome mantido; backup `.antes-2026-03_04.db`) a partir de `dados/filtrados/aberto-fechado_2026-03_04_08.antes-2026-08.db` (93.386 itens, só 03 e 04; só leitura, hash conferido antes e depois). Regra de 2026-11-18: 1.8.0 substitui 1.7.x (`INSERT OR REPLACE` pela chave, por nome de coluna; 76.655 itens, com as 34 colunas antigas idênticas nos dois) e o que a base já tem em 1.8.0 fica (16.731, idênticos); nenhum item novo. Ficam em 1.7.1 47 itens de 6 compras ausentes da reextração (docs/05, pendência 14). Base: 985.435 itens, só 03 e 04 mudaram, `integrity_check` ok. 2026-08 continua em 1.7.x (40.617 itens) |
