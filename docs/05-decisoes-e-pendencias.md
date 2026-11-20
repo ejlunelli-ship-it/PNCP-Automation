@@ -82,6 +82,12 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
      [07](07-metodologia-de-extracao.md)). Antes de 2023-04 não há compra
      Aberto-Fechado com item homologado (os itens com resultado estão "Em andamento"); decidir se vale tentar o zip
      dessas cerca de 77 compras por uma lista à parte.
+   - **Feito (20/11/2026, segunda máquina):** download de 2025-02 a 2024-10 concluído com os 3 navegadores (uma janela
+     por navegador, `--parte k/3`): 2025-02 com 2.119 de 2.675 compras com termos, 2025-01 1.961 de 2.500, 2024-12
+     2.989 de 3.900, 2024-11 2.660 de 3.362 e 2024-10 2.948 de 3.633 (detalhe por motivo no histórico de
+     [07](07-metodologia-de-extracao.md)). **Falta:** 2024-09 a 2024-06 (pausado a pedido; o segundo usuário sobe a partir
+     de 2024-01 e tem 2024-03 parcial, combinar onde se encontram), repetir com `--repetir --motivo` as 19 "zip não
+     recebido" e as 18 "sem botão de downloads" desses meses, e extrair os PDFs.
    - **Feito (20/11/2026):** 2023 extraído com o parser 1.9.0, que lê o layout antigo dos termos (99% dos PDFs de 2023;
      [04 §4.1](04-formato-dos-relatorios.md)), num banco próprio, `dados/extracao/aberto-fechado_2023-04_a_2023-12.db`:
      96.758 PDFs, OK 96.559, REVISAR 198, ERRO 1; 96.757 itens. Juntado à base `aberto-fechado_2025-03_a_2026-10.db`
@@ -213,7 +219,7 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       usuário após teste em amostra (50 compras por mês: 1.8.0 gravou 2 de 1.756 itens, layout antigo; 1.9.0, 1.756), em
       `dados/extracao/aberto-fechado_2024-01_a_2024-02.db`: 2024-01 com 14.076 itens (REVISAR 38) e 2024-02 com 17.142
       (REVISAR 23). Juntados à base (backup `.antes-2024-01_02.db`), sem chave repetida: 1.016.606 itens. Ainda sem
-      download: 2024-03 (parcial) a 2025-02.
+      download: 2024-03 (parcial) a 2024-09 (ver pendência 7).
     - **Análise dos 31 meses (20/11/2026, com `--pncp-db`):** 2023-04 a 2024-02 e 2025-03 a 2026-10, todos; saída em
       `dados/analise_etapas/2023-04_a_2026-10_31meses/`. 928.319 itens (todos) e 826.076 (válidos), 51.093 compras, 2.291
       UASGs. Aberta 19,1% / 19,0%; após a fechada 34,5% / 33,0%; **ganho da fechada 15,4 p.p. (IC 15,3–15,6) e 14,0 p.p.
