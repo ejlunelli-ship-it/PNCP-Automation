@@ -376,6 +376,9 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
     [09](09-download-fechado-aberto.md). **Próximos passos:** (a) baixar (dividido entre máquinas com `--parte k/n`);
     (b) testar o parser numa amostra de termos Fechado-Aberto, em que a etapa fechada vem antes da aberta, e só depois
     extrair num banco próprio; (c) decidir se os presenciais entram na análise.
+    - **Feito (20/11/2026, segunda máquina):** (a) download concluído com 3 navegadores: 1.204 das 1.479 compras com
+      termos (190 zip sem termos, 65 não encontradas no site, 19 sem a opção, 1 acesso não autorizado); 22.220 PDFs em
+      `dados/filtrados/fechado-aberto_<mês>/` (só nesta máquina). Detalhe no histórico de [07](07-metodologia-de-extracao.md).
 
 ## Questões em aberto
 
