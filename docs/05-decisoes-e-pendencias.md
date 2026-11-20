@@ -235,6 +235,13 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       `dados/extracao/aberto-fechado_2024-11_a_2024-12.db` (99.326 itens; `integrity_check` ok): 2024-12 com 53.551
       (OK 53.277, REVISAR 274; igual à extração da outra máquina) e 2024-11 com 45.775 (OK 45.502, REVISAR 273); nenhum
       ERRO. **Feito (20/11/2026 19:00):** 2024-11 juntado à base `aberto-fechado_parser-1.9.1.db` (2024-12 já estava lá, idêntico).
+    - **Feito (20/11/2026 20:35, máquina do primeiro usuário):** 2024-03 a 2024-09 (download manual concluído, Firefox) extraídos
+      com o parser 1.9.1 num banco próprio, `dados/extracao/aberto-fechado_2024-03_a_2024-09.db` (257.156 itens, todos 1.9.1;
+      `integrity_check` ok). Por mês (itens; REVISAR): 2024-03 19.911 (44), 04 28.379 (68), 05 32.208 (81), 06 37.658 (137),
+      07 48.909 (213), 08 47.016 (161), 09 43.075 (159). Seis PDFs em ERRO, fora do banco: 4 vazios (0 bytes) em 2024-08
+      (compras `08002405900012024`, `92656005900092024`, `98742505900542024`, `98756505900852024`; baixar de novo) e 2
+      escaneados (OCR sem texto útil: `98591505900142024` em 07, `98233305900462024` em 09). **Pendente:** juntar à base
+      `aberto-fechado_parser-1.9.1.db` (outra máquina) e repetir as "sem botão de downloads" de 2024-03 a 09 (1.070 compras).
     - **Análise dos 34 meses (20/11/2026, com `--pncp-db`; feita sobre a base mista, hoje `.com-1.9.1_20261120.db`):** 2023-04 a 2024-02, 2024-12 a 2026-10, todos; saída em
       `dados/analise_etapas/2023-04_a_2026-10_34meses/`. 1.048.923 itens (todos) e 931.983 (válidos), 57.676 compras,
       2.357 UASGs. Aberta 19,0% / 18,9%; após a fechada 34,4% / 32,9%; **ganho da fechada 15,4 p.p. (IC 15,2–15,6) e
