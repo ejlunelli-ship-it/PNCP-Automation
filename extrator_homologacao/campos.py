@@ -157,7 +157,8 @@ def situacao_item(secao, antigo=False):
 
 
 CRITERIOS_DO_ITEM = ("Menor Preço", "Maior Desconto")
-RE_VALOR_EM_REAIS = re.compile(r"^R\$\s*[\d.]+,\d+\s*\*?$")  # valor de Menor Preço: "R$ 5,4800"
+# valor de Menor Preço: "R$ 5,4800" (ou "R$ 5,4800 (unitário)"/"(total)" nas propostas dos termos de transição)
+RE_VALOR_EM_REAIS = re.compile(r"^R\$\s*[\d.]+,\d+\s*\*?(?: \((?:unitário|total)\))?$")
 
 
 def inferir_criterio(criterio_compra, textos_valores):

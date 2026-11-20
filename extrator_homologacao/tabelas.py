@@ -14,6 +14,9 @@ RE_VALOR_UNITARIO = re.compile(r"^" + _PCT + r"R\$\s*[\d.]+,\d+" + _FIM + r" \(u
 RE_VALOR_TOTAL = re.compile(r"^" + _PCT + r"R\$\s*[\d.]+,\d+" + _FIM + r" \(total\)$")
 # layout antigo: só o valor unitário, sem "(unitário)" ("R$ 5,5100", "49,00% (R$ 2,1828)")
 RE_VALOR_SOLTO = re.compile(r"^" + _PCT + r"R\$\s*[\d.]+,\d+" + _FIM + r"$")
+# propostas no layout antigo: valor solto ou, nos termos de transição (dez/2024–fev/2025, ainda com
+# "Porte MeEpp/Equiparada:"), já com "(unitário)" ("R$ 10,8800 (unitário)" / "R$ 3.916,8000 (total)")
+RE_VALOR_ANTIGO = re.compile(r"^" + _PCT + r"R\$\s*[\d.]+,\d+" + _FIM + r"(?: \(unitário\))?$")
 # linha que fecha o nome do fornecedor na proposta, no layout atual e no antigo
 FIM_DO_NOME = {False: "Benefício Me/Epp:", True: "Porte MeEpp/Equiparada:"}
 # linhas que identificam o autor de uma mensagem do chat (antecedem a data/hora)
@@ -57,7 +60,7 @@ def ler_propostas(secao, antigo=False):
     """Cada proposta começa em '<CNPJ/CPF> - <nome>'; o nome pode quebrar linha até 'Benefício Me/Epp'
     ('Porte MeEpp/Equiparada' no layout antigo, que traz os valores sem '(unitário)')."""
     linhas = secao.linhas
-    re_valor = RE_VALOR_SOLTO if antigo else RE_VALOR_UNITARIO
+    re_valor = RE_VALOR_ANTIGO if antigo else RE_VALOR_UNITARIO
     inicios = [i for i, l in enumerate(linhas) if RE_FORNECEDOR.match(l.texto)]
     propostas = []
     for pos, ini in enumerate(inicios):
@@ -111,7 +114,7 @@ def juntar_valores_quebrados(bloco):
 
 def valor_apos_rotulo(bloco, rotulo, antigo=False):
     """Valor unitário logo após o rótulo; None quando ausente, 'Não Realizado' ou 'Não informado'."""
-    re_valor = RE_VALOR_SOLTO if antigo else RE_VALOR_UNITARIO
+    re_valor = RE_VALOR_ANTIGO if antigo else RE_VALOR_UNITARIO
     if rotulo in bloco:
         i = bloco.index(rotulo)
         if i + 1 < len(bloco) and re_valor.match(bloco[i + 1]):

@@ -25,6 +25,7 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
 | 2026-11-16 | Lista das compras a baixar versionada em `registro/compras/<mês>.csv`, usada quando não há `pncp.db` | Quem só baixa não precisa copiar os 16 GB do banco |
 | 2026-11-17 | Automatizar o clique do download do zip com userscript no navegador real (`baixar_manual.py --auto`, `navegador/compras_auto.user.js`) em vez de Playwright; chamar a URL do zip direto foi descartado | A URL exige um token novo do hCaptcha a cada requisição; o userscript usa o token gerado pelo próprio site, sem marcas de automação, e o usuário resolve os desafios |
 | 2026-11-18 | Itens REVISAR da extração: **ficam fora da análise** (filtrar `status_extracao = 'OK'`) os de etapa fechada com lances na tabela mas sem lances na mensagem de encerramento, os sem proposta identificada e os de etapa/desempate sem registro de encerramento. Fornecedor estrangeiro (`Identificador ESTRANG…`) passa a ser lido (parser 1.7.2); participante com lance sem proposta listada vira aviso e o item fica OK, sem conferência manual | Decisão do usuário: na dúvida sobre a etapa, excluir; os valores do participante sem proposta são confiáveis. Na base de 2026-02/03/04/08, 110 itens de 180.909 ficam de fora |
+| 2026-11-20 | **Bases separadas por versão do parser.** A base nova `dados/extracao/aberto-fechado_parser-1.9.1.db` reúne todos os meses extraídos na 1.9.1 (hoje 2024-01, 02, 12; 2025-01, 02). A base antiga `aberto-fechado_2025-03_a_2026-10.db` mantém os meses em 1.8.0 e 1.9.0, sem itens 1.9.1 | Decisão do usuário: não misturar versões do parser na mesma base |
 | — | Melhor lance da etapa conta mesmo se o fornecedor for desclassificado depois; propostas iniciais entram na etapa aberta | Medir a dinâmica da disputa, não só o resultado |
 | 2026-11-18 | **Duas medidas principais** do desconto por etapa nos PDFs, sempre reportadas juntas: **todos os fornecedores** (melhor lance de cada etapa como na disputa) e **só fornecedores válidos** (sem desclassificados, recusados e inabilitados; colunas `_validos` do parser 1.8.0). Procedimento em `analise_etapas.py` ([07, Análise](07-metodologia-de-extracao.md)) | Decisão do usuário. A primeira descreve a dinâmica da disputa; a segunda, o desconto que o órgão obtém de cada etapa. O desconto final é o mesmo nas duas. Em 2026-02 o ganho da fechada é 14,8 e 13,2 p.p. |
 | 2026-11-19 | **Layout antigo dos termos** (PDFs emitidos até fev/2025, ex.: compras de 2023): ler pelo texto refeito na ordem visual da página (parser 1.9.0, [04 §4.1](04-formato-dos-relatorios.md)). Onde o relatório não traz o dado: `valor_estimado_total` = estimado × quantidade e, com "Menor Preço / Maior Desconto" na compra, critério do item pelo formato dos valores (`P% (R$ V)` → Maior Desconto; só R$ → Menor Preço; sem valores → vazio). As duas inferências ficam anotadas em `fontes_extracao` | Pedido do usuário (extrair 2023). Sem o total, os itens saem da regressão do `analise_etapas.py` (filtro `valor_estimado_total > 0`); sem o critério, saem da amostra (só Menor Preço). No layout atual, total = unitário × quantidade, e os dois formatos de valor não se misturam num item |
@@ -220,6 +221,24 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       `dados/extracao/aberto-fechado_2024-01_a_2024-02.db`: 2024-01 com 14.076 itens (REVISAR 38) e 2024-02 com 17.142
       (REVISAR 23). Juntados à base (backup `.antes-2024-01_02.db`), sem chave repetida: 1.016.606 itens. Ainda sem
       download: 2024-03 (parcial) a 2024-09 (ver pendência 7).
+    - **Feito (20/11/2026):** 2024-12 (download completo, conferido no registro), 2025-01 e 2025-02 extraídos com o parser **1.9.1** (termos de
+      transição, [04 §4.1](04-formato-dos-relatorios.md)) em `dados/extracao/aberto-fechado_2024-12_a_2025-02.db`: 53.551,
+      38.401 e 40.931 itens; REVISAR 274, 269 e 267 (com a 1.9.0 foram 1.695, 2.583 e 1.409). Juntados à base às 16:50 e **retirados dela às 17:35** por decisão do
+      usuário (bases separadas por versão, tabela de decisões): a base antiga voltou ao backup `.antes-2024-12_2025-02.db`
+      e a versão com os três meses ficou em `.com-1.9.1_20261120.db`. 2024-01/02 também foram reextraídos em 1.9.1
+      (só a compra `98600105008532023` muda: 11 itens com lance aberto diferente). Os cinco meses estão na base nova
+      `dados/extracao/aberto-fechado_parser-1.9.1.db` (164.101 itens). **Pendente:** ver se há termos de transição em 2023
+      e reextrair na 1.9.1 os demais meses, se o usuário quiser a base nova completa.
+    - **Análise dos 34 meses (20/11/2026, com `--pncp-db`; feita sobre a base mista, hoje `.com-1.9.1_20261120.db`):** 2023-04 a 2024-02, 2024-12 a 2026-10, todos; saída em
+      `dados/analise_etapas/2023-04_a_2026-10_34meses/`. 1.048.923 itens (todos) e 931.983 (válidos), 57.676 compras,
+      2.357 UASGs. Aberta 19,0% / 18,9%; após a fechada 34,4% / 32,9%; **ganho da fechada 15,4 p.p. (IC 15,2–15,6) e
+      14,1 p.p. (13,9–14,2)**; ganho relativo 18,6% / 16,8%; final 33,8% / 33,9%; final = melhor lance em 71% / 92%.
+      Decomposição (918.581): todos 21,7 + 16,1 − 3,9; válidos 19,0 + 14,1 + 0,8 = 33,9. Regressão (efeito fixo de item
+      em primeira diferença; 2.356 / 2.349 UASGs como conglomerados): β −24,8 e −21,8; licitantes −5,2 e −1,3
+      (p < 0,001); sigilo +2,4 (p < 0,001) e +1,7 (p = 0,001); serviço 0,0 (n.s.) e −1,4 (p = 0,079, deixou de ser
+      significativo a 5%). Meses novos: 2024-12 aberta 17,9, ganho 15,1 / 14,1; 2025-01 aberta 17,5, ganho 15,0 / 13,9;
+      2025-02 aberta 18,1, ganho 15,5 / 14,6. Marcas: líder sem lance fechado 29,5%, líder desclassificado 26,9%,
+      reiniciada 9,4%, aberto isolado 5,4%, outlier 1,5%; fechado acima do aberto 8,6%.
     - **Análise dos 31 meses (20/11/2026, com `--pncp-db`):** 2023-04 a 2024-02 e 2025-03 a 2026-10, todos; saída em
       `dados/analise_etapas/2023-04_a_2026-10_31meses/`. 928.319 itens (todos) e 826.076 (válidos), 51.093 compras, 2.291
       UASGs. Aberta 19,1% / 19,0%; após a fechada 34,5% / 33,0%; **ganho da fechada 15,4 p.p. (IC 15,3–15,6) e 14,0 p.p.

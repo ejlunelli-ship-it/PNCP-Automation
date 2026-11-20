@@ -88,6 +88,29 @@ valor da mensagem "A etapa fechada foi iniciada … lance entre R$ X e …" em 4
 OK pela mensagem de fim do desempate ME/EPP sem "Me/Epp" (`O item 7 teve o 1º desempate encerrado às … O tempo
 expirou…`), reconhecida desde a 1.9.0 nos dois layouts.
 
+**Termos de transição (parser 1.9.1).** Nos PDFs das listas de 2024-12 a 2025-02 (compras de 2023/24 homologadas
+nesse período) aparece uma forma intermediária. As propostas ainda trazem `Porte MeEpp/Equiparada:`, então o termo é
+detectado como antigo, mas os valores das propostas já vêm com `(unitário)`/`(total)`
+(`R$ 10,8800 (unitário)` / `R$ 3.916,8000 (total)`), como no layout atual. Até a 1.9.0, o modo antigo só aceitava o
+valor solto. Por isso, nas propostas desses termos não eram lidos o valor ofertado, a situação (que vem logo depois:
+`Fornecedor inabilitado`, `Proposta desclassificada`), a `Valor proposta:` nem a `Valor negociado:`. Consequências:
+nenhum fornecedor saía como desclassificado (as medidas "só válidos" incluíam inabilitados); a proposta inicial não
+entrava no melhor lance aberto; o critério do item sem lances não era inferido; e, havendo negociação, o item saía
+REVISAR ("valor negociado diverge … tabela de propostas None"), sem lance aceito. A 1.9.1 aceita, no modo antigo, o
+valor com ou sem `(unitário)` (`tabelas.RE_VALOR_ANTIGO`, `campos.RE_VALOR_EM_REAIS`).
+
+Conferência da 1.9.1 em amostra de 210 compras (4.281 PDFs: 60 compras com o erro e 30 sorteadas em cada mês de
+2024-12, 2025-01, 2025-02, 2024-01 e 2024-02), comparada campo a campo com a 1.9.0:
+- **2024-01/02 (antigo puro, 1.109 itens):** nenhuma mudança;
+- **2024-12 a 2025-02 (3.172 itens):**
+  - 180 itens passaram de REVISAR a OK, com lance aceito;
+  - 738 passaram a ter fornecedor desclassificado;
+  - 128 deixaram de ter melhor lance "só válidos" (o único fornecedor fora desclassificado/inabilitado);
+  - 383 ganharam melhor lance aberto, antes vazio;
+  - em 347, o melhor lance aberto diminuiu. Nos 347, o novo valor é a `Valor proposta:` (proposta inicial) de um
+    fornecedor, e nunca o valor ofertado;
+  - 194 ganharam o critério do item.
+
 ## 4.2 Itens em grupo (lote) — suportado desde o parser 1.6.0
 
 Encontrado em Fortaleza 90119/2025, no arquivo "TERMO DE HOMOLOGAÇÃO-grupo1", de 20 páginas, que
