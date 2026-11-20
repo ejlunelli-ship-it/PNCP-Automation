@@ -229,6 +229,10 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       (só a compra `98600105008532023` muda: 11 itens com lance aberto diferente). Os cinco meses estão na base nova
       `dados/extracao/aberto-fechado_parser-1.9.1.db` (164.101 itens). **Pendente:** ver se há termos de transição em 2023
       e reextrair na 1.9.1 os demais meses, se o usuário quiser a base nova completa.
+    - **Feito (20/11/2026, segunda máquina):** 2024-12 e 2024-11 extraídos com o parser 1.9.1 num banco próprio,
+      `dados/extracao/aberto-fechado_2024-11_a_2024-12.db` (99.326 itens; `integrity_check` ok): 2024-12 com 53.551
+      (OK 53.277, REVISAR 274; igual à extração da outra máquina) e 2024-11 com 45.775 (OK 45.502, REVISAR 273); nenhum
+      ERRO. **Falta:** juntar 2024-11 à base `aberto-fechado_parser-1.9.1.db` (2024-12 já está lá).
     - **Análise dos 34 meses (20/11/2026, com `--pncp-db`; feita sobre a base mista, hoje `.com-1.9.1_20261120.db`):** 2023-04 a 2024-02, 2024-12 a 2026-10, todos; saída em
       `dados/analise_etapas/2023-04_a_2026-10_34meses/`. 1.048.923 itens (todos) e 931.983 (válidos), 57.676 compras,
       2.357 UASGs. Aberta 19,0% / 18,9%; após a fechada 34,4% / 32,9%; **ganho da fechada 15,4 p.p. (IC 15,2–15,6) e
