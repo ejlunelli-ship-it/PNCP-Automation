@@ -384,7 +384,11 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       em todos os 1.359 itens com valor ([07 §6](07-metodologia-de-extracao.md)). O Aberto-Fechado não muda.
       Extraídas as 1.204 compras (22.220 PDFs; OK 22.197, REVISAR 21) em
       `dados/extracao/fechado-aberto_2023-05_a_2026-10.db`, 22.218 itens, etapas preenchidas em 21.537.
-      **Falta:** decidir (c) e adaptar a análise (`analise_etapas.py` supõe a ordem aberta → fechada).
+      **Feito (20/11/2026):** `analise_etapas.py --modo fechado-aberto` (ordem fechada → aberta; o AF sai idêntico).
+      Primeira rodada, 41 meses, sem `--pncp-db`: 20.177 itens (todos) / 17.470 (válidos), 1.149 compras; fechada
+      15,9% / 15,8%, **ganho da aberta 9,9 p.p. (IC 9,0–10,9) / 10,5 p.p. (9,5–11,6)**, final 27,8% / 27,9%
+      (detalhe em [07](07-metodologia-de-extracao.md)). **Falta:** decidir (c) e rodar com `--pncp-db` (sigilo e
+      serviço) na máquina que tem o `pncp.db`.
 
 ## Questões em aberto
 
