@@ -305,7 +305,17 @@ Parser determinístico, com PyMuPDF e regex. Sem modelos de linguagem.
    - conta mesmo que o fornecedor seja desclassificado depois;
    - lances excluídos (`*`) não contam;
    - a etapa aberta inclui as propostas iniciais;
-   - a etapa fechada usa só lances enviados na janela, inclusive em grupo.
+   - a etapa fechada usa só lances enviados na janela, inclusive em grupo;
+   - **Fechado-Aberto (parser 1.10.0):** a etapa fechada é a proposta sigilosa de cada fornecedor
+     (`Valor proposta`), que não aparece na tabela de lances: `melhor_lance_modo_fechado` é a melhor
+     proposta e `melhor_lance_modo_fechado_validos` a melhor sem os desclassificados. Os convocados
+     ("A etapa aberta foi iniciada para o item N. Fornecedores convocados apresentaram os lances entre…")
+     partem da proposta na etapa aberta, que vai de "O item N foi aberto." em diante: todos os lances da
+     tabela são da aberta, salvo os de uma janela de desempate, e `melhor_lance_modo_aberto` inclui as
+     propostas, como no AF (sem lance, aberto = fechado). Lance antes da abertura vira REVISAR. As
+     propostas não convocadas saem como "desclassificada por não atender aos critérios de classificação
+     do modo de disputa fechado/aberto"; nunca são a melhor, então não mudam o valor válido.
+     `lider_aberto_lance_fechado` e `reinicios_etapa_fechada` ficam vazios (só AF).
 6. **Conferência:** compara com os valores da mensagem de encerramento. Em grupo, pela soma de
    valor × quantidade dos itens de cada convocado.
 6a. **Liderança e quedas (parser 1.8.0),** para auditar os casos com lance fechado acima do aberto
@@ -418,6 +428,8 @@ Conferência: com 2026-02 e `--pncp-db`, o script reproduz exatamente `analises/
 
 | Data | Etapa | Mudança |
 |---|---|---|
+| 2026-11-20 | 6 | Fechado-Aberto extraído inteiro com o parser 1.10.0 num banco próprio, `dados/extracao/fechado-aberto_2023-05_a_2026-10.db` (um mês por execução, de 2026-10 a 2023-05, `--workers 4 --sem-separar`; Excel/log/cache em `dados/extracao/fechado-aberto/`; 20:40–21:10). 22.220 PDFs de 1.204 compras: OK 22.197, REVISAR 21 (10 desempate ME/EPP sem encerramento, 7 valor negociado divergente, 3 sem proposta identificada, 1 evento de aceitação de outro fornecedor); nenhum ERRO. 22.218 itens gravados (2 sem uasg/compra/item), `integrity_check` ok, sha256 `4f9430e1…`. Etapas preenchidas em 21.537 itens; aberto abaixo do fechado em 13.077 e igual em 8.460 (sem lance na aberta), nunca acima. Resultado: homologado 17.464, fracassado 3.533, deserto 678, em andamento 347, revogado 173, anulado 18. Critério: Menor Preço 21.516, Maior Desconto 176 |
+| 2026-11-20 | 6 | **Parser 1.10.0:** regra de etapas do Fechado-Aberto (seção 6, item 5). Até a 1.9.1 o modo saía com etapas vazias e REVISAR "sem regra de separação de lances por etapa" (983 de 1.494 PDFs na amostra). Teste em 50 compras sorteadas (semente 20261120; 1.494 PDFs de 2023 a 2026): OK 1.493, REVISAR 1 (item sem proposta identificada); fechado e aberto preenchidos em 1.359 itens (os demais são desertos ou fracassados sem proposta); aberto ≤ fechado em todos (igual em 578, sem lance na aberta); lance aceito acima do melhor final em 205 (líder desclassificado) e abaixo em 112 (todos com valor negociado). Conferência independente pelo texto dos 1.359 itens Menor Preço: fechado e aberto iguais em todos, depois de tirar do conferidor o "Intervalo mínimo entre lances" e os lances com `*`. Aberto-Fechado sem mudança: 600 PDFs de 2024-11 reextraídos iguais à base 1.9.1 em todas as colunas de etapa |
 | 2026-11-20 | 5.3 | Download Fechado-Aberto concluído numa só máquina (`baixar_manual.py --modo fechado-aberto --auto --intervalo 0 --max-falhas 0 --de 2026-10 --ate 2023-04`, Chrome `1/3`, Edge `2/3`, Firefox `3/3`, 19:22–20:30): as 1.479 compras da lista têm registro; 1.204 completas, 190 zip sem termos, 65 compra não encontrada no site, 19 sem a opção no site, 1 acesso não autorizado. A única "zip não recebido" (2025-07) foi repetida com `--repetir --motivo` e se resolveu. 22.220 PDFs em `dados/filtrados/fechado-aberto_<mês>/relatorios/` |
 | 2026-11-20 | 5, 5.3 | Download manual (`baixar_manual.py --auto --intervalo 0 --abas 2 --max-falhas 10`, Firefox, um mês por vez) de 2024-03 a 2024-09 concluído; `--max-falhas 10` porque, rodando sem terminal, a pausa após 3 falhas seguidas ("acesso não autorizado", "zip não recebido") travava a fila. Extraídos com o parser 1.9.1 em `dados/extracao/aberto-fechado_2024-03_a_2024-09.db` (257.156 itens; REVISAR 863; 6 PDFs em ERRO: 4 vazios e 2 escaneados). Ver docs/05 |
 | 2026-11-20 | 5.3, 5.4 | **Opção `--modo fechado-aberto`** no `registro.py` e no `baixar_manual.py`. A `SELECAO` recebe o modo de disputa como parâmetro; as pastas usam o prefixo do modo (`registro/fechado-aberto_<mês>/`, `dados/filtrados/fechado-aberto_<mês>/`), e a lista fica em `registro/compras_fechado-aberto/`. O padrão `aberto-fechado` não muda nada: conferido que `registro.py compras` regera `registro/compras/` idêntico, 105.360 compra-mês em 43 meses. Lista Fechado-Aberto exportada do `pncp.db`: 1.576 compra-mês em 42 meses (2023-05 a 2026-10), 1.479 compras distintas, todas com `idCompra` válido. Teste sem navegador: `pendentes()` percorre as 1.576, e `--parte k/3` divide em 505, 481 e 493. Mês sem arquivo com a pasta da lista presente passa a ser mês vazio (2023-04 não tem Fechado-Aberto). `baixar_api.py` e `inventario_pdfs.py` seguem só Aberto-Fechado. Guia em [09](09-download-fechado-aberto.md) |

@@ -379,6 +379,12 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
     - **Feito (20/11/2026, segunda máquina):** (a) download concluído com 3 navegadores: 1.204 das 1.479 compras com
       termos (190 zip sem termos, 65 não encontradas no site, 19 sem a opção, 1 acesso não autorizado); 22.220 PDFs em
       `dados/filtrados/fechado-aberto_<mês>/` (só nesta máquina). Detalhe no histórico de [07](07-metodologia-de-extracao.md).
+    - **Feito (20/11/2026):** (b) parser 1.10.0 com a regra do Fechado-Aberto (etapa fechada = `Valor proposta`;
+      aberta = lances da tabela mais as propostas), testado em 50 compras (1.494 PDFs; OK 1.493) e conferido pelo texto
+      em todos os 1.359 itens com valor ([07 §6](07-metodologia-de-extracao.md)). O Aberto-Fechado não muda.
+      Extraídas as 1.204 compras (22.220 PDFs; OK 22.197, REVISAR 21) em
+      `dados/extracao/fechado-aberto_2023-05_a_2026-10.db`, 22.218 itens, etapas preenchidas em 21.537.
+      **Falta:** decidir (c) e adaptar a análise (`analise_etapas.py` supõe a ordem aberta → fechada).
 
 ## Questões em aberto
 
