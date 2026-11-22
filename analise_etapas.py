@@ -27,6 +27,8 @@ Regressão: 100·ln(preço) com efeito fixo de ITEM, estimada em primeira difere
 após a fechada; numericamente igual ao painel empilhado com FE de item), F × {ln licitantes, ln valor total, mês}
 centrados e, com --pncp-db, F × {sigiloso, serviço}. A UASG é só o conglomerado do erro-padrão, NÃO um efeito fixo
 (decisão de 2026-11-20, docs/05 e 07). IC 95% das médias por bootstrap de compra.
+Mês do item (regra de 2026-11-22, docs/05): o PRIMEIRO mês do resultado da compra, das listas versionadas
+registro/compras*/<mês>.csv; a pasta do PDF fica em `mes_pasta`. --mes-da-pasta volta à regra antiga (mês da pasta).
 Lê os bancos só para leitura. Saídas em --saida: resultados.json, tabelas.xlsx, por_item.csv.gz.
 """
 import argparse, json, os, sqlite3, sys
@@ -70,7 +72,24 @@ NUM = ["valor_estimado", "valor_estimado_total", "melhor_lance_modo_aberto", "me
 
 
 # ---------------------------------------------------------------- dados
-def ler_bancos(caminhos, meses, e):
+def primeiro_mes_resultado(modo):
+    """{idCompra: primeiro mês AAAA-MM em que a compra aparece nas listas versionadas registro/compras*/<mês>.csv}."""
+    import csv
+    import registro
+    registro.usar_modo(modo)
+    pasta = registro.pasta_compras()
+    arquivos = sorted(pasta.glob("????-??.csv"))
+    if not arquivos:
+        sys.exit(f"sem {pasta}/<mês>.csv: rode `git pull` (ou use --mes-da-pasta)")
+    primeiro = {}
+    for arq in arquivos:  # em ordem de mês: fica o primeiro
+        with open(arq, newline="", encoding="utf-8") as f:
+            for linha in csv.DictReader(f):
+                primeiro.setdefault(linha["idCompra"], arq.stem)
+    return primeiro
+
+
+def ler_bancos(caminhos, meses, e, mes_da_pasta=False):
     partes = []
     for c in caminhos:
         st = os.stat(c)
@@ -82,8 +101,24 @@ def ler_bancos(caminhos, meses, e):
     df["mes"] = df.arquivo_origem.str.extract(e["prefixo"] + r"_(\d{4}-\d{2})")[0]
     if df.mes.isna().all():
         sys.exit(f"nenhum arquivo_origem em pasta {e['prefixo']}_<mês>: confira o --modo")
+    # a base pode ter os dois modos (aberto-fechado_parser-1.9.1.db tem também o Fechado-Aberto, 20/11/2026):
+    # cada modo usa só os itens da própria pasta; antes, sem --meses, os do outro modo entravam com mês vazio
+    outro_modo = df.mes.isna()
+    if outro_modo.any():
+        print(f"{int(outro_modo.sum())} itens fora de pastas {e['prefixo']}_<mês> (outro modo de disputa): ignorados")
+        df = df[~outro_modo]
     df["id_compra"] = df.arquivo_origem.str.extract(r"-(\d{17})-(?:s\d+-)?item-")[0]  # homologação ou julgamento (-sN-)
     assert df.id_compra.notna().all(), "arquivo_origem sem id da compra: " + str(df.arquivo_origem[df.id_compra.isna()].head(3).tolist())
+    df["mes_pasta"] = df.mes
+    if not mes_da_pasta:
+        # regra de 2026-11-22 (docs/05): o mês da compra é o PRIMEIRO mês do resultado (registro/compras*/<mês>.csv,
+        # compras com item homologado no mês). A pasta do PDF é onde a compra foi baixada, e o download, do mês mais
+        # recente ao mais antigo, pulava a compra já completa em outro mês: a pasta pode ser um mês posterior
+        primeiro = primeiro_mes_resultado(e["prefixo"])
+        df["mes"] = df.id_compra.map(primeiro).fillna(df.mes_pasta)
+        fora = df.id_compra.map(primeiro).isna()
+        print(f"mês = primeiro mês do resultado (registro/): {int((df.mes != df.mes_pasta).sum())} itens mudam de mês "
+              f"em relação à pasta; {int(fora.sum())} sem a compra na lista (ficam no mês da pasta)")
     if meses:
         df = df[df.mes.isin(meses)]
     if df.empty:
@@ -252,10 +287,12 @@ def main(argv=None):
                                                "no Fechado-Aberto, fechado-aberto_<meses>)")
     ap.add_argument("--modo", choices=list(MODOS), default="aberto-fechado",
                     help="modo de disputa dos bancos (padrão aberto-fechado); define a ordem das etapas")
+    ap.add_argument("--mes-da-pasta", action="store_true",
+                    help="mês = pasta do PDF, como até 2026-11-21 (padrão: primeiro mês do resultado, de registro/)")
     args = ap.parse_args(argv)
     e = MODOS[args.modo]
 
-    df = ler_bancos(args.db, args.meses, e)
+    df = ler_bancos(args.db, args.meses, e, args.mes_da_pasta)
     com_pncp = bool(args.pncp_db)
     if com_pncp:
         df = ligar_pncp(df, args.pncp_db)
@@ -271,7 +308,9 @@ def main(argv=None):
     s = df[df.na_amostra].copy()
     v = s[s.validos_ok].copy()
     R = {"modo": args.modo, "ordem_etapas": [e["rot1"], e["rot2"]],
-         "bancos": [str(p) for p in args.db], "meses": meses, "funil": funil, "com_pncp_db": com_pncp,
+         "bancos": [str(p) for p in args.db], "meses": meses,
+         "regra_mes": "pasta do PDF" if args.mes_da_pasta else "primeiro mês do resultado (registro/)",
+         "funil": funil, "com_pncp_db": com_pncp,
          "versoes_parser": df.versao_parser.value_counts().to_dict(), "compras": int(s.id_compra.nunique()),
          "uasgs": int(s.uasg.nunique())}
     T = {}
@@ -314,7 +353,7 @@ def main(argv=None):
         pd.DataFrame(list(funil.items()), columns=["etapa_do_filtro", "itens"]).to_excel(xw, sheet_name="funil", index=False)
         for k, t in T.items():
             t.to_excel(xw, sheet_name=k[:31], index=False)
-    cols = ["mes", "id_compra", "uasg", "numero_compra", "item", "valor_estimado", "melhor_lance_modo_aberto",
+    cols = ["mes", "mes_pasta", "id_compra", "uasg", "numero_compra", "item", "valor_estimado", "melhor_lance_modo_aberto",
             "melhor_lance_modo_fechado", "melhor_apos", "melhor_lance_modo_aberto_validos",
             "melhor_lance_modo_fechado_validos", "apos_v", "valor_final", "quantidade_fornecedores", e["d1"], "d_apos",
             "ganho_pp", e["d1"] + "_v", "d_apos_v", "ganho_pp_v", "d_final", "na_amostra", "validos_ok"] + marcas

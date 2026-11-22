@@ -25,7 +25,8 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
 | 2026-11-16 | Lista das compras a baixar versionada em `registro/compras/<mês>.csv`, usada quando não há `pncp.db` | Quem só baixa não precisa copiar os 16 GB do banco |
 | 2026-11-17 | Automatizar o clique do download do zip com userscript no navegador real (`baixar_manual.py --auto`, `navegador/compras_auto.user.js`) em vez de Playwright; chamar a URL do zip direto foi descartado | A URL exige um token novo do hCaptcha a cada requisição; o userscript usa o token gerado pelo próprio site, sem marcas de automação, e o usuário resolve os desafios |
 | 2026-11-18 | Itens REVISAR da extração: **ficam fora da análise** (filtrar `status_extracao = 'OK'`) os de etapa fechada com lances na tabela mas sem lances na mensagem de encerramento, os sem proposta identificada e os de etapa/desempate sem registro de encerramento. Fornecedor estrangeiro (`Identificador ESTRANG…`) passa a ser lido (parser 1.7.2); participante com lance sem proposta listada vira aviso e o item fica OK, sem conferência manual | Decisão do usuário: na dúvida sobre a etapa, excluir; os valores do participante sem proposta são confiáveis. Na base de 2026-02/03/04/08, 110 itens de 180.909 ficam de fora |
-| 2026-11-20 | **Bases separadas por versão do parser.** A base nova `dados/extracao/aberto-fechado_parser-1.9.1.db` reúne todos os meses extraídos na 1.9.1 (hoje 2024-01, 02, 11, 12; 2025-01, 02). A base antiga `aberto-fechado_2025-03_a_2026-10.db` mantém os meses em 1.8.0 e 1.9.0, sem itens 1.9.1 | Decisão do usuário: não misturar versões do parser na mesma base |
+| 2026-11-20 | **Bases separadas por versão do parser.** A base nova `dados/extracao/aberto-fechado_parser-1.9.1.db` reúne todos os meses extraídos na 1.9.1 (desde 22/11/2026, os 43 meses AF: 2023-04 a 2026-10). A base antiga `aberto-fechado_2025-03_a_2026-10.db` mantém os meses em 1.8.0 e 1.9.0, sem itens 1.9.1. **Exceção (20/11/2026 22:00, decisão do usuário):** o Fechado-Aberto inteiro (1.10.0, 22.218 itens) também está na base nova. Modo e versão ficam separados pela pasta em `arquivo_origem` (`fechado-aberto_<mês>`) e por `modo_disputa`/`versao_parser`, e o `analise_etapas.py` usa só os itens do `--modo` pedido | Decisão do usuário: não misturar versões do parser na mesma base (com a exceção do Fechado-Aberto) |
+| 2026-11-22 | **Mês de cada item na análise por etapa = primeiro mês do resultado da compra** (primeira lista `registro/compras*/<mês>.csv` em que ela aparece), e não a pasta do PDF. `analise_etapas.py` aplica a regra por padrão; `--mes-da-pasta` reproduz as rodadas antigas | Decisão do usuário. 5.426 compras AF aparecem em mais de um mês; o download pulava a compra já completa em outro mês, então a pasta podia ser um mês posterior (189.573 itens AF e 2.752 FA na base 1.9.1). As 505 compras baixadas em duas pastas têm PDFs idênticos |
 | — | Melhor lance da etapa conta mesmo se o fornecedor for desclassificado depois; propostas iniciais entram na etapa aberta | Medir a dinâmica da disputa, não só o resultado |
 | 2026-11-18 | **Duas medidas principais** do desconto por etapa nos PDFs, sempre reportadas juntas: **todos os fornecedores** (melhor lance de cada etapa como na disputa) e **só fornecedores válidos** (sem desclassificados, recusados e inabilitados; colunas `_validos` do parser 1.8.0). Procedimento em `analise_etapas.py` ([07, Análise](07-metodologia-de-extracao.md)) | Decisão do usuário. A primeira descreve a dinâmica da disputa; a segunda, o desconto que o órgão obtém de cada etapa. O desconto final é o mesmo nas duas. Em 2026-02 o ganho da fechada é 14,8 e 13,2 p.p. |
 | 2026-11-19 | **Layout antigo dos termos** (PDFs emitidos até fev/2025, ex.: compras de 2023): ler pelo texto refeito na ordem visual da página (parser 1.9.0, [04 §4.1](04-formato-dos-relatorios.md)). Onde o relatório não traz o dado: `valor_estimado_total` = estimado × quantidade e, com "Menor Preço / Maior Desconto" na compra, critério do item pelo formato dos valores (`P% (R$ V)` → Maior Desconto; só R$ → Menor Preço; sem valores → vazio). As duas inferências ficam anotadas em `fontes_extracao` | Pedido do usuário (extrair 2023). Sem o total, os itens saem da regressão do `analise_etapas.py` (filtro `valor_estimado_total > 0`); sem o critério, saem da amostra (só Menor Preço). No layout atual, total = unitário × quantidade, e os dois formatos de valor não se misturam num item |
@@ -240,8 +241,55 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       `integrity_check` ok). Por mês (itens; REVISAR): 2024-03 19.911 (44), 04 28.379 (68), 05 32.208 (81), 06 37.658 (137),
       07 48.909 (213), 08 47.016 (161), 09 43.075 (159). Seis PDFs em ERRO, fora do banco: 4 vazios (0 bytes) em 2024-08
       (compras `08002405900012024`, `92656005900092024`, `98742505900542024`, `98756505900852024`; baixar de novo) e 2
-      escaneados (OCR sem texto útil: `98591505900142024` em 07, `98233305900462024` em 09). **Pendente:** juntar à base
-      `aberto-fechado_parser-1.9.1.db` (outra máquina) e repetir as "sem botão de downloads" de 2024-03 a 09 (1.070 compras).
+      escaneados (OCR sem texto útil: `98591505900142024` em 07, `98233305900462024` em 09). **Feito (20/11/2026 20:50):**
+      juntado à base `aberto-fechado_parser-1.9.1.db` (backup `.antes-2024-03_09.db`): 254.364 itens novos; 2.792 itens de 70
+      compras já estavam na base em 2024-11 a 2025-02 (mesmo hash, colunas idênticas; compras nas listas de dois meses) e
+      ficaram no mês da base. Base: 464.240 itens, 13 meses (2024-01 a 09, 2024-11 a 2025-02; falta 2024-10).
+      **Pendente:** repetir as "sem botão de downloads" de 2024-03 a 09 (1.070 compras) e os 4 PDFs vazios.
+    - **Feito (21–22/11/2026, primeira máquina): base nova completa.** Os 28 meses Aberto-Fechado que faltavam (2023-04 a 12,
+      2025-03 a 12, 2026-01 a 09) foram extraídos com o parser 1.9.1 (cópia do código em `ab2347e`), lendo os PDFs de
+      `D:\PNCP - BACKUP` (só leitura), um mês por execução, direto na base (backup `.antes-restantes.db`). 944.802 PDFs:
+      OK 940.630, REVISAR 4.170, ERRO 2 (`16038405900012025` item 101 em 2025-04, PDF vazio; `94300105008372023` item 3 em
+      2023-09, escaneado). Base: **1.401.825 itens**, `integrity_check` ok; Aberto-Fechado 1.379.607 (1.9.1; REVISAR 6.090)
+      em **41 meses (2023-04 a 2026-09; faltam 2024-10 e 2026-10**, cujos PDFs estão só na segunda máquina); Fechado-Aberto
+      22.218 (1.10.0) inalterado. Nenhuma linha anterior foi perdida (3 mudaram de pasta, colunas iguais). **Compras em
+      dois meses:** 505 compras estão nas pastas de dois meses (a lista é por mês do resultado), com PDFs idênticos (amostra
+      de 40 compras, 1.687 PDFs, hash igual). Como a gravação é `INSERT OR REPLACE` por item, cada item ficou uma vez só, no
+      mês extraído por último (quase sempre o mais antigo do par; 29.379 itens). Os totais do período não mudam; só a
+      atribuição ao mês (ex.: 2026-05 tem 33.115 itens na base e 43.341 extraídos). A extração parou 4 vezes por falta de
+      memória (8 GB) e terminou com um vigia fora do Claude Code que relança o script. **Feito (22/11/2026 15:25):** 2024-10 e
+      2026-10, copiados pelo usuário para o `D:`, também extraídos (ver abaixo). **Decidido (22/11/2026):** na análise, o mês do item é o primeiro mês do
+      resultado da compra (tabela de decisões); a base não muda.
+    - **Feito (22/11/2026 15:25): 2024-10 e 2026-10** extraídos do mesmo jeito (backup `.antes-2024-10_2026-10.db`):
+      2024-10 com 56.932 PDFs (OK 56.747, REVISAR 184, ERRO 1, escaneado: `15813105900222024` item 71) e 56.931 itens;
+      2026-10 com 39.020 PDFs (OK 38.997, REVISAR 23) e 39.018 itens. 89.958 itens novos; 5.991 já estavam na base (compras
+      baixadas também em outro mês) e só mudaram de pasta, com as demais colunas iguais; nenhuma linha perdida;
+      `integrity_check` ok. **Base completa:** 1.491.783 itens; Aberto-Fechado 1.469.565 (1.9.1; REVISAR 6.273) nos **43 meses
+      (2023-04 a 2026-10)**; Fechado-Aberto 22.218 (1.10.0) inalterado.
+    - **Análise dos 43 meses (22/11/2026, base completa, regra do primeiro mês, com `--pncp-db`): resultado de referência.**
+      Saída em `dados/analise_etapas/2023-04_a_2026-10_parser-1.9.1/`. 1.337.832 itens (todos) e 1.196.727 (válidos), 73.464
+      compras, 2.501 UASGs; 196.872 itens mudam de mês pela regra. Aberta 19,4% / 19,4%; após a fechada 34,7% / 33,4%;
+      **ganho da fechada 15,4 p.p. (IC 15,2–15,5) e 14,1 p.p. (13,9–14,2)**; ganho relativo 18,7% / 16,9%; final 34,3% /
+      34,4%; final = melhor lance em 72% / 92%; a fechada melhora 91% / 92% dos itens. Decomposição (1.179.225): todos
+      22,1 + 16,0 − 3,7; válidos 19,5 + 14,1 + 0,8 = 34,4. Regressão (2.501 / 2.495 UASGs): β −24,8 e −22,0; licitantes −5,1
+      e −1,4 (p < 0,001); sigilo +3,1 e +2,2 (p < 0,001); serviço −0,4 (n.s.) e −1,6 (p = 0,047). Marcas: líder sem lance
+      fechado 29,2%, líder desclassificado 25,8%, reiniciada 9,0%, aberto isolado 5,2%, outlier 1,5%; fechado acima do
+      aberto 8,5%. Meses novos: 2024-10 com 51.783 itens, 2.784 compras, aberta 19,7, ganho 15,5 / 14,3; 2026-10 com 35.074
+      itens, 2.188 compras, aberta 16,7, ganho 16,2 / 14,8. Os números praticamente repetem os dos 41 meses.
+    - **Análise dos 41 meses (22/11/2026, base nova só 1.9.1, com `--pncp-db`):** 2023-04 a 2026-09 sem 2024-10. Saída em
+      `dados/analise_etapas/2023-04_a_2026-09_parser-1.9.1/`, já com a regra do primeiro mês do resultado. A primeira rodada,
+      pelo mês da pasta, está em `..._mes-da-pasta/`. Médias, decomposição, marcas e coeficiente principal são idênticos nas duas;
+      com a regra, aparece um 2024-10 parcial (6.652 itens de 127 compras baixadas em outras pastas), e as interações quase
+      não mudam (todos: licitantes −4,99, sigilo +3,08, serviço −0,69 n.s.; válidos: −1,34, +2,24, −1,82 com p = 0,028).
+      Os números abaixo valem para as duas. 1.256.422 itens (todos) e 1.123.630 (válidos), 68.604
+      compras, 2.431 UASGs. Aberta 19,4% / 19,4%; após a fechada 34,8% / 33,4%; **ganho da fechada 15,4 p.p. (IC 15,2–15,5)
+      e 14,1 p.p. (13,9–14,2)**; ganho relativo 18,7% / 16,9%; final 34,3% / 34,4%; final = melhor lance em 72% / 92%; a
+      fechada melhora 91% / 92% dos itens. Decomposição (1.106.809): todos 22,1 + 16,0 − 3,7; válidos 19,6 + 14,1 + 0,8 = 34,4.
+      Regressão (2.431 / 2.425 UASGs): β −24,8 e −21,9; licitantes −5,0 e −1,3 (p < 0,001); sigilo +3,1 e +2,2 (p < 0,001);
+      serviço −0,7 (n.s.) e −1,8 (p = 0,028). Marcas: líder sem lance fechado 29,3%, líder desclassificado 25,9%, reiniciada
+      9,1%, aberto isolado 5,1%, outlier 1,5%; fechado acima do aberto 8,5%. Os números são praticamente os dos 34 meses
+      (base mista), agora com uma versão só do parser e 2024-03 a 09 e 2024-11 incluídos. Por mês, o ganho da fechada fica
+      entre 14,3 e 18,1 p.p. (todos) desde 2023-06; a aberta sobe de ~13–17% em 2023 para ~17,5–22,5% a partir de 2024-04.
     - **Análise dos 34 meses (20/11/2026, com `--pncp-db`; feita sobre a base mista, hoje `.com-1.9.1_20261120.db`):** 2023-04 a 2024-02, 2024-12 a 2026-10, todos; saída em
       `dados/analise_etapas/2023-04_a_2026-10_34meses/`. 1.048.923 itens (todos) e 931.983 (válidos), 57.676 compras,
       2.357 UASGs. Aberta 19,0% / 18,9%; após a fechada 34,4% / 32,9%; **ganho da fechada 15,4 p.p. (IC 15,2–15,6) e
@@ -387,8 +435,17 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       **Feito (20/11/2026):** `analise_etapas.py --modo fechado-aberto` (ordem fechada → aberta; o AF sai idêntico).
       Primeira rodada, 41 meses, sem `--pncp-db`: 20.177 itens (todos) / 17.470 (válidos), 1.149 compras; fechada
       15,9% / 15,8%, **ganho da aberta 9,9 p.p. (IC 9,0–10,9) / 10,5 p.p. (9,5–11,6)**, final 27,8% / 27,9%
-      (detalhe em [07](07-metodologia-de-extracao.md)). **Falta:** decidir (c) e rodar com `--pncp-db` (sigilo e
-      serviço) na máquina que tem o `pncp.db`.
+      (detalhe em [07](07-metodologia-de-extracao.md)).
+    - **Feito (20/11/2026 22:10, primeira máquina):** o Fechado-Aberto (1.10.0) foi juntado à base
+      `aberto-fechado_parser-1.9.1.db` por decisão do usuário (tabela de decisões). A análise foi refeita sobre essa base, e a
+      rodada sem `--pncp-db` reproduz exatamente os números acima. **Com `--pncp-db`** (`dados/analise_etapas/fechado-aberto_2023-05_a_2026-10/`;
+      19.681 / 17.042 itens ligados, 97,5%): médias iguais; regressão `A (etapa aberta)` −14,6 (EP 0,69) / −15,3 (0,71);
+      licitantes −5,1 / −4,0 (p ≤ 0,001); **sigiloso +5,0 (p < 0,001) / +2,8 (p = 0,042)**, ou seja, a aberta ganha menos
+      quando o orçamento é sigiloso; serviço +1,5 / +1,5 (n.s.). **Falta:** decidir (c).
+    - **Refeito (22/11/2026) com a regra do primeiro mês do resultado** (2.752 itens mudam de mês; a rodada anterior foi para
+      `fechado-aberto_2023-05_a_2026-10_mes-da-pasta/`). Médias e `A (etapa aberta)` iguais (−14,6 / −15,3). Interações:
+      licitantes −5,1 / −4,1 (p ≤ 0,001); **sigiloso +4,6 (p = 0,001) / +2,4 (p = 0,064)**, ou seja, na medida dos válidos o
+      sigilo deixa de ser significativo a 5% (era p = 0,042); serviço +1,6 / +1,7 (n.s.).
 
 ## Questões em aberto
 
