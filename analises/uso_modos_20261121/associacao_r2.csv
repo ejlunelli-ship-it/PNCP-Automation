@@ -1,0 +1,43 @@
+base,modo,efeitos_fixos,r2,r2_ajustado,parametros,n
+"Compras.gov.br, compras",Aberto-Fechado,mês,0.002303818249045908,0.0020757034628995363,42,179362
+"Compras.gov.br, compras",Aberto-Fechado,categoria,0.024234881375113426,0.02166578656337259,472,179362
+"Compras.gov.br, compras",Aberto-Fechado,unidade,0.8366261414402433,0.8328366545244501,4067,179362
+"Compras.gov.br, compras",Aberto-Fechado,órgão (CNPJ),0.5510852393222154,0.5454028060799343,2243,179362
+"Compras.gov.br, compras",Aberto-Fechado,mês + categoria,0.026224058609887524,0.02343638139619475,513,179362
+"Compras.gov.br, compras",Aberto-Fechado,mês + unidade,0.8369812706299692,0.8331609987872568,4108,179362
+"Compras.gov.br, compras",Aberto-Fechado,mês + unidade + categoria,0.8378571305361024,0.8336102068856003,4579,179362
+"Compras.gov.br, compras",Aberto-Fechado,mês + unidade × categoria,0.8934741046356645,0.8627469084281496,40155,179362
+"Compras.gov.br, compras",Fechado-Aberto,mês,0.0030648026092623404,0.0028368618157479375,42,179362
+"Compras.gov.br, compras",Fechado-Aberto,categoria,0.0031621403760105915,0.000537563083356507,472,179362
+"Compras.gov.br, compras",Fechado-Aberto,unidade,0.29272613208725784,0.27632078369207713,4067,179362
+"Compras.gov.br, compras",Fechado-Aberto,órgão (CNPJ),0.10232108612180313,0.09095812605024156,2243,179362
+"Compras.gov.br, compras",Fechado-Aberto,mês + categoria,0.006201666873723921,0.003356670555261787,513,179362
+"Compras.gov.br, compras",Fechado-Aberto,mês + unidade,0.29527223454755736,0.2787572509653671,4108,179362
+"Compras.gov.br, compras",Fechado-Aberto,mês + unidade + categoria,0.29671322053357274,0.278292396561005,4579,179362
+"Compras.gov.br, compras",Fechado-Aberto,mês + unidade × categoria,0.4675524053575747,0.31396888789601063,40155,179362
+"Outras plataformas, compras",Aberto-Fechado,mês,0.00044584485775878147,0.0003821281286014999,48,737359
+"Outras plataformas, compras",Aberto-Fechado,plataforma,0.019560927947057216,0.01954497170824321,13,737359
+"Outras plataformas, compras",Aberto-Fechado,órgão (CNPJ),0.7785920971852235,0.7752424891429865,10990,737359
+"Outras plataformas, compras",Aberto-Fechado,unidade,0.8238350273777344,0.8179987587688489,23646,737359
+"Outras plataformas, compras",Aberto-Fechado,mês + plataforma,0.019954657886385063,0.01987623288487994,60,737359
+"Outras plataformas, compras",Aberto-Fechado,mês + unidade,0.8239760473554669,0.8181324741909134,23693,737359
+"Outras plataformas, compras",Fechado-Aberto,mês,0.000630757127779269,0.0005670521858822664,48,737359
+"Outras plataformas, compras",Fechado-Aberto,plataforma,0.00811729195126154,0.008101149472023006,13,737359
+"Outras plataformas, compras",Fechado-Aberto,órgão (CNPJ),0.601265650132599,0.5952333280336481,10990,737359
+"Outras plataformas, compras",Fechado-Aberto,unidade,0.68887920855269,0.6785719126035177,23646,737359
+"Outras plataformas, compras",Fechado-Aberto,mês + plataforma,0.008639368229573674,0.00856003775811709,60,737359
+"Outras plataformas, compras",Fechado-Aberto,mês + unidade,0.6890407286637528,0.678717626461184,23693,737359
+"Compras.gov.br, itens (2023-01 a 2026-06)",Aberto-Fechado,mês,0.0024754040640828645,0.0024640500971899737,40,3426460
+"Compras.gov.br, itens (2023-01 a 2026-06)",Aberto-Fechado,item de catálogo,0.16878238539033297,0.14067213420522517,112087,3426460
+"Compras.gov.br, itens (2023-01 a 2026-06)",Aberto-Fechado,UASG,0.8451908232300746,0.8449740149973969,4793,3426460
+"Compras.gov.br, itens (2023-01 a 2026-06)",Aberto-Fechado,mês + item de catálogo,0.17044348505480444,0.14237931764191536,112126,3426460
+"Compras.gov.br, itens (2023-01 a 2026-06)",Aberto-Fechado,mês + UASG,0.8456530170458507,0.8454350943860375,4832,3426460
+"Compras.gov.br, itens (2023-01 a 2026-06)",Aberto-Fechado,mês + UASG + item de catálogo,0.8611309337497866,0.8562250722684166,116918,3426460
+"Compras.gov.br, itens (2023-01 a 2026-06)",Aberto-Fechado,mês + UASG × item de catálogo,0.9413796031786802,0.9186780959747303,956518,3426460
+"Compras.gov.br, itens (2023-01 a 2026-06)",Fechado-Aberto,mês,0.0015802144275450791,0.001568850271476241,40,3426460
+"Compras.gov.br, itens (2023-01 a 2026-06)",Fechado-Aberto,item de catálogo,0.09278012645872513,0.06209961863846858,112087,3426460
+"Compras.gov.br, itens (2023-01 a 2026-06)",Fechado-Aberto,UASG,0.3547631165618601,0.3538594707233155,4793,3426460
+"Compras.gov.br, itens (2023-01 a 2026-06)",Fechado-Aberto,mês + item de catálogo,0.09414728167349717,0.06350198882058633,112126,3426460
+"Compras.gov.br, itens (2023-01 a 2026-06)",Fechado-Aberto,mês + UASG,0.35625921760598067,0.3553503193506047,4832,3426460
+"Compras.gov.br, itens (2023-01 a 2026-06)",Fechado-Aberto,mês + UASG + item de catálogo,0.40147802207553973,0.38033388971734816,116918,3426460
+"Compras.gov.br, itens (2023-01 a 2026-06)",Fechado-Aberto,mês + UASG × item de catálogo,0.6899043409028309,0.5698157843486094,956518,3426460

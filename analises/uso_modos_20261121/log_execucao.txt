@@ -1,0 +1,90 @@
+compras 1070907 unidades 35198 af 278004 fa 7948
+fim em 16s
+compras 1070907 unidades 35198 af 278004 fa 7948
+A1 af n 1070907
+A2 Compras.gov.br af n 327175
+A2 Outras plataformas af n 737359
+A1 fa n 1070907
+A2 Compras.gov.br fa n 327175
+A2 Outras plataformas fa n 737359
+fim em 27s
+compras 1070907 unidades 35198 af 278004 fa 7948
+categorias af elegiveis 148 holm<0.05 3 iter 25
+categorias fa elegiveis 148 holm<0.05 0 iter 21
+fim em 9s
+compras 1070907 unidades 35198 af 278004 fa 7948
+R2 da af mês 0.002 0.002
+R2 da af categoria 0.024 0.022
+R2 da af unidade 0.837 0.833
+R2 da af órgão (CNPJ) 0.551 0.545
+R2 da af mês + categoria 0.026 0.023
+R2 da af mês + unidade 0.837 0.833
+R2 da af mês + unidade + categoria 0.838 0.834
+R2 da af mês + unidade × categoria 0.893 0.863
+R2 da fa mês 0.003 0.003
+R2 da fa categoria 0.003 0.001
+R2 da fa unidade 0.293 0.276
+R2 da fa órgão (CNPJ) 0.102 0.091
+R2 da fa mês + categoria 0.006 0.003
+R2 da fa mês + unidade 0.295 0.279
+R2 da fa mês + unidade + categoria 0.297 0.278
+R2 da fa mês + unidade × categoria 0.468 0.314
+R2 pncp af mês 0.0 0.0
+R2 pncp af plataforma 0.02 0.02
+R2 pncp af órgão (CNPJ) 0.779 0.775
+R2 pncp af unidade 0.824 0.818
+R2 pncp af mês + plataforma 0.02 0.02
+R2 pncp af mês + unidade 0.824 0.818
+R2 pncp fa mês 0.001 0.001
+R2 pncp fa plataforma 0.008 0.008
+R2 pncp fa órgão (CNPJ) 0.601 0.595
+R2 pncp fa unidade 0.689 0.679
+R2 pncp fa mês + plataforma 0.009 0.009
+R2 pncp fa mês + unidade 0.689 0.679
+R2 itens af mês 0.002 0.002
+R2 itens af item de catálogo 0.169 0.141
+R2 itens af UASG 0.845 0.845
+R2 itens af mês + item de catálogo 0.17 0.142
+R2 itens af mês + UASG 0.846 0.845
+R2 itens af mês + UASG + item de catálogo 0.861 0.856
+R2 itens af mês + UASG × item de catálogo 0.941 0.919
+R2 itens fa mês 0.002 0.002
+R2 itens fa item de catálogo 0.093 0.062
+R2 itens fa UASG 0.355 0.354
+R2 itens fa mês + item de catálogo 0.094 0.064
+R2 itens fa mês + UASG 0.356 0.355
+R2 itens fa mês + UASG + item de catálogo 0.401 0.38
+R2 itens fa mês + UASG × item de catálogo 0.69 0.57
+fim em 67s
+compras 1070907 unidades 35198 af 278004 fa 7948
+tendencia Compras.gov.br af T1 0.078 p 0.9188
+tendencia Compras.gov.br af T2 1.165 p 0.0307
+tendencia Compras.gov.br af T3 1.165 p 0.0265
+tendencia Compras.gov.br af T1-2024 1.154 p 0.1342
+tendencia Compras.gov.br af T2-2024 1.082 p 0.1027
+tendencia Compras.gov.br fa T1 -0.24 p 0.0409
+tendencia Compras.gov.br fa T2 -0.248 p 0.0057
+tendencia Compras.gov.br fa T3 -0.245 p 0.0061
+tendencia Compras.gov.br fa T1-2024 -0.223 p 0.1779
+tendencia Compras.gov.br fa T2-2024 -0.202 p 0.0454
+tendencia Outras plataformas af T1 0.226 p 0.5377
+tendencia Outras plataformas af T2 -0.281 p 0.1093
+tendencia Outras plataformas af T3 -0.234 p 0.1896
+tendencia Outras plataformas af T1-2024 0.261 p 0.4402
+tendencia Outras plataformas af T2-2024 -0.272 p 0.1333
+tendencia Outras plataformas fa T1 0.204 p 0.0001
+tendencia Outras plataformas fa T2 0.119 p 0.038
+tendencia Outras plataformas fa T3 0.069 p 0.1752
+tendencia Outras plataformas fa T1-2024 0.204 p 0.0001
+tendencia Outras plataformas fa T2-2024 0.124 p 0.0048
+tendencia Todas af T1 -0.288 p 0.4145
+tendencia Todas af T2 0.256 p 0.2714
+tendencia Todas af T3 0.275 p 0.2369
+tendencia Todas af T1-2024 0.229 p 0.466
+tendencia Todas af T2-2024 0.197 p 0.4561
+tendencia Todas fa T1 0.07 p 0.2485
+tendencia Todas fa T2 -0.016 p 0.7718
+tendencia Todas fa T3 -0.048 p 0.3577
+tendencia Todas fa T1-2024 0.084 p 0.2221
+tendencia Todas fa T2-2024 0.012 p 0.8156
+fim em 902s
