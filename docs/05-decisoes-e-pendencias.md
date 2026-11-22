@@ -266,6 +266,20 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       baixadas também em outro mês) e só mudaram de pasta, com as demais colunas iguais; nenhuma linha perdida;
       `integrity_check` ok. **Base completa:** 1.491.783 itens; Aberto-Fechado 1.469.565 (1.9.1; REVISAR 6.273) nos **43 meses
       (2023-04 a 2026-10)**; Fechado-Aberto 22.218 (1.10.0) inalterado.
+    - **Todas as análises refeitas na base completa (22/11/2026):** relatório em
+      [`analises/etapas_completo_20261122/relatorio.md`](../analises/etapas_completo_20261122/relatorio.md); dados em
+      `dados/analise_etapas/completo_20261122/`. O `analise_etapas.py` (AF e FA) reproduz exatamente as rodadas de referência.
+      Os estudos de 18/11 (4 meses de 2026) foram estendidos à base inteira e aos dois modos por `complementares.py` e `economia.py`:
+      - **Regressão:** 13 sensibilidades. O efeito médio vai de −16 a −32 log-pontos. Licitantes é o moderador robusto,
+        com ganho em "U" invertido: 2 p.p. com 1 licitante, 18–19 com 3–10, 12 com mais de 10.
+      - **Sigilo no AF:** reduz a chance de a fechada melhorar o preço (−6,5 p.p., robusto). Na magnitude, +3,0 log-pontos
+        na principal, mas some dentro da UASG (S7) e se inverte com peso por compra (S6) e na agregada (S12); não é robusto.
+      - **Testes por grupo:** o ganho em p.p. não difere entre material e serviço nem entre orçamento aberto e sigiloso
+        (Holm p ≥ 0,12).
+      - **Economia potencial da fechada:** R$ 28,4 bi com todos os fornecedores, R$ 23,6 bi só com os válidos; 79% está
+        em 1% dos itens.
+      - **FA × AF:** nas 168 UASGs que usam os dois modos, o desconto final do FA é 4,8 p.p. menor (IC 2,8–6,9), com o mesmo
+        número de licitantes; a diferença está na 2ª etapa. É associação.
     - **Análise dos 43 meses (22/11/2026, base completa, regra do primeiro mês, com `--pncp-db`): resultado de referência.**
       Saída em `dados/analise_etapas/2023-04_a_2026-10_parser-1.9.1/`. 1.337.832 itens (todos) e 1.196.727 (válidos), 73.464
       compras, 2.501 UASGs; 196.872 itens mudam de mês pela regra. Aberta 19,4% / 19,4%; após a fechada 34,7% / 33,4%;

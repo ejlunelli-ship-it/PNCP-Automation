@@ -1,0 +1,58 @@
+{
+ "aberto-fechado": {
+  "todos os fornecedores": {
+   "itens": 1337811,
+   "valor_estimado_total_R$": 225928326073.19263,
+   "total_melhor_aberta_R$": 179229790769.80692,
+   "total_apos_fechada_R$": 150832597795.24402,
+   "economia_fechada_R$": 28397192974.562897,
+   "economia_fechada_pct_do_aberta": 15.844013906725317,
+   "desconto_ponderado_aberta": 20.669623909069756,
+   "desconto_ponderado_apos_fechada": 33.23873972917424,
+   "desconto_ponderado_final": 26.701101392898675,
+   "itens_com_final": 1182406,
+   "parcela_economia_top1pct_itens": 0.786028221426758
+  },
+  "só fornecedores válidos": {
+   "itens": 1196706,
+   "valor_estimado_total_R$": 215075531613.7254,
+   "total_melhor_aberta_R$": 183352653105.2767,
+   "total_apos_fechada_R$": 159799745633.298,
+   "economia_fechada_R$": 23552907471.9787,
+   "economia_fechada_pct_do_aberta": 12.845686753414572,
+   "desconto_ponderado_aberta": 14.749645517753663,
+   "desconto_ponderado_apos_fechada": 25.70063901071854,
+   "desconto_ponderado_final": 26.71006756979325,
+   "itens_com_final": 1179204,
+   "parcela_economia_top1pct_itens": 0.8078499129251667
+  }
+ },
+ "fechado-aberto": {
+  "todos os fornecedores": {
+   "itens": 20177,
+   "valor_estimado_total_R$": 2559366607.0255003,
+   "total_melhor_fechada_R$": 2073579223.7894,
+   "total_apos_aberta_R$": 1960421005.8778,
+   "economia_aberta_R$": 113158217.91160011,
+   "economia_aberta_pct_do_fechada": 5.457144661432664,
+   "desconto_ponderado_fechada": 18.98076586224914,
+   "desconto_ponderado_apos_aberta": 23.40210267273104,
+   "desconto_ponderado_final": 19.16367410690778,
+   "itens_com_final": 17380,
+   "parcela_economia_top1pct_itens": 0.7256552125020899
+  },
+  "só fornecedores válidos": {
+   "itens": 17470,
+   "valor_estimado_total_R$": 2387853882.2702,
+   "total_melhor_fechada_R$": 2032494464.4822001,
+   "total_apos_aberta_R$": 1939128266.0687,
+   "economia_aberta_R$": 93366198.41350007,
+   "economia_aberta_pct_do_fechada": 4.59367540945732,
+   "desconto_ponderado_fechada": 14.881958248222016,
+   "desconto_ponderado_apos_aberta": 18.79200480118506,
+   "desconto_ponderado_final": 19.169135987764243,
+   "itens_com_final": 17303,
+   "parcela_economia_top1pct_itens": 0.6737669630972583
+  }
+ }
+}

@@ -52,3 +52,32 @@ Na família principal, só um teste é significativo: compras Fechado-Aberto tê
 [`uso_modos_20261121/`](uso_modos_20261121/relatorio.md): parcela das compras em Aberto-Fechado e Fechado-Aberto no Pregão Eletrônico, nov/2022 a out/2026, todas as plataformas (1,07 milhão de compras, 35 mil unidades). Tendência bruta e dentro da unidade (principal; Holm sobre 4 testes), por semestre e com decomposição entrada/saída; perfil por esfera, região, plataforma e características da compra; R² de unidade, órgão, categoria, item de catálogo e plataforma; efeitos de 148 categorias CATMAT/CATSER dentro da unidade; concentração nas unidades. Protocolo em [`protocolo.md`](uso_modos_20261121/protocolo.md).
 
 Uso estável: o Aberto-Fechado fica em ~37% (Compras.gov.br) e ~21% (outras plataformas), sem tendência significativa depois de Holm; o Fechado-Aberto cai no Compras.gov.br (−0,25 p.p./ano dentro da unidade; p Holm 0,02) e sobe nas outras plataformas por causa da Agili Software em Mato Grosso (93–98% FA). A unidade explica 82–84% da escolha do Aberto-Fechado; a categoria do objeto, 2%, e quase nada além da unidade. Para reexecutar: `extracao.py` e depois `uso_modos.py` por partes (ver o relatório; a extração fica em `dados/analise_uso_modos/`, fora do git).
+
+**Desconto por etapa nos PDFs: base completa, Aberto-Fechado e Fechado-Aberto — 22/11/2026**
+
+[`etapas_completo_20261122/`](etapas_completo_20261122/relatorio.md) refaz todas as análises por etapa na base completa
+`aberto-fechado_parser-1.9.1.db`:
+
+- **Aberto-Fechado:** 43 meses (2023-04 a 2026-10), 1,34 milhão de itens, 73 mil compras.
+- **Fechado-Aberto:** 20 mil itens, 1.149 compras.
+
+O relatório traz:
+
+- as duas medidas principais (todos os fornecedores; só válidos);
+- a decomposição do desconto final, marcas e sensibilidades;
+- a economia em R$;
+- a série por ano e por mês;
+- a heterogeneidade;
+- os testes de médias por grupo;
+- a regressão com efeito fixo de item e 13 sensibilidades;
+- a comparação AF × FA, nova.
+
+Resultado de referência: no AF, a etapa fechada acrescenta 15,4 p.p. (todos) ou 14,1 p.p. (válidos) ao desconto da aberta,
+que é de 19,4%, com desconto final de 34,3%. É estável de 2023 a 2026. No FA, a etapa aberta acrescenta 9,9 p.p. Nas 168
+UASGs que usam os dois modos, o desconto final do FA é 4,8 p.p. menor (associação).
+
+Scripts:
+
+- `complementares.py` e `economia.py`, que reutilizam a amostra do `analise_etapas.py`;
+- resultados em `resultados/`;
+- comandos de reexecução no fim do relatório.
