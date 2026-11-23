@@ -100,3 +100,16 @@ números em `diagnosticos.json`):
 - a etapa aberta do AF comparada ao Aberto nos mesmos estratos;
 - a cobertura de preço por fonte;
 - o poder de um estudo de eventos por unidade, calculado com placebos em unidades que não mudam de modo.
+
+**Testes do desenho causal A × AF (pré-registrados) — 23/11/2026**
+
+[`testes_desenho_causal_20261123/`](testes_desenho_causal_20261123/README.md) executa os testes recomendados no parecer.
+O pré-registro (`protocolo.md`) foi commitado antes das estimativas. Principal: estudo de eventos na unidade compradora, 152
+mudanças de regime, efeito do AF de −1,9 lp, IC95 [−5,7; +1,9], com todos os testes de falsificação aprovados. Inclui:
+
+- imputação BJS, PanelMatch e DiD sintético;
+- desfechos placebo e secundários, limites de Lee e heterogeneidade;
+- matching de itens descritivo (AIPW, entropia, Γ de Rosenbaum, Cinelli–Hazlett);
+- a lista do Aberto a baixar para o desenho intraleilão.
+
+Resultados em `relatorio.md`; reexecução no fim do relatório.

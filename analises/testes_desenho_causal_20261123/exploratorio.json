@@ -1,0 +1,33 @@
+{
+ "concentracao": {
+  "todos": {
+   "cnpjs": 70,
+   "maior_peso": 0.10057953393922589,
+   "cinco_maiores": 0.36818919111018017,
+   "cnpjs_efetivos": 24.714836975904962,
+   "cnpjs_efetivos_pesos_iguais": 21.080291970802914
+  },
+  "A->AF": {
+   "cnpjs": 48,
+   "maior_peso": 0.09136794909014184,
+   "cinco_maiores": 0.3357210016599693,
+   "cnpjs_efetivos": 25.554484215591316,
+   "cnpjs_efetivos_pesos_iguais": 20.927536231884062
+  },
+  "AF->A": {
+   "cnpjs": 43,
+   "maior_peso": 0.1095289175683092,
+   "cinco_maiores": 0.483800799956814,
+   "cnpjs_efetivos": 17.12498475680344,
+   "cnpjs_efetivos_pesos_iguais": 17.397590361445786
+  }
+ },
+ "sem_cnpj": {
+  "1º maior peso": -0.01531147830595649,
+  "2º maior peso": -0.02298098488343137,
+  "3º maior peso": -0.01934050701650154,
+  "4º maior peso": -0.014016866264154746,
+  "5º maior peso": -0.016103698725437574
+ },
+ "efeito_AF": -0.019081497185045735
+}

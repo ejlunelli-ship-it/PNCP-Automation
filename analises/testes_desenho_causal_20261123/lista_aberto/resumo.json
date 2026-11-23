@@ -1,0 +1,31 @@
+{
+ "eventos": {
+  "AF->A": 76,
+  "A->AF": 76
+ },
+ "por_prioridade": {
+  "1": {
+   "compras": 3466,
+   "itens_homologados": 69971,
+   "unidades": 133,
+   "sem_idCompra": 0
+  },
+  "2": {
+   "compras": 2371,
+   "itens_homologados": 44668,
+   "unidades": 113,
+   "sem_idCompra": 0
+  },
+  "3": {
+   "compras": 6195,
+   "itens_homologados": 124785,
+   "unidades": 141,
+   "sem_idCompra": 0
+  }
+ },
+ "meses": [
+  "2023-03",
+  "2026-10"
+ ],
+ "sem_resultado_excluidas": "compras sem item homologado"
+}

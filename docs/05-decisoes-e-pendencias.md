@@ -266,6 +266,20 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       baixadas também em outro mês) e só mudaram de pasta, com as demais colunas iguais; nenhuma linha perdida;
       `integrity_check` ok. **Base completa:** 1.491.783 itens; Aberto-Fechado 1.469.565 (1.9.1; REVISAR 6.273) nos **43 meses
       (2023-04 a 2026-10)**; Fechado-Aberto 22.218 (1.10.0) inalterado.
+    - **Testes do desenho causal A × AF executados (23/11/2026):** [`analises/testes_desenho_causal_20261123/relatorio.md`](../analises/testes_desenho_causal_20261123/relatorio.md),
+      com pré-registro em `protocolo.md` (commit `ff8b2d2`, antes das estimativas). Estudo de eventos na unidade compradora,
+      Compras.gov.br, 2022-01 a 2026-03: 152 mudanças de regime (76 A → AF e 76 AF → A, 70 CNPJs, ~25 efetivos), DiD empilhado
+      com controles limpos e pesos de precisão. **Efeito do AF no preço: −1,9 lp, IC95 [−5,7; +1,9], p = 0,32.** Os quatro
+      testes de falsificação passam (pré-tendência, simetria, índice do estimado e placebo no tempo). Leitura (b) do protocolo:
+      sem evidência de efeito; o poder para −4,5% era de 54% (efeito mínimo detectável de 6,25 lp). Alternativas entre 0 e
+      −4,5 lp; só a imputação BJS por produto × trimestre rejeita (−3,6 lp, p = 0,04); por mês dá −0,6. Sucesso, deserção,
+      prazo, desconto e fornecedor novo: nada significativo depois de Holm. Matching de itens descritivo: −4,5 lp (AIPW e
+      entropia), frágil (Γ de Rosenbaum 1,25; valor de robustez de 3,2%). **Decisão:** a associação de ≈ −4,5% entre unidades
+      não se confirma dentro da unidade com a precisão disponível. **Pendências:** (1) a API deixou de trazer o CATMAT a partir
+      de 2026-04 (6 mil de 167 mil itens em 2026-05); uma nova coleta ampliaria as janelas; (2) PDFs do Aberto das unidades que
+      mudaram de modo, lista em `lista_aberto/` (3.466 compras de prioridade 1), mais `--modo aberto` e parser do Aberto, para o
+      desenho intraleilão; (3) heterogeneidade por competição esperada (−5,0 lp com competição baixa, +0,4 com alta; não
+      significativa) fica como hipótese para um próximo pré-registro.
     - **Parecer sobre o desenho causal A × AF (23/11/2026):** [`analises/parecer_desenho_causal_20261123/parecer.md`](../analises/parecer_desenho_causal_20261123/parecer.md).
       Revisa todos os estudos e acrescenta diagnósticos só de leitura (nenhum efeito novo estimado). O modo é política da
       unidade, adotada em regimes; o matching por CNPJ compara UASGs diferentes (≥ 86% do suporte), com falha de balanço no
