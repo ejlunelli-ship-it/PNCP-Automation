@@ -1,0 +1,30 @@
+{
+ "compras": 315386,
+ "unidades": 5518,
+ "meses": [
+  "2022-01",
+  "2026-09"
+ ],
+ "itens_material": 4448803,
+ "compras_com_indice": 106051,
+ "itens_com_indice_ok": 1519972,
+ "itens_com_e": 1592135,
+ "itens_menor_preco": 0.9905468954233307,
+ "cobertura_un_padronizada": {
+  "un_distintas_antes": 4239,
+  "depois": 3311
+ },
+ "eventos": {
+  "A->AF": 178,
+  "AF->A": 135
+ },
+ "eventos_estritos": {
+  "A->AF": 25,
+  "AF->A": 21
+ },
+ "unidades_por_regime": {
+  "outra": 3613,
+  "A estável": 1293,
+  "AF estável": 612
+ }
+}

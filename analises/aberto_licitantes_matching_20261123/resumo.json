@@ -1,0 +1,100 @@
+{
+ "matchings": {
+  "mensal_desconto": {
+   "itens_A": 767,
+   "compras_A": 41,
+   "orgaos_A": 19,
+   "itens_AF": 888,
+   "compras_AF": 40,
+   "itens_AF_com_licitantes": 79,
+   "pct_itens_AF_com_licitantes": 8.896396396396396,
+   "compras_AF_com_algum_item_com_licitantes": 26
+  },
+  "mensal_preco": {
+   "itens_A": 743,
+   "compras_A": 39,
+   "orgaos_A": 19,
+   "itens_AF": 861,
+   "compras_AF": 37,
+   "itens_AF_com_licitantes": 73,
+   "pct_itens_AF_com_licitantes": 8.478513356562138,
+   "compras_AF_com_algum_item_com_licitantes": 23
+  },
+  "anual_principal": {
+   "itens_A": 20823,
+   "compras_A": 2702,
+   "orgaos_A": 45,
+   "itens_AF": 18246,
+   "compras_AF": 2228,
+   "itens_AF_com_licitantes": 16868,
+   "pct_itens_AF_com_licitantes": 92.44765976104352,
+   "compras_AF_com_algum_item_com_licitantes": 2090
+  },
+  "anual_simples": {
+   "itens_A": 56309,
+   "compras_A": 5816,
+   "orgaos_A": 78,
+   "itens_AF": 43381,
+   "compras_AF": 4321,
+   "itens_AF_com_licitantes": 39582,
+   "pct_itens_AF_com_licitantes": 91.24270994214056,
+   "compras_AF_com_algum_item_com_licitantes": 4002
+  }
+ },
+ "lista_A": {
+  "prioridade_1_mensal": {
+   "compras": 45,
+   "sem_idCompra": 0,
+   "orgaos": 23,
+   "itens_pareados": 775,
+   "itens_homologados_nas_compras": 5021,
+   "meses": 25,
+   "primeiro_mes": "2024-01",
+   "ultimo_mes": "2026-04"
+  },
+  "prioridades_1_2_mensal_ou_anual_principal": {
+   "compras": 2747,
+   "sem_idCompra": 0,
+   "orgaos": 57,
+   "itens_pareados": 49473,
+   "itens_homologados_nas_compras": 146594,
+   "meses": 41,
+   "primeiro_mes": "2023-04",
+   "ultimo_mes": "2026-10"
+  },
+  "todas_1_2_3_inclui_anual_simples": {
+   "compras": 5859,
+   "sem_idCompra": 0,
+   "orgaos": 87,
+   "itens_pareados": 57081,
+   "itens_homologados_nas_compras": 250235,
+   "meses": 42,
+   "primeiro_mes": "2023-04",
+   "ultimo_mes": "2026-10"
+  },
+  "por_ano_todas": {
+   "2023": 370,
+   "2024": 2509,
+   "2025": 2597,
+   "2026": 383
+  },
+  "por_ano_prioridades_1_2": {
+   "2023": 206,
+   "2024": 1172,
+   "2025": 1168,
+   "2026": 201
+  },
+  "top10_orgaos_todas": {
+   "46374500000194": 1921,
+   "00394452000103": 891,
+   "15126437000143": 722,
+   "96291141000180": 448,
+   "15126437000305": 430,
+   "00394544000185": 232,
+   "46377800000127": 229,
+   "00394502000144": 132,
+   "76416940000128": 124,
+   "00394429000100": 117
+  }
+ }
+}

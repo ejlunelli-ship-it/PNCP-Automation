@@ -1,0 +1,530 @@
+{
+ "B_suporte_pareamento": {
+  "itens_AF_no_painel": 97350,
+  "itens_A_no_painel": 152353,
+  "orgaos_com_AF": 330,
+  "CNPJ×produto×ano×sigilo (simples 17/11)": {
+   "itens_AF": 43381,
+   "pct_dos_AF": 44.56189008731381,
+   "compras_AF": 4321,
+   "orgaos": 78,
+   "uasgs": 540,
+   "produtos": 4131,
+   "maior_orgao_pct": 39.32136188654019,
+   "orgaos_efetivos_1_sobre_HHI": 4.528445629845239
+  },
+  "CNPJ×produto×ano×sigilo×SRP×benef×faixaQ (principal 17/11)": {
+   "itens_AF": 18246,
+   "pct_dos_AF": 18.742681047765792,
+   "compras_AF": 2228,
+   "orgaos": 45,
+   "uasgs": 361,
+   "produtos": 2307,
+   "maior_orgao_pct": 39.44426175600132,
+   "orgaos_efetivos_1_sobre_HHI": 3.858760694316214
+  },
+  "UASG×produto (qualquer data)": {
+   "itens_AF": 6087,
+   "pct_dos_AF": 6.252696456086286,
+   "compras_AF": 756,
+   "orgaos": 102,
+   "uasgs": 186,
+   "produtos": 2177,
+   "maior_orgao_pct": 23.755544603252833,
+   "orgaos_efetivos_1_sobre_HHI": 11.41208095489046
+  },
+  "UASG×produto, ±365 dias": {
+   "itens_AF": 2064,
+   "pct_dos_AF": 2.120184899845917,
+   "compras_AF": 406,
+   "orgaos": 59,
+   "uasgs": 107,
+   "produtos": 1117,
+   "maior_orgao_pct": 14.583333333333334,
+   "orgaos_efetivos_1_sobre_HHI": 12.398994132439231
+  },
+  "UASG×produto, ±180 dias": {
+   "itens_AF": 581,
+   "pct_dos_AF": 0.5968156137647663,
+   "compras_AF": 201,
+   "orgaos": 38,
+   "uasgs": 64,
+   "produtos": 396,
+   "maior_orgao_pct": 25.989672977624785,
+   "orgaos_efetivos_1_sobre_HHI": 8.153844295755936
+  },
+  "UASG×produto, ±90 dias": {
+   "itens_AF": 233,
+   "pct_dos_AF": 0.23934257832562916,
+   "compras_AF": 91,
+   "orgaos": 27,
+   "uasgs": 37,
+   "produtos": 158,
+   "maior_orgao_pct": 38.197424892703864,
+   "orgaos_efetivos_1_sobre_HHI": 5.4666196757627645
+  },
+  "UASG×produto×sigilo×SRP×faixaQ, ±180 dias": {
+   "itens_AF": 88,
+   "pct_dos_AF": 0.0903954802259887,
+   "compras_AF": 49,
+   "orgaos": 21,
+   "uasgs": 36,
+   "produtos": 81,
+   "maior_orgao_pct": 21.59090909090909,
+   "orgaos_efetivos_1_sobre_HHI": 8.66219239373602
+  },
+  "UASG×produto×sigilo×SRP×faixaQ, ±90 dias": {
+   "itens_AF": 28,
+   "pct_dos_AF": 0.028762198253723677,
+   "compras_AF": 23,
+   "orgaos": 13,
+   "uasgs": 22,
+   "produtos": 26,
+   "maior_orgao_pct": 21.428571428571427,
+   "orgaos_efetivos_1_sobre_HHI": 8.000000000000002
+  }
+ },
+ "C_etapa_aberta_vs_aberto": {
+  "itens_AF_ligados_ao_PDF": 86267,
+  "itens_AF": 38486,
+  "itens_A": 53221,
+  "celulas": 14707,
+  "orgaos": 67,
+  "maior_orgao_pct_AF": 39.09213740061321,
+  "medias_pp": {
+   "A: desconto final (API)": 29.297155032724163,
+   "AF: desconto da etapa aberta (PDF)": 22.281849355865415,
+   "AF: desconto após a fechada (PDF)": 35.17488961217593,
+   "AF: desconto final (PDF)": 33.872868840078254,
+   "AF: desconto final (API)": 33.89007780064402
+  },
+  "contrastes": {
+   "AF aberta (PDF) − A final (API)": {
+    "diferenca": -7.01530567685875,
+    "ep": 1.423598990207608,
+    "ic95": [
+     -9.857612767563701,
+     -4.172998586153799
+    ],
+    "orgaos": 67,
+    "pct_orgaos_com_diferenca_negativa": 65.67164179104478
+   },
+   "AF final (API) − A final (API)": {
+    "diferenca": 4.592922767919861,
+    "ep": 1.1317717494632882,
+    "ic95": [
+     2.3332675625660495,
+     6.852577973273672
+    ],
+    "orgaos": 67,
+    "pct_orgaos_com_diferenca_negativa": 37.3134328358209
+   },
+   "AF final (PDF) − A final (API)": {
+    "diferenca": 4.575713807354095,
+    "ep": 1.1282103288881942,
+    "ic95": [
+     2.323169207601441,
+     6.828258407106749
+    ],
+    "orgaos": 67,
+    "pct_orgaos_com_diferenca_negativa": 35.82089552238806
+   }
+  },
+  "contrastes_sem_maior_orgao": {
+   "AF aberta (PDF) − A final (API)": {
+    "diferenca": -8.389729473846804,
+    "ep": 1.6207998961972963,
+    "ic95": [
+     -11.626690388460249,
+     -5.15276855923336
+    ],
+    "orgaos": 66,
+    "pct_orgaos_com_diferenca_negativa": 65.15151515151516
+   },
+   "AF final (API) − A final (API)": {
+    "diferenca": 3.095502754657833,
+    "ep": 0.7727105634681146,
+    "ic95": [
+     1.5522931961407158,
+     4.63871231317495
+    ],
+    "orgaos": 66,
+    "pct_orgaos_com_diferenca_negativa": 37.878787878787875
+   }
+  },
+  "contrastes_log_preco": {
+   "AF aberta (PDF) − A final (API)": {
+    "diferenca": 0.11759059677590983,
+    "ep": 0.03125757095449018,
+    "ic95": [
+     0.05518284278529749,
+     0.17999835076652215
+    ],
+    "orgaos": 67,
+    "pct_orgaos_com_diferenca_negativa": 37.3134328358209
+   },
+   "AF após a fechada (PDF) − A final (API)": {
+    "diferenca": -0.08186513487430125,
+    "ep": 0.01934066381832531,
+    "ic95": [
+     -0.12048001609288791,
+     -0.043250253655714575
+    ],
+    "orgaos": 67,
+    "pct_orgaos_com_diferenca_negativa": 74.6268656716418
+   },
+   "AF final (PDF) − A final (API)": {
+    "diferenca": -0.03755331358433439,
+    "ep": 0.02024187859656556,
+    "ic95": [
+     -0.07796752816298955,
+     0.0028609009943207572
+    ],
+    "orgaos": 67,
+    "pct_orgaos_com_diferenca_negativa": 67.16417910447761
+   },
+   "AF final (API) − A final (API)": {
+    "diferenca": -0.03835566282596739,
+    "ep": 0.020437483281981,
+    "ic95": [
+     -0.07916041475970337,
+     0.002449089107768594
+    ],
+    "orgaos": 67,
+    "pct_orgaos_com_diferenca_negativa": 67.16417910447761
+   },
+   "AF aberta (PDF) − A final (API), sem o maior órgão": {
+    "diferenca": 0.07229223616046965,
+    "ep": 0.017804647651770387,
+    "ic95": [
+     0.03673389938955634,
+     0.10785057293138295
+    ],
+    "orgaos": 66,
+    "pct_orgaos_com_diferenca_negativa": 37.878787878787875
+   },
+   "AF final (API) − A final (API), sem o maior órgão": {
+    "diferenca": -0.06115995741791976,
+    "ep": 0.023653950451585387,
+    "ic95": [
+     -0.10840015854800708,
+     -0.013919756287832437
+    ],
+    "orgaos": 66,
+    "pct_orgaos_com_diferenca_negativa": 66.66666666666666
+   }
+  },
+  "checagem_AF_final_PDF_menos_API_log_mediana": 0.0,
+  "medianas_pp": {
+   "A final (API)": 24.119241192411934,
+   "AF aberta (PDF)": 17.739499521917757,
+   "AF final (API)": 31.034482758620683
+  },
+  "AF_pct_aberta_igual_final_pdf": 22.5796393493738
+ },
+ "A": {
+  "compras": 1062959,
+  "unidades": 35082,
+  "A1_sequencia_unidades_mistas": {
+   "Compras.gov.br": {
+    "unidades_mistas": 727,
+    "compras": 74352,
+    "razao_sequencias_obs_esp_mediana": 0.7352297592997811,
+    "razao_p25": 0.4452372480748215,
+    "razao_p75": 0.9233705226071639,
+    "razao_ponderada_compras": 0.6327359283795786,
+    "pct_unidades_regime_z_menor_-1.96": 54.057771664374144,
+    "pct_unidades_razao_menor_0.5": 28.885832187070154
+   },
+   "outras": {
+    "unidades_mistas": 1464,
+    "compras": 106174,
+    "razao_sequencias_obs_esp_mediana": 0.6842105263157895,
+    "razao_p25": 0.4188910314963294,
+    "razao_p75": 0.9045832696130907,
+    "razao_ponderada_compras": 0.5774729113037966,
+    "pct_unidades_regime_z_menor_-1.96": 58.060109289617486,
+    "pct_unidades_razao_menor_0.5": 32.10382513661202
+   }
+  },
+  "A1_unidades_20mais": {
+   "Compras.gov.br": {
+    "unidades": 2646,
+    "pct_quase_so_A(<5%AF)": 49.1307634164777,
+    "pct_mistas": 27.47543461829176,
+    "pct_quase_so_AF(>95%)": 23.393801965230537
+   },
+   "outras": {
+    "unidades": 7853,
+    "pct_quase_so_A(<5%AF)": 69.18375143257353,
+    "pct_mistas": 18.642556984591877,
+    "pct_quase_so_AF(>95%)": 12.173691582834586
+   }
+  },
+  "A2_mudancas_de_regime": {
+   "Compras.gov.br A->AF": {
+    "eventos": 21,
+    "unidades": 21,
+    "cnpjs": 17,
+    "compras_6m_antes": 410,
+    "compras_6m_depois": 413,
+    "eventos_com_outra_unidade_do_cnpj_no_mesmo_mes_ou_vizinho": 0,
+    "por_esfera": {
+     "F": 12,
+     "E": 6,
+     "M": 3
+    },
+    "por_ano": {
+     "2024": 9,
+     "2025": 7,
+     "2026": 5
+    }
+   },
+   "Compras.gov.br AF->A": {
+    "eventos": 12,
+    "unidades": 12,
+    "cnpjs": 11,
+    "compras_6m_antes": 188,
+    "compras_6m_depois": 284,
+    "eventos_com_outra_unidade_do_cnpj_no_mesmo_mes_ou_vizinho": 0,
+    "por_esfera": {
+     "F": 5,
+     "E": 5,
+     "N": 1,
+     "M": 1
+    },
+    "por_ano": {
+     "2023": 1,
+     "2024": 4,
+     "2025": 6,
+     "2026": 1
+    }
+   },
+   "outras A->AF": {
+    "eventos": 52,
+    "unidades": 51,
+    "cnpjs": 48,
+    "compras_6m_antes": 1175,
+    "compras_6m_depois": 1094,
+    "eventos_com_outra_unidade_do_cnpj_no_mesmo_mes_ou_vizinho": 5,
+    "por_esfera": {
+     "M": 49,
+     "N": 2,
+     "E": 1
+    },
+    "por_ano": {
+     "2023": 1,
+     "2024": 11,
+     "2025": 31,
+     "2026": 9
+    }
+   },
+   "outras AF->A": {
+    "eventos": 82,
+    "unidades": 82,
+    "cnpjs": 77,
+    "compras_6m_antes": 1206,
+    "compras_6m_depois": 1700,
+    "eventos_com_outra_unidade_do_cnpj_no_mesmo_mes_ou_vizinho": 8,
+    "por_esfera": {
+     "M": 74,
+     "N": 5,
+     "E": 3
+    },
+    "por_ano": {
+     "2023": 2,
+     "2024": 21,
+     "2025": 50,
+     "2026": 9
+    }
+   }
+  },
+  "A2_unidades_controle_20mais": {
+   "Compras.gov.br": {
+    "sempre_A(<5%AF)": 1300,
+    "sempre_AF(>95%)": 619
+   },
+   "outras": {
+    "sempre_A(<5%AF)": 5433,
+    "sempre_AF(>95%)": 956
+   }
+  }
+ },
+ "D": {
+  "D1_mudancas_flexiveis_50pp": {
+   "Compras.gov.br A->AF": {
+    "eventos": 164,
+    "unidades": 160,
+    "cnpjs": 87,
+    "compras_6m_antes": 2710,
+    "compras_6m_depois": 2941,
+    "mudanca_media_pp": 61.00661841968025
+   },
+   "Compras.gov.br AF->A": {
+    "eventos": 108,
+    "unidades": 107,
+    "cnpjs": 68,
+    "compras_6m_antes": 2546,
+    "compras_6m_depois": 2553,
+    "mudanca_media_pp": -61.89068605281144
+   },
+   "outras A->AF": {
+    "eventos": 238,
+    "unidades": 236,
+    "cnpjs": 217,
+    "compras_6m_antes": 3880,
+    "compras_6m_depois": 4087,
+    "mudanca_media_pp": 61.61813405848156
+   },
+   "outras AF->A": {
+    "eventos": 307,
+    "unidades": 306,
+    "cnpjs": 278,
+    "compras_6m_antes": 4581,
+    "compras_6m_depois": 4789,
+    "mudanca_media_pp": -63.52863922656871
+   },
+   "itens_nas_janelas": {
+    "Compras.gov.br": {
+     "itens": 224377,
+     "itens_material": 193983,
+     "material_com_preco": 143812.0
+    },
+    "outras": {
+     "itens": 603290,
+     "itens_material": 560697,
+     "material_com_preco": 218109.0
+    }
+   }
+  },
+  "D2_cobertura_preco": {
+   "Compras.gov.br 2023": {
+    "itens": 84154,
+    "pct_homologado": 75.10278774627469,
+    "pct_com_preco": 76.13541839960072,
+    "pct_material_com_preco": 75.65738805149081,
+    "pct_com_catalogo": 97.82660360767164
+   },
+   "Compras.gov.br 2024": {
+    "itens": 74241,
+    "pct_homologado": 78.35966649156127,
+    "pct_com_preco": 78.54420064384908,
+    "pct_material_com_preco": 78.05305954324247,
+    "pct_com_catalogo": 97.04206570493393
+   },
+   "Compras.gov.br 2025": {
+    "itens": 81209,
+    "pct_homologado": 77.98150451304659,
+    "pct_com_preco": 78.51715942814221,
+    "pct_material_com_preco": 78.21661066040522,
+    "pct_com_catalogo": 95.09290842148039
+   },
+   "Compras.gov.br 2026": {
+    "itens": 83041,
+    "pct_homologado": 58.81311641237461,
+    "pct_com_preco": 58.9106585903349,
+    "pct_material_com_preco": 58.576242397676836,
+    "pct_com_catalogo": 29.06516058332631
+   },
+   "outras 2023": {
+    "itens": 111212,
+    "pct_homologado": 28.82782433550336,
+    "pct_com_preco": 33.56022731359925,
+    "pct_material_com_preco": 32.94074275292018,
+    "pct_com_catalogo": 0.0
+   },
+   "outras 2024": {
+    "itens": 137475,
+    "pct_homologado": 40.68157846881251,
+    "pct_com_preco": 43.424622658665214,
+    "pct_material_com_preco": 43.54186942811539,
+    "pct_com_catalogo": 0.0
+   },
+   "outras 2025": {
+    "itens": 133700,
+    "pct_homologado": 48.83694839192221,
+    "pct_com_preco": 46.66342557965595,
+    "pct_material_com_preco": 46.54742299978803,
+    "pct_com_catalogo": 0.0
+   },
+   "outras 2026": {
+    "itens": 127227,
+    "pct_homologado": 43.61967192498447,
+    "pct_com_preco": 41.23967396857585,
+    "pct_material_com_preco": 41.64343385255476,
+    "pct_com_catalogo": 0.0
+   }
+  }
+ },
+ "E_poder_evento_unidade": {
+  "itens_extraidos": 3455284,
+  "itens_com_indice": 1634057,
+  "dp_item_e": 0.8996258731623046,
+  "unidades_com_indice": 4445,
+  "placebo": {
+   "unidades": 1104,
+   "por_regime": {
+    "A": 768,
+    "AF": 336
+   },
+   "media_delta": 0.005948078916423454,
+   "dp_delta": 0.3645431894896687,
+   "dp_robusto_MAD": 0.2789493928418131,
+   "itens_medios_por_janela": 435.8324275362319,
+   "compras_medias_por_janela": 32.84873188405797
+  },
+  "MDE_80pct_5pct": {
+   "A->AF flexível (Compras.gov.br, 164)": {
+    "MDE_log_dp": 0.08542012181317184,
+    "MDE_pct_dp": -8.187352159645366,
+    "MDE_log_dp_robusto": 0.06536369846770458
+   },
+   "AF->A flexível (108)": {
+    "MDE_log_dp": 0.10291102784758434,
+    "MDE_pct_dp": -9.77927587691564,
+    "MDE_log_dp_robusto": 0.0787477850704001
+   },
+   "ambos os sentidos, sinal invertido (272)": {
+    "MDE_log_dp": 0.06909509982291695,
+    "MDE_pct_dp": -6.676207490343873,
+    "MDE_log_dp_robusto": 0.05287174935548586
+   },
+   "A->AF estrito (21)": {
+    "MDE_log_dp": 0.22484803552030996,
+    "MDE_pct_dp": -20.136242591829948,
+    "MDE_log_dp_robusto": 0.17205429918432869
+   },
+   "estritos, ambos (33)": {
+    "MDE_log_dp": 0.18032076703353161,
+    "MDE_pct_dp": -16.499767277013568,
+    "MDE_log_dp_robusto": 0.1379819180031594
+   }
+  },
+  "switchers_itens_nas_janelas": {
+   "eventos_regime.csv": {
+    "A->AF": {
+     "eventos_com_itens": 20,
+     "itens_com_indice": 4116,
+     "compras": 301
+    },
+    "AF->A": {
+     "eventos_com_itens": 12,
+     "itens_com_indice": 3278,
+     "compras": 177
+    }
+   },
+   "eventos_regime_flexivel.csv": {
+    "A->AF": {
+     "eventos_com_itens": 158,
+     "itens_com_indice": 31529,
+     "compras": 2031
+    },
+    "AF->A": {
+     "eventos_com_itens": 103,
+     "itens_com_indice": 30688,
+     "compras": 2116
+    }
+   }
+  }
+ }
+}

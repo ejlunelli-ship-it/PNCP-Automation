@@ -266,6 +266,27 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       baixadas também em outro mês) e só mudaram de pasta, com as demais colunas iguais; nenhuma linha perdida;
       `integrity_check` ok. **Base completa:** 1.491.783 itens; Aberto-Fechado 1.469.565 (1.9.1; REVISAR 6.273) nos **43 meses
       (2023-04 a 2026-10)**; Fechado-Aberto 22.218 (1.10.0) inalterado.
+    - **Parecer sobre o desenho causal A × AF (23/11/2026):** [`analises/parecer_desenho_causal_20261123/parecer.md`](../analises/parecer_desenho_causal_20261123/parecer.md).
+      Revisa todos os estudos e acrescenta diagnósticos só de leitura (nenhum efeito novo estimado). O modo é política da
+      unidade, adotada em regimes; o matching por CNPJ compara UASGs diferentes (≥ 86% do suporte), com falha de balanço no
+      estimado (+14%) e ~4 órgãos efetivos. Na mesma UASG, só 0,24% dos itens AF têm par A a até 90 dias. A etapa aberta do
+      AF fica 12% acima do preço final do Aberto: o ganho da fechada (15 p.p.) não é o efeito do modo. **Recomendação:**
+      estudo de eventos na unidade compradora (164 A → AF e 108 AF → A no Compras.gov.br; efeito mínimo detectável de 6–8%
+      com ±6 meses), pré-registrado; complemento intraleilão com os PDFs do Aberto (proposta inicial → preço final; entrada
+      como desfecho). Licitantes como desfecho ou canal, não como controle. **Pendências:** pré-registro; base unidade × mês;
+      lacuna de CATMAT nos itens de 2026 (29%); lista do Aberto das unidades que mudaram de modo; `--modo aberto` e parser do
+      Aberto com propostas iniciais, marca, ME/EPP e lances com horário.
+    - **Licitantes como controle do matching A × AF: lista do Aberto a baixar (23/11/2026).** O número de licitantes só está
+      nos PDFs, e os do modo Aberto não foram baixados. [`analises/aberto_licitantes_matching_20261123/`](../analises/aberto_licitantes_matching_20261123/README.md)
+      refaz quem entra nos matchings (mensal de 13/11 e anual com sigilo de 17/11) e lista as compras Aberto, por prioridade:
+      1 = mensal, 45 compras; 2 = anual principal, +2.702; 3 = anual simples, +3.112 (5.859 no total, 87 órgãos, 2023-04 a
+      2026-10), em `compras_aberto.csv` e `compras_por_mes/<AAAA-MM>.csv`. Lado AF já na base: 92% dos itens do anual,
+      mas só 9% do mensal (compras grandes "sem a opção no site" ou com zip parcial). **Em aberto:** `baixar_manual.py`/`registro.py`
+      só aceitam `aberto-fechado` e `fechado-aberto` (falta `--modo aberto`); conferir se o parser lê o relatório do Aberto;
+      licitantes é posterior à escolha do modo (o protocolo de 17/11 não o controla de propósito), então entra como
+      sensibilidade. Achado: no `resultados.json` de 17/11, `principal_condicoes_ano_logp` guarda a subamostra com estimado
+      válido (a 2ª chamada com o mesmo nome sobrescreve a da amostra toda); para sigilo = 0 coincidem, para sigilo = 1 não
+      (5.697 contra 6.038 estratos).
     - **Todas as análises refeitas na base completa (22/11/2026):** relatório em
       [`analises/etapas_completo_20261122/relatorio.md`](../analises/etapas_completo_20261122/relatorio.md); dados em
       `dados/analise_etapas/completo_20261122/`. O `analise_etapas.py` (AF e FA) reproduz exatamente as rodadas de referência.

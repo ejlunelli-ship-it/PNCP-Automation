@@ -81,3 +81,22 @@ Scripts:
 - `complementares.py` e `economia.py`, que reutilizam a amostra do `analise_etapas.py`;
 - resultados em `resultados/`;
 - comandos de reexecução no fim do relatório.
+
+**Compras do Aberto a baixar para controlar licitantes no matching — 23/11/2026**
+
+[`aberto_licitantes_matching_20261123/`](aberto_licitantes_matching_20261123/README.md): `listar.py` reconstrói os itens dos
+matchings A × AF (mensal de 13/11; anual com sigilo de 17/11, conferido com o `resultados.json`) e lista as compras do modo
+Aberto cujos PDFs faltam para ter o número de licitantes: 45 (mensal), 2.747 (mensal + anual principal) ou 5.859 (com o anual
+simples). Também mede quantos itens AF desses estratos já têm licitantes na base de extração.
+
+**Parecer: desenho de inferência causal para o efeito do modo (A × AF) — 23/11/2026**
+
+[`parecer_desenho_causal_20261123/`](parecer_desenho_causal_20261123/parecer.md) revisa todos os estudos do projeto e
+recomenda os desenhos. Os diagnósticos são só de leitura (`diagnosticos.py`, `diagnosticos_d.py`, `diagnosticos_e.py`;
+números em `diagnosticos.json`):
+
+- como o modo varia dentro da unidade (sequências e mudanças de regime);
+- o suporte de pareamentos alternativos;
+- a etapa aberta do AF comparada ao Aberto nos mesmos estratos;
+- a cobertura de preço por fonte;
+- o poder de um estudo de eventos por unidade, calculado com placebos em unidades que não mudam de modo.
