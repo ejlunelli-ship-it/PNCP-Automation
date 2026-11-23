@@ -1,0 +1,210 @@
+{
+ "inicio": "2026-11-23 16:24:29",
+ "protocolo_sha256": "66c4f18af30573c54effb8f22230796c8571d581f1e78d724bebaba357a8afe5",
+ "parametros": {
+  "W": 6,
+  "cmin": 2,
+  "limite_dispersao": 0.8033409849133806,
+  "faixas": {
+   "p25": 0.2709496731900711,
+   "p50": 0.45899338979476584,
+   "p75": 0.8033409849133806
+  },
+  "var_a": 0.009415434998891657,
+  "var_b": 0.23848637823164776,
+  "B": 9999
+ },
+ "testes": {
+  "t00_reproducao": {
+   "status": "ok",
+   "segundos": 18.7
+  },
+  "t01_amostra_comum": {
+   "status": "ok",
+   "segundos": 10.4
+  },
+  "t02_pesos_fixos": {
+   "status": "ok",
+   "segundos": 47.1
+  },
+  "t03_controles_identicos": {
+   "status": "ok",
+   "segundos": 26.1
+  },
+  "t04_dispersao_pre_tratamento": {
+   "status": "ok",
+   "segundos": 335.5
+  },
+  "t05_heterogeneidade": {
+   "status": "ok",
+   "segundos": 72.6
+  },
+  "t06_composicao": {
+   "status": "ok",
+   "segundos": 264.2
+  },
+  "t07_ponderacao_continua": {
+   "status": "ok",
+   "segundos": 67.8
+  },
+  "t08_homogeneidade": {
+   "status": "ok",
+   "segundos": 21.2
+  },
+  "t09_influencia_orgaos": {
+   "status": "ok",
+   "segundos": 0.1
+  },
+  "t10_inferencia": {
+   "status": "ok",
+   "segundos": 8.0
+  },
+  "t11_sentidos": {
+   "status": "ok",
+   "segundos": 0.0
+  },
+  "t12_dinamica": {
+   "status": "ok",
+   "segundos": 5.2
+  },
+  "t13_placebos": {
+   "status": "ok",
+   "segundos": 49.5
+  },
+  "t14_estimadores": {
+   "status": "ok",
+   "segundos": 24.0
+  },
+  "t15_validacao": {
+   "status": "ok",
+   "segundos": 0.8
+  }
+ },
+ "exclusoes": {
+  "t01": {
+   "M0_fora_da_comum": 8,
+   "M1_fora_da_comum": 6
+  },
+  "t02": {
+   "eventos_comuns_as_quatro": 143
+  },
+  "t03_A": {
+   "eventos_perdidos": 0,
+   "frac_controles_mantidos_media": 0.9932944094043795
+  },
+  "t03_G": {
+   "eventos_perdidos": 0,
+   "frac_controles_mantidos_media": 0.9948151001825202
+  },
+  "t04_itens_tratadas_sem_dispersao": {
+   "sem_historica": 14676,
+   "sem_contemporanea": 0
+  },
+  "t04": {
+   "itens_G_tratadas": 59920,
+   "sem_D": 14676,
+   "com_D_acima_do_limite": 8088
+  },
+  "t08": {
+   "catmats_com_20_itens": 46023,
+   "H1": 28905,
+   "H2": 1167,
+   "excluidos_unidade_generica": 42,
+   "excluidos_conteudo_zero": 12,
+   "frac_itens_G_com_disp_ate_lim_geral": 0.7499998612408509
+  },
+  "t13": {
+   "trocas_ficticias_validas_antes_dos_dados": 39
+  }
+ },
+ "conferencias": {
+  "reproduz_M0": {
+   "ok": true,
+   "coef": -1.9081497185045722,
+   "ic": [
+    -5.671090098962208,
+    1.9325477462990868
+   ],
+   "eventos": 152
+  },
+  "reproduz_M1": {
+   "ok": true,
+   "coef": -3.757567632731118,
+   "ic": [
+    -6.671162894196235,
+    -0.886824764774865
+   ],
+   "eventos": 150,
+   "eventos_tambem_no_M0": 144
+  },
+  "arquivos": {
+   "t00_reproducao": {
+    "existe": true,
+    "linhas": 2
+   },
+   "t01_amostra_comum": {
+    "existe": true,
+    "linhas": 3
+   },
+   "t02_pesos_fixos": {
+    "existe": true,
+    "linhas": 8
+   },
+   "t03_controles_identicos": {
+    "existe": true,
+    "linhas": 4
+   },
+   "t04_dispersao_pre_tratamento": {
+    "existe": true,
+    "linhas": 1
+   },
+   "t05_heterogeneidade": {
+    "existe": true,
+    "linhas": 7
+   },
+   "t06_composicao": {
+    "existe": true,
+    "linhas": 30
+   },
+   "t07_ponderacao_continua": {
+    "existe": true,
+    "linhas": 2
+   },
+   "t08_homogeneidade": {
+    "existe": true,
+    "linhas": 3
+   },
+   "t09_influencia_orgaos": {
+    "existe": true,
+    "linhas": 3
+   },
+   "t10_inferencia": {
+    "existe": true,
+    "linhas": 4
+   },
+   "t11_sentidos": {
+    "existe": true,
+    "linhas": 12
+   },
+   "t12_dinamica": {
+    "existe": true,
+    "linhas": 33
+   },
+   "t13_placebos": {
+    "existe": true,
+    "linhas": 20
+   },
+   "t14_estimadores": {
+    "existe": true,
+    "linhas": 11
+   },
+   "t15_poder": {
+    "existe": true,
+    "linhas": 5
+   }
+  },
+  "t01_identidade_diferenca": 1.0
+ },
+ "fim": "2026-11-23 16:40:30",
+ "segundos": 962
+}

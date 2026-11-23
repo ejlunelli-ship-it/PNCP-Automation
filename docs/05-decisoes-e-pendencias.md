@@ -279,7 +279,51 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       de 2026-04 (6 mil de 167 mil itens em 2026-05); uma nova coleta ampliaria as janelas; (2) PDFs do Aberto das unidades que
       mudaram de modo, lista em `lista_aberto/` (3.466 compras de prioridade 1), mais `--modo aberto` e parser do Aberto, para o
       desenho intraleilão; (3) heterogeneidade por competição esperada (−5,0 lp com competição baixa, +0,4 com alta; não
-      significativa) fica como hipótese para um próximo pré-registro.
+      significativa) fica como hipótese para um próximo pré-registro. **Desconto** (exame exploratório, relatório §11): efeito
+      do AF de +1,40 p.p., IC95 [+0,02; +2,66], p = 0,048. Não resiste a Holm (0,24) nem à aleatorização (0,09–0,21). Com
+      pesos iguais dá +0,3 p.p. Decomposição numa amostra comum (112 eventos; identidade exata): log(R/P) +2,0 lp =
+      estimado contra o mercado +2,4 − preço −0,3 + mix −0,7. Nenhum componente é significativo. O desconto sobe porque o
+      estimado sobe, não porque o preço cai. **Referências e dispersão** (exploratório, relatório §12):
+      - com todas as células, a referência não muda nada: média de itens, média geométrica dos preços médios por UASG
+        (peso igual por unidade externa, ≥ 3 itens de ≥ 3 UASGs) ou mediana entre UASGs dão −1,4 a −1,9 lp, sem
+        significância;
+      - sem o quarto de células mais disperso (dp do log entre as outras UASGs > 0,80), o efeito vai a −3,7/−3,8 lp, com
+        p de 0,007 a 0,03, e fica em −3,5 a −4,5 lp nos cortes p50 e p25;
+      - continuam 106 a 150 eventos e 49 a 68 órgãos (18 a 23 efetivos); pré-tendência e simetria passam;
+      - as células excluídas são quase só ruído (IC de ±10 lp);
+      - com pesos iguais o efeito é mais fraco (−2,3 a −3,7);
+      - como o corte foi escolhido depois de ver os resultados, falta pré-registrar a definição e confirmar em dados novos.
+    - **Investigação complementar (23/11/2026, exploratória):** [`analises/investigacao_bjs_dispersao_composicao_20261123/relatorio.md`](../analises/investigacao_bjs_dispersao_composicao_20261123/relatorio.md).
+      - **BJS × estudo de eventos com os mesmos itens, eventos, controles e janela:** a troca de estimador muda −1,8 lp em A
+        (p = 0,56) e +0,1 lp em G (p = 0,94). A diferença anterior não é efeito do estimador. O BJS do evento só imputa
+        cerca de 30% dos itens pós-troca, e com pesos iguais o resultado G some (−0,96 / −0,04 lp).
+      - **Filtros de dispersão na amostra comum** (eventos, controles e pesos fixos): contemporâneo −3,99 lp, histórico −1,58
+        lp, diferença −2,46 (p = 0,13). A falta de histórico (25% dos pares item–evento) não muda com a troca de modo; é
+        explicada pela raridade do produto.
+      - **Composição:** na troca, a parcela de medicamentos cai na adoção do AF (−4,3 p.p.) e sobe no abandono (+2,2), no
+        trimestre da troca e sem pré-tendência (com sinal −3,2 p.p., p = 0,004, Holm 0,06). Repetição de produtos e
+        estimado mudam de forma assimétrica e fraca; elegibilidade ao filtro, quantidade e nº de itens não mudam.
+
+      **Pendência:** estimar o efeito no preço em separado para medicamentos e para os demais itens (novo protocolo).
+    - **Robustez do corte de dispersão (23/11/2026, exploratório):** [`analises/robustez_dispersao_20261123/relatorio.md`](../analises/robustez_dispersao_20261123/relatorio.md),
+      15 testes com protocolo prévio e comando único (`executar_todos.py`). O motor novo reproduz M0 (−1,91 lp) e M1 (−3,76 lp).
+      - **O corte contemporâneo desloca a estimativa, mas a diferença não é significativa:** −2,7 lp nos 144 eventos comuns
+        (p = 0,14) e −2,4/−2,5 lp com controles, janelas e pesos idênticos (p ≈ 0,2).
+      - **O −3,76 não é robusto.** Com dispersão medida antes da janela, dá −1,40 lp (p = 0,50); com ponderação contínua,
+        −0,57; com produtos de apresentação padronizada (sem preço), −1,97.
+      - **Sem heterogeneidade formal:** diferença baixa − alta de −3,4 lp, p = 0,44.
+      - **Inferência e influência não mudam as conclusões:** os sete métodos concordam, e nenhum órgão domina (22 a 25
+        efetivos).
+      - **A composição muda na troca:** −3,2 p.p. de medicamentos (Holm 0,09), menos produtos repetidos e estimado +3 lp
+        (p = 0,06).
+      - **O BJS dá estimativas mais negativas** que o empilhado em todas as amostras (−3,6 a −5,3 lp), com menos itens
+        imputáveis.
+      - **Validação futura:** especificação candidata única (G, dispersão pré-tratamento ≤ 0,80). Os eventos futuros já
+        detectados (≈ 27 utilizáveis) dão efeito mínimo detectável de 13 lp.
+
+      **Decisão:** não tratar o −3,76 como resultado. O efeito segue compatível com 0 a −5%. **Pendências:** investigar a
+      diferença empilhado × BJS nos mesmos itens; reduzir o ruído com os PDFs do Aberto antes de qualquer teste
+      confirmatório.
     - **Parecer sobre o desenho causal A × AF (23/11/2026):** [`analises/parecer_desenho_causal_20261123/parecer.md`](../analises/parecer_desenho_causal_20261123/parecer.md).
       Revisa todos os estudos e acrescenta diagnósticos só de leitura (nenhum efeito novo estimado). O modo é política da
       unidade, adotada em regimes; o matching por CNPJ compara UASGs diferentes (≥ 86% do suporte), com falha de balanço no

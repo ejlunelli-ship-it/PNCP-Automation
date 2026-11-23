@@ -24,6 +24,8 @@ efeito detectável, mas o poder para −4,5% era de 54%. O matching de itens ent
 | `item_descritivo.py` → `resultados_item.json` | Matching de itens descritivo |
 | `lista_aberto.py` → `lista_aberto/` | Compras do Aberto a baixar para o desenho intraleilão |
 | `exploratorio.py` → `exploratorio.json` | Verificações feitas depois de ver os resultados |
+| `exploratorio_desconto.py` → `exploratorio_desconto.json` | Exame do desconto no estudo de eventos (relatório §11), exploratório |
+| `exploratorio_referencia.py` → `exploratorio_referencia.json` | Referências de preço alternativas e células de menor dispersão (relatório §12), exploratório |
 | `base.json`, `eventos.csv` | Contagens da base; eventos (só modo de disputa, sem desfecho) |
 
 Os dados intermediários ficam em `dados/testes_desenho_causal/` (fora do git), com as saídas de depuração.

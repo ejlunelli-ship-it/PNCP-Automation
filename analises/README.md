@@ -113,3 +113,27 @@ mudanças de regime, efeito do AF de −1,9 lp, IC95 [−5,7; +1,9], com todos o
 - a lista do Aberto a baixar para o desenho intraleilão.
 
 Resultados em `relatorio.md`; reexecução no fim do relatório.
+
+**Robustez do corte de dispersão no estudo de eventos (exploratório) — 23/11/2026**
+
+[`robustez_dispersao_20261123/`](robustez_dispersao_20261123/README.md): 15 testes, todos exploratórios, com protocolo
+escrito antes e comando único (`executar_todos.py`):
+
+- amostra comum, pesos fixos e controles idênticos;
+- dispersão pré-tratamento, heterogeneidade, composição, ponderação contínua e homogeneidade sem preço;
+- influência dos órgãos, sete métodos de inferência, sentidos, dinâmica e placebos;
+- cascata até o BJS e preparação da validação.
+
+Resultado: o −3,76 lp depende da dispersão medida no mesmo trimestre. Com dispersão anterior à janela, dá −1,40 lp
+(p = 0,50). Tabelas em CSV, gráficos SVG e `relatorio.md`.
+
+**Investigação complementar: BJS × estudo de eventos, dispersão histórica × contemporânea e composição (exploratória) — 23/11/2026**
+
+[`investigacao_bjs_dispersao_composicao_20261123/`](investigacao_bjs_dispersao_composicao_20261123/README.md), com protocolo
+prévio e comando único (`investigar.py`):
+
+- **BJS e estudo de eventos com os mesmos insumos:** a troca de estimador não é significativa (A −1,8 lp; G +0,1 lp).
+- **Filtros de dispersão na amostra comum:** contemporâneo −4,0 lp, histórico −1,6 lp, diferença −2,5 (p = 0,13). A falta
+  de histórico se deve à raridade do produto, não ao modo.
+- **Composição:** a parcela de medicamentos cai na adoção do AF e sobe no abandono, no trimestre da troca.
+

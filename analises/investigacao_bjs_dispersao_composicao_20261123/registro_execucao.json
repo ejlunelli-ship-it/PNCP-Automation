@@ -1,0 +1,97 @@
+{
+ "inicio": "2026-11-23 17:47:55",
+ "protocolo_sha256": "3022a6c3103f914de6cc661b97b07e1e3ea1605adfe6abfd2d4fe62a320e6155",
+ "parametros": {
+  "W": 6,
+  "cmin": 2,
+  "limite_dispersao": 0.8033409849133806,
+  "B": 9999,
+  "var_a": 0.009415434998891657,
+  "var_b": 0.23848637823164776
+ },
+ "etapas": {
+  "base": {
+   "status": "ok",
+   "segundos": 41.8
+  },
+  "parte1_bjs_estudo_eventos": {
+   "status": "ok",
+   "segundos": 237.0
+  },
+  "parte2_dispersao": {
+   "status": "ok",
+   "segundos": 293.2
+  },
+  "parte3_composicao": {
+   "status": "ok",
+   "segundos": 284.8
+  }
+ },
+ "exclusoes": {
+  "parte1_A": {
+   "eventos_base": 152,
+   "eventos_S1_S2": 128,
+   "eventos_S3": 151,
+   "eventos_comuns": 128,
+   "itens_pos_imputaveis": 9540,
+   "itens_pos_total": 29611
+  },
+  "parte1_G": {
+   "eventos_base": 150,
+   "eventos_S1_S2": 124,
+   "eventos_S3": 149,
+   "eventos_comuns": 124,
+   "itens_pos_imputaveis": 7559,
+   "itens_pos_total": 25945
+  },
+  "parte2": {
+   "itens_G_nas_janelas": 14485864,
+   "sem_historico": 3628157,
+   "parcela_sem_historico": 0.25046189857919415
+  },
+  "parte3": {
+   "trocas_ficticias_validas": 39
+  }
+ },
+ "conferencias": {
+  "eventos_reservados_excluidos": {
+   "ultimo_mes_evento_usado": "2025-10",
+   "eventos_posteriores_a_2025_10": 56,
+   "algum_posterior_usado": false
+  },
+  "reproduz_M0": {
+   "coef": -1.9081497185045722,
+   "ic": [
+    -5.671090098962208,
+    1.9325477462990868
+   ],
+   "eventos": 152,
+   "ok": true
+  },
+  "reproduz_M1": {
+   "coef": -3.757567632731118,
+   "ic": [
+    -6.671162894196235,
+    -0.886824764774865
+   ],
+   "eventos": 150,
+   "ok": true
+  },
+  "arquivos": {
+   "p1_decomposicao.csv": 16,
+   "p1_eventos.csv": 252,
+   "p1_passos.csv": 24,
+   "p2_exclusoes_caracteristicas.csv": 5,
+   "p2_exclusoes_did.csv": 1,
+   "p2_exclusoes_lpm.csv": 8,
+   "p2_exclusoes_por_grupo.csv": 16,
+   "p2_filtros.csv": 10,
+   "p3_composicao.csv": 15,
+   "p3_perfil.csv": 50,
+   "p3_placebo.csv": 10,
+   "todas_estimativas.csv": 76
+  }
+ },
+ "fim": "2026-11-23 18:02:12",
+ "segundos": 857
+}

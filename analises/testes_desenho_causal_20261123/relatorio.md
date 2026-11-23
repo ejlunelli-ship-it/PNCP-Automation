@@ -252,8 +252,8 @@ um confundidor modesto, e o estudo de eventos dentro da unidade não o confirma 
 
 ## 10. Desvios e notas
 
-- **Exploratório.** `exploratorio.py` (concentração e retirada dos 5 CNPJs de maior peso) foi feito depois de ver os
-  resultados.
+- **Exploratório.** `exploratorio.py` (concentração e retirada dos 5 CNPJs de maior peso), `exploratorio_desconto.py`
+  (§11) e `exploratorio_referencia.py` (§12), estes dois a pedido do usuário, foram feitos depois de ver os resultados.
 - **Não computáveis com os dados:** o teste conjunto de pré-tendência na janela de 12 meses (só 9 eventos completos) e o
   DiD sintético de 12 meses (6 eventos), que não deve ser interpretado.
 - **Rambachan–Roth.** Versão simplificada: limite por magnitudes relativas com m pontual ou conservador, sem o IC
@@ -261,6 +261,153 @@ um confundidor modesto, e o estudo de eventos dentro da unidade não o confirma 
 - **Escores dos estimadores de item.** O bootstrap selvagem usa o EP fixo, uma aproximação.
 - **Depuração.** Rodou com eventos fictícios e rótulos embaralhados (fora do git). Levou às escolhas registradas no
   protocolo antes dos resultados: pesos de precisão e célula por trimestre na imputação.
+
+## 11. Desconto no estudo de eventos (exame exploratório, a pedido, 23/11)
+
+O protocolo previa só o efeito agregado do desconto, entre os secundários (§6). O resto desta seção foi feito depois de ver
+os resultados e é **exploratório** (`exploratorio_desconto.py`, `exploratorio_desconto.json`).
+- Desconto d = 1 − P/R, em itens não sigilosos, Menor preço e homologados.
+- 145 eventos: 82 A → AF e 63 AF → A, de 73 CNPJs.
+
+**Estimativa pré-registrada** (pesos de precisão, janela de 6 meses):
+
+| Estimativa | p.p. de desconto | IC95 (WCR) | p |
+|---|---:|---|---:|
+| **Efeito do AF** | **+1,40** | [+0,02; +2,66] | 0,048 (Holm: 0,24) |
+| A → AF | +1,05 | [−1,08; +3,13] | 0,32 |
+| AF → A | −1,86 | [−3,93; 0,00] | 0,050 |
+| Simetria: soma dos dois sentidos | −0,82 | | 0,59 |
+
+Outras formas de inferência para o efeito do AF:
+- t(G − 1): p = 0,035, IC [+0,10; +2,69];
+- aleatorização com controles sorteados ao acaso: p = 0,21;
+- aleatorização com controles de precisão parecida (os 20 com nº de compras mais próximo do da tratada): p = 0,085, IC
+  por inversão [−0,19; +2,98].
+
+**Perfil e robustez:**
+
+| Variante | Eventos | p.p. | IC95 | p |
+|---|---:|---:|---|---:|
+| Pré-tendência: trimestre −2 contra −1 | 102 | +0,09 | [−2,10; +2,33] | 0,94 |
+| Trimestre 0 | 127 | +2,27 | [+0,27; +4,12] | 0,03 |
+| Trimestre +1 | 117 | +1,09 | [−1,06; +3,31] | 0,32 |
+| Placebo no tempo (12 meses antes) | 33 | +0,39 | [−2,83; +2,71] | 0,76 |
+| Pesos iguais | 145 | +0,27 | [−1,59; +1,88] | 0,76 |
+| Ponderado por item | 174 | +2,27 | [+0,30; +3,91] | 0,03 |
+| cmin = 3 | 109 | +2,38 | [+1,03; +3,64] | 0,002 |
+| Janela de 12 meses | 73 | +2,33 | [+0,79; +3,89] | 0,005 |
+| Sem cada um dos 5 CNPJs de maior peso | | +1,21 a +1,46 | | |
+
+**Decomposição numa amostra comum.** Corrigida em 23/11: a primeira versão juntava componentes de amostras diferentes
+(145 eventos contra 115 e 112), e as parcelas não somavam.
+
+Agora entram só os itens que têm desconto e os dois índices: 1.195.347 itens, 112 eventos, com as mesmas compras,
+controles e pesos em todas as linhas. Para cada item:
+
+log(R/P) = eR − e + mix
+
+- eR e e são o log do estimado e o log do preço contra o mesmo produto, no mesmo trimestre, nas outras unidades;
+- mix = refR − refP é o desconto "de mercado" dos produtos comprados.
+
+A identidade vale item a item e, portanto, também no DiD.
+
+| Componente: efeito do AF (pesos de precisão) | lp | IC95 | p | Parcela de log(R/P) |
+|---|---:|---|---:|---:|
+| Desconto nesta amostra (p.p.) | +1,59 p.p. | [−0,49; +3,62] | 0,12 | |
+| **log(R/P): desconto em log** | **+1,99** | [−1,47; +5,44] | 0,24 | 100% |
+| Estimado contra o mercado, eR | +2,37 | [−2,42; +7,41] | 0,35 | +119% |
+| Preço contra o mercado, −e | +0,33 (e = −0,33) | [−5,43; +5,18] | 0,90 | +17% |
+| Mix: desconto de mercado dos produtos | −0,71 | [−3,08; +1,73] | 0,56 | −36% |
+
+- Conferência: 2,37 + 0,33 − 0,71 = 1,99.
+- Com pesos iguais, todos os componentes ficam perto de zero: log(R/P) −0,47, eR +0,18, e −1,01 e mix −1,66, todos com
+  p ≥ 0,36. Não há o que decompor.
+- Na amostra toda do desconto (145 eventos), log(R/P) = +1,44 lp [−1,05; +3,71], o que equivale a ≈ +1,0 p.p. com P/R
+  médio de 0,70. Aí só a identidade com os logs brutos fecha (2,97 − 1,53 = 1,44), e os logs brutos variam com o mix de
+  produtos.
+
+**Leitura:**
+1. **Achado frágil.** A estimativa pré-registrada (+1,4 p.p.) é significativa no limite (p = 0,048), mas não resiste a
+   Holm nem à aleatorização.
+2. **Depende dos pesos.** Com pesos iguais some (+0,3 p.p.). As variantes que dão mais peso às unidades com mais compras
+   chegam a +2,3 p.p., significativo. O aumento parece concentrado nas unidades maiores; é hipótese, não resultado.
+3. **Não é tendência anterior.** A pré-tendência e o placebo no tempo são nulos. Os sinais dos dois sentidos são
+   coerentes: o desconto sobe ao entrar no AF e cai ao sair.
+4. **Vem do estimado.** Na amostra comum, todo o aumento do desconto em log (+2,0 lp) se explica pelo estimado mais alto
+   em relação ao mercado (+2,4 lp). O preço contribui pouco (+0,3 lp) e o mix compensa uma parte (−0,7 lp). Nenhum
+   componente é significativo, e em log o efeito no desconto também não é (p = 0,24 na amostra comum e 0,23 na amostra
+   toda).
+5. **Comparação com os estudos entre unidades.** Lá o desconto do AF era de +4,3 p.p. no painel (com R +6%) e +8,3 p.p. no
+   matching principal (com R +14%). Dentro da unidade ele cai para cerca de +1,4 p.p. O desconto entre unidades vinha
+   inflado pelo estimado. O desconto não deve ser lido sem o log R, e o preço continua sem efeito detectável.
+
+## 12. Referências de preço alternativas e células de menor dispersão (exploratório, a pedido, 23/11)
+
+Feito depois de ver os resultados (`exploratorio_referencia.py`, `exploratorio_referencia.json`). O estudo de eventos é o
+mesmo do principal: janela de 6 meses, cmin = 2, pesos de precisão e WCR por CNPJ. Só muda a referência do índice
+e = log P − log(referência). A própria UASG nunca entra na sua referência.
+
+| Referência | Definição | Mínimo na célula |
+|---|---|---|
+| A (original) | média do log P dos itens das outras UASGs | ≥ 5 itens de ≥ 3 UASGs |
+| B | a mesma média de itens | ≥ 3 itens de ≥ 3 UASGs |
+| **G** | **média geométrica dos preços médios por UASG**: o preço médio de cada UASG é a média aritmética dos seus preços na célula, e cada outra UASG pesa igual | ≥ 3 itens de ≥ 3 UASGs |
+| M | mediana, entre as outras UASGs, dos mesmos preços médios | ≥ 3 itens de ≥ 3 UASGs |
+
+**Dispersão da célula.** É o desvio-padrão, entre as outras UASGs, do log do preço médio. O comprador fica de fora para a
+seleção não depender do próprio preço. Percentis entre os itens: p25 = 0,27, p50 = 0,46, p75 = 0,80.
+
+**Todas as células: a forma de ponderar a referência não muda o resultado.**
+
+| Referência | Eventos (A → AF + AF → A) | CNPJs | Efeito do AF (lp) | IC95 | p |
+|---|---:|---:|---:|---|---:|
+| A | 152 (76 + 76) | 70 | −1,91 | [−5,67; +1,93] | 0,32 |
+| B | 161 (80 + 81) | 75 | −1,40 | [−5,32; +2,54] | 0,46 |
+| G | 161 (80 + 81) | 75 | −1,61 | [−5,81; +2,50] | 0,43 |
+| M | 161 (80 + 81) | 75 | −1,91 | [−5,75; +1,95] | 0,31 |
+
+**Por dispersão: sem as células mais dispersas, o efeito dobra e fica significativo.**
+
+| Ref. | Células | Itens | Eventos | CNPJs (efetivos) | Efeito do AF (lp) | IC95 | p | A → AF | AF → A | p pré-tend. | p simetria | Pesos iguais (p) |
+|---|---|---:|---:|---:|---:|---|---:|---:|---:|---:|---:|---:|
+| G | todas | 1,80 mi | 161 | 75 (25,3) | −1,61 | [−5,81; +2,50] | 0,43 | −0,38 | +2,69 | 0,65 | 0,57 | −1,37 (0,57) |
+| G | ≤ p75 | 1,35 mi | 150 | 68 (23,0) | **−3,76** | [−6,67; −0,89] | 0,012 | −5,85 | +1,99 | 0,58 | 0,25 | −3,01 (0,09) |
+| G | ≤ p50 | 0,90 mi | 137 | 63 (21,1) | **−3,99** | [−7,08; −0,74] | 0,019 | −6,17 | +2,18 | 0,87 | 0,26 | −2,62 (0,14) |
+| G | ≤ p25 | 0,45 mi | 120 | 55 (19,0) | **−4,02** | [−6,73; −1,00] | 0,014 | −5,58 | +2,78 | 0,46 | 0,36 | −2,53 (0,19) |
+| G | > p75 (complemento) | 0,45 mi | 125 | 59 (21,9) | −1,02 | [−10,66; +8,80] | 0,82 | +1,62 | +3,11 | 0,84 | | −1,51 (0,75) |
+| M | ≤ p75 | 1,35 mi | 150 | 68 (23,0) | **−3,70** | [−6,41; −1,10] | 0,007 | −5,87 | +1,87 | 0,67 | 0,23 | −3,66 (0,046) |
+| M | ≤ p50 | 0,90 mi | 137 | 63 (21,1) | **−4,50** | [−7,50; −1,36] | 0,007 | −7,09 | +2,35 | 0,97 | 0,17 | −3,72 (0,052) |
+| M | ≤ p25 | 0,45 mi | 120 | 55 (19,0) | **−4,15** | [−6,82; −1,25] | 0,010 | −5,64 | +2,97 | 0,50 | 0,37 | −2,81 (0,13) |
+| A | ≤ p75 | 1,14 mi | 143 | 66 (22,8) | **−3,75** | [−6,75; −0,58] | 0,026 | −4,09 | +3,46 | 0,88 | 0,85 | −3,00 (0,15) |
+| A | ≤ p50 | 0,74 mi | 124 | 58 (20,0) | **−3,51** | [−6,38; −0,39] | 0,032 | −4,78 | +2,46 | 0,58 | 0,48 | −2,26 (0,27) |
+| A | ≤ p25 | 0,35 mi | 106 | 49 (17,7) | **−4,04** | [−6,67; −1,19] | 0,013 | −4,08 | +4,00 | 0,85 | 0,98 | −2,57 (0,18) |
+| A | > p75 (complemento) | 0,38 mi | 122 | 57 (21,2) | −1,80 | [−10,51; +6,86] | 0,65 | +0,69 | +3,71 | 0,95 | | −2,12 (0,62) |
+
+**Leitura:**
+1. **A referência não importa.** Com todas as células, ponderar por item ou por UASG (média geométrica ou mediana) dá o
+   mesmo resultado: −1,4 a −1,9 lp, sem significância. O mínimo de 3 itens acrescenta 9 eventos e 280 mil itens.
+2. **A dispersão importa.**
+   - Sem o quarto de células mais disperso, as quatro referências dão −3,7 a −3,8 lp, com p de 0,007 a 0,026.
+   - Restringindo mais (p50, p25), a estimativa fica estável: −3,5 a −4,5 lp.
+   - A identificação continua ampla: 106 a 150 eventos e 49 a 68 CNPJs, ou 18 a 23 efetivos. Nenhum CNPJ passa de 12% do
+     peso.
+   - Na referência G, dos 152 eventos do principal continuam 144 (95%), 131 (86%) e 118 (78%) nos cortes p75, p50 e p25.
+   - Pré-tendência (p ≥ 0,45) e simetria (p ≥ 0,17) passam em todas as variantes.
+3. **As células excluídas são quase só ruído.** Acima do p75, o desvio-padrão do DiD por evento é 0,49–0,52, contra
+   0,25–0,26 abaixo. A estimativa delas é −1,0 a −1,8 lp, com IC de ±10 lp: não difere da estimativa nas células menos
+   dispersas. A explicação mais provável é que ali o CATMAT + unidade não identifica o produto (apresentações e erros de
+   unidade). O índice vira ruído e, nas médias por compra, dilui a estimativa.
+4. **Magnitude.** Nos produtos bem definidos, o efeito estimado é de −3,6% a −4,4%, próximo da associação entre unidades
+   (−4,5% no painel e no AIPW).
+   - O sentido A → AF concentra o efeito: −5,4 a −7,1 lp nas referências B, G e M, significativo; −4,1 a −4,8 lp na A, com
+     p de 0,06 a 0,08.
+   - O AF → A dá +1,6 a +4,0 lp, quase sempre sem significância. O sinal é coerente, e a simetria não é rejeitada.
+5. **Cautela.**
+   - É exploratório, e o corte foi escolhido depois de ver os resultados. São 16 variantes correlacionadas.
+   - Com pesos iguais o efeito é mais fraco: −2,3 a −3,7 lp, com p de 0,05 a 0,27.
+   - Não serve como confirmação. Para isso, é preciso pré-registrar a definição e testar em dados ainda não usados: os
+     meses de 2026-04 em diante, depois de coletar de novo o CATMAT, ou o desenho intraleilão com os PDFs do Aberto. A
+     definição pode ser a referência G com dispersão ≤ 0,80, ou pesos por item inversos à dispersão da célula.
 
 ## Reprodução (da pasta `PNCP-Automation`)
 
@@ -272,6 +419,8 @@ um confundidor modesto, e o estudo de eventos dentro da unidade não o confirma 
 | `item_descritivo.py` | Matching de itens descritivo (§8) | ~1 min |
 | `lista_aberto.py --pncp-db ../dados/pncp.db` | Lista do Aberto (§9) | ~1 min |
 | `exploratorio.py` | Verificações exploratórias | segundos |
+| `exploratorio_desconto.py` | Exame do desconto (§11), exploratório | ~1 min |
+| `exploratorio_referencia.py` | Referências alternativas e dispersão (§12), exploratório | ~2 min |
 
 ## Referências
 
