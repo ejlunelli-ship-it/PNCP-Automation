@@ -1,0 +1,312 @@
+{
+ "inicio": "2026-11-24 11:54:17",
+ "classificacao": "replicação metodológica adaptada, exploratória",
+ "protocolo_sha256": "fe36d6568efb919f53ccdd202eb3a492f459febd0a840d27703f956c06b1df4f",
+ "parametros": {
+  "faixas_suporte": {
+   "completa": [
+    0.0,
+    1.0
+   ],
+   "[0,05; 0,95]": [
+    0.05,
+    0.95
+   ],
+   "[0,075; 0,925]": [
+    0.075,
+    0.925
+   ],
+   "[0,10; 0,90]": [
+    0.1,
+    0.9
+   ]
+  },
+  "faixa_principal": "[0,075; 0,925]",
+  "escore_principal": "PS2",
+  "M": 4,
+  "J_var": 4,
+  "caliper_sensibilidade": "0,2 DP do escore",
+  "B_qr": 299,
+  "semente": 20261124,
+  "especificacoes_escore": {
+   "PS1": {
+    "categoricas": [
+     "tri",
+     "regiao",
+     "esfera",
+     "faixa_itens",
+     "grupo_dom_x"
+    ],
+    "continuas": [
+     "med",
+     "eq0",
+     "eq_aus",
+     "comp0",
+     "comp_aus"
+    ]
+   },
+   "PS2": {
+    "categoricas": [
+     "tri",
+     "regiao",
+     "esfera",
+     "faixa_itens",
+     "grupo_dom_x",
+     "hist_cat"
+    ],
+    "continuas": [
+     "med",
+     "eq0",
+     "eq_aus",
+     "comp0",
+     "comp_aus",
+     "hist_log_n"
+    ]
+   },
+   "PS3": {
+    "categoricas": [
+     "tri",
+     "regiao",
+     "esfera",
+     "faixa_itens",
+     "grupo_dom_x",
+     "hist_cat"
+    ],
+    "continuas": [
+     "med",
+     "eq0",
+     "eq_aus",
+     "comp0",
+     "comp_aus",
+     "hist_log_n",
+     "srp",
+     "sig",
+     "excl"
+    ]
+   },
+   "PS4": {
+    "categoricas": [
+     "tri",
+     "regiao",
+     "esfera",
+     "faixa_itens",
+     "grupo_dom_x",
+     "hist_cat",
+     "faixa_valor"
+    ],
+    "continuas": [
+     "med",
+     "eq0",
+     "eq_aus",
+     "comp0",
+     "comp_aus",
+     "hist_log_n"
+    ]
+   }
+  },
+  "controles_item": {
+   "categoricas": [
+    "tri",
+    "regiao",
+    "esfera",
+    "faixa_itens",
+    "hist_cat"
+   ],
+   "continuas": [
+    "hist_log_n",
+    "parc_med",
+    "comp_i",
+    "comp_i_aus",
+    "eq_i",
+    "eq_i_aus",
+    "med_i"
+   ],
+   "absorvidos": [
+    "grupo_x"
+   ]
+  }
+ },
+ "versoes": {
+  "python": "3.13.17",
+  "numpy": "2.5.5",
+  "pandas": "3.1.1",
+  "scipy": "1.18.1",
+  "quantreg": "6.1",
+  "R": "R version 4.6.2 (2026-10-29 ucrt)"
+ },
+ "etapas": {
+  "1_amostra": {
+   "status": "ok",
+   "segundos": 60.5
+  },
+  "2_logit_escore": {
+   "status": "ok",
+   "segundos": 3.9
+  },
+  "3_suporte_comum": {
+   "status": "ok",
+   "segundos": 7.2
+  },
+  "4_ols": {
+   "status": "ok",
+   "segundos": 3010.2
+  },
+  "5_interacoes": {
+   "status": "ok",
+   "segundos": 852.4
+  },
+  "6_matching": {
+   "status": "ok",
+   "segundos": 588.4
+  },
+  "7_robustez": {
+   "status": "ok",
+   "segundos": 387.4
+  },
+  "7b_regressao_mediana_R": {
+   "status": "ok",
+   "segundos": 448.1
+  },
+  "8_desfechos_secundarios": {
+   "status": "ok",
+   "segundos": 1421.0
+  },
+  "9_comparacao": {
+   "status": "ok",
+   "segundos": 860.2
+  },
+  "10_graficos": {
+   "status": "ok",
+   "segundos": 0.8
+  }
+ },
+ "conferencias": {
+  "periodo": {
+   "primeiro_mes": "2023-04",
+   "ultimo_mes": "2025-10",
+   "nada_posterior_a_2025_10": true,
+   "nota": "período efetivo 2023-04 a 2025-10: antes de 2023-04 a base de 23/11 tem 80–300 compras/mês e nenhuma com resultado de item (cobertura da fonte)"
+  },
+  "matching_vs_pacote_R": {
+   "max_dif_est": 1.2793581023157303,
+   "razao_se_min_max": [
+    1.0023783272125357,
+    1.6270904320304116
+   ],
+   "Matching": "4.10.15",
+   "nota": "pesos iguais: dif. ≤ 0,004 lp e razão de EP ≤ 1,005; pesos por item: o pacote pondera também a média dos vizinhos (definição diferente da do protocolo), daí a divergência"
+  }
+ },
+ "falhas": [],
+ "nao_executado": [
+  "número de propostas: o nº de licitantes só existe nos PDFs, baixados para AF e Fechado-Aberto, não para o Aberto; sem identificação comparável (nenhuma aproximação usada)"
+ ],
+ "avisos": [],
+ "amostra": {
+  "status": {
+   "itens_situacao_final": 3408422,
+   "compras": 135549,
+   "homologados": 0.8476321300590126
+  },
+  "periodo": [
+   "2023-01",
+   "2025-10"
+  ],
+  "limites_faixa_itens": {
+   "0": [
+    1.0,
+    2.0
+   ],
+   "1": [
+    2.0,
+    3.0000000000000004
+   ],
+   "2": [
+    3.0000000000000004,
+    6.0
+   ],
+   "3": [
+    6.0,
+    9.000000000000002
+   ],
+   "4": [
+    9.000000000000002,
+    13.0
+   ],
+   "5": [
+    13.0,
+    19.999999999999996
+   ],
+   "6": [
+    19.999999999999996,
+    31.0
+   ],
+   "7": [
+    31.0,
+    48.99999999999999
+   ],
+   "8": [
+    48.99999999999999,
+    87.0
+   ],
+   "9": [
+    87.0,
+    3474.0000000000027
+   ]
+  },
+  "compras_analise": 91897,
+  "compras_AF": 33681,
+  "itens_analise": 1312671,
+  "itens_com_indice_fora_de_ln10_nas_compras": 57074,
+  "ultimo_mes": "2025-10"
+ },
+ "suporte_principal": {
+  "escore": "PS2",
+  "faixa": "[0,075; 0,925]",
+  "compras": 15014,
+  "compras_AF": 6588,
+  "compras_A": 8426,
+  "compras_excluidas": 76883,
+  "compras_AF_excluidas": 27093,
+  "compras_A_excluidas": 49790,
+  "itens": 253951,
+  "itens_excluidos": 1058720,
+  "uasgs": 2511,
+  "cnpjs": 978,
+  "cnpjs_com_AF": 468,
+  "uasgs_com_os_dois_modos": 393,
+  "parcela_compras_em_uasgs_mistas": 0.6648461435993073,
+  "maior_cnpj_parcela_compras": 0.08025842546956174,
+  "top10_cnpjs_parcela_compras": 0.4240042626881577,
+  "cnpjs_efetivos_compras": 39.585057224609095,
+  "identificavel_regra_protocolo": true
+ },
+ "graficos": [
+  "g1_escore_por_modo.svg",
+  "g2_equilibrio.svg",
+  "g3_efeitos.svg",
+  "g4_robustez.svg",
+  "g5_comparacao.svg"
+ ],
+ "limitacoes": [
+  "A escolha do modo não foi aleatorizada; o modo tem forte persistência institucional por UASG.",
+  "O matching não elimina confundimento não observado; equilíbrio observado não é validade causal.",
+  "As UASGs que usam os dois modos podem não representar as demais.",
+  "O índice pode conter heterogeneidade técnica dentro do CATMAT.",
+  "O preço homologado só existe para itens com contratação bem-sucedida.",
+  "Não há o subconjunto aleatorizado do artigo; os modos híbridos brasileiros não são os leilões do artigo.",
+  "A variância agrupada do matching é uma adaptação (não é estimador consagrado)."
+ ],
+ "fim": "2026-11-24 15:39:06",
+ "segundos_total": 7419.9,
+ "retomadas": [
+  {
+   "etapas": [
+    "10_graficos",
+    "7_robustez"
+   ],
+   "inicio": "2026-11-24 15:31:26"
+  }
+ ],
+ "segundos_ultima_retomada": 459.9
+}

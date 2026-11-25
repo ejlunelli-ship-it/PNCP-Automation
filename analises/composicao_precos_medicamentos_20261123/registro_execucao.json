@@ -1,0 +1,176 @@
+{
+ "inicio": "2026-11-23 18:30:16",
+ "protocolo_sha256": "a3e313af33fbe11f052d6957c1bd7771107a34a3126eee1bbafeede188a72fd8",
+ "parametros": {
+  "W": 6,
+  "cmin_base": 2,
+  "limite_dispersao": 0.8033409849133806,
+  "B": 9999,
+  "var_a": 0.009415434998891657,
+  "var_b": 0.23848637823164776,
+  "medicamentos": "classe CATMAT 6505"
+ },
+ "etapas": {
+  "base": {
+   "status": "ok",
+   "segundos": 27.7
+  },
+  "teste1_grupos": {
+   "status": "ok",
+   "segundos": 78.4
+  },
+  "teste2_interacao": {
+   "status": "ok",
+   "segundos": 6.2
+  },
+  "teste3_4_composicao_fixa_e_decomposicao": {
+   "status": "ok",
+   "segundos": 151.5
+  },
+  "teste5_parcela_medicamentos": {
+   "status": "ok",
+   "segundos": 19.1
+  }
+ },
+ "exclusoes": {
+  "t2_A": {
+   "eventos_com_os_dois_grupos": 42,
+   "por_sentido": {
+    "AF->A": 24,
+    "A->AF": 18
+   },
+   "eventos_so_medicamentos": 0,
+   "eventos_so_demais": 110,
+   "identificavel": false
+  },
+  "t2_G": {
+   "eventos_com_os_dois_grupos": 41,
+   "por_sentido": {
+    "AF->A": 22,
+    "A->AF": 19
+   },
+   "eventos_so_medicamentos": 0,
+   "eventos_so_demais": 109,
+   "identificavel": false
+  },
+  "t34_A_principal": {
+   "eventos_base": 152,
+   "eventos_com_decomposicao": 77
+  },
+  "t34_A_pseudo": {
+   "eventos_base": 152,
+   "eventos_com_decomposicao": 33
+  },
+  "t34_G_principal": {
+   "eventos_base": 150,
+   "eventos_com_decomposicao": 71
+  },
+  "t34_G_pseudo": {
+   "eventos_base": 150,
+   "eventos_com_decomposicao": 27
+  }
+ },
+ "conferencias": {
+  "eventos_reservados": {
+   "ultimo_mes_evento_usado": "2025-10",
+   "reservados_posteriores_a_2025_10": 56,
+   "algum_reservado_usado": false
+  },
+  "reproduz_M0": {
+   "coef": -1.9081497185045722,
+   "ic": [
+    -5.671090098962208,
+    1.9325477462990868
+   ],
+   "eventos": 152,
+   "ok": true
+  },
+  "reproduz_M1": {
+   "coef": -3.757567632731118,
+   "ic": [
+    -6.671162894196235,
+    -0.886824764774865
+   ],
+   "eventos": 150,
+   "ok": true
+  },
+  "parcela_medicamentos_itens_com_indice": {
+   "A": 0.1452145171095257,
+   "G_filtrado": 0.1492138460194988
+  },
+  "t1_todos_reproduz_base_A": 0.0,
+  "t1_todos_reproduz_base_G": 0.0,
+  "cobertura_niveis_A_principal": {
+   "SC_pre_tratada": 0.14639654757382534,
+   "SC_pos_tratada": 0.10227801939092739,
+   "SC_pre_controles": 0.1145799008435887,
+   "SC_pos_controles": 0.09037157579950607
+  },
+  "identidade_A_principal": {
+   "max_residuo_por_unidade": 5.689893001203927e-16,
+   "max_residuo_did_evento": 4.614364446098307e-16
+  },
+  "cobertura_niveis_A_pseudo": {
+   "SC_pre_tratada": 0.13964247081839587,
+   "SC_pos_tratada": 0.1190699808231066,
+   "SC_pre_controles": 0.11038291294670187,
+   "SC_pos_controles": 0.1004416666510617
+  },
+  "identidade_A_pseudo": {
+   "max_residuo_por_unidade": 6.661338147750939e-16,
+   "max_residuo_did_evento": 2.220446049250313e-16
+  },
+  "cobertura_niveis_G_principal": {
+   "SC_pre_tratada": 0.13782488177049326,
+   "SC_pos_tratada": 0.10811891379207209,
+   "SC_pre_controles": 0.10543460904480033,
+   "SC_pos_controles": 0.09044438445780216
+  },
+  "identidade_G_principal": {
+   "max_residuo_por_unidade": 4.440892098500626e-16,
+   "max_residuo_did_evento": 2.3592239273284576e-16
+  },
+  "cobertura_niveis_G_pseudo": {
+   "SC_pre_tratada": 0.15036876735601618,
+   "SC_pos_tratada": 0.13727028907923527,
+   "SC_pre_controles": 0.103140693496428,
+   "SC_pos_controles": 0.0982208764750503
+  },
+  "identidade_G_pseudo": {
+   "max_residuo_por_unidade": 5.551115123125783e-16,
+   "max_residuo_did_evento": 2.220446049250313e-16
+  },
+  "arquivos": {
+   "eventos_t1_A_demais.csv": 152,
+   "eventos_t1_A_medicamentos.csv": 42,
+   "eventos_t1_A_todos.csv": 152,
+   "eventos_t1_G_demais.csv": 150,
+   "eventos_t1_G_medicamentos.csv": 41,
+   "eventos_t1_G_todos.csv": 150,
+   "eventos_t34_A_principal.csv": 77,
+   "eventos_t34_A_pseudo.csv": 33,
+   "eventos_t34_G_principal.csv": 71,
+   "eventos_t34_G_pseudo.csv": 27,
+   "t1_grupos.csv": 16,
+   "t1_perfil.csv": 30,
+   "t2_interacao.csv": 4,
+   "t3_composicao_fixa.csv": 28,
+   "t4_decomposicao.csv": 16,
+   "t5_parcela_medicamentos.csv": 2,
+   "t5_pre_tendencia_e_cobertura.csv": 28,
+   "todas_estimativas.csv": 90
+  }
+ },
+ "fim": "2026-11-23 18:34:59",
+ "segundos": 283,
+ "graficos": {
+  "status": "ok",
+  "graficos": [
+   "g1_grupos.svg",
+   "g2_interacao.svg",
+   "g3_composicao_fixa.svg",
+   "g4_decomposicao.svg",
+   "g5_pre_tendencia.svg"
+  ]
+ }
+}

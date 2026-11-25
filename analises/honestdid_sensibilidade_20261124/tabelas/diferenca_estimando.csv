@@ -1,0 +1,8 @@
+medida,eventos,valor_lp
+"M0: meia janela pós − pré, todos os eventos do M0",152,-1.9081497185045717
+M0 nos eventos do perfil (tratada com compra no trimestre −1),141,-1.9573206935331289
+M0 nos eventos com trimestres 0 e +1,115,-1.868104072791924
+"M0 nos eventos balanceados (−2, 0, +1)",87,-1.3260288344347224
+"parâmetro (b): (β0 + β+1)/2, cada trimestre com seus eventos",141,-3.130760853365363
+"média por evento de (q0 + q+1)/2, eventos com os dois",115,-3.1959220663808035
+balanceados: (q0 + q+1)/2 − q−2/2 (análogo do M0 em trimestres),87,-3.222379970230811

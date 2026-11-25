@@ -1,0 +1,625 @@
+{
+ "inicio": "2026-11-24 11:04:45",
+ "classificacao": "exploratório",
+ "protocolo_sha256": "c34cd799759743f68c02cc606d92c82560768a3d2f83cb0c478f3f7b4b18a215",
+ "parametros": {
+  "alfa": 0.05,
+  "Mbar": [
+   0,
+   0.5,
+   1,
+   1.5,
+   2,
+   3
+  ],
+  "M_lp_por_trimestre": [
+   0,
+   0.25,
+   0.5,
+   1,
+   1.5,
+   2,
+   3
+  ],
+  "metodo_RM": "C-LF (padrão do pacote)",
+  "metodo_SD": "FLCI (padrão do pacote para Δ^SD)",
+  "bootstrap_covariancia_B": 9999,
+  "semente": 20261124,
+  "influencia_valores": {
+   "Mbar": 1,
+   "M": 1
+  },
+  "tolerancia_quebra": 0.01,
+  "minimo_eventos_coef": 30,
+  "minimo_orgaos_coef": 20
+ },
+ "etapas": {
+  "1_coeficientes_e_matrizes": {
+   "status": "ok",
+   "segundos": 69.0
+  },
+  "2_honestdid_R": {
+   "status": "ok",
+   "segundos": 2264.9
+  },
+  "3_conferencias_e_resumos": {
+   "status": "ok",
+   "segundos": 0.8,
+   "reprocessado": true
+  },
+  "4_graficos": {
+   "status": "ok",
+   "segundos": 0.9
+  },
+  "2b_reexecucao_parcial_R": {
+   "status": "ok",
+   "linhas": [
+    "F1|a",
+    "P1_BOOT|b"
+   ],
+   "comando": "HONESTDID_SO_IDS='F1|a,P1_BOOT|b' Rscript executar.R",
+   "segundos": 51.2,
+   "valores_ainda_com_falha_do_pacote": "F1|a Δ^SD M = 2 e 3; P1_BOOT|b Δ^SD M = 3 ('valor ausente onde TRUE/FALSE necessário' no FLCI)"
+  }
+ },
+ "conferencias": {
+  "eventos_reservados": {
+   "ultimo_mes_evento_janela_6": "2025-10",
+   "ultimo_mes_evento_janela_12": "2025-04",
+   "reservados_posteriores_a_2025_10": 56,
+   "algum_reservado_usado": false
+  },
+  "trimestres_iguais_ao_motor": {
+   "janela_6": {
+    "max_dif_motor": 0.0,
+    "valores_conferidos": 366
+   },
+   "filtrado": {
+    "max_dif_motor": 0.0,
+    "valores_conferidos": 365
+   },
+   "janela_12": {
+    "max_dif_motor": 0.0,
+    "valores_conferidos": 329
+   },
+   "ok": true
+  },
+  "reproducao_ok": true,
+  "conjunto_identificado_pacote_vs_programacao_linear": {
+   "comparacoes": 351,
+   "viaveis": 274,
+   "max_dif_lp_viaveis": 2.5579538487363607e-13,
+   "inviaveis_na_programacao_linear": 77,
+   "inviaveis_em_que_o_pacote_devolve_l_beta_pos": 77,
+   "nota": "quando os pré-coeficientes violam Δ^SD(M), o conjunto identificado em β = β̂ é vazio; a função interna do pacote avisa 'Solver did not find an optimum' e devolve l′β̂_pós (reserva); o relatório usa 'vazio'",
+   "ok": true
+  },
+  "erros_no_R": 2,
+  "IC_tocando_a_grade_do_C-LF": 0
+ },
+ "falhas": [],
+ "limitacoes": [
+  "Janela principal com 1 pré-período (trimestre −2): Δ^RM usa um único coeficiente impreciso como magnitude pré; Δ^SD não tem informação pré sobre curvatura; Δ^SDRM não se aplica.",
+  "Os coeficientes dinâmicos têm eventos diferentes por trimestre (110, 136, 120) e não reproduzem o estimando do M0 (ver tabelas/diferenca_estimando.csv).",
+  "Janela de 12 meses: trimestres −4 e −3 com 13–27 eventos e 10–19 órgãos (baixa precisão); amostra de 78 eventos.",
+  "O pacote trata β̂ como normal com V conhecida; V é estimada por agrupamento em 57–68 órgãos por coeficiente.",
+  "Exploratório: nenhum teste confirmatório; os 56 eventos reservados não foram usados."
+ ],
+ "exclusoes": {
+  "M0_eventos_sem_trimestre_-2": 42,
+  "M0_eventos_sem_trimestre_0": 16,
+  "M0_eventos_sem_trimestre_+1": 32,
+  "janela_12_candidatos": 116,
+  "janela_12_com_estimativa": 78,
+  "janela_6_candidatos": 257,
+  "janela_6_com_estimativa": 152
+ },
+ "especificacoes": {
+  "P1": {
+   "eventos": 141,
+   "orgaos": 68,
+   "orgaos_efetivos": 24.387671714155385,
+   "numPre": 1,
+   "numPost": 2
+  },
+  "P1_JACK": {
+   "eventos": 141,
+   "orgaos": 68,
+   "orgaos_efetivos": 24.387671714155385,
+   "numPre": 1,
+   "numPost": 2
+  },
+  "P1_BOOT": {
+   "eventos": 141,
+   "orgaos": 68,
+   "orgaos_efetivos": 24.387671714155385,
+   "numPre": 1,
+   "numPost": 2
+  },
+  "D_AAF": {
+   "eventos": 71,
+   "orgaos": 47,
+   "orgaos_efetivos": 25.199817784825964,
+   "numPre": 1,
+   "numPost": 2
+  },
+  "D_AFA": {
+   "eventos": 70,
+   "orgaos": 40,
+   "orgaos_efetivos": 16.7019295419192,
+   "numPre": 1,
+   "numPost": 2
+  },
+  "S_IGUAIS": {
+   "eventos": 141,
+   "orgaos": 68,
+   "orgaos_efetivos": 21.26310160427808,
+   "numPre": 1,
+   "numPost": 2
+  },
+  "S_BAL": {
+   "eventos": 87,
+   "orgaos": 48,
+   "orgaos_efetivos": 22.618282871184487,
+   "numPre": 1,
+   "numPost": 2
+  },
+  "F1": {
+   "eventos": 141,
+   "orgaos": 65,
+   "orgaos_efetivos": 22.914968752764505,
+   "numPre": 1,
+   "numPost": 2
+  },
+  "ANT12": {
+   "eventos": 51,
+   "orgaos": 35,
+   "orgaos_efetivos": 16.950864320628973,
+   "numPre": 2,
+   "numPost": 3
+  },
+  "J12_pre1_pos2": {
+   "eventos": 71,
+   "orgaos": 45,
+   "orgaos_efetivos": 18.073912017504473,
+   "numPre": 1,
+   "numPost": 2
+  },
+  "J12_pre1_pos4": {
+   "eventos": 71,
+   "orgaos": 45,
+   "orgaos_efetivos": 18.073912017504473,
+   "numPre": 1,
+   "numPost": 4
+  },
+  "J12_pre2_pos2": {
+   "eventos": 71,
+   "orgaos": 45,
+   "orgaos_efetivos": 18.073912017504473,
+   "numPre": 2,
+   "numPost": 2
+  },
+  "J12_pre2_pos4": {
+   "eventos": 71,
+   "orgaos": 45,
+   "orgaos_efetivos": 18.073912017504473,
+   "numPre": 2,
+   "numPost": 4
+  },
+  "J12_pre3_pos2": {
+   "eventos": 71,
+   "orgaos": 45,
+   "orgaos_efetivos": 18.073912017504473,
+   "numPre": 3,
+   "numPost": 2
+  },
+  "J12_pre3_pos4": {
+   "eventos": 71,
+   "orgaos": 45,
+   "orgaos_efetivos": 18.073912017504473,
+   "numPre": 3,
+   "numPost": 4
+  }
+ },
+ "reproducao": [
+  {
+   "item": "M0 coef (lp)",
+   "obtido": -1.9081497185045722,
+   "referencia": -1.91,
+   "dif": 0.0018502814954277635,
+   "ok": true
+  },
+  {
+   "item": "M0 IC95 WCR inf",
+   "obtido": -5.671090098962208,
+   "referencia": -5.67,
+   "dif": -0.0010900989622077972,
+   "ok": true
+  },
+  {
+   "item": "M0 IC95 WCR sup",
+   "obtido": 1.9325477462990868,
+   "referencia": 1.93,
+   "dif": 0.0025477462990868283,
+   "ok": true
+  },
+  {
+   "item": "M0 p WCR",
+   "obtido": 0.3211321132113211,
+   "referencia": 0.32,
+   "dif": 0.0011321132113211174,
+   "ok": true
+  },
+  {
+   "item": "M0 eventos",
+   "obtido": 152,
+   "referencia": 152,
+   "dif": 0,
+   "ok": true
+  },
+  {
+   "item": "M0 órgãos",
+   "obtido": 70,
+   "referencia": 70,
+   "dif": 0,
+   "ok": true
+  },
+  {
+   "item": "M1 coef (lp)",
+   "obtido": -3.757567632731118,
+   "referencia": -3.76,
+   "dif": 0.002432367268881741,
+   "ok": true
+  },
+  {
+   "item": "janela 12 coef (lp)",
+   "obtido": -1.9686944750005364,
+   "referencia": -1.9686944750005364,
+   "dif": 0.0,
+   "ok": true
+  },
+  {
+   "item": "janela 12 eventos",
+   "obtido": 78,
+   "referencia": 78,
+   "dif": 0,
+   "ok": true
+  },
+  {
+   "item": "perfil 23/11 b-2 coef (lp)",
+   "obtido": 0.5249571784587601,
+   "referencia": 0.5249571784587588,
+   "dif": 1.3322676295501878e-15,
+   "ok": true
+  },
+  {
+   "item": "perfil 23/11 b-2 EP (lp)",
+   "obtido": 3.5887306912452703,
+   "referencia": 3.5887306912452703,
+   "dif": 0.0,
+   "ok": true
+  },
+  {
+   "item": "perfil 23/11 b-2 p WCR",
+   "obtido": 0.8851885188518852,
+   "referencia": 0.8851885188518852,
+   "dif": 0.0,
+   "ok": true
+  },
+  {
+   "item": "perfil 23/11 b-2 eventos",
+   "obtido": 110,
+   "referencia": 110,
+   "dif": 0,
+   "ok": true
+  },
+  {
+   "item": "perfil 23/11 b0 coef (lp)",
+   "obtido": -3.137124194652624,
+   "referencia": -3.1371241946526247,
+   "dif": 8.881784197001252e-16,
+   "ok": true
+  },
+  {
+   "item": "perfil 23/11 b0 EP (lp)",
+   "obtido": 3.2068131907739557,
+   "referencia": 3.2068131907739565,
+   "dif": -8.881784197001252e-16,
+   "ok": true
+  },
+  {
+   "item": "perfil 23/11 b0 p WCR",
+   "obtido": 0.3288328832883288,
+   "referencia": 0.3288328832883288,
+   "dif": 0.0,
+   "ok": true
+  },
+  {
+   "item": "perfil 23/11 b0 eventos",
+   "obtido": 136,
+   "referencia": 136,
+   "dif": 0,
+   "ok": true
+  },
+  {
+   "item": "perfil 23/11 b1 coef (lp)",
+   "obtido": -3.1243975120781013,
+   "referencia": -3.1243975120781013,
+   "dif": 0.0,
+   "ok": true
+  },
+  {
+   "item": "perfil 23/11 b1 EP (lp)",
+   "obtido": 2.8784387847865562,
+   "referencia": 2.8784387847865553,
+   "dif": 8.881784197001252e-16,
+   "ok": true
+  },
+  {
+   "item": "perfil 23/11 b1 p WCR",
+   "obtido": 0.2812281228122812,
+   "referencia": 0.2812281228122812,
+   "dif": 0.0,
+   "ok": true
+  },
+  {
+   "item": "perfil 23/11 b1 eventos",
+   "obtido": 120,
+   "referencia": 120,
+   "dif": 0,
+   "ok": true
+  },
+  {
+   "item": "janela 12 b-4 coef (lp)",
+   "obtido": 6.5685875199661705,
+   "referencia": 6.568587519966168,
+   "dif": 2.6645352591003757e-15,
+   "ok": true
+  },
+  {
+   "item": "janela 12 b-4 eventos",
+   "obtido": 14,
+   "referencia": 14,
+   "dif": 0,
+   "ok": true
+  },
+  {
+   "item": "janela 12 b-3 coef (lp)",
+   "obtido": -8.03381385267458,
+   "referencia": -8.033813852674578,
+   "dif": -1.7763568394002505e-15,
+   "ok": true
+  },
+  {
+   "item": "janela 12 b-3 eventos",
+   "obtido": 25,
+   "referencia": 25,
+   "dif": 0,
+   "ok": true
+  },
+  {
+   "item": "janela 12 b-2 coef (lp)",
+   "obtido": -1.2145388755381452,
+   "referencia": -1.2145388755381479,
+   "dif": 2.6645352591003757e-15,
+   "ok": true
+  },
+  {
+   "item": "janela 12 b-2 eventos",
+   "obtido": 46,
+   "referencia": 46,
+   "dif": 0,
+   "ok": true
+  },
+  {
+   "item": "janela 12 b0 coef (lp)",
+   "obtido": -4.847398280775266,
+   "referencia": -4.847398280775267,
+   "dif": 8.881784197001252e-16,
+   "ok": true
+  },
+  {
+   "item": "janela 12 b0 eventos",
+   "obtido": 69,
+   "referencia": 69,
+   "dif": 0,
+   "ok": true
+  },
+  {
+   "item": "janela 12 b1 coef (lp)",
+   "obtido": -7.687458378667153,
+   "referencia": -7.687458378667154,
+   "dif": 8.881784197001252e-16,
+   "ok": true
+  },
+  {
+   "item": "janela 12 b1 eventos",
+   "obtido": 56,
+   "referencia": 56,
+   "dif": 0,
+   "ok": true
+  },
+  {
+   "item": "janela 12 b2 coef (lp)",
+   "obtido": -5.986850909326016,
+   "referencia": -5.986850909326017,
+   "dif": 8.881784197001252e-16,
+   "ok": true
+  },
+  {
+   "item": "janela 12 b2 eventos",
+   "obtido": 60,
+   "referencia": 60,
+   "dif": 0,
+   "ok": true
+  },
+  {
+   "item": "janela 12 b3 coef (lp)",
+   "obtido": -4.6683978604700265,
+   "referencia": -4.668397860470026,
+   "dif": -8.881784197001252e-16,
+   "ok": true
+  },
+  {
+   "item": "janela 12 b3 eventos",
+   "obtido": 59,
+   "referencia": 59,
+   "dif": 0,
+   "ok": true
+  }
+ ],
+ "M0": {
+  "coef_lp": -1.9081497185045722,
+  "ep_lp": 1.903581725700768,
+  "ic95_wcr": [
+   -5.671090098962208,
+   1.9325477462990868
+  ],
+  "p_wcr": 0.3211321132113211,
+  "n_eventos": 152,
+  "orgaos": 70,
+  "orgaos_efetivos": 24.714836975904962,
+  "itens_tratadas": 55617,
+  "compras_tratadas": 3671,
+  "uasgs_tratadas": 133,
+  "uasgs_controle": 2142
+ },
+ "M1": {
+  "coef_lp": -3.757567632731118,
+  "ep_lp": 1.4596540857572533,
+  "ic95_wcr": [
+   -6.671162894196235,
+   -0.886824764774865
+  ],
+  "p_wcr": 0.012201220122012201,
+  "n_eventos": 150,
+  "orgaos": 68,
+  "orgaos_efetivos": 23.035126732014618
+ },
+ "janela_12": {
+  "coef_lp": -1.9686944750005364,
+  "ep_lp": 2.821537875027238,
+  "ic95_wcr": [
+   -7.983599629621553,
+   3.5453722076326883
+  ],
+  "p_wcr": 0.48264826482648265,
+  "n_eventos": 78,
+  "orgaos": 48
+ },
+ "rscript": "C:/Program Files/R\\R-4.6.2\\bin\\Rscript.exe",
+ "saida_R": [
+  "HonestDiD 0.2.8: 167 linhas do manifesto, 2 com erro, 2263 s"
+ ],
+ "ambiente_R": {
+  "R": "R version 4.6.2 (2026-10-29 ucrt)",
+  "plataforma": "x86_64-w64-mingw32",
+  "pacote_HonestDiD": "0.2.8",
+  "pacote_CVXR": "1.9.3",
+  "pacote_Rglpk": "0.6.5.1",
+  "pacote_lpSolveAPI": "5.5.2.0.17.15",
+  "pacote_ECOSolveR": "0.6.2",
+  "pacote_TruncatedNormal": "2.3",
+  "pacote_mvtnorm": "1.4.2",
+  "pacote_Matrix": "1.7.6",
+  "pacote_pracma": "2.4.6",
+  "pacote_foreach": "1.5.2",
+  "pacote_purrr": "1.2.2",
+  "pacote_dplyr": "1.2.1",
+  "pacote_tibble": "3.3.1",
+  "nucleos": "3",
+  "linhas_manifesto": "167",
+  "linhas_com_erro": "2",
+  "avisos_total": "604",
+  "segundos": "2263.2"
+ },
+ "influencia_orgaos": {
+  "a_RM": {
+   "amostra_completa": [
+    -12.3906896059803,
+    7.12625153504567
+   ],
+   "lb_min_max": [
+    -14.9987374815327,
+    -10.7080678274897
+   ],
+   "ub_min_max": [
+    3.24462484294382,
+    8.69909778180696
+   ],
+   "retiradas_em_que_o_IC_exclui_zero": 0,
+   "retiradas": 68
+  },
+  "a_SD": {
+   "amostra_completa": [
+    -14.3406757221999,
+    9.11634168981316
+   ],
+   "lb_min_max": [
+    -16.8879505262557,
+    -12.5160795513757
+   ],
+   "ub_min_max": [
+    5.08921012830832,
+    10.9115697925112
+   ],
+   "retiradas_em_que_o_IC_exclui_zero": 0,
+   "retiradas": 68
+  },
+  "b_RM": {
+   "amostra_completa": [
+    -14.3353780332275,
+    9.50322813438677
+   ],
+   "lb_min_max": [
+    -17.4994048848511,
+    -12.4866234696925
+   ],
+   "ub_min_max": [
+    5.09348672440912,
+    11.9356234679975
+   ],
+   "retiradas_em_que_o_IC_exclui_zero": 0,
+   "retiradas": 68
+  },
+  "b_SD": {
+   "amostra_completa": [
+    -17.0589777500808,
+    12.3723275790183
+   ],
+   "lb_min_max": [
+    -20.2094085683576,
+    -13.8608516819888
+   ],
+   "ub_min_max": [
+    7.77852089614893,
+    14.8818449199241
+   ],
+   "retiradas_em_que_o_IC_exclui_zero": 0,
+   "retiradas": 68
+  }
+ },
+ "quebras": {
+  "aplicaveis": [],
+  "combinacoes": 73,
+  "nao_aplicaveis_IC_ja_inclui_zero": 73
+ },
+ "graficos": [
+  "g1_coeficientes_dinamicos.svg",
+  "g2_magnitudes_relativas.svg",
+  "g3_suavidade.svg",
+  "g4_direcoes.svg",
+  "g5_sensibilidades_media.svg",
+  "g5_sensibilidades_primeiro.svg",
+  "g6_influencia_orgaos.svg"
+ ],
+ "fim": "2026-11-24 11:43:40",
+ "segundos_total": 2335.2,
+ "linhas_refeitas": {
+  "ids": [
+   "F1|a",
+   "P1_BOOT|b"
+  ],
+  "motivo": "falha numérica do FLCI do pacote num valor de M derrubava a chamada inteira; refeitas com avaliação valor a valor (o executar.R atual já faz isso direto)"
+ }
+}

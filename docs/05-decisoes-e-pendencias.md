@@ -293,6 +293,37 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       - as células excluídas são quase só ruído (IC de ±10 lp);
       - com pesos iguais o efeito é mais fraco (−2,3 a −3,7);
       - como o corte foi escolhido depois de ver os resultados, falta pré-registrar a definição e confirmar em dados novos.
+    - **Replicação adaptada de Athey, Levin e Seira (2011), Fase 1 (24/11/2026, exploratória):** [`analises/replicacao_athey_levin_seira_20261124/relatorio.md`](../analises/replicacao_athey_levin_seira_20261124/relatorio.md).
+      - **Escore e suporte:** com o histórico da UASG, a AUC é 0,98, e só 15 mil de 92 mil compras ficam em [0,075; 0,925].
+      - **AF × Aberto (lp):**
+        - por item: −4 a −6, com IC sem zero, inclusive com efeito fixo de UASG;
+        - por compra: OLS com controles, interações e matching ficam entre 0 e −2,5, sem significância.
+      - **Seleção:** nas compras com 100% dos itens homologados, a associação some.
+      - **Painel:** a especificação de 16/11 nesta amostra dá −6,2 lp.
+
+      **Decisão:** tudo é descritivo, sem interpretação causal. O estudo de eventos (−1,91) segue como referência.
+      **Pendência:** a fase estrutural (Fase 2) não foi iniciada.
+    - **Sensibilidade HonestDiD do estudo de eventos (24/11/2026, exploratório):** [`analises/honestdid_sensibilidade_20261124/relatorio.md`](../analises/honestdid_sensibilidade_20261124/relatorio.md).
+      - **Execução:** pacote oficial `HonestDiD` 0.2.8, em R 4.6.2, com a matriz de covariância conjunta agrupada por órgão.
+      - **Perfil:** −2 = +0,5; 0 = −3,1; +1 = −3,1 lp. Há **um único pré-período**, com EP de 3,6 lp. O pré-teste só detecta,
+        com 80% de poder, tendências de ~10 lp por trimestre.
+      - **Conjuntos robustos:** **nenhum exclui zero**, em nenhuma restrição ou especificação, então não há ponto de
+        quebra. Com M̄ = 1, (a) [−12,4; 7,1] e (b) [−14,3; 9,5]. Com Δ^SD, M = 0–3, (a) de [−14,2; 9,0] a [−15,5; 10,3].
+      - **Estimando:** o perfil dinâmico não é o do M0. Nos mesmos eventos, −3,2 contra −1,3 lp.
+
+      **Decisão:** a análise não traz evidência adicional a favor do AF, só amplia a incerteza. **Pendência:** mais
+      pré-períodos com precisão (painel mais longo ou mais eventos) antes de qualquer teste confirmatório.
+    - **Composição dos produtos e efeito do AF no preço (23/11/2026, exploratório):** [`analises/composicao_precos_medicamentos_20261123/relatorio.md`](../analises/composicao_precos_medicamentos_20261123/relatorio.md).
+      - **O efeito está nos demais materiais,** não nos medicamentos (classe 6505): −2,3 lp em A (p = 0,26) e −4,1 lp em G
+        (p = 0,015), contra +0,4 e −1,3 lp nos medicamentos, com IC de ±11 lp em 41–42 eventos e ~7 órgãos efetivos.
+      - **A interação AF × medicamentos não é identificável:** 8,5–9 órgãos efetivos e efeito mínimo detectável de 16–22 lp.
+      - **Composição fixa:** os produtos continuados cobrem só 10–15% dos itens. O índice dá −8,5 lp em A (p = 0,05) e −3,7
+        em G (p = 0,24); as diferenças contra o índice original não são significativas.
+      - **Decomposição em G** (identidade exata): −5,3 lp = −3,7 de preço de comparáveis − 0,8 de recomposição − 0,7 de
+        entrada e saída.
+
+      **Decisão:** não há evidência de que a composição explique a diferença de preço, mas o teste de composição fixa tem
+      pouco poder. **Pendência:** janelas mais longas para aumentar os produtos continuados, com protocolo novo.
     - **Investigação complementar (23/11/2026, exploratória):** [`analises/investigacao_bjs_dispersao_composicao_20261123/relatorio.md`](../analises/investigacao_bjs_dispersao_composicao_20261123/relatorio.md).
       - **BJS × estudo de eventos com os mesmos itens, eventos, controles e janela:** a troca de estimador muda −1,8 lp em A
         (p = 0,56) e +0,1 lp em G (p = 0,94). A diferença anterior não é efeito do estimador. O BJS do evento só imputa

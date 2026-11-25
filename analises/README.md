@@ -137,6 +137,14 @@ prévio e comando único (`investigar.py`):
   de histórico se deve à raridade do produto, não ao modo.
 - **Composição:** a parcela de medicamentos cai na adoção do AF e sobe no abandono, no trimestre da troca.
 
+**Composição dos produtos e efeito do AF no preço (exploratório) — 23/11/2026**
+
+[`composicao_precos_medicamentos_20261123/`](composicao_precos_medicamentos_20261123/README.md), com protocolo prévio e comando único (`executar.py`): medicamentos × demais, interação AF × medicamentos, índice de composição fixa e decomposição preço × composição. O efeito está nos demais materiais. A interação não é identificável. Na especificação filtrada, a maior parte da variação vem do preço de produtos comparáveis.
+
+**Sensibilidade HonestDiD do estudo de eventos (exploratório) — 24/11/2026**
+
+[`honestdid_sensibilidade_20261124/`](honestdid_sensibilidade_20261124/README.md), com protocolo prévio e comando único (`executar.py` + `executar.R`, pacote oficial `HonestDiD`): coeficientes por trimestre com matriz de covariância conjunta por órgão, magnitudes relativas e suavidade, direções, janelas, antecipação e influência. Nenhum conjunto robusto exclui zero. O único pré-período é impreciso, e a análise só amplia a incerteza.
+
 **Cesta padronizada de produtos (CATMAT × unidade), sem preços — 24/11/2026**
 
 [`cesta_padronizada_20261124/`](cesta_padronizada_20261124/relatorio.md) constrói e audita uma cesta de produtos frequentes
@@ -156,6 +164,10 @@ Depois dessa data a API deixou de informar o CATMAT (pendência 17 da docs/05). 
 
 Para reexecutar: `executar.py`, cerca de 1 h. O banco de trabalho fica fora do git, nesta rodada em `D:\cesta_padronizada_trabalho\`.
 Os testes rodam com `python -m unittest discover -s testes`, num banco sintético.
+
+**Replicação adaptada de Athey, Levin e Seira (2011), Fase 1 (exploratória) — 24/11/2026**
+
+[`replicacao_athey_levin_seira_20261124/`](replicacao_athey_levin_seira_20261124/README.md), com protocolo prévio e comando único (`executar.py`): logit do modo, suporte comum, OLS, interações, matching pelo escore (eq. 7) e regressão mediana. A associação AF × preço aparece com peso por item (−4 a −6 lp) e some com peso por compra e nas compras com todos os itens homologados. Tudo é descritivo.
 
 **Efeito do modo de disputa na cesta padronizada (exploratório) — 25/11/2026**
 

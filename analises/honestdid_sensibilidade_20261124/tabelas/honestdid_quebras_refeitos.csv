@@ -1,0 +1,5 @@
+"id","espec","parametro","grade","estimativa_lp","ep_theta_lp","grade_rm_inf","grade_rm_sup","familia","aplica","quebra","nota"
+"F1|a","F1","a","completa",-4.15067196502186,3.17542702659028,-67.6592124968275,59.3578685667838,"RM",FALSE,NA,"IC no menor valor da grade já inclui zero"
+"F1|a","F1","a","completa",-4.15067196502186,3.17542702659028,-67.6592124968275,59.3578685667838,"SD",FALSE,NA,"IC no menor valor da grade já inclui zero"
+"P1_BOOT|b","P1_BOOT","b","completa",-3.13076085336536,2.71893680136464,-57.5094968806582,51.2479751739275,"RM",FALSE,NA,"IC no menor valor da grade já inclui zero"
+"P1_BOOT|b","P1_BOOT","b","completa",-3.13076085336536,2.71893680136464,-57.5094968806582,51.2479751739275,"SD",FALSE,NA,"IC no menor valor da grade já inclui zero"
