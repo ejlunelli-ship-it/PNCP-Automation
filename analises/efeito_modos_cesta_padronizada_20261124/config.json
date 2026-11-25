@@ -1,0 +1,70 @@
+{
+  "_descricao": "Configuração do estudo A × AF na cesta padronizada. Registrada (SHA-256) em protocolo.md ANTES de qualquer estimação. Nenhum parâmetro foi escolhido a partir de resultados.",
+  "versao": "1.0.0",
+  "semente": 20261123,
+  "caminhos": {
+    "_nota": "Relativos à pasta PNCP-Automation, salvo absolutos. Substituíveis por --v2, --cesta-trabalho, --trabalho.",
+    "pncp_v2": "dados/pncp_v2.db",
+    "cesta_pasta": "analises/cesta_padronizada_20261124",
+    "cesta_trabalho": "D:/cesta_padronizada_trabalho/trabalho.db",
+    "trabalho": "D:/efeito_modos_trabalho"
+  },
+  "amostra": {
+    "fonte": "dados_abertos",
+    "modalidade": "Pregão - Eletrônico",
+    "modos": ["Aberto", "Aberto-Fechado"],
+    "criterio": "Menor preço",
+    "situacao_homologado": "Homologado",
+    "exigir_produto_validado_na_principal": true,
+    "amostra_exploratoria": "cesta_candidata",
+    "periodo": "data_abertura_proposta (trimestre de abertura)",
+    "ultimo_catmat_publicacao": "2026-04-17",
+    "trimestres_incompletos": ["2022T4", "2026T2"],
+    "_trimestres_nota": "2022T4: publicações só de nov-dez/2022. 2026T2: o CATMAT some da fonte depois de 17/04/2026 (censura da fonte, não ausência de compras). Ficam fora do painel do estudo de eventos; o painel de efeitos fixos os mantém e há sensibilidade sem eles."
+  },
+  "referencia": {
+    "celula": "produto da cesta × trimestre de abertura",
+    "min_itens": 5,
+    "min_outras_uasgs": 3,
+    "extremo_ln": 2.302585092994046,
+    "_extremo_nota": "Item mantido se |ln P − ln R_A1| ≤ ln(10) (regra do protocolo de 23–24/11), máscara única da comparação principal.",
+    "apara": 0.10,
+    "apara_min_n": 10,
+    "variantes": ["A1", "A2", "A3", "A4", "A5", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9"],
+    "principal": "A1",
+    "unidades_estaveis": {"af_max": 0.05, "af_min": 0.95, "min_compras": 20,
+                          "_nota": "Referência alternativa só com UASGs estáveis no período todo (AF < 5% ou > 95% das compras A/AF, com ≥ 20 compras), contra contaminação por unidades tratadas."}
+  },
+  "efeitos_fixos": {
+    "principal": "E3",
+    "tolerancia": 1e-8,
+    "max_iter": 5000,
+    "bootstrap_wcr": 999,
+    "faixas_quantidade": "tercis do log da quantidade dentro do produto (definidos antes dos resultados)",
+    "loo_orgaos_top": 10
+  },
+  "eventos": {
+    "periodo": "trimestre de abertura",
+    "regime": "AF se a fração de compras AF (entre A e AF, todas as compras eletrônicas da UASG na fonte) no trimestre for ≥ 0,5",
+    "trimestre_puro": [0.10, 0.90],
+    "persistencia_trimestres": 2,
+    "janelas_trimestres": {"6m": 2, "12m": 4},
+    "janela_principal": "6m",
+    "estimando_principal": "item",
+    "referencia_principal": "A1",
+    "bootstrap": 999,
+    "cluster": "orgao_cnpj"
+  },
+  "honestdid": {
+    "Mbar_RM": [0, 0.5, 1, 1.5, 2],
+    "M_SD_lp": [0, 0.5, 1, 2],
+    "alfa": 0.05
+  },
+  "holm": {
+    "P_principal": ["dcdh_agregado", "dcdh_adocao", "dcdh_abandono"],
+    "F_falsificacao": ["placebo1_adocao", "placebo1_abandono", "simetria"],
+    "S_secundarios": ["desconto", "homologacao", "fracasso", "desercao"]
+  },
+  "dispersao_baixa": "células com desvio-padrão dos log-preços das outras UASGs ≤ mediana das células (regra fixa, independente do efeito)",
+  "recorrencia": "produtos com presente_todas_janelas = 1 em recorrencia_temporal.csv da cesta × demais"
+}

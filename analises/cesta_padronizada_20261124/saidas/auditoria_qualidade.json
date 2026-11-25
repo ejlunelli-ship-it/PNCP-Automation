@@ -1,0 +1,1040 @@
+[
+  {
+    "verificacao": "chaves de compra duplicadas",
+    "afetados": 0,
+    "base": 328169,
+    "base_nome": "compras",
+    "pct": 0.0,
+    "criterio": "numero_controle_pncp é chave primária no banco; conferido de novo na extração (erro se > 0)",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": []
+  },
+  {
+    "verificacao": "itens com mais de um registro (mesma chave composta)",
+    "afetados": 2321,
+    "base": 6362668,
+    "base_nome": "itens",
+    "pct": 0.0365,
+    "criterio": "colapsados em um item pela chave (numero_controle_pncp, numero_item); não se usa registro_principal",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "4693 registros nesses itens",
+    "exemplos": [
+      {
+        "chave": "10571982000125-1-000265/2024",
+        "numero_item": 5,
+        "registros": 5,
+        "n_catmat": 1,
+        "n_ms": 1,
+        "n_unidade": 1,
+        "n_uasg_item": 1
+      },
+      {
+        "chave": "00509018000113-1-000567/2026",
+        "numero_item": 10,
+        "registros": 4,
+        "n_catmat": 1,
+        "n_ms": 1,
+        "n_unidade": 1,
+        "n_uasg_item": 1
+      },
+      {
+        "chave": "04892707000100-1-000668/2024",
+        "numero_item": 1,
+        "registros": 4,
+        "n_catmat": 1,
+        "n_ms": 1,
+        "n_unidade": 1,
+        "n_uasg_item": 1
+      },
+      {
+        "chave": "00348003000110-1-000253/2026",
+        "numero_item": 1,
+        "registros": 3,
+        "n_catmat": 1,
+        "n_ms": 1,
+        "n_unidade": 1,
+        "n_uasg_item": 1
+      },
+      {
+        "chave": "00348003000110-1-000253/2026",
+        "numero_item": 2,
+        "registros": 3,
+        "n_catmat": 1,
+        "n_ms": 1,
+        "n_unidade": 1,
+        "n_uasg_item": 1
+      }
+    ]
+  },
+  {
+    "verificacao": "itens cujos registros divergem em CATMAT, natureza ou unidade",
+    "afetados": 312,
+    "base": 6362668,
+    "base_nome": "itens",
+    "pct": 0.0049,
+    "criterio": "excluídos do universo (etapa 4 do funil): o produto do item não é identificável",
+    "excluidos": 312,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": [
+      {
+        "chave": "04508933000145-1-000005/2025",
+        "numero_item": 1,
+        "catmat": 318890,
+        "material_ou_servico": "M",
+        "unidade_original": "Unidade",
+        "situacao": "Homologado"
+      },
+      {
+        "chave": "04508933000145-1-000005/2025",
+        "numero_item": 1,
+        "catmat": null,
+        "material_ou_servico": "M",
+        "unidade_original": "Unidade",
+        "situacao": "Em andamento"
+      },
+      {
+        "chave": "04513362000137-1-000057/2025",
+        "numero_item": 1,
+        "catmat": null,
+        "material_ou_servico": "M",
+        "unidade_original": "Embalagem 1,00 KG",
+        "situacao": "Em andamento"
+      },
+      {
+        "chave": "04513362000137-1-000057/2025",
+        "numero_item": 1,
+        "catmat": 472895,
+        "material_ou_servico": "M",
+        "unidade_original": "Embalagem 1,00 KG",
+        "situacao": "Homologado"
+      },
+      {
+        "chave": "04513362000137-1-000057/2025",
+        "numero_item": 2,
+        "catmat": null,
+        "material_ou_servico": "M",
+        "unidade_original": "Embalagem 5,00 KG",
+        "situacao": "Em andamento"
+      }
+    ]
+  },
+  {
+    "verificacao": "junção item -> compra (N:1)",
+    "afetados": 0,
+    "base": 6362668,
+    "base_nome": "itens",
+    "pct": 0.0,
+    "criterio": "cada item tem exatamente uma compra; erro explícito se não",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": []
+  },
+  {
+    "verificacao": "junção banco -> brutos (descrição detalhada)",
+    "afetados": 0,
+    "base": 6362668,
+    "base_nome": "itens",
+    "pct": 0.0,
+    "criterio": "mesmo número de registros por item, mesmo CATMAT; divergência de cardinalidade/CATMAT interrompe a execução; divergência só de unidade é auditada",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "{}",
+    "exemplos": []
+  },
+  {
+    "verificacao": "itens com descrições detalhadas diferentes entre registros",
+    "afetados": 317,
+    "base": 6362668,
+    "base_nome": "itens",
+    "pct": 0.005,
+    "criterio": "mantida a menor (ordem lexicográfica); todas as variantes ficam em brutos_itens",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": 2,
+    "observacao": "",
+    "exemplos": [
+      {
+        "chave": "04508933000145-1-000005/2025",
+        "numero_item": 1,
+        "registros_brutos": 2,
+        "descricao_detalhada": "MOTOCICLETA, TIPO MOTOR 4 TEMPOS, POTÊNCIA MÍNIMO 120 CC E 12,5 CV, CAIXAMUDANÇA 5 VELOCIDADES, ACIONAMENTO ELÉTRICO, COMBUSTÍVEL GASOLINA, CAPACIDADETANQUE MÍNIMO DE 10 L L, COR BRANCA, ANO FABRICAÇÃO CORRENTE, CARACTERÍSTICASADICIONAIS NACIONAL, MÍNIMO 1 ANO GARANTIA, IGNIÇÃO ELETRÔNI C",
+        "descricao_detalhada_max": "MOTOCICLETA, TIPO MOTOR 4 TEMPOS, POTÊNCIA MÍNIMO 120 CC E 12,5 CV, CAIXAMUDANÇA 5 VELOCIDADES, ACIONAMENTO ELÉTRICO, COMBUSTÍVEL GASOLINA, CAPACIDADETANQUE MÍNIMO DE 10 L L, COR BRANCA, ANO FABRICAÇÃO CORRENTE, CARACTERÍSTICASADICIONAIS NACIONAL, MÍNIMO 1 ANO GARANTIA, IGNIÇÃO ELETRÔNI C"
+      },
+      {
+        "chave": "04513362000137-1-000057/2025",
+        "numero_item": 1,
+        "registros_brutos": 2,
+        "descricao_detalhada": "ARROZ BENEFICIADO, TIPO: AGULHINHA/BRANCO , SUBGRUPO: POLIDO , CLASSE: LONGO FINO , QUALIDADE: TIPO 1 , CARACTERÍSTICA ADICIONAL: ORGÂNICO ",
+        "descricao_detalhada_max": "ARROZ BENEFICIADO, TIPO: AGULHINHA/BRANCO , SUBGRUPO: POLIDO , CLASSE: LONGO FINO , QUALIDADE: TIPO 1 , CARACTERÍSTICA ADICIONAL: ORGÂNICO "
+      },
+      {
+        "chave": "04513362000137-1-000057/2025",
+        "numero_item": 2,
+        "registros_brutos": 2,
+        "descricao_detalhada": "ARROZ BENEFICIADO, TIPO: AGULHINHA/BRANCO , SUBGRUPO: POLIDO , CLASSE: LONGO FINO , QUALIDADE: TIPO 1 , CARACTERÍSTICA ADICIONAL: ORGÂNICO ",
+        "descricao_detalhada_max": "ARROZ BENEFICIADO, TIPO: AGULHINHA/BRANCO , SUBGRUPO: POLIDO , CLASSE: LONGO FINO , QUALIDADE: TIPO 1 , CARACTERÍSTICA ADICIONAL: ORGÂNICO "
+      },
+      {
+        "chave": "04513362000137-1-000057/2025",
+        "numero_item": 3,
+        "registros_brutos": 2,
+        "descricao_detalhada": "ARROZ BENEFICIADO, TIPO: BRANCO , SUBGRUPO: INTEGRAL , CLASSE: LONGO FINO , QUALIDADE: TIPO 1 ",
+        "descricao_detalhada_max": "ARROZ BENEFICIADO, TIPO: BRANCO , SUBGRUPO: INTEGRAL , CLASSE: LONGO FINO , QUALIDADE: TIPO 1 "
+      },
+      {
+        "chave": "04513362000137-1-000057/2025",
+        "numero_item": 4,
+        "registros_brutos": 2,
+        "descricao_detalhada": "AÇÚCAR, TIPO: CRISTAL ",
+        "descricao_detalhada_max": "AÇÚCAR, TIPO: CRISTAL "
+      }
+    ]
+  },
+  {
+    "verificacao": "itens sem compra correspondente (banco inteiro)",
+    "afetados": 0,
+    "base": 6365040,
+    "base_nome": "linhas de item",
+    "pct": 0.0,
+    "criterio": "contados na varredura do banco de origem; não entram no universo",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": []
+  },
+  {
+    "verificacao": "compras sem itens (fonte do universo)",
+    "afetados": 92,
+    "base": 328169,
+    "base_nome": "compras",
+    "pct": 0.028,
+    "criterio": "não geram itens; ficam fora naturalmente",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": [
+      {
+        "chave": "00043711000143-1-000005/2026",
+        "uasg": "193001",
+        "modalidade": "Pregão - Eletrônico",
+        "data_publicacao": "2026-02-12"
+      },
+      {
+        "chave": "00394429000100-1-000220/2026",
+        "uasg": "120630",
+        "modalidade": "Pregão - Eletrônico",
+        "data_publicacao": "2026-02-12"
+      },
+      {
+        "chave": "00394429000100-1-002232/2026",
+        "uasg": "120016",
+        "modalidade": "Pregão - Eletrônico",
+        "data_publicacao": "2026-09-04"
+      },
+      {
+        "chave": "00394445000101-1-000060/2026",
+        "uasg": "150002",
+        "modalidade": "Pregão - Eletrônico",
+        "data_publicacao": "2026-02-12"
+      },
+      {
+        "chave": "00394452000103-1-019333/2026",
+        "uasg": "160081",
+        "modalidade": "Pregão - Eletrônico",
+        "data_publicacao": "2026-09-04"
+      }
+    ]
+  },
+  {
+    "verificacao": "CATMAT nulo em item de material (pregão eletrônico)",
+    "afetados": 1060932,
+    "base": 5533723,
+    "base_nome": "itens",
+    "pct": 19.1721,
+    "criterio": "excluídos (etapa 3): sem código não há família",
+    "excluidos": 1060932,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": [
+      {
+        "chave": "00000368000150-1-000007/2026",
+        "numero_item": 1,
+        "catmat_original": null,
+        "unidade_original": "Unidade",
+        "descricao_resumida": "Conjunto higiene"
+      },
+      {
+        "chave": "00000368000150-1-000007/2026",
+        "numero_item": 2,
+        "catmat_original": null,
+        "unidade_original": "Unidade",
+        "descricao_resumida": "Conjunto higiene"
+      },
+      {
+        "chave": "00000368000150-1-000007/2026",
+        "numero_item": 3,
+        "catmat_original": null,
+        "unidade_original": "Unidade",
+        "descricao_resumida": "Conjunto higiene"
+      },
+      {
+        "chave": "00000368000150-1-000007/2026",
+        "numero_item": 4,
+        "catmat_original": null,
+        "unidade_original": "Unidade",
+        "descricao_resumida": "Conjunto higiene"
+      },
+      {
+        "chave": "00000368000150-1-000007/2026",
+        "numero_item": 5,
+        "catmat_original": null,
+        "unidade_original": "Unidade",
+        "descricao_resumida": "Conjunto higiene"
+      }
+    ]
+  },
+  {
+    "verificacao": "CATMAT presente mas inválido (não numérico/zero)",
+    "afetados": 0,
+    "base": 5533723,
+    "base_nome": "itens",
+    "pct": 0.0,
+    "criterio": "excluídos com os nulos",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": []
+  },
+  {
+    "verificacao": "unidade de fornecimento ausente",
+    "afetados": 0,
+    "base": 5533723,
+    "base_nome": "itens",
+    "pct": 0.0,
+    "criterio": "excluídos (etapa 7)",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": []
+  },
+  {
+    "verificacao": "unidade com alerta 'conteudo_zero'",
+    "afetados": 99006,
+    "base": 6362668,
+    "base_nome": "itens",
+    "pct": 1.556,
+    "criterio": "mantidos como família própria, sem fusão; alerta na classificação",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": 0,
+    "observacao": "72 formas originais",
+    "exemplos": [
+      {
+        "unidade_original": "UNIDADE 0,00 ",
+        "unidade_norm": "UNIDADE 0",
+        "itens": 75893
+      },
+      {
+        "unidade_original": "QUILOGRAMA 0,00 ",
+        "unidade_norm": "QUILOGRAMA 0",
+        "itens": 11298
+      },
+      {
+        "unidade_original": "COMPRIMIDO 0,00 ",
+        "unidade_norm": "COMPRIMIDO 0",
+        "itens": 3022
+      },
+      {
+        "unidade_original": "FRASCO-AMPOLA 0,00 ",
+        "unidade_norm": "FRASCO-AMPOLA 0",
+        "itens": 1437
+      },
+      {
+        "unidade_original": "LITRO 0,00 ",
+        "unidade_norm": "LITRO 0",
+        "itens": 1241
+      }
+    ]
+  },
+  {
+    "verificacao": "unidade com alerta 'formato_nao_reconhecido'",
+    "afetados": 148,
+    "base": 6362668,
+    "base_nome": "itens",
+    "pct": 0.0023,
+    "criterio": "mantidos como família própria, sem fusão; alerta na classificação",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": 0,
+    "observacao": "14 formas originais",
+    "exemplos": [
+      {
+        "unidade_original": "Unid. Internacional",
+        "unidade_norm": "UNID. INTERNACIONAL",
+        "itens": 46
+      },
+      {
+        "unidade_original": "Milhão Unid. Intern.",
+        "unidade_norm": "MILHAO UNID. INTERN",
+        "itens": 30
+      },
+      {
+        "unidade_original": "P/CHAM + KM RODADO",
+        "unidade_norm": "P/CHAM + KM RODADO",
+        "itens": 24
+      },
+      {
+        "unidade_original": "QUANT. DE CHAMADOS",
+        "unidade_norm": "QUANT. DE CHAMADOS",
+        "itens": 23
+      },
+      {
+        "unidade_original": "UNID. INTERNACIONAL 0,00 ",
+        "unidade_norm": "UNID. INTERNACIONAL 0,00",
+        "itens": 7
+      }
+    ]
+  },
+  {
+    "verificacao": "descrição detalhada ausente (universo)",
+    "afetados": 225,
+    "base": 4471621,
+    "base_nome": "itens",
+    "pct": 0.005,
+    "criterio": "mantidos; reduzem share_desc_completa da família",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": 89,
+    "observacao": "",
+    "exemplos": [
+      {
+        "chave": "00348003000110-1-000436/2022",
+        "numero_item": 1
+      },
+      {
+        "chave": "00348003000110-1-000436/2022",
+        "numero_item": 3
+      },
+      {
+        "chave": "00348003000110-1-000436/2022",
+        "numero_item": 4
+      },
+      {
+        "chave": "00348003000110-1-000436/2022",
+        "numero_item": 6
+      },
+      {
+        "chave": "00348003000110-1-000436/2022",
+        "numero_item": 8
+      }
+    ]
+  },
+  {
+    "verificacao": "descrição sem atributos além do nome do PDM (universo)",
+    "afetados": 236,
+    "base": 4471621,
+    "base_nome": "itens",
+    "pct": 0.0053,
+    "criterio": "mantidos; contam como descrição incompleta",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": 92,
+    "observacao": "",
+    "exemplos": [
+      {
+        "familia": "448845|AMPOLA 2 MILILITRO",
+        "descricao_original": null,
+        "nome_pdm": "CETOPROFENO"
+      },
+      {
+        "familia": "435205|FRASCO 50 MILILITRO",
+        "descricao_original": null,
+        "nome_pdm": "DIACETURATO DE DIMINAZENO"
+      },
+      {
+        "familia": "407511|SERINGA 12 GRAMA",
+        "descricao_original": null,
+        "nome_pdm": "IVERMECTINA"
+      },
+      {
+        "familia": "418973|FRASCO 50 MILILITRO",
+        "descricao_original": null,
+        "nome_pdm": "DDVP"
+      },
+      {
+        "familia": "359445|GRAMA",
+        "descricao_original": null,
+        "nome_pdm": "SULFADIAZINA DE PRATA"
+      }
+    ]
+  },
+  {
+    "verificacao": "UASG da compra ausente ou inválida",
+    "afetados": 101,
+    "base": 328169,
+    "base_nome": "compras",
+    "pct": 0.0308,
+    "criterio": "excluídas (etapa 5)",
+    "excluidos": 101,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": [
+      {
+        "chave": "01612865000171-1-000063/2026",
+        "uasg_original": "01612865000171-001"
+      },
+      {
+        "chave": "02056729000105-1-000005/2026",
+        "uasg_original": "0"
+      },
+      {
+        "chave": "02056729000105-1-000177/2026",
+        "uasg_original": "0"
+      },
+      {
+        "chave": "02056729000105-1-000196/2026",
+        "uasg_original": "0"
+      },
+      {
+        "chave": "02056729000105-1-000249/2026",
+        "uasg_original": "0"
+      }
+    ]
+  },
+  {
+    "verificacao": "data de publicação inválida",
+    "afetados": 0,
+    "base": 328169,
+    "base_nome": "compras",
+    "pct": 0.0,
+    "criterio": "excluídas (etapa 6)",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": []
+  },
+  {
+    "verificacao": "data de abertura incoerente com a publicação (> 1 ano depois ou > 30 dias antes)",
+    "afetados": 89,
+    "base": 328169,
+    "base_nome": "compras",
+    "pct": 0.0271,
+    "criterio": "mantidas; a referência temporal é a data de publicação",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": [
+      {
+        "chave": "00394429000100-1-000483/2025",
+        "data_publicacao": "2025-04-02",
+        "data_abertura": "2026-10-01"
+      },
+      {
+        "chave": "00394452000103-1-012950/2023",
+        "data_publicacao": "2023-11-14",
+        "data_abertura": "2024-11-18"
+      },
+      {
+        "chave": "00394452000103-1-019302/2025",
+        "data_publicacao": "2025-09-22",
+        "data_abertura": "2026-10-16"
+      },
+      {
+        "chave": "00394452000103-1-021625/2024",
+        "data_publicacao": "2024-12-02",
+        "data_abertura": "2025-12-16"
+      },
+      {
+        "chave": "00394460000141-1-000294/2025",
+        "data_publicacao": "2025-04-23",
+        "data_abertura": "2026-07-01"
+      }
+    ]
+  },
+  {
+    "verificacao": "data de abertura inválida",
+    "afetados": 0,
+    "base": 328169,
+    "base_nome": "compras",
+    "pct": 0.0,
+    "criterio": "mantidas (campo não usado na seleção)",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": []
+  },
+  {
+    "verificacao": "quantidade nula, zero ou negativa (universo)",
+    "afetados": 2,
+    "base": 4471621,
+    "base_nome": "itens",
+    "pct": 0.0,
+    "criterio": "mantidos: a seleção conta compras, não quantidades",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": 0,
+    "observacao": "",
+    "exemplos": [
+      {
+        "chave": "00394544000185-1-000243/2026",
+        "numero_item": 2,
+        "quantidade_min": 0.0
+      },
+      {
+        "chave": "00394544000185-1-000681/2026",
+        "numero_item": 2,
+        "quantidade_min": 0.0
+      }
+    ]
+  },
+  {
+    "verificacao": "quantidade diferente entre registros do mesmo item",
+    "afetados": 32,
+    "base": 6362668,
+    "base_nome": "itens",
+    "pct": 0.0005,
+    "criterio": "mantidos (quantidade não entra na seleção)",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": [
+      {
+        "chave": "18291351000164-1-000117/2026",
+        "numero_item": 1
+      },
+      {
+        "chave": "18291351000164-1-000117/2026",
+        "numero_item": 2
+      },
+      {
+        "chave": "18291351000164-1-000117/2026",
+        "numero_item": 3
+      },
+      {
+        "chave": "18291351000164-1-000117/2026",
+        "numero_item": 4
+      },
+      {
+        "chave": "18291351000164-1-000117/2026",
+        "numero_item": 5
+      }
+    ]
+  },
+  {
+    "verificacao": "registros de item idênticos (todos os campos não monetários)",
+    "afetados": 347,
+    "base": 6362668,
+    "base_nome": "itens",
+    "pct": 0.0055,
+    "criterio": "colapsados pela chave composta",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": [
+      {
+        "chave": "00348003000110-1-000253/2026",
+        "numero_item": 1,
+        "n": 2
+      },
+      {
+        "chave": "00348003000110-1-000253/2026",
+        "numero_item": 2,
+        "n": 2
+      },
+      {
+        "chave": "00394411000109-1-000065/2024",
+        "numero_item": 13,
+        "n": 2
+      },
+      {
+        "chave": "00394411000109-1-000065/2024",
+        "numero_item": 16,
+        "n": 2
+      },
+      {
+        "chave": "00394429000100-1-002032/2024",
+        "numero_item": 1,
+        "n": 2
+      }
+    ]
+  },
+  {
+    "verificacao": "CATMAT com grafias diferentes da mesma unidade normalizada",
+    "afetados": 90996,
+    "base": 143666,
+    "base_nome": "CATMATs",
+    "pct": 63.3386,
+    "criterio": "unificadas pela normalização textual/aliases (sem conversão)",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": [
+      {
+        "catmat": 605938,
+        "formas_orig": 56,
+        "formas_norm": 42
+      },
+      {
+        "catmat": 268236,
+        "formas_orig": 56,
+        "formas_norm": 30
+      },
+      {
+        "catmat": 481231,
+        "formas_orig": 54,
+        "formas_norm": 37
+      },
+      {
+        "catmat": 462101,
+        "formas_orig": 53,
+        "formas_norm": 40
+      },
+      {
+        "catmat": 460235,
+        "formas_orig": 52,
+        "formas_norm": 40
+      }
+    ]
+  },
+  {
+    "verificacao": "CATMAT com 'UNIDADE 0' e 'UNIDADE' (provável mudança de codificação)",
+    "afetados": 25187,
+    "base": 143666,
+    "base_nome": "CATMATs",
+    "pct": 17.5316,
+    "criterio": "NÃO fundidas; famílias separadas e alerta",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": [
+      {
+        "catmat": 16888
+      },
+      {
+        "catmat": 52817
+      },
+      {
+        "catmat": 106526
+      },
+      {
+        "catmat": 121274
+      },
+      {
+        "catmat": 123455
+      }
+    ]
+  },
+  {
+    "verificacao": "CATMAT com mais de uma descrição textual distinta",
+    "afetados": 2599,
+    "base": 143666,
+    "base_nome": "CATMATs",
+    "pct": 1.8091,
+    "criterio": "auditadas uma a uma nas famílias triadas (descricoes_variantes.csv)",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": [
+      {
+        "catmat": 58718,
+        "anos": 3,
+        "descricoes": 604
+      },
+      {
+        "catmat": 123455,
+        "anos": 4,
+        "descricoes": 391
+      },
+      {
+        "catmat": 150002,
+        "anos": 2,
+        "descricoes": 142
+      },
+      {
+        "catmat": 106526,
+        "anos": 4,
+        "descricoes": 128
+      },
+      {
+        "catmat": 150925,
+        "anos": 4,
+        "descricoes": 107
+      }
+    ]
+  },
+  {
+    "verificacao": "mesmo CATMAT e mesma embalagem com conteúdos diferentes (ex.: CAIXA 50 × CAIXA 100)",
+    "afetados": 17332,
+    "base": 143666,
+    "base_nome": "CATMATs",
+    "pct": 12.0641,
+    "criterio": "mantidas como famílias distintas; nenhuma conversão",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": [
+      {
+        "catmat": 482917,
+        "embalagem": "PACOTE",
+        "n": 23,
+        "formas": "PACOTE 240 GRAMA,PACOTE 400 GRAMA,PACOTE 360 GRAMA,PACOTE 170 GRAMA,PACOTE 800 GRAMA,PACOTE 200 GRAMA,PACOTE 500 GRAMA,PACOTE 30 GRAMA,PACOTE 40 GRAMA,PACOTE 156 GRAMA,PACOTE 375 GRAMA,PACOTE 144 GRAMA,PACOTE 50 GRAMA,PACOTE 110 GRAMA,PACOTE 150 GRAMA,PACOTE 160 GRAMA,PACOTE 75 GRAMA,PACOTE 165 GRAMA,PACOTE 70 GRAMA,PACOTE 140 GRAMA,PACOTE 120 GRAMA,PACOTE 60 GRAMA,PACOTE 180 GRAMA"
+      },
+      {
+        "catmat": 460235,
+        "embalagem": "PACOTE",
+        "n": 22,
+        "formas": "PACOTE 400 GRAMA,PACOTE 200 GRAMA,PACOTE 360 GRAMA,PACOTE 170 GRAMA,PACOTE 375 GRAMA,PACOTE 165 GRAMA,PACOTE 185 GRAMA,PACOTE 800 GRAMA,PACOTE 40 GRAMA,PACOTE 30 GRAMA,PACOTE 500 GRAMA,PACOTE 150 GRAMA,PACOTE 144 GRAMA,PACOTE 156 GRAMA,PACOTE 180 GRAMA,PACOTE 160 GRAMA,PACOTE 140 GRAMA,PACOTE 24 GRAMA,PACOTE 25 GRAMA,PACOTE 120 GRAMA,PACOTE 240 GRAMA,PACOTE 279 GRAMA"
+      },
+      {
+        "catmat": 478564,
+        "embalagem": "PACOTE",
+        "n": 22,
+        "formas": "PACOTE 360 GRAMA,PACOTE 144 GRAMA,PACOTE 279 GRAMA,PACOTE 400 GRAMA,PACOTE 110 GRAMA,PACOTE 150 GRAMA,PACOTE 75 GRAMA,PACOTE 375 GRAMA,PACOTE 170 GRAMA,PACOTE 200 GRAMA,PACOTE 240 GRAMA,PACOTE 35 GRAMA,PACOTE 500 GRAMA,PACOTE 70 GRAMA,PACOTE 165 GRAMA,PACOTE 156 GRAMA,PACOTE 160 GRAMA,PACOTE 140 GRAMA,PACOTE 25 GRAMA,PACOTE 120 GRAMA,PACOTE 145 GRAMA,PACOTE 68 GRAMA"
+      },
+      {
+        "catmat": 615714,
+        "embalagem": "FRASCO",
+        "n": 22,
+        "formas": "FRASCO 100 MILILITRO,FRASCO 50 MG,FRASCO 100 GRAMA,FRASCO 250 MILILITRO,FRASCO 125 MILILITRO,FRASCO 200 MILILITRO,FRASCO 1 GRAMA,FRASCO 5 GRAMA,FRASCO 1 LITRO,FRASCO 500 GRAMA,FRASCO 25 GRAMA,FRASCO 500 MILILITRO,FRASCO 50 MILILITRO,FRASCO 50 GRAMA,FRASCO 25 MILILITRO,FRASCO 5 MILILITRO,FRASCO 10 MILILITRO,FRASCO 1 MILILITRO,FRASCO 2 MILILITRO,FRASCO 5 MG,FRASCO 1 MG,FRASCO 250 MG"
+      },
+      {
+        "catmat": 617795,
+        "embalagem": "PACOTE",
+        "n": 22,
+        "formas": "PACOTE 500 GRAMA,PACOTE 360 GRAMA,PACOTE 120 GRAMA,PACOTE 40 GRAMA,PACOTE 140 GRAMA,PACOTE 60 GRAMA,PACOTE 70 GRAMA,PACOTE 30 GRAMA,PACOTE 75 GRAMA,PACOTE 160 GRAMA,PACOTE 200 GRAMA,PACOTE 145 GRAMA,PACOTE 800 GRAMA,PACOTE 375 GRAMA,PACOTE 400 GRAMA,PACOTE 144 GRAMA,PACOTE 240 GRAMA,PACOTE 279 GRAMA,PACOTE 35 GRAMA,PACOTE 25 GRAMA,PACOTE 150 GRAMA,PACOTE 165 GRAMA"
+      }
+    ]
+  },
+  {
+    "verificacao": "mesmo código de catálogo como material e como serviço",
+    "afetados": 39,
+    "base": 145891,
+    "base_nome": "códigos",
+    "pct": 0.0267,
+    "criterio": "regra: só material_ou_servico = 'M' entra; códigos coincidentes de CATSER ficam fora",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": [
+      {
+        "catmat": 3662,
+        "tipos": "S,M",
+        "itens": 6551
+      },
+      {
+        "catmat": 20460,
+        "tipos": "S,M",
+        "itens": 3327
+      },
+      {
+        "catmat": 20796,
+        "tipos": "S,M",
+        "itens": 2231
+      },
+      {
+        "catmat": 2356,
+        "tipos": "S,M",
+        "itens": 1970
+      },
+      {
+        "catmat": 25321,
+        "tipos": "S,M",
+        "itens": 876
+      }
+    ]
+  },
+  {
+    "verificacao": "UASG do item diferente da UASG da compra (universo)",
+    "afetados": 879,
+    "base": 4471621,
+    "base_nome": "itens",
+    "pct": 0.0197,
+    "criterio": "mantidos; vale a UASG da compra (unidade que realizou o pregão)",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": 311,
+    "observacao": "",
+    "exemplos": [
+      {
+        "chave": "17316563000196-1-000008/2026",
+        "numero_item": 1,
+        "uasg": "000101",
+        "uasg_item": "926306"
+      },
+      {
+        "chave": "17316563000196-1-000008/2026",
+        "numero_item": 2,
+        "uasg": "000101",
+        "uasg_item": "926306"
+      },
+      {
+        "chave": "17316563000196-1-000008/2026",
+        "numero_item": 3,
+        "uasg": "000101",
+        "uasg_item": "926306"
+      },
+      {
+        "chave": "17316563000196-1-000008/2026",
+        "numero_item": 4,
+        "uasg": "000101",
+        "uasg_item": "926306"
+      },
+      {
+        "chave": "17316563000196-1-000008/2026",
+        "numero_item": 5,
+        "uasg": "000101",
+        "uasg_item": "926306"
+      }
+    ]
+  },
+  {
+    "verificacao": "UASG associada a mais de um CNPJ",
+    "afetados": 1833,
+    "base": 5543,
+    "base_nome": "UASGs",
+    "pct": 33.0687,
+    "criterio": "mantidas; a UASG é a unidade de diversidade",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": [
+      {
+        "uasg": "000001",
+        "n": 6
+      },
+      {
+        "uasg": "927744",
+        "n": 4
+      },
+      {
+        "uasg": "926922",
+        "n": 4
+      },
+      {
+        "uasg": "788310",
+        "n": 4
+      },
+      {
+        "uasg": "786810",
+        "n": 4
+      }
+    ]
+  },
+  {
+    "verificacao": "CNPJ compartilhado por mais de uma UASG",
+    "afetados": 219,
+    "base": 3049,
+    "base_nome": "CNPJs",
+    "pct": 7.1827,
+    "criterio": "esperado (ex.: Justiça Eleitoral); UASGs preservadas como unidades distintas",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": [
+      {
+        "orgao_cnpj": "00394452000103",
+        "n": 389,
+        "nome": "COMANDO DO EXERCITO"
+      },
+      {
+        "orgao_cnpj": "87252045000131",
+        "n": 269,
+        "nome": "ESTADO DE TOCANTINS"
+      },
+      {
+        "orgao_cnpj": "76416940000128",
+        "n": 202,
+        "nome": "ESTADO DO PARANA"
+      },
+      {
+        "orgao_cnpj": "21744847000150",
+        "n": 188,
+        "nome": "BASE ADMINISTRATIVA DO QUARTEL-GENERAL DO EXERCITO"
+      },
+      {
+        "orgao_cnpj": "96291141000180",
+        "n": 177,
+        "nome": "SAO PAULO SECRETARIA DA ADMINISTRACAO PENITENCIARIA"
+      }
+    ]
+  },
+  {
+    "verificacao": "id_compra repetido em mais de um numero_controle_pncp",
+    "afetados": 55,
+    "base": 328169,
+    "base_nome": "compras",
+    "pct": 0.0168,
+    "criterio": "NÃO agrupadas: a compra é o numero_controle_pncp (chave completa); ver contagem de itens idênticos",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": null,
+    "observacao": "",
+    "exemplos": [
+      {
+        "id_compra": "92517205901022024",
+        "n": 9,
+        "uasgs": 1
+      },
+      {
+        "id_compra": "98998305000712026",
+        "n": 2,
+        "uasgs": 1
+      },
+      {
+        "id_compra": "98859905900022024",
+        "n": 2,
+        "uasgs": 1
+      },
+      {
+        "id_compra": "98859905002642023",
+        "n": 2,
+        "uasgs": 1
+      },
+      {
+        "id_compra": "98859905001702026",
+        "n": 2,
+        "uasgs": 1
+      }
+    ]
+  },
+  {
+    "verificacao": "id_compra repetido com conjunto de itens idêntico (possível publicação duplicada)",
+    "afetados": 15,
+    "base": 328169,
+    "base_nome": "compras",
+    "pct": 0.0046,
+    "criterio": "NÃO deduplicadas (falta prova de que são o mesmo pregão; numero_controle_pncp distintos); impacto conferido",
+    "excluidos": 0,
+    "impacto_produtos_candidatos": 54,
+    "observacao": "",
+    "exemplos": [
+      {
+        "id_compra": "07000605002432026",
+        "compras": 2,
+        "chave_1": "05957363000133-1-000083/2026",
+        "chave_2": "05957363000133-1-000084/2026"
+      },
+      {
+        "id_compra": "07000805001272026",
+        "compras": 2,
+        "chave_1": "05792645000128-1-000072/2026",
+        "chave_2": "05792645000128-1-000073/2026"
+      },
+      {
+        "id_compra": "16012905003172026",
+        "compras": 2,
+        "chave_1": "00394452000103-1-012707/2026",
+        "chave_2": "00394452000103-1-012831/2026"
+      },
+      {
+        "id_compra": "19501805000022026",
+        "compras": 2,
+        "chave_1": "00399857000126-1-000177/2026",
+        "chave_2": "00399857000126-1-000181/2026"
+      },
+      {
+        "id_compra": "25700305001442026",
+        "compras": 2,
+        "chave_1": "00394544000185-1-002178/2026",
+        "chave_2": "00394544000185-1-002179/2026"
+      }
+    ]
+  }
+]

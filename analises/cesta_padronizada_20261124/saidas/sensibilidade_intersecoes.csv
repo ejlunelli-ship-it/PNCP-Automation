@@ -1,0 +1,7 @@
+﻿cenario_a,cenario_b,produtos_a,produtos_b,comuns,exclusivos_a,exclusivos_b,jaccard
+brando,inicial,33897,16254,16254,17643,0,0.4795
+brando,rigoroso,33897,6216,6216,27681,0,0.1834
+brando,inicial_homologados,33897,12293,12293,21604,0,0.3627
+inicial,rigoroso,16254,6216,6216,10038,0,0.3824
+inicial,inicial_homologados,16254,12293,12290,3964,3,0.756
+rigoroso,inicial_homologados,6216,12293,6170,46,6123,0.5

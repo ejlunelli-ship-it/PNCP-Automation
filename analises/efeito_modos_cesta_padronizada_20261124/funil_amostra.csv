@@ -1,0 +1,9 @@
+﻿etapa,criterio,itens,compras,produtos,uasgs,orgaos_cnpj
+0_cesta_candidata,Itens licitados dos produtos da cesta candidata,2137650,129906,16248,4587,2534
+1_compras_gov_pregao_eletronico,"Compras.gov.br, Pregão Eletrônico (já garantido pela cesta; conferido na ligação)",2137650,129906,16248,4587,2534
+2_modo_A_ou_AF,Modo Aberto ou Aberto-Fechado,2124004,129012,16248,4580,2530
+3_menor_preco,Critério de julgamento Menor preço,2106560,127626,16248,4562,2520
+4_data_abertura_valida,Data de abertura válida (define o trimestre),2106560,127626,16248,4562,2520
+5_homologado,Item homologado,1671032,112859,16247,4435,2447
+6_preco_positivo,Preço unitário homologado positivo,1671008,112857,16247,4435,2447
+7_produto_aprovado,Produto com aprovação técnica documentada (cesta validada),0,0,0,0,0

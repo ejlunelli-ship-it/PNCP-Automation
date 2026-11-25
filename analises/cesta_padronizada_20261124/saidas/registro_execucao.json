@@ -1,0 +1,1042 @@
+{
+  "versao_codigo": "1.0.0",
+  "versao_regras": "1.0.0",
+  "gerado_em": "2026-11-24T19:57:45",
+  "ambiente": {
+    "python": "3.13.17 (tags/v3.13.17:64e080d, Oct 21 2026, 14:08:53) [MSC v.1944 64 bit (AMD64)]",
+    "sqlite": "3.50.4",
+    "plataforma": "Windows-10-10.0.19045-SP0",
+    "executavel": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\.venv\\Scripts\\python.exe"
+  },
+  "snapshot": {
+    "antes": {
+      "caminho": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\dados\\pncp.db",
+      "tamanho_bytes": 16048373760,
+      "mtime_ns": 1794341025272657700,
+      "mtime_iso": "2026-11-10T17:03:45",
+      "sqlite_contador_alteracoes": 151,
+      "sqlite_cookie_esquema": 49,
+      "sha256_inicio_fim": "800e418245d8f21ddd1737ef20318b688e77846b2086c87a55c1388b223dc742",
+      "amostra_mb": 64
+    },
+    "depois": {
+      "caminho": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\dados\\pncp.db",
+      "tamanho_bytes": 16048373760,
+      "mtime_ns": 1794341025272657700,
+      "mtime_iso": "2026-11-10T17:03:45",
+      "sqlite_contador_alteracoes": 151,
+      "sqlite_cookie_esquema": 49,
+      "sha256_inicio_fim": "800e418245d8f21ddd1737ef20318b688e77846b2086c87a55c1388b223dc742",
+      "amostra_mb": 64
+    },
+    "sqlite_pragma": {
+      "journal_mode": "delete",
+      "data_version": 1,
+      "page_size": 4096,
+      "page_count": 3918060
+    },
+    "extraido_em": "2026-11-24T14:13:21"
+  },
+  "caminhos": {
+    "db": "D:\\pncp.db",
+    "brutos": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\dados\\brutos",
+    "trabalho": "D:\\cesta_padronizada_trabalho"
+  },
+  "parametros": {
+    "_descricao": "Parâmetros da cesta padronizada, registrados ANTES da seleção (ver protocolo.md). Nenhum parâmetro depende de preços, descontos, modo de disputa ou resultados econométricos.",
+    "versao_regras": "1.0.0",
+    "caminhos": {
+      "_nota": "Relativos à pasta de trabalho (pai de PNCP-Automation). Podem ser substituídos por --db / --brutos / --trabalho ou pelas variáveis PNCP_DB, PNCP_BRUTOS, CESTA_TRABALHO.",
+      "db": "dados/pncp.db",
+      "brutos": "dados/brutos",
+      "trabalho": "PNCP-Automation/dados/cesta_padronizada"
+    },
+    "universo": {
+      "fonte": "dados_abertos",
+      "modalidade": "Pregão - Eletrônico",
+      "material_ou_servico": "M",
+      "exigir_catmat": true,
+      "_fonte_nota": "Só a fonte dados_abertos (Compras.gov.br) tem codItemCatalogo/UASG; as compras fonte=pncp (outras plataformas) entram apenas na contagem descritiva do universo total."
+    },
+    "contagem": {
+      "base_principal": "licitados",
+      "_base_nota": "licitados = todos os itens publicados do pregão, qualquer situação; homologados = situação Homologado. A seleção principal usa licitados; homologados é sensibilidade pré-especificada.",
+      "data_referencia": "data_publicacao"
+    },
+    "triagem_inicial": {
+      "compras_min": 40,
+      "uasgs_min": 15,
+      "trimestres_min": 6,
+      "anos_min": 2,
+      "share_uasg_dominante_max": 0.25,
+      "hhi_max": 0.12
+    },
+    "qualidade_cadastral": {
+      "_nota": "Filtros de qualidade cadastral da família (não monetários).",
+      "share_descricao_completa_min": 0.95,
+      "exigir_unidade_valida": true
+    },
+    "sensibilidade": {
+      "_nota": "Grade pré-especificada; cada dimensão varia em torno do valor inicial. Não é usada para escolher o limiar que maximiza observações.",
+      "compras_min": [
+        20,
+        30,
+        40,
+        60,
+        80
+      ],
+      "uasgs_min": [
+        10,
+        15,
+        20,
+        30
+      ],
+      "trimestres_min": [
+        4,
+        6,
+        8,
+        10
+      ],
+      "anos_min": [
+        2,
+        3
+      ],
+      "share_uasg_dominante_max": [
+        0.15,
+        0.25,
+        0.35
+      ],
+      "hhi_max": [
+        0.06,
+        0.12,
+        0.2
+      ],
+      "cenarios_nomeados": {
+        "brando": {
+          "compras_min": 20,
+          "uasgs_min": 10,
+          "trimestres_min": 4,
+          "anos_min": 2,
+          "share_uasg_dominante_max": 0.35,
+          "hhi_max": 0.2
+        },
+        "inicial": {
+          "compras_min": 40,
+          "uasgs_min": 15,
+          "trimestres_min": 6,
+          "anos_min": 2,
+          "share_uasg_dominante_max": 0.25,
+          "hhi_max": 0.12
+        },
+        "rigoroso": {
+          "compras_min": 80,
+          "uasgs_min": 30,
+          "trimestres_min": 10,
+          "anos_min": 3,
+          "share_uasg_dominante_max": 0.15,
+          "hhi_max": 0.06
+        },
+        "inicial_homologados": {
+          "compras_min": 40,
+          "uasgs_min": 15,
+          "trimestres_min": 6,
+          "anos_min": 2,
+          "share_uasg_dominante_max": 0.25,
+          "hhi_max": 0.12,
+          "base": "homologados"
+        }
+      }
+    },
+    "homogeneidade": {
+      "_nota": "Regras determinísticas (sem modelos probabilísticos) para a classificação A/B/C. Ver cesta/classificacao.py.",
+      "share_descricao_dominante_min_A": 0.9,
+      "max_assinaturas_atributos_A": 1,
+      "min_atributos_especificos_A": 2,
+      "share_descricao_dominante_min_B": 0.5
+    },
+    "temporal": {
+      "_nota": "Período de formação NÃO aplicado na cesta descritiva. Só é usado na análise de recorrência pré-período (diagnóstico).",
+      "periodo_formacao": null,
+      "janelas_recorrencia": [
+        [
+          "2022-11-01",
+          "2023-12-31"
+        ],
+        [
+          "2024-01-01",
+          "2024-12-31"
+        ],
+        [
+          "2025-01-01",
+          "2025-12-31"
+        ],
+        [
+          "2026-01-01",
+          "2026-10-31"
+        ]
+      ]
+    },
+    "saida": {
+      "top_descricoes_relatorio": 3,
+      "exemplos_auditoria": 5
+    }
+  },
+  "sha256_parametros": "cda6ac0e2cd9c7933301182a91439e4561bbf0a3597ec22502c527213b3632a4",
+  "hashes_codigo_config": {
+    "cesta/__init__.py": "03a83a12cef15d9761dd206832a33f9cc62f5a278dfb724c3f3c4e78a79245c5",
+    "cesta/atributos.py": "b19792f6ded8df74d234bb10c5cf0293c67065f4956765d843dc515eaf0e240b",
+    "cesta/auditoria.py": "284e886dbcde73c85fabad6b813ba1afb8916911ca030eca5172bac2d7af594e",
+    "cesta/brutos.py": "f5551928e0c2f799a346121172daa64b7a54a8bea89983050f6d4531de4f6014",
+    "cesta/classificacao.py": "6d3cc0223ace2fb888ad3ce35f96b3337d662ad0738fe91d5fbcf83f999aeae3",
+    "cesta/cobertura.py": "53eb5f627c89613bbdad6f318aacf052fc39d31f64b37afbb75ccae454aaf503",
+    "cesta/comum.py": "e8374c8a889c73f094f67f903e43c3095692a5a56015d3c88a6f1d6c660349d6",
+    "cesta/diagnostico.py": "1942b5e64c40c39d096af6e8c9dbc569e923d78bbce8a19f049c99cad44ba586",
+    "cesta/esquema.py": "cd442d124c02420f826643611806047e75adb0d3628670780713e6b3f4bc285f",
+    "cesta/extracao.py": "f20666c8e45ed34841205740f888e7ecd32e8b158e03d7b7732e1255f0c3841b",
+    "cesta/metricas.py": "c32e59f00c3ee13c3f17ea14158eecb882d2d1d332a832b151aee77f44657d8c",
+    "cesta/normalizacao.py": "fa4e469e52474fcfdd73ed151d1cda71d228cd1917219eae7feb5d9a43ae1388",
+    "cesta/pipeline.py": "45307b7e1ff908dd0b2590ab7db3aea7b7a8d6d89c91c9d2e2dd2349e8d0664f",
+    "cesta/relatorio.py": "1b6392f8f564d8b79275a04faf08143ccd8a910a593791f4bacbe3ea73634455",
+    "cesta/selecao.py": "6e9f5c07565bac1cb53af4fd7720e63143dac0840c5d62e5c134cdb5e6f85c96",
+    "cesta/sensibilidade.py": "2531c308e69c52e50312bec37b84dd375225de99cb0e21b5ad33b98772adb5ec",
+    "config/aliases_unidades.csv": "ad9ce441c5ef2a52748e3f1755c18aca595115e6341f5ccd8694db60cc5772ab",
+    "config/cautela.json": "a9a7be77bf46f5cbb11997837a8e1c347d249107c78781bf5a9475902d834e09",
+    "config/parametros.json": "cda6ac0e2cd9c7933301182a91439e4561bbf0a3597ec22502c527213b3632a4",
+    "executar.py": "9422b51a4a7187aed359900b5d7f6c8af4b664bded92f3fb2805e12284d45559",
+    "testes/sintetico.py": "add85b8ed080265a1fb6de1f4723e71751513a6b6adc1509354b807ade652a8c",
+    "testes/test_integracao.py": "da7a0e5babfd384a70ccfc7861ba59b54520d72829e8aa622d254b7c6510bac2",
+    "testes/test_unidades.py": "d9bfa36565aff9d57aac6d3985ea7428dacda46d6edeb5333e2868ff8b36dc6d",
+    "validar_revisao.py": "f9d7443ee5dfd01d716d2a7d89945030358e2ede8acc4f484943026a83afda55"
+  },
+  "mapeamento": {
+    "compra.chave": {
+      "tabela": "compras",
+      "coluna": "numero_controle_pncp",
+      "obrigatorio": true,
+      "observacao": "Chave primária da compra (numeroControlePNCP).",
+      "alternativas_presentes": []
+    },
+    "compra.id_compra": {
+      "tabela": "compras",
+      "coluna": "id_compra",
+      "obrigatorio": false,
+      "observacao": "idCompra do Compras.gov.br; NÃO é único (contratações irmãs).",
+      "alternativas_presentes": []
+    },
+    "compra.uasg": {
+      "tabela": "compras",
+      "coluna": "uasg",
+      "obrigatorio": true,
+      "observacao": "UASG da compra (unidadeOrgaoCodigoUnidade).",
+      "alternativas_presentes": []
+    },
+    "compra.orgao_cnpj": {
+      "tabela": "compras",
+      "coluna": "orgao_cnpj",
+      "obrigatorio": true,
+      "observacao": "CNPJ do órgão; pode ser compartilhado por várias UASGs.",
+      "alternativas_presentes": []
+    },
+    "compra.orgao_nome": {
+      "tabela": "compras",
+      "coluna": "orgao_nome",
+      "obrigatorio": false,
+      "observacao": "",
+      "alternativas_presentes": []
+    },
+    "compra.numero_compra": {
+      "tabela": "compras",
+      "coluna": "numero_compra",
+      "obrigatorio": false,
+      "observacao": "",
+      "alternativas_presentes": []
+    },
+    "compra.ano_compra": {
+      "tabela": "compras",
+      "coluna": "ano_compra",
+      "obrigatorio": false,
+      "observacao": "",
+      "alternativas_presentes": []
+    },
+    "compra.data_publicacao": {
+      "tabela": "compras",
+      "coluna": "data_publicacao",
+      "obrigatorio": true,
+      "observacao": "dataPublicacaoPncp; data de referência da recorrência.",
+      "alternativas_presentes": []
+    },
+    "compra.data_abertura": {
+      "tabela": "compras",
+      "coluna": "data_abertura_proposta",
+      "obrigatorio": false,
+      "observacao": "dataAberturaPropostaPncp.",
+      "alternativas_presentes": []
+    },
+    "compra.modalidade": {
+      "tabela": "compras",
+      "coluna": "modalidade_nome",
+      "obrigatorio": true,
+      "observacao": "Modalidade (Pregão Eletrônico/Presencial).",
+      "alternativas_presentes": []
+    },
+    "compra.modo_disputa": {
+      "tabela": "compras",
+      "coluna": "modo_disputa",
+      "obrigatorio": true,
+      "observacao": "Lido SOMENTE no diagnóstico posterior ao congelamento.",
+      "alternativas_presentes": []
+    },
+    "compra.fonte": {
+      "tabela": "compras",
+      "coluna": "fonte",
+      "obrigatorio": true,
+      "observacao": "dados_abertos (Compras.gov.br) ou pncp (outras plataformas).",
+      "alternativas_presentes": []
+    },
+    "compra.situacao": {
+      "tabela": "compras",
+      "coluna": "situacao_compra",
+      "obrigatorio": false,
+      "observacao": "Só preenchida em fonte=pncp.",
+      "alternativas_presentes": []
+    },
+    "compra.uf": {
+      "tabela": "compras",
+      "coluna": "uf",
+      "obrigatorio": false,
+      "observacao": "",
+      "alternativas_presentes": []
+    },
+    "compra.esfera": {
+      "tabela": "compras",
+      "coluna": "esfera",
+      "obrigatorio": false,
+      "observacao": "",
+      "alternativas_presentes": []
+    },
+    "compra.poder": {
+      "tabela": "compras",
+      "coluna": "poder",
+      "obrigatorio": false,
+      "observacao": "",
+      "alternativas_presentes": []
+    },
+    "item.id": {
+      "tabela": "itens",
+      "coluna": "id",
+      "obrigatorio": true,
+      "observacao": "Chave técnica de linha (um registro da API).",
+      "alternativas_presentes": []
+    },
+    "item.chave_compra": {
+      "tabela": "itens",
+      "coluna": "numero_controle_pncp",
+      "obrigatorio": true,
+      "observacao": "Liga o item à compra.",
+      "alternativas_presentes": []
+    },
+    "item.numero": {
+      "tabela": "itens",
+      "coluna": "numero_item",
+      "obrigatorio": true,
+      "observacao": "Com a chave da compra, identifica o item.",
+      "alternativas_presentes": []
+    },
+    "item.id_compra_item": {
+      "tabela": "itens",
+      "coluna": "id_compra_item",
+      "obrigatorio": false,
+      "observacao": "idCompraItem; não é único.",
+      "alternativas_presentes": []
+    },
+    "item.registro_principal": {
+      "tabela": "itens",
+      "coluna": "registro_principal",
+      "obrigatorio": false,
+      "observacao": "Marca uma linha por item; NÃO usada (prioriza valor do resultado).",
+      "alternativas_presentes": []
+    },
+    "item.uasg": {
+      "tabela": "itens",
+      "coluna": "uasg_item",
+      "obrigatorio": false,
+      "observacao": "UASG informada no item; auditada contra a da compra.",
+      "alternativas_presentes": []
+    },
+    "item.catmat": {
+      "tabela": "itens",
+      "coluna": "cod_item_catalogo",
+      "obrigatorio": true,
+      "observacao": "codItemCatalogo (CATMAT se material, CATSER se serviço).",
+      "alternativas_presentes": []
+    },
+    "item.material_servico": {
+      "tabela": "itens",
+      "coluna": "material_ou_servico",
+      "obrigatorio": true,
+      "observacao": "M = material (CATMAT), S = serviço (CATSER).",
+      "alternativas_presentes": []
+    },
+    "item.classe": {
+      "tabela": "itens",
+      "coluna": "codigo_classe",
+      "obrigatorio": false,
+      "observacao": "Classe do catálogo.",
+      "alternativas_presentes": []
+    },
+    "item.grupo": {
+      "tabela": "itens",
+      "coluna": "codigo_grupo",
+      "obrigatorio": false,
+      "observacao": "Grupo do catálogo (muitas vezes vazio).",
+      "alternativas_presentes": []
+    },
+    "item.pdm": {
+      "tabela": "itens",
+      "coluna": "codigo_pdm",
+      "obrigatorio": false,
+      "observacao": "Padrão descritivo de material.",
+      "alternativas_presentes": []
+    },
+    "item.unidade": {
+      "tabela": "itens",
+      "coluna": "unidade_medida",
+      "obrigatorio": true,
+      "observacao": "Unidade de fornecimento.",
+      "alternativas_presentes": []
+    },
+    "item.descricao_resumida": {
+      "tabela": "itens",
+      "coluna": "descricao_resumida",
+      "obrigatorio": true,
+      "observacao": "No dados_abertos é o nome do item no catálogo (nível PDM).",
+      "alternativas_presentes": []
+    },
+    "item.quantidade": {
+      "tabela": "itens",
+      "coluna": "quantidade",
+      "obrigatorio": true,
+      "observacao": "",
+      "alternativas_presentes": []
+    },
+    "item.situacao": {
+      "tabela": "itens",
+      "coluna": "situacao_item",
+      "obrigatorio": true,
+      "observacao": "Situação do item (Homologado, Deserto, ...).",
+      "alternativas_presentes": []
+    },
+    "item.homologado": {
+      "tabela": "itens",
+      "coluna": "homologado",
+      "obrigatorio": false,
+      "observacao": "Derivada de situacao_item.",
+      "alternativas_presentes": []
+    },
+    "item.criterio": {
+      "tabela": "itens",
+      "coluna": "criterio_julgamento",
+      "obrigatorio": false,
+      "observacao": "Critério de julgamento (≠ modalidade).",
+      "alternativas_presentes": []
+    },
+    "item.data_atualizacao": {
+      "tabela": "itens",
+      "coluna": "data_atualizacao",
+      "obrigatorio": false,
+      "observacao": "",
+      "alternativas_presentes": []
+    }
+  },
+  "brutos_arquivos": [
+    {
+      "arquivo": "2022\\itens_pregao_2022-11.csv",
+      "tamanho": 329170,
+      "sha256": "daa837566e9d68c90260f72b0836afc5ff3208ad0e8411ea98667a2f69587bf0",
+      "linhas": 596,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2022\\itens_pregao_2022-12.csv",
+      "tamanho": 363371,
+      "sha256": "9a7c943b0547342e398fa85a8c2fb1d87a1cd99fc0dbbaf89ab6b573b3c0b93e",
+      "linhas": 735,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2022\\itens_pregao_adicional_correspondencias_2022.csv",
+      "tamanho": 4838,
+      "sha256": "9b19a15cee96b80cc6bac268a1620ab1d00bd5f0b4a32fbe92368077c0f43a09",
+      "linhas": 7,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2023\\itens_pregao_2023-01.csv",
+      "tamanho": 1150989,
+      "sha256": "607a32818cbe8832f85630e0b826f8c0f44a7530a4791a9eac0c49d1671acae6",
+      "linhas": 2093,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2023\\itens_pregao_2023-02.csv",
+      "tamanho": 940084,
+      "sha256": "73df9148a28a13d2cd98343feec21ab9f7d7215be01a9db4f9077af803f43038",
+      "linhas": 1674,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2023\\itens_pregao_2023-03.csv",
+      "tamanho": 1324043,
+      "sha256": "bee178b9f11ec6d26b74299c3607c69fa7c5489eb04a1c10c885ab86661ca3fb",
+      "linhas": 2243,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2023\\itens_pregao_2023-04.csv",
+      "tamanho": 5776808,
+      "sha256": "04fa373ce2d0739ffb495fdd9a6cdf4c3bd2824187709036697ce601f98a248c",
+      "linhas": 9822,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2023\\itens_pregao_2023-05.csv",
+      "tamanho": 16316377,
+      "sha256": "61ce103b768d709c9308c44cce4af6b8b764840a74876bb08d41d3c3c16b7f35",
+      "linhas": 26810,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2023\\itens_pregao_2023-06.csv",
+      "tamanho": 17556953,
+      "sha256": "9cfef017d8c34659556947fb988d204756ba6ae456ea644d738ed010ed40867c",
+      "linhas": 28784,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2023\\itens_pregao_2023-07.csv",
+      "tamanho": 29051895,
+      "sha256": "eaca1caaa5da4b6a3242559e452674519c17df7f335453cdc3b297f353d26253",
+      "linhas": 47361,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2023\\itens_pregao_2023-08.csv",
+      "tamanho": 40753711,
+      "sha256": "4a74eedafb73611bb7d70dea3a5a930dbb21bc6075494fc9956c2e937b93ff3b",
+      "linhas": 66139,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2023\\itens_pregao_2023-09.csv",
+      "tamanho": 41295529,
+      "sha256": "2f5c2b4ee6bd76fd5cd8ca6dea2f2b5a5037024fbdf09945e877f69bfdc80a4e",
+      "linhas": 67524,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2023\\itens_pregao_2023-10.csv",
+      "tamanho": 50090802,
+      "sha256": "858d520ac8ec24b0e7ababe9899d45e0376c0a532389c7139e87b56caf84fcc8",
+      "linhas": 80786,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2023\\itens_pregao_2023-11.csv",
+      "tamanho": 54583344,
+      "sha256": "031cf5ec49a00d753c6a0c3dc3f1e0c95329762243938a9595435d4c0e93634e",
+      "linhas": 89311,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2023\\itens_pregao_2023-12.csv",
+      "tamanho": 39174419,
+      "sha256": "fb15102ab43a5a9c88dfdcdf1632e965604661d5d98c7a75850a50c1f607a1a8",
+      "linhas": 62927,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2023\\itens_pregao_adicional_correspondencias_2023.csv",
+      "tamanho": 1071648,
+      "sha256": "fd3f00adf5f4e600933c5c95d3d86d9f3fa51c7c69b9be5da102c3d4ebfc684c",
+      "linhas": 1700,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2024\\itens_pregao_2024-01.csv",
+      "tamanho": 38858817,
+      "sha256": "102f0e5b75e136018076674f54a21fc0f23ecb423e52f8a1d7c9d6ea6a1b5934",
+      "linhas": 63720,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2024\\itens_pregao_2024-02.csv",
+      "tamanho": 55733305,
+      "sha256": "d7c10e58d5be574006ed9e4dd638729a7d1f359b227fe62166842ce658ed7080",
+      "linhas": 90714,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2024\\itens_pregao_2024-03.csv",
+      "tamanho": 69151654,
+      "sha256": "b731c67e923d8c5c75f4ee414e51a9af1e0353968bef1838fd38456c3ea3e5d1",
+      "linhas": 112973,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2024\\itens_pregao_2024-04.csv",
+      "tamanho": 91602300,
+      "sha256": "767fe47895b5b75ded2980c82487d21718f3bf837268cc8a1771daebcc403780",
+      "linhas": 150126,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2024\\itens_pregao_2024-05.csv",
+      "tamanho": 102775528,
+      "sha256": "58ac2e510e770aa7d8efb844c3877e279e966381a75275a039743b25f2ad1ae5",
+      "linhas": 166235,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2024\\itens_pregao_2024-06.csv",
+      "tamanho": 114977788,
+      "sha256": "03a33ed89a3281da5960f5a9814ce53c32b22d3d4cf2706a67c914939fefef90",
+      "linhas": 187729,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2024\\itens_pregao_2024-07.csv",
+      "tamanho": 128297713,
+      "sha256": "27b0856373588e4b79aa10cfcbcdf9d50af940aeea24c98791b610515c692f92",
+      "linhas": 210091,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2024\\itens_pregao_2024-08.csv",
+      "tamanho": 130124929,
+      "sha256": "2c874ee972b938f4338846379d9b5d0451560c6bda6534af8be54ddfbed0f106",
+      "linhas": 213631,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2024\\itens_pregao_2024-09.csv",
+      "tamanho": 117583183,
+      "sha256": "09a4c4359bda4d1731de378116f4a07ed9bad237dede065818d23d42f3ee0755",
+      "linhas": 192053,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2024\\itens_pregao_2024-10.csv",
+      "tamanho": 144020080,
+      "sha256": "6377240fa134c58d3bb96322ceb3241b7cbe67cae42823d16a391004b2d1cc73",
+      "linhas": 235738,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2024\\itens_pregao_2024-11.csv",
+      "tamanho": 140432436,
+      "sha256": "f68f1dfcc42e4565ac18c30636f31b6d086d99faf835f200beb3df8b89e26633",
+      "linhas": 231447,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2024\\itens_pregao_2024-12.csv",
+      "tamanho": 94262894,
+      "sha256": "7994c1e4d57ed99b5b10823177b43371a8747e31f4d28b404fc5252b941d4ef4",
+      "linhas": 156704,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2024\\itens_pregao_adicional_correspondencias_2024.csv",
+      "tamanho": 11791436,
+      "sha256": "0144d5604141f684c4193d981baea2e7f2dfb707352705c7dc2758745c0de631",
+      "linhas": 19388,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2025\\itens_pregao_2025-01.csv",
+      "tamanho": 89409589,
+      "sha256": "056b522d98b6ffe859aa1fdafce0b5710afd8a216dfc415618e915e389ef77eb",
+      "linhas": 147852,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2025\\itens_pregao_2025-02.csv",
+      "tamanho": 99983952,
+      "sha256": "04140e317a3e90fbda4cbdcd83ddb79fdd11c74338127e320647fc7cdb7fab78",
+      "linhas": 164417,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2025\\itens_pregao_2025-03.csv",
+      "tamanho": 96567033,
+      "sha256": "83676fcec6950bd102847503cb61acb3d3097db115e74deacb0220b268a062dd",
+      "linhas": 159559,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2025\\itens_pregao_2025-04.csv",
+      "tamanho": 110102645,
+      "sha256": "85cd158c4a048e188ae3717c44626d260d448541045e5f1db9568658789b55ab",
+      "linhas": 180257,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2025\\itens_pregao_2025-05.csv",
+      "tamanho": 113760239,
+      "sha256": "ae47fbf64770bd0d1996980625bda627bab177136e314c85317daf22fb4345a4",
+      "linhas": 186011,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2025\\itens_pregao_2025-06.csv",
+      "tamanho": 108668315,
+      "sha256": "0d22fb9c956bd089eda6cc7bc765a6b094dddeb29db1908914a835ff9c184d50",
+      "linhas": 177420,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2025\\itens_pregao_2025-07.csv",
+      "tamanho": 135867910,
+      "sha256": "dd3ecb13c16bf9794cd1aa4fe9db0ecd63fd7341a93c27d5ab2467cea583df99",
+      "linhas": 221916,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2025\\itens_pregao_2025-08.csv",
+      "tamanho": 128835920,
+      "sha256": "2b92e7179f1ec3b3d2cc68fea74864035f16c3d13d8c1dd5a18d905ceb2df70f",
+      "linhas": 210628,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2025\\itens_pregao_2025-09.csv",
+      "tamanho": 137374691,
+      "sha256": "b5948068534b6c82a4d3a9973afa902e8b86406723008c033087f8bee884eb81",
+      "linhas": 224070,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2025\\itens_pregao_2025-10.csv",
+      "tamanho": 135759246,
+      "sha256": "8393bdd5034e36cac2b14e4eea9b73c1d5173feff1b79b7369d184d404b7782c",
+      "linhas": 220361,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2025\\itens_pregao_2025-11.csv",
+      "tamanho": 116597105,
+      "sha256": "fb22285a511cb50f7755e8342cc9c3bb36b836196875156c086dec6efc8a63fc",
+      "linhas": 192649,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2025\\itens_pregao_2025-12.csv",
+      "tamanho": 84686535,
+      "sha256": "0a5bd9e1894a52d46018fa33aa5c2dfc8185e173d7402c9bb379a418a415dd98",
+      "linhas": 142155,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2025\\itens_pregao_adicional_correspondencias_2025.csv",
+      "tamanho": 10169820,
+      "sha256": "ad690c588026e154c2f43dd110b126092b6dcdebff88b19fa14344e4b3fad51a",
+      "linhas": 16756,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2026\\itens_pregao_2026-01.csv",
+      "tamanho": 69892075,
+      "sha256": "ec7bc89e74063ef60728d9319d80c2a8a1527e2ea081967d4410016f662a86c8",
+      "linhas": 117951,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2026\\itens_pregao_2026-02.csv",
+      "tamanho": 71726597,
+      "sha256": "2c4e26377cc2fafbd28f5fffecad909efd3e0c986227f93d7dd5d9f2891a83e9",
+      "linhas": 121102,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2026\\itens_pregao_2026-03.csv",
+      "tamanho": 99470351,
+      "sha256": "16865eca2752f71a111420c9d3201a11392ca3bd203e317d00dda604b7c8ed02",
+      "linhas": 168155,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2026\\itens_pregao_2026-04.csv",
+      "tamanho": 81884152,
+      "sha256": "19d17c4dece59b07f77bc4f1830bcb402904d01a47ba36f853dfae64b2d06ec4",
+      "linhas": 154557,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2026\\itens_pregao_2026-05.csv",
+      "tamanho": 70051807,
+      "sha256": "828162b2c8d5f5666542e2e594d3065628972ea5a1d85551dcef696610e4b39e",
+      "linhas": 165711,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2026\\itens_pregao_2026-06.csv",
+      "tamanho": 65143423,
+      "sha256": "e776e37185fde1b4b234e053546d04035bd002602af85909a641a39996890539",
+      "linhas": 154517,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2026\\itens_pregao_2026-07.csv",
+      "tamanho": 104119489,
+      "sha256": "a293f841cc3f2371849d4fd87aaa0123db224e4b8300262ec6e3bd05478e42d0",
+      "linhas": 180240,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2026\\itens_pregao_2026-08.csv",
+      "tamanho": 108972988,
+      "sha256": "1487c0e9dfe0b630e520811bf9c577700be9843c7ddea11772656361010b3b36",
+      "linhas": 182926,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2026\\itens_pregao_2026-09.csv",
+      "tamanho": 103874774,
+      "sha256": "18e07cf5456456721c5d840f082a1d2a34773493a67eb0c9dd0df13ec8a001fe",
+      "linhas": 179905,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2026\\itens_pregao_2026-10.csv",
+      "tamanho": 93521934,
+      "sha256": "fb11cd05cc0be9d916e42283c6539b230f3930c07383c8bae29f1b28b2974a86",
+      "linhas": 169423,
+      "colunas_ausentes": ""
+    },
+    {
+      "arquivo": "2026\\itens_pregao_adicional_correspondencias_2026.csv",
+      "tamanho": 3898378,
+      "sha256": "f34ae867919bf9ea0f5657e8ff614122bb4ab067b359f6844a2e1c301560e425",
+      "linhas": 7441,
+      "colunas_ausentes": ""
+    }
+  ],
+  "contagens": {
+    "diagnostico": {
+      "compras_cesta": 129906,
+      "compras_por_modo": {
+        "AF": 48150,
+        "A": 80862,
+        "FA": 894
+      },
+      "uasgs_cesta": 4587,
+      "uasgs_usaram_A_e_AF": 995,
+      "produtos": 16248,
+      "produtos_comprados_nos_dois_modos": 16244,
+      "produtos_com_5_ou_mais_compras_em_cada_modo": 16198,
+      "celulas_produto_trimestre": 191636,
+      "celulas_com_A_e_AF": 149279,
+      "celulas_com_A_e_AF_e_2_ou_mais_uasgs": 149273,
+      "trocas_de_modo_dentro_da_uasg": 5173,
+      "uasgs_com_alguma_troca": 995,
+      "eventos_potenciais": {
+        "definicao": ">= 3 compras da cesta só em A antes da primeira AF e >= 3 compras AF a partir dela",
+        "uasgs": 160,
+        "por_ano_da_primeira_AF": {
+          "2023": 21,
+          "2024": 88,
+          "2025": 46,
+          "2026": 5
+        }
+      },
+      "referencia_interna": {
+        "definicao": "item da cesta com >= 3 outras UASGs comprando o mesmo produto no mesmo trimestre",
+        "itens": 1995107,
+        "itens_total": 2137650,
+        "pct": 93.33
+      }
+    },
+    "itens_sem_compra_total": 0,
+    "compras_base": 328169,
+    "itens_linhas": 6365040,
+    "itens_distintos": 6362668,
+    "itens_com_registros_repetidos": 2321,
+    "registros_em_itens_repetidos": 4693,
+    "itens_atributos_conflitantes": 312,
+    "unidades_formas_originais": 5840,
+    "unidades_formas_normalizadas": 2680,
+    "brutos_linhas": 6365040,
+    "brutos_itens_distintos": 6362668,
+    "brutos_itens_sem_banco": 0,
+    "ligacao_divergencias": {},
+    "itens_com_mais_de_uma_descricao_detalhada": 317,
+    "descricoes_originais_distintas": 547619,
+    "familias_universo": 273330,
+    "familias_triagem_ampla": 37998,
+    "familias_passam_limiares_iniciais": 18103,
+    "familias_iniciais_falham_qualidade_cadastral": 1,
+    "produtos_candidatos": 16248,
+    "sensibilidade_cenarios_grade": 1440,
+    "recorrencia": {
+      "produtos": 16248,
+      "comum_primeira_janela": 5260,
+      "presente_todas_janelas": 14544,
+      "criterio_comum_primeira_janela": {
+        "compras_min": 10,
+        "uasgs_min": 5
+      }
+    }
+  },
+  "execucoes": {
+    "execucao_diagnostico-relatorio": {
+      "etapas": [
+        {
+          "etapa": "diagnóstico: itens da cesta congelada",
+          "segundos": 7.03,
+          "ok": true
+        },
+        {
+          "etapa": "diagnóstico: modo de disputa (pncp.db, somente leitura)",
+          "segundos": 117.47,
+          "ok": true
+        },
+        {
+          "etapa": "diagnóstico: indicadores",
+          "segundos": 25.92,
+          "ok": true
+        }
+      ],
+      "segundos_total": 154.93,
+      "consultas": {
+        "diagnostico_modo": "SELECT numero_controle_pncp, modo_disputa FROM compras WHERE fonte = ?"
+      },
+      "avisos": []
+    },
+    "execucao_extrair-brutos": {
+      "etapas": [
+        {
+          "etapa": "impressão digital do banco de origem",
+          "segundos": 0.86,
+          "ok": true
+        },
+        {
+          "etapa": "esquema: inspeção e mapeamento",
+          "segundos": 0.01,
+          "ok": true
+        },
+        {
+          "etapa": "universo total: compras",
+          "segundos": 22.35,
+          "ok": true
+        },
+        {
+          "etapa": "universo total: itens (varredura completa)",
+          "segundos": 334.45,
+          "ok": true
+        },
+        {
+          "etapa": "universo total: itens sem compra",
+          "segundos": 94.44,
+          "ok": true
+        },
+        {
+          "etapa": "extração: compras",
+          "segundos": 74.93,
+          "ok": true
+        },
+        {
+          "etapa": "extração: linhas de item",
+          "segundos": 707.33,
+          "ok": true
+        },
+        {
+          "etapa": "índices do banco de trabalho",
+          "segundos": 9.54,
+          "ok": true
+        },
+        {
+          "etapa": "deduplicação dos itens (chave composta)",
+          "segundos": 74.54,
+          "ok": true
+        },
+        {
+          "etapa": "normalização das unidades",
+          "segundos": 7.7,
+          "ok": true
+        },
+        {
+          "etapa": "brutos: leitura de 53 arquivos de itens",
+          "segundos": 606.0,
+          "ok": true
+        },
+        {
+          "etapa": "brutos: índice",
+          "segundos": 9.76,
+          "ok": true
+        },
+        {
+          "etapa": "brutos: ligação e conferência de cardinalidade",
+          "segundos": 103.34,
+          "ok": true
+        },
+        {
+          "etapa": "descrições: normalização das variantes distintas",
+          "segundos": 119.47,
+          "ok": true
+        }
+      ],
+      "segundos_total": 2166.68,
+      "consultas": {
+        "universo_compras": "SELECT fonte, modalidade_nome, situacao_compra, COUNT(*), MIN(data_publicacao), MAX(data_publicacao) FROM compras GROUP BY 1, 2, 3 ORDER BY 1, 2, 3",
+        "universo_itens": "SELECT co.fonte, co.modalidade_nome, i.material_ou_servico, i.cod_item_catalogo IS NOT NULL, COUNT(*), COUNT(DISTINCT i.numero_controle_pncp || '#' || i.numero_item) FROM itens i JOIN compras co ON co.numero_controle_pncp = i.numero_controle_pncp GROUP BY 1, 2, 3, 4 ORDER BY 1, 2, 3, 4",
+        "itens_orfaos": "SELECT COUNT(*) FROM itens i WHERE NOT EXISTS (SELECT 1 FROM compras c WHERE c.numero_controle_pncp = i.numero_controle_pncp)",
+        "compras_base": "SELECT numero_controle_pncp, id_compra, uasg, orgao_cnpj, orgao_nome, numero_compra, ano_compra, modalidade_nome, data_publicacao, data_abertura_proposta, uf, esfera, poder FROM compras WHERE fonte = ? ORDER BY numero_controle_pncp",
+        "itens_linhas": "SELECT i.id, i.numero_controle_pncp, i.numero_item, i.id_compra_item, i.registro_principal, i.uasg_item, i.cod_item_catalogo, i.material_ou_servico, i.codigo_classe, i.codigo_grupo, i.codigo_pdm, i.unidade_medida, i.descricao_resumida, i.quantidade, i.situacao_item, i.homologado, i.criterio_julgamento, i.data_atualizacao FROM compras co JOIN itens i ON i.numero_controle_pncp = co.numero_controle_pncp WHERE co.fonte = ? ORDER BY i.id"
+      },
+      "avisos": []
+    },
+    "execucao_normalizar": {
+      "etapas": [
+        {
+          "etapa": "normalização das unidades",
+          "segundos": 16.68,
+          "ok": true
+        },
+        {
+          "etapa": "descrições: normalização das variantes distintas",
+          "segundos": 185.79,
+          "ok": true
+        }
+      ],
+      "segundos_total": 204.48,
+      "consultas": {},
+      "avisos": []
+    }
+  },
+  "saidas_sha256": {
+    "auditoria_qualidade.csv": "f41b2ce9c77d6ac6a8b55fb4d604aefef9e3f0e57cd8bca8c67923eafdb7e8c6",
+    "auditoria_qualidade.json": "674ce89f596c8dca90e908d5a9c7523f894687f7ac8e26b774672260bcd8a804",
+    "cesta_candidata.csv": "80cd46a7bac29464209a4dea4b668d2bfd35915ee8c694c51692b659a21d59eb",
+    "cesta_validada.csv": "fc1c08a883b6ee3d87766d7cc6a231974f2bc88c1ca10aa049b37eaba699a50f",
+    "cobertura_cesta.json": "d523b02f63d12e5529ed1ab408c1e2eb4b8221a4af2d6c0d9191377f67193d20",
+    "cobertura_por_ano.csv": "dcd9fbac008ede519abe10567c8d5f75b2964cd9116371f3b2a5ea2ac9538d55",
+    "cobertura_por_grupo_material.csv": "1dc2554da820d6a5d03297186e09bebad79d152d9b77ad337faf485a09be8bff",
+    "cobertura_por_trimestre.csv": "4f2d9be879e46fd23bb9ad0596499909bcad10238e6c0f8ca27706914c738cd4",
+    "cobertura_temporal.json": "9f15858c4f0f78d25a5c3d2ad2a0933b744c5fc0c0f7de7e446b67e4e8928043",
+    "congelamento_cesta.json": "4baefa96060fd533a20a1a63a907f9f929a3ddf721fc90ba0f078ab2062c607c",
+    "descricoes_variantes.csv": "a20612a940ee5dfb82e653246df0f0f042929e8317ec21373420ae9ce2968cc9",
+    "diagnostico_por_produto.csv": "20e0a3ba9389d29b643675cb2ef684e950eb211ed9f9c2bd0b9767c348c73a42",
+    "diagnostico_viabilidade.json": "eb5218d8fffa99428766ec5dd17b62328c20241206eec03137bc8b38260895ca",
+    "familias_metricas.csv.gz": "65f5f0b3b9b8bd441654b7a026a8de7e6d7083568dc2fa476cf9a737d8be2137",
+    "familias_triadas_descartadas.csv": "7db3ea8bea98c9fc8f033bde1ed98093d37eaf111ce283721c83d8aa69f067c2",
+    "formulario_revisao.csv": "78c42b7b246b68e6c40026511e3780b7b579626be37aa08f8a1c947a853c7a64",
+    "funil_selecao.csv": "071caa0eb5df385d10569a1723734d05144afccf2afa2fecfc0e4f5605f9533d",
+    "recorrencia_temporal.csv": "aee3a12264b2c5a5e811b210ca51d4bb239132ef015cfe3060b3fc32265a305e",
+    "registro_execucao.json": "392d99b08319a88b7e6e986cee0939072c02337bcc481ee1a8bab050356000c4",
+    "sensibilidade_cenarios.csv": "e89100670c81743d0a78fa9d8671fae4f7f5b5087e685117bcfefcef8e8be727",
+    "sensibilidade_grade.csv": "f7b681769b8ef333f3121b5058ee87da8c40e30bb0fb27b068542d8c7cda984b",
+    "sensibilidade_intersecoes.csv": "8247098f11f22e8566871d34f6d6aeea54a0c25320234c2c2c1f4823b308fb15",
+    "sensibilidade_pertinencia.csv": "3c35b94e8296357cea9fa6441c4840a8ced0dc027c81623f2bf29897545c1c4e",
+    "sensibilidade_uma_dimensao.csv": "b41430fe0958af2ed54ffe4bc5c74cdb6fada9546a4a8bd84677b067efd8280f"
+  }
+}

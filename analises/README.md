@@ -137,3 +137,40 @@ prévio e comando único (`investigar.py`):
   de histórico se deve à raridade do produto, não ao modo.
 - **Composição:** a parcela de medicamentos cai na adoção do AF e sobe no abandono, no trimestre da troca.
 
+**Cesta padronizada de produtos (CATMAT × unidade), sem preços — 24/11/2026**
+
+[`cesta_padronizada_20261124/`](cesta_padronizada_20261124/relatorio.md) constrói e audita uma cesta de produtos frequentes
+no Pregão Eletrônico do Compras.gov.br. A seleção usa só frequência, diversidade institucional, recorrência e qualidade
+das descrições; nenhuma etapa lê preço ou modo de disputa, o que é garantido por teste estático e por teste metamórfico.
+Protocolo em [`protocolo.md`](cesta_padronizada_20261124/protocolo.md).
+
+O universo tem 4,47 milhões de itens de material com CATMAT, em 174.515 compras de 4.756 UASGs, de 2022-11 a 2026-04-17.
+Depois dessa data a API deixou de informar o CATMAT (pendência 17 da docs/05). A cesta candidata tem 16.248 produtos
+(A 10.424, B 5.824) e cobre 74% das compras do universo; a **cesta validada fica vazia até a revisão humana**. Saídas:
+
+- 100% das variantes de descrição;
+- auditoria de qualidade;
+- sensibilidade com 1.440 combinações;
+- recorrência temporal;
+- diagnóstico não seletivo dos modos: 160 UASGs com evento potencial e 93% dos itens com referência interna.
+
+Para reexecutar: `executar.py`, cerca de 1 h. O banco de trabalho fica fora do git, nesta rodada em `D:\cesta_padronizada_trabalho\`.
+Os testes rodam com `python -m unittest discover -s testes`, num banco sintético.
+
+**Efeito do modo de disputa na cesta padronizada (exploratório) — 25/11/2026**
+
+[`efeito_modos_cesta_padronizada_20261124/`](efeito_modos_cesta_padronizada_20261124/relatorio.md): estudo A × AF sobre a cesta
+padronizada, com protocolo fixado antes da estimação, comando único (`executar.py`), 22 testes e conclusão em
+[`conclusao.md`](efeito_modos_cesta_padronizada_20261124/conclusao.md). A cesta validada não tem produtos aprovados, então
+**tudo é exploratório** e nada é confirmação causal.
+
+- **Amostra:** 1,31 milhão de itens homologados da cesta candidata, com índice leave-one-UASG-out (A1).
+- **Desfecho:** preço relativo ao das outras UASGs, em log-pontos (lp).
+- **Associação:** diferença bruta de −5,0 lp; com UASG, produto × trimestre e quantidade (E3), −6,0 lp, IC95 [−8,4; −3,5].
+  Dentro de UASG × produto (E7), −2,9 lp, com IC que inclui zero.
+- **Estudo de eventos (dCDH, tratamento reversível):** 317 trocas. O agregado dá −4,6 lp, IC95 [−9,2; −0,0], mas os
+  placebos falham: no trimestre anterior ao abandono do AF há +21 lp, com p < 0,001.
+- **HonestDiD:** nenhum intervalo robusto exclui zero com M̄ ≥ 0,5.
+- **Conclusão:** não há identificação causal convincente.
+
+A amostra analítica fica fora do git (`D:\efeito_modos_trabalho\`). Os testes rodam num mundo sintético com efeito conhecido.

@@ -1,0 +1,25 @@
+﻿desfecho,modelo,grupo,beta,ep,ic95_inf,ic95_sup,p,n_itens,n_orgaos,unidade,classificacao,p_holm_familia_S
+desconto,FE E3 (associação),—,3.8058067124,0.4539378214,2.9156040203,4.6960094045,0.0,1300232,2152,pontos percentuais do valor estimado,associação condicional (exploratório),
+desconto,dCDH 6m por item,abandono,4.1691915618,2.4330739887,-0.5996334561,8.9380165797,0.0866115822,,,pontos percentuais do valor estimado,exploratório,
+desconto,dCDH 6m por item,adocao,1.3683256088,1.7663438634,-2.0937083635,4.8303595812,0.4385373567,,,pontos percentuais do valor estimado,exploratório,
+desconto,dCDH 6m por item,agregado,2.6001855843,1.5958976414,-0.5277737928,5.7281449614,0.1032509107,,,pontos percentuais do valor estimado,exploratório,0.4130036429
+preco_rel_mediana_externa_A3,FE E3 (associação),—,-5.6370625341,1.1819387253,-7.9548524448,-3.3192726234,1.9653e-06,1303537,2277,log-pontos,associação condicional (exploratório),
+preco_rel_mediana_externa_A3,dCDH 6m por item,abandono,-5.7025813168,2.5060555313,-10.6144501582,-0.7907124754,0.0228747105,,,log-pontos,exploratório,
+preco_rel_mediana_externa_A3,dCDH 6m por item,adocao,-5.4201564883,3.5981032321,-12.4724388232,1.6321258466,0.1319663903,,,log-pontos,exploratório,
+preco_rel_mediana_externa_A3,dCDH 6m por item,agregado,-5.557702952,2.3481455269,-10.1600681847,-0.9553377193,0.0179403114,,,log-pontos,exploratório,
+preco_rel_geometrica_externa_A1,FE E3 (associação),—,-5.960706994,1.2380594556,-8.3885489058,-3.5328650822,1.5721e-06,1307815,2279,log-pontos,associação condicional (exploratório),
+preco_rel_geometrica_externa_A1,dCDH 6m por item,abandono,-4.0906225484,2.5423228092,-9.0735752543,0.8923301576,0.1076141787,,,log-pontos,exploratório,
+preco_rel_geometrica_externa_A1,dCDH 6m por item,adocao,-5.0528441956,3.6975276368,-12.2999983636,2.1943099725,0.1717674331,,,log-pontos,exploratório,
+preco_rel_geometrica_externa_A1,dCDH 6m por item,agregado,-4.584046375,2.3304579595,-9.1517439756,-0.0163487744,0.0491814512,,,log-pontos,exploratório,
+homologacao,FE E3 (associação),—,-1.0564838828,0.8220176559,-2.668420791,0.5554530253,0.1988348732,2014423,2404,pontos percentuais (itens decididos),associação condicional (exploratório),
+homologacao,dCDH 6m por item,abandono,-2.7395402945,3.7095219206,-10.0102032589,4.5311226699,0.4602011111,,,pontos percentuais (itens decididos),exploratório,
+homologacao,dCDH 6m por item,adocao,0.0479305949,2.9511067959,-5.7362387252,5.8320999149,0.9870416752,,,pontos percentuais (itens decididos),exploratório,
+homologacao,dCDH 6m por item,agregado,-1.3511250661,2.2250178145,-5.7121599825,3.0099098503,0.543690085,,,pontos percentuais (itens decididos),exploratório,1.0
+fracasso,FE E3 (associação),—,-0.2512550341,0.5027602833,-1.2371436593,0.7346335911,0.6172960606,2014423,2404,pontos percentuais (itens decididos),associação condicional (exploratório),
+fracasso,dCDH 6m por item,abandono,0.5015493453,2.3249287246,-4.0553109549,5.0584096454,0.8292007394,,,pontos percentuais (itens decididos),exploratório,
+fracasso,dCDH 6m por item,adocao,1.8407377335,2.1964225364,-2.4642504378,6.1457259048,0.401996019,,,pontos percentuais (itens decididos),exploratório,
+fracasso,dCDH 6m por item,agregado,1.1685875407,1.5536531878,-1.8765727075,4.2137477889,0.4519580347,,,pontos percentuais (itens decididos),exploratório,1.0
+desercao,FE E3 (associação),—,0.1669651189,0.324094905,-0.4685693314,0.8024995692,0.6064791445,2014423,2404,pontos percentuais (itens decididos),associação condicional (exploratório),
+desercao,dCDH 6m por item,abandono,-1.5358952957,1.2678677781,-4.0209161407,0.9491255493,0.225742058,,,pontos percentuais (itens decididos),exploratório,
+desercao,dCDH 6m por item,adocao,0.2335824527,1.5395176203,-2.7838720831,3.2510369886,0.879404278,,,pontos percentuais (itens decididos),exploratório,
+desercao,dCDH 6m por item,agregado,-0.654533678,0.9903611686,-2.5956415685,1.2865742125,0.5086738676,,,pontos percentuais (itens decididos),exploratório,1.0

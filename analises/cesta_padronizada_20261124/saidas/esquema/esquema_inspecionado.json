@@ -1,0 +1,1346 @@
+{
+  "tabelas": {
+    "busca_pdf": {
+      "colunas": [
+        {
+          "cid": 0,
+          "nome": "numero_controle_pncp",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "nome": "id_compra",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "nome": "mes",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "nome": "passada",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "nome": "situacao",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "nome": "motivo",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "nome": "itens_cobertos",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "nome": "outros_guardados",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        }
+      ],
+      "indices": [
+        {
+          "nome": "sqlite_autoindex_busca_pdf_1",
+          "unico": true,
+          "origem": "pk",
+          "colunas": [
+            "numero_controle_pncp"
+          ]
+        }
+      ],
+      "chaves_estrangeiras": [],
+      "chave_primaria": [
+        "numero_controle_pncp"
+      ],
+      "amostra": [
+        {
+          "numero_controle_pncp": "00037127000185-1-000017/2025",
+          "id_compra": "92616705900142025",
+          "mes": "2026-01",
+          "passada": "irmas",
+          "situacao": "",
+          "motivo": "nenhum candidato",
+          "itens_cobertos": "0",
+          "outros_guardados": "0"
+        },
+        {
+          "numero_controle_pncp": "00037127000185-1-000018/2025",
+          "id_compra": "92616705900152025",
+          "mes": "2026-01",
+          "passada": "irmas",
+          "situacao": "",
+          "motivo": "nenhum candidato",
+          "itens_cobertos": "0",
+          "outros_guardados": "0"
+        },
+        {
+          "numero_controle_pncp": "00038166000105-1-000613/2025",
+          "id_compra": "17908705900952025",
+          "mes": "2026-01",
+          "passada": "propria",
+          "situacao": "",
+          "motivo": "nenhum candidato",
+          "itens_cobertos": "0",
+          "outros_guardados": "0"
+        }
+      ]
+    },
+    "coleta_pncp_meses": {
+      "colunas": [
+        {
+          "cid": 0,
+          "nome": "mes",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "nome": "publicadas",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "nome": "ja_na_base",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "nome": "duplicadas",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "nome": "novas",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "nome": "itens",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "nome": "resultados",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "nome": "sem_itens",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "nome": "carregado_em",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ],
+      "indices": [
+        {
+          "nome": "sqlite_autoindex_coleta_pncp_meses_1",
+          "unico": true,
+          "origem": "pk",
+          "colunas": [
+            "mes"
+          ]
+        }
+      ],
+      "chaves_estrangeiras": [],
+      "chave_primaria": [
+        "mes"
+      ],
+      "amostra": [
+        {
+          "mes": "2022-11",
+          "publicadas": "379",
+          "ja_na_base": "81",
+          "duplicadas": "0",
+          "novas": "298",
+          "itens": "8725",
+          "resultados": "1761",
+          "sem_itens": "0",
+          "carregado_em": "2026-11-06T19:16:03"
+        },
+        {
+          "mes": "2022-12",
+          "publicadas": "449",
+          "ja_na_base": "81",
+          "duplicadas": "0",
+          "novas": "368",
+          "itens": "14491",
+          "resultados": "5550",
+          "sem_itens": "0",
+          "carregado_em": "2026-11-06T19:17:30"
+        },
+        {
+          "mes": "2023-01",
+          "publicadas": "687",
+          "ja_na_base": "116",
+          "duplicadas": "0",
+          "novas": "571",
+          "itens": "23245",
+          "resultados": "3991",
+          "sem_itens": "0",
+          "carregado_em": "2026-11-06T19:18:36"
+        }
+      ]
+    },
+    "compras": {
+      "colunas": [
+        {
+          "cid": 0,
+          "nome": "numero_controle_pncp",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "nome": "id_compra",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "nome": "uasg",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "nome": "numero_compra",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "nome": "ano_compra",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "nome": "orgao_cnpj",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "nome": "orgao_nome",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "nome": "esfera",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "nome": "poder",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 9,
+          "nome": "uf",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 10,
+          "nome": "municipio",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 11,
+          "nome": "codigo_ibge",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 12,
+          "nome": "modalidade_nome",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 13,
+          "nome": "modo_disputa",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 14,
+          "nome": "srp",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 15,
+          "nome": "existe_resultado",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 16,
+          "nome": "valor_total_estimado",
+          "tipo": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 17,
+          "nome": "valor_total_homologado",
+          "tipo": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 18,
+          "nome": "data_publicacao",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 19,
+          "nome": "data_abertura_proposta",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 20,
+          "nome": "ano_publicacao",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 21,
+          "nome": "objeto_compra",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 22,
+          "nome": "fonte",
+          "tipo": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "cid": 23,
+          "nome": "usuario_nome",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 24,
+          "nome": "codigo_unidade",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 25,
+          "nome": "nome_unidade",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 26,
+          "nome": "situacao_compra",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ],
+      "indices": [
+        {
+          "nome": "ix_compras_pdf",
+          "unico": false,
+          "origem": "c",
+          "colunas": [
+            "uasg",
+            "numero_compra",
+            "ano_compra"
+          ]
+        },
+        {
+          "nome": "ix_compras_id_compra",
+          "unico": false,
+          "origem": "c",
+          "colunas": [
+            "id_compra"
+          ]
+        },
+        {
+          "nome": "sqlite_autoindex_compras_1",
+          "unico": true,
+          "origem": "pk",
+          "colunas": [
+            "numero_controle_pncp"
+          ]
+        }
+      ],
+      "chaves_estrangeiras": [],
+      "chave_primaria": [
+        "numero_controle_pncp"
+      ],
+      "amostra": [
+        {
+          "numero_controle_pncp": "87934675000196-1-000069/2022",
+          "id_compra": "98865505001412022",
+          "uasg": "988655",
+          "numero_compra": "00141",
+          "ano_compra": "2022",
+          "orgao_cnpj": "87934675000196",
+          "orgao_nome": "ESTADO DO RIO GRANDE DO SUL",
+          "esfera": "E",
+          "poder": "N",
+          "uf": "RS",
+          "municipio": "FARROUPILHA",
+          "codigo_ibge": "4307906",
+          "modalidade_nome": "Pregão - Eletrônico",
+          "modo_disputa": "Aberto-Fechado",
+          "srp": "0",
+          "existe_resultado": "0",
+          "valor_total_estimado": "70790.0",
+          "valor_total_homologado": null,
+          "data_publicacao": "2022-11-03T07:01:39",
+          "data_abertura_proposta": "2022-11-03T08:00:00",
+          "ano_publicacao": "2022",
+          "objeto_compra": "Constitui objeto da presente licitação a seleção de propostas visando à aquisição de um automóvel novo, zero km, de acor",
+          "fonte": "dados_abertos",
+          "usuario_nome": null,
+          "codigo_unidade": null,
+          "nome_unidade": null,
+          "situacao_compra": null
+        },
+        {
+          "numero_controle_pncp": "12200176000176-1-000001/2021",
+          "id_compra": "92599805154072021",
+          "uasg": "925998",
+          "numero_compra": "15407",
+          "ano_compra": "2021",
+          "orgao_cnpj": "12200176000176",
+          "orgao_nome": "ESTADO DE ALAGOAS",
+          "esfera": "E",
+          "poder": "N",
+          "uf": "AL",
+          "municipio": "MACEIÓ",
+          "codigo_ibge": "2704302",
+          "modalidade_nome": "Pregão - Eletrônico",
+          "modo_disputa": "Aberto",
+          "srp": "0",
+          "existe_resultado": "0",
+          "valor_total_estimado": "247613.84",
+          "valor_total_homologado": null,
+          "data_publicacao": "2022-11-03T07:02:12",
+          "data_abertura_proposta": "2022-11-03T08:00:00",
+          "ano_publicacao": "2022",
+          "objeto_compra": "Aquisição de medicamentos injetáveis",
+          "fonte": "dados_abertos",
+          "usuario_nome": null,
+          "codigo_unidade": null,
+          "nome_unidade": null,
+          "situacao_compra": null
+        },
+        {
+          "numero_controle_pncp": "15126437000143-1-000640/2022",
+          "id_compra": "15591105010812022",
+          "uasg": "155911",
+          "numero_compra": "01081",
+          "ano_compra": "2022",
+          "orgao_cnpj": "15126437000143",
+          "orgao_nome": "EMPRESA BRASILEIRA DE SERVIÇOS HOSPITALARES",
+          "esfera": "F",
+          "poder": "E",
+          "uf": "RJ",
+          "municipio": "RIO DE JANEIRO",
+          "codigo_ibge": "3304557",
+          "modalidade_nome": "Pregão - Eletrônico",
+          "modo_disputa": "Aberto-Fechado",
+          "srp": "0",
+          "existe_resultado": "0",
+          "valor_total_estimado": "0.0",
+          "valor_total_homologado": null,
+          "data_publicacao": "2022-11-03T07:02:58",
+          "data_abertura_proposta": "2022-11-03T09:00:00",
+          "ano_publicacao": "2022",
+          "objeto_compra": "Objeto da presente licitação é a escolha da proposta mais vantajosa para a contratação de empresas para aquisição de Swi",
+          "fonte": "dados_abertos",
+          "usuario_nome": null,
+          "codigo_unidade": null,
+          "nome_unidade": null,
+          "situacao_compra": null
+        }
+      ]
+    },
+    "compras_duplicadas": {
+      "colunas": [
+        {
+          "cid": 0,
+          "nome": "numero_controle_pncp",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "nome": "duplicata_de",
+          "tipo": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "nome": "usuario_nome",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "nome": "mes",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ],
+      "indices": [
+        {
+          "nome": "sqlite_autoindex_compras_duplicadas_1",
+          "unico": true,
+          "origem": "pk",
+          "colunas": [
+            "numero_controle_pncp"
+          ]
+        }
+      ],
+      "chaves_estrangeiras": [],
+      "chave_primaria": [
+        "numero_controle_pncp"
+      ],
+      "amostra": [
+        {
+          "numero_controle_pncp": "04695284000139-1-000005/2023",
+          "duplicata_de": "04695284000139-1-000004/2023",
+          "usuario_nome": "ECustomize Consultoria em Software S.A",
+          "mes": "2023-02"
+        },
+        {
+          "numero_controle_pncp": "04695284000139-1-000009/2023",
+          "duplicata_de": "04695284000139-1-000008/2023",
+          "usuario_nome": "ECustomize Consultoria em Software S.A",
+          "mes": "2023-02"
+        },
+        {
+          "numero_controle_pncp": "46522959000198-1-000012/2023",
+          "duplicata_de": "46522959000198-1-000007/2023",
+          "usuario_nome": "AZ INFORMATICA LTDA",
+          "mes": "2023-03"
+        }
+      ]
+    },
+    "itens": {
+      "colunas": [
+        {
+          "cid": 0,
+          "nome": "id",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "nome": "numero_controle_pncp",
+          "tipo": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "nome": "numero_item",
+          "tipo": "INTEGER",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "nome": "id_compra_item",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "nome": "registro_principal",
+          "tipo": "INTEGER",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "nome": "uasg_item",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "nome": "cod_item_catalogo",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "nome": "material_ou_servico",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "nome": "codigo_classe",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 9,
+          "nome": "codigo_grupo",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 10,
+          "nome": "codigo_pdm",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 11,
+          "nome": "unidade_medida",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 12,
+          "nome": "descricao_resumida",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 13,
+          "nome": "criterio_julgamento",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 14,
+          "nome": "tipo_beneficio",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 15,
+          "nome": "numero_grupo",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 16,
+          "nome": "orcamento_sigiloso",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 17,
+          "nome": "situacao_item",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 18,
+          "nome": "homologado",
+          "tipo": "INTEGER",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "cid": 19,
+          "nome": "quantidade",
+          "tipo": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 20,
+          "nome": "valor_unitario_estimado",
+          "tipo": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 21,
+          "nome": "tem_resultado",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 22,
+          "nome": "quantidade_resultado",
+          "tipo": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 23,
+          "nome": "valor_unitario_resultado",
+          "tipo": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 24,
+          "nome": "valor_total_resultado",
+          "tipo": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 25,
+          "nome": "data_resultado",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 26,
+          "nome": "data_atualizacao",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 27,
+          "nome": "cod_fornecedor",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 28,
+          "nome": "nome_fornecedor",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 29,
+          "nome": "melhor_lance_modo_aberto",
+          "tipo": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 30,
+          "nome": "melhor_lance_modo_fechado",
+          "tipo": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 31,
+          "nome": "melhor_lance_desempate",
+          "tipo": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 32,
+          "nome": "lance_aceito",
+          "tipo": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 33,
+          "nome": "valor_negociado_aceito",
+          "tipo": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 34,
+          "nome": "valor_estimado_pdf",
+          "tipo": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 35,
+          "nome": "quantidade_fornecedores",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 36,
+          "nome": "status_extracao",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 37,
+          "nome": "erros_extracao",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 38,
+          "nome": "versao_parser",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 39,
+          "nome": "arquivo_origem",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ],
+      "indices": [
+        {
+          "nome": "ix_itens_pareamento",
+          "unico": false,
+          "origem": "c",
+          "colunas": [
+            "uasg_item",
+            "cod_item_catalogo"
+          ]
+        },
+        {
+          "nome": "ix_itens_compra",
+          "unico": false,
+          "origem": "c",
+          "colunas": [
+            "numero_controle_pncp",
+            "numero_item"
+          ]
+        }
+      ],
+      "chaves_estrangeiras": [
+        {
+          "coluna": "numero_controle_pncp",
+          "tabela": "compras",
+          "para": null
+        }
+      ],
+      "chave_primaria": [
+        "id"
+      ],
+      "amostra": [
+        {
+          "id": "1",
+          "numero_controle_pncp": "87934675000196-1-000069/2022",
+          "numero_item": "1",
+          "id_compra_item": "9886550500141202200001",
+          "registro_principal": "1",
+          "uasg_item": "988655",
+          "cod_item_catalogo": "602304",
+          "material_ou_servico": "M",
+          "codigo_classe": "2310",
+          "codigo_grupo": null,
+          "codigo_pdm": "3142",
+          "unidade_medida": "Unidade ",
+          "descricao_resumida": "Automóvel",
+          "criterio_julgamento": "Menor preço",
+          "tipo_beneficio": "Participação exclusiva para ME/EPP",
+          "numero_grupo": "0",
+          "orcamento_sigiloso": "0",
+          "situacao_item": "Em andamento",
+          "homologado": "0",
+          "quantidade": "1.0",
+          "valor_unitario_estimado": "70790.0",
+          "tem_resultado": null,
+          "quantidade_resultado": null,
+          "valor_unitario_resultado": null,
+          "valor_total_resultado": null,
+          "data_resultado": null,
+          "data_atualizacao": "2022-11-03T07:01:39",
+          "cod_fornecedor": null,
+          "nome_fornecedor": null,
+          "melhor_lance_modo_aberto": null,
+          "melhor_lance_modo_fechado": null,
+          "melhor_lance_desempate": null,
+          "lance_aceito": null,
+          "valor_negociado_aceito": null,
+          "valor_estimado_pdf": null,
+          "quantidade_fornecedores": null,
+          "status_extracao": null,
+          "erros_extracao": null,
+          "versao_parser": null,
+          "arquivo_origem": null
+        },
+        {
+          "id": "2",
+          "numero_controle_pncp": "12200176000176-1-000001/2021",
+          "numero_item": "1",
+          "id_compra_item": "9259980515407202100001",
+          "registro_principal": "1",
+          "uasg_item": "925998",
+          "cod_item_catalogo": "271687",
+          "material_ou_servico": "M",
+          "codigo_classe": "6505",
+          "codigo_grupo": null,
+          "codigo_pdm": "1872",
+          "unidade_medida": "Ampola 5 ML",
+          "descricao_resumida": "Ácido Ascórbico",
+          "criterio_julgamento": "Menor preço",
+          "tipo_beneficio": "Não se aplica",
+          "numero_grupo": "0",
+          "orcamento_sigiloso": "0",
+          "situacao_item": "Anulado/Revogado/Cancelado",
+          "homologado": "0",
+          "quantidade": "123108.0",
+          "valor_unitario_estimado": "1.06",
+          "tem_resultado": null,
+          "quantidade_resultado": null,
+          "valor_unitario_resultado": null,
+          "valor_total_resultado": null,
+          "data_resultado": null,
+          "data_atualizacao": "2022-11-22T07:04:17",
+          "cod_fornecedor": null,
+          "nome_fornecedor": null,
+          "melhor_lance_modo_aberto": null,
+          "melhor_lance_modo_fechado": null,
+          "melhor_lance_desempate": null,
+          "lance_aceito": null,
+          "valor_negociado_aceito": null,
+          "valor_estimado_pdf": null,
+          "quantidade_fornecedores": null,
+          "status_extracao": null,
+          "erros_extracao": null,
+          "versao_parser": null,
+          "arquivo_origem": null
+        },
+        {
+          "id": "3",
+          "numero_controle_pncp": "12200176000176-1-000001/2021",
+          "numero_item": "2",
+          "id_compra_item": "9259980515407202100002",
+          "registro_principal": "1",
+          "uasg_item": "925998",
+          "cod_item_catalogo": "271687",
+          "material_ou_servico": "M",
+          "codigo_classe": "6505",
+          "codigo_grupo": null,
+          "codigo_pdm": "1872",
+          "unidade_medida": "Ampola 5 ML",
+          "descricao_resumida": "Ácido Ascórbico",
+          "criterio_julgamento": "Menor preço",
+          "tipo_beneficio": "Participação exclusiva para ME/EPP",
+          "numero_grupo": "0",
+          "orcamento_sigiloso": "0",
+          "situacao_item": "Anulado/Revogado/Cancelado",
+          "homologado": "0",
+          "quantidade": "41036.0",
+          "valor_unitario_estimado": "1.06",
+          "tem_resultado": null,
+          "quantidade_resultado": null,
+          "valor_unitario_resultado": null,
+          "valor_total_resultado": null,
+          "data_resultado": null,
+          "data_atualizacao": "2022-11-22T07:04:18",
+          "cod_fornecedor": null,
+          "nome_fornecedor": null,
+          "melhor_lance_modo_aberto": null,
+          "melhor_lance_modo_fechado": null,
+          "melhor_lance_desempate": null,
+          "lance_aceito": null,
+          "valor_negociado_aceito": null,
+          "valor_estimado_pdf": null,
+          "quantidade_fornecedores": null,
+          "status_extracao": null,
+          "erros_extracao": null,
+          "versao_parser": null,
+          "arquivo_origem": null
+        }
+      ]
+    },
+    "relatorios_pdf": {
+      "colunas": [
+        {
+          "cid": 0,
+          "nome": "id_compra",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 1,
+          "nome": "numero_controle_pncp",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "nome": "item",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "nome": "tipo",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "nome": "arquivo",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "cid": 5,
+          "nome": "tamanho",
+          "tipo": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "nome": "sha256",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "nome": "pasta",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ],
+      "indices": [
+        {
+          "nome": "ix_relatorios_pdf_compra",
+          "unico": false,
+          "origem": "c",
+          "colunas": [
+            "numero_controle_pncp",
+            "item"
+          ]
+        },
+        {
+          "nome": "sqlite_autoindex_relatorios_pdf_1",
+          "unico": true,
+          "origem": "pk",
+          "colunas": [
+            "arquivo"
+          ]
+        }
+      ],
+      "chaves_estrangeiras": [],
+      "chave_primaria": [
+        "arquivo"
+      ],
+      "amostra": [
+        {
+          "id_compra": "92774405900512025",
+          "numero_controle_pncp": "07954605000160-1-000188/2025",
+          "item": "1",
+          "tipo": "termo de homologação",
+          "arquivo": "filtrados/aberto-fechado_2026-01/relatorios/90051-2025_92774405900512025/relatorio-termo-homologacao-92774405900512025-i",
+          "tamanho": "154667",
+          "sha256": "f82d06f259f531badfb6db6b87870b098cbd5cf3534e573e3ac480436b897c43",
+          "pasta": "aberto-fechado_2026-01"
+        },
+        {
+          "id_compra": "92774405900512025",
+          "numero_controle_pncp": "07954605000160-1-000188/2025",
+          "item": "2",
+          "tipo": "termo de homologação",
+          "arquivo": "filtrados/aberto-fechado_2026-01/relatorios/90051-2025_92774405900512025/relatorio-termo-homologacao-92774405900512025-i",
+          "tamanho": "132367",
+          "sha256": "2ba1321f198c92d8fcc10d61fe81212bcafd1948a663b6c17a0f10c218f85f3c",
+          "pasta": "aberto-fechado_2026-01"
+        },
+        {
+          "id_compra": "92774405900582025",
+          "numero_controle_pncp": "07954605000160-1-000204/2025",
+          "item": "1",
+          "tipo": "termo de homologação",
+          "arquivo": "filtrados/aberto-fechado_2026-01/relatorios/90058-2025_92774405900582025/relatorio-termo-homologacao-92774405900582025-i",
+          "tamanho": "95125",
+          "sha256": "eb274ac80bf9b36b33c061cae99d192d3b691760dc59e1df6469f0249f455e83",
+          "pasta": "aberto-fechado_2026-01"
+        }
+      ]
+    },
+    "resultados": {
+      "colunas": [
+        {
+          "cid": 0,
+          "nome": "numero_controle_pncp",
+          "tipo": "TEXT",
+          "notnull": 1,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "nome": "numero_item",
+          "tipo": "INTEGER",
+          "notnull": 1,
+          "pk": 2
+        },
+        {
+          "cid": 2,
+          "nome": "sequencial_resultado",
+          "tipo": "INTEGER",
+          "notnull": 1,
+          "pk": 3
+        },
+        {
+          "cid": 3,
+          "nome": "id_compra_item",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "nome": "situacao_resultado",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "nome": "motivo_cancelamento",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "nome": "ni_fornecedor",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "nome": "nome_fornecedor",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "nome": "porte_fornecedor",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 9,
+          "nome": "quantidade_homologada",
+          "tipo": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 10,
+          "nome": "valor_unitario_homologado",
+          "tipo": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 11,
+          "nome": "valor_total_homologado",
+          "tipo": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 12,
+          "nome": "data_resultado",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 13,
+          "nome": "data_atualizacao",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "cid": 14,
+          "nome": "data_cancelamento",
+          "tipo": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ],
+      "indices": [
+        {
+          "nome": "sqlite_autoindex_resultados_1",
+          "unico": true,
+          "origem": "pk",
+          "colunas": [
+            "numero_controle_pncp",
+            "numero_item",
+            "sequencial_resultado"
+          ]
+        }
+      ],
+      "chaves_estrangeiras": [],
+      "chave_primaria": [
+        "numero_controle_pncp",
+        "numero_item",
+        "sequencial_resultado"
+      ],
+      "amostra": [
+        {
+          "numero_controle_pncp": "00237362000109-1-000005/2022",
+          "numero_item": "1",
+          "sequencial_resultado": "1",
+          "id_compra_item": null,
+          "situacao_resultado": "Informado",
+          "motivo_cancelamento": null,
+          "ni_fornecedor": "38144119000100",
+          "nome_fornecedor": "JOSE DO CARMO FILHO - EPP",
+          "porte_fornecedor": "ME",
+          "quantidade_homologada": "380.0",
+          "valor_unitario_homologado": "4.5",
+          "valor_total_homologado": "1710.0",
+          "data_resultado": "2022-12-28",
+          "data_atualizacao": "2023-01-23T17:12:37",
+          "data_cancelamento": null
+        },
+        {
+          "numero_controle_pncp": "00237362000109-1-000005/2022",
+          "numero_item": "2",
+          "sequencial_resultado": "1",
+          "id_compra_item": null,
+          "situacao_resultado": "Informado",
+          "motivo_cancelamento": null,
+          "ni_fornecedor": "38144119000100",
+          "nome_fornecedor": "JOSE DO CARMO FILHO - EPP",
+          "porte_fornecedor": "ME",
+          "quantidade_homologada": "1350.0",
+          "valor_unitario_homologado": "8.2",
+          "valor_total_homologado": "11069.9999",
+          "data_resultado": "2022-12-28",
+          "data_atualizacao": "2023-01-23T17:12:38",
+          "data_cancelamento": null
+        },
+        {
+          "numero_controle_pncp": "00237362000109-1-000005/2022",
+          "numero_item": "3",
+          "sequencial_resultado": "1",
+          "id_compra_item": null,
+          "situacao_resultado": "Informado",
+          "motivo_cancelamento": null,
+          "ni_fornecedor": "38144119000100",
+          "nome_fornecedor": "JOSE DO CARMO FILHO - EPP",
+          "porte_fornecedor": "ME",
+          "quantidade_homologada": "3320.0",
+          "valor_unitario_homologado": "2.62",
+          "valor_total_homologado": "8698.4",
+          "data_resultado": "2022-12-28",
+          "data_atualizacao": "2023-01-23T17:12:39",
+          "data_cancelamento": null
+        }
+      ]
+    }
+  },
+  "views": [
+    "analise_itens"
+  ]
+}

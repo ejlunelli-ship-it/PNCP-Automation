@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="380" font-family="Segoe UI, Arial" font-size="12">
+<rect width="100%" height="100%" fill="white"/>
+<text x="380.0" y="22" text-anchor="middle" font-size="15" font-weight="600">dCDH, janela de 6m: efeito do AF por tempo de evento (EXPLORATÓRIO)</text>
+<line x1="70" x2="740" y1="203.1" y2="203.1" stroke="#888" stroke-dasharray="4 3"/>
+<line x1="70" x2="70" y1="48" y2="310" stroke="#333"/>
+<text x="64" y="314.0" text-anchor="end" fill="#444">-24.4</text>
+<line x1="67" x2="70" y1="310.0" y2="310.0" stroke="#333"/>
+<text x="64" y="261.6" text-anchor="end" fill="#444">-12.4</text>
+<line x1="67" x2="70" y1="257.6" y2="257.6" stroke="#333"/>
+<text x="64" y="209.2" text-anchor="end" fill="#444">-0.5</text>
+<line x1="67" x2="70" y1="205.2" y2="205.2" stroke="#333"/>
+<text x="64" y="156.8" text-anchor="end" fill="#444">11.5</text>
+<line x1="67" x2="70" y1="152.8" y2="152.8" stroke="#333"/>
+<text x="64" y="104.4" text-anchor="end" fill="#444">23.4</text>
+<line x1="67" x2="70" y1="100.4" y2="100.4" stroke="#333"/>
+<text x="64" y="52.0" text-anchor="end" fill="#444">35.4</text>
+<line x1="67" x2="70" y1="48.0" y2="48.0" stroke="#333"/>
+<text x="18" y="179.0" transform="rotate(-90 18 179.0)" text-anchor="middle">log-pontos</text>
+<text x="153.8" y="328" text-anchor="middle" fill="#333">e=-3</text>
+<text x="321.2" y="328" text-anchor="middle" fill="#333">e=-2</text>
+<text x="488.8" y="328" text-anchor="middle" fill="#333">e=0</text>
+<text x="656.2" y="328" text-anchor="middle" fill="#333">e=1</text>
+<line x1="139.8" x2="139.8" y1="236.5" y2="157.8" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="139.8" cy="197.2" r="4" fill="#2b6cb0"/>
+<line x1="307.2" x2="307.2" y1="178.0" y2="103.2" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="307.2" cy="140.6" r="4" fill="#2b6cb0"/>
+<line x1="474.8" x2="474.8" y1="228.5" y2="191.4" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="474.8" cy="209.9" r="4" fill="#2b6cb0"/>
+<line x1="642.2" x2="642.2" y1="263.9" y2="206.2" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="642.2" cy="235.1" r="4" fill="#2b6cb0"/>
+<rect x="80" y="354" width="12" height="12" fill="#2b6cb0"/><text x="98" y="364">agregado</text>
+<line x1="153.8" x2="153.8" y1="265.2" y2="172.8" stroke="#c05621" stroke-width="2"/>
+<circle cx="153.8" cy="219.0" r="4" fill="#c05621"/>
+<line x1="321.2" x2="321.2" y1="213.8" y2="128.3" stroke="#c05621" stroke-width="2"/>
+<circle cx="321.2" cy="171.1" r="4" fill="#c05621"/>
+<line x1="488.8" x2="488.8" y1="230.5" y2="177.3" stroke="#c05621" stroke-width="2"/>
+<circle cx="488.8" cy="203.9" r="4" fill="#c05621"/>
+<line x1="656.2" x2="656.2" y1="291.9" y2="196.1" stroke="#c05621" stroke-width="2"/>
+<circle cx="656.2" cy="244.0" r="4" fill="#c05621"/>
+<rect x="230" y="354" width="12" height="12" fill="#c05621"/><text x="248" y="364">adocao</text>
+<line x1="167.8" x2="167.8" y1="236.5" y2="97.7" stroke="#2f855a" stroke-width="2"/>
+<circle cx="167.8" cy="167.1" r="4" fill="#2f855a"/>
+<line x1="335.2" x2="335.2" y1="156.7" y2="66.1" stroke="#2f855a" stroke-width="2"/>
+<circle cx="335.2" cy="111.4" r="4" fill="#2f855a"/>
+<line x1="502.8" x2="502.8" y1="241.2" y2="191.1" stroke="#2f855a" stroke-width="2"/>
+<circle cx="502.8" cy="216.1" r="4" fill="#2f855a"/>
+<line x1="670.2" x2="670.2" y1="252.7" y2="198.2" stroke="#2f855a" stroke-width="2"/>
+<circle cx="670.2" cy="225.5" r="4" fill="#2f855a"/>
+<rect x="380" y="354" width="12" height="12" fill="#2f855a"/><text x="398" y="364">abandono</text>
+<text x="740" y="376" text-anchor="end" font-size="10" fill="#666">e = t − F; referência e = −1; IC95 bootstrap por CNPJ</text>
+</svg>

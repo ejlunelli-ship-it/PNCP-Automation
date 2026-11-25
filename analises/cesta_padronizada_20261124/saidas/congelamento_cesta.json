@@ -1,0 +1,148 @@
+{
+  "congelado_em": "2026-11-24T17:19:58",
+  "versao_codigo": "1.0.0",
+  "versao_regras": "1.0.0",
+  "sha256_cesta_candidata": "80cd46a7bac29464209a4dea4b668d2bfd35915ee8c694c51692b659a21d59eb",
+  "produtos": 16248,
+  "parametros": {
+    "_descricao": "Parâmetros da cesta padronizada, registrados ANTES da seleção (ver protocolo.md). Nenhum parâmetro depende de preços, descontos, modo de disputa ou resultados econométricos.",
+    "versao_regras": "1.0.0",
+    "caminhos": {
+      "_nota": "Relativos à pasta de trabalho (pai de PNCP-Automation). Podem ser substituídos por --db / --brutos / --trabalho ou pelas variáveis PNCP_DB, PNCP_BRUTOS, CESTA_TRABALHO.",
+      "db": "dados/pncp.db",
+      "brutos": "dados/brutos",
+      "trabalho": "PNCP-Automation/dados/cesta_padronizada"
+    },
+    "universo": {
+      "fonte": "dados_abertos",
+      "modalidade": "Pregão - Eletrônico",
+      "material_ou_servico": "M",
+      "exigir_catmat": true,
+      "_fonte_nota": "Só a fonte dados_abertos (Compras.gov.br) tem codItemCatalogo/UASG; as compras fonte=pncp (outras plataformas) entram apenas na contagem descritiva do universo total."
+    },
+    "contagem": {
+      "base_principal": "licitados",
+      "_base_nota": "licitados = todos os itens publicados do pregão, qualquer situação; homologados = situação Homologado. A seleção principal usa licitados; homologados é sensibilidade pré-especificada.",
+      "data_referencia": "data_publicacao"
+    },
+    "triagem_inicial": {
+      "compras_min": 40,
+      "uasgs_min": 15,
+      "trimestres_min": 6,
+      "anos_min": 2,
+      "share_uasg_dominante_max": 0.25,
+      "hhi_max": 0.12
+    },
+    "qualidade_cadastral": {
+      "_nota": "Filtros de qualidade cadastral da família (não monetários).",
+      "share_descricao_completa_min": 0.95,
+      "exigir_unidade_valida": true
+    },
+    "sensibilidade": {
+      "_nota": "Grade pré-especificada; cada dimensão varia em torno do valor inicial. Não é usada para escolher o limiar que maximiza observações.",
+      "compras_min": [
+        20,
+        30,
+        40,
+        60,
+        80
+      ],
+      "uasgs_min": [
+        10,
+        15,
+        20,
+        30
+      ],
+      "trimestres_min": [
+        4,
+        6,
+        8,
+        10
+      ],
+      "anos_min": [
+        2,
+        3
+      ],
+      "share_uasg_dominante_max": [
+        0.15,
+        0.25,
+        0.35
+      ],
+      "hhi_max": [
+        0.06,
+        0.12,
+        0.2
+      ],
+      "cenarios_nomeados": {
+        "brando": {
+          "compras_min": 20,
+          "uasgs_min": 10,
+          "trimestres_min": 4,
+          "anos_min": 2,
+          "share_uasg_dominante_max": 0.35,
+          "hhi_max": 0.2
+        },
+        "inicial": {
+          "compras_min": 40,
+          "uasgs_min": 15,
+          "trimestres_min": 6,
+          "anos_min": 2,
+          "share_uasg_dominante_max": 0.25,
+          "hhi_max": 0.12
+        },
+        "rigoroso": {
+          "compras_min": 80,
+          "uasgs_min": 30,
+          "trimestres_min": 10,
+          "anos_min": 3,
+          "share_uasg_dominante_max": 0.15,
+          "hhi_max": 0.06
+        },
+        "inicial_homologados": {
+          "compras_min": 40,
+          "uasgs_min": 15,
+          "trimestres_min": 6,
+          "anos_min": 2,
+          "share_uasg_dominante_max": 0.25,
+          "hhi_max": 0.12,
+          "base": "homologados"
+        }
+      }
+    },
+    "homogeneidade": {
+      "_nota": "Regras determinísticas (sem modelos probabilísticos) para a classificação A/B/C. Ver cesta/classificacao.py.",
+      "share_descricao_dominante_min_A": 0.9,
+      "max_assinaturas_atributos_A": 1,
+      "min_atributos_especificos_A": 2,
+      "share_descricao_dominante_min_B": 0.5
+    },
+    "temporal": {
+      "_nota": "Período de formação NÃO aplicado na cesta descritiva. Só é usado na análise de recorrência pré-período (diagnóstico).",
+      "periodo_formacao": null,
+      "janelas_recorrencia": [
+        [
+          "2022-11-01",
+          "2023-12-31"
+        ],
+        [
+          "2024-01-01",
+          "2024-12-31"
+        ],
+        [
+          "2025-01-01",
+          "2025-12-31"
+        ],
+        [
+          "2026-01-01",
+          "2026-10-31"
+        ]
+      ]
+    },
+    "saida": {
+      "top_descricoes_relatorio": 3,
+      "exemplos_auditoria": 5
+    }
+  },
+  "situacao_cesta_validada": "PENDENTE: nenhuma revisão humana registrada",
+  "nota": "Congelado antes de qualquer leitura do modo de disputa (etapa diagnostico)."
+}

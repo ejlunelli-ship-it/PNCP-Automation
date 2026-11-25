@@ -1,0 +1,449 @@
+{
+  "versao": "1.0.0",
+  "gerado_em": "2026-11-25T09:53:19",
+  "semente": 20261123,
+  "bootstrap": {
+    "eventos": 999,
+    "wcr": 999
+  },
+  "ambiente": {
+    "python": "3.13.17 (tags/v3.13.17:64e080d, Oct 21 2026, 14:08:53) [MSC v.1944 64 bit (AMD64)]",
+    "sqlite": "3.50.4",
+    "numpy": "2.5.5",
+    "pandas": "3.1.1",
+    "scipy": "1.18.1",
+    "plataforma": "Windows-10-10.0.19045-SP0"
+  },
+  "r": [
+    {
+      "R": "R version 4.6.2 (2026-10-29 ucrt)",
+      "HonestDiD": "0.2.8"
+    }
+  ],
+  "impressoes_digitais": {
+    "pncp_v2": {
+      "caminho": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\dados\\pncp_v2.db",
+      "tamanho_bytes": 18242981888,
+      "mtime_ns": 1795550467292885200,
+      "mtime_iso": "2026-11-24T17:01:07",
+      "sqlite_contador_alteracoes": 308,
+      "sqlite_cookie_esquema": 7,
+      "sha256_inicio_fim": "e0a29c420098bbbd0e49876e700a484f2cdd7154330f0656b042b08d7ad9f88c",
+      "amostra_mb": 64
+    },
+    "cesta_trabalho": {
+      "caminho": "D:\\cesta_padronizada_trabalho\\trabalho.db",
+      "tamanho_bytes": 11317166080,
+      "mtime_ns": 1795551598101268700,
+      "mtime_iso": "2026-11-24T17:19:58",
+      "sqlite_contador_alteracoes": 15110545,
+      "sqlite_cookie_esquema": 42,
+      "sha256_inicio_fim": "ed7e3a381f0ff1a63d9ad43e9b691e6acd61db1a790f7060ff32873e52edb6b4",
+      "amostra_mb": 64
+    }
+  },
+  "sha256_config": "a8f33b4f87d5591b08fa30da2be5e45cfa8c4fc02ca2d8076e70ac4b8ac01122",
+  "hashes_codigo": {
+    "config.json": "a8f33b4f87d5591b08fa30da2be5e45cfa8c4fc02ca2d8076e70ac4b8ac01122",
+    "em/__init__.py": "e0b2e07194e9e38df0b61ac9d60d42b7a4ec1e31ff7e8db808a492ef35fbfaf0",
+    "em/amostra.py": "59726489566ec4f8e9bcfd6f26137c23c937083a16f92cedb99f481a3a9fe59e",
+    "em/comum.py": "b8b86ca5de59b591218998ed347f541ff8905f1e0d7b5721b842b943287fde89",
+    "em/descritivas.py": "3d9d15e95d15123159643f72e9f85505c376c6fcebcc6798ae49c3dab671a3f5",
+    "em/eventos.py": "4562f96f5465457e251958b362dcef4c17d02d16d7a4cf8c6a1b85dc0ad1f438",
+    "em/honest.py": "d7202e527ba8b1fd1193f8359c7824f0adf776f2de2b0471fc59fe6431896755",
+    "em/inferencia.py": "2cee133826a74c188808532ed7c3799bbe5f29e3a2e552fdf1acad321b75c26c",
+    "em/painel.py": "8ff26e69daf9ba579a9f62d30eb5d2e4ad050030345700db8d0b0f6cfde71d10",
+    "em/pipeline.py": "af086a0d025bad5f711b220b9200b66a0ddecbc6b3b91cd469b9b7e4eba858a8",
+    "em/referencias.py": "27ea24581491042440e7c19b7ab8df4afdb5acb02f829b58f74f6808a38b1299",
+    "em/relatorio.py": "78ff8f30f3df934e36ad99b9b9186ec7abb1498ce4c6902f155558b53c74dcbe",
+    "em/robustez.py": "a3249ed4f0535054ecbe3f8ec21a5c62c8decf53f45f05b7e20db147dd7673e0",
+    "em/secundarios.py": "f69db1df7d3b0922ea5a5cbfe6887da9020291f3de60f1690ad32c43d5904d7d",
+    "em/svg.py": "31c89dcadbbd61beb14238ccbb2b482a97974da2c7bd49d3b6671f1e96896eaf",
+    "executar.py": "f737ca7b9b64630d1ed9937efcbfdf60085f63fa5e985656e58beff33a8fbb5a",
+    "honestdid.R": "bc735d5ce134910e4f45f8a2b48acc881719b15a8a44c8f91d910079da78a24b",
+    "protocolo.md": "38bc10e0aff5bb9952276e466a43a3eb3fe84fc69863091e34dc723b938bfbc6",
+    "testes/sintetico.py": "ea1ee1eb99c4d808f319744b01f60580543b225adcb5f9d3561edb4b009e3cb0",
+    "testes/test_integracao.py": "7fa235f16be82caf08174d7b280b2c99c1dfa404963b4021a66dc676387edd2e",
+    "testes/test_metodos.py": "ef10cba0265e9c99c0a561a726862c80b33a4fec42e20ce725ba30af1b4982ef"
+  },
+  "saidas_sha256": {
+    "descritivas.csv": "ef56ff3b715d04d35a815b26eafdf85633f32740a5ca3c6ee97d08ee58715243",
+    "efeitos_fixos.csv": "c3ff11c01552b9d6a0109dfca79147dbedbd5334dcb4a6fbd395b8fbeedfbf0b",
+    "estudo_eventos.csv": "2a8d1e4378f984747f3e45edc294b40ae980e938d0fd5f15dcf4d4fc541bcb72",
+    "funil_amostra.csv": "c1bf8b732166599dccde30b2884cb3c14ca6b4dedef092f29f9e51ba8dc2feef",
+    "honestdid.csv": "9b6f3e6dae43d2373731fcca22608c9abbc26a241271382131491ce1516b2e79",
+    "referencias_alternativas.csv": "28cf797503b0c1d4e6d39ff1c0bf8ae5226f736355988a8699d95204152ead38",
+    "resultados_secundarios.csv": "cf1a0a3e244cdd69cec9aa97b164e34c62b15f545dd89db785249da70637d266",
+    "robustez.csv": "ca189ac24675e01f7cbad132b26133b73239e1689cc7e79b79abf74caed404c6"
+  },
+  "execucoes": {
+    "execucao_amostra": {
+      "etapas": [
+        {
+          "etapa": "impressão digital do pncp_v2.db",
+          "segundos": 2.3,
+          "ok": true
+        },
+        {
+          "etapa": "chaves dos itens da cesta candidata (mapeamento congelado)",
+          "segundos": 98.6,
+          "ok": true
+        },
+        {
+          "etapa": "ligação ao pncp_v2.db (registro_principal = 1)",
+          "segundos": 195.9,
+          "ok": true
+        },
+        {
+          "etapa": "regime de modo por UASG × trimestre (todas as compras A/AF da fonte)",
+          "segundos": 20.1,
+          "ok": true
+        },
+        {
+          "etapa": "amostra em memória e funil",
+          "segundos": 113.3,
+          "ok": true
+        }
+      ],
+      "avisos": []
+    },
+    "execucao_cobertura": {
+      "etapas": [
+        {
+          "etapa": "cobertura temporal por trimestre de abertura",
+          "segundos": 0.5,
+          "ok": true
+        },
+        {
+          "etapa": "regime de modo por UASG × trimestre e eventos",
+          "segundos": 3.9,
+          "ok": true
+        }
+      ],
+      "avisos": []
+    },
+    "execucao_honestdid": {
+      "etapas": [
+        {
+          "etapa": "HonestDiD (R) em 6 especificações",
+          "segundos": 359.0,
+          "ok": true
+        }
+      ],
+      "avisos": []
+    },
+    "execucao_referencias-descritivas-efeitos_fixos-eventos-honestdid": {
+      "etapas": [
+        {
+          "etapa": "referências leave-one-UASG-out (1,671,008 itens)",
+          "segundos": 200.3,
+          "ok": true
+        },
+        {
+          "etapa": "descritivas por modo",
+          "segundos": 2.5,
+          "ok": true
+        },
+        {
+          "etapa": "diferença bruta com inferência agrupada",
+          "segundos": 11.4,
+          "ok": true
+        },
+        {
+          "etapa": "efeitos fixos E1",
+          "segundos": 1.3,
+          "ok": true
+        },
+        {
+          "etapa": "efeitos fixos E2",
+          "segundos": 23.0,
+          "ok": true
+        },
+        {
+          "etapa": "efeitos fixos E3",
+          "segundos": 395.2,
+          "ok": true
+        },
+        {
+          "etapa": "efeitos fixos E4",
+          "segundos": 54.1,
+          "ok": true
+        },
+        {
+          "etapa": "efeitos fixos E5",
+          "segundos": 52.1,
+          "ok": true
+        },
+        {
+          "etapa": "efeitos fixos E6",
+          "segundos": 70.5,
+          "ok": true
+        },
+        {
+          "etapa": "efeitos fixos E7",
+          "segundos": 398.9,
+          "ok": true
+        },
+        {
+          "etapa": "efeitos fixos E8",
+          "segundos": 84.3,
+          "ok": true
+        },
+        {
+          "etapa": "efeitos fixos E9",
+          "segundos": 902.7,
+          "ok": true
+        },
+        {
+          "etapa": "efeitos fixos E3 — tercil de quantidade 1",
+          "segundos": 15.3,
+          "ok": true
+        },
+        {
+          "etapa": "efeitos fixos E3 — tercil de quantidade 2",
+          "segundos": 10.3,
+          "ok": true
+        },
+        {
+          "etapa": "efeitos fixos E3 — tercil de quantidade 3",
+          "segundos": 31.3,
+          "ok": true
+        },
+        {
+          "etapa": "estudo de eventos dcdh_6m_item_celula",
+          "segundos": 3.5,
+          "ok": true
+        },
+        {
+          "etapa": "estudo de eventos dcdh_6m_item_evento",
+          "segundos": 2.9,
+          "ok": true
+        },
+        {
+          "etapa": "estudo de eventos dcdh_6m_compra_celula",
+          "segundos": 3.2,
+          "ok": true
+        },
+        {
+          "etapa": "estudo de eventos dcdh_12m_item_celula",
+          "segundos": 4.5,
+          "ok": true
+        },
+        {
+          "etapa": "estudo de eventos dcdh_12m_item_evento",
+          "segundos": 4.5,
+          "ok": true
+        },
+        {
+          "etapa": "estudo de eventos dcdh_12m_compra_celula",
+          "segundos": 4.7,
+          "ok": true
+        },
+        {
+          "etapa": "BJS (subconjunto absorvente)",
+          "segundos": 36.1,
+          "ok": true
+        },
+        {
+          "etapa": "HonestDiD (R) em 6 especificações",
+          "segundos": 8.3,
+          "ok": true
+        }
+      ],
+      "avisos": []
+    },
+    "execucao_robustez-secundarios": {
+      "etapas": [
+        {
+          "etapa": "FE E3 amostra própria A1",
+          "segundos": 35.5,
+          "ok": true
+        },
+        {
+          "etapa": "FE E3 amostra própria A2",
+          "segundos": 24.8,
+          "ok": true
+        },
+        {
+          "etapa": "FE E3 amostra própria A3",
+          "segundos": 36.2,
+          "ok": true
+        },
+        {
+          "etapa": "FE E3 amostra própria A4",
+          "segundos": 35.4,
+          "ok": true
+        },
+        {
+          "etapa": "FE E3 amostra própria A5",
+          "segundos": 36.3,
+          "ok": true
+        },
+        {
+          "etapa": "FE E3 amostra própria B1",
+          "segundos": 24.6,
+          "ok": true
+        },
+        {
+          "etapa": "FE E3 amostra própria B2",
+          "segundos": 36.6,
+          "ok": true
+        },
+        {
+          "etapa": "FE E3 amostra própria B3",
+          "segundos": 36.1,
+          "ok": true
+        },
+        {
+          "etapa": "FE E3 amostra própria B4",
+          "segundos": 25.0,
+          "ok": true
+        },
+        {
+          "etapa": "FE E3 amostra própria B5",
+          "segundos": 37.4,
+          "ok": true
+        },
+        {
+          "etapa": "FE E3 amostra própria B6",
+          "segundos": 36.9,
+          "ok": true
+        },
+        {
+          "etapa": "FE E3 amostra própria B7",
+          "segundos": 25.3,
+          "ok": true
+        },
+        {
+          "etapa": "FE E3 amostra própria B8",
+          "segundos": 37.9,
+          "ok": true
+        },
+        {
+          "etapa": "FE E3 amostra própria B9",
+          "segundos": 37.1,
+          "ok": true
+        },
+        {
+          "etapa": "referências alternativas: FE (amostra comum e própria)",
+          "segundos": 938.6,
+          "ok": true
+        },
+        {
+          "etapa": "referências alternativas: estudo de eventos (amostra comum e própria)",
+          "segundos": 93.4,
+          "ok": true
+        },
+        {
+          "etapa": "robustez R02 classe A ∩ cenário rigoroso",
+          "segundos": 16.7,
+          "ok": true
+        },
+        {
+          "etapa": "robustez R03 cesta candidata completa (base)",
+          "segundos": 62.8,
+          "ok": true
+        },
+        {
+          "etapa": "robustez R04 referência mediana (A3), amostra própria",
+          "segundos": 63.3,
+          "ok": true
+        },
+        {
+          "etapa": "robustez R05 referência aritmética (A2), amostra própria",
+          "segundos": 51.1,
+          "ok": true
+        },
+        {
+          "etapa": "robustez R06 peso igual por compra (estimando por compra)",
+          "segundos": 3.1,
+          "ok": true
+        },
+        {
+          "etapa": "robustez R07 peso igual por evento",
+          "segundos": 2.8,
+          "ok": true
+        },
+        {
+          "etapa": "robustez R09 sem produtos com inconsistências técnicas",
+          "segundos": 45.7,
+          "ok": true
+        },
+        {
+          "etapa": "robustez R10 mesmo produto antes e depois da troca",
+          "segundos": 2.4,
+          "ok": true
+        },
+        {
+          "etapa": "robustez R11 referência só com UASGs estáveis",
+          "segundos": 48.6,
+          "ok": true
+        },
+        {
+          "etapa": "robustez R12 células de menor dispersão",
+          "segundos": 50.4,
+          "ok": true
+        },
+        {
+          "etapa": "robustez R13 janela de 12 meses",
+          "segundos": 4.3,
+          "ok": true
+        },
+        {
+          "etapa": "robustez R14 produtos recorrentes em todas as janelas",
+          "segundos": 37.5,
+          "ok": true
+        },
+        {
+          "etapa": "robustez R15 produtos não recorrentes em todas as janelas",
+          "segundos": 5.7,
+          "ok": true
+        },
+        {
+          "etapa": "secundário desconto",
+          "segundos": 49.6,
+          "ok": true
+        },
+        {
+          "etapa": "secundário preco_rel_mediana_externa_A3",
+          "segundos": 62.6,
+          "ok": true
+        },
+        {
+          "etapa": "secundário preco_rel_geometrica_externa_A1",
+          "segundos": 62.5,
+          "ok": true
+        },
+        {
+          "etapa": "secundário homologacao",
+          "segundos": 100.2,
+          "ok": true
+        },
+        {
+          "etapa": "secundário fracasso",
+          "segundos": 96.1,
+          "ok": true
+        },
+        {
+          "etapa": "secundário desercao",
+          "segundos": 95.1,
+          "ok": true
+        }
+      ],
+      "avisos": []
+    },
+    "execucao_validar": {
+      "etapas": [
+        {
+          "etapa": "validar produtos aprovados e conjuntos da cesta",
+          "segundos": 0.9,
+          "ok": true
+        }
+      ],
+      "avisos": [
+        "nenhum produto aprovado (cesta_validada.csv vazia): a análise principal NÃO é executável; todas as estimativas são EXPLORATÓRIAS sobre a cesta candidata"
+      ]
+    }
+  },
+  "classificacao": "EXPLORATÓRIO: nenhum produto aprovado na cesta validada"
+}

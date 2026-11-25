@@ -1,0 +1,283 @@
+{
+  "mapeamento": {
+    "compra.chave": {
+      "tabela": "compras",
+      "coluna": "numero_controle_pncp",
+      "obrigatorio": true,
+      "observacao": "Chave primária da compra (numeroControlePNCP).",
+      "alternativas_presentes": []
+    },
+    "compra.id_compra": {
+      "tabela": "compras",
+      "coluna": "id_compra",
+      "obrigatorio": false,
+      "observacao": "idCompra do Compras.gov.br; NÃO é único (contratações irmãs).",
+      "alternativas_presentes": []
+    },
+    "compra.uasg": {
+      "tabela": "compras",
+      "coluna": "uasg",
+      "obrigatorio": true,
+      "observacao": "UASG da compra (unidadeOrgaoCodigoUnidade).",
+      "alternativas_presentes": []
+    },
+    "compra.orgao_cnpj": {
+      "tabela": "compras",
+      "coluna": "orgao_cnpj",
+      "obrigatorio": true,
+      "observacao": "CNPJ do órgão; pode ser compartilhado por várias UASGs.",
+      "alternativas_presentes": []
+    },
+    "compra.orgao_nome": {
+      "tabela": "compras",
+      "coluna": "orgao_nome",
+      "obrigatorio": false,
+      "observacao": "",
+      "alternativas_presentes": []
+    },
+    "compra.numero_compra": {
+      "tabela": "compras",
+      "coluna": "numero_compra",
+      "obrigatorio": false,
+      "observacao": "",
+      "alternativas_presentes": []
+    },
+    "compra.ano_compra": {
+      "tabela": "compras",
+      "coluna": "ano_compra",
+      "obrigatorio": false,
+      "observacao": "",
+      "alternativas_presentes": []
+    },
+    "compra.data_publicacao": {
+      "tabela": "compras",
+      "coluna": "data_publicacao",
+      "obrigatorio": true,
+      "observacao": "dataPublicacaoPncp; data de referência da recorrência.",
+      "alternativas_presentes": []
+    },
+    "compra.data_abertura": {
+      "tabela": "compras",
+      "coluna": "data_abertura_proposta",
+      "obrigatorio": false,
+      "observacao": "dataAberturaPropostaPncp.",
+      "alternativas_presentes": []
+    },
+    "compra.modalidade": {
+      "tabela": "compras",
+      "coluna": "modalidade_nome",
+      "obrigatorio": true,
+      "observacao": "Modalidade (Pregão Eletrônico/Presencial).",
+      "alternativas_presentes": []
+    },
+    "compra.modo_disputa": {
+      "tabela": "compras",
+      "coluna": "modo_disputa",
+      "obrigatorio": true,
+      "observacao": "Lido SOMENTE no diagnóstico posterior ao congelamento.",
+      "alternativas_presentes": []
+    },
+    "compra.fonte": {
+      "tabela": "compras",
+      "coluna": "fonte",
+      "obrigatorio": true,
+      "observacao": "dados_abertos (Compras.gov.br) ou pncp (outras plataformas).",
+      "alternativas_presentes": []
+    },
+    "compra.situacao": {
+      "tabela": "compras",
+      "coluna": "situacao_compra",
+      "obrigatorio": false,
+      "observacao": "Só preenchida em fonte=pncp.",
+      "alternativas_presentes": []
+    },
+    "compra.uf": {
+      "tabela": "compras",
+      "coluna": "uf",
+      "obrigatorio": false,
+      "observacao": "",
+      "alternativas_presentes": []
+    },
+    "compra.esfera": {
+      "tabela": "compras",
+      "coluna": "esfera",
+      "obrigatorio": false,
+      "observacao": "",
+      "alternativas_presentes": []
+    },
+    "compra.poder": {
+      "tabela": "compras",
+      "coluna": "poder",
+      "obrigatorio": false,
+      "observacao": "",
+      "alternativas_presentes": []
+    },
+    "item.id": {
+      "tabela": "itens",
+      "coluna": "id",
+      "obrigatorio": true,
+      "observacao": "Chave técnica de linha (um registro da API).",
+      "alternativas_presentes": []
+    },
+    "item.chave_compra": {
+      "tabela": "itens",
+      "coluna": "numero_controle_pncp",
+      "obrigatorio": true,
+      "observacao": "Liga o item à compra.",
+      "alternativas_presentes": []
+    },
+    "item.numero": {
+      "tabela": "itens",
+      "coluna": "numero_item",
+      "obrigatorio": true,
+      "observacao": "Com a chave da compra, identifica o item.",
+      "alternativas_presentes": []
+    },
+    "item.id_compra_item": {
+      "tabela": "itens",
+      "coluna": "id_compra_item",
+      "obrigatorio": false,
+      "observacao": "idCompraItem; não é único.",
+      "alternativas_presentes": []
+    },
+    "item.registro_principal": {
+      "tabela": "itens",
+      "coluna": "registro_principal",
+      "obrigatorio": false,
+      "observacao": "Marca uma linha por item; NÃO usada (prioriza valor do resultado).",
+      "alternativas_presentes": []
+    },
+    "item.uasg": {
+      "tabela": "itens",
+      "coluna": "uasg_item",
+      "obrigatorio": false,
+      "observacao": "UASG informada no item; auditada contra a da compra.",
+      "alternativas_presentes": []
+    },
+    "item.catmat": {
+      "tabela": "itens",
+      "coluna": "cod_item_catalogo",
+      "obrigatorio": true,
+      "observacao": "codItemCatalogo (CATMAT se material, CATSER se serviço).",
+      "alternativas_presentes": []
+    },
+    "item.material_servico": {
+      "tabela": "itens",
+      "coluna": "material_ou_servico",
+      "obrigatorio": true,
+      "observacao": "M = material (CATMAT), S = serviço (CATSER).",
+      "alternativas_presentes": []
+    },
+    "item.classe": {
+      "tabela": "itens",
+      "coluna": "codigo_classe",
+      "obrigatorio": false,
+      "observacao": "Classe do catálogo.",
+      "alternativas_presentes": []
+    },
+    "item.grupo": {
+      "tabela": "itens",
+      "coluna": "codigo_grupo",
+      "obrigatorio": false,
+      "observacao": "Grupo do catálogo (muitas vezes vazio).",
+      "alternativas_presentes": []
+    },
+    "item.pdm": {
+      "tabela": "itens",
+      "coluna": "codigo_pdm",
+      "obrigatorio": false,
+      "observacao": "Padrão descritivo de material.",
+      "alternativas_presentes": []
+    },
+    "item.unidade": {
+      "tabela": "itens",
+      "coluna": "unidade_medida",
+      "obrigatorio": true,
+      "observacao": "Unidade de fornecimento.",
+      "alternativas_presentes": []
+    },
+    "item.descricao_resumida": {
+      "tabela": "itens",
+      "coluna": "descricao_resumida",
+      "obrigatorio": true,
+      "observacao": "No dados_abertos é o nome do item no catálogo (nível PDM).",
+      "alternativas_presentes": []
+    },
+    "item.quantidade": {
+      "tabela": "itens",
+      "coluna": "quantidade",
+      "obrigatorio": true,
+      "observacao": "",
+      "alternativas_presentes": []
+    },
+    "item.situacao": {
+      "tabela": "itens",
+      "coluna": "situacao_item",
+      "obrigatorio": true,
+      "observacao": "Situação do item (Homologado, Deserto, ...).",
+      "alternativas_presentes": []
+    },
+    "item.homologado": {
+      "tabela": "itens",
+      "coluna": "homologado",
+      "obrigatorio": false,
+      "observacao": "Derivada de situacao_item.",
+      "alternativas_presentes": []
+    },
+    "item.criterio": {
+      "tabela": "itens",
+      "coluna": "criterio_julgamento",
+      "obrigatorio": false,
+      "observacao": "Critério de julgamento (≠ modalidade).",
+      "alternativas_presentes": []
+    },
+    "item.data_atualizacao": {
+      "tabela": "itens",
+      "coluna": "data_atualizacao",
+      "obrigatorio": false,
+      "observacao": "",
+      "alternativas_presentes": []
+    }
+  },
+  "chaves": {
+    "compras_pk_declarada": [
+      "numero_controle_pncp"
+    ],
+    "itens_indice_chave_item": true,
+    "itens_indices": [
+      [
+        "uasg_item",
+        "cod_item_catalogo"
+      ],
+      [
+        "numero_controle_pncp",
+        "numero_item"
+      ]
+    ],
+    "itens_pk_declarada": [
+      "id"
+    ]
+  },
+  "pragma": {
+    "journal_mode": "delete",
+    "data_version": 1,
+    "page_size": 4096,
+    "page_count": 3918060
+  },
+  "colunas_proibidas_na_selecao": [
+    "valor_unitario_estimado",
+    "valor_unitario_resultado",
+    "valor_total_resultado",
+    "valor_total_estimado",
+    "valor_total_homologado",
+    "valor_unitario_homologado",
+    "melhor_lance_modo_aberto",
+    "melhor_lance_modo_fechado",
+    "melhor_lance_desempate",
+    "lance_aceito",
+    "valor_negociado_aceito",
+    "valor_estimado_pdf",
+    "modo_disputa",
+    "desconto"
+  ]
+}

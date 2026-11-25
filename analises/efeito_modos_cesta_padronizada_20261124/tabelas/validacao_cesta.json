@@ -1,0 +1,18 @@
+{
+  "sha256_cesta_candidata": "80cd46a7bac29464209a4dea4b668d2bfd35915ee8c694c51692b659a21d59eb",
+  "cesta_congelada_em": "2026-11-24T17:19:58",
+  "candidatos": 16248,
+  "classe_A": 10424,
+  "classe_B": 5824,
+  "familias_rigoroso": 6216,
+  "produtos_candidatos_em_familias_rigoroso": 6217,
+  "familias_rigoroso_fora_da_cesta": 0,
+  "A_e_rigoroso": 4122,
+  "B_e_rigoroso": 2095,
+  "A_fora_rigoroso": 6302,
+  "produtos_aprovados": 0,
+  "formulario_linhas": 16248,
+  "formulario_com_decisao": 0,
+  "recorrencia_todas_janelas": 14544,
+  "analise_principal_viavel": false
+}

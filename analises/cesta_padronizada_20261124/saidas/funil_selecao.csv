@@ -1,0 +1,9 @@
+﻿etapa,criterio,itens,compras,uasgs,itens_homologados,itens_perdidos,pct_itens_perdidos_etapa,compras_perdidas
+0_fonte_dados_abertos,"Itens de compras da fonte dados_abertos (Compras.gov.br), todas as modalidades",6362668,328077,5543,4606939,,,
+1_pregao_eletronico,Modalidade Pregão Eletrônico (qualquer modo de disputa),6353185,327459,5533,4603217,9483,0.149,618
+2_material,Item de material (M); serviços CATSER ficam de fora,5533723,222986,4931,3995567,819462,12.8984,104473
+3_catmat_valido,Código de catálogo presente e numérico,4472791,174569,4756,3474069,1060932,19.1721,48417
+4_atributos_constantes,"Registros repetidos do item com o mesmo CATMAT, natureza e unidade",4472499,174563,4756,3473778,292,0.0065,6
+5_uasg_valida,UASG da compra presente e numérica (até 6 dígitos),4471621,174515,4756,3473255,878,0.0196,48
+6_data_valida,Data de publicação válida,4471621,174515,4756,3473255,0,0.0,0
+7_unidade_presente,Unidade de fornecimento presente,4471621,174515,4756,3473255,0,0.0,0

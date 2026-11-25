@@ -540,6 +540,28 @@ Atualize este arquivo ao tomar uma decisão ou concluir um passo (com data).
       licitantes −5,1 / −4,1 (p ≤ 0,001); **sigiloso +4,6 (p = 0,001) / +2,4 (p = 0,064)**, ou seja, na medida dos válidos o
       sigilo deixa de ser significativo a 5% (era p = 0,042); serviço +1,6 / +1,7 (n.s.).
 
+17. **CATMAT ausente na API Dados Abertos depois de 2026-04-17** (achado da cesta padronizada, 24/11/2026,
+    [`analises/cesta_padronizada_20261124/`](../analises/cesta_padronizada_20261124/relatorio.md)). Desde meados de abril de
+    2026 os itens vêm sem `codItemCatalogo`, `codigoPdm`, `codigoClasse`, `nomePdm` e `descricaodetalhada`, no banco, nos
+    CSVs e nos JSONs de `dados/brutos/`. O esquema dos arquivos não mudou, e a `descricaoResumida` passou a ter texto livre.
+    De 2026-05 a 2026-10 são cerca de 900 mil itens de material sem código, que nenhuma análise por CATMAT consegue usar.
+    **Falta:** descobrir se a API mudou de vez ou se uma nova coleta (outro endpoint ou o catálogo do PNCP) recupera o código.
+18. **Cesta padronizada: priorizar a revisão humana.** A cesta candidata tem 16.248 produtos (A 10.424, B 5.824); a cesta
+    validada está vazia até a revisão (`validar_revisao.py`). Antes de qualquer análise de preços, falta decidir e registrar
+    como priorizar a revisão (por exemplo, a classe A do cenário rigoroso, com 6.216 famílias) e se haverá um período de
+    formação para uma cesta causal.
+19. **Efeito A × AF na cesta padronizada (25/11/2026, exploratório)**
+    ([`analises/efeito_modos_cesta_padronizada_20261124/`](../analises/efeito_modos_cesta_padronizada_20261124/conclusao.md)).
+    - **Amostra:** sem produtos aprovados, tudo foi estimado sobre a cesta candidata e é exploratório.
+    - **Associação (E3):** −6,0 lp.
+    - **Estudo de eventos (dCDH):** −4,6 lp, IC95 [−9,2; −0,0], mas o placebo pré-troca falha (+21 lp no abandono).
+    - **HonestDiD:** os intervalos robustos incluem zero.
+    - **Falta, nesta ordem:**
+      1. aprovar produtos (pendência 18);
+      2. refazer o estudo com a amostra principal, que o código já suporta;
+      3. ampliar os pré-períodos;
+      4. investigar a seleção das trocas (reversão à média antes do abandono).
+
 ## Questões em aberto
 
 - **17/11/2026 — comparação anual por sigilo concluída:** [testes e documentação versionados](08-testes-medias-precos.md), com 30 especificações, seis testes principais, Holm e bootstrap complementar. O desconto dos sigilosos utiliza apenas estimados positivos disponíveis no snapshot. Resultados e limitações não identificam efeito causal. A auditoria dos índices extremos continua pendente de documentação física do fornecimento.

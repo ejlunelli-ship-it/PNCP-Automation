@@ -1,0 +1,22 @@
+{
+  "pncp_v2": {
+    "caminho": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\dados\\pncp_v2.db",
+    "tamanho_bytes": 18242981888,
+    "mtime_ns": 1795550467292885200,
+    "mtime_iso": "2026-11-24T17:01:07",
+    "sqlite_contador_alteracoes": 308,
+    "sqlite_cookie_esquema": 7,
+    "sha256_inicio_fim": "e0a29c420098bbbd0e49876e700a484f2cdd7154330f0656b042b08d7ad9f88c",
+    "amostra_mb": 64
+  },
+  "cesta_trabalho": {
+    "caminho": "D:\\cesta_padronizada_trabalho\\trabalho.db",
+    "tamanho_bytes": 11317166080,
+    "mtime_ns": 1795551598101268700,
+    "mtime_iso": "2026-11-24T17:19:58",
+    "sqlite_contador_alteracoes": 15110545,
+    "sqlite_cookie_esquema": 42,
+    "sha256_inicio_fim": "ed7e3a381f0ff1a63d9ad43e9b691e6acd61db1a790f7060ff32873e52edb6b4",
+    "amostra_mb": 64
+  }
+}

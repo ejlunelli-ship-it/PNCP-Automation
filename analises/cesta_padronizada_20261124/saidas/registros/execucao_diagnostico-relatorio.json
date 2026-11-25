@@ -1,0 +1,72 @@
+{
+  "versao": "1.0.0",
+  "inicio": "2026-11-24T19:47:53",
+  "fim": "2026-11-24T19:50:27",
+  "etapas_pedidas": [
+    "diagnostico",
+    "relatorio"
+  ],
+  "etapas": [
+    {
+      "etapa": "diagnóstico: itens da cesta congelada",
+      "segundos": 7.03,
+      "ok": true
+    },
+    {
+      "etapa": "diagnóstico: modo de disputa (pncp.db, somente leitura)",
+      "segundos": 117.47,
+      "ok": true
+    },
+    {
+      "etapa": "diagnóstico: indicadores",
+      "segundos": 25.92,
+      "ok": true
+    }
+  ],
+  "contagens": {
+    "diagnostico": {
+      "compras_cesta": 129906,
+      "compras_por_modo": {
+        "AF": 48150,
+        "A": 80862,
+        "FA": 894
+      },
+      "uasgs_cesta": 4587,
+      "uasgs_usaram_A_e_AF": 995,
+      "produtos": 16248,
+      "produtos_comprados_nos_dois_modos": 16244,
+      "produtos_com_5_ou_mais_compras_em_cada_modo": 16198,
+      "celulas_produto_trimestre": 191636,
+      "celulas_com_A_e_AF": 149279,
+      "celulas_com_A_e_AF_e_2_ou_mais_uasgs": 149273,
+      "trocas_de_modo_dentro_da_uasg": 5173,
+      "uasgs_com_alguma_troca": 995,
+      "eventos_potenciais": {
+        "definicao": ">= 3 compras da cesta só em A antes da primeira AF e >= 3 compras AF a partir dela",
+        "uasgs": 160,
+        "por_ano_da_primeira_AF": {
+          "2023": 21,
+          "2024": 88,
+          "2025": 46,
+          "2026": 5
+        }
+      },
+      "referencia_interna": {
+        "definicao": "item da cesta com >= 3 outras UASGs comprando o mesmo produto no mesmo trimestre",
+        "itens": 1995107,
+        "itens_total": 2137650,
+        "pct": 93.33
+      }
+    }
+  },
+  "avisos": [],
+  "consultas": {
+    "diagnostico_modo": "SELECT numero_controle_pncp, modo_disputa FROM compras WHERE fonte = ?"
+  },
+  "segundos_total": 154.93,
+  "caminhos": {
+    "db": "D:\\pncp.db",
+    "brutos": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\dados\\brutos",
+    "trabalho": "D:\\cesta_padronizada_trabalho"
+  }
+}

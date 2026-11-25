@@ -1,0 +1,22 @@
+{
+  "painel": "2023T1–2026T1",
+  "uasgs": 5355,
+  "tipos": {
+    "nunca_troca": 4308,
+    "irregular": 610,
+    "troca": 317,
+    "troca_sem_pre_adjacente": 120
+  },
+  "trocas_por_direcao": {
+    "A->AF": 172,
+    "AF->A": 145
+  },
+  "trocas_puras": 96,
+  "trocas_absorventes": 212,
+  "cnpjs_com_troca": 187,
+  "uasgs_estaveis": 1927,
+  "trimestres_excluidos_incompletos": [
+    "2022T4",
+    "2026T2"
+  ]
+}

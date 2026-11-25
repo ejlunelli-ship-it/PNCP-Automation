@@ -1,0 +1,215 @@
+{
+  "produtos": 16248,
+  "compras": 129906,
+  "itens": 2137650,
+  "uasgs": 4587,
+  "orgaos_cnpj": 2534,
+  "itens_homologados": 1695077,
+  "compras_com_item_homologado": 114794,
+  "pct_compras_pregao_eletronico": 39.671,
+  "pct_compras_universo_catmat": 74.438,
+  "pct_itens_universo_catmat": 47.805,
+  "compras_pregao_eletronico_fonte": 327459,
+  "compras_universo_catmat": 174515,
+  "itens_universo_catmat": 4471621,
+  "hhi_compras_por_uasg_cesta": 0.0018853101966037928,
+  "n_efetivo_uasgs_cesta": 530.4166931263645,
+  "produtos_por_uasg": {
+    "n": 4587,
+    "min": 1,
+    "p25": 19,
+    "mediana": 83,
+    "p75": 286,
+    "p90": 774,
+    "max": 4428,
+    "media": 257.218
+  },
+  "uasgs_por_produto": {
+    "n": 16248,
+    "min": 15,
+    "p25": 38,
+    "mediana": 51,
+    "p75": 79,
+    "p90": 134,
+    "max": 1137,
+    "media": 72.616
+  },
+  "trimestres_por_produto": {
+    "n": 16248,
+    "min": 6,
+    "p25": 11,
+    "mediana": 12,
+    "p75": 13,
+    "p90": 13,
+    "max": 15,
+    "media": 11.794
+  },
+  "compras_por_uasg": {
+    "n": 4587,
+    "min": 1,
+    "p25": 3,
+    "mediana": 8,
+    "p75": 26,
+    "p90": 65,
+    "max": 2059,
+    "media": 28.32
+  },
+  "por_classe_tecnica": [
+    {
+      "classe": "A",
+      "produtos": 10424,
+      "compras": 109760,
+      "uasgs": 4478
+    },
+    {
+      "classe": "B",
+      "produtos": 5824,
+      "compras": 87134,
+      "uasgs": 4212
+    }
+  ],
+  "por_ano": [
+    {
+      "ano": 2022,
+      "compras": 50,
+      "itens": 340,
+      "uasgs": 32,
+      "produtos": 294
+    },
+    {
+      "ano": 2023,
+      "compras": 10720,
+      "itens": 194326,
+      "uasgs": 1385,
+      "produtos": 14986
+    },
+    {
+      "ano": 2024,
+      "compras": 52824,
+      "itens": 860588,
+      "uasgs": 3799,
+      "produtos": 16167
+    },
+    {
+      "ano": 2025,
+      "compras": 55404,
+      "itens": 890674,
+      "uasgs": 3778,
+      "produtos": 16194
+    },
+    {
+      "ano": 2026,
+      "compras": 10908,
+      "itens": 191722,
+      "uasgs": 2153,
+      "produtos": 15794
+    }
+  ],
+  "por_trimestre": [
+    {
+      "trimestre": "2022T4",
+      "compras": 50,
+      "itens": 340,
+      "uasgs": 32,
+      "produtos": 294
+    },
+    {
+      "trimestre": "2023T1",
+      "compras": 208,
+      "itens": 3121,
+      "uasgs": 113,
+      "produtos": 936
+    },
+    {
+      "trimestre": "2023T2",
+      "compras": 1661,
+      "itens": 27379,
+      "uasgs": 426,
+      "produtos": 9068
+    },
+    {
+      "trimestre": "2023T3",
+      "compras": 3967,
+      "itens": 73352,
+      "uasgs": 829,
+      "produtos": 13224
+    },
+    {
+      "trimestre": "2023T4",
+      "compras": 4884,
+      "itens": 90474,
+      "uasgs": 1063,
+      "produtos": 14196
+    },
+    {
+      "trimestre": "2024T1",
+      "compras": 5669,
+      "itens": 116824,
+      "uasgs": 1401,
+      "produtos": 14764
+    },
+    {
+      "trimestre": "2024T2",
+      "compras": 13816,
+      "itens": 225086,
+      "uasgs": 2352,
+      "produtos": 15665
+    },
+    {
+      "trimestre": "2024T3",
+      "compras": 16585,
+      "itens": 252266,
+      "uasgs": 2633,
+      "produtos": 15984
+    },
+    {
+      "trimestre": "2024T4",
+      "compras": 16754,
+      "itens": 266412,
+      "uasgs": 2883,
+      "produtos": 16120
+    },
+    {
+      "trimestre": "2025T1",
+      "compras": 11327,
+      "itens": 202767,
+      "uasgs": 2160,
+      "produtos": 16071
+    },
+    {
+      "trimestre": "2025T2",
+      "compras": 13892,
+      "itens": 218081,
+      "uasgs": 2414,
+      "produtos": 16109
+    },
+    {
+      "trimestre": "2025T3",
+      "compras": 16358,
+      "itens": 255810,
+      "uasgs": 2538,
+      "produtos": 16123
+    },
+    {
+      "trimestre": "2025T4",
+      "compras": 13827,
+      "itens": 214016,
+      "uasgs": 2677,
+      "produtos": 15996
+    },
+    {
+      "trimestre": "2026T1",
+      "compras": 8826,
+      "itens": 153465,
+      "uasgs": 1969,
+      "produtos": 15623
+    },
+    {
+      "trimestre": "2026T2",
+      "compras": 2082,
+      "itens": 38257,
+      "uasgs": 1000,
+      "produtos": 11463
+    }
+  ]
+}

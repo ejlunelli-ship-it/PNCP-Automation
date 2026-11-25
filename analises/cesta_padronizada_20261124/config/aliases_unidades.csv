@@ -1,0 +1,31 @@
+forma,canonica,fundir,justificativa
+UN,UNIDADE,sim,Abreviatura de unidade; mesmo objeto (1 unidade)
+UND,UNIDADE,sim,Abreviatura de unidade
+UNID,UNIDADE,sim,Abreviatura de unidade
+UNID.,UNIDADE,sim,Abreviatura de unidade
+UNIDADE,UNIDADE,sim,Forma canônica
+UNIDADE 0,UNIDADE 0,nao,Conteúdo zero: provável artefato do cadastro antigo; NÃO fundido com UNIDADE por falta de prova (fica como família própria e alerta conteudo_zero)
+KG,QUILOGRAMA,sim,Abreviatura de quilograma (mesma grandeza e mesmo fator)
+QUILOGRAMA,QUILOGRAMA,sim,Forma canônica
+G,GRAMA,sim,Abreviatura de grama
+GRAMA,GRAMA,sim,Forma canônica
+L,LITRO,sim,Abreviatura de litro
+LT,LITRO,sim,Abreviatura de litro
+LITRO,LITRO,sim,Forma canônica
+ML,MILILITRO,sim,Abreviatura de mililitro
+MILILITRO,MILILITRO,sim,Forma canônica
+M,METRO,sim,Abreviatura de metro
+METRO,METRO,sim,Forma canônica
+M2,METRO QUADRADO,sim,Abreviatura de metro quadrado
+METRO QUADRADO,METRO QUADRADO,sim,Forma canônica
+M3,METRO CUBICO,sim,Abreviatura de metro cúbico
+METRO CUBICO,METRO CUBICO,sim,Forma canônica
+CX,CAIXA,sim,Abreviatura de caixa (só o nome da embalagem; o conteúdo continua separado)
+PCT,PACOTE,sim,Abreviatura de pacote (só o nome da embalagem)
+PC,PECA,sim,Abreviatura de peça
+PCA,PECA,sim,Abreviatura de peça
+PECA,PECA,sim,Forma canônica
+1000 ML,1000 ML,nao,NÃO convertido para 1 L: equivalência física não é aplicada automaticamente
+CAIXA,CAIXA,nao,Caixa sem conteúdo declarado NÃO é fundida com caixa de conteúdo declarado nem com UNIDADE
+PACOTE,PACOTE,nao,Pacote sem conteúdo declarado NÃO é fundido com pacote de conteúdo declarado
+RESMA,RESMA,nao,Resma NÃO é convertida em folhas nem em pacote

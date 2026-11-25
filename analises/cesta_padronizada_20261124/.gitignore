@@ -1,0 +1,3 @@
+# grande demais para o git (64 MB); recriado pela etapa selecionar. A cópia .csv.gz já é ignorada por analises/.gitignore
+saidas/descricoes_variantes.csv
+__pycache__/

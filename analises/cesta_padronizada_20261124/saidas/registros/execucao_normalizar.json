@@ -1,0 +1,33 @@
+{
+  "versao": "1.0.0",
+  "inicio": "2026-11-24T15:32:09",
+  "fim": "2026-11-24T15:35:32",
+  "etapas_pedidas": [
+    "normalizar"
+  ],
+  "etapas": [
+    {
+      "etapa": "normalização das unidades",
+      "segundos": 16.68,
+      "ok": true
+    },
+    {
+      "etapa": "descrições: normalização das variantes distintas",
+      "segundos": 185.79,
+      "ok": true
+    }
+  ],
+  "contagens": {
+    "unidades_formas_originais": 5840,
+    "unidades_formas_normalizadas": 2680,
+    "descricoes_originais_distintas": 547619
+  },
+  "avisos": [],
+  "consultas": {},
+  "segundos_total": 204.48,
+  "caminhos": {
+    "db": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\dados\\pncp.db",
+    "brutos": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\dados\\brutos",
+    "trabalho": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\dados\\cesta_padronizada"
+  }
+}

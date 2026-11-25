@@ -1,0 +1,141 @@
+{
+  "versao": "1.0.0",
+  "inicio": "2026-11-24T13:52:37",
+  "fim": "2026-11-24T14:28:42",
+  "etapas_pedidas": [
+    "extrair",
+    "brutos"
+  ],
+  "etapas": [
+    {
+      "etapa": "impressão digital do banco de origem",
+      "segundos": 0.86,
+      "ok": true
+    },
+    {
+      "etapa": "esquema: inspeção e mapeamento",
+      "segundos": 0.01,
+      "ok": true
+    },
+    {
+      "etapa": "universo total: compras",
+      "segundos": 22.35,
+      "ok": true
+    },
+    {
+      "etapa": "universo total: itens (varredura completa)",
+      "segundos": 334.45,
+      "ok": true
+    },
+    {
+      "etapa": "universo total: itens sem compra",
+      "segundos": 94.44,
+      "ok": true
+    },
+    {
+      "etapa": "extração: compras",
+      "segundos": 74.93,
+      "ok": true
+    },
+    {
+      "etapa": "extração: linhas de item",
+      "segundos": 707.33,
+      "ok": true
+    },
+    {
+      "etapa": "índices do banco de trabalho",
+      "segundos": 9.54,
+      "ok": true
+    },
+    {
+      "etapa": "deduplicação dos itens (chave composta)",
+      "segundos": 74.54,
+      "ok": true
+    },
+    {
+      "etapa": "normalização das unidades",
+      "segundos": 7.7,
+      "ok": true
+    },
+    {
+      "etapa": "brutos: leitura de 53 arquivos de itens",
+      "segundos": 606.0,
+      "ok": true
+    },
+    {
+      "etapa": "brutos: índice",
+      "segundos": 9.76,
+      "ok": true
+    },
+    {
+      "etapa": "brutos: ligação e conferência de cardinalidade",
+      "segundos": 103.34,
+      "ok": true
+    },
+    {
+      "etapa": "descrições: normalização das variantes distintas",
+      "segundos": 119.47,
+      "ok": true
+    }
+  ],
+  "contagens": {
+    "itens_sem_compra_total": 0,
+    "compras_base": 328169,
+    "itens_linhas": 6365040,
+    "itens_distintos": 6362668,
+    "itens_com_registros_repetidos": 2321,
+    "registros_em_itens_repetidos": 4693,
+    "itens_atributos_conflitantes": 312,
+    "unidades_formas_originais": 5840,
+    "unidades_formas_normalizadas": 4214,
+    "brutos_linhas": 6365040,
+    "brutos_itens_distintos": 6362668,
+    "brutos_itens_sem_banco": 0,
+    "ligacao_divergencias": {},
+    "itens_com_mais_de_uma_descricao_detalhada": 317,
+    "descricoes_originais_distintas": 547619
+  },
+  "avisos": [],
+  "consultas": {
+    "universo_compras": "SELECT fonte, modalidade_nome, situacao_compra, COUNT(*), MIN(data_publicacao), MAX(data_publicacao) FROM compras GROUP BY 1, 2, 3 ORDER BY 1, 2, 3",
+    "universo_itens": "SELECT co.fonte, co.modalidade_nome, i.material_ou_servico, i.cod_item_catalogo IS NOT NULL, COUNT(*), COUNT(DISTINCT i.numero_controle_pncp || '#' || i.numero_item) FROM itens i JOIN compras co ON co.numero_controle_pncp = i.numero_controle_pncp GROUP BY 1, 2, 3, 4 ORDER BY 1, 2, 3, 4",
+    "itens_orfaos": "SELECT COUNT(*) FROM itens i WHERE NOT EXISTS (SELECT 1 FROM compras c WHERE c.numero_controle_pncp = i.numero_controle_pncp)",
+    "compras_base": "SELECT numero_controle_pncp, id_compra, uasg, orgao_cnpj, orgao_nome, numero_compra, ano_compra, modalidade_nome, data_publicacao, data_abertura_proposta, uf, esfera, poder FROM compras WHERE fonte = ? ORDER BY numero_controle_pncp",
+    "itens_linhas": "SELECT i.id, i.numero_controle_pncp, i.numero_item, i.id_compra_item, i.registro_principal, i.uasg_item, i.cod_item_catalogo, i.material_ou_servico, i.codigo_classe, i.codigo_grupo, i.codigo_pdm, i.unidade_medida, i.descricao_resumida, i.quantidade, i.situacao_item, i.homologado, i.criterio_julgamento, i.data_atualizacao FROM compras co JOIN itens i ON i.numero_controle_pncp = co.numero_controle_pncp WHERE co.fonte = ? ORDER BY i.id"
+  },
+  "segundos_total": 2166.68,
+  "caminhos": {
+    "db": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\dados\\pncp.db",
+    "brutos": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\dados\\brutos",
+    "trabalho": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\dados\\cesta_padronizada"
+  },
+  "snapshot": {
+    "antes": {
+      "caminho": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\dados\\pncp.db",
+      "tamanho_bytes": 16048373760,
+      "mtime_ns": 1794341025272657700,
+      "mtime_iso": "2026-11-10T17:03:45",
+      "sqlite_contador_alteracoes": 151,
+      "sqlite_cookie_esquema": 49,
+      "sha256_inicio_fim": "800e418245d8f21ddd1737ef20318b688e77846b2086c87a55c1388b223dc742",
+      "amostra_mb": 64
+    },
+    "depois": {
+      "caminho": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\dados\\pncp.db",
+      "tamanho_bytes": 16048373760,
+      "mtime_ns": 1794341025272657700,
+      "mtime_iso": "2026-11-10T17:03:45",
+      "sqlite_contador_alteracoes": 151,
+      "sqlite_cookie_esquema": 49,
+      "sha256_inicio_fim": "800e418245d8f21ddd1737ef20318b688e77846b2086c87a55c1388b223dc742",
+      "amostra_mb": 64
+    },
+    "sqlite_pragma": {
+      "journal_mode": "delete",
+      "data_version": 1,
+      "page_size": 4096,
+      "page_count": 3918060
+    },
+    "extraido_em": "2026-11-24T14:13:21"
+  }
+}

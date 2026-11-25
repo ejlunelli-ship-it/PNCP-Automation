@@ -1,0 +1,123 @@
+{
+  "versao": "1.0.0",
+  "inicio": "2026-11-25T03:12:44",
+  "fim": "2026-11-25T03:20:01",
+  "etapas": [
+    {
+      "etapa": "impressão digital do pncp_v2.db",
+      "segundos": 2.3,
+      "ok": true
+    },
+    {
+      "etapa": "chaves dos itens da cesta candidata (mapeamento congelado)",
+      "segundos": 98.6,
+      "ok": true
+    },
+    {
+      "etapa": "ligação ao pncp_v2.db (registro_principal = 1)",
+      "segundos": 195.9,
+      "ok": true
+    },
+    {
+      "etapa": "regime de modo por UASG × trimestre (todas as compras A/AF da fonte)",
+      "segundos": 20.1,
+      "ok": true
+    },
+    {
+      "etapa": "amostra em memória e funil",
+      "segundos": 113.3,
+      "ok": true
+    }
+  ],
+  "contagens": {
+    "itens_cesta": 2137650,
+    "auditoria_ligacao": {
+      "linhas": 2137650,
+      "sem_item": 0,
+      "sem_compra": 0,
+      "catmat_diverge": 0,
+      "uasg_diverge": 490,
+      "cnpj_diverge": 0,
+      "publicacao_diverge": 0,
+      "homologado_diverge": 0,
+      "fonte_diverge": 0,
+      "modalidade_diverge": 0
+    },
+    "compras_regime": 325751,
+    "funil": [
+      {
+        "etapa": "0_cesta_candidata",
+        "criterio": "Itens licitados dos produtos da cesta candidata",
+        "itens": 2137650,
+        "compras": 129906,
+        "produtos": 16248,
+        "uasgs": 4587,
+        "orgaos_cnpj": 2534
+      },
+      {
+        "etapa": "1_compras_gov_pregao_eletronico",
+        "criterio": "Compras.gov.br, Pregão Eletrônico (já garantido pela cesta; conferido na ligação)",
+        "itens": 2137650,
+        "compras": 129906,
+        "produtos": 16248,
+        "uasgs": 4587,
+        "orgaos_cnpj": 2534
+      },
+      {
+        "etapa": "2_modo_A_ou_AF",
+        "criterio": "Modo Aberto ou Aberto-Fechado",
+        "itens": 2124004,
+        "compras": 129012,
+        "produtos": 16248,
+        "uasgs": 4580,
+        "orgaos_cnpj": 2530
+      },
+      {
+        "etapa": "3_menor_preco",
+        "criterio": "Critério de julgamento Menor preço",
+        "itens": 2106560,
+        "compras": 127626,
+        "produtos": 16248,
+        "uasgs": 4562,
+        "orgaos_cnpj": 2520
+      },
+      {
+        "etapa": "4_data_abertura_valida",
+        "criterio": "Data de abertura válida (define o trimestre)",
+        "itens": 2106560,
+        "compras": 127626,
+        "produtos": 16248,
+        "uasgs": 4562,
+        "orgaos_cnpj": 2520
+      },
+      {
+        "etapa": "5_homologado",
+        "criterio": "Item homologado",
+        "itens": 1671032,
+        "compras": 112859,
+        "produtos": 16247,
+        "uasgs": 4435,
+        "orgaos_cnpj": 2447
+      },
+      {
+        "etapa": "6_preco_positivo",
+        "criterio": "Preço unitário homologado positivo",
+        "itens": 1671008,
+        "compras": 112857,
+        "produtos": 16247,
+        "uasgs": 4435,
+        "orgaos_cnpj": 2447
+      },
+      {
+        "etapa": "7_produto_aprovado",
+        "criterio": "Produto com aprovação técnica documentada (cesta validada)",
+        "itens": 0,
+        "compras": 0,
+        "produtos": 0,
+        "uasgs": 0,
+        "orgaos_cnpj": 0
+      }
+    ]
+  },
+  "avisos": []
+}

@@ -1,0 +1,55 @@
+{
+  "_descricao": "Categorias que exigem cautela adicional (seção 9 do pedido). NÃO excluem produtos: acrescentam alerta e pendência de revisão especializada. Grupo = dois primeiros dígitos da classe do catálogo (codigo_classe, padrão FSC). Palavras-chave são procuradas no nome do PDM e na descrição normalizados (sem acento, maiúsculas).",
+  "categorias": {
+    "medicamentos_materiais_medicos": {
+      "grupos": [65],
+      "palavras": ["MEDICAMENTO", "VACINA", "SORO ", "INJETAVEL", "COMPRIMIDO", "AMPOLA", "SERINGA", "AGULHA", "CATETER", "LUVA PARA PROCEDIMENTO", "LUVA CIRURGICA"],
+      "risco": "dosagem, concentração, apresentação e registro sanitário determinam a equivalência"
+    },
+    "combustiveis_lubrificantes": {
+      "grupos": [91],
+      "palavras": ["COMBUSTIVEL", "GASOLINA", "OLEO DIESEL", "ETANOL", "QUEROSENE", "LUBRIFICANTE"],
+      "risco": "preço regulado/indexado, local e forma de entrega alteram o objeto"
+    },
+    "toners_cartuchos": {
+      "grupos": [],
+      "palavras": ["TONER", "CARTUCHO", "CILINDRO FOTOSSENSIVEL", "FITA PARA IMPRESSORA", "REFIL DE TINTA"],
+      "risco": "compatibilidade com o equipamento e original/compatível determinam a equivalência"
+    },
+    "equipamentos_eletronicos": {
+      "grupos": [58, 59, 60, 61, 62, 63, 66, 67],
+      "palavras": ["TELEVISOR", "CAMERA", "PROJETOR", "RADIO", "BATERIA", "NOBREAK", "ESTABILIZADOR"],
+      "risco": "especificação técnica extensa; modelos se sucedem rapidamente"
+    },
+    "equipamentos_informatica": {
+      "grupos": [70],
+      "palavras": ["COMPUTADOR", "MICROCOMPUTADOR", "NOTEBOOK", "MONITOR", "IMPRESSORA", "SCANNER", "SERVIDOR", "SWITCH", "ROTEADOR", "TABLET", "PEN DRIVE", "DISCO RIGIDO", "SSD", "MEMORIA RAM", "MOUSE", "TECLADO"],
+      "risco": "configuração, desempenho e garantia variam dentro do mesmo código"
+    },
+    "pecas_referencia_determinante": {
+      "grupos": [15, 16, 17, 20, 25, 26, 28, 29, 30, 31, 47, 48, 53],
+      "palavras": ["PECA", "PECAS E COMPONENTES", "COMPONENTE", "ACESSORIOS / EQUIPAMENTOS", "REPARO"],
+      "risco": "a referência ou a aplicação (veículo, equipamento) define o objeto"
+    },
+    "produtos_quimicos": {
+      "grupos": [68],
+      "palavras": ["ALCOOL", "HIPOCLORITO", "DESINFETANTE", "SANEANTE"],
+      "risco": "concentração e registro sanitário determinam a equivalência"
+    },
+    "alimentos_pereciveis": {
+      "grupos": [89],
+      "palavras": ["CARNE", "FRANGO", "LEITE", "HORTIFRUTI", "FRUTA", "VERDURA", "LEGUME", "PAO", "OVO"],
+      "risco": "qualidade, sazonalidade e logística de entrega alteram o objeto"
+    },
+    "logistica_relevante": {
+      "grupos": [],
+      "palavras": ["AGUA MINERAL", "GAS LIQUEFEITO", "GLP", "BOTIJAO", "AREIA", "BRITA", "CONCRETO", "CIMENTO", "TIJOLO"],
+      "risco": "frete, retorno de vasilhame ou entrega fracionada podem dominar o objeto contratado"
+    },
+    "certificacao_qualidade_variavel": {
+      "grupos": [42, 84],
+      "palavras": ["EPI", "EQUIPAMENTO DE PROTECAO", "EXTINTOR", "CAPACETE", "UNIFORME", "FARDAMENTO", "COLETE"],
+      "risco": "certificação e qualidade do material podem variar"
+    }
+  }
+}
