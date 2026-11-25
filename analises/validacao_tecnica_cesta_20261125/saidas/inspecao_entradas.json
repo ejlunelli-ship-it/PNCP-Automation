@@ -1,0 +1,368 @@
+{
+  "versao": "1.0.0",
+  "executado_em": "2026-11-25T11:22:00",
+  "mapeamento": {
+    "cesta_candidata": {
+      "arquivo": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\cesta_padronizada_20261124\\saidas\\cesta_candidata.csv",
+      "sha256": "80cd46a7bac29464209a4dea4b668d2bfd35915ee8c694c51692b659a21d59eb",
+      "colunas_reais": [
+        "id_candidato",
+        "produto",
+        "catmat",
+        "unidade_norm",
+        "descricao_representativa",
+        "compras",
+        "itens",
+        "uasgs",
+        "orgaos",
+        "anos",
+        "trimestres",
+        "primeira",
+        "ultima",
+        "hhi",
+        "share_uasg_dominante",
+        "n_efetivo_uasgs",
+        "share_top5",
+        "n_descricoes_originais",
+        "n_descricoes_distintas",
+        "share_descricao_dominante",
+        "classe_tecnica",
+        "risco_heterogeneidade",
+        "alertas_especificacao",
+        "motivos_inclusao",
+        "pendencias_validacao",
+        "compras_homologadas",
+        "itens_homologados",
+        "classe",
+        "pdm",
+        "cautela",
+        "assinatura_atributos"
+      ],
+      "colunas_usadas": [
+        "id_candidato",
+        "produto",
+        "catmat",
+        "unidade_norm",
+        "classe_tecnica",
+        "classe",
+        "pdm",
+        "descricao_representativa",
+        "compras",
+        "itens",
+        "uasgs",
+        "orgaos",
+        "n_descricoes_distintas",
+        "alertas_especificacao",
+        "pendencias_validacao",
+        "cautela"
+      ],
+      "colunas_ignoradas": [
+        "anos",
+        "trimestres",
+        "primeira",
+        "ultima",
+        "hhi",
+        "share_uasg_dominante",
+        "n_efetivo_uasgs",
+        "share_top5",
+        "n_descricoes_originais",
+        "share_descricao_dominante",
+        "risco_heterogeneidade",
+        "motivos_inclusao",
+        "compras_homologadas",
+        "itens_homologados",
+        "assinatura_atributos"
+      ],
+      "colunas_ignoradas_por_conterem_informacao_economica": [
+        "compras_homologadas",
+        "itens_homologados"
+      ]
+    },
+    "variantes": {
+      "arquivo": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\cesta_padronizada_20261124\\saidas\\descricoes_variantes.csv",
+      "sha256": "a20612a940ee5dfb82e653246df0f0f042929e8317ec21373420ae9ce2968cc9",
+      "colunas_reais": [
+        "familia",
+        "catmat",
+        "unidade_norm",
+        "descricao_original",
+        "descricao_normalizada",
+        "chave_textual",
+        "itens",
+        "compras",
+        "uasgs",
+        "lista_uasgs",
+        "primeira",
+        "ultima",
+        "anos",
+        "share_itens",
+        "share_acumulada",
+        "expressoes_numericas",
+        "unidades_fisicas",
+        "embalagem_na_descricao",
+        "embalagem_divergente",
+        "indicadores",
+        "so_nome_pdm",
+        "descricao_ausente",
+        "difere_assinatura_dominante",
+        "classe_familia",
+        "familia_passa_limiares_iniciais",
+        "nome_pdm"
+      ],
+      "colunas_usadas": [
+        "familia",
+        "catmat",
+        "unidade_norm",
+        "descricao_original",
+        "itens",
+        "compras",
+        "uasgs",
+        "primeira",
+        "ultima",
+        "nome_pdm"
+      ],
+      "colunas_ignoradas": [
+        "descricao_normalizada",
+        "chave_textual",
+        "lista_uasgs",
+        "anos",
+        "share_itens",
+        "share_acumulada",
+        "expressoes_numericas",
+        "unidades_fisicas",
+        "embalagem_na_descricao",
+        "embalagem_divergente",
+        "indicadores",
+        "so_nome_pdm",
+        "descricao_ausente",
+        "difere_assinatura_dominante",
+        "classe_familia",
+        "familia_passa_limiares_iniciais"
+      ],
+      "colunas_ignoradas_por_conterem_informacao_economica": []
+    },
+    "pertinencia": {
+      "arquivo": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\cesta_padronizada_20261124\\saidas\\sensibilidade_pertinencia.csv",
+      "sha256": "3c35b94e8296357cea9fa6441c4840a8ced0dc027c81623f2bf29897545c1c4e",
+      "colunas_reais": [
+        "familia",
+        "brando",
+        "inicial",
+        "rigoroso",
+        "inicial_homologados"
+      ],
+      "colunas_usadas": [
+        "familia",
+        "rigoroso"
+      ],
+      "colunas_ignoradas": [
+        "brando",
+        "inicial",
+        "inicial_homologados"
+      ],
+      "colunas_ignoradas_por_conterem_informacao_economica": [
+        "inicial_homologados"
+      ]
+    },
+    "formulario_original": {
+      "arquivo": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\cesta_padronizada_20261124\\saidas\\formulario_revisao.csv",
+      "sha256": "78c42b7b246b68e6c40026511e3780b7b579626be37aa08f8a1c947a853c7a64",
+      "colunas_reais": [
+        "id_candidato",
+        "produto",
+        "catmat",
+        "unidade_norm",
+        "classe_tecnica",
+        "descricao_representativa",
+        "atributos_extraidos",
+        "n_descricoes_distintas",
+        "alertas_especificacao",
+        "pendencias_validacao",
+        "decisao (aprovar/rejeitar/dividir)",
+        "especificacao_canonica_aprovada",
+        "atributos_essenciais",
+        "criterios_equivalencia",
+        "criterios_exclusao",
+        "revisor",
+        "data_revisao",
+        "justificativa",
+        "versao_regra_classificacao"
+      ],
+      "colunas_usadas": [
+        "id_candidato",
+        "decisao (aprovar/rejeitar/dividir)"
+      ],
+      "colunas_ignoradas": [
+        "produto",
+        "catmat",
+        "unidade_norm",
+        "classe_tecnica",
+        "descricao_representativa",
+        "atributos_extraidos",
+        "n_descricoes_distintas",
+        "alertas_especificacao",
+        "pendencias_validacao",
+        "especificacao_canonica_aprovada",
+        "atributos_essenciais",
+        "criterios_equivalencia",
+        "criterios_exclusao",
+        "revisor",
+        "data_revisao",
+        "justificativa",
+        "versao_regra_classificacao"
+      ],
+      "colunas_ignoradas_por_conterem_informacao_economica": []
+    },
+    "arquivos_proibidos_nao_lidos": [
+      "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\cesta_padronizada_20261124\\saidas\\diagnostico_por_produto.csv",
+      "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\cesta_padronizada_20261124\\saidas\\diagnostico_viabilidade.json",
+      "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\efeito_modos_cesta_padronizada_20261124"
+    ]
+  },
+  "bancos_antes": {
+    "banco_cesta": {
+      "caminho": "D:\\cesta_padronizada_trabalho\\trabalho.db",
+      "existe": true,
+      "tamanho_bytes": 11317166080,
+      "mtime_ns": 1795551598101268700,
+      "sqlite_contador_alteracoes": 15110545,
+      "sha256_inicio_fim": "ed7e3a381f0ff1a63d9ad43e9b691e6acd61db1a790f7060ff32873e52edb6b4",
+      "amostra_mb": 64
+    },
+    "banco_pncp": {
+      "caminho": "D:\\pncp.db",
+      "existe": true,
+      "tamanho_bytes": 16048373760,
+      "mtime_ns": 1794341025272657700,
+      "sqlite_contador_alteracoes": 151,
+      "sha256_inicio_fim": "800e418245d8f21ddd1737ef20318b688e77846b2086c87a55c1388b223dc742",
+      "amostra_mb": 64
+    }
+  },
+  "cardinalidade_cesta": {
+    "id_candidato": {
+      "distintos": 16248,
+      "unico": true
+    },
+    "produto": {
+      "distintos": 16248,
+      "unico": true
+    },
+    "catmat": {
+      "distintos": 14150,
+      "unico": false
+    },
+    "unidade_norm": {
+      "distintos": 465,
+      "unico": false
+    },
+    "classe_tecnica": {
+      "distintos": 2,
+      "unico": false
+    },
+    "classe": {
+      "distintos": 295,
+      "unico": false
+    },
+    "pdm": {
+      "distintos": 3122,
+      "unico": false
+    },
+    "descricao_representativa": {
+      "distintos": 14321,
+      "unico": false
+    },
+    "compras": {
+      "distintos": 700,
+      "unico": false
+    },
+    "itens": {
+      "distintos": 790,
+      "unico": false
+    },
+    "uasgs": {
+      "distintos": 455,
+      "unico": false
+    },
+    "orgaos": {
+      "distintos": 352,
+      "unico": false
+    },
+    "n_descricoes_distintas": {
+      "distintos": 16,
+      "unico": false
+    },
+    "alertas_especificacao": {
+      "distintos": 905,
+      "unico": false
+    },
+    "pendencias_validacao": {
+      "distintos": 89,
+      "unico": false
+    },
+    "cautela": {
+      "distintos": 53,
+      "unico": false
+    }
+  },
+  "cesta": {
+    "candidatos": 16248,
+    "classe_A": 10424,
+    "classe_B": 5824,
+    "outras_classes": {},
+    "familias_rigoroso": 6216,
+    "candidatos_em_familias_rigoroso": 6217,
+    "A_e_rigoroso": 4122,
+    "B_e_rigoroso": 2095,
+    "produtos_com_subtipo_#": [
+      "376146|UNIDADE#6922f748",
+      "613067|GALAO 5 LITRO#970c6e72",
+      "613067|GALAO 5 LITRO#da343927"
+    ],
+    "candidatos_sem_catmat_ou_unidade": [],
+    "chave_produto": "produto (= catmat|unidade_norm, com sufixo #hash quando a cesta separou subtipos)",
+    "id_produto": "id_candidato",
+    "relacao_com_variantes": "familia(variantes) = produto sem o sufixo #; descrição → produto pelo produto_map (familia, desc_id) do banco da cesta"
+  },
+  "variantes": {
+    "linhas_csv": 78182,
+    "variantes_das_familias_candidatas": 33914,
+    "variantes_fora_dos_produtos_candidatos": 1,
+    "_nota_fora": "descrições de famílias com subtipo cujo subtipo não entrou na cesta (ficam fora da revisão)",
+    "descricoes_ausentes": 89,
+    "variantes_por_produto_max": 388,
+    "produtos_com_uma_variante": 5,
+    "soma_itens_confere_com_cesta": true,
+    "chave_variante": "(familia, descricao_original) ↔ desc_id do banco da cesta"
+  },
+  "formulario_original": {
+    "linhas": 16248,
+    "com_decisao": 0,
+    "sha256": "78c42b7b246b68e6c40026511e3780b7b579626be37aa08f8a1c947a853c7a64"
+  },
+  "cesta_validada_original": {
+    "linhas": 0,
+    "sha256": "fc1c08a883b6ee3d87766d7cc6a231974f2bc88c1ca10aa049b37eaba699a50f"
+  },
+  "bancos_depois": {
+    "banco_cesta": {
+      "caminho": "D:\\cesta_padronizada_trabalho\\trabalho.db",
+      "existe": true,
+      "tamanho_bytes": 11317166080,
+      "mtime_ns": 1795551598101268700,
+      "sqlite_contador_alteracoes": 15110545,
+      "sha256_inicio_fim": "ed7e3a381f0ff1a63d9ad43e9b691e6acd61db1a790f7060ff32873e52edb6b4",
+      "amostra_mb": 64
+    },
+    "banco_pncp": {
+      "caminho": "D:\\pncp.db",
+      "existe": true,
+      "tamanho_bytes": 16048373760,
+      "mtime_ns": 1794341025272657700,
+      "sqlite_contador_alteracoes": 151,
+      "sha256_inicio_fim": "800e418245d8f21ddd1737ef20318b688e77846b2086c87a55c1388b223dc742",
+      "amostra_mb": 64
+    }
+  },
+  "conclusao": "mapeamento confirmado; nenhuma ambiguidade não resolvida"
+}

@@ -1,0 +1,1039 @@
+{
+  "_descricao": "Regras de extração de atributos técnicos (aplicadas ao texto já normalizado: maiúsculo, sem acento, decimal com ponto). Conversões só entre unidades da MESMA grandeza e por fator exato. Alterações destas regras mudam a versão da auditoria (hash em manifesto.json) e ficam registradas em metodologia_validacao.md.",
+  "versao": "1.2.0",
+  "conversoes": {
+    "_nota": "fator para a unidade-base de cada grandeza; só fatores exatos por definição",
+    "volume": {
+      "base": "ML",
+      "fatores": {
+        "ML": 1,
+        "CL": 10,
+        "DL": 100,
+        "L": 1000,
+        "CM3": 1,
+        "CC": 1,
+        "M3": 1000000
+      }
+    },
+    "massa": {
+      "base": "MG",
+      "fatores": {
+        "MCG": 0.001,
+        "MG": 1,
+        "G": 1000,
+        "KG": 1000000
+      }
+    },
+    "comprimento": {
+      "base": "MM",
+      "fatores": {
+        "MM": 1,
+        "CM": 10,
+        "M": 1000,
+        "POL": 25.4
+      }
+    },
+    "concentracao_massa_volume": {
+      "base": "MG/ML",
+      "fatores": {
+        "MCG/ML": 0.001,
+        "MG/ML": 1,
+        "G/ML": 1000,
+        "MG/L": 0.001,
+        "G/L": 1,
+        "G/100ML": 10,
+        "MG/100ML": 0.01
+      }
+    },
+    "concentracao_massa_massa": {
+      "base": "MG/G",
+      "fatores": {
+        "MCG/G": 0.001,
+        "MG/G": 1,
+        "G/KG": 1,
+        "MG/KG": 0.001
+      }
+    },
+    "concentracao_ui_volume": {
+      "base": "UI/ML",
+      "fatores": {
+        "UI/ML": 1
+      }
+    },
+    "potencia": {
+      "base": "W",
+      "fatores": {
+        "W": 1,
+        "KW": 1000
+      }
+    },
+    "dados": {
+      "base": "GB",
+      "fatores": {
+        "MB": 0.0009765625,
+        "GB": 1,
+        "TB": 1024
+      }
+    }
+  },
+  "rotulos_dimensao": {
+    "comprimento": [
+      "COMPRIMENTO",
+      "COMPR"
+    ],
+    "largura": [
+      "LARGURA",
+      "LARG"
+    ],
+    "altura": [
+      "ALTURA"
+    ],
+    "diametro": [
+      "DIAMETRO",
+      "DIAM",
+      "BITOLA"
+    ],
+    "espessura": [
+      "ESPESSURA"
+    ],
+    "profundidade": [
+      "PROFUNDIDADE"
+    ]
+  },
+  "qualificadores_medida": [
+    "MINIMO",
+    "MINIMA",
+    "MAXIMO",
+    "MAXIMA",
+    "APROXIMADO",
+    "APROXIMADA",
+    "APROXIMADAMENTE",
+    "TOTAL",
+    "INTERNO",
+    "INTERNA",
+    "EXTERNO",
+    "EXTERNA",
+    "NOMINAL",
+    "UTIL",
+    "CERCA",
+    "DE",
+    "DO",
+    "DA",
+    "EM",
+    "COM",
+    "ATE",
+    "NO",
+    "NA",
+    "MEDIO",
+    "MEDIA",
+    "PADRAO",
+    "LAMINA",
+    "CABO",
+    "HASTE",
+    "TUBO",
+    "FIO",
+    "ROLO",
+    "MANGA"
+  ],
+  "embalagens": [
+    "CAIXA",
+    "PACOTE",
+    "EMBALAGEM",
+    "FRASCO",
+    "ROLO",
+    "CARTELA",
+    "BLISTER",
+    "FARDO",
+    "SACO",
+    "KIT",
+    "CONJUNTO",
+    "ENVELOPE",
+    "POTE",
+    "TUBO",
+    "LATA",
+    "BALDE",
+    "GALAO",
+    "BISNAGA",
+    "AMPOLA",
+    "BOLSA",
+    "SACHE",
+    "REFIL",
+    "RESMA",
+    "BLOCO",
+    "MACO",
+    "CARTUCHO",
+    "GARRAFA",
+    "GARRAFAO",
+    "BOMBONA",
+    "DISPLAY",
+    "VIDRO",
+    "TALAO"
+  ],
+  "unidades_contaveis": [
+    "UNIDADES",
+    "UNIDADE",
+    "PECAS",
+    "PECA",
+    "ENVELOPES",
+    "SACHES",
+    "COMPRIMIDOS",
+    "CAPSULAS",
+    "AMPOLAS",
+    "FRASCOS",
+    "ROLOS",
+    "PARES",
+    "PAR",
+    "TIRAS",
+    "LAMINAS",
+    "LENCOS",
+    "FOLHAS",
+    "ETIQUETAS",
+    "SACOS"
+  ],
+  "formatos_papel": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "B4",
+    "B5",
+    "OFICIO",
+    "OFICIO 2",
+    "CARTA",
+    "LEGAL"
+  ],
+  "cores": {
+    "AZUL": [
+      "AZUL"
+    ],
+    "PRETO": [
+      "PRETO",
+      "PRETA"
+    ],
+    "BRANCO": [
+      "BRANCO",
+      "BRANCA"
+    ],
+    "VERMELHO": [
+      "VERMELHO",
+      "VERMELHA"
+    ],
+    "VERDE": [
+      "VERDE"
+    ],
+    "AMARELO": [
+      "AMARELO",
+      "AMARELA"
+    ],
+    "CINZA": [
+      "CINZA",
+      "CINZENTO"
+    ],
+    "ROSA": [
+      "ROSA"
+    ],
+    "LARANJA": [
+      "LARANJA"
+    ],
+    "ROXO": [
+      "ROXO",
+      "ROXA",
+      "VIOLETA",
+      "LILAS"
+    ],
+    "MARROM": [
+      "MARROM"
+    ],
+    "BEGE": [
+      "BEGE"
+    ],
+    "CIANO": [
+      "CIANO",
+      "CYAN"
+    ],
+    "MAGENTA": [
+      "MAGENTA"
+    ],
+    "INCOLOR": [
+      "INCOLOR"
+    ],
+    "TRANSPARENTE": [
+      "TRANSPARENTE",
+      "CRISTAL"
+    ],
+    "PRATA": [
+      "PRATA",
+      "PRATEADO",
+      "PRATEADA"
+    ],
+    "DOURADO": [
+      "DOURADO",
+      "DOURADA",
+      "OURO"
+    ],
+    "COLORIDO": [
+      "COLORIDO",
+      "COLORIDA",
+      "SORTIDA",
+      "SORTIDAS",
+      "SORTIDO",
+      "SORTIDOS",
+      "VARIADAS"
+    ],
+    "NATURAL": [
+      "NATURAL"
+    ],
+    "CREME": [
+      "CREME"
+    ],
+    "GRAFITE": [
+      "GRAFITE"
+    ]
+  },
+  "materiais": {
+    "ACO_INOX": [
+      "ACO INOXIDAVEL",
+      "ACO INOX",
+      "INOXIDAVEL",
+      "INOX"
+    ],
+    "ACO_CARBONO": [
+      "ACO CARBONO"
+    ],
+    "ACO": [
+      "ACO"
+    ],
+    "ALUMINIO": [
+      "ALUMINIO"
+    ],
+    "COBRE": [
+      "COBRE"
+    ],
+    "LATAO": [
+      "LATAO"
+    ],
+    "FERRO": [
+      "FERRO FUNDIDO",
+      "FERRO"
+    ],
+    "ZINCO": [
+      "ZINCO",
+      "ZINCADO"
+    ],
+    "PLASTICO": [
+      "PLASTICO"
+    ],
+    "POLIPROPILENO": [
+      "POLIPROPILENO"
+    ],
+    "POLIETILENO": [
+      "POLIETILENO",
+      "PEAD",
+      "PEBD"
+    ],
+    "PVC": [
+      "PVC"
+    ],
+    "PET": [
+      "PET"
+    ],
+    "POLICARBONATO": [
+      "POLICARBONATO"
+    ],
+    "ACRILICO": [
+      "ACRILICO"
+    ],
+    "POLIESTIRENO": [
+      "POLIESTIRENO",
+      "ISOPOR",
+      "EPS"
+    ],
+    "ABS": [
+      "ABS"
+    ],
+    "NYLON": [
+      "NYLON",
+      "NAILON",
+      "POLIAMIDA"
+    ],
+    "POLIESTER": [
+      "POLIESTER"
+    ],
+    "POLIURETANO": [
+      "POLIURETANO"
+    ],
+    "SILICONE": [
+      "SILICONE"
+    ],
+    "BORRACHA": [
+      "BORRACHA"
+    ],
+    "LATEX": [
+      "LATEX"
+    ],
+    "NITRILICA": [
+      "NITRILICA",
+      "NITRILICO",
+      "NITRILO",
+      "NITRILE"
+    ],
+    "VINIL": [
+      "VINIL",
+      "VINILICA",
+      "VINILICO"
+    ],
+    "NEOPRENE": [
+      "NEOPRENE"
+    ],
+    "EVA": [
+      "EVA"
+    ],
+    "TNT": [
+      "TNT",
+      "NAO TECIDO"
+    ],
+    "ALGODAO": [
+      "ALGODAO"
+    ],
+    "VISCOSE": [
+      "VISCOSE"
+    ],
+    "LA": [
+      "LA"
+    ],
+    "COURO": [
+      "COURO"
+    ],
+    "MADEIRA": [
+      "MADEIRA"
+    ],
+    "MDF": [
+      "MDF"
+    ],
+    "VIDRO": [
+      "VIDRO"
+    ],
+    "CERAMICA": [
+      "CERAMICA",
+      "PORCELANA"
+    ],
+    "PAPEL": [
+      "PAPEL"
+    ],
+    "PAPELAO": [
+      "PAPELAO"
+    ],
+    "CELULOSE": [
+      "CELULOSE"
+    ]
+  },
+  "formas_farmaceuticas": {
+    "COMPRIMIDO_REVESTIDO": [
+      "COMPRIMIDO REVESTIDO",
+      "COMPRIMIDOS REVESTIDOS",
+      "COMP REVEST"
+    ],
+    "COMPRIMIDO_EFERVESCENTE": [
+      "COMPRIMIDO EFERVESCENTE"
+    ],
+    "COMPRIMIDO_MASTIGAVEL": [
+      "COMPRIMIDO MASTIGAVEL"
+    ],
+    "COMPRIMIDO_LIBERACAO_PROLONGADA": [
+      "COMPRIMIDO DE LIBERACAO PROLONGADA",
+      "COMPRIMIDO LIBERACAO PROLONGADA"
+    ],
+    "COMPRIMIDO": [
+      "COMPRIMIDO",
+      "COMPRIMIDOS",
+      "COMPRIMIDO SULCADO"
+    ],
+    "CAPSULA": [
+      "CAPSULA",
+      "CAPSULAS",
+      "CAPSULA GELATINOSA",
+      "CAPSULA DURA"
+    ],
+    "DRAGEA": [
+      "DRAGEA",
+      "DRAGEAS"
+    ],
+    "SOLUCAO_INJETAVEL": [
+      "SOLUCAO INJETAVEL",
+      "SOL INJ"
+    ],
+    "SUSPENSAO_INJETAVEL": [
+      "SUSPENSAO INJETAVEL"
+    ],
+    "EMULSAO_INJETAVEL": [
+      "EMULSAO INJETAVEL"
+    ],
+    "PO_INJETAVEL": [
+      "PO PARA SOLUCAO INJETAVEL",
+      "PO LIOFILIZADO PARA SOLUCAO INJETAVEL",
+      "PO LIOFILO INJETAVEL",
+      "PO INJETAVEL"
+    ],
+    "INJETAVEL": [
+      "INJETAVEL"
+    ],
+    "SOLUCAO_ORAL": [
+      "SOLUCAO ORAL",
+      "SOL ORAL"
+    ],
+    "SOLUCAO_OFTALMICA": [
+      "SOLUCAO OFTALMICA",
+      "COLIRIO"
+    ],
+    "SOLUCAO_NASAL": [
+      "SOLUCAO NASAL"
+    ],
+    "SOLUCAO_TOPICA": [
+      "SOLUCAO TOPICA"
+    ],
+    "SOLUCAO": [
+      "SOLUCAO"
+    ],
+    "SUSPENSAO_ORAL": [
+      "SUSPENSAO ORAL"
+    ],
+    "SUSPENSAO": [
+      "SUSPENSAO"
+    ],
+    "XAROPE": [
+      "XAROPE"
+    ],
+    "ELIXIR": [
+      "ELIXIR"
+    ],
+    "EMULSAO": [
+      "EMULSAO"
+    ],
+    "GOTAS": [
+      "GOTAS"
+    ],
+    "POMADA": [
+      "POMADA"
+    ],
+    "CREME": [
+      "CREME"
+    ],
+    "GEL": [
+      "GEL"
+    ],
+    "LOCAO": [
+      "LOCAO"
+    ],
+    "PO_ORAL": [
+      "PO PARA SUSPENSAO ORAL",
+      "PO PARA SOLUCAO ORAL"
+    ],
+    "PO": [
+      "PO PARA SOLUCAO",
+      "PO PARA SUSPENSAO",
+      "PO LIOFILO",
+      "PO LIOFILIZADO",
+      "PO"
+    ],
+    "AEROSOL": [
+      "AEROSOL",
+      "SPRAY",
+      "INALATORIO"
+    ],
+    "SUPOSITORIO": [
+      "SUPOSITORIO"
+    ],
+    "OVULO": [
+      "OVULO"
+    ],
+    "ADESIVO": [
+      "ADESIVO TRANSDERMICO"
+    ],
+    "GRANULADO": [
+      "GRANULADO"
+    ],
+    "PASTILHA": [
+      "PASTILHA"
+    ]
+  },
+  "esterilidade": {
+    "NAO_ESTERIL": [
+      "NAO ESTERIL",
+      "NAOESTERIL",
+      "NAO ESTERILIZADO"
+    ],
+    "ESTERILIZAVEL": [
+      "ESTERILIZAVEL",
+      "AUTOCLAVAVEL"
+    ],
+    "ESTERIL": [
+      "ESTERIL",
+      "ESTERILIZADO",
+      "ESTERILIZADA"
+    ]
+  },
+  "tipos_uso": {
+    "DESCARTAVEL": [
+      "DESCARTAVEL",
+      "USO UNICO"
+    ],
+    "REUTILIZAVEL": [
+      "REUTILIZAVEL",
+      "PERMANENTE",
+      "LAVAVEL"
+    ],
+    "HOSPITALAR": [
+      "USO HOSPITALAR"
+    ],
+    "VETERINARIO": [
+      "USO VETERINARIO",
+      "VETERINARIO",
+      "VETERINARIA"
+    ],
+    "ODONTOLOGICO": [
+      "USO ODONTOLOGICO",
+      "ODONTOLOGICO",
+      "ODONTOLOGICA"
+    ],
+    "INFANTIL": [
+      "INFANTIL",
+      "PEDIATRICO",
+      "PEDIATRICA"
+    ],
+    "ADULTO": [
+      "ADULTO"
+    ],
+    "PROFISSIONAL": [
+      "USO PROFISSIONAL",
+      "PROFISSIONAL"
+    ],
+    "INDUSTRIAL": [
+      "USO INDUSTRIAL",
+      "INDUSTRIAL"
+    ],
+    "DOMESTICO": [
+      "USO DOMESTICO",
+      "DOMESTICO"
+    ]
+  },
+  "originalidade": {
+    "ORIGINAL": [
+      "ORIGINAL",
+      "GENUINO",
+      "GENUINA"
+    ],
+    "REMANUFATURADO": [
+      "REMANUFATURADO",
+      "REMANUFATURADA",
+      "RECONDICIONADO",
+      "RECONDICIONADA",
+      "RECARREGADO",
+      "RECARREGADA"
+    ],
+    "COMPATIVEL": [
+      "COMPATIVEL",
+      "SIMILAR",
+      "PARALELO",
+      "PARALELA"
+    ]
+  },
+  "qualidade": {
+    "EXTRA": [
+      "EXTRA"
+    ],
+    "PREMIUM": [
+      "PREMIUM"
+    ],
+    "ESPECIAL": [
+      "ESPECIAL"
+    ],
+    "SUPERIOR": [
+      "SUPERIOR"
+    ],
+    "PRIMEIRA": [
+      "PRIMEIRA QUALIDADE",
+      "1A QUALIDADE",
+      "PRIMEIRA LINHA"
+    ],
+    "COMUM": [
+      "COMUM"
+    ],
+    "POPULAR": [
+      "POPULAR"
+    ]
+  },
+  "certificacoes": {
+    "INMETRO": [
+      "INMETRO"
+    ],
+    "ANVISA": [
+      "ANVISA",
+      "REGISTRO MS",
+      "REGISTRO NO MS",
+      "MINISTERIO DA SAUDE"
+    ],
+    "CA": [
+      "CERTIFICADO DE APROVACAO",
+      "C.A."
+    ],
+    "FSC": [
+      "FSC"
+    ],
+    "PROCEL": [
+      "PROCEL"
+    ],
+    "ABNT": [
+      "ABNT"
+    ],
+    "ISO": [
+      "ISO"
+    ],
+    "SIF": [
+      "SIF",
+      "INSPECAO FEDERAL"
+    ],
+    "MAPA": [
+      "MAPA",
+      "MINISTERIO DA AGRICULTURA"
+    ]
+  },
+  "notas_catalogo": [
+    "VER NOVO PDM",
+    "VER INC",
+    "NAO UTILIZAR",
+    "NAO USAR",
+    "INATIVO",
+    "SUBSTITUIDO",
+    "SUBSTITUIDA",
+    "UTILIZAR O ITEM",
+    "UTILIZAR ITEM"
+  ],
+  "riscos": {
+    "_nota": "Palavras inteiras no texto normalizado (sufixo '*' = prefixo de palavra; plural S/ES aceito), categorias de cautela da cesta ou classe do catálogo. Indicam avaliação especializada; não aprovam nem reprovam. Regra 1.2.0: casamento por palavra inteira e 'medicamento' só por termos farmacêuticos ou classe 6505.",
+    "medicamento": {
+      "palavras": [
+        "COMPRIMIDO",
+        "CAPSULA",
+        "DRAGEA",
+        "INJETAVEL",
+        "XAROPE",
+        "SUPOSITORIO",
+        "COLIRIO",
+        "POMADA",
+        "ELIXIR",
+        "FORMA FARMACEUTICA",
+        "PRINCIPIO ATIVO",
+        "MG/ML",
+        "UI/ML",
+        "MCG/ML",
+        "CLORIDRATO",
+        "MEDICAMENTO"
+      ],
+      "cautela": [],
+      "classes_catalogo": [
+        "6505"
+      ]
+    },
+    "material_medico": {
+      "palavras": [
+        "USO MEDICO",
+        "CIRURGIC*",
+        "HOSPITALAR",
+        "SERINGA",
+        "AGULHA",
+        "CATETER",
+        "SONDA",
+        "LUVA",
+        "GAZE",
+        "ATADURA",
+        "COMPRESSA",
+        "ESTERIL",
+        "ESTERILIZACAO",
+        "EQUIPO",
+        "SUTURA",
+        "CURATIVO",
+        "ODONTOLOGIC*"
+      ],
+      "cautela": [
+        "medicamentos_materiais_medicos"
+      ],
+      "classes_catalogo": [
+        "6510",
+        "6515",
+        "6520",
+        "6530",
+        "6532",
+        "6540",
+        "6545",
+        "6550"
+      ]
+    },
+    "produto_quimico": {
+      "palavras": [
+        "ACIDO",
+        "HIPOCLORITO",
+        "SOLVENTE",
+        "REAGENTE",
+        "ALCOOL",
+        "PEROXIDO",
+        "HIDROXIDO",
+        "AMONIA",
+        "FORMOL",
+        "GLUTARALDEIDO",
+        "QUIMICO",
+        "QUIMICA"
+      ],
+      "cautela": [
+        "produtos_quimicos"
+      ],
+      "classes_catalogo": [
+        "6810",
+        "6840",
+        "6850"
+      ]
+    },
+    "toner_cartucho": {
+      "palavras": [
+        "TONER",
+        "CARTUCHO",
+        "CILINDRO FOTOCONDUTOR",
+        "FOTOCONDUTOR",
+        "FITA PARA IMPRESSORA",
+        "TINTA PARA IMPRESSORA",
+        "REFIL DE TINTA"
+      ],
+      "cautela": [],
+      "classes_catalogo": []
+    },
+    "peca_reposicao": {
+      "palavras": [
+        "PECA DE REPOSICAO",
+        "REPOSICAO",
+        "AUTOPECA",
+        "ROLAMENTO",
+        "FILTRO DE OLEO",
+        "FILTRO DE AR",
+        "FILTRO DE COMBUSTIVEL",
+        "PASTILHA DE FREIO",
+        "LONA DE FREIO",
+        "DISCO DE FREIO",
+        "CORREIA DENTADA",
+        "AMORTECEDOR",
+        "VELA DE IGNICAO",
+        "PNEU"
+      ],
+      "cautela": [
+        "pecas_referencia_determinante"
+      ],
+      "classes_catalogo": [
+        "2530",
+        "2540",
+        "2590",
+        "2910",
+        "2920",
+        "2940",
+        "3110"
+      ]
+    },
+    "equipamento_eletronico": {
+      "palavras": [
+        "ELETRONICO",
+        "ELETRONICA",
+        "ELETRICO",
+        "ELETRICA",
+        "BIVOLT",
+        "BATERIA",
+        "PILHA",
+        "CARREGADOR",
+        "LAMPADA",
+        "LED",
+        "MONITOR",
+        "COMPUTADOR",
+        "NOTEBOOK",
+        "IMPRESSORA",
+        "USB",
+        "HDMI",
+        "SSD",
+        "MEMORIA RAM",
+        "PROCESSADOR",
+        "VOLTAGEM",
+        "POTENCIA"
+      ],
+      "cautela": [
+        "equipamentos_eletronicos",
+        "equipamentos_informatica"
+      ],
+      "classes_catalogo": [
+        "5805",
+        "5820",
+        "5835",
+        "5925",
+        "5935",
+        "5965",
+        "5975",
+        "5995",
+        "6130",
+        "6135",
+        "6140",
+        "6145",
+        "6150",
+        "6210",
+        "6230",
+        "6240",
+        "7010",
+        "7020",
+        "7025",
+        "7030",
+        "7035",
+        "7040",
+        "7045",
+        "7050"
+      ]
+    },
+    "compatibilidade": {
+      "palavras": [
+        "COMPATIVEL COM",
+        "COMPATIVEL PARA",
+        "PARA USO EM",
+        "PARA IMPRESSORA",
+        "PARA EQUIPAMENTO",
+        "PARA VEICULO",
+        "PARA MOTOR",
+        "MODELO",
+        "PART NUMBER",
+        "APLICACAO VEICULO",
+        "APLICACAO EQUIPAMENTO"
+      ],
+      "cautela": [
+        "pecas_referencia_determinante"
+      ],
+      "classes_catalogo": []
+    },
+    "certificacao_regulada": {
+      "palavras": [
+        "INMETRO",
+        "ANVISA",
+        "REGISTRO MS",
+        "CERTIFICADO DE APROVACAO",
+        "NBR",
+        "ABNT",
+        "ISO",
+        "EPI"
+      ],
+      "cautela": [
+        "certificacao_qualidade_variavel"
+      ],
+      "classes_catalogo": [
+        "4240",
+        "8415",
+        "8465"
+      ]
+    }
+  },
+  "chaves_declaradas_categoricas_objetivas": [
+    "COR",
+    "COR TINTA",
+    "COR CARGA",
+    "MATERIAL",
+    "APRESENTACAO",
+    "FORMA FARMACEUTICA",
+    "ESTERILIDADE",
+    "TAMANHO",
+    "CAPACIDADE",
+    "CONCENTRACAO",
+    "DOSAGEM",
+    "GRAMATURA",
+    "FORMATO",
+    "VOLTAGEM",
+    "TENSAO",
+    "POTENCIA",
+    "COMPATIBILIDADE",
+    "MODELO",
+    "REFERENCIA",
+    "APLICACAO",
+    "TIPO ANIMAL",
+    "TIPO CORTE",
+    "TIPO",
+    "COMPOSICAO",
+    "PRINCIPIO ATIVO",
+    "VOLUME",
+    "PESO",
+    "DIMENSOES",
+    "COMPRIMENTO",
+    "LARGURA",
+    "ALTURA",
+    "DIAMETRO",
+    "ESPESSURA",
+    "QUANTIDADE",
+    "QUANTIDADE FOLHAS",
+    "NUMERO FOLHAS",
+    "EMBALAGEM"
+  ],
+  "chave_declarada_min_ocorrencias": 3,
+  "chave_declarada_max_palavras": 5,
+  "generalizacoes_forma_farmaceutica": {
+    "_nota": "Uma forma específica implica as formas genéricas listadas: {SUSPENSAO_INJETAVEL} contém INJETAVEL e SUSPENSAO; assim 'INJETAVEL' sozinho é informação parcial (a examinar), e não conflito com 'SUSPENSAO INJETAVEL' (regra 1.1.0).",
+    "COMPRIMIDO_REVESTIDO": [
+      "COMPRIMIDO"
+    ],
+    "COMPRIMIDO_EFERVESCENTE": [
+      "COMPRIMIDO"
+    ],
+    "COMPRIMIDO_MASTIGAVEL": [
+      "COMPRIMIDO"
+    ],
+    "COMPRIMIDO_LIBERACAO_PROLONGADA": [
+      "COMPRIMIDO"
+    ],
+    "SOLUCAO_INJETAVEL": [
+      "INJETAVEL",
+      "SOLUCAO"
+    ],
+    "SUSPENSAO_INJETAVEL": [
+      "INJETAVEL",
+      "SUSPENSAO"
+    ],
+    "EMULSAO_INJETAVEL": [
+      "INJETAVEL",
+      "EMULSAO"
+    ],
+    "PO_INJETAVEL": [
+      "INJETAVEL",
+      "PO"
+    ],
+    "SOLUCAO_ORAL": [
+      "SOLUCAO"
+    ],
+    "SOLUCAO_OFTALMICA": [
+      "SOLUCAO"
+    ],
+    "SOLUCAO_NASAL": [
+      "SOLUCAO"
+    ],
+    "SOLUCAO_TOPICA": [
+      "SOLUCAO"
+    ],
+    "SUSPENSAO_ORAL": [
+      "SUSPENSAO"
+    ],
+    "PO_ORAL": [
+      "PO"
+    ]
+  },
+  "descolar_chaves": {
+    "_nota": "Antes da extração tipada, separa a chave declarada do valor quando o texto vem colado ('FORMA FARMACEUTICASUSPENSAO'). Só chaves do vocabulário com >= min_letras letras ou listadas em 'sempre' (regra 1.1.0). O texto normalizado exibido não muda.",
+    "min_letras": 7,
+    "sempre": [
+      "TIPO"
+    ],
+    "nunca_antes_de": {
+      "TIPO": [
+        "LOGIA",
+        "GRAF"
+      ]
+    }
+  }
+}

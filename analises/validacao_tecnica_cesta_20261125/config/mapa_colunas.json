@@ -1,0 +1,63 @@
+{
+  "_descricao": "Mapeamento explícito entre papéis e colunas REAIS das entradas (conferido pela etapa inspect). Só as colunas em 'usar' são lidas; as demais são ignoradas. Nenhuma coluna usada pode casar com 'padroes_proibidos'.",
+  "versao": "1.0.0",
+  "padroes_proibidos": ["valor", "preco", "preço", "desconto", "modo", "disputa", "licitante", "lance", "estimad", "homolog",
+                        "^compras_(a|af|fa|outro)$", "coef", "beta", "p_valor", "pvalor", "intervalo", "ic95", "honest", "dcdh", "placebo"],
+  "arquivos_proibidos": [
+    "analises/cesta_padronizada_20261124/saidas/diagnostico_por_produto.csv",
+    "analises/cesta_padronizada_20261124/saidas/diagnostico_viabilidade.json",
+    "analises/efeito_modos_cesta_padronizada_20261124"
+  ],
+  "cesta_candidata": {
+    "chave_produto": "produto",
+    "id_produto": "id_candidato",
+    "usar": {
+      "id_candidato": "identificador estável do candidato (CP0001…)",
+      "produto": "chave do produto: catmat|unidade_norm, com sufixo #hash nos subtipos já separados pela cesta",
+      "catmat": "código CATMAT",
+      "unidade_norm": "unidade de fornecimento normalizada",
+      "classe_tecnica": "classe A/B da cesta",
+      "classe": "classe do catálogo (grupo de material; NÃO é a classe A/B)",
+      "pdm": "código PDM",
+      "descricao_representativa": "descrição dominante",
+      "compras": "compras distintas (frequência; usada na ordenação)",
+      "itens": "itens licitados (conferência de frequências)",
+      "uasgs": "UASGs distintas",
+      "orgaos": "órgãos distintos",
+      "n_descricoes_distintas": "descrições distintas segundo a cesta",
+      "alertas_especificacao": "alertas técnicos da cesta",
+      "pendencias_validacao": "pendências técnicas da cesta",
+      "cautela": "categorias de cautela técnica da cesta"
+    },
+    "ignorar_por_regra": ["compras_homologadas", "itens_homologados"]
+  },
+  "variantes": {
+    "chave_familia": "familia",
+    "usar": {
+      "familia": "catmat|unidade_norm (sem o sufixo #hash)",
+      "catmat": "código CATMAT",
+      "unidade_norm": "unidade normalizada",
+      "descricao_original": "descrição detalhada original (vazia = descrição ausente)",
+      "itens": "itens com esta descrição na família",
+      "compras": "compras com esta descrição na família",
+      "uasgs": "UASGs com esta descrição",
+      "primeira": "primeira data de publicação",
+      "ultima": "última data de publicação",
+      "nome_pdm": "nome do PDM"
+    }
+  },
+  "pertinencia": {
+    "chave_familia": "familia",
+    "usar": {"familia": "catmat|unidade_norm", "rigoroso": "1 = família no cenário rigoroso"}
+  },
+  "formulario_original": {
+    "usar": {"id_candidato": "identificador", "decisao (aprovar/rejeitar/dividir)": "decisão do formulário original (só contada, nunca alterada)"}
+  },
+  "banco_cesta": {
+    "_nota": "Banco de trabalho da cesta, aberto em mode=ro. Fornece desc_id (chave da descrição), a atribuição de cada descrição ao produto (subtipos #hash) e a ligação item × descrição.",
+    "variantes": {"familia": "família", "desc_id": "id da descrição (0 = ausente)", "descricao_original": "texto", "itens": "itens"},
+    "produto_map": {"familia": "família", "desc_id": "id da descrição", "produto": "produto da cesta"},
+    "universo_produto": {"chave": "numero_controle_pncp", "numero_item": "item", "produto": "produto", "desc_id": "id da descrição",
+                         "uasg": "UASG", "n_descricoes_item": "descrições brutas distintas no item"}
+  }
+}

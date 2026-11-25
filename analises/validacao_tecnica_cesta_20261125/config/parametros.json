@@ -1,0 +1,51 @@
+{
+  "_descricao": "Parâmetros da validação técnica da cesta padronizada. Nenhum parâmetro usa preço, valor, desconto, modo de disputa, licitantes ou resultado econométrico.",
+  "versao": "1.0.0",
+  "entradas": {
+    "_nota": "Caminhos relativos à pasta PNCP-Automation, salvo absolutos. Todas as entradas são lidas somente (CSV) ou em mode=ro (SQLite).",
+    "pasta_cesta": "analises/cesta_padronizada_20261124",
+    "cesta_candidata": "analises/cesta_padronizada_20261124/saidas/cesta_candidata.csv",
+    "variantes": "analises/cesta_padronizada_20261124/saidas/descricoes_variantes.csv",
+    "pertinencia": "analises/cesta_padronizada_20261124/saidas/sensibilidade_pertinencia.csv",
+    "formulario_original": "analises/cesta_padronizada_20261124/saidas/formulario_revisao.csv",
+    "cesta_validada_original": "analises/cesta_padronizada_20261124/saidas/cesta_validada.csv",
+    "congelamento": "analises/cesta_padronizada_20261124/saidas/congelamento_cesta.json",
+    "banco_cesta": "D:/cesta_padronizada_trabalho/trabalho.db",
+    "banco_pncp": "D:/pncp.db"
+  },
+  "trabalho": "D:/validacao_tecnica_trabalho/trabalho.db",
+  "saidas": "analises/validacao_tecnica_cesta_20261125/saidas",
+  "revisores": "analises/validacao_tecnica_cesta_20261125/config/revisores.csv",
+  "priorizacao": {
+    "_nota": "Ordem de revisão, não seleção de amostra. P5 = qualquer candidato sem classe A/B reconhecida.",
+    "P1": {"classe_tecnica": "A", "rigoroso": 1},
+    "P2": {"classe_tecnica": "A", "rigoroso": 0},
+    "P3": {"classe_tecnica": "B", "rigoroso": 1},
+    "P4": {"classe_tecnica": "B", "rigoroso": 0},
+    "ordenacao": ["compras desc", "id_candidato asc"]
+  },
+  "piloto": {"prioridade": "P1", "limite": 100},
+  "rodada_padrao": "P1",
+  "lote_leitura": 5000,
+  "revisao": {
+    "decisoes_produto": ["APROVAR", "REJEITAR", "DESMEMBRAR", "PENDENTE"],
+    "decisoes_variante": ["EQUIVALENTE", "DIVERGENTE", "INDETERMINADA"],
+    "fundamentacao_min_caracteres": 40,
+    "especificacao_min_atributos": 1,
+    "frases_genericas": ["OK", "CONFORME", "APROVADO", "APROVADA", "EQUIVALENTE", "SEM OBSERVACOES", "SEM OBSERVACAO",
+                         "PADRAO", "MESMO PRODUTO", "IGUAL", "VALIDADO", "N/A", "NA", "-", "CONFORME DESCRICAO",
+                         "CONFORME CATMAT", "DESCRICAO EQUIVALENTE", "PRODUTO EQUIVALENTE"],
+    "revisores_proibidos": ["REVISOR", "TESTE", "ADMIN", "AUTOMATICO", "SISTEMA", "CLAUDE", "CODEX", "IA", "ROBO", "BOT"],
+    "fontes": {
+      "_nota": "Uma fonte = TIPO:identificador. Várias fontes separadas por ' | '. O identificador precisa ser verificável pelo padrão indicado.",
+      "TERMO_REFERENCIA": "numero_controle_pncp_ou_url",
+      "EDITAL": "numero_controle_pncp_ou_url",
+      "DOCUMENTO_COMPRA": "numero_controle_pncp_ou_url",
+      "CATMAT": "codigo_catmat_do_produto",
+      "PDM": "codigo_pdm_do_produto",
+      "NORMA": "norma_tecnica",
+      "FABRICANTE": "url",
+      "CATALOGO": "url"
+    }
+  }
+}

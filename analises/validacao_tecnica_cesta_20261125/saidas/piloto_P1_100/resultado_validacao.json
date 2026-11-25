@@ -1,0 +1,34 @@
+{
+  "rodada": "piloto_P1_100",
+  "versao_auditoria": "41b7f182d9cb09f8",
+  "concluido_em": "2026-11-25T11:23:15",
+  "versao_codigo": "1.0.0",
+  "exigir_dupla_revisao": true,
+  "candidatos_examinados": 100,
+  "produtos_aprovados": 0,
+  "subprodutos_aprovados": 0,
+  "produtos_rejeitados": 0,
+  "produtos_pendentes": 100,
+  "produtos_bloqueados": 0,
+  "produtos_desmembrados": 0,
+  "produtos_que_exigem_desmembramento": 0,
+  "variantes_avaliadas": 0,
+  "variantes_total": 136,
+  "conflitos_objetivos": 0,
+  "produtos_com_revisao_dupla": 0,
+  "revisores_cadastrados": 0,
+  "hashes_formularios": {
+    "revisao_produtos.csv": "a13598359f2a350494588b23b08be8be1d404d990bb624392d0132b29e4f6e81",
+    "revisao_variantes.csv": "44458aefb6f2e1203ad12085c13ed452ea6941c1d95184449db60d648154b415"
+  },
+  "hashes_formularios_iniciais": {
+    "revisao_produtos.csv": "a13598359f2a350494588b23b08be8be1d404d990bb624392d0132b29e4f6e81",
+    "revisao_variantes.csv": "44458aefb6f2e1203ad12085c13ed452ea6941c1d95184449db60d648154b415"
+  },
+  "formularios_alterados_desde_a_preparacao": {
+    "revisao_produtos.csv": false,
+    "revisao_variantes.csv": false
+  },
+  "cesta_validada": null,
+  "aviso": "nenhum registro VALIDADO: cesta_validada.csv NÃO foi criada"
+}

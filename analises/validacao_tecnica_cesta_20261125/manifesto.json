@@ -1,0 +1,187 @@
+{
+  "gerado_em": "2026-11-25T11:23:20",
+  "versao_codigo": "1.0.0",
+  "rodadas": {
+    "piloto_P1_100": {
+      "pasta": "saidas/piloto_P1_100",
+      "versao_auditoria": "41b7f182d9cb09f8",
+      "preparado_em": "2026-11-25T11:21:59",
+      "contagens": {
+        "produtos": 100,
+        "subprodutos_propostos": 0,
+        "variantes_normalizadas": 136,
+        "descricoes_originais": 213,
+        "itens": 127311,
+        "status_auditoria": {
+          "DIVERGENCIA_A_EXAMINAR": 13,
+          "SEM_DIVERGENCIA_DETECTADA": 87
+        },
+        "conflitos_objetivos_por_atributo": {},
+        "produtos_com_conflito_objetivo": 0,
+        "produtos_desmembraveis": 0,
+        "produtos_requer_especialista": 38,
+        "produtos_consulta_edital": 16,
+        "aprovados_automaticamente": 0
+      },
+      "hashes_base": {
+        "base_produtos.csv": "a91e801fdb139aa556c66240d5ee0050c7b3d4edd5303dea492914c2ef4dfd42",
+        "base_variantes.csv": "592fe807b6a5a9ea9f0bb273e13564d87e82493806f8f8eb018b08d8e6b4fca4",
+        "descricoes_originais.csv": "ec61eb9a564d18321a51b24cdea823d4680e9bb19bb27a852b02fcf48630ca80",
+        "auditoria_atributos.csv": "3687338f4c9bdac9f723ea03030f2f969ece70a5088fa00e604d5a7cfa75b6f9",
+        "auditoria_conflitos.csv": "893dc65703b2134206cf8af57b198338d3e8bda4a1cc6c8bb9f5e15a4520a89a",
+        "vocabulario_chaves_declaradas.json": "baab94c8b20f86a3274d15c88f7df2a27d7f2b28376ef74ecdaf363022432c25"
+      },
+      "hashes_formularios_iniciais": {
+        "revisao_produtos.csv": "a13598359f2a350494588b23b08be8be1d404d990bb624392d0132b29e4f6e81",
+        "revisao_variantes.csv": "44458aefb6f2e1203ad12085c13ed452ea6941c1d95184449db60d648154b415"
+      },
+      "resultado": {
+        "concluido_em": "2026-11-25T11:23:15",
+        "produtos_aprovados": 0,
+        "subprodutos_aprovados": 0,
+        "produtos_pendentes": 100,
+        "produtos_bloqueados": 0,
+        "variantes_avaliadas": 0,
+        "aviso": "nenhum registro VALIDADO: cesta_validada.csv NÃO foi criada"
+      }
+    },
+    "P1": {
+      "pasta": "saidas/P1",
+      "versao_auditoria": "40caddd4e39c2c6d",
+      "preparado_em": "2026-11-25T11:23:03",
+      "contagens": {
+        "produtos": 4122,
+        "subprodutos_propostos": 2,
+        "variantes_normalizadas": 6282,
+        "descricoes_originais": 8324,
+        "itens": 933477,
+        "status_auditoria": {
+          "CONFLITO_OBJETIVO_EXIGE_DESMEMBRAMENTO": 1,
+          "DIVERGENCIA_A_EXAMINAR": 143,
+          "SEM_DIVERGENCIA_DETECTADA": 3978
+        },
+        "conflitos_objetivos_por_atributo": {
+          "medida_linear": 1
+        },
+        "produtos_com_conflito_objetivo": 1,
+        "produtos_desmembraveis": 1,
+        "produtos_requer_especialista": 2478,
+        "produtos_consulta_edital": 919,
+        "aprovados_automaticamente": 0
+      },
+      "hashes_base": {
+        "base_produtos.csv": "448c39a788b2f23141b6fa6e8bd8c862b407c8c693b93251630c671679d90346",
+        "base_variantes.csv": "6e58b570e4b97baa14a4fe3515b0a537b3bef872b9f38ae3c90da71ae1e2d9f6",
+        "descricoes_originais.csv": "cb8241d902026971d1426a60dece063cd90694a8deea6b375be5c837b25b5745",
+        "auditoria_atributos.csv": "60df5deb27965cbd2e9214781eeb4cb0d97eb762e31d9d94f0a39c21c4252067",
+        "auditoria_conflitos.csv": "74846ed37aab533e1eb77900898af63a00211120de85ce2554ced25bf6f41561",
+        "vocabulario_chaves_declaradas.json": "baab94c8b20f86a3274d15c88f7df2a27d7f2b28376ef74ecdaf363022432c25"
+      },
+      "hashes_formularios_iniciais": {
+        "revisao_produtos.csv": "bb83e38169032e941e033ccc7ce18691fb9d468a1f92b16d47b1cf356cf8870d",
+        "revisao_variantes.csv": "2d2286af8c45f22d78ffa67b7e9524f282f3c7cb95176d0a31c0948a04397565"
+      },
+      "resultado": {
+        "concluido_em": "2026-11-25T11:23:16",
+        "produtos_aprovados": 0,
+        "subprodutos_aprovados": 0,
+        "produtos_pendentes": 4122,
+        "produtos_bloqueados": 0,
+        "variantes_avaliadas": 0,
+        "aviso": "nenhum registro VALIDADO: cesta_validada.csv NÃO foi criada"
+      }
+    }
+  },
+  "entradas": {
+    "cesta_candidata": {
+      "caminho": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\cesta_padronizada_20261124\\saidas\\cesta_candidata.csv",
+      "sha256": "80cd46a7bac29464209a4dea4b668d2bfd35915ee8c694c51692b659a21d59eb"
+    },
+    "variantes": {
+      "caminho": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\cesta_padronizada_20261124\\saidas\\descricoes_variantes.csv",
+      "sha256": "a20612a940ee5dfb82e653246df0f0f042929e8317ec21373420ae9ce2968cc9"
+    },
+    "pertinencia": {
+      "caminho": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\cesta_padronizada_20261124\\saidas\\sensibilidade_pertinencia.csv",
+      "sha256": "3c35b94e8296357cea9fa6441c4840a8ced0dc027c81623f2bf29897545c1c4e"
+    },
+    "formulario_original": {
+      "caminho": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\cesta_padronizada_20261124\\saidas\\formulario_revisao.csv",
+      "sha256": "78c42b7b246b68e6c40026511e3780b7b579626be37aa08f8a1c947a853c7a64"
+    }
+  },
+  "bancos": {
+    "antes": {
+      "banco_cesta": {
+        "caminho": "D:\\cesta_padronizada_trabalho\\trabalho.db",
+        "existe": true,
+        "tamanho_bytes": 11317166080,
+        "mtime_ns": 1795551598101268700,
+        "sqlite_contador_alteracoes": 15110545,
+        "sha256_inicio_fim": "ed7e3a381f0ff1a63d9ad43e9b691e6acd61db1a790f7060ff32873e52edb6b4",
+        "amostra_mb": 64
+      },
+      "banco_pncp": {
+        "caminho": "D:\\pncp.db",
+        "existe": true,
+        "tamanho_bytes": 16048373760,
+        "mtime_ns": 1794341025272657700,
+        "sqlite_contador_alteracoes": 151,
+        "sha256_inicio_fim": "800e418245d8f21ddd1737ef20318b688e77846b2086c87a55c1388b223dc742",
+        "amostra_mb": 64
+      }
+    },
+    "depois": {
+      "banco_cesta": {
+        "caminho": "D:\\cesta_padronizada_trabalho\\trabalho.db",
+        "existe": true,
+        "tamanho_bytes": 11317166080,
+        "mtime_ns": 1795551598101268700,
+        "sqlite_contador_alteracoes": 15110545,
+        "sha256_inicio_fim": "ed7e3a381f0ff1a63d9ad43e9b691e6acd61db1a790f7060ff32873e52edb6b4",
+        "amostra_mb": 64
+      },
+      "banco_pncp": {
+        "caminho": "D:\\pncp.db",
+        "existe": true,
+        "tamanho_bytes": 16048373760,
+        "mtime_ns": 1794341025272657700,
+        "sqlite_contador_alteracoes": 151,
+        "sha256_inicio_fim": "800e418245d8f21ddd1737ef20318b688e77846b2086c87a55c1388b223dc742",
+        "amostra_mb": 64
+      }
+    },
+    "inalterados": true
+  },
+  "hashes_config": {
+    "parametros.json": "7cc6b37322a84c3948b04ec3211f57b65bba88b072a2b83766a89f1ad9e67cb7",
+    "mapa_colunas.json": "6c859532484a7692d6816431211304d3ac40227053114769406741ce1d2a83aa",
+    "regras_atributos.json": "a77af1b8c3def1707bb65e838cc2089a67dacf9cf88b877ccd7ce45310cbacbc"
+  },
+  "hashes_codigo": {
+    "auditar_homogeneidade.py": "cc15059441e3140bc0896f0a286293ab2dfdc467fd5bb998c0f88f49fc2267a7",
+    "comum.py": "6103d02613e76d0fdb2e0fdda0a27a3e18db8152366001d1e598a79fac79d3c0",
+    "executar.py": "25fe9f0c9d8750a35fb161630333526608d9a7a47666960db1f091b70e27688c",
+    "extrair_atributos.py": "c0f2269b12b1d0ad97e66db56f6f400a189fbaf09a95a81ce5a8ad7132ceddb5",
+    "inspecionar_entradas.py": "6258495e90c0ac33a0b6af70b79e4dc1991e0a858d8bbe9e5e89d3b67a9333c2",
+    "normalizar_especificacoes.py": "affa5f7d96661aeb450b903b89c2087b0bf494f9d52ec3784a14353fdb47078e",
+    "preparar_revisao.py": "7d87f94e0e8aa904b2868ae5de91ac1ba635b4b141bfc223fadcf8bb0a1af480",
+    "relatorio.py": "fd49b4e8301805a946e6c968e6db9ca77d2298c5a662c41eee0d283081bac6cf",
+    "validar_revisao.py": "b5a43a2e6e2aaf76b67ac1e5d941cd0d18c4e9bc48f099b59edc5c75f3563ee2"
+  },
+  "testes": {
+    "executado_em": "2026-11-25T11:23:15",
+    "testes_executados": 39,
+    "aprovados": 39,
+    "falhas": 0,
+    "erros": 0,
+    "sucesso": true
+  },
+  "documentos": {
+    "protocolo_validacao.md": "61d4ca833b0f4dec0697bf9fc2107f3c46490897da44725cafa6fe8d7013e930",
+    "metodologia_validacao.md": "a534c371233309b969706203dffa6b95fac32e6ca5171c583754c1691ae5bc48",
+    "README.md": "1be19cc198220ef4bcbae1f8e794059e7fae642975a6948a39b31acdffaf0f68",
+    "conclusao.md": "b3edd36e4b1ff67b422902cb3bfb03b0fc48c3369b772e688f81dd6f2999d1d6"
+  },
+  "relatorio_md": "009d1c78626c38188b6546da59ea052bc375eb3bfb90daac0c54b63239070b6a"
+}
