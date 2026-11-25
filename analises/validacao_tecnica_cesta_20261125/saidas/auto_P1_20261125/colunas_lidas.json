@@ -1,0 +1,174 @@
+{
+  "base_produtos.csv": {
+    "arquivo": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\validacao_tecnica_cesta_20261125\\saidas\\P1\\base_produtos.csv",
+    "colunas_lidas": [
+      "id_registro",
+      "tipo_registro",
+      "id_candidato",
+      "produto",
+      "id_especificacao_atomica",
+      "catmat",
+      "unidade_norm",
+      "pdm",
+      "classe_catalogo",
+      "classe_tecnica",
+      "cenario_rigoroso",
+      "prioridade",
+      "ordem_revisao",
+      "compras",
+      "itens",
+      "uasgs",
+      "n_variantes",
+      "n_descricoes_originais",
+      "itens_ambiguos",
+      "status_auditoria",
+      "conflitos",
+      "atributos_consenso",
+      "alertas",
+      "requer_especialista",
+      "consulta_edital",
+      "desmembravel",
+      "subprodutos",
+      "descricao_representativa",
+      "alertas_cesta",
+      "hash_registro"
+    ],
+    "colunas_descartadas": [
+      "orgaos",
+      "n_conflitos_objetivos",
+      "n_divergencias_a_examinar",
+      "motivo_nao_desmembravel",
+      "pendencias_cesta"
+    ]
+  },
+  "base_variantes.csv": {
+    "arquivo": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\validacao_tecnica_cesta_20261125\\saidas\\P1\\base_variantes.csv",
+    "colunas_lidas": [
+      "id_variante",
+      "id_candidato",
+      "produto",
+      "id_especificacao_atomica",
+      "descricao_normalizada",
+      "chave_compacta",
+      "descricao_original_mais_frequente",
+      "n_descricoes_originais",
+      "ids_descricoes",
+      "itens",
+      "compras",
+      "uasgs",
+      "itens_ambiguos",
+      "descricao_ausente",
+      "nome_item",
+      "atributos",
+      "atributos_declarados",
+      "divergencias",
+      "alertas",
+      "hash_registro"
+    ],
+    "colunas_descartadas": [
+      "primeira",
+      "ultima",
+      "n_atributos",
+      "atributos_ausentes",
+      "fonte"
+    ]
+  },
+  "descricoes_originais.csv": {
+    "arquivo": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\validacao_tecnica_cesta_20261125\\saidas\\P1\\descricoes_originais.csv",
+    "colunas_lidas": [
+      "id_descricao",
+      "id_variante",
+      "id_candidato",
+      "produto",
+      "familia",
+      "desc_id",
+      "descricao_original",
+      "sha256_descricao",
+      "itens"
+    ],
+    "colunas_descartadas": [
+      "compras",
+      "uasgs",
+      "primeira",
+      "ultima",
+      "nome_pdm",
+      "fonte_arquivo",
+      "fonte_linha"
+    ]
+  },
+  "universo_produto": {
+    "tabela": "universo_produto",
+    "colunas_lidas": [
+      "chave",
+      "numero_item",
+      "produto",
+      "desc_id",
+      "uasg",
+      "data_publicacao",
+      "ano",
+      "trimestre",
+      "n_descricoes_item"
+    ],
+    "colunas_descartadas": [
+      "catmat",
+      "classe",
+      "pdm",
+      "homologado",
+      "situacoes",
+      "registros",
+      "unidade_original",
+      "unidade_norm",
+      "embalagem",
+      "conteudo",
+      "unidade_conteudo",
+      "alerta_unidade",
+      "nome_pdm",
+      "desc_completa",
+      "orgao_cnpj",
+      "uasg_item",
+      "quantidade_min",
+      "familia"
+    ]
+  },
+  "compras_base": {
+    "tabela": "compras_base",
+    "colunas_lidas": [
+      "chave",
+      "uf"
+    ],
+    "colunas_descartadas": [
+      "id_compra",
+      "uasg_original",
+      "uasg",
+      "orgao_cnpj_original",
+      "orgao_cnpj",
+      "orgao_nome",
+      "numero_compra",
+      "ano_compra",
+      "modalidade",
+      "data_publicacao_original",
+      "data_publicacao",
+      "data_abertura_original",
+      "data_abertura",
+      "ano",
+      "trimestre",
+      "esfera",
+      "poder"
+    ]
+  },
+  "unidades": {
+    "tabela": "unidades",
+    "colunas_lidas": [
+      "unidade_norm",
+      "embalagem",
+      "conteudo",
+      "unidade_conteudo",
+      "alerta"
+    ],
+    "colunas_descartadas": [
+      "unidade_original",
+      "unidade_texto",
+      "itens"
+    ]
+  }
+}

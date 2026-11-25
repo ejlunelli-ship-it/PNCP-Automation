@@ -1,0 +1,154 @@
+{
+  "versao": "1.0.0",
+  "inicio": "2026-11-25T15:29:54",
+  "fim": "2026-11-25T15:36:50",
+  "etapas": [
+    {
+      "etapa": "FE E3 amostra própria A1",
+      "segundos": 6.7,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria A2",
+      "segundos": 7.1,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria A3",
+      "segundos": 6.7,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria A4",
+      "segundos": 6.8,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria A5",
+      "segundos": 6.8,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B1",
+      "segundos": 6.5,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B2",
+      "segundos": 6.9,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B3",
+      "segundos": 6.8,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B4",
+      "segundos": 6.4,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B5",
+      "segundos": 6.9,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B6",
+      "segundos": 6.7,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B7",
+      "segundos": 6.5,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B8",
+      "segundos": 6.9,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B9",
+      "segundos": 6.8,
+      "ok": true
+    },
+    {
+      "etapa": "referências alternativas: FE (amostra comum e própria)",
+      "segundos": 178.7,
+      "ok": true
+    },
+    {
+      "etapa": "referências alternativas: estudo de eventos (amostra comum e própria)",
+      "segundos": 77.1,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R02 classe A ∩ cenário rigoroso",
+      "segundos": 16.6,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R03 cesta candidata completa (base)",
+      "segundos": 16.4,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R04 referência mediana (A3), amostra própria",
+      "segundos": 16.6,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R05 referência aritmética (A2), amostra própria",
+      "segundos": 17.0,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R06 peso igual por compra (estimando por compra)",
+      "segundos": 2.7,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R07 peso igual por evento",
+      "segundos": 2.5,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R09 sem produtos com inconsistências técnicas",
+      "segundos": 15.9,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R10 mesmo produto antes e depois da troca",
+      "segundos": 2.0,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R11 referência só com UASGs estáveis",
+      "segundos": 15.3,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R12 células de menor dispersão",
+      "segundos": 24.7,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R13 janela de 12 meses",
+      "segundos": 3.9,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R14 produtos recorrentes em todas as janelas",
+      "segundos": 17.0,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R15 produtos não recorrentes em todas as janelas",
+      "segundos": 1.3,
+      "ok": true
+    }
+  ],
+  "contagens": {},
+  "avisos": []
+}

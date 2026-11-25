@@ -1,0 +1,37 @@
+{
+  "eventos_validos": 317,
+  "por_direcao": {
+    "A->AF": 172,
+    "AF->A": 145
+  },
+  "eventos_usados_l1": 99,
+  "eventos_usados_algum_l": 113,
+  "uasgs_trocaram": 317,
+  "cnpjs_trocaram": 187,
+  "cnpjs_usados": 69,
+  "n_efetivo_cnpjs": 14.841179451978014,
+  "share_top5_uasgs_peso": 0.18566543174693645,
+  "share_top1_cnpj_peso": 0.20561413508121973,
+  "eventos_com_placebo1": 62,
+  "eventos_com_placebo2": 48,
+  "calendario_F": {
+    "2023T2": 8,
+    "2023T3": 23,
+    "2023T4": 23,
+    "2024T1": 36,
+    "2024T2": 50,
+    "2024T3": 58,
+    "2024T4": 35,
+    "2025T1": 18,
+    "2025T2": 23,
+    "2025T3": 29,
+    "2025T4": 14
+  },
+  "trimestre_do_ano_F": {
+    "1": 54,
+    "2": 81,
+    "3": 110,
+    "4": 72
+  },
+  "sobreposicao_produtos_media": 0.0351288232032702
+}

@@ -1,0 +1,4 @@
+﻿desfecho,diferenca_AF_menos_A_lp,ep_cnpj,ic95_inf,ic95_sup,p_cnpj,ep_2vias_cnpj_produto,p_2vias,p_wcr_webb,ic_wcu_inf,ic_wcu_sup,pct_exato,n_itens,cnpjs,n_efetivo_cnpjs,classificacao
+Y_A1 (log-pontos),-4.2329273271,2.3079778542,-8.7590111263,0.2931564721,0.0667850054,2.3106860878,0.0671048279,0.1231231231,-8.4320158085,-0.2603323455,-4.1445897642,542607,2166,25.9155800703,descritivo (exploratório)
+log preço homologado ×100 (sem referência),0.7870463836,4.3580074719,-7.7592691623,9.3333619295,0.856700218,4.3409242446,0.8561424206,0.8608608609,-8.6725672579,10.595014758,0.7901517352,542607,2166,25.9155800703,descritivo (exploratório)
+diferença de medianas de Y_A1,-2.9149371115,2.0009815922,-6.8368610322,1.0069868092,,,,,,,-2.8728626258,542607,2166,,"descritivo (exploratório); bootstrap por CNPJ, 199 réplicas"

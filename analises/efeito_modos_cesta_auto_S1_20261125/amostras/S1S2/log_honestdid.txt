@@ -1,0 +1,3 @@
+[15:09:52] HonestDiD (R) em 6 especificações ...
+[15:16:19]   HonestDiD (R) em 6 especificações: 386.7 s
+concluído

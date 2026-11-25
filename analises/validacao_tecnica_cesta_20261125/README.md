@@ -63,3 +63,28 @@ piloto e o P1 não se sobrescrevem.
    - `FABRICANTE:https://…`.
 5. Não altere as colunas não editáveis nem os arquivos-base: `concluir` recusa o formulário inteiro.
 6. Rode `concluir --exigir-dupla-revisao` e depois `relatorio`.
+
+## Modo automático (validador 2.0.0, sem revisores humanos)
+
+Novo modo operacional, independente dos formulários manuais. O fluxo humano acima continua intacto. Método em
+[`metodologia_automatica.md`](metodologia_automatica.md); resultados em `saidas/auto_P1_20261125/`
+(`relatorio.md`, `conclusao.md`, `manifesto.json`).
+
+```powershell
+..\..\.venv\Scripts\python.exe scripts\executar.py auto-preparar   --prioridade P1   # base P1 congelada + itens (lista branca de colunas)
+..\..\.venv\Scripts\python.exe scripts\executar.py auto-documentos --prioridade P1   # catálogo oficial CATMAT/PDM + documentos PNCP (cache)
+..\..\.venv\Scripts\python.exe scripts\executar.py auto-validar    --prioridade P1   # classificação AUTO_* (famílias, subprodutos, itens)
+..\..\.venv\Scripts\python.exe scripts\executar.py auto-auditar    --prioridade P1   # integridade, cobertura, integração, relatório
+..\..\.venv\Scripts\python.exe scripts\executar.py auto-executar   --prioridade P1   # tudo, retomando do cache e dos checkpoints
+```
+
+**O que cada saída significa:**
+- `AUTO_VALIDADO_CATALOGO` (S1) valida a homogeneidade de **catálogo**. Só ela entra em
+  `cesta_catalogo_validada_automaticamente.csv`.
+- `AUTO_VALIDADO_ITEM` (S4) exige o documento da própria contratação. É o conteúdo de `itens_validados_automaticamente.csv`.
+- `AUTO_VALIDADO_CATALOGO_COM_RESSALVA` (S2) não é validação sem qualificação.
+
+**Onde ficam os arquivos:**
+- Cache, snapshot e checkpoints: `D:\validacao_tecnica_trabalho\auto\`.
+- Código: `scripts/validacao_automatica/`.
+- Testes: `testes/test_validacao_automatica.py`.

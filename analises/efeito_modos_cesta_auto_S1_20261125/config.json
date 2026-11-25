@@ -1,0 +1,21 @@
+{
+  "_descricao": "Nova rodada EXPLORATÓRIA do estudo A × AF sobre a cesta P1 validada automaticamente (validador 2.0.0). Reutiliza, sem modificar, o código e a configuração do estudo analises/efeito_modos_cesta_padronizada_20261124 (especificações, janelas, pesos, referências, bootstrap, Holm, HonestDiD). Nenhum parâmetro foi escolhido a partir de resultados.",
+  "versao": "1.0.0",
+  "estudo_anterior": "analises/efeito_modos_cesta_padronizada_20261124",
+  "config_estudo_anterior": "analises/efeito_modos_cesta_padronizada_20261124/config.json",
+  "validacao_automatica": "analises/validacao_tecnica_cesta_20261125/saidas/auto_P1_20261125",
+  "validacao_config": "analises/validacao_tecnica_cesta_20261125/config",
+  "validacao_codigo": "analises/validacao_tecnica_cesta_20261125/scripts/validacao_automatica",
+  "versao_validador_esperada": "2.0.0",
+  "dados_base": "D:/efeito_modos_trabalho",
+  "trabalho": "D:/efeito_modos_auto_S1",
+  "amostras": {
+    "_nota": "Conjuntos definidos ANTES de acessar preços e modos (congelamento.json). S1 = produtos AUTO_VALIDADO_CATALOGO (família inteira); S2 = AUTO_VALIDADO_CATALOGO_COM_RESSALVA; P1 = os 4.122 candidatos P1; cesta = 16.248 candidatos. Itens S4 NÃO são usados.",
+    "S1": {"status": ["AUTO_VALIDADO_CATALOGO"], "rotulo": "S1 (catálogo validado automaticamente, alta segurança)"},
+    "S1S2": {"status": ["AUTO_VALIDADO_CATALOGO", "AUTO_VALIDADO_CATALOGO_COM_RESSALVA"], "rotulo": "S1 + S2"},
+    "P1": {"status": "todos_P1", "rotulo": "P1 integral (classe A ∩ rigoroso)"},
+    "cesta": {"status": "cesta_candidata", "rotulo": "cesta candidata original (estudo anterior)", "reutilizar_resultados_anteriores": true}
+  },
+  "etapas_estudo_anterior": ["cobertura", "referencias", "descritivas", "efeitos_fixos", "eventos", "honestdid", "robustez"],
+  "principal": {"amostra": "S1", "fe": ["E3", "E7"], "dcdh": "dcdh_6m_item_celula"}
+}

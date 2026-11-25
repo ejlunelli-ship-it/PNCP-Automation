@@ -1,0 +1,23 @@
+{
+  "criado_em": "2026-11-25T13:39:33",
+  "modalidade": "VALIDACAO_AUTOMATICA",
+  "nao_e_revisao_humana": true,
+  "versao_validador": "2.0.0",
+  "versao_regras": "2.0.0",
+  "versao_auditoria_origem": "40caddd4e39c2c6d",
+  "chave": "produto (catmat|unidade_norm, com #hash nos subtipos da cesta) e id_candidato",
+  "niveis": {
+    "cesta_catalogo_validada_automaticamente.csv": "AUTO_VALIDADO_CATALOGO (S1): homogeneidade de catálogo; NÃO comprova cada contratação",
+    "itens_validados_automaticamente.csv": "AUTO_VALIDADO_ITEM (S4): compatibilidade demonstrada pelo documento da própria contratação"
+  },
+  "subprodutos": "itens ligados ao subproduto pela própria descrição (desc_id → id_variante → id_subproduto); ver mapa_variante_subproduto.csv",
+  "uso_no_estudo": "o estudo econométrico precisa de configuração PRÓPRIA para esta modalidade (ex.: 'modalidade_validacao': 'automatica_catalogo' ou 'automatica_item'); o leitor atual (cesta_validada.csv com revisão humana) não deve aceitar estes arquivos sem essa mudança explícita. Nenhuma regressão foi executada nesta tarefa.",
+  "analise_anterior": "permanece exploratória; não se torna confirmatória retroativamente",
+  "hashes": {
+    "cesta_catalogo_validada_automaticamente.csv": "8a87b8bf6320827d101a65b5d1c45cd3baf114c2751daaeec64d202b3a792133",
+    "itens_validados_automaticamente.csv": "6be5db6fa580c34acc4f7021d9ced43fa40a72befe024d81832eaef608318f0a",
+    "subprodutos_identificados.csv": "f1056af0595e63c2399c1751cb791493f9152ccc872c20482e5e02ab50921277",
+    "resultados_sensibilidade.csv": "27f28df4d9ed9bec1e0c327cf83dd95874688d30d460430de0eb7ed900bea6ee",
+    "mapa_variante_subproduto.csv": "10154d6e88cb139ce67109f7c94877def7217f4d2036b21c771c794deba51e87"
+  }
+}

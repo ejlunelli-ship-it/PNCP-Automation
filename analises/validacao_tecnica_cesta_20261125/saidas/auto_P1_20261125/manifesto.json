@@ -1,0 +1,346 @@
+{
+  "id_execucao": "b83d3184-118d-5b9b-b732-7e310ff1c631",
+  "gerado_em": "2026-11-25T13:39:34",
+  "modalidade": "VALIDACAO_AUTOMATICA (não é revisão humana)",
+  "versao_validador": "2.0.0",
+  "versao_regras_automaticas": "2.0.0",
+  "versoes_regras_extracao": {
+    "codigo": "1.0.0",
+    "normalizacao": "1.1.0",
+    "extracao": "1.2.0",
+    "auditoria": "1.2.0",
+    "regras": "1.2.0",
+    "mapa": "1.0.0"
+  },
+  "versao_auditoria_origem": "40caddd4e39c2c6d",
+  "hashes_base_origem": {
+    "base_produtos.csv": "448c39a788b2f23141b6fa6e8bd8c862b407c8c693b93251630c671679d90346",
+    "base_variantes.csv": "6e58b570e4b97baa14a4fe3515b0a537b3bef872b9f38ae3c90da71ae1e2d9f6",
+    "descricoes_originais.csv": "cb8241d902026971d1426a60dece063cd90694a8deea6b375be5c837b25b5745",
+    "auditoria_atributos.csv": "60df5deb27965cbd2e9214781eeb4cb0d97eb762e31d9d94f0a39c21c4252067",
+    "auditoria_conflitos.csv": "74846ed37aab533e1eb77900898af63a00211120de85ce2554ced25bf6f41561",
+    "vocabulario_chaves_declaradas.json": "baab94c8b20f86a3274d15c88f7df2a27d7f2b28376ef74ecdaf363022432c25"
+  },
+  "hash_cesta_original": "80cd46a7bac29464209a4dea4b668d2bfd35915ee8c694c51692b659a21d59eb",
+  "hash_variantes": "6e58b570e4b97baa14a4fe3515b0a537b3bef872b9f38ae3c90da71ae1e2d9f6",
+  "hash_config_automatica": "5cb31dbebd7b67346c6ee68545df998aa9b23e2fe9f091b443c04fe1d7850e49",
+  "hashes_config_regras": {
+    "regras_atributos.json": "a77af1b8c3def1707bb65e838cc2089a67dacf9cf88b877ccd7ce45310cbacbc",
+    "mapa_colunas.json": "6c859532484a7692d6816431211304d3ac40227053114769406741ce1d2a83aa",
+    "parametros.json": "7cc6b37322a84c3948b04ec3211f57b65bba88b072a2b83766a89f1ad9e67cb7"
+  },
+  "hash_snapshot_catalogo": "c6127105dae2466708f31f319b8351ef9f3c14099224473b2805c2a8b081cad3",
+  "hash_documentos_contratacao": "739f8d3107d0cccf4b19ce95ad7913346b18c7756e187efb2d384285f6eb1127",
+  "consulta_documental": {
+    "inicio": "2026-11-25T11:43:45",
+    "fim": "2026-11-25T13:35:12"
+  },
+  "bibliotecas": {
+    "python": "3.13.17",
+    "sqlite": "3.50.4",
+    "pymupdf": "2.1",
+    "plataforma": "Windows-10-10.0.19045-SP0"
+  },
+  "modelo_de_linguagem": "nenhum (extração só por regras determinísticas)",
+  "contagens": {
+    "candidatos_examinados": 4122,
+    "variantes_processadas": 6282,
+    "status_familias": {
+      "AUTO_DESMEMBRAR": 1,
+      "AUTO_INCONCLUSIVO": 949,
+      "AUTO_VALIDADO_CATALOGO": 3065,
+      "AUTO_VALIDADO_CATALOGO_COM_RESSALVA": 107
+    },
+    "subprodutos": 2,
+    "itens": {
+      "AUTO_VALIDADO_ITEM": 36,
+      "ITEM_NAO_ELEGIVEL": 180650,
+      "ITEM_SEM_CLASSIFICACAO": 1,
+      "ITEM_SEM_VALIDACAO_DOCUMENTAL": 752790
+    },
+    "itens_validados_individualmente": 36,
+    "fontes_catalogo_consultadas": 8420,
+    "fontes_catalogo_ok": 8420,
+    "documentos_contratacao_localizados": 400,
+    "documentos_com_texto": 400,
+    "registros_indisponiveis": 0,
+    "atributos_extraidos": 25633,
+    "compras_amostra_documental": 400,
+    "resultado_compras_amostra": {
+      "COMPATIVEL": 38,
+      "INSUFICIENTE": 58,
+      "POSSIVEL_DIVERGENCIA": 26,
+      "SEM_ANCORA": 278
+    }
+  },
+  "cobertura": {
+    "S3_candidato_P1": {
+      "produtos": 4122,
+      "compras": 88110,
+      "itens": 933477,
+      "uasgs": 4257
+    },
+    "S1_catalogo_alta_seguranca": {
+      "produtos": 3065,
+      "compras": 74167,
+      "itens": 708964,
+      "uasgs": 4141
+    },
+    "S2_catalogo_intermediaria": {
+      "produtos": 107,
+      "compras": 15361,
+      "itens": 43863,
+      "uasgs": 2751
+    },
+    "S4_itens_verificados": {
+      "produtos": 29,
+      "compras": 29,
+      "itens": 36,
+      "uasgs": 29
+    }
+  },
+  "integridade": {
+    "base_P1_intacta": true,
+    "formularios_humanos_intocados": {
+      "piloto_P1_100": true,
+      "P1": true
+    },
+    "fontes_catalogo_integras": true,
+    "fontes_catalogo_corrompidas": [],
+    "banco_cesta_inalterado": true,
+    "cesta_validada_original_linhas": 0,
+    "cesta_validada_humana_nao_criada_pelo_modo_automatico": true
+  },
+  "integracao": {
+    "cesta_catalogo_validada_automaticamente.csv": "8a87b8bf6320827d101a65b5d1c45cd3baf114c2751daaeec64d202b3a792133",
+    "itens_validados_automaticamente.csv": "6be5db6fa580c34acc4f7021d9ced43fa40a72befe024d81832eaef608318f0a",
+    "subprodutos_identificados.csv": "f1056af0595e63c2399c1751cb791493f9152ccc872c20482e5e02ab50921277",
+    "resultados_sensibilidade.csv": "27f28df4d9ed9bec1e0c327cf83dd95874688d30d460430de0eb7ed900bea6ee",
+    "mapa_variante_subproduto.csv": "10154d6e88cb139ce67109f7c94877def7217f4d2036b21c771c794deba51e87"
+  },
+  "testes": {
+    "executado_em": "2026-11-25T13:35:05",
+    "testes_executados": 78,
+    "falhas": 0,
+    "erros": 0,
+    "ignorados": 0,
+    "aprovados": 78,
+    "sucesso": true,
+    "detalhes": [],
+    "python": "3.13.17"
+  },
+  "colunas_lidas": {
+    "base_produtos.csv": {
+      "arquivo": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\validacao_tecnica_cesta_20261125\\saidas\\P1\\base_produtos.csv",
+      "colunas_lidas": [
+        "id_registro",
+        "tipo_registro",
+        "id_candidato",
+        "produto",
+        "id_especificacao_atomica",
+        "catmat",
+        "unidade_norm",
+        "pdm",
+        "classe_catalogo",
+        "classe_tecnica",
+        "cenario_rigoroso",
+        "prioridade",
+        "ordem_revisao",
+        "compras",
+        "itens",
+        "uasgs",
+        "n_variantes",
+        "n_descricoes_originais",
+        "itens_ambiguos",
+        "status_auditoria",
+        "conflitos",
+        "atributos_consenso",
+        "alertas",
+        "requer_especialista",
+        "consulta_edital",
+        "desmembravel",
+        "subprodutos",
+        "descricao_representativa",
+        "alertas_cesta",
+        "hash_registro"
+      ],
+      "colunas_descartadas": [
+        "orgaos",
+        "n_conflitos_objetivos",
+        "n_divergencias_a_examinar",
+        "motivo_nao_desmembravel",
+        "pendencias_cesta"
+      ]
+    },
+    "base_variantes.csv": {
+      "arquivo": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\validacao_tecnica_cesta_20261125\\saidas\\P1\\base_variantes.csv",
+      "colunas_lidas": [
+        "id_variante",
+        "id_candidato",
+        "produto",
+        "id_especificacao_atomica",
+        "descricao_normalizada",
+        "chave_compacta",
+        "descricao_original_mais_frequente",
+        "n_descricoes_originais",
+        "ids_descricoes",
+        "itens",
+        "compras",
+        "uasgs",
+        "itens_ambiguos",
+        "descricao_ausente",
+        "nome_item",
+        "atributos",
+        "atributos_declarados",
+        "divergencias",
+        "alertas",
+        "hash_registro"
+      ],
+      "colunas_descartadas": [
+        "primeira",
+        "ultima",
+        "n_atributos",
+        "atributos_ausentes",
+        "fonte"
+      ]
+    },
+    "descricoes_originais.csv": {
+      "arquivo": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\validacao_tecnica_cesta_20261125\\saidas\\P1\\descricoes_originais.csv",
+      "colunas_lidas": [
+        "id_descricao",
+        "id_variante",
+        "id_candidato",
+        "produto",
+        "familia",
+        "desc_id",
+        "descricao_original",
+        "sha256_descricao",
+        "itens"
+      ],
+      "colunas_descartadas": [
+        "compras",
+        "uasgs",
+        "primeira",
+        "ultima",
+        "nome_pdm",
+        "fonte_arquivo",
+        "fonte_linha"
+      ]
+    },
+    "universo_produto": {
+      "tabela": "universo_produto",
+      "colunas_lidas": [
+        "chave",
+        "numero_item",
+        "produto",
+        "desc_id",
+        "uasg",
+        "data_publicacao",
+        "ano",
+        "trimestre",
+        "n_descricoes_item"
+      ],
+      "colunas_descartadas": [
+        "catmat",
+        "classe",
+        "pdm",
+        "homologado",
+        "situacoes",
+        "registros",
+        "unidade_original",
+        "unidade_norm",
+        "embalagem",
+        "conteudo",
+        "unidade_conteudo",
+        "alerta_unidade",
+        "nome_pdm",
+        "desc_completa",
+        "orgao_cnpj",
+        "uasg_item",
+        "quantidade_min",
+        "familia"
+      ]
+    },
+    "compras_base": {
+      "tabela": "compras_base",
+      "colunas_lidas": [
+        "chave",
+        "uf"
+      ],
+      "colunas_descartadas": [
+        "id_compra",
+        "uasg_original",
+        "uasg",
+        "orgao_cnpj_original",
+        "orgao_cnpj",
+        "orgao_nome",
+        "numero_compra",
+        "ano_compra",
+        "modalidade",
+        "data_publicacao_original",
+        "data_publicacao",
+        "data_abertura_original",
+        "data_abertura",
+        "ano",
+        "trimestre",
+        "esfera",
+        "poder"
+      ]
+    },
+    "unidades": {
+      "tabela": "unidades",
+      "colunas_lidas": [
+        "unidade_norm",
+        "embalagem",
+        "conteudo",
+        "unidade_conteudo",
+        "alerta"
+      ],
+      "colunas_descartadas": [
+        "unidade_original",
+        "unidade_texto",
+        "itens"
+      ]
+    }
+  },
+  "saidas": {
+    "atributos_extraidos.csv": "9e8e73ec127fe4fcff2d02aac9a9e9d0d2ad4087f239e91a806784988016d376",
+    "auditoria_decisoes.csv": "938e54c408900ae0b9178259fc6ced16a3ae3baa659ba0ae41681dfd00095067",
+    "catalogo_fontes.csv": "58fb7ddf2546e0f2621e9ee3303201e7e1e047e9ff5cdc21597842d352fd7925",
+    "cesta_catalogo_validada_automaticamente.csv": "8a87b8bf6320827d101a65b5d1c45cd3baf114c2751daaeec64d202b3a792133",
+    "cobertura_por_ano.csv": "179f02010519f56d0d26834303a9830aba6fdf5f8690980e054dfc5161d1815b",
+    "cobertura_por_classe_catalogo.csv": "6ac72bb9e0e3f24bdf593a6adaf568aec6adcdc6872d33f901854e25bd9ee554",
+    "cobertura_por_trimestre.csv": "6be5c0e8336c4b7683cbf68d88bcce4b4761291622a8445dac3f53df7f59f6ab",
+    "cobertura_por_uf.csv": "ea44d310e59001b6584c8cbe284b756ed4bc7a3db2bb4057f2cfd52c1e090c13",
+    "comparacao_variantes.csv": "b41a579fc7ca5255da6d15075527d859fa52a3add271f3e744cf321b71203927",
+    "conflitos_objetivos.csv": "43e1198ee24d8376544d5bae87d0bfc7a15f82f007ff53da409936c5693ca378",
+    "documentos_indisponiveis.csv": "c27a994ccebc5a58181276b9cdf0e95c001e952cb6fb99eb016d6716304faaa3",
+    "documentos_localizados.csv": "95fb40324f996aaab062c40e8fe57f9989f1239878a080fffa1f9f1bcaab7d49",
+    "especificacoes_canonicas.csv": "c296a3e1985e125e45aedc1ca1499e47101f1af36d8aafaad9f1baf8661be1dc",
+    "familias_desmembradas.csv": "92c16a6e84f8349ab4c889fd0c16921533be15af99ff2075e250d68f028f5fba",
+    "familias_divergentes.csv": "91dad45f7ce63b99dc73394e9e4ef4c4e7bf02cca7b6d21bbd21e59ef0390d7f",
+    "familias_inconclusivas.csv": "800a0dfd9b6d4e1cb172f7869a4bde0055ca1735960b268de329c14316d7962f",
+    "itens_sem_classificacao.csv.gz": "2fba2c4a75b4363bf9b6d01ef345d3c001251e03f0a10735cc304463594f11ea",
+    "itens_sem_validacao_documental.csv.gz": "bfe0194486ec32b018bbf7b01ec99bebf308997e6d687b0c95dc9149dc23046c",
+    "itens_validados_automaticamente.csv": "6be5db6fa580c34acc4f7021d9ced43fa40a72befe024d81832eaef608318f0a",
+    "pendencias_143_classificadas.csv": "588286758f5d6775b996025f98b9ef8eaad0e780f58582faf3b2025e3f7f7071",
+    "resultados_sensibilidade.csv": "27f28df4d9ed9bec1e0c327cf83dd95874688d30d460430de0eb7ed900bea6ee",
+    "subprodutos_identificados.csv": "f1056af0595e63c2399c1751cb791493f9152ccc872c20482e5e02ab50921277"
+  },
+  "pendencias_143": {
+    "produtos": 143,
+    "problemas": {
+      "SEM_DESCRICAO": 53,
+      "espacamento": 94,
+      "FALHA_EXTRACAO": 72,
+      "CONFORME_ATRIBUTOS": 11,
+      "DIVERGENCIA_TEXTUAL": 11,
+      "numero_quebrado": 2
+    },
+    "status": {
+      "AUTO_VALIDADO_CATALOGO_COM_RESSALVA": 47,
+      "AUTO_VALIDADO_CATALOGO": 56,
+      "AUTO_INCONCLUSIVO": 40
+    }
+  }
+}

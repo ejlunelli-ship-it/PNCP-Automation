@@ -1,0 +1,398 @@
+{
+  "versao": "1.0.0",
+  "inicio": "2026-11-25T14:24:23",
+  "fim": "2026-11-25T14:44:03",
+  "etapas": [
+    {
+      "etapa": "cobertura temporal por trimestre de abertura",
+      "segundos": 0.2,
+      "ok": true
+    },
+    {
+      "etapa": "regime de modo por UASG × trimestre e eventos",
+      "segundos": 3.8,
+      "ok": true
+    },
+    {
+      "etapa": "referências leave-one-UASG-out (591,674 itens)",
+      "segundos": 77.0,
+      "ok": true
+    },
+    {
+      "etapa": "descritivas por modo",
+      "segundos": 0.8,
+      "ok": true
+    },
+    {
+      "etapa": "diferença bruta com inferência agrupada",
+      "segundos": 4.5,
+      "ok": true
+    },
+    {
+      "etapa": "efeitos fixos E1",
+      "segundos": 0.5,
+      "ok": true
+    },
+    {
+      "etapa": "efeitos fixos E2",
+      "segundos": 3.5,
+      "ok": true
+    },
+    {
+      "etapa": "efeitos fixos E3",
+      "segundos": 60.4,
+      "ok": true
+    },
+    {
+      "etapa": "efeitos fixos E4",
+      "segundos": 7.7,
+      "ok": true
+    },
+    {
+      "etapa": "efeitos fixos E5",
+      "segundos": 7.6,
+      "ok": true
+    },
+    {
+      "etapa": "efeitos fixos E6",
+      "segundos": 10.3,
+      "ok": true
+    },
+    {
+      "etapa": "efeitos fixos E7",
+      "segundos": 173.6,
+      "ok": true
+    },
+    {
+      "etapa": "efeitos fixos E8",
+      "segundos": 30.8,
+      "ok": true
+    },
+    {
+      "etapa": "efeitos fixos E9",
+      "segundos": 361.9,
+      "ok": true
+    },
+    {
+      "etapa": "efeitos fixos E3 — tercil de quantidade 1",
+      "segundos": 2.2,
+      "ok": true
+    },
+    {
+      "etapa": "efeitos fixos E3 — tercil de quantidade 2",
+      "segundos": 3.0,
+      "ok": true
+    },
+    {
+      "etapa": "efeitos fixos E3 — tercil de quantidade 3",
+      "segundos": 11.4,
+      "ok": true
+    },
+    {
+      "etapa": "estudo de eventos dcdh_6m_item_celula",
+      "segundos": 2.9,
+      "ok": true
+    },
+    {
+      "etapa": "estudo de eventos dcdh_6m_item_evento",
+      "segundos": 2.4,
+      "ok": true
+    },
+    {
+      "etapa": "estudo de eventos dcdh_6m_compra_celula",
+      "segundos": 2.5,
+      "ok": true
+    },
+    {
+      "etapa": "estudo de eventos dcdh_12m_item_celula",
+      "segundos": 3.7,
+      "ok": true
+    },
+    {
+      "etapa": "estudo de eventos dcdh_12m_item_evento",
+      "segundos": 3.8,
+      "ok": true
+    },
+    {
+      "etapa": "estudo de eventos dcdh_12m_compra_celula",
+      "segundos": 3.9,
+      "ok": true
+    },
+    {
+      "etapa": "BJS (subconjunto absorvente)",
+      "segundos": 18.8,
+      "ok": true
+    },
+    {
+      "etapa": "HonestDiD (R) em 6 especificações",
+      "segundos": 0.1,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria A1",
+      "segundos": 5.3,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria A2",
+      "segundos": 5.8,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria A3",
+      "segundos": 5.4,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria A4",
+      "segundos": 5.5,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria A5",
+      "segundos": 5.4,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B1",
+      "segundos": 5.4,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B2",
+      "segundos": 5.6,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B3",
+      "segundos": 5.6,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B4",
+      "segundos": 5.3,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B5",
+      "segundos": 5.6,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B6",
+      "segundos": 5.5,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B7",
+      "segundos": 5.3,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B8",
+      "segundos": 5.6,
+      "ok": true
+    },
+    {
+      "etapa": "FE E3 amostra própria B9",
+      "segundos": 5.5,
+      "ok": true
+    },
+    {
+      "etapa": "referências alternativas: FE (amostra comum e própria)",
+      "segundos": 145.8,
+      "ok": true
+    },
+    {
+      "etapa": "referências alternativas: estudo de eventos (amostra comum e própria)",
+      "segundos": 72.1,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R02 classe A ∩ cenário rigoroso",
+      "segundos": 13.4,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R03 cesta candidata completa (base)",
+      "segundos": 13.5,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R04 referência mediana (A3), amostra própria",
+      "segundos": 13.5,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R05 referência aritmética (A2), amostra própria",
+      "segundos": 13.6,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R06 peso igual por compra (estimando por compra)",
+      "segundos": 2.5,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R07 peso igual por evento",
+      "segundos": 2.4,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R09 sem produtos com inconsistências técnicas",
+      "segundos": 13.0,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R10 mesmo produto antes e depois da troca",
+      "segundos": 1.9,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R11 referência só com UASGs estáveis",
+      "segundos": 12.7,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R12 células de menor dispersão",
+      "segundos": 20.4,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R13 janela de 12 meses",
+      "segundos": 3.8,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R14 produtos recorrentes em todas as janelas",
+      "segundos": 14.1,
+      "ok": true
+    },
+    {
+      "etapa": "robustez R15 produtos não recorrentes em todas as janelas",
+      "segundos": 1.2,
+      "ok": true
+    }
+  ],
+  "contagens": {
+    "eventos": {
+      "painel": "2023T1–2026T1",
+      "uasgs": 5355,
+      "tipos": {
+        "nunca_troca": 4308,
+        "irregular": 610,
+        "troca": 317,
+        "troca_sem_pre_adjacente": 120
+      },
+      "trocas_por_direcao": {
+        "A->AF": 172,
+        "AF->A": 145
+      },
+      "trocas_puras": 96,
+      "trocas_absorventes": 212,
+      "cnpjs_com_troca": 187,
+      "uasgs_estaveis": 1927,
+      "trimestres_excluidos_incompletos": [
+        "2022T4",
+        "2026T2"
+      ]
+    },
+    "referencias": {
+      "pool": 591674,
+      "com_A1": 553670,
+      "mascara_A1": 542607
+    },
+    "diferenca_bruta": {
+      "desfecho": "Y_A1 (log-pontos)",
+      "diferenca_AF_menos_A_lp": -4.232927327124077,
+      "ep_cnpj": 2.3079778542365323,
+      "ic95_inf": -8.759011126313085,
+      "ic95_sup": 0.2931564720649309,
+      "p_cnpj": 0.0667850053581681,
+      "ep_2vias_cnpj_produto": 2.3106860878431106,
+      "p_2vias": 0.06710482789361151,
+      "p_wcr_webb": 0.12312312312312312,
+      "ic_wcu_inf": -8.43201580854753,
+      "ic_wcu_sup": -0.2603323454623334,
+      "pct_exato": -4.144589764180717,
+      "n_itens": 542607,
+      "cnpjs": 2166,
+      "n_efetivo_cnpjs": 25.915580070256343,
+      "classificacao": "descritivo (exploratório)"
+    },
+    "efeitos_fixos_principal": {
+      "especificacao": "E3",
+      "descricao": "UASG + produto×trimestre + log quantidade (PRINCIPAL)",
+      "beta_lp": -5.2595624366429305,
+      "ep_cnpj": 1.2812999911286902,
+      "ic95_inf": -7.772344970104177,
+      "ic95_sup": -2.7467799031816837,
+      "p": 4.203778220116841e-05,
+      "pct_exato": -5.123640819945052,
+      "pct_ic_inf": -7.4779738893842485,
+      "pct_ic_sup": -2.709398943545349,
+      "n_itens": 542350,
+      "n_compras": 61524,
+      "n_produtos": 3159,
+      "n_uasgs": 3713,
+      "n_orgaos": 2055,
+      "n_efetivo_orgaos": 25.505361648947122,
+      "perda_singletons": 257,
+      "n_antes_singletons": 542607,
+      "classificacao": "associação condicional (exploratório)",
+      "ep_2vias": 1.307173689556355,
+      "p_2vias": 5.938763504977273e-05,
+      "p_wcr_webb": 0.0,
+      "ic_wcu_inf": -7.872601044681977,
+      "ic_wcu_sup": -2.6152482107908317,
+      "B_wcr": 999,
+      "coef_logq": -9.350531721907284
+    },
+    "jackknife_cnpj_principal": {
+      "n": 187,
+      "min": -6.873013700602606,
+      "max": -1.2886917478261075,
+      "ponto": -6.295594167309302
+    },
+    "diagnosticos_identificacao": {
+      "eventos_validos": 317,
+      "por_direcao": {
+        "A->AF": 172,
+        "AF->A": 145
+      },
+      "eventos_usados_l1": 104,
+      "eventos_usados_algum_l": 121,
+      "uasgs_trocaram": 317,
+      "cnpjs_trocaram": 187,
+      "cnpjs_usados": 75,
+      "n_efetivo_cnpjs": 14.937125229420872,
+      "share_top5_uasgs_peso": 0.18114378203398976,
+      "share_top1_cnpj_peso": 0.20542217426490422,
+      "eventos_com_placebo1": 67,
+      "eventos_com_placebo2": 50,
+      "calendario_F": {
+        "2023T2": 8,
+        "2023T3": 23,
+        "2023T4": 23,
+        "2024T1": 36,
+        "2024T2": 50,
+        "2024T3": 58,
+        "2024T4": 35,
+        "2025T1": 18,
+        "2025T2": 23,
+        "2025T3": 29,
+        "2025T4": 14
+      },
+      "trimestre_do_ano_F": {
+        "1": 54,
+        "2": 81,
+        "3": 110,
+        "4": 72
+      },
+      "sobreposicao_produtos_media": 0.037049894677236246
+    }
+  },
+  "avisos": [
+    "HonestDiD falhou: "
+  ]
+}

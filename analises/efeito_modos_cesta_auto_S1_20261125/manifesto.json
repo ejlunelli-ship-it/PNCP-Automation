@@ -1,0 +1,218 @@
+{
+  "gerado_em": "2026-11-25T15:37:20",
+  "versao": "1.0.0",
+  "caracter": "EXPLORATÓRIO — não é execução confirmatória do protocolo anterior",
+  "populacao_principal": "S1 (AUTO_VALIDADO_CATALOGO, validação automática de catálogo)",
+  "congelamento": {
+    "congelado_em": "2026-11-25T14:02:46",
+    "antes_de_acessar_precos_e_modos": true,
+    "validacao_automatica": {
+      "pasta": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\validacao_tecnica_cesta_20261125\\saidas\\auto_P1_20261125",
+      "id_execucao": "b83d3184-118d-5b9b-b732-7e310ff1c631",
+      "versao_validador": "2.0.0",
+      "versao_regras": "2.0.0",
+      "versao_auditoria_origem": "40caddd4e39c2c6d",
+      "sha256_manifesto": "4530130e421a07c416f64408a6516879eaf700111e09266d9b159c9add8e067a",
+      "saidas": {
+        "atributos_extraidos.csv": "9e8e73ec127fe4fcff2d02aac9a9e9d0d2ad4087f239e91a806784988016d376",
+        "auditoria_decisoes.csv": "938e54c408900ae0b9178259fc6ced16a3ae3baa659ba0ae41681dfd00095067",
+        "catalogo_fontes.csv": "58fb7ddf2546e0f2621e9ee3303201e7e1e047e9ff5cdc21597842d352fd7925",
+        "cesta_catalogo_validada_automaticamente.csv": "8a87b8bf6320827d101a65b5d1c45cd3baf114c2751daaeec64d202b3a792133",
+        "cobertura_por_ano.csv": "179f02010519f56d0d26834303a9830aba6fdf5f8690980e054dfc5161d1815b",
+        "cobertura_por_classe_catalogo.csv": "6ac72bb9e0e3f24bdf593a6adaf568aec6adcdc6872d33f901854e25bd9ee554",
+        "cobertura_por_trimestre.csv": "6be5c0e8336c4b7683cbf68d88bcce4b4761291622a8445dac3f53df7f59f6ab",
+        "cobertura_por_uf.csv": "ea44d310e59001b6584c8cbe284b756ed4bc7a3db2bb4057f2cfd52c1e090c13",
+        "comparacao_variantes.csv": "b41a579fc7ca5255da6d15075527d859fa52a3add271f3e744cf321b71203927",
+        "conflitos_objetivos.csv": "43e1198ee24d8376544d5bae87d0bfc7a15f82f007ff53da409936c5693ca378",
+        "documentos_indisponiveis.csv": "c27a994ccebc5a58181276b9cdf0e95c001e952cb6fb99eb016d6716304faaa3",
+        "documentos_localizados.csv": "95fb40324f996aaab062c40e8fe57f9989f1239878a080fffa1f9f1bcaab7d49",
+        "especificacoes_canonicas.csv": "c296a3e1985e125e45aedc1ca1499e47101f1af36d8aafaad9f1baf8661be1dc",
+        "familias_desmembradas.csv": "92c16a6e84f8349ab4c889fd0c16921533be15af99ff2075e250d68f028f5fba",
+        "familias_divergentes.csv": "91dad45f7ce63b99dc73394e9e4ef4c4e7bf02cca7b6d21bbd21e59ef0390d7f",
+        "familias_inconclusivas.csv": "800a0dfd9b6d4e1cb172f7869a4bde0055ca1735960b268de329c14316d7962f",
+        "itens_sem_classificacao.csv.gz": "2fba2c4a75b4363bf9b6d01ef345d3c001251e03f0a10735cc304463594f11ea",
+        "itens_sem_validacao_documental.csv.gz": "bfe0194486ec32b018bbf7b01ec99bebf308997e6d687b0c95dc9149dc23046c",
+        "itens_validados_automaticamente.csv": "6be5db6fa580c34acc4f7021d9ced43fa40a72befe024d81832eaef608318f0a",
+        "pendencias_143_classificadas.csv": "588286758f5d6775b996025f98b9ef8eaad0e780f58582faf3b2025e3f7f7071",
+        "resultados_sensibilidade.csv": "27f28df4d9ed9bec1e0c327cf83dd95874688d30d460430de0eb7ed900bea6ee",
+        "subprodutos_identificados.csv": "f1056af0595e63c2399c1751cb791493f9152ccc872c20482e5e02ab50921277"
+      },
+      "config": {
+        "mapa_colunas.json": "6c859532484a7692d6816431211304d3ac40227053114769406741ce1d2a83aa",
+        "parametros.json": "7cc6b37322a84c3948b04ec3211f57b65bba88b072a2b83766a89f1ad9e67cb7",
+        "regras_atributos.json": "a77af1b8c3def1707bb65e838cc2089a67dacf9cf88b877ccd7ce45310cbacbc",
+        "validacao_automatica.json": "5cb31dbebd7b67346c6ee68545df998aa9b23e2fe9f091b443c04fe1d7850e49"
+      },
+      "codigo": {
+        "__init__.py": "cf99a47d4af29362e4f67323bca502d0570c0d1a8227eb694b72fc8f04fe49dc",
+        "acesso_fontes.py": "a843ef6e8a0a80d07682f1b6639ae3e467e4fba9d650069787bc103a4e701e47",
+        "auditar_decisoes.py": "8f3a30d8df327207bc7caec4e4d27d02002e6d95a73c2bc106aec5eecdf6fc99",
+        "avaliar_evidencias.py": "29d5699627c78c1fc0159d6a628ffc6b75d8ff29d30fb89d291c54c18e836648",
+        "carregar_dados.py": "029f5ef215df6244bcf0de57293e629e3e81a9c6e759111be2e0abd9d2114e93",
+        "comparar_especificacoes.py": "9e28e117f264d3879bca1e679afff7d9b88d58b72667602a4344ab73b2334458",
+        "consultar_catalogo.py": "70926406c2028721a3c5de8e2236aacb1f3956ade40c3aa9760fdb4affaf5582",
+        "decidir_validacao.py": "15910c27dc4a5fce06d8a919b81427bbfc88a1d13d0255dc221042e073e700e4",
+        "detectar_conflitos.py": "93e20094436d91cc3ddb24486344cea8ef7c6e131b6a25fa070faa373a6237de",
+        "extrair_atributos.py": "9dd1402b3b55770fc9f41421b1fb862028acfd8953188d6219f1bb7c41bd7b34",
+        "extrair_documentos.py": "b6e8940862ec09aeef3a761a1595e59e221325a25b4258a9a20068519a0893cf",
+        "gerar_cesta.py": "98d576da98b8d8390c7dcbc76956404928d9a7cd004c296174eb607857cd1d3f",
+        "identificar_subprodutos.py": "c0b7f6b541ae8b4cb7046c99a4011cbe6764dbe676002aa5b4fe4b59aff4aee9",
+        "localizar_documentos.py": "ba5ff8692b0fb1ef884c3abcf633145835670429330bfc9aaf4eafedb9084e7a",
+        "normalizar_texto.py": "2a2d326990163a8100461dbcd0b0d15305ab7d54023d3ca45e822a28caf8f08b",
+        "orquestrar.py": "03027849dc80f5631fde1fc8ceaea43f0604dde97de223221e0d41940d6996b9",
+        "pipeline.py": "6380847310f5f71975866f6b16a7e89d22dd685ae3430ea8f46eae34508568ee"
+      }
+    },
+    "conjuntos": {
+      "S1": {
+        "produtos": 3065,
+        "sha256_lista": "8ec700b51b1adfc2f91ba70eb6d343063ebd32aba02696c2735053201591da01"
+      },
+      "S1S2": {
+        "produtos": 3172,
+        "sha256_lista": "355ba29f59a35b4a6b005b15625f30c884343c889918f8703c5876a42ab8b05b"
+      },
+      "P1": {
+        "produtos": 4122,
+        "sha256_lista": "0aaa63ced4422d695cd88dd8c54f7d9ac5440fa01a337d7b2c136c96da39c7cb"
+      },
+      "cesta": {
+        "produtos": 16248,
+        "sha256_lista": "da474f31bbb7777f6a4781b9986024c909918f9d7f419a52edc4dd94d3b25695"
+      }
+    },
+    "sha256_conjuntos_amostras": "a31b28e8a017ad7e9f7f86a7b56388194c99f5c0dbb356c438d76522b5713349",
+    "estudo_anterior": {
+      "pasta": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\efeito_modos_cesta_padronizada_20261124",
+      "config": "a8f33b4f87d5591b08fa30da2be5e45cfa8c4fc02ca2d8076e70ac4b8ac01122",
+      "executar": "f737ca7b9b64630d1ed9937efcbfdf60085f63fa5e985656e58beff33a8fbb5a",
+      "honestdid_R": "bc735d5ce134910e4f45f8a2b48acc881719b15a8a44c8f91d910079da78a24b",
+      "codigo": {
+        "__init__.py": "e0b2e07194e9e38df0b61ac9d60d42b7a4ec1e31ff7e8db808a492ef35fbfaf0",
+        "amostra.py": "59726489566ec4f8e9bcfd6f26137c23c937083a16f92cedb99f481a3a9fe59e",
+        "comum.py": "b8b86ca5de59b591218998ed347f541ff8905f1e0d7b5721b842b943287fde89",
+        "descritivas.py": "3d9d15e95d15123159643f72e9f85505c376c6fcebcc6798ae49c3dab671a3f5",
+        "eventos.py": "4562f96f5465457e251958b362dcef4c17d02d16d7a4cf8c6a1b85dc0ad1f438",
+        "honest.py": "d7202e527ba8b1fd1193f8359c7824f0adf776f2de2b0471fc59fe6431896755",
+        "inferencia.py": "2cee133826a74c188808532ed7c3799bbe5f29e3a2e552fdf1acad321b75c26c",
+        "painel.py": "8ff26e69daf9ba579a9f62d30eb5d2e4ad050030345700db8d0b0f6cfde71d10",
+        "pipeline.py": "af086a0d025bad5f711b220b9200b66a0ddecbc6b3b91cd469b9b7e4eba858a8",
+        "referencias.py": "27ea24581491042440e7c19b7ab8df4afdb5acb02f829b58f74f6808a38b1299",
+        "relatorio.py": "78ff8f30f3df934e36ad99b9b9186ec7abb1498ce4c6902f155558b53c74dcbe",
+        "robustez.py": "a3249ed4f0535054ecbe3f8ec21a5c62c8decf53f45f05b7e20db147dd7673e0",
+        "secundarios.py": "f69db1df7d3b0922ea5a5cbfe6887da9020291f3de60f1690ad32c43d5904d7d",
+        "svg.py": "31c89dcadbbd61beb14238ccbb2b482a97974da2c7bd49d3b6671f1e96896eaf"
+      },
+      "saidas": {
+        "efeitos_fixos.csv": "c3ff11c01552b9d6a0109dfca79147dbedbd5334dcb4a6fbd395b8fbeedfbf0b",
+        "estudo_eventos.csv": "2a8d1e4378f984747f3e45edc294b40ae980e938d0fd5f15dcf4d4fc541bcb72",
+        "honestdid.csv": "9b6f3e6dae43d2373731fcca22608c9abbc26a241271382131491ce1516b2e79",
+        "referencias_alternativas.csv": "28cf797503b0c1d4e6d39ff1c0bf8ae5226f736355988a8699d95204152ead38",
+        "funil_amostra.csv": "c1bf8b732166599dccde30b2884cb3c14ca6b4dedef092f29f9e51ba8dc2feef",
+        "robustez.csv": "ca189ac24675e01f7cbad132b26133b73239e1689cc7e79b79abf74caed404c6"
+      }
+    },
+    "dados_base": {
+      "amostra.pkl": "2eff63119ee2cf76bca803d15f279751986f21b13c4b400252825fccdb32b0bc",
+      "regime_compras.pkl": "22f95d93885c5b45cda62027c8195d7d67a210a55aba66a469d9ff52f448cc9d",
+      "conjuntos.pkl": "da25c0da4741fcc16e51afc95227ed31498a1fb3f64996f698e28ffb379ee759"
+    },
+    "config_rodada": "3b56912ecacadf6ede7ceafbf47524ee3693a25d5419c2dc7a701cce2fbd64fe"
+  },
+  "codigo": {
+    "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analises.py": "4ebd4838a5e6dff4c770172a69a72a9462f9cb9b5914b3b8d181486f36240b22",
+    "base.py": "9c2902f9bad823ace5a9788731c389a814b4dd8c05d91cddc6fd8f7ab4c7500f",
+    "relatorio.py": "399cada32a02130485d805bf02070bfcce2190b35e0dddd1f81214ff726e9019",
+    "executar.py": "d67e68dd7a147680d1d0a2d3c464e505d94a9d895bfd8d48cdc378877a11320c"
+  },
+  "amostras": {
+    "S1": {
+      "pasta": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\efeito_modos_cesta_auto_S1_20261125\\amostras\\S1",
+      "saidas": {
+        "descritivas.csv": "95137339082cbf305ddbcbea8fbba54c38c608767e30519bcbb63e6b5dbe98b1",
+        "efeitos_fixos.csv": "b4fda8c9d6b063e0f7749bdb715a8c45ac4303396fea6c15aec97d302b7b2101",
+        "estudo_eventos.csv": "eb4d6bdef8f85eab04182acc6e584963331a384e5aed16a424960295f663b1fa",
+        "funil_amostra.csv": "1f8fe0ac86220ecf9cce8d4b02d08b91c78f2905c225a3cab833d6ce7b2715d8",
+        "honestdid.csv": "ed1e085828b90a0587b0d3eeab96ed93ba796746fb336c11d0ddfb24c0804f06",
+        "referencias_alternativas.csv": "0224fe059cb53c0d70198914b3cad0d94ea2188b8a486f3def28a73e3edfccf4",
+        "robustez.csv": "5524109540a737dbddc04e10641934a55b0a6f0cf8921599d0c29525f99f89f9"
+      },
+      "registros": [
+        "execucao_cobertura-referencias-descritivas-efeitos_fixos-eventos-honestdid-robustez.json",
+        "execucao_honestdid.json"
+      ]
+    },
+    "S1S2": {
+      "pasta": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\efeito_modos_cesta_auto_S1_20261125\\amostras\\S1S2",
+      "saidas": {
+        "descritivas.csv": "e1144ba26ac5f659c96af00d897a787f9d7d7742846c02329fd6bdf95a84c746",
+        "efeitos_fixos.csv": "0d95549cb73e2ab2e86c545c2e44e37dbd29d667a2a4c801c9681998803952da",
+        "estudo_eventos.csv": "5fad91d44c09dd292a32fdd01955cb7b5d1a7cd5a478636e27f9067cf685a939",
+        "funil_amostra.csv": "2c11007e2fb6552286ab9638911de5daa884b4d571a4d9eb464e1ec1d8867fb6",
+        "honestdid.csv": "87c726a6b422534bfacbeb3a737181e6ed9d90e6cde86590a481565550e037e4",
+        "referencias_alternativas.csv": "8f4283f1aa45012d157492ce504aed1c7e213251a5bde1b45cc9ed5282125069",
+        "robustez.csv": "39b59a2e557ee8490d5981e62df71d7e2006cefe32004fefebccfe11437783bf"
+      },
+      "registros": [
+        "execucao_cobertura-referencias-descritivas-efeitos_fixos-eventos-honestdid-robustez.json",
+        "execucao_honestdid.json"
+      ]
+    },
+    "P1": {
+      "pasta": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\efeito_modos_cesta_auto_S1_20261125\\amostras\\P1",
+      "saidas": {
+        "descritivas.csv": "a1c17ac154dc09c725ccf9758a954a7748d587b47285997738abb99393cb1274",
+        "efeitos_fixos.csv": "edf02860af17ffd2ebf49196a4a01dbc0c83730021e98652a83840cb5b3ca03a",
+        "estudo_eventos.csv": "55f3f5c1db001632b1dd19f64f1d7f360a47eab6cd394ab850eea4370a05f3da",
+        "funil_amostra.csv": "f3629a6b84ed85790546b739d27a8091132970f9d517aa70d33c432216801674",
+        "honestdid.csv": "51a1f999c1c1dd5490f60fba9085ed2c1ffae50bb4876266328891eebb36586b",
+        "referencias_alternativas.csv": "cb8c55f38f430fc22ccecf8472717734a19add891a41c1fd9a5fb06481de76de",
+        "robustez.csv": "5c3c9b7cf985704b07ebef4393ffc83abc5c235ecc91a41628a65423dce22a8a"
+      },
+      "registros": [
+        "execucao_honestdid.json",
+        "execucao_robustez.json"
+      ]
+    },
+    "cesta": {
+      "pasta": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\analises\\efeito_modos_cesta_padronizada_20261124",
+      "saidas": {
+        "descritivas.csv": "ef56ff3b715d04d35a815b26eafdf85633f32740a5ca3c6ee97d08ee58715243",
+        "efeitos_fixos.csv": "c3ff11c01552b9d6a0109dfca79147dbedbd5334dcb4a6fbd395b8fbeedfbf0b",
+        "estudo_eventos.csv": "2a8d1e4378f984747f3e45edc294b40ae980e938d0fd5f15dcf4d4fc541bcb72",
+        "funil_amostra.csv": "c1bf8b732166599dccde30b2884cb3c14ca6b4dedef092f29f9e51ba8dc2feef",
+        "honestdid.csv": "9b6f3e6dae43d2373731fcca22608c9abbc26a241271382131491ce1516b2e79",
+        "referencias_alternativas.csv": "28cf797503b0c1d4e6d39ff1c0bf8ae5226f736355988a8699d95204152ead38",
+        "resultados_secundarios.csv": "cf1a0a3e244cdd69cec9aa97b164e34c62b15f545dd89db785249da70637d266",
+        "robustez.csv": "ca189ac24675e01f7cbad132b26133b73239e1689cc7e79b79abf74caed404c6"
+      },
+      "registros": [
+        "execucao_amostra.json",
+        "execucao_cobertura.json",
+        "execucao_honestdid.json",
+        "execucao_referencias-descritivas-efeitos_fixos-eventos-honestdid.json",
+        "execucao_relatorio.json",
+        "execucao_robustez-secundarios.json",
+        "execucao_validar.json"
+      ]
+    }
+  },
+  "tabelas": {
+    "comparacao_amostras.csv": "a73c644de68f37e1aaea08da7ec61eaa6bd6e65d9e6134595950765d1b4288d4",
+    "composicao_anos.csv": "0e921dd0ef7e4dc0958c19a4c4d23e17459a80073b76befdf468f498bda70b22",
+    "composicao_classes.csv": "75214b94db07932e4bc71a946c4541b1552272a7f01904789d233ed6a80e7be9",
+    "composicao_conjuntos.csv": "cfff8c5fbfbdd0dc35e09cbb3f4b9a26cde09d3aae36b683ec6c1fac4b0fbcd7",
+    "composicao_riscos.csv": "7b351da017640d44a72887b64aa6b975a1e3677e50bd317b69439d7f64b810ae",
+    "conjuntos_amostras.csv": "a31b28e8a017ad7e9f7f86a7b56388194c99f5c0dbb356c438d76522b5713349",
+    "decomposicao_dcdh.csv": "99dbc598dbf4823d369128283cacd02cbb3c24b0f5a582e7a94e26f91cd15879",
+    "decomposicao_eventos_orgaos.csv": "6c77f6266e3e1f3fcfb790931b3b6f7e8776fa995936e4cb4bbc9058aafc95bf"
+  },
+  "testes": {
+    "executado_em": "2026-11-25T15:27:24",
+    "testes": 11,
+    "falhas": 0,
+    "erros": 0,
+    "sucesso": true
+  }
+}

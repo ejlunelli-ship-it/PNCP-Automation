@@ -1,0 +1,2 @@
+﻿id_candidato,produto,catmat,unidade_norm,status_automatico,nivel,motivos,ressalvas,perfis,compras,itens,uasgs
+CP1860,444251|UNIDADE,444251,UNIDADE,AUTO_DESMEMBRAR,,"compatibilidade: falta compatibilidade ou modelo no catálogo oficial | peca_reposicao: falta aplicacao ou referencia no catálogo oficial | variantes conformes e variantes divergentes do catálogo oficial, separáveis pela própria descrição",,compatibilidade;equipamento_eletronico;peca_reposicao,146,159,123

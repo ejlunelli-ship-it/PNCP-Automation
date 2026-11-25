@@ -1,0 +1,7 @@
+﻿id,numPre,numPost,l_vec,draws_validos,mbar,msd
+dcdh_6m_item_celula|agregado,2,2,0.5;0.5,999,0;0.5;1;1.5;2,0;0.5;1;2
+dcdh_6m_item_celula|adocao,2,2,0.5;0.5,999,0;0.5;1;1.5;2,0;0.5;1;2
+dcdh_6m_item_celula|abandono,2,2,0.5;0.5,999,0;0.5;1;1.5;2,0;0.5;1;2
+dcdh_12m_item_celula|agregado,4,4,0.25;0.25;0.25;0.25,999,0;0.5;1;1.5;2,0;0.5;1;2
+dcdh_12m_item_celula|adocao,4,4,0.25;0.25;0.25;0.25,992,0;0.5;1;1.5;2,0;0.5;1;2
+dcdh_12m_item_celula|abandono,4,4,0.25;0.25;0.25;0.25,954,0;0.5;1;1.5;2,0;0.5;1;2

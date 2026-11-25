@@ -1,0 +1,144 @@
+﻿id_candidato,produto,alertas_auditoria,divergencias_auditoria,problemas,status_automatico
+CP0001,464393|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0007,464418|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0010,445995|CAIXA 1 LITRO,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0011,445485|GARRAFAO 20 LITRO,1 variante(s) sem descrição: equivalência só pelo código CATMAT (2 itens),,SEM_DESCRICAO;espacamento,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0018,464381|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (2 itens),,SEM_DESCRICAO;espacamento,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0019,464405|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (2 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0022,445484|GARRAFA 500 MILILITRO,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0025,464374|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0029,464422|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0045,463916|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0071,461517|UNIDADE,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0076,464392|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0081,448897|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0108,464406|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0114,442701|FRASCO-AMPOLA,,[A_EXAMINAR] forma_farmaceutica: INJETAVEL (306 itens) vs PO (781 itens) vs PO_INJETAVEL (306 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP0129,464415|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0161,267574|AMPOLA 10 MILILITRO,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0205,303292|BOLSA 500 MILILITRO,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0219,464328|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0241,292345|FRASCO 30 MILILITRO,,[A_EXAMINAR] forma_farmaceutica: GOTAS (530 itens) vs SOLUCAO (230 itens) vs SOLUCAO_ORAL (230 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP0242,446019|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0294,448845|AMPOLA 2 MILILITRO,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0302,463904|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0326,442693|FRASCO-AMPOLA,,[A_EXAMINAR] forma_farmaceutica: INJETAVEL (165 itens) vs PO (463 itens) vs PO_INJETAVEL (165 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP0347,454336|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (2 itens),,SEM_DESCRICAO,AUTO_INCONCLUSIVO
+CP0385,248158|UNIDADE,,[A_EXAMINAR] material: ACO (140 itens) vs BORRACHA (429 itens) vs POLIESTER (429 itens),FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP0391,609094|UNIDADE,nome do item (primeiro segmento) difere entre variantes | texto difere entre variantes além de espaços e pontuação,[A_EXAMINAR] material: ACO_INOX (423 itens) vs BORRACHA (423 itens) vs PVC (423 itens) vs SILICONE (409 itens),CONFORME_ATRIBUTOS;FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP0411,464339|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0432,280353|FRASCO 10 MILILITRO,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_INCONCLUSIVO
+CP0442,463872|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0502,464441|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0536,602047|UNIDADE,,[A_EXAMINAR] medida_linear: 1500 MM (235 itens) vs 280 MM (360 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP0579,446274|UNIDADE,,[A_EXAMINAR] cor: AZUL (321 itens) vs BRANCO (111 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP0623,275585|UNIDADE,,[A_EXAMINAR] material: ACO (107 itens) vs BORRACHA (328 itens) vs POLIESTER (328 itens),FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP0662,272089|BISNAGA 50 GRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0696,446269|UNIDADE,,[A_EXAMINAR] material: MADEIRA (108 itens) vs POLIPROPILENO (309 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP0715,311387|UNIDADE,,[A_EXAMINAR] material: ACO_INOX (322 itens) vs COBRE (322 itens) vs LATAO (121 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP0752,326330|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0756,438922|UNIDADE,nome do item (primeiro segmento) difere entre variantes | texto difere entre variantes além de espaços e pontuação,[A_EXAMINAR] material: ACO_INOX (270 itens) vs BORRACHA (122 itens) vs PVC (270 itens),CONFORME_ATRIBUTOS;FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP0790,268952|FRASCO-AMPOLA,,[A_EXAMINAR] forma_farmaceutica: INJETAVEL (90 itens) vs PO (270 itens) vs PO_INJETAVEL (90 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP0800,445998|CAIXA 1 LITRO,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0817,450891|FRASCO-AMPOLA,,[A_EXAMINAR] forma_farmaceutica: INJETAVEL (113 itens) vs PO (261 itens) vs PO_INJETAVEL (113 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP0853,463698|EMBALAGEM 500 MILILITRO,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0857,427548|UNIDADE,,[A_EXAMINAR] material: ACO (91 itens) vs BORRACHA (276 itens) vs POLIESTER (276 itens),FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP0863,452767|UNIDADE,,[A_EXAMINAR] material: ACO_INOX (269 itens) vs LATAO (87 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP0875,602701|UNIDADE,,[A_EXAMINAR] material: ACO (132 itens) vs MDF (280 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP0893,460264|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_INCONCLUSIVO
+CP0910,419187|UNIDADE,,[A_EXAMINAR] material: ALGODAO (248 itens) vs MADEIRA (82 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP0918,446005|CAIXA 1 LITRO,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0980,446393|POTE 200 GRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP0983,272091|AMPOLA 2 MILILITRO,,[A_EXAMINAR] forma_farmaceutica: INJETAVEL (230 itens) vs SOLUCAO (96 itens) vs SOLUCAO_INJETAVEL (96 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP1090,438928|UNIDADE,nome do item (primeiro segmento) difere entre variantes | texto difere entre variantes além de espaços e pontuação,[A_EXAMINAR] material: ACO_INOX (224 itens) vs PVC (224 itens) vs SILICONE (212 itens),CONFORME_ATRIBUTOS;FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP1167,450890|FRASCO-AMPOLA,,[A_EXAMINAR] forma_farmaceutica: INJETAVEL (101 itens) vs PO (236 itens) vs PO_INJETAVEL (101 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP1199,460380|UNIDADE,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP1220,438923|UNIDADE,nome do item (primeiro segmento) difere entre variantes | texto difere entre variantes além de espaços e pontuação,,CONFORME_ATRIBUTOS;espacamento,AUTO_VALIDADO_CATALOGO
+CP1225,270092|BOLSA 250 MILILITRO,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP1237,471301|UNIDADE,,[A_EXAMINAR] material: MADEIRA (205 itens) vs PLASTICO (61 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP1255,465622|GRAMA,,[A_EXAMINAR] forma_farmaceutica: PO (288 itens) vs XAROPE (61 itens),FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP1312,463247|UNIDADE,,[A_EXAMINAR] medida_linear: 127 MM (202 itens) vs 600 MM (104 itens),FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP1356,402513|UNIDADE,,[A_EXAMINAR] material: PAPEL (48 itens) vs PAPELAO (185 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP1377,479217|UNIDADE,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP1404,286037|UNIDADE,,[A_EXAMINAR] material: NYLON (89 itens) vs PLASTICO (189 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP1474,463856|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP1483,433833|UNIDADE,,[A_EXAMINAR] material: ACO (61 itens) vs LATAO (184 itens) vs NYLON (184 itens) vs POLIPROPILENO (184 itens) vs PVC (184 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP1484,442703|FRASCO-AMPOLA,,[A_EXAMINAR] forma_farmaceutica: INJETAVEL (73 itens) vs PO (185 itens) vs PO_INJETAVEL (73 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP1544,308647|UNIDADE,,[A_EXAMINAR] material: ACO (55 itens) vs BORRACHA (195 itens) vs POLIESTER (195 itens),FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP1563,441609|UNIDADE,,[A_EXAMINAR] material: ACO_CARBONO (170 itens) vs MADEIRA (58 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP1587,471988|UNIDADE,,[A_EXAMINAR] material: ACO (89 itens) vs MDF (190 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP1595,396568|FRASCO-AMPOLA,,[A_EXAMINAR] forma_farmaceutica: INJETAVEL (189 itens) vs PO (82 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP1612,332908|FRASCO-AMPOLA,,[A_EXAMINAR] forma_farmaceutica: INJETAVEL (198 itens) vs PO (73 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP1617,447485|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_INCONCLUSIVO
+CP1619,464185|GRAMA,texto difere entre variantes além de espaços e pontuação,[A_EXAMINAR] declarado:SABOR: C/SABOR (146 itens) vs COMSABOR (116 itens),DIVERGENCIA_TEXTUAL,AUTO_INCONCLUSIVO
+CP1628,399552|TESTE,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_INCONCLUSIVO
+CP1668,396567|FRASCO-AMPOLA,,[A_EXAMINAR] forma_farmaceutica: INJETAVEL (185 itens) vs PO (83 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP1734,447597|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP1753,435254|GRAMA,,[A_EXAMINAR] forma_farmaceutica: PO (226 itens) vs XAROPE (93 itens),FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP1760,468648|UNIDADE,,[A_EXAMINAR] material: ACO (162 itens) vs MADEIRA (61 itens) vs NYLON (162 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP1790,357880|BOLSA 500 MILILITRO,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP1800,366913|BOLSA 500 MILILITRO,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP1944,486358|GRAMA,texto difere entre variantes além de espaços e pontuação,"[A_EXAMINAR] forma_farmaceutica: PO (213 itens) vs XAROPE (47 itens) | [A_EXAMINAR] declarado:CARACTERISTICAS ADICIONAIS: ISENTOGLUTEN,COMOUS/LACTOSE (166 itens) vs ISENTOGLUTEN,COMOUSEMLACTOSE (47 itens)",DIVERGENCIA_TEXTUAL,AUTO_INCONCLUSIVO
+CP1998,432636|GRAMA,texto difere entre variantes além de espaços e pontuação,[A_EXAMINAR] declarado:FONTE DE CARBOIDRATO: MALTODEXTRINAE/OUXAROPEMILHOE/OUSACAROSE (57 itens) vs MALTODEXTRINAEOUXAROPEMILHOE/OUSACAROSE (106 itens),DIVERGENCIA_TEXTUAL,AUTO_INCONCLUSIVO
+CP2004,461028|EMBALAGEM 1 LITRO,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP2037,303292|BOLSA 1000 MILILITRO,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP2046,443439|ROLO 100 METRO,texto difere entre variantes além de espaços e pontuação,[A_EXAMINAR] declarado:COMPONENTES: C/INDICADORQUIMICO (99 itens) vs COMINDICADORQUIMICO (50 itens),DIVERGENCIA_TEXTUAL,AUTO_INCONCLUSIVO
+CP2054,609724|UNIDADE,texto difere entre variantes além de espaços e pontuação,[A_EXAMINAR] declarado:ADICIONAL: C/CLAMP (96 itens) vs COMCLAMP (69 itens),DIVERGENCIA_TEXTUAL,AUTO_INCONCLUSIVO
+CP2098,466631|UNIDADE,,[A_EXAMINAR] material: ACO_CARBONO (149 itens) vs MADEIRA (149 itens) vs PLASTICO (42 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP2131,428030|UNIDADE,nota de catálogo: INATIVO,,espacamento,AUTO_VALIDADO_CATALOGO
+CP2195,457797|LITRO,nome do item (primeiro segmento) difere entre variantes | texto difere entre variantes além de espaços e pontuação,,CONFORME_ATRIBUTOS,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP2204,607558|UNIDADE,,[A_EXAMINAR] tensao: 110/220 V (139 itens) vs BIVOLT (39 itens),FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP2227,460913|UNIDADE,,[A_EXAMINAR] material: NYLON (61 itens) vs PLASTICO (142 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP2359,469169|UNIDADE,,[A_EXAMINAR] material: BORRACHA (66 itens) vs POLIPROPILENO (148 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP2379,434110|ENVELOPE,,[A_EXAMINAR] forma_farmaceutica: GRANULADO (131 itens) vs SOLUCAO (55 itens) vs SOLUCAO_ORAL (55 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP2417,604270|UNIDADE,texto difere entre variantes além de espaços e pontuação,"[A_EXAMINAR] declarado:CARACTERISTICAS ADICIONAIS: ANGULODEVISAOHORIZONTAL85|92,VERTICAL45|50 (51 itens) vs ANGULODEVISAOHORIZONTAL85|92,VERTICAL45|5|0 (120 itens) | [A_EXAMINAR] numeros_no_texto: 0 (120 itens) vs 1 (171 itens) vs 10 (171 itens) vs 100 (171 itens) vs 1080 (171 itens) vs 12 (171 itens) vs 1920 (171 itens) vs 2.7 (171 itens) vs 2.8 (171 itens) vs 24 (171 itens) vs 30 (171 itens) vs 4 (171 itens) vs 45 (171 itens) vs 5 (120 itens) vs 50 (51 itens) vs 6 (171 itens) vs 85 (171 itens) vs 92 (171 itens)",FALHA_EXTRACAO;numero_quebrado,AUTO_INCONCLUSIVO
+CP2506,486505|UNIDADE,,[A_EXAMINAR] material: ACO_CARBONO (128 itens) vs MADEIRA (128 itens) vs POLIPROPILENO (42 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP2579,438926|UNIDADE,nome do item (primeiro segmento) difere entre variantes | texto difere entre variantes além de espaços e pontuação,,CONFORME_ATRIBUTOS;espacamento,AUTO_VALIDADO_CATALOGO
+CP2628,464327|UNIDADE,1 item(ns) com mais de uma descrição bruta (associação item × descrição ambígua),,espacamento,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP2659,456238|UNIDADE,,[A_EXAMINAR] material: ACO (53 itens) vs BORRACHA (141 itens) vs POLIESTER (141 itens),FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP2693,432691|GRAMA,texto difere entre variantes além de espaços e pontuação,"[A_EXAMINAR] declarado:CARACTERISTICAS ADICIONAIS: ISENTOGLUTEN,LACTE/OUSACAROSE (53 itens) vs ISENTOGLUTEN,LACTEOUSACAROSE (103 itens)",DIVERGENCIA_TEXTUAL,AUTO_INCONCLUSIVO
+CP2728,450291|FRASCO-AMPOLA,,[A_EXAMINAR] forma_farmaceutica: INJETAVEL (133 itens) vs PO (63 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP2741,478135|UNIDADE,,[A_EXAMINAR] material: ALGODAO (132 itens) vs BORRACHA (73 itens),FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP2743,601983|UNIDADE,,[A_EXAMINAR] medida_linear: 1200 MM (83 itens) vs 280 MM (127 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP2757,371273|FRASCO 500 MILILITRO,,[A_EXAMINAR] forma_farmaceutica: INJETAVEL (73 itens) vs SOLUCAO (135 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP2759,422344|UNIDADE,,[A_EXAMINAR] material: ACO (156 itens) vs POLIURETANO (156 itens) vs PVC (82 itens),FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP2760,426782|UNIDADE,texto difere entre variantes além de espaços e pontuação,[A_EXAMINAR] declarado:ACESSORIOS: C/FITAPARAFIXACAO (76 itens) vs COMFITAPARAFIXACAO (58 itens),DIVERGENCIA_TEXTUAL,AUTO_INCONCLUSIVO
+CP2832,216458|UNIDADE,,[A_EXAMINAR] material: ACO (117 itens) vs ALGODAO (49 itens) vs FERRO (49 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP2907,270092|BOLSA 100 MILILITRO,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP2922,440141|UNIDADE,nome do item (primeiro segmento) difere entre variantes | texto difere entre variantes além de espaços e pontuação,,CONFORME_ATRIBUTOS,AUTO_VALIDADO_CATALOGO
+CP3001,344642|UNIDADE,,[A_EXAMINAR] material: ACO_INOX (36 itens) vs PLASTICO (113 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP3107,234466|PAR,,[A_EXAMINAR] material: BORRACHA (31 itens) vs PVC (116 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP3178,446173|UNIDADE,texto difere entre variantes além de espaços e pontuação,[A_EXAMINAR] declarado:TIPO DO ENCAIXE: ENCAIXEDEPOLIMEROP/MANDRILDENTEADO (66 itens) vs ENCAIXEDEPOLIMEROPARAMANDRILDENTEADO (145 itens),DIVERGENCIA_TEXTUAL,AUTO_INCONCLUSIVO
+CP3203,395320|UNIDADE,,[A_EXAMINAR] material: ACO_INOX (117 itens) vs POLIURETANO (43 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP3313,439029|UNIDADE,texto difere entre variantes além de espaços e pontuação,[A_EXAMINAR] declarado:COMPONENTE I: ABAP/SUTURAEFIXACAO (70 itens) vs ABAPARASUTURAEFIXACAO (48 itens),DIVERGENCIA_TEXTUAL,AUTO_INCONCLUSIVO
+CP3325,463922|QUILOGRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP3353,382699|TESTE,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_INCONCLUSIVO
+CP3407,441973|UNIDADE,texto difere entre variantes além de espaços e pontuação,[A_EXAMINAR] declarado:ASPECTO FISICO: MOTORDEBANCADAC/UNIDADEDEOPERACAOLCD (72 itens) vs MOTORDEBANCADACOMUNIDADEDEOPERACAOLCD (37 itens),DIVERGENCIA_TEXTUAL,AUTO_INCONCLUSIVO
+CP3412,453646|GRAMA,texto difere entre variantes além de espaços e pontuação,[A_EXAMINAR] declarado:FONTE DE CARBOIDRATO: MALTODEXTRINAE/OULACTOSEE/OUAMIDO (49 itens) vs MALTODEXTRINAEOULACTOSEE/OUAMIDO (69 itens),DIVERGENCIA_TEXTUAL,AUTO_INCONCLUSIVO
+CP3420,607560|UNIDADE,,[A_EXAMINAR] material: ACO (113 itens) vs ALUMINIO (113 itens) vs PLASTICO (45 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP3478,275586|UNIDADE,,[A_EXAMINAR] material: ACO (39 itens) vs BORRACHA (136 itens) vs POLIESTER (136 itens),FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP3521,487693|UNIDADE,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP3599,407820|UNIDADE,,[A_EXAMINAR] material: ACO (109 itens) vs POLIURETANO (109 itens) vs PVC (46 itens),FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP3610,438927|UNIDADE,nome do item (primeiro segmento) difere entre variantes | texto difere entre variantes além de espaços e pontuação,[A_EXAMINAR] material: ACO_INOX (99 itens) vs ALUMINIO (99 itens) vs BORRACHA (96 itens) vs PLASTICO (99 itens),CONFORME_ATRIBUTOS;FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP3617,456239|UNIDADE,,[A_EXAMINAR] material: ACO (33 itens) vs BORRACHA (122 itens) vs POLIESTER (122 itens),FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP3677,608818|UNIDADE,,[A_EXAMINAR] material: ACO (119 itens) vs COURO (119 itens) vs POLIPROPILENO (39 itens) vs POLIURETANO (119 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP3754,304848|JOGO,,[A_EXAMINAR] cor: BRANCO (26 itens) vs VERMELHO (95 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP3801,609339|UNIDADE,texto difere entre variantes além de espaços e pontuação,"[A_EXAMINAR] declarado:CARACTERISTICAS ADICIONAIS: ALIMENTACAOPOEPOEPASSIVO48V,COMINJETORPOE48 (29 itens) vs ALIMENTACAOPOEPOEPASSIVO48V,COMINJETORPOE4|8 (86 itens) | [A_EXAMINAR] numeros_no_texto: 2.4 (115 itens) vs 4 (115 itens) vs 48 (115 itens) vs 5 (115 itens) vs 5.0 (115 itens) vs 6 (115 itens) vs 8 (86 itens) vs 802.11 (115 itens)",FALHA_EXTRACAO;numero_quebrado,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP3808,234470|PAR,,[A_EXAMINAR] material: BORRACHA (33 itens) vs PVC (94 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP3837,456103|UNIDADE,,[A_EXAMINAR] material: LATEX (56 itens) vs PLASTICO (103 itens) vs SILICONE (103 itens),FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP3847,485858|UNIDADE,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_INCONCLUSIVO
+CP3890,441610|UNIDADE,,[A_EXAMINAR] material: ACO_CARBONO (89 itens) vs MADEIRA (29 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP3938,382701|TESTE,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_INCONCLUSIVO
+CP3950,428265|UNIDADE,,[A_EXAMINAR] medida_linear: 1900 MM (38 itens) vs 203.2 MM (104 itens),FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP3952,429427|UNIDADE,,[A_EXAMINAR] material: ALUMINIO (92 itens) vs BORRACHA (32 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP4015,463577|PACOTE 500 GRAMA,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP4050,313592|FRASCO 12 MILILITRO,,[A_EXAMINAR] forma_farmaceutica: SOLUCAO (95 itens) vs SOLUCAO_TOPICA (67 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP4117,602309|UNIDADE,texto difere entre variantes além de espaços e pontuação,[A_EXAMINAR] declarado:CAPACIDADE REFRIGERACAO: 1.8L/H (32 itens) vs 1.8LH (62 itens),CONFORME_ATRIBUTOS;FALHA_EXTRACAO,AUTO_VALIDADO_CATALOGO
+CP4140,287675|UNIDADE,,[A_EXAMINAR] material: ACO (29 itens) vs BORRACHA (95 itens) vs POLIESTER (95 itens),FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP4144,322685|UNIDADE,,[A_EXAMINAR] material: ACO (33 itens) vs POLIPROPILENO (92 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP4155,365509|BOLSA 1000 MILILITRO,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_VALIDADO_CATALOGO_COM_RESSALVA
+CP4259,436134|UNIDADE,1 variante(s) sem descrição: equivalência só pelo código CATMAT (1 itens),,SEM_DESCRICAO;espacamento,AUTO_INCONCLUSIVO
+CP4260,437863|ROLO 4.5 METRO,nome do item (primeiro segmento) difere entre variantes | texto difere entre variantes além de espaços e pontuação,[A_EXAMINAR] material: ALGODAO (84 itens) vs ZINCO (91 itens),CONFORME_ATRIBUTOS;FALHA_EXTRACAO;espacamento,AUTO_INCONCLUSIVO
+CP4273,452498|UNIDADE,,[A_EXAMINAR] material: ACO (41 itens) vs MADEIRA (101 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP4288,607462|UNIDADE,,[A_EXAMINAR] material: BORRACHA (53 itens) vs POLIPROPILENO (135 itens),FALHA_EXTRACAO;espacamento,AUTO_VALIDADO_CATALOGO
+CP4328,440162|UNIDADE,nome do item (primeiro segmento) difere entre variantes | texto difere entre variantes além de espaços e pontuação,,CONFORME_ATRIBUTOS,AUTO_VALIDADO_CATALOGO

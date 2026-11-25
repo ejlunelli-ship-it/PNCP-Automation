@@ -32,6 +32,17 @@ PRODUTOS = [
 ]
 
 
+def chave_pncp(pid, k, i):
+    """Número de controle no formato do PNCP (CNPJ-1-sequencial/ano), único por (produto, variante, par de itens)."""
+    return f"{int(pid[2:]):014d}-1-{k * 100 + i // 2 + 1:06d}/2024"
+
+
+def _unidade(un):
+    import re
+    m = re.match(r"^(.*?)\s+(\d+(?:\.\d+)?)\s+(\S+)$", un or "")
+    return (m.group(1), m.group(2), m.group(3)) if m else (un, "", "")
+
+
 def _w(caminho, cab, linhas):
     caminho.parent.mkdir(parents=True, exist_ok=True)
     with open(caminho, "w", encoding="utf-8-sig", newline="") as f:
@@ -56,6 +67,9 @@ def criar(tmp, produtos=PRODUTOS, preco_fator=1.0, modo="Aberto"):
             n_descricoes_item, nome_pdm, desc_id INT, desc_completa, uasg, orgao_cnpj, data_publicacao, ano, trimestre,
             uasg_item, quantidade_min, familia, produto, valor_unitario_homologado REAL, modo_disputa TEXT);
         CREATE INDEX ix_up_prod ON universo_produto (produto);
+        CREATE TABLE compras_base (chave TEXT PRIMARY KEY, id_compra TEXT, uasg TEXT, uf TEXT, modalidade TEXT, modo_disputa TEXT);
+        CREATE TABLE unidades (unidade_original TEXT PRIMARY KEY, unidade_texto TEXT, unidade_norm TEXT, embalagem TEXT, conteudo TEXT,
+                               unidade_conteudo TEXT, alerta TEXT, itens INTEGER);
     """)
     did = 0
     for pid, cat, un, classe, rig, vs in produtos:
@@ -64,20 +78,24 @@ def criar(tmp, produtos=PRODUTOS, preco_fator=1.0, modo="Aberto"):
         compras_p, uasgs_p, itens_p = set(), set(), 0
         for k, (desc, n) in enumerate(vs):
             did += 1
-            chaves = {f"{pid}-{k}-{i // 2}" for i in range(n)}
+            chaves = {chave_pncp(pid, k, i) for i in range(n)}
             uas = {f"{i % 5:06d}" for i in range(n)}
             for i in range(n):
                 db.execute("INSERT INTO universo_produto (chave, numero_item, catmat, n_descricoes_item, desc_id, uasg, data_publicacao, "
                            "familia, produto, valor_unitario_homologado, modo_disputa) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-                           (f"{pid}-{k}-{i // 2}", i % 2 + 1, cat, 1, did, f"{i % 5:06d}", "2024-05-01", fam, prod,
+                           (chave_pncp(pid, k, i), i % 2 + 1, cat, 1, did, f"{i % 5:06d}", "2024-05-01", fam, prod,
                             (10.0 + k) * preco_fator * (1 + i % 3), modo if i % 2 else "Aberto-Fechado"))
             db.execute("INSERT INTO variantes VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                        (fam, did, desc, "", "", n, len(chaves), len(uas), ",".join(sorted(uas)), "2024-05-01", "2024-05-01", "PDM", "2024"))
             db.execute("INSERT INTO produto_map VALUES (?,?,?,?)", (fam, did, prod, ""))
             var.append([fam, cat, un, desc, n, len(chaves), len(uas), "2024-05-01", "2024-05-01", "PDM", round(17.3 * preco_fator, 2)])
+            for c in chaves:
+                db.execute("INSERT OR IGNORE INTO compras_base VALUES (?,?,?,?,?,?)", (c, c, "000001", "PB", "Pregão Eletrônico", modo))
             compras_p |= chaves
             uasgs_p |= uas
             itens_p += n
+        emb, cont, ucont = _unidade(un)
+        db.execute("INSERT OR IGNORE INTO unidades VALUES (?,?,?,?,?,?,?,?)", (un or "(vazia)", un, un, emb, cont, ucont, "" if un else "vazia", 1))
         cand.append([pid, prod, cat, un, max(vs, key=lambda x: x[1])[0], len(compras_p), itens_p, len(uasgs_p), len(uasgs_p), 1, 1,
                      classe, "6515", "123", "", "", "", 1, len(vs), round(12.5 * preco_fator, 2), modo, int(len(compras_p) * 0.8)])
         pert.append([fam, 1, 1, rig, 1])

@@ -1,0 +1,24 @@
+{
+  "versao": "1.0.0",
+  "inicio": "2026-11-25T15:09:52",
+  "fim": "2026-11-25T15:16:19",
+  "etapas": [
+    {
+      "etapa": "HonestDiD (R) em 6 especificações",
+      "segundos": 386.7,
+      "ok": true
+    }
+  ],
+  "contagens": {
+    "honestdid": {
+      "especificacoes": 6,
+      "r": [
+        {
+          "R": "R version 4.6.2 (2026-10-29 ucrt)",
+          "HonestDiD": "0.2.8"
+        }
+      ]
+    }
+  },
+  "avisos": []
+}

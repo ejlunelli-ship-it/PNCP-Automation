@@ -1,0 +1,359 @@
+{
+  "_descricao": "Validação técnica AUTOMÁTICA (modo operacional novo, independente dos formulários de revisão humana). Regras determinísticas e versionadas. Nenhum parâmetro usa preço, valor, desconto, modo de disputa, licitantes, órgãos com efeitos ou resultado econométrico.",
+  "versao_validador": "2.0.0",
+  "versao_regras_automaticas": "2.0.0",
+  "rodada_origem": "P1",
+  "versao_auditoria_origem": "40caddd4e39c2c6d",
+  "saida": "analises/validacao_tecnica_cesta_20261125/saidas/auto_P1_20261125",
+  "cache": "D:/validacao_tecnica_trabalho/auto/cache",
+  "estado": "D:/validacao_tecnica_trabalho/auto/estado",
+  "banco_cesta": "D:/cesta_padronizada_trabalho/trabalho.db",
+  "colunas_permitidas": {
+    "_nota": "Únicas colunas carregadas pelo componente de validação. Qualquer outra é descartada na leitura (não chega aos extratores).",
+    "base_produtos.csv": [
+      "id_registro",
+      "tipo_registro",
+      "id_candidato",
+      "produto",
+      "id_especificacao_atomica",
+      "catmat",
+      "unidade_norm",
+      "pdm",
+      "classe_catalogo",
+      "classe_tecnica",
+      "cenario_rigoroso",
+      "prioridade",
+      "ordem_revisao",
+      "compras",
+      "itens",
+      "uasgs",
+      "n_variantes",
+      "n_descricoes_originais",
+      "itens_ambiguos",
+      "status_auditoria",
+      "conflitos",
+      "atributos_consenso",
+      "alertas",
+      "requer_especialista",
+      "consulta_edital",
+      "desmembravel",
+      "subprodutos",
+      "descricao_representativa",
+      "alertas_cesta",
+      "hash_registro"
+    ],
+    "base_variantes.csv": [
+      "id_variante",
+      "id_candidato",
+      "produto",
+      "id_especificacao_atomica",
+      "descricao_normalizada",
+      "chave_compacta",
+      "descricao_original_mais_frequente",
+      "n_descricoes_originais",
+      "ids_descricoes",
+      "itens",
+      "compras",
+      "uasgs",
+      "itens_ambiguos",
+      "descricao_ausente",
+      "nome_item",
+      "atributos",
+      "atributos_declarados",
+      "divergencias",
+      "alertas",
+      "hash_registro"
+    ],
+    "descricoes_originais.csv": [
+      "id_descricao",
+      "id_variante",
+      "id_candidato",
+      "produto",
+      "familia",
+      "desc_id",
+      "descricao_original",
+      "sha256_descricao",
+      "itens"
+    ],
+    "universo_produto": [
+      "chave",
+      "numero_item",
+      "produto",
+      "desc_id",
+      "uasg",
+      "data_publicacao",
+      "ano",
+      "trimestre",
+      "n_descricoes_item"
+    ],
+    "compras_base": [
+      "chave",
+      "uf"
+    ],
+    "unidades": [
+      "unidade_norm",
+      "embalagem",
+      "conteudo",
+      "unidade_conteudo",
+      "alerta"
+    ]
+  },
+  "fontes": {
+    "_nota": "Endpoints conferidos na documentação OpenAPI pública (https://dadosabertos.compras.gov.br/v3/api-docs) e por consulta real em 25/11/2026. Nenhum endpoint de itens, resultados ou valores é consultado.",
+    "catmat_item": "https://dadosabertos.compras.gov.br/modulo-material/4_consultarItemMaterial?pagina=1&codigoItem={catmat}",
+    "catmat_caracteristicas": "https://dadosabertos.compras.gov.br/modulo-material/7_consultarMaterialCaracteristicas?pagina=1&tamanhoPagina=500&codigoItem={catmat}",
+    "pdm_unidades": "https://dadosabertos.compras.gov.br/modulo-material/6_consultarMaterialUnidadeFornecimento?pagina=1&tamanhoPagina=500&codigoPdm={pdm}",
+    "pncp_arquivos": "https://pncp.gov.br/api/pncp/v1/orgaos/{cnpj}/compras/{ano}/{sequencial}/arquivos",
+    "user_agent": "pesquisa-academica-compras-publicas/1.0",
+    "intervalo_minimo_segundos": 0.2,
+    "conexoes_simultaneas": 3,
+    "tentativas": 4,
+    "timeout_segundos": 45,
+    "tamanho_maximo_documento_mb": 30,
+    "hosts_permitidos": [
+      "dadosabertos.compras.gov.br",
+      "pncp.gov.br"
+    ]
+  },
+  "documentos_contratacao": {
+    "_nota": "Amostra documental de compras (independente da classificação): famílias ordenadas por SHA-256(semente|produto); uma compra por família, escolhida por SHA-256(semente|produto|compra). Só Termo de Referência e Edital.",
+    "semente": 20261125,
+    "familias": 400,
+    "documentos_por_compra": 2,
+    "tipos_aceitos": [
+      "TERMO DE REFERENCIA",
+      "EDITAL"
+    ],
+    "janela_caracteres": 1500,
+    "janela_conflito_caracteres": 300
+  },
+  "perfis": {
+    "_nota": "Grupos de atributos críticos por categoria de risco. Cada grupo precisa ser satisfeito por ao menos uma característica OFICIAL do catálogo (nome contém um dos termos) ou por um atributo tipado extraído das características oficiais. Sem isso o produto fica AUTO_INCONCLUSIVO.",
+    "medicamento": {
+      "concentracao_ou_dosagem": {
+        "nomes": [
+          "CONCENTRACAO",
+          "DOSAGEM",
+          "TEOR",
+          "COMPOSICAO"
+        ],
+        "tipados": [
+          "concentracao_",
+          "dosagem"
+        ]
+      },
+      "forma_ou_apresentacao": {
+        "nomes": [
+          "FORMA FARMACEUTICA",
+          "APRESENTACAO",
+          "FORMA"
+        ],
+        "tipados": [
+          "forma_farmaceutica"
+        ]
+      }
+    },
+    "material_medico": {
+      "material_ou_tipo": {
+        "nomes": [
+          "MATERIAL",
+          "TIPO",
+          "COMPOSICAO"
+        ],
+        "tipados": [
+          "material"
+        ]
+      },
+      "medida_ou_capacidade": {
+        "nomes": [
+          "TAMANHO",
+          "DIMENS",
+          "COMPRIMENTO",
+          "DIAMETRO",
+          "CAPACIDADE",
+          "VOLUME",
+          "CALIBRE",
+          "ESPESSURA",
+          "LARGURA",
+          "ALTURA",
+          "NUMERO",
+          "GRAMATURA",
+          "CONCENTRACAO",
+          "PESO"
+        ],
+        "tipados": [
+          "comprimento",
+          "largura",
+          "altura",
+          "diametro",
+          "espessura",
+          "dimensoes",
+          "volume",
+          "capacidade_",
+          "gramatura",
+          "medida_linear",
+          "massa",
+          "concentracao_"
+        ]
+      }
+    },
+    "produto_quimico": {
+      "composicao_ou_concentracao": {
+        "nomes": [
+          "COMPOSICAO",
+          "CONCENTRACAO",
+          "TEOR",
+          "PUREZA",
+          "GRAU",
+          "PRINCIPIO ATIVO",
+          "FORMULA"
+        ],
+        "tipados": [
+          "concentracao_"
+        ]
+      }
+    },
+    "equipamento_eletronico": {
+      "parametro_eletrico_ou_capacidade": {
+        "nomes": [
+          "TENSAO",
+          "VOLTAGEM",
+          "POTENCIA",
+          "ALIMENTACAO",
+          "CAPACIDADE",
+          "BATERIA",
+          "CORRENTE",
+          "FREQUENCIA",
+          "RESOLUCAO",
+          "MEMORIA",
+          "AUTONOMIA"
+        ],
+        "tipados": [
+          "tensao",
+          "potencia",
+          "capacidade_"
+        ]
+      }
+    },
+    "peca_reposicao": {
+      "aplicacao_ou_referencia": {
+        "nomes": [
+          "APLICACAO",
+          "COMPATIB",
+          "MODELO",
+          "REFERENCIA",
+          "NUMERO DA PECA",
+          "PART NUMBER",
+          "MARCA",
+          "DIMENS",
+          "MEDIDA",
+          "VEICULO",
+          "EQUIPAMENTO"
+        ],
+        "tipados": [
+          "compatibilidade",
+          "modelo",
+          "referencia_tecnica",
+          "dimensoes"
+        ]
+      }
+    },
+    "compatibilidade": {
+      "compatibilidade_ou_modelo": {
+        "nomes": [
+          "COMPATIB",
+          "APLICACAO",
+          "MODELO",
+          "REFERENCIA",
+          "PARA USO",
+          "UTILIZACAO",
+          "EQUIPAMENTO"
+        ],
+        "tipados": [
+          "compatibilidade",
+          "modelo",
+          "referencia_tecnica"
+        ]
+      }
+    },
+    "toner_cartucho": {
+      "compatibilidade_ou_modelo": {
+        "nomes": [
+          "COMPATIB",
+          "APLICACAO",
+          "MODELO",
+          "REFERENCIA",
+          "IMPRESSORA",
+          "EQUIPAMENTO"
+        ],
+        "tipados": [
+          "compatibilidade",
+          "modelo",
+          "referencia_tecnica"
+        ]
+      }
+    },
+    "geral": {
+      "minimo_caracteristicas_oficiais": 2
+    },
+    "_nota_medicamento": "No CATMAT de medicamentos o PDM é o princípio ativo (conta como característica oficial no mínimo geral) e a unidade de fornecimento OFICIAL do PDM (COMPRIMIDO, AMPOLA, CÁPSULA…) informa a apresentação. A unidade só conta quando reconhecida nas unidades oficiais do PDM.",
+    "unidades_apresentacao_farmaceutica": [
+      "COMPRIMIDO",
+      "CAPSULA",
+      "DRAGEA",
+      "AMPOLA",
+      "FRASCO-AMPOLA",
+      "FRASCO AMPOLA",
+      "TUBETE",
+      "BISNAGA",
+      "SUPOSITORIO",
+      "OVULO",
+      "ADESIVO",
+      "SACHE",
+      "FLACONETE",
+      "SERINGA PREENCHIDA",
+      "BOLSA",
+      "FRASCO",
+      "TUBO",
+      "CARPULE",
+      "ENVELOPE",
+      "GOTAS",
+      "POTE",
+      "LATA",
+      "AEROSSOL",
+      "CARTELA"
+    ]
+  },
+  "siglas_unidade": {
+    "_nota": "Equivalências inequívocas entre sigla e nome de unidade (catálogo × unidade normalizada da cesta).",
+    "L": "LITRO",
+    "ML": "MILILITRO",
+    "G": "GRAMA",
+    "KG": "QUILOGRAMA",
+    "MG": "MILIGRAMA",
+    "FL": "FOLHA",
+    "UN": "UNIDADE",
+    "M": "METRO",
+    "CM": "CENTIMETRO",
+    "MM": "MILIMETRO",
+    "M2": "METRO QUADRADO",
+    "M3": "METRO CUBICO",
+    "PC": "PECA",
+    "PAR": "PAR",
+    "CX": "CAIXA",
+    "PCT": "PACOTE",
+    "LITRO": "LITRO",
+    "MILILITRO": "MILILITRO",
+    "GRAMA": "GRAMA",
+    "QUILOGRAMA": "QUILOGRAMA",
+    "MILIGRAMA": "MILIGRAMA",
+    "FOLHA": "FOLHA",
+    "UNIDADE": "UNIDADE",
+    "METRO": "METRO",
+    "CENTIMETRO": "CENTIMETRO",
+    "MILIMETRO": "MILIMETRO",
+    "PECA": "PECA",
+    "CAIXA": "CAIXA",
+    "PACOTE": "PACOTE"
+  }
+}

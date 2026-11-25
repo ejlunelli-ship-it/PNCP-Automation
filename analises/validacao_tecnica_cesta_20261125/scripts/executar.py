@@ -37,6 +37,17 @@ def main(argv=None):
     c.add_argument("--exigir-dupla-revisao", action="store_true", help="aprovador final ≠ revisores das variantes")
     sub.add_parser("testes", help="executa testes/test_validacao.py e grava o resultado")
     sub.add_parser("relatorio", help="gera relatorio.md e manifesto.json a partir das rodadas")
+    # ---- modo automático (validação técnica sem revisores humanos; não altera o fluxo de revisão humana)
+    for nome, ajuda in (("auto-preparar", "carrega a base P1 congelada, unidades e itens (lista branca de colunas)"),
+                        ("auto-documentos", "consulta o catálogo oficial e os documentos de contratação da amostra (com cache)"),
+                        ("auto-validar", "classifica famílias, subprodutos e itens (AUTO_*) a partir do snapshot documental"),
+                        ("auto-auditar", "integridade, auditoria das decisões, cobertura, integração e relatório"),
+                        ("auto-executar", "todas as etapas automáticas, pulando as já concluídas com hashes válidos")):
+        x = sub.add_parser(nome, help=ajuda)
+        x.add_argument("--prioridade", default="P1", help="só P1 nesta versão")
+        x.add_argument("--atualizar-fontes", action="store_true", help="consulta de novo as fontes (nova versão; a antiga é preservada)")
+        x.add_argument("--limite-compras", type=int, help="limita a amostra documental (testes)")
+        x.add_argument("--refazer", action="store_true", help="refaz as etapas mesmo com hashes válidos")
     a = ap.parse_args(argv)
 
     cfg = comum.carregar_config(a.config)
@@ -61,6 +72,11 @@ def main(argv=None):
         elif a.comando == "relatorio":
             from relatorio import gerar
             gerar(cfg, reg)
+        elif a.comando.startswith("auto-"):
+            if a.prioridade != "P1":
+                raise ErroEstrutural("a validação automática desta versão cobre só a prioridade P1")
+            from validacao_automatica.orquestrar import executar_auto
+            executar_auto(cfg, reg, a.comando, atualizar=a.atualizar_fontes, limite_compras=a.limite_compras, refazer=a.refazer)
     except ErroEstrutural as e:
         print(f"ERRO ESTRUTURAL: {e}", file=sys.stderr)
         return 2
