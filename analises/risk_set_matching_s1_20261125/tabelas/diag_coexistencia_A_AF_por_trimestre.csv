@@ -1,0 +1,251 @@
+﻿nivel,unidade,com_produto,trimestre,celulas_com_A_e_AF,unidades
+1_todas_as_compras_AAF,UASG,0,2023T2,61,61
+1_todas_as_compras_AAF,UASG,0,2023T3,131,131
+1_todas_as_compras_AAF,UASG,0,2023T4,160,160
+1_todas_as_compras_AAF,UASG,0,2024T1,186,186
+1_todas_as_compras_AAF,UASG,0,2024T2,345,345
+1_todas_as_compras_AAF,UASG,0,2024T3,397,397
+1_todas_as_compras_AAF,UASG,0,2024T4,386,386
+1_todas_as_compras_AAF,UASG,0,2025T1,280,280
+1_todas_as_compras_AAF,UASG,0,2025T2,363,363
+1_todas_as_compras_AAF,UASG,0,2025T3,413,413
+1_todas_as_compras_AAF,UASG,0,2025T4,367,367
+1_todas_as_compras_AAF,UASG,0,2026T1,271,271
+1_todas_as_compras_AAF,CNPJ (órgão),0,2023T2,69,69
+1_todas_as_compras_AAF,CNPJ (órgão),0,2023T3,94,94
+1_todas_as_compras_AAF,CNPJ (órgão),0,2023T4,117,117
+1_todas_as_compras_AAF,CNPJ (órgão),0,2024T1,139,139
+1_todas_as_compras_AAF,CNPJ (órgão),0,2024T2,230,230
+1_todas_as_compras_AAF,CNPJ (órgão),0,2024T3,254,254
+1_todas_as_compras_AAF,CNPJ (órgão),0,2024T4,263,263
+1_todas_as_compras_AAF,CNPJ (órgão),0,2025T1,216,216
+1_todas_as_compras_AAF,CNPJ (órgão),0,2025T2,268,268
+1_todas_as_compras_AAF,CNPJ (órgão),0,2025T3,310,310
+1_todas_as_compras_AAF,CNPJ (órgão),0,2025T4,289,289
+1_todas_as_compras_AAF,CNPJ (órgão),0,2026T1,225,225
+1_todas_as_compras_AAF,UF (estado),0,2023T2,27,27
+1_todas_as_compras_AAF,UF (estado),0,2023T3,27,27
+1_todas_as_compras_AAF,UF (estado),0,2023T4,27,27
+1_todas_as_compras_AAF,UF (estado),0,2024T1,27,27
+1_todas_as_compras_AAF,UF (estado),0,2024T2,27,27
+1_todas_as_compras_AAF,UF (estado),0,2024T3,27,27
+1_todas_as_compras_AAF,UF (estado),0,2024T4,27,27
+1_todas_as_compras_AAF,UF (estado),0,2025T1,27,27
+1_todas_as_compras_AAF,UF (estado),0,2025T2,27,27
+1_todas_as_compras_AAF,UF (estado),0,2025T3,27,27
+1_todas_as_compras_AAF,UF (estado),0,2025T4,27,27
+1_todas_as_compras_AAF,UF (estado),0,2026T1,27,27
+2_compras_com_item_S1_elegivel,UASG,0,2023T2,11,11
+2_compras_com_item_S1_elegivel,UASG,0,2023T3,35,35
+2_compras_com_item_S1_elegivel,UASG,0,2023T4,34,34
+2_compras_com_item_S1_elegivel,UASG,0,2024T1,43,43
+2_compras_com_item_S1_elegivel,UASG,0,2024T2,102,102
+2_compras_com_item_S1_elegivel,UASG,0,2024T3,101,101
+2_compras_com_item_S1_elegivel,UASG,0,2024T4,98,98
+2_compras_com_item_S1_elegivel,UASG,0,2025T1,73,73
+2_compras_com_item_S1_elegivel,UASG,0,2025T2,89,89
+2_compras_com_item_S1_elegivel,UASG,0,2025T3,101,101
+2_compras_com_item_S1_elegivel,UASG,0,2025T4,90,90
+2_compras_com_item_S1_elegivel,UASG,0,2026T1,55,55
+2_compras_com_item_S1_elegivel,UASG,1,2023T2,1,1
+2_compras_com_item_S1_elegivel,UASG,1,2023T3,9,3
+2_compras_com_item_S1_elegivel,UASG,1,2023T4,41,5
+2_compras_com_item_S1_elegivel,UASG,1,2024T1,24,8
+2_compras_com_item_S1_elegivel,UASG,1,2024T2,191,23
+2_compras_com_item_S1_elegivel,UASG,1,2024T3,70,21
+2_compras_com_item_S1_elegivel,UASG,1,2024T4,140,15
+2_compras_com_item_S1_elegivel,UASG,1,2025T1,93,12
+2_compras_com_item_S1_elegivel,UASG,1,2025T2,89,13
+2_compras_com_item_S1_elegivel,UASG,1,2025T3,179,18
+2_compras_com_item_S1_elegivel,UASG,1,2025T4,123,19
+2_compras_com_item_S1_elegivel,UASG,1,2026T1,72,8
+2_compras_com_item_S1_elegivel,CNPJ (órgão),0,2023T2,22,22
+2_compras_com_item_S1_elegivel,CNPJ (órgão),0,2023T3,48,48
+2_compras_com_item_S1_elegivel,CNPJ (órgão),0,2023T4,57,57
+2_compras_com_item_S1_elegivel,CNPJ (órgão),0,2024T1,63,63
+2_compras_com_item_S1_elegivel,CNPJ (órgão),0,2024T2,103,103
+2_compras_com_item_S1_elegivel,CNPJ (órgão),0,2024T3,107,107
+2_compras_com_item_S1_elegivel,CNPJ (órgão),0,2024T4,114,114
+2_compras_com_item_S1_elegivel,CNPJ (órgão),0,2025T1,86,86
+2_compras_com_item_S1_elegivel,CNPJ (órgão),0,2025T2,105,105
+2_compras_com_item_S1_elegivel,CNPJ (órgão),0,2025T3,114,114
+2_compras_com_item_S1_elegivel,CNPJ (órgão),0,2025T4,105,105
+2_compras_com_item_S1_elegivel,CNPJ (órgão),0,2026T1,64,64
+2_compras_com_item_S1_elegivel,CNPJ (órgão),1,2023T2,633,10
+2_compras_com_item_S1_elegivel,CNPJ (órgão),1,2023T3,1517,25
+2_compras_com_item_S1_elegivel,CNPJ (órgão),1,2023T4,1887,24
+2_compras_com_item_S1_elegivel,CNPJ (órgão),1,2024T1,2499,31
+2_compras_com_item_S1_elegivel,CNPJ (órgão),1,2024T2,3346,47
+2_compras_com_item_S1_elegivel,CNPJ (órgão),1,2024T3,3072,47
+2_compras_com_item_S1_elegivel,CNPJ (órgão),1,2024T4,2984,39
+2_compras_com_item_S1_elegivel,CNPJ (órgão),1,2025T1,2292,27
+2_compras_com_item_S1_elegivel,CNPJ (órgão),1,2025T2,2617,32
+2_compras_com_item_S1_elegivel,CNPJ (órgão),1,2025T3,3121,42
+2_compras_com_item_S1_elegivel,CNPJ (órgão),1,2025T4,2767,32
+2_compras_com_item_S1_elegivel,CNPJ (órgão),1,2026T1,1977,17
+2_compras_com_item_S1_elegivel,UF (estado),0,2023T2,22,22
+2_compras_com_item_S1_elegivel,UF (estado),0,2023T3,26,26
+2_compras_com_item_S1_elegivel,UF (estado),0,2023T4,26,26
+2_compras_com_item_S1_elegivel,UF (estado),0,2024T1,27,27
+2_compras_com_item_S1_elegivel,UF (estado),0,2024T2,27,27
+2_compras_com_item_S1_elegivel,UF (estado),0,2024T3,27,27
+2_compras_com_item_S1_elegivel,UF (estado),0,2024T4,27,27
+2_compras_com_item_S1_elegivel,UF (estado),0,2025T1,27,27
+2_compras_com_item_S1_elegivel,UF (estado),0,2025T2,27,27
+2_compras_com_item_S1_elegivel,UF (estado),0,2025T3,27,27
+2_compras_com_item_S1_elegivel,UF (estado),0,2025T4,27,27
+2_compras_com_item_S1_elegivel,UF (estado),0,2026T1,27,27
+2_compras_com_item_S1_elegivel,UF (estado),1,2023T2,434,14
+2_compras_com_item_S1_elegivel,UF (estado),1,2023T3,1776,25
+2_compras_com_item_S1_elegivel,UF (estado),1,2023T4,2417,22
+2_compras_com_item_S1_elegivel,UF (estado),1,2024T1,3523,25
+2_compras_com_item_S1_elegivel,UF (estado),1,2024T2,7141,27
+2_compras_com_item_S1_elegivel,UF (estado),1,2024T3,7882,27
+2_compras_com_item_S1_elegivel,UF (estado),1,2024T4,7583,27
+2_compras_com_item_S1_elegivel,UF (estado),1,2025T1,6546,27
+2_compras_com_item_S1_elegivel,UF (estado),1,2025T2,6416,27
+2_compras_com_item_S1_elegivel,UF (estado),1,2025T3,8027,27
+2_compras_com_item_S1_elegivel,UF (estado),1,2025T4,6199,27
+2_compras_com_item_S1_elegivel,UF (estado),1,2026T1,4998,26
+3_itens_S1_com_preco_homologado,UASG,0,2023T2,10,10
+3_itens_S1_com_preco_homologado,UASG,0,2023T3,31,31
+3_itens_S1_com_preco_homologado,UASG,0,2023T4,31,31
+3_itens_S1_com_preco_homologado,UASG,0,2024T1,39,39
+3_itens_S1_com_preco_homologado,UASG,0,2024T2,92,92
+3_itens_S1_com_preco_homologado,UASG,0,2024T3,92,92
+3_itens_S1_com_preco_homologado,UASG,0,2024T4,89,89
+3_itens_S1_com_preco_homologado,UASG,0,2025T1,63,63
+3_itens_S1_com_preco_homologado,UASG,0,2025T2,79,79
+3_itens_S1_com_preco_homologado,UASG,0,2025T3,95,95
+3_itens_S1_com_preco_homologado,UASG,0,2025T4,82,82
+3_itens_S1_com_preco_homologado,UASG,0,2026T1,50,50
+3_itens_S1_com_preco_homologado,UASG,1,2023T2,1,1
+3_itens_S1_com_preco_homologado,UASG,1,2023T4,17,2
+3_itens_S1_com_preco_homologado,UASG,1,2024T1,18,4
+3_itens_S1_com_preco_homologado,UASG,1,2024T2,49,10
+3_itens_S1_com_preco_homologado,UASG,1,2024T3,41,17
+3_itens_S1_com_preco_homologado,UASG,1,2024T4,102,12
+3_itens_S1_com_preco_homologado,UASG,1,2025T1,76,8
+3_itens_S1_com_preco_homologado,UASG,1,2025T2,64,11
+3_itens_S1_com_preco_homologado,UASG,1,2025T3,86,9
+3_itens_S1_com_preco_homologado,UASG,1,2025T4,61,10
+3_itens_S1_com_preco_homologado,UASG,1,2026T1,46,5
+3_itens_S1_com_preco_homologado,CNPJ (órgão),0,2023T2,21,21
+3_itens_S1_com_preco_homologado,CNPJ (órgão),0,2023T3,45,45
+3_itens_S1_com_preco_homologado,CNPJ (órgão),0,2023T4,55,55
+3_itens_S1_com_preco_homologado,CNPJ (órgão),0,2024T1,57,57
+3_itens_S1_com_preco_homologado,CNPJ (órgão),0,2024T2,95,95
+3_itens_S1_com_preco_homologado,CNPJ (órgão),0,2024T3,99,99
+3_itens_S1_com_preco_homologado,CNPJ (órgão),0,2024T4,102,102
+3_itens_S1_com_preco_homologado,CNPJ (órgão),0,2025T1,77,77
+3_itens_S1_com_preco_homologado,CNPJ (órgão),0,2025T2,96,96
+3_itens_S1_com_preco_homologado,CNPJ (órgão),0,2025T3,108,108
+3_itens_S1_com_preco_homologado,CNPJ (órgão),0,2025T4,97,97
+3_itens_S1_com_preco_homologado,CNPJ (órgão),0,2026T1,60,60
+3_itens_S1_com_preco_homologado,CNPJ (órgão),1,2023T2,484,9
+3_itens_S1_com_preco_homologado,CNPJ (órgão),1,2023T3,1195,16
+3_itens_S1_com_preco_homologado,CNPJ (órgão),1,2023T4,1439,19
+3_itens_S1_com_preco_homologado,CNPJ (órgão),1,2024T1,2077,27
+3_itens_S1_com_preco_homologado,CNPJ (órgão),1,2024T2,2733,40
+3_itens_S1_com_preco_homologado,CNPJ (órgão),1,2024T3,2565,42
+3_itens_S1_com_preco_homologado,CNPJ (órgão),1,2024T4,2339,37
+3_itens_S1_com_preco_homologado,CNPJ (órgão),1,2025T1,1857,22
+3_itens_S1_com_preco_homologado,CNPJ (órgão),1,2025T2,2173,27
+3_itens_S1_com_preco_homologado,CNPJ (órgão),1,2025T3,2607,34
+3_itens_S1_com_preco_homologado,CNPJ (órgão),1,2025T4,2184,25
+3_itens_S1_com_preco_homologado,CNPJ (órgão),1,2026T1,1637,16
+3_itens_S1_com_preco_homologado,UF (estado),0,2023T2,22,22
+3_itens_S1_com_preco_homologado,UF (estado),0,2023T3,26,26
+3_itens_S1_com_preco_homologado,UF (estado),0,2023T4,26,26
+3_itens_S1_com_preco_homologado,UF (estado),0,2024T1,27,27
+3_itens_S1_com_preco_homologado,UF (estado),0,2024T2,27,27
+3_itens_S1_com_preco_homologado,UF (estado),0,2024T3,27,27
+3_itens_S1_com_preco_homologado,UF (estado),0,2024T4,27,27
+3_itens_S1_com_preco_homologado,UF (estado),0,2025T1,27,27
+3_itens_S1_com_preco_homologado,UF (estado),0,2025T2,27,27
+3_itens_S1_com_preco_homologado,UF (estado),0,2025T3,27,27
+3_itens_S1_com_preco_homologado,UF (estado),0,2025T4,27,27
+3_itens_S1_com_preco_homologado,UF (estado),0,2026T1,27,27
+3_itens_S1_com_preco_homologado,UF (estado),1,2023T2,289,12
+3_itens_S1_com_preco_homologado,UF (estado),1,2023T3,1313,24
+3_itens_S1_com_preco_homologado,UF (estado),1,2023T4,1707,22
+3_itens_S1_com_preco_homologado,UF (estado),1,2024T1,2815,25
+3_itens_S1_com_preco_homologado,UF (estado),1,2024T2,5748,27
+3_itens_S1_com_preco_homologado,UF (estado),1,2024T3,6255,27
+3_itens_S1_com_preco_homologado,UF (estado),1,2024T4,5781,27
+3_itens_S1_com_preco_homologado,UF (estado),1,2025T1,5168,27
+3_itens_S1_com_preco_homologado,UF (estado),1,2025T2,5088,27
+3_itens_S1_com_preco_homologado,UF (estado),1,2025T3,6492,27
+3_itens_S1_com_preco_homologado,UF (estado),1,2025T4,4879,27
+3_itens_S1_com_preco_homologado,UF (estado),1,2026T1,3960,26
+4_itens_S1_com_indice_A1,UASG,0,2023T2,2,2
+4_itens_S1_com_indice_A1,UASG,0,2023T3,23,23
+4_itens_S1_com_indice_A1,UASG,0,2023T4,28,28
+4_itens_S1_com_indice_A1,UASG,0,2024T1,32,32
+4_itens_S1_com_indice_A1,UASG,0,2024T2,91,91
+4_itens_S1_com_indice_A1,UASG,0,2024T3,90,90
+4_itens_S1_com_indice_A1,UASG,0,2024T4,88,88
+4_itens_S1_com_indice_A1,UASG,0,2025T1,58,58
+4_itens_S1_com_indice_A1,UASG,0,2025T2,74,74
+4_itens_S1_com_indice_A1,UASG,0,2025T3,92,92
+4_itens_S1_com_indice_A1,UASG,0,2025T4,81,81
+4_itens_S1_com_indice_A1,UASG,0,2026T1,48,48
+4_itens_S1_com_indice_A1,UASG,1,2023T2,1,1
+4_itens_S1_com_indice_A1,UASG,1,2023T4,15,1
+4_itens_S1_com_indice_A1,UASG,1,2024T1,17,3
+4_itens_S1_com_indice_A1,UASG,1,2024T2,48,10
+4_itens_S1_com_indice_A1,UASG,1,2024T3,41,17
+4_itens_S1_com_indice_A1,UASG,1,2024T4,99,12
+4_itens_S1_com_indice_A1,UASG,1,2025T1,75,7
+4_itens_S1_com_indice_A1,UASG,1,2025T2,63,10
+4_itens_S1_com_indice_A1,UASG,1,2025T3,86,9
+4_itens_S1_com_indice_A1,UASG,1,2025T4,57,8
+4_itens_S1_com_indice_A1,UASG,1,2026T1,46,5
+4_itens_S1_com_indice_A1,CNPJ (órgão),0,2023T2,9,9
+4_itens_S1_com_indice_A1,CNPJ (órgão),0,2023T3,40,40
+4_itens_S1_com_indice_A1,CNPJ (órgão),0,2023T4,49,49
+4_itens_S1_com_indice_A1,CNPJ (órgão),0,2024T1,55,55
+4_itens_S1_com_indice_A1,CNPJ (órgão),0,2024T2,94,94
+4_itens_S1_com_indice_A1,CNPJ (órgão),0,2024T3,97,97
+4_itens_S1_com_indice_A1,CNPJ (órgão),0,2024T4,102,102
+4_itens_S1_com_indice_A1,CNPJ (órgão),0,2025T1,73,73
+4_itens_S1_com_indice_A1,CNPJ (órgão),0,2025T2,94,94
+4_itens_S1_com_indice_A1,CNPJ (órgão),0,2025T3,106,106
+4_itens_S1_com_indice_A1,CNPJ (órgão),0,2025T4,95,95
+4_itens_S1_com_indice_A1,CNPJ (órgão),0,2026T1,60,60
+4_itens_S1_com_indice_A1,CNPJ (órgão),1,2023T2,221,8
+4_itens_S1_com_indice_A1,CNPJ (órgão),1,2023T3,922,15
+4_itens_S1_com_indice_A1,CNPJ (órgão),1,2023T4,1130,18
+4_itens_S1_com_indice_A1,CNPJ (órgão),1,2024T1,1813,25
+4_itens_S1_com_indice_A1,CNPJ (órgão),1,2024T2,2636,40
+4_itens_S1_com_indice_A1,CNPJ (órgão),1,2024T3,2489,41
+4_itens_S1_com_indice_A1,CNPJ (órgão),1,2024T4,2242,36
+4_itens_S1_com_indice_A1,CNPJ (órgão),1,2025T1,1765,21
+4_itens_S1_com_indice_A1,CNPJ (órgão),1,2025T2,2103,27
+4_itens_S1_com_indice_A1,CNPJ (órgão),1,2025T3,2553,34
+4_itens_S1_com_indice_A1,CNPJ (órgão),1,2025T4,2113,22
+4_itens_S1_com_indice_A1,CNPJ (órgão),1,2026T1,1534,16
+4_itens_S1_com_indice_A1,UF (estado),0,2023T2,20,20
+4_itens_S1_com_indice_A1,UF (estado),0,2023T3,26,26
+4_itens_S1_com_indice_A1,UF (estado),0,2023T4,26,26
+4_itens_S1_com_indice_A1,UF (estado),0,2024T1,27,27
+4_itens_S1_com_indice_A1,UF (estado),0,2024T2,27,27
+4_itens_S1_com_indice_A1,UF (estado),0,2024T3,27,27
+4_itens_S1_com_indice_A1,UF (estado),0,2024T4,27,27
+4_itens_S1_com_indice_A1,UF (estado),0,2025T1,27,27
+4_itens_S1_com_indice_A1,UF (estado),0,2025T2,27,27
+4_itens_S1_com_indice_A1,UF (estado),0,2025T3,27,27
+4_itens_S1_com_indice_A1,UF (estado),0,2025T4,27,27
+4_itens_S1_com_indice_A1,UF (estado),0,2026T1,27,27
+4_itens_S1_com_indice_A1,UF (estado),1,2023T2,151,10
+4_itens_S1_com_indice_A1,UF (estado),1,2023T3,1105,22
+4_itens_S1_com_indice_A1,UF (estado),1,2023T4,1449,22
+4_itens_S1_com_indice_A1,UF (estado),1,2024T1,2585,25
+4_itens_S1_com_indice_A1,UF (estado),1,2024T2,5569,27
+4_itens_S1_com_indice_A1,UF (estado),1,2024T3,6059,27
+4_itens_S1_com_indice_A1,UF (estado),1,2024T4,5539,27
+4_itens_S1_com_indice_A1,UF (estado),1,2025T1,4943,27
+4_itens_S1_com_indice_A1,UF (estado),1,2025T2,4903,27
+4_itens_S1_com_indice_A1,UF (estado),1,2025T3,6311,27
+4_itens_S1_com_indice_A1,UF (estado),1,2025T4,4713,27
+4_itens_S1_com_indice_A1,UF (estado),1,2026T1,3767,26

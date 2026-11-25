@@ -1,0 +1,120 @@
+{
+  "_descricao": "Associação condicional entre AF e preço homologado na cesta S1, com efeitos fixos de alta dimensão (M1–M5). Nada aqui é interpretado causalmente. Parâmetros fixados antes da estimação.",
+  "versao": "1.0.0",
+  "semente": 20261125,
+  "fontes": {
+    "pncp_v2_caminhos_candidatos": [
+      "dados/pncp_v2.db",
+      "D:/pncp_v2.db"
+    ],
+    "pncp_v2_impressao_esperada": {
+      "tamanho_bytes": 18242981888,
+      "sha256_inicio_fim": "e0a29c420098bbbd0e49876e700a484f2cdd7154330f0656b042b08d7ad9f88c"
+    },
+    "rodada_S1": "analises/efeito_modos_cesta_auto_S1_20261125",
+    "dados_S1": "D:/efeito_modos_auto_S1/S1",
+    "estudo_original": "analises/efeito_modos_cesta_padronizada_20261124",
+    "contagens_S1_esperadas": {
+      "produtos": 3065,
+      "compras": 74167,
+      "itens": 708964,
+      "uasgs": 4141
+    }
+  },
+  "trabalho": "D:/associacao_modos_s1_trabalho",
+  "amostra": {
+    "fonte": "dados_abertos",
+    "modalidade": "Pregão - Eletrônico",
+    "modos": [
+      "Aberto",
+      "Aberto-Fechado"
+    ],
+    "criterio": "Menor preço",
+    "situacao": "Homologado",
+    "unidade_observacao": "compra × produto S1; itens duplicados agregados por preço unitário médio ponderado pela quantidade (média simples se alguma quantidade faltar ou for ≤ 0)",
+    "uf": "compras.uf = unidadeOrgaoUfSigla (UF administrativa da unidade compradora). Não há UF de entrega no banco (itens não têm local de entrega; extracao_parser.uf está vazio).",
+    "trimestres_incompletos": [
+      "2022T4",
+      "2026T2",
+      "2026T3",
+      "2026T4"
+    ],
+    "_trimestres_nota": "2022T4: publicações só de nov–dez/2022; 2026T2: CATMAT só até 17/04/2026; 2026T3–T4: itens residuais sem CATMAT regular. Ficam na amostra principal (todo o período com preço) e saem na sensibilidade."
+  },
+  "modelos": {
+    "M1": {
+      "fe": [
+        "uf_prod_tri",
+        "cnpj"
+      ],
+      "desc": "UF × produto × trimestre + CNPJ (PRINCIPAL)"
+    },
+    "M2": {
+      "fe": [
+        "uf_prod_tri",
+        "cnpj_prod"
+      ],
+      "desc": "UF × produto × trimestre + CNPJ × produto"
+    },
+    "M3": {
+      "fe": [
+        "cnpj_prod_tri"
+      ],
+      "desc": "CNPJ × produto × trimestre"
+    },
+    "M4": {
+      "fe": [
+        "cnpj_prod_tri",
+        "uasg"
+      ],
+      "desc": "CNPJ × produto × trimestre + UASG"
+    },
+    "M5": {
+      "fe": [
+        "uasg_prod_tri"
+      ],
+      "desc": "UASG × produto × trimestre (sensibilidade mais restrita)"
+    }
+  },
+  "estimacao": {
+    "tol": 1e-09,
+    "max_iter": 50000,
+    "tol_verificacao_medias": 1e-06
+  },
+  "inferencia": {
+    "cluster": "cnpj",
+    "wcr_B": 9999,
+    "loo_top": 10,
+    "cluster_alternativo": [
+      "uf",
+      "cnpj+produto (CGM)"
+    ],
+    "regra": "significância só é tratada como robusta se CR1 t(G−1) e o bootstrap selvagem restrito (Webb) rejeitarem a 5% e o número efetivo de clusters (Carter–Schnepel–Steigerwald; ρ = 1 quando definido, senão ρ = 0, que coincide com o inverso do Herfindahl das contribuições) não for pequeno (< 20)"
+  },
+  "viabilidade_cnpj": {
+    "_nota": "Diagnóstico de viabilidade de um desenho em painel CNPJ × trimestre (só contagens; nenhum efeito estimado). Limiares fixados antes de olhar os resultados.",
+    "trimestres_completos": [
+      "2023T2",
+      "2026T1"
+    ],
+    "min_compras_trimestre": 3,
+    "mudanca_relevante": 0.5,
+    "mudanca_sensibilidade": 0.3,
+    "_mudanca_nota": "evento em t0: participação AF (compras A/AF do CNPJ) média em t0 e t0+1 difere ≥ limiar da média em t0−2 e t0−1; os quatro trimestres observados com ≥ min_compras; persistente se t0 e t0+1 estão, cada um, a ≥ limiar/2 do nível pré no mesmo sentido. Primeiro evento de cada CNPJ.",
+    "estavel_amplitude_max": 0.2,
+    "estavel_min_trimestres": 6,
+    "comparador_dif_inicial_max": 0.1,
+    "janela_pre": [
+      -2,
+      -1
+    ],
+    "janela_pos": [
+      0,
+      1
+    ],
+    "janela_falsificacao": [
+      -4,
+      -3
+    ]
+  }
+}

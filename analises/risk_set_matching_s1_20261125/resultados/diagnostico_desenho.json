@@ -1,0 +1,36 @@
+{
+  "densidade_indice": {
+    "uasg_trimestres_com_compras_A_AF": 33172,
+    "com_indice_S1": 17445,
+    "fracao_com_indice": 0.5258953334137224
+  },
+  "eventos_principal_M0": 4,
+  "n_efetivo_cnpjs_tratados": 4.0,
+  "suporte_suficiente": false,
+  "covariaveis_M0_com_smd_depois_maior_0_10": [
+    "log_compras",
+    "log_itens",
+    "freq_trimestral",
+    "log_itens_por_compra",
+    "log_valor_medio_compra",
+    "var_log_itens",
+    "log_itens_s1",
+    "recorrencia_s1",
+    "hhi_classes",
+    "srp",
+    "sigilo",
+    "homologacao",
+    "fracasso",
+    "trimestres_no_regime"
+  ],
+  "smd_abs_max_depois_M0": 0.8229422455775318,
+  "placebo_reservado_M0": {
+    "beta_lp": -50.947427516261115,
+    "ic95_inf": -118.07555356550797,
+    "ic95_sup": 16.180698532985744,
+    "p_t": 0.1250438356064563,
+    "p_wcr_webb": 0.12101210121012101,
+    "p_tost": 0.9184827682970704,
+    "mde_80": 94.16593817423828
+  }
+}

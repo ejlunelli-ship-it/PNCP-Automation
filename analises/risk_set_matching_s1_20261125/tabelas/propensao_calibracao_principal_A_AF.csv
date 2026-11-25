@@ -1,0 +1,11 @@
+﻿desenho,direcao,decil,n,p_medio,taxa_observada
+principal,A->AF,0,198,0.0,0.0
+principal,A->AF,1,197,1.959e-07,0.0
+principal,A->AF,2,197,6.2607e-06,0.0
+principal,A->AF,3,197,2.76708e-05,0.0
+principal,A->AF,4,197,7.97037e-05,0.0
+principal,A->AF,5,197,0.000198104,0.0
+principal,A->AF,6,197,0.0004710999,0.0
+principal,A->AF,7,197,0.0010190231,0.0
+principal,A->AF,8,197,0.0023265299,0.0
+principal,A->AF,9,197,0.0364798408,0.0406091371

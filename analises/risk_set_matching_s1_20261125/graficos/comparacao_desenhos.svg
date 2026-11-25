@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="380" font-family="Segoe UI, Arial" font-size="12">
+<rect width="100%" height="100%" fill="white"/>
+<text x="380.0" y="22" text-anchor="middle" font-size="15" font-weight="600">Efeito/associação do AF por desenho (lp, IC95)</text>
+<line x1="70" x2="740" y1="205.4" y2="205.4" stroke="#888" stroke-dasharray="4 3"/>
+<line x1="70" x2="70" y1="48" y2="310" stroke="#333"/>
+<text x="64" y="314.0" text-anchor="end" fill="#444">-64.2</text>
+<line x1="67" x2="70" y1="310.0" y2="310.0" stroke="#333"/>
+<text x="64" y="261.6" text-anchor="end" fill="#444">-32.0</text>
+<line x1="67" x2="70" y1="257.6" y2="257.6" stroke="#333"/>
+<text x="64" y="209.2" text-anchor="end" fill="#444">0.1</text>
+<line x1="67" x2="70" y1="205.2" y2="205.2" stroke="#333"/>
+<text x="64" y="156.8" text-anchor="end" fill="#444">32.3</text>
+<line x1="67" x2="70" y1="152.8" y2="152.8" stroke="#333"/>
+<text x="64" y="104.4" text-anchor="end" fill="#444">64.5</text>
+<line x1="67" x2="70" y1="100.4" y2="100.4" stroke="#333"/>
+<text x="64" y="52.0" text-anchor="end" fill="#444">96.6</text>
+<line x1="67" x2="70" y1="48.0" y2="48.0" stroke="#333"/>
+<text x="18" y="179.0" transform="rotate(-90 18 179.0)" text-anchor="middle">log-pontos</text>
+<text x="117.9" y="328" text-anchor="middle" fill="#333">dCDH original reestima</text>
+<text x="213.6" y="328" text-anchor="middle" fill="#333">E3 (efeitos fixos, S1)</text>
+<text x="309.3" y="328" text-anchor="middle" fill="#333">E7 (efeitos fixos, S1)</text>
+<text x="405.0" y="328" text-anchor="middle" fill="#333">Risk-set DiD M0</text>
+<text x="500.7" y="328" text-anchor="middle" fill="#333">Risk-set DiD M1</text>
+<text x="596.4" y="328" text-anchor="middle" fill="#333">Matching por propensit</text>
+<text x="692.1" y="328" text-anchor="middle" fill="#333">Mesmo produto pré/pós </text>
+<line x1="117.9" x2="117.9" y1="229.6" y2="202.2" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="117.9" cy="215.9" r="4" fill="#2b6cb0"/>
+<line x1="213.6" x2="213.6" y1="217.7" y2="209.6" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="213.6" cy="213.7" r="4" fill="#2b6cb0"/>
+<line x1="309.3" x2="309.3" y1="213.0" y2="204.8" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="309.3" cy="208.9" r="4" fill="#2b6cb0"/>
+<line x1="405.0" x2="405.0" y1="291.9" y2="66.1" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="405.0" cy="179.0" r="4" fill="#2b6cb0"/>
+<line x1="500.7" x2="500.7" y1="291.9" y2="66.1" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="500.7" cy="179.0" r="4" fill="#2b6cb0"/>
+<line x1="596.4" x2="596.4" y1="267.3" y2="87.1" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="596.4" cy="177.2" r="4" fill="#2b6cb0"/>
+<rect x="80" y="354" width="12" height="12" fill="#2b6cb0"/><text x="98" y="364">estimativa</text>
+<text x="740" y="376" text-anchor="end" font-size="10" fill="#666">populações e estimandos diferentes</text>
+</svg>

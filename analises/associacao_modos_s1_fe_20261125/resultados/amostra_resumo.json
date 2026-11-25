@@ -1,0 +1,44 @@
+{
+  "observacoes": 485369,
+  "com_itens_duplicados": 43110,
+  "itens_em_duplicados": 114451,
+  "media_simples_por_quantidade_ausente": 0,
+  "sem_lnq": 0,
+  "conferencia_banco": {
+    "itens_sem_compra_no_banco": 0,
+    "modo_item_difere_do_banco": 0,
+    "uasg_difere": 0,
+    "cnpj_difere": 0,
+    "uf_difere": 0,
+    "fonte_diferente": 0,
+    "modalidade_diferente": 0
+  },
+  "banco": {
+    "caminho": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\dados\\pncp_v2.db",
+    "tamanho_bytes": 18242981888,
+    "mtime_ns": 1795550467292885200,
+    "mtime_iso": "2026-11-24T17:01:07",
+    "sqlite_contador_alteracoes": 308,
+    "sqlite_cookie_esquema": 7,
+    "sha256_inicio_fim": "e0a29c420098bbbd0e49876e700a484f2cdd7154330f0656b042b08d7ad9f88c",
+    "amostra_mb": 64
+  },
+  "uf": "compras.uf = unidadeOrgaoUfSigla (UF administrativa da unidade compradora). Não há UF de entrega no banco (itens não têm local de entrega; extracao_parser.uf está vazio).",
+  "trimestres": {
+    "2023T2": 5378,
+    "2023T3": 15556,
+    "2023T4": 18536,
+    "2024T1": 27469,
+    "2024T2": 53136,
+    "2024T3": 56218,
+    "2024T4": 61139,
+    "2025T1": 46944,
+    "2025T2": 46620,
+    "2025T3": 56078,
+    "2025T4": 51624,
+    "2026T1": 36089,
+    "2026T2": 10415,
+    "2026T3": 167
+  },
+  "obs_em_trimestres_incompletos": 10582
+}

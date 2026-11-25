@@ -1,0 +1,993 @@
+﻿desenho,metodo,etapa,criterio,direcao,t0,eventos,uasgs_tratadas,cnpjs_tratados,n_efetivo_cnpjs_tratados,uasgs_controle,cnpjs_controle
+principal,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,todas,todos,309,259,166,31.4807121662,,
+principal,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,todos,163,161,105,23.4916003537,,
+principal,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,todos,146,143,99,38.7563636364,,
+principal,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2024T4,24,24,18,8.7272727273,,
+principal,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T1,25,25,19,16.0256410256,,
+principal,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T2,27,27,23,19.7027027027,,
+principal,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T3,28,28,19,10.3157894737,,
+principal,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T4,25,25,23,20.1612903226,,
+principal,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2026T1,34,34,27,14.8205128205,,
+principal,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2024T4,28,28,22,15.0769230769,,
+principal,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T1,24,24,20,16.9411764706,,
+principal,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T2,18,18,15,13.5,,
+principal,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T3,14,14,13,12.25,,
+principal,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T4,27,27,19,16.2,,
+principal,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2026T1,35,35,33,29.8780487805,,
+principal,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,todas,todos,9,9,8,7.3636363636,,
+principal,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,todos,8,8,7,6.4,,
+principal,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,todos,1,1,1,1.0,,
+principal,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2024T4,0,0,0,0.0,,
+principal,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T1,0,0,0,0.0,,
+principal,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T2,1,1,1,1.0,,
+principal,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T3,1,1,1,1.0,,
+principal,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T4,2,2,2,2.0,,
+principal,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2026T1,4,4,4,4.0,,
+principal,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2024T4,0,0,0,0.0,,
+principal,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T1,1,1,1,1.0,,
+principal,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T2,0,0,0,0.0,,
+principal,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T3,0,0,0,0.0,,
+principal,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T4,0,0,0,0.0,,
+principal,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2026T1,0,0,0,0.0,,
+principal,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",todas,todos,9,9,8,7.3636363636,,
+principal,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,todos,8,8,7,6.4,,
+principal,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,todos,1,1,1,1.0,,
+principal,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2024T4,0,0,0,0.0,,
+principal,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T1,0,0,0,0.0,,
+principal,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T2,1,1,1,1.0,,
+principal,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T3,1,1,1,1.0,,
+principal,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T4,2,2,2,2.0,,
+principal,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2026T1,4,4,4,4.0,,
+principal,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2024T4,0,0,0,0.0,,
+principal,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T1,1,1,1,1.0,,
+principal,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T2,0,0,0,0.0,,
+principal,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T3,0,0,0,0.0,,
+principal,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T4,0,0,0,0.0,,
+principal,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2026T1,0,0,0,0.0,,
+principal,M0,4_ps_valido,propensity score calculado (logit finito),todas,todos,9,9,8,7.3636363636,,
+principal,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,todos,8,8,7,6.4,,
+principal,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,todos,1,1,1,1.0,,
+principal,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2024T4,0,0,0,0.0,,
+principal,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T1,0,0,0,0.0,,
+principal,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T2,1,1,1,1.0,,
+principal,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T3,1,1,1,1.0,,
+principal,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T4,2,2,2,2.0,,
+principal,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2026T1,4,4,4,4.0,,
+principal,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2024T4,0,0,0,0.0,,
+principal,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T1,1,1,1,1.0,,
+principal,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T2,0,0,0,0.0,,
+principal,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T3,0,0,0,0.0,,
+principal,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T4,0,0,0,0.0,,
+principal,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2026T1,0,0,0,0.0,,
+principal,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,todas,todos,5,5,5,5.0,,
+principal,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,todos,5,5,5,5.0,,
+principal,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,todos,0,0,0,0.0,,
+principal,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2024T4,0,0,0,0.0,,
+principal,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T1,0,0,0,0.0,,
+principal,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T2,0,0,0,0.0,,
+principal,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T3,0,0,0,0.0,,
+principal,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T4,2,2,2,2.0,,
+principal,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2026T1,3,3,3,3.0,,
+principal,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2024T4,0,0,0,0.0,,
+principal,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T1,0,0,0,0.0,,
+principal,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T2,0,0,0,0.0,,
+principal,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T3,0,0,0,0.0,,
+principal,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T4,0,0,0,0.0,,
+principal,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2026T1,0,0,0,0.0,,
+principal,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),todas,todos,5,5,5,5.0,15.0,12.0
+principal,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,todos,5,5,5,5.0,15.0,12.0
+principal,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2025T4,2,2,2,2.0,5.0,5.0
+principal,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2026T1,3,3,3,3.0,10.0,7.0
+principal,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2026T1,0,0,0,0.0,0.0,0.0
+principal,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",todas,todos,4,4,4,4.0,10.0,10.0
+principal,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,todos,4,4,4,4.0,10.0,10.0
+principal,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T4,2,2,2,2.0,5.0,5.0
+principal,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2026T1,2,2,2,2.0,5.0,5.0
+principal,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2026T1,0,0,0,0.0,0.0,0.0
+principal,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),todas,todos,4,4,4,4.0,10.0,10.0
+principal,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,todos,4,4,4,4.0,10.0,10.0
+principal,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T4,2,2,2,2.0,5.0,5.0
+principal,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2026T1,2,2,2,2.0,5.0,5.0
+principal,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2026T1,0,0,0,0.0,0.0,0.0
+principal,M0_k1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,todas,todos,309,259,166,31.4807121662,,
+principal,M0_k1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,todos,163,161,105,23.4916003537,,
+principal,M0_k1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,todos,146,143,99,38.7563636364,,
+principal,M0_k1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2024T4,24,24,18,8.7272727273,,
+principal,M0_k1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T1,25,25,19,16.0256410256,,
+principal,M0_k1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T2,27,27,23,19.7027027027,,
+principal,M0_k1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T3,28,28,19,10.3157894737,,
+principal,M0_k1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T4,25,25,23,20.1612903226,,
+principal,M0_k1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2026T1,34,34,27,14.8205128205,,
+principal,M0_k1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2024T4,28,28,22,15.0769230769,,
+principal,M0_k1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T1,24,24,20,16.9411764706,,
+principal,M0_k1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T2,18,18,15,13.5,,
+principal,M0_k1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T3,14,14,13,12.25,,
+principal,M0_k1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T4,27,27,19,16.2,,
+principal,M0_k1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2026T1,35,35,33,29.8780487805,,
+principal,M0_k1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,todas,todos,9,9,8,7.3636363636,,
+principal,M0_k1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,todos,8,8,7,6.4,,
+principal,M0_k1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,todos,1,1,1,1.0,,
+principal,M0_k1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2024T4,0,0,0,0.0,,
+principal,M0_k1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T1,0,0,0,0.0,,
+principal,M0_k1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T2,1,1,1,1.0,,
+principal,M0_k1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T3,1,1,1,1.0,,
+principal,M0_k1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T4,2,2,2,2.0,,
+principal,M0_k1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2026T1,4,4,4,4.0,,
+principal,M0_k1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2024T4,0,0,0,0.0,,
+principal,M0_k1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T1,1,1,1,1.0,,
+principal,M0_k1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T2,0,0,0,0.0,,
+principal,M0_k1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T3,0,0,0,0.0,,
+principal,M0_k1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T4,0,0,0,0.0,,
+principal,M0_k1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2026T1,0,0,0,0.0,,
+principal,M0_k1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",todas,todos,9,9,8,7.3636363636,,
+principal,M0_k1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,todos,8,8,7,6.4,,
+principal,M0_k1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,todos,1,1,1,1.0,,
+principal,M0_k1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2024T4,0,0,0,0.0,,
+principal,M0_k1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T1,0,0,0,0.0,,
+principal,M0_k1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T2,1,1,1,1.0,,
+principal,M0_k1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T3,1,1,1,1.0,,
+principal,M0_k1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T4,2,2,2,2.0,,
+principal,M0_k1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2026T1,4,4,4,4.0,,
+principal,M0_k1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2024T4,0,0,0,0.0,,
+principal,M0_k1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T1,1,1,1,1.0,,
+principal,M0_k1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T2,0,0,0,0.0,,
+principal,M0_k1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T3,0,0,0,0.0,,
+principal,M0_k1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T4,0,0,0,0.0,,
+principal,M0_k1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2026T1,0,0,0,0.0,,
+principal,M0_k1,4_ps_valido,propensity score calculado (logit finito),todas,todos,9,9,8,7.3636363636,,
+principal,M0_k1,4_ps_valido,propensity score calculado (logit finito),A->AF,todos,8,8,7,6.4,,
+principal,M0_k1,4_ps_valido,propensity score calculado (logit finito),AF->A,todos,1,1,1,1.0,,
+principal,M0_k1,4_ps_valido,propensity score calculado (logit finito),A->AF,2024T4,0,0,0,0.0,,
+principal,M0_k1,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T1,0,0,0,0.0,,
+principal,M0_k1,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T2,1,1,1,1.0,,
+principal,M0_k1,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T3,1,1,1,1.0,,
+principal,M0_k1,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T4,2,2,2,2.0,,
+principal,M0_k1,4_ps_valido,propensity score calculado (logit finito),A->AF,2026T1,4,4,4,4.0,,
+principal,M0_k1,4_ps_valido,propensity score calculado (logit finito),AF->A,2024T4,0,0,0,0.0,,
+principal,M0_k1,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T1,1,1,1,1.0,,
+principal,M0_k1,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T2,0,0,0,0.0,,
+principal,M0_k1,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T3,0,0,0,0.0,,
+principal,M0_k1,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T4,0,0,0,0.0,,
+principal,M0_k1,4_ps_valido,propensity score calculado (logit finito),AF->A,2026T1,0,0,0,0.0,,
+principal,M0_k1,5_suporte_comum,logit da tratada no intervalo das candidatas,todas,todos,5,5,5,5.0,,
+principal,M0_k1,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,todos,5,5,5,5.0,,
+principal,M0_k1,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,todos,0,0,0,0.0,,
+principal,M0_k1,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2024T4,0,0,0,0.0,,
+principal,M0_k1,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T1,0,0,0,0.0,,
+principal,M0_k1,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T2,0,0,0,0.0,,
+principal,M0_k1,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T3,0,0,0,0.0,,
+principal,M0_k1,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T4,2,2,2,2.0,,
+principal,M0_k1,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2026T1,3,3,3,3.0,,
+principal,M0_k1,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2024T4,0,0,0,0.0,,
+principal,M0_k1,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T1,0,0,0,0.0,,
+principal,M0_k1,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T2,0,0,0,0.0,,
+principal,M0_k1,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T3,0,0,0,0.0,,
+principal,M0_k1,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T4,0,0,0,0.0,,
+principal,M0_k1,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2026T1,0,0,0,0.0,,
+principal,M0_k1,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k1),todas,todos,5,5,5,5.0,5.0,5.0
+principal,M0_k1,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k1),A->AF,todos,5,5,5,5.0,5.0,5.0
+principal,M0_k1,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k1),AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,M0_k1,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k1),A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0_k1,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k1),A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0_k1,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k1),A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0_k1,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k1),A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0_k1,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k1),A->AF,2025T4,2,2,2,2.0,2.0,2.0
+principal,M0_k1,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k1),A->AF,2026T1,3,3,3,3.0,3.0,3.0
+principal,M0_k1,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k1),AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0_k1,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k1),AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0_k1,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k1),AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0_k1,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k1),AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0_k1,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k1),AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,M0_k1,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k1),AF->A,2026T1,0,0,0,0.0,0.0,0.0
+principal,M0_k1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",todas,todos,4,4,4,4.0,4.0,4.0
+principal,M0_k1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,todos,4,4,4,4.0,4.0,4.0
+principal,M0_k1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,M0_k1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0_k1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0_k1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0_k1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0_k1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T4,2,2,2,2.0,2.0,2.0
+principal,M0_k1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2026T1,2,2,2,2.0,2.0,2.0
+principal,M0_k1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0_k1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0_k1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0_k1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0_k1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,M0_k1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2026T1,0,0,0,0.0,0.0,0.0
+principal,M0_k1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),todas,todos,4,4,4,4.0,4.0,4.0
+principal,M0_k1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,todos,4,4,4,4.0,4.0,4.0
+principal,M0_k1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,M0_k1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0_k1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0_k1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0_k1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0_k1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T4,2,2,2,2.0,2.0,2.0
+principal,M0_k1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2026T1,2,2,2,2.0,2.0,2.0
+principal,M0_k1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0_k1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0_k1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0_k1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0_k1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,M0_k1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2026T1,0,0,0,0.0,0.0,0.0
+principal,M0_k3,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,todas,todos,309,259,166,31.4807121662,,
+principal,M0_k3,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,todos,163,161,105,23.4916003537,,
+principal,M0_k3,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,todos,146,143,99,38.7563636364,,
+principal,M0_k3,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2024T4,24,24,18,8.7272727273,,
+principal,M0_k3,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T1,25,25,19,16.0256410256,,
+principal,M0_k3,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T2,27,27,23,19.7027027027,,
+principal,M0_k3,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T3,28,28,19,10.3157894737,,
+principal,M0_k3,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T4,25,25,23,20.1612903226,,
+principal,M0_k3,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2026T1,34,34,27,14.8205128205,,
+principal,M0_k3,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2024T4,28,28,22,15.0769230769,,
+principal,M0_k3,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T1,24,24,20,16.9411764706,,
+principal,M0_k3,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T2,18,18,15,13.5,,
+principal,M0_k3,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T3,14,14,13,12.25,,
+principal,M0_k3,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T4,27,27,19,16.2,,
+principal,M0_k3,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2026T1,35,35,33,29.8780487805,,
+principal,M0_k3,2_historico_suficiente,histórico de modo compatível + completude de preços pré,todas,todos,9,9,8,7.3636363636,,
+principal,M0_k3,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,todos,8,8,7,6.4,,
+principal,M0_k3,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,todos,1,1,1,1.0,,
+principal,M0_k3,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2024T4,0,0,0,0.0,,
+principal,M0_k3,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T1,0,0,0,0.0,,
+principal,M0_k3,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T2,1,1,1,1.0,,
+principal,M0_k3,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T3,1,1,1,1.0,,
+principal,M0_k3,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T4,2,2,2,2.0,,
+principal,M0_k3,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2026T1,4,4,4,4.0,,
+principal,M0_k3,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2024T4,0,0,0,0.0,,
+principal,M0_k3,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T1,1,1,1,1.0,,
+principal,M0_k3,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T2,0,0,0,0.0,,
+principal,M0_k3,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T3,0,0,0,0.0,,
+principal,M0_k3,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T4,0,0,0,0.0,,
+principal,M0_k3,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2026T1,0,0,0,0.0,,
+principal,M0_k3,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",todas,todos,9,9,8,7.3636363636,,
+principal,M0_k3,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,todos,8,8,7,6.4,,
+principal,M0_k3,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,todos,1,1,1,1.0,,
+principal,M0_k3,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2024T4,0,0,0,0.0,,
+principal,M0_k3,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T1,0,0,0,0.0,,
+principal,M0_k3,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T2,1,1,1,1.0,,
+principal,M0_k3,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T3,1,1,1,1.0,,
+principal,M0_k3,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T4,2,2,2,2.0,,
+principal,M0_k3,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2026T1,4,4,4,4.0,,
+principal,M0_k3,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2024T4,0,0,0,0.0,,
+principal,M0_k3,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T1,1,1,1,1.0,,
+principal,M0_k3,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T2,0,0,0,0.0,,
+principal,M0_k3,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T3,0,0,0,0.0,,
+principal,M0_k3,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T4,0,0,0,0.0,,
+principal,M0_k3,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2026T1,0,0,0,0.0,,
+principal,M0_k3,4_ps_valido,propensity score calculado (logit finito),todas,todos,9,9,8,7.3636363636,,
+principal,M0_k3,4_ps_valido,propensity score calculado (logit finito),A->AF,todos,8,8,7,6.4,,
+principal,M0_k3,4_ps_valido,propensity score calculado (logit finito),AF->A,todos,1,1,1,1.0,,
+principal,M0_k3,4_ps_valido,propensity score calculado (logit finito),A->AF,2024T4,0,0,0,0.0,,
+principal,M0_k3,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T1,0,0,0,0.0,,
+principal,M0_k3,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T2,1,1,1,1.0,,
+principal,M0_k3,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T3,1,1,1,1.0,,
+principal,M0_k3,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T4,2,2,2,2.0,,
+principal,M0_k3,4_ps_valido,propensity score calculado (logit finito),A->AF,2026T1,4,4,4,4.0,,
+principal,M0_k3,4_ps_valido,propensity score calculado (logit finito),AF->A,2024T4,0,0,0,0.0,,
+principal,M0_k3,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T1,1,1,1,1.0,,
+principal,M0_k3,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T2,0,0,0,0.0,,
+principal,M0_k3,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T3,0,0,0,0.0,,
+principal,M0_k3,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T4,0,0,0,0.0,,
+principal,M0_k3,4_ps_valido,propensity score calculado (logit finito),AF->A,2026T1,0,0,0,0.0,,
+principal,M0_k3,5_suporte_comum,logit da tratada no intervalo das candidatas,todas,todos,5,5,5,5.0,,
+principal,M0_k3,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,todos,5,5,5,5.0,,
+principal,M0_k3,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,todos,0,0,0,0.0,,
+principal,M0_k3,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2024T4,0,0,0,0.0,,
+principal,M0_k3,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T1,0,0,0,0.0,,
+principal,M0_k3,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T2,0,0,0,0.0,,
+principal,M0_k3,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T3,0,0,0,0.0,,
+principal,M0_k3,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T4,2,2,2,2.0,,
+principal,M0_k3,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2026T1,3,3,3,3.0,,
+principal,M0_k3,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2024T4,0,0,0,0.0,,
+principal,M0_k3,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T1,0,0,0,0.0,,
+principal,M0_k3,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T2,0,0,0,0.0,,
+principal,M0_k3,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T3,0,0,0,0.0,,
+principal,M0_k3,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T4,0,0,0,0.0,,
+principal,M0_k3,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2026T1,0,0,0,0.0,,
+principal,M0_k3,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k3),todas,todos,5,5,5,5.0,11.0,10.0
+principal,M0_k3,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k3),A->AF,todos,5,5,5,5.0,11.0,10.0
+principal,M0_k3,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k3),AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,M0_k3,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k3),A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0_k3,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k3),A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0_k3,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k3),A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0_k3,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k3),A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0_k3,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k3),A->AF,2025T4,2,2,2,2.0,4.0,4.0
+principal,M0_k3,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k3),A->AF,2026T1,3,3,3,3.0,7.0,6.0
+principal,M0_k3,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k3),AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0_k3,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k3),AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0_k3,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k3),AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0_k3,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k3),AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0_k3,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k3),AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,M0_k3,6_matching_aceito,≥ 1 controle dentro dos calipers (M0_k3),AF->A,2026T1,0,0,0,0.0,0.0,0.0
+principal,M0_k3,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",todas,todos,4,4,4,4.0,8.0,8.0
+principal,M0_k3,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,todos,4,4,4,4.0,8.0,8.0
+principal,M0_k3,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,M0_k3,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0_k3,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0_k3,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0_k3,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0_k3,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T4,2,2,2,2.0,4.0,4.0
+principal,M0_k3,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2026T1,2,2,2,2.0,4.0,4.0
+principal,M0_k3,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0_k3,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0_k3,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0_k3,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0_k3,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,M0_k3,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2026T1,0,0,0,0.0,0.0,0.0
+principal,M0_k3,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),todas,todos,4,4,4,4.0,8.0,8.0
+principal,M0_k3,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,todos,4,4,4,4.0,8.0,8.0
+principal,M0_k3,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,M0_k3,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0_k3,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0_k3,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0_k3,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0_k3,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T4,2,2,2,2.0,4.0,4.0
+principal,M0_k3,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2026T1,2,2,2,2.0,4.0,4.0
+principal,M0_k3,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,M0_k3,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,M0_k3,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,M0_k3,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,M0_k3,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,M0_k3,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2026T1,0,0,0,0.0,0.0,0.0
+principal,M1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,todas,todos,309,259,166,31.4807121662,,
+principal,M1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,todos,163,161,105,23.4916003537,,
+principal,M1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,todos,146,143,99,38.7563636364,,
+principal,M1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2024T4,24,24,18,8.7272727273,,
+principal,M1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T1,25,25,19,16.0256410256,,
+principal,M1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T2,27,27,23,19.7027027027,,
+principal,M1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T3,28,28,19,10.3157894737,,
+principal,M1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T4,25,25,23,20.1612903226,,
+principal,M1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2026T1,34,34,27,14.8205128205,,
+principal,M1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2024T4,28,28,22,15.0769230769,,
+principal,M1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T1,24,24,20,16.9411764706,,
+principal,M1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T2,18,18,15,13.5,,
+principal,M1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T3,14,14,13,12.25,,
+principal,M1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T4,27,27,19,16.2,,
+principal,M1,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2026T1,35,35,33,29.8780487805,,
+principal,M1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,todas,todos,9,9,8,7.3636363636,,
+principal,M1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,todos,8,8,7,6.4,,
+principal,M1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,todos,1,1,1,1.0,,
+principal,M1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2024T4,0,0,0,0.0,,
+principal,M1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T1,0,0,0,0.0,,
+principal,M1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T2,1,1,1,1.0,,
+principal,M1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T3,1,1,1,1.0,,
+principal,M1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T4,2,2,2,2.0,,
+principal,M1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2026T1,4,4,4,4.0,,
+principal,M1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2024T4,0,0,0,0.0,,
+principal,M1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T1,1,1,1,1.0,,
+principal,M1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T2,0,0,0,0.0,,
+principal,M1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T3,0,0,0,0.0,,
+principal,M1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T4,0,0,0,0.0,,
+principal,M1,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2026T1,0,0,0,0.0,,
+principal,M1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",todas,todos,9,9,8,7.3636363636,,
+principal,M1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,todos,8,8,7,6.4,,
+principal,M1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,todos,1,1,1,1.0,,
+principal,M1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2024T4,0,0,0,0.0,,
+principal,M1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T1,0,0,0,0.0,,
+principal,M1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T2,1,1,1,1.0,,
+principal,M1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T3,1,1,1,1.0,,
+principal,M1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T4,2,2,2,2.0,,
+principal,M1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2026T1,4,4,4,4.0,,
+principal,M1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2024T4,0,0,0,0.0,,
+principal,M1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T1,1,1,1,1.0,,
+principal,M1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T2,0,0,0,0.0,,
+principal,M1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T3,0,0,0,0.0,,
+principal,M1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T4,0,0,0,0.0,,
+principal,M1,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2026T1,0,0,0,0.0,,
+principal,M1,4_ps_valido,propensity score calculado (logit finito),todas,todos,9,9,8,7.3636363636,,
+principal,M1,4_ps_valido,propensity score calculado (logit finito),A->AF,todos,8,8,7,6.4,,
+principal,M1,4_ps_valido,propensity score calculado (logit finito),AF->A,todos,1,1,1,1.0,,
+principal,M1,4_ps_valido,propensity score calculado (logit finito),A->AF,2024T4,0,0,0,0.0,,
+principal,M1,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T1,0,0,0,0.0,,
+principal,M1,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T2,1,1,1,1.0,,
+principal,M1,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T3,1,1,1,1.0,,
+principal,M1,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T4,2,2,2,2.0,,
+principal,M1,4_ps_valido,propensity score calculado (logit finito),A->AF,2026T1,4,4,4,4.0,,
+principal,M1,4_ps_valido,propensity score calculado (logit finito),AF->A,2024T4,0,0,0,0.0,,
+principal,M1,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T1,1,1,1,1.0,,
+principal,M1,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T2,0,0,0,0.0,,
+principal,M1,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T3,0,0,0,0.0,,
+principal,M1,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T4,0,0,0,0.0,,
+principal,M1,4_ps_valido,propensity score calculado (logit finito),AF->A,2026T1,0,0,0,0.0,,
+principal,M1,5_suporte_comum,logit da tratada no intervalo das candidatas,todas,todos,5,5,5,5.0,,
+principal,M1,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,todos,5,5,5,5.0,,
+principal,M1,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,todos,0,0,0,0.0,,
+principal,M1,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2024T4,0,0,0,0.0,,
+principal,M1,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T1,0,0,0,0.0,,
+principal,M1,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T2,0,0,0,0.0,,
+principal,M1,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T3,0,0,0,0.0,,
+principal,M1,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T4,2,2,2,2.0,,
+principal,M1,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2026T1,3,3,3,3.0,,
+principal,M1,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2024T4,0,0,0,0.0,,
+principal,M1,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T1,0,0,0,0.0,,
+principal,M1,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T2,0,0,0,0.0,,
+principal,M1,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T3,0,0,0,0.0,,
+principal,M1,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T4,0,0,0,0.0,,
+principal,M1,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2026T1,0,0,0,0.0,,
+principal,M1,6_matching_aceito,≥ 1 controle dentro dos calipers (M1),todas,todos,5,5,5,5.0,16.0,13.0
+principal,M1,6_matching_aceito,≥ 1 controle dentro dos calipers (M1),A->AF,todos,5,5,5,5.0,16.0,13.0
+principal,M1,6_matching_aceito,≥ 1 controle dentro dos calipers (M1),AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,M1,6_matching_aceito,≥ 1 controle dentro dos calipers (M1),A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,M1,6_matching_aceito,≥ 1 controle dentro dos calipers (M1),A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,M1,6_matching_aceito,≥ 1 controle dentro dos calipers (M1),A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,M1,6_matching_aceito,≥ 1 controle dentro dos calipers (M1),A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,M1,6_matching_aceito,≥ 1 controle dentro dos calipers (M1),A->AF,2025T4,2,2,2,2.0,5.0,5.0
+principal,M1,6_matching_aceito,≥ 1 controle dentro dos calipers (M1),A->AF,2026T1,3,3,3,3.0,11.0,8.0
+principal,M1,6_matching_aceito,≥ 1 controle dentro dos calipers (M1),AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,M1,6_matching_aceito,≥ 1 controle dentro dos calipers (M1),AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,M1,6_matching_aceito,≥ 1 controle dentro dos calipers (M1),AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,M1,6_matching_aceito,≥ 1 controle dentro dos calipers (M1),AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,M1,6_matching_aceito,≥ 1 controle dentro dos calipers (M1),AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,M1,6_matching_aceito,≥ 1 controle dentro dos calipers (M1),AF->A,2026T1,0,0,0,0.0,0.0,0.0
+principal,M1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",todas,todos,4,4,4,4.0,11.0,11.0
+principal,M1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,todos,4,4,4,4.0,11.0,11.0
+principal,M1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,M1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,M1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,M1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,M1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,M1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T4,2,2,2,2.0,5.0,5.0
+principal,M1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2026T1,2,2,2,2.0,6.0,6.0
+principal,M1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,M1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,M1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,M1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,M1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,M1,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2026T1,0,0,0,0.0,0.0,0.0
+principal,M1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),todas,todos,4,4,4,4.0,11.0,11.0
+principal,M1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,todos,4,4,4,4.0,11.0,11.0
+principal,M1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,M1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,M1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,M1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,M1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,M1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T4,2,2,2,2.0,5.0,5.0
+principal,M1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2026T1,2,2,2,2.0,6.0,6.0
+principal,M1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,M1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,M1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,M1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,M1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,M1,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2026T1,0,0,0,0.0,0.0,0.0
+principal,PS,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,todas,todos,309,259,166,31.4807121662,,
+principal,PS,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,todos,163,161,105,23.4916003537,,
+principal,PS,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,todos,146,143,99,38.7563636364,,
+principal,PS,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2024T4,24,24,18,8.7272727273,,
+principal,PS,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T1,25,25,19,16.0256410256,,
+principal,PS,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T2,27,27,23,19.7027027027,,
+principal,PS,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T3,28,28,19,10.3157894737,,
+principal,PS,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T4,25,25,23,20.1612903226,,
+principal,PS,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2026T1,34,34,27,14.8205128205,,
+principal,PS,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2024T4,28,28,22,15.0769230769,,
+principal,PS,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T1,24,24,20,16.9411764706,,
+principal,PS,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T2,18,18,15,13.5,,
+principal,PS,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T3,14,14,13,12.25,,
+principal,PS,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T4,27,27,19,16.2,,
+principal,PS,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2026T1,35,35,33,29.8780487805,,
+principal,PS,2_historico_suficiente,histórico de modo compatível + completude de preços pré,todas,todos,9,9,8,7.3636363636,,
+principal,PS,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,todos,8,8,7,6.4,,
+principal,PS,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,todos,1,1,1,1.0,,
+principal,PS,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2024T4,0,0,0,0.0,,
+principal,PS,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T1,0,0,0,0.0,,
+principal,PS,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T2,1,1,1,1.0,,
+principal,PS,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T3,1,1,1,1.0,,
+principal,PS,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T4,2,2,2,2.0,,
+principal,PS,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2026T1,4,4,4,4.0,,
+principal,PS,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2024T4,0,0,0,0.0,,
+principal,PS,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T1,1,1,1,1.0,,
+principal,PS,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T2,0,0,0,0.0,,
+principal,PS,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T3,0,0,0,0.0,,
+principal,PS,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T4,0,0,0,0.0,,
+principal,PS,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2026T1,0,0,0,0.0,,
+principal,PS,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",todas,todos,9,9,8,7.3636363636,,
+principal,PS,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,todos,8,8,7,6.4,,
+principal,PS,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,todos,1,1,1,1.0,,
+principal,PS,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2024T4,0,0,0,0.0,,
+principal,PS,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T1,0,0,0,0.0,,
+principal,PS,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T2,1,1,1,1.0,,
+principal,PS,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T3,1,1,1,1.0,,
+principal,PS,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T4,2,2,2,2.0,,
+principal,PS,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2026T1,4,4,4,4.0,,
+principal,PS,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2024T4,0,0,0,0.0,,
+principal,PS,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T1,1,1,1,1.0,,
+principal,PS,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T2,0,0,0,0.0,,
+principal,PS,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T3,0,0,0,0.0,,
+principal,PS,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T4,0,0,0,0.0,,
+principal,PS,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2026T1,0,0,0,0.0,,
+principal,PS,4_ps_valido,propensity score calculado (logit finito),todas,todos,9,9,8,7.3636363636,,
+principal,PS,4_ps_valido,propensity score calculado (logit finito),A->AF,todos,8,8,7,6.4,,
+principal,PS,4_ps_valido,propensity score calculado (logit finito),AF->A,todos,1,1,1,1.0,,
+principal,PS,4_ps_valido,propensity score calculado (logit finito),A->AF,2024T4,0,0,0,0.0,,
+principal,PS,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T1,0,0,0,0.0,,
+principal,PS,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T2,1,1,1,1.0,,
+principal,PS,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T3,1,1,1,1.0,,
+principal,PS,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T4,2,2,2,2.0,,
+principal,PS,4_ps_valido,propensity score calculado (logit finito),A->AF,2026T1,4,4,4,4.0,,
+principal,PS,4_ps_valido,propensity score calculado (logit finito),AF->A,2024T4,0,0,0,0.0,,
+principal,PS,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T1,1,1,1,1.0,,
+principal,PS,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T2,0,0,0,0.0,,
+principal,PS,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T3,0,0,0,0.0,,
+principal,PS,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T4,0,0,0,0.0,,
+principal,PS,4_ps_valido,propensity score calculado (logit finito),AF->A,2026T1,0,0,0,0.0,,
+principal,PS,5_suporte_comum,logit da tratada no intervalo das candidatas,todas,todos,5,5,5,5.0,,
+principal,PS,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,todos,5,5,5,5.0,,
+principal,PS,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,todos,0,0,0,0.0,,
+principal,PS,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2024T4,0,0,0,0.0,,
+principal,PS,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T1,0,0,0,0.0,,
+principal,PS,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T2,0,0,0,0.0,,
+principal,PS,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T3,0,0,0,0.0,,
+principal,PS,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T4,2,2,2,2.0,,
+principal,PS,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2026T1,3,3,3,3.0,,
+principal,PS,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2024T4,0,0,0,0.0,,
+principal,PS,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T1,0,0,0,0.0,,
+principal,PS,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T2,0,0,0,0.0,,
+principal,PS,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T3,0,0,0,0.0,,
+principal,PS,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T4,0,0,0,0.0,,
+principal,PS,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2026T1,0,0,0,0.0,,
+principal,PS,6_matching_aceito,≥ 1 controle dentro dos calipers (PS),todas,todos,5,5,5,5.0,14.0,11.0
+principal,PS,6_matching_aceito,≥ 1 controle dentro dos calipers (PS),A->AF,todos,5,5,5,5.0,14.0,11.0
+principal,PS,6_matching_aceito,≥ 1 controle dentro dos calipers (PS),AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,PS,6_matching_aceito,≥ 1 controle dentro dos calipers (PS),A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,PS,6_matching_aceito,≥ 1 controle dentro dos calipers (PS),A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,PS,6_matching_aceito,≥ 1 controle dentro dos calipers (PS),A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,PS,6_matching_aceito,≥ 1 controle dentro dos calipers (PS),A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,PS,6_matching_aceito,≥ 1 controle dentro dos calipers (PS),A->AF,2025T4,2,2,2,2.0,5.0,5.0
+principal,PS,6_matching_aceito,≥ 1 controle dentro dos calipers (PS),A->AF,2026T1,3,3,3,3.0,9.0,6.0
+principal,PS,6_matching_aceito,≥ 1 controle dentro dos calipers (PS),AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,PS,6_matching_aceito,≥ 1 controle dentro dos calipers (PS),AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,PS,6_matching_aceito,≥ 1 controle dentro dos calipers (PS),AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,PS,6_matching_aceito,≥ 1 controle dentro dos calipers (PS),AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,PS,6_matching_aceito,≥ 1 controle dentro dos calipers (PS),AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,PS,6_matching_aceito,≥ 1 controle dentro dos calipers (PS),AF->A,2026T1,0,0,0,0.0,0.0,0.0
+principal,PS,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",todas,todos,4,4,4,4.0,9.0,9.0
+principal,PS,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,todos,4,4,4,4.0,9.0,9.0
+principal,PS,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,PS,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,PS,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,PS,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,PS,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,PS,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T4,2,2,2,2.0,5.0,5.0
+principal,PS,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2026T1,2,2,2,2.0,4.0,4.0
+principal,PS,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,PS,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,PS,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,PS,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,PS,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,PS,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2026T1,0,0,0,0.0,0.0,0.0
+principal,PS,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),todas,todos,4,4,4,4.0,9.0,9.0
+principal,PS,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,todos,4,4,4,4.0,9.0,9.0
+principal,PS,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,PS,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,PS,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,PS,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,PS,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,PS,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T4,2,2,2,2.0,5.0,5.0
+principal,PS,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2026T1,2,2,2,2.0,4.0,4.0
+principal,PS,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,PS,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,PS,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,PS,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,PS,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,PS,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2026T1,0,0,0,0.0,0.0,0.0
+principal,PSM,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,todas,todos,309,259,166,31.4807121662,,
+principal,PSM,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,todos,163,161,105,23.4916003537,,
+principal,PSM,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,todos,146,143,99,38.7563636364,,
+principal,PSM,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2024T4,24,24,18,8.7272727273,,
+principal,PSM,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T1,25,25,19,16.0256410256,,
+principal,PSM,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T2,27,27,23,19.7027027027,,
+principal,PSM,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T3,28,28,19,10.3157894737,,
+principal,PSM,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T4,25,25,23,20.1612903226,,
+principal,PSM,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2026T1,34,34,27,14.8205128205,,
+principal,PSM,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2024T4,28,28,22,15.0769230769,,
+principal,PSM,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T1,24,24,20,16.9411764706,,
+principal,PSM,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T2,18,18,15,13.5,,
+principal,PSM,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T3,14,14,13,12.25,,
+principal,PSM,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T4,27,27,19,16.2,,
+principal,PSM,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2026T1,35,35,33,29.8780487805,,
+principal,PSM,2_historico_suficiente,histórico de modo compatível + completude de preços pré,todas,todos,9,9,8,7.3636363636,,
+principal,PSM,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,todos,8,8,7,6.4,,
+principal,PSM,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,todos,1,1,1,1.0,,
+principal,PSM,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2024T4,0,0,0,0.0,,
+principal,PSM,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T1,0,0,0,0.0,,
+principal,PSM,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T2,1,1,1,1.0,,
+principal,PSM,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T3,1,1,1,1.0,,
+principal,PSM,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T4,2,2,2,2.0,,
+principal,PSM,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2026T1,4,4,4,4.0,,
+principal,PSM,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2024T4,0,0,0,0.0,,
+principal,PSM,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T1,1,1,1,1.0,,
+principal,PSM,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T2,0,0,0,0.0,,
+principal,PSM,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T3,0,0,0,0.0,,
+principal,PSM,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T4,0,0,0,0.0,,
+principal,PSM,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2026T1,0,0,0,0.0,,
+principal,PSM,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",todas,todos,9,9,8,7.3636363636,,
+principal,PSM,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,todos,8,8,7,6.4,,
+principal,PSM,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,todos,1,1,1,1.0,,
+principal,PSM,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2024T4,0,0,0,0.0,,
+principal,PSM,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T1,0,0,0,0.0,,
+principal,PSM,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T2,1,1,1,1.0,,
+principal,PSM,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T3,1,1,1,1.0,,
+principal,PSM,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T4,2,2,2,2.0,,
+principal,PSM,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2026T1,4,4,4,4.0,,
+principal,PSM,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2024T4,0,0,0,0.0,,
+principal,PSM,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T1,1,1,1,1.0,,
+principal,PSM,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T2,0,0,0,0.0,,
+principal,PSM,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T3,0,0,0,0.0,,
+principal,PSM,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T4,0,0,0,0.0,,
+principal,PSM,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2026T1,0,0,0,0.0,,
+principal,PSM,4_ps_valido,propensity score calculado (logit finito),todas,todos,9,9,8,7.3636363636,,
+principal,PSM,4_ps_valido,propensity score calculado (logit finito),A->AF,todos,8,8,7,6.4,,
+principal,PSM,4_ps_valido,propensity score calculado (logit finito),AF->A,todos,1,1,1,1.0,,
+principal,PSM,4_ps_valido,propensity score calculado (logit finito),A->AF,2024T4,0,0,0,0.0,,
+principal,PSM,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T1,0,0,0,0.0,,
+principal,PSM,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T2,1,1,1,1.0,,
+principal,PSM,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T3,1,1,1,1.0,,
+principal,PSM,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T4,2,2,2,2.0,,
+principal,PSM,4_ps_valido,propensity score calculado (logit finito),A->AF,2026T1,4,4,4,4.0,,
+principal,PSM,4_ps_valido,propensity score calculado (logit finito),AF->A,2024T4,0,0,0,0.0,,
+principal,PSM,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T1,1,1,1,1.0,,
+principal,PSM,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T2,0,0,0,0.0,,
+principal,PSM,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T3,0,0,0,0.0,,
+principal,PSM,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T4,0,0,0,0.0,,
+principal,PSM,4_ps_valido,propensity score calculado (logit finito),AF->A,2026T1,0,0,0,0.0,,
+principal,PSM,5_suporte_comum,logit da tratada no intervalo das candidatas,todas,todos,5,5,5,5.0,,
+principal,PSM,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,todos,5,5,5,5.0,,
+principal,PSM,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,todos,0,0,0,0.0,,
+principal,PSM,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2024T4,0,0,0,0.0,,
+principal,PSM,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T1,0,0,0,0.0,,
+principal,PSM,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T2,0,0,0,0.0,,
+principal,PSM,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T3,0,0,0,0.0,,
+principal,PSM,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T4,2,2,2,2.0,,
+principal,PSM,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2026T1,3,3,3,3.0,,
+principal,PSM,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2024T4,0,0,0,0.0,,
+principal,PSM,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T1,0,0,0,0.0,,
+principal,PSM,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T2,0,0,0,0.0,,
+principal,PSM,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T3,0,0,0,0.0,,
+principal,PSM,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T4,0,0,0,0.0,,
+principal,PSM,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2026T1,0,0,0,0.0,,
+principal,PSM,6_matching_aceito,≥ 1 controle dentro dos calipers (PSM),todas,todos,5,5,5,5.0,14.0,11.0
+principal,PSM,6_matching_aceito,≥ 1 controle dentro dos calipers (PSM),A->AF,todos,5,5,5,5.0,14.0,11.0
+principal,PSM,6_matching_aceito,≥ 1 controle dentro dos calipers (PSM),AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,PSM,6_matching_aceito,≥ 1 controle dentro dos calipers (PSM),A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,PSM,6_matching_aceito,≥ 1 controle dentro dos calipers (PSM),A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,PSM,6_matching_aceito,≥ 1 controle dentro dos calipers (PSM),A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,PSM,6_matching_aceito,≥ 1 controle dentro dos calipers (PSM),A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,PSM,6_matching_aceito,≥ 1 controle dentro dos calipers (PSM),A->AF,2025T4,2,2,2,2.0,5.0,5.0
+principal,PSM,6_matching_aceito,≥ 1 controle dentro dos calipers (PSM),A->AF,2026T1,3,3,3,3.0,9.0,6.0
+principal,PSM,6_matching_aceito,≥ 1 controle dentro dos calipers (PSM),AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,PSM,6_matching_aceito,≥ 1 controle dentro dos calipers (PSM),AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,PSM,6_matching_aceito,≥ 1 controle dentro dos calipers (PSM),AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,PSM,6_matching_aceito,≥ 1 controle dentro dos calipers (PSM),AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,PSM,6_matching_aceito,≥ 1 controle dentro dos calipers (PSM),AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,PSM,6_matching_aceito,≥ 1 controle dentro dos calipers (PSM),AF->A,2026T1,0,0,0,0.0,0.0,0.0
+principal,PSM,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",todas,todos,4,4,4,4.0,9.0,9.0
+principal,PSM,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,todos,4,4,4,4.0,9.0,9.0
+principal,PSM,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,PSM,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,PSM,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,PSM,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,PSM,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,PSM,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T4,2,2,2,2.0,5.0,5.0
+principal,PSM,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2026T1,2,2,2,2.0,4.0,4.0
+principal,PSM,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,PSM,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,PSM,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,PSM,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,PSM,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,PSM,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2026T1,0,0,0,0.0,0.0,0.0
+principal,PSM,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),todas,todos,4,4,4,4.0,9.0,9.0
+principal,PSM,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,todos,4,4,4,4.0,9.0,9.0
+principal,PSM,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,todos,0,0,0,0.0,0.0,0.0
+principal,PSM,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2024T4,0,0,0,0.0,0.0,0.0
+principal,PSM,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T1,0,0,0,0.0,0.0,0.0
+principal,PSM,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T2,0,0,0,0.0,0.0,0.0
+principal,PSM,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T3,0,0,0,0.0,0.0,0.0
+principal,PSM,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T4,2,2,2,2.0,5.0,5.0
+principal,PSM,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2026T1,2,2,2,2.0,4.0,4.0
+principal,PSM,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2024T4,0,0,0,0.0,0.0,0.0
+principal,PSM,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T1,0,0,0,0.0,0.0,0.0
+principal,PSM,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T2,0,0,0,0.0,0.0,0.0
+principal,PSM,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T3,0,0,0,0.0,0.0,0.0
+principal,PSM,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T4,0,0,0,0.0,0.0,0.0
+principal,PSM,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2026T1,0,0,0,0.0,0.0,0.0
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,todas,todos,397,324,195,31.5913008619,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,todos,210,205,126,25.2,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,todos,187,181,120,37.4801714898,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2024T2,20,20,15,9.5238095238,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2024T3,27,27,23,19.7027027027,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2024T4,24,24,18,8.7272727273,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T1,25,25,19,16.0256410256,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T2,27,27,23,19.7027027027,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T3,28,28,19,10.3157894737,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T4,25,25,23,20.1612903226,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2026T1,34,34,27,14.8205128205,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2024T2,16,16,16,16.0,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2024T3,25,25,20,11.3636363636,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2024T4,28,28,22,15.0769230769,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T1,24,24,20,16.9411764706,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T2,18,18,15,13.5,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T3,14,14,13,12.25,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T4,27,27,19,16.2,,
+curta,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2026T1,35,35,33,29.8780487805,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,todas,todos,8,8,7,6.4,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,todos,7,7,6,5.4444444444,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,todos,1,1,1,1.0,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2024T2,0,0,0,0.0,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2024T3,1,1,1,1.0,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2024T4,0,0,0,0.0,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T1,0,0,0,0.0,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T2,1,1,1,1.0,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T3,0,0,0,0.0,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T4,2,2,2,2.0,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2026T1,3,3,2,1.8,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2024T2,0,0,0,0.0,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2024T3,0,0,0,0.0,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2024T4,0,0,0,0.0,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T1,1,1,1,1.0,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T2,0,0,0,0.0,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T3,0,0,0,0.0,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T4,0,0,0,0.0,,
+curta,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2026T1,0,0,0,0.0,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",todas,todos,8,8,7,6.4,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,todos,7,7,6,5.4444444444,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,todos,1,1,1,1.0,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2024T2,0,0,0,0.0,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2024T3,1,1,1,1.0,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2024T4,0,0,0,0.0,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T1,0,0,0,0.0,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T2,1,1,1,1.0,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T3,0,0,0,0.0,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T4,2,2,2,2.0,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2026T1,3,3,2,1.8,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2024T2,0,0,0,0.0,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2024T3,0,0,0,0.0,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2024T4,0,0,0,0.0,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T1,1,1,1,1.0,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T2,0,0,0,0.0,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T3,0,0,0,0.0,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T4,0,0,0,0.0,,
+curta,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2026T1,0,0,0,0.0,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),todas,todos,8,8,7,6.4,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,todos,7,7,6,5.4444444444,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,todos,1,1,1,1.0,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2024T2,0,0,0,0.0,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2024T3,1,1,1,1.0,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2024T4,0,0,0,0.0,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T1,0,0,0,0.0,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T2,1,1,1,1.0,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T3,0,0,0,0.0,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T4,2,2,2,2.0,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2026T1,3,3,2,1.8,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2024T2,0,0,0,0.0,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2024T3,0,0,0,0.0,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2024T4,0,0,0,0.0,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T1,1,1,1,1.0,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T2,0,0,0,0.0,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T3,0,0,0,0.0,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T4,0,0,0,0.0,,
+curta,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2026T1,0,0,0,0.0,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,todas,todos,4,4,3,2.6666666667,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,todos,4,4,3,2.6666666667,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,todos,0,0,0,0.0,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2024T2,0,0,0,0.0,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2024T3,0,0,0,0.0,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2024T4,0,0,0,0.0,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T1,0,0,0,0.0,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T2,0,0,0,0.0,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T3,0,0,0,0.0,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T4,2,2,2,2.0,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2026T1,2,2,1,1.0,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2024T2,0,0,0,0.0,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2024T3,0,0,0,0.0,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2024T4,0,0,0,0.0,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T1,0,0,0,0.0,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T2,0,0,0,0.0,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T3,0,0,0,0.0,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T4,0,0,0,0.0,,
+curta,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2026T1,0,0,0,0.0,,
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),todas,todos,4,4,3,2.6666666667,15.0,14.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,todos,4,4,3,2.6666666667,15.0,14.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,todos,0,0,0,0.0,0.0,0.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2024T2,0,0,0,0.0,0.0,0.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2024T3,0,0,0,0.0,0.0,0.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2024T4,0,0,0,0.0,0.0,0.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2025T1,0,0,0,0.0,0.0,0.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2025T2,0,0,0,0.0,0.0,0.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2025T3,0,0,0,0.0,0.0,0.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2025T4,2,2,2,2.0,6.0,6.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2026T1,2,2,1,1.0,9.0,8.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2024T2,0,0,0,0.0,0.0,0.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2024T3,0,0,0,0.0,0.0,0.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2024T4,0,0,0,0.0,0.0,0.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2025T1,0,0,0,0.0,0.0,0.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2025T2,0,0,0,0.0,0.0,0.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2025T3,0,0,0,0.0,0.0,0.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2025T4,0,0,0,0.0,0.0,0.0
+curta,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2026T1,0,0,0,0.0,0.0,0.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",todas,todos,2,2,2,2.0,6.0,6.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,todos,2,2,2,2.0,6.0,6.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,todos,0,0,0,0.0,0.0,0.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2024T2,0,0,0,0.0,0.0,0.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2024T3,0,0,0,0.0,0.0,0.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2024T4,0,0,0,0.0,0.0,0.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T1,0,0,0,0.0,0.0,0.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T2,0,0,0,0.0,0.0,0.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T3,0,0,0,0.0,0.0,0.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T4,2,2,2,2.0,6.0,6.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2026T1,0,0,0,0.0,0.0,0.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2024T2,0,0,0,0.0,0.0,0.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2024T3,0,0,0,0.0,0.0,0.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2024T4,0,0,0,0.0,0.0,0.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T1,0,0,0,0.0,0.0,0.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T2,0,0,0,0.0,0.0,0.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T3,0,0,0,0.0,0.0,0.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T4,0,0,0,0.0,0.0,0.0
+curta,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2026T1,0,0,0,0.0,0.0,0.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),todas,todos,2,2,2,2.0,6.0,6.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,todos,2,2,2,2.0,6.0,6.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,todos,0,0,0,0.0,0.0,0.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2024T2,0,0,0,0.0,0.0,0.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2024T3,0,0,0,0.0,0.0,0.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2024T4,0,0,0,0.0,0.0,0.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T1,0,0,0,0.0,0.0,0.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T2,0,0,0,0.0,0.0,0.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T3,0,0,0,0.0,0.0,0.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T4,2,2,2,2.0,6.0,6.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2026T1,0,0,0,0.0,0.0,0.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2024T2,0,0,0,0.0,0.0,0.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2024T3,0,0,0,0.0,0.0,0.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2024T4,0,0,0,0.0,0.0,0.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T1,0,0,0,0.0,0.0,0.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T2,0,0,0,0.0,0.0,0.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T3,0,0,0,0.0,0.0,0.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T4,0,0,0,0.0,0.0,0.0
+curta,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2026T1,0,0,0,0.0,0.0,0.0
+S1S2,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,todas,todos,309,259,166,31.4807121662,,
+S1S2,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,todos,163,161,105,23.4916003537,,
+S1S2,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,todos,146,143,99,38.7563636364,,
+S1S2,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2024T4,24,24,18,8.7272727273,,
+S1S2,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T1,25,25,19,16.0256410256,,
+S1S2,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T2,27,27,23,19.7027027027,,
+S1S2,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T3,28,28,19,10.3157894737,,
+S1S2,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2025T4,25,25,23,20.1612903226,,
+S1S2,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,A->AF,2026T1,34,34,27,14.8205128205,,
+S1S2,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2024T4,28,28,22,15.0769230769,,
+S1S2,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T1,24,24,20,16.9411764706,,
+S1S2,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T2,18,18,15,13.5,,
+S1S2,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T3,14,14,13,12.25,,
+S1S2,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2025T4,27,27,19,16.2,,
+S1S2,M0,1_identificados_na_janela,eventos inequívocos com t0 na janela de calendário,AF->A,2026T1,35,35,33,29.8780487805,,
+S1S2,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,todas,todos,9,9,8,7.3636363636,,
+S1S2,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,todos,8,8,7,6.4,,
+S1S2,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,todos,1,1,1,1.0,,
+S1S2,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2024T4,0,0,0,0.0,,
+S1S2,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T1,0,0,0,0.0,,
+S1S2,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T2,1,1,1,1.0,,
+S1S2,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T3,1,1,1,1.0,,
+S1S2,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2025T4,2,2,2,2.0,,
+S1S2,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,A->AF,2026T1,4,4,4,4.0,,
+S1S2,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2024T4,0,0,0,0.0,,
+S1S2,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T1,1,1,1,1.0,,
+S1S2,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T2,0,0,0,0.0,,
+S1S2,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T3,0,0,0,0.0,,
+S1S2,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2025T4,0,0,0,0.0,,
+S1S2,M0,2_historico_suficiente,histórico de modo compatível + completude de preços pré,AF->A,2026T1,0,0,0,0.0,,
+S1S2,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",todas,todos,9,9,8,7.3636363636,,
+S1S2,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,todos,8,8,7,6.4,,
+S1S2,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,todos,1,1,1,1.0,,
+S1S2,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2024T4,0,0,0,0.0,,
+S1S2,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T1,0,0,0,0.0,,
+S1S2,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T2,1,1,1,1.0,,
+S1S2,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T3,1,1,1,1.0,,
+S1S2,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2025T4,2,2,2,2.0,,
+S1S2,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",A->AF,2026T1,4,4,4,4.0,,
+S1S2,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2024T4,0,0,0,0.0,,
+S1S2,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T1,1,1,1,1.0,,
+S1S2,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T2,0,0,0,0.0,,
+S1S2,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T3,0,0,0,0.0,,
+S1S2,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2025T4,0,0,0,0.0,,
+S1S2,M0,3_com_controles_no_risco,"ao menos 1 candidata (mesmo t0, origem, esfera; outro CNPJ)",AF->A,2026T1,0,0,0,0.0,,
+S1S2,M0,4_ps_valido,propensity score calculado (logit finito),todas,todos,9,9,8,7.3636363636,,
+S1S2,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,todos,8,8,7,6.4,,
+S1S2,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,todos,1,1,1,1.0,,
+S1S2,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2024T4,0,0,0,0.0,,
+S1S2,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T1,0,0,0,0.0,,
+S1S2,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T2,1,1,1,1.0,,
+S1S2,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T3,1,1,1,1.0,,
+S1S2,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2025T4,2,2,2,2.0,,
+S1S2,M0,4_ps_valido,propensity score calculado (logit finito),A->AF,2026T1,4,4,4,4.0,,
+S1S2,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2024T4,0,0,0,0.0,,
+S1S2,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T1,1,1,1,1.0,,
+S1S2,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T2,0,0,0,0.0,,
+S1S2,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T3,0,0,0,0.0,,
+S1S2,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2025T4,0,0,0,0.0,,
+S1S2,M0,4_ps_valido,propensity score calculado (logit finito),AF->A,2026T1,0,0,0,0.0,,
+S1S2,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,todas,todos,5,5,5,5.0,,
+S1S2,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,todos,5,5,5,5.0,,
+S1S2,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,todos,0,0,0,0.0,,
+S1S2,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2024T4,0,0,0,0.0,,
+S1S2,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T1,0,0,0,0.0,,
+S1S2,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T2,0,0,0,0.0,,
+S1S2,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T3,0,0,0,0.0,,
+S1S2,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2025T4,2,2,2,2.0,,
+S1S2,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,A->AF,2026T1,3,3,3,3.0,,
+S1S2,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2024T4,0,0,0,0.0,,
+S1S2,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T1,0,0,0,0.0,,
+S1S2,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T2,0,0,0,0.0,,
+S1S2,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T3,0,0,0,0.0,,
+S1S2,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2025T4,0,0,0,0.0,,
+S1S2,M0,5_suporte_comum,logit da tratada no intervalo das candidatas,AF->A,2026T1,0,0,0,0.0,,
+S1S2,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),todas,todos,5,5,5,5.0,16.0,13.0
+S1S2,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,todos,5,5,5,5.0,16.0,13.0
+S1S2,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,todos,0,0,0,0.0,0.0,0.0
+S1S2,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2024T4,0,0,0,0.0,0.0,0.0
+S1S2,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2025T1,0,0,0,0.0,0.0,0.0
+S1S2,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2025T2,0,0,0,0.0,0.0,0.0
+S1S2,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2025T3,0,0,0,0.0,0.0,0.0
+S1S2,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2025T4,2,2,2,2.0,6.0,6.0
+S1S2,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),A->AF,2026T1,3,3,3,3.0,10.0,7.0
+S1S2,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2024T4,0,0,0,0.0,0.0,0.0
+S1S2,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2025T1,0,0,0,0.0,0.0,0.0
+S1S2,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2025T2,0,0,0,0.0,0.0,0.0
+S1S2,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2025T3,0,0,0,0.0,0.0,0.0
+S1S2,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2025T4,0,0,0,0.0,0.0,0.0
+S1S2,M0,6_matching_aceito,≥ 1 controle dentro dos calipers (M0),AF->A,2026T1,0,0,0,0.0,0.0,0.0
+S1S2,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",todas,todos,4,4,4,4.0,11.0,11.0
+S1S2,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,todos,4,4,4,4.0,11.0,11.0
+S1S2,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,todos,0,0,0,0.0,0.0,0.0
+S1S2,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2024T4,0,0,0,0.0,0.0,0.0
+S1S2,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T1,0,0,0,0.0,0.0,0.0
+S1S2,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T2,0,0,0,0.0,0.0,0.0
+S1S2,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T3,0,0,0,0.0,0.0,0.0
+S1S2,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2025T4,2,2,2,2.0,6.0,6.0
+S1S2,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",A->AF,2026T1,2,2,2,2.0,5.0,5.0
+S1S2,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2024T4,0,0,0,0.0,0.0,0.0
+S1S2,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T1,0,0,0,0.0,0.0,0.0
+S1S2,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T2,0,0,0,0.0,0.0,0.0
+S1S2,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T3,0,0,0,0.0,0.0,0.0
+S1S2,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2025T4,0,0,0,0.0,0.0,0.0
+S1S2,M0,7_balanceamento_satisfatorio,"média |dif. padronizada| ≤ 0,5 no evento",AF->A,2026T1,0,0,0,0.0,0.0,0.0
+S1S2,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),todas,todos,4,4,4,4.0,11.0,11.0
+S1S2,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,todos,4,4,4,4.0,11.0,11.0
+S1S2,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,todos,0,0,0,0.0,0.0,0.0
+S1S2,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2024T4,0,0,0,0.0,0.0,0.0
+S1S2,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T1,0,0,0,0.0,0.0,0.0
+S1S2,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T2,0,0,0,0.0,0.0,0.0
+S1S2,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T3,0,0,0,0.0,0.0,0.0
+S1S2,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2025T4,2,2,2,2.0,6.0,6.0
+S1S2,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),A->AF,2026T1,2,2,2,2.0,5.0,5.0
+S1S2,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2024T4,0,0,0,0.0,0.0,0.0
+S1S2,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T1,0,0,0,0.0,0.0,0.0
+S1S2,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T2,0,0,0,0.0,0.0,0.0
+S1S2,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T3,0,0,0,0.0,0.0,0.0
+S1S2,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2025T4,0,0,0,0.0,0.0,0.0
+S1S2,M0,8_placebo_disponivel,t−2 e t−1 observados (garantido pela completude),AF->A,2026T1,0,0,0,0.0,0.0,0.0

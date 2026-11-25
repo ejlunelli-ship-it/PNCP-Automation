@@ -1,0 +1,8 @@
+﻿desenho,eventos,orgaos_efetivos,placebo_lp,placebo_ic95,efeito_af_lp,ic95,populacao,fonte
+dCDH original reestimado em S1 (amostra própria),99,14.841179452,11.685519966,[5.74; 17.63],-6.4645179278,[-14.88; 1.95],"trocas pela regra de maioria (≥ 0,5) com persistência 2; pesos por célula (itens); l = 1..2",efeito_modos_cesta_auto_S1_20261125/amostras/S1/estudo_eventos.csv
+"E3 (efeitos fixos, S1)",,25.3890592471,,,-5.0813819132,[-7.57; -2.59],todos os itens S1 (associação condicional),efeitos_fixos.csv da rodada S1
+"E7 (efeitos fixos, S1)",,16.7474364266,,,-2.1574982683,[-4.67; 0.35],todos os itens S1 (associação condicional),efeitos_fixos.csv da rodada S1
+Risk-set DiD M0,2,2.0,-50.9474275163,[-118.08; 16.18],16.210913283,[-53.11; 85.53],"eventos inequívocos pareados (h = 0, peso igual por evento)",tabelas/efeitos.csv
+Risk-set DiD M1,2,2.0,-27.607365709,[-63.93; 8.72],16.210913283,[-53.11; 85.53],"eventos inequívocos pareados (h = 0, peso igual por evento)",tabelas/efeitos.csv
+Matching por propensity score,2,2.0,-27.0987161013,[-64.73; 10.54],17.3366851061,[-37.98; 72.65],"eventos inequívocos pareados (h = 0, peso igual por evento)",tabelas/efeitos.csv
+"Mesmo produto pré/pós (C3, pares M0; placebo = o de M0)",0,,-50.9474275163,[-118.08; 16.18],,,"eventos inequívocos pareados (h = 0, peso igual por evento)",tabelas/efeitos.csv

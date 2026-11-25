@@ -1,0 +1,85 @@
+{
+  "verificado_em": "2026-11-25T17:43:20",
+  "pncp_v2": {
+    "caminho": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\dados\\pncp_v2.db",
+    "existe": true,
+    "confere": true,
+    "tamanho_bytes": 18242981888,
+    "mtime_ns": 1795550467292885200,
+    "mtime_iso": "2026-11-24T17:01:07",
+    "sqlite_contador_alteracoes": 308,
+    "sqlite_cookie_esquema": 7,
+    "sha256_inicio_fim": "e0a29c420098bbbd0e49876e700a484f2cdd7154330f0656b042b08d7ad9f88c",
+    "amostra_mb": 64
+  },
+  "pncp_v2_candidatos": [
+    {
+      "caminho": "C:\\Users\\Absalão\\Desktop\\PNCP\\PNCP(arquivos)\\PNCP-Automation\\dados\\pncp_v2.db",
+      "existe": true,
+      "confere": true,
+      "tamanho_bytes": 18242981888,
+      "mtime_ns": 1795550467292885200,
+      "mtime_iso": "2026-11-24T17:01:07",
+      "sqlite_contador_alteracoes": 308,
+      "sqlite_cookie_esquema": 7,
+      "sha256_inicio_fim": "e0a29c420098bbbd0e49876e700a484f2cdd7154330f0656b042b08d7ad9f88c",
+      "amostra_mb": 64
+    },
+    {
+      "caminho": "D:\\pncp_v2.db",
+      "existe": true,
+      "confere": true,
+      "tamanho_bytes": 18242981888,
+      "mtime_ns": 1795550467292885200,
+      "mtime_iso": "2026-11-24T17:01:07",
+      "sqlite_contador_alteracoes": 308,
+      "sqlite_cookie_esquema": 7,
+      "sha256_inicio_fim": "e0a29c420098bbbd0e49876e700a484f2cdd7154330f0656b042b08d7ad9f88c",
+      "amostra_mb": 64
+    }
+  ],
+  "S1": {
+    "conjuntos_amostras_sha256": "a31b28e8a017ad7e9f7f86a7b56388194c99f5c0dbb356c438d76522b5713349",
+    "S1_sha256_lista": "8ec700b51b1adfc2f91ba70eb6d343063ebd32aba02696c2735053201591da01",
+    "congelamento_rodada_S1": "2026-11-25T14:02:46",
+    "validador": "2.0.0",
+    "sha256_manifesto_validacao": "4530130e421a07c416f64408a6516879eaf700111e09266d9b159c9add8e067a"
+  },
+  "contagens_S1": {
+    "produtos": 3065,
+    "compras": 74167,
+    "itens": 708964,
+    "uasgs": 4141
+  },
+  "produtos_S1": 3065,
+  "produtos_S2_excluidos": 107,
+  "arquivos_trabalho_sha256": {
+    "S1/amostra.pkl": "491ac329ac9633123b415f3a599b36545690872ab2d3a5d0987bd6f8756794ee",
+    "S1/indices.pkl": "e405d68aee56026abd57e4625c77cac4d1713b8e7a4ecd0593da58455e19f4f6",
+    "S1/regime_compras.pkl": "22f95d93885c5b45cda62027c8195d7d67a210a55aba66a469d9ff52f448cc9d",
+    "S1/eventos_info.pkl": "f70527dfcea116d459d5b41cc34bb1d1cb5063acf49cbbb58c7b6875147677ed",
+    "S1/unidades.pkl": "54127db9097234cfb75f267b78c436e2b0ac182c3a856e5d59c54bb0fcfb629b",
+    "S1/dcdh_principal.pkl": "0a7bf37defdfb98888fecbde7b5a76fa40593814e189e3bdef181c4dd2858163",
+    "S1S2/amostra.pkl": "3c60c958306320089911460c218e55e7448a1391221a96649b949d0d6cd90ef5",
+    "S1S2/indices.pkl": "2b88093870aa6ec29808f74d8651f3f26ade18bd9694d803c77e6233d0408889",
+    "cesta/indices.pkl": "e8d6d932372f8061eab62e54a5d5d02fa59e6f013b236a99e18516e6b590cdc4",
+    "cesta/amostra.pkl": "2eff63119ee2cf76bca803d15f279751986f21b13c4b400252825fccdb32b0bc"
+  },
+  "resultados_rodada_S1_sha256": {
+    "amostras/S1/estudo_eventos.csv": "eb4d6bdef8f85eab04182acc6e584963331a384e5aed16a424960295f663b1fa",
+    "amostras/S1/efeitos_fixos.csv": "b4fda8c9d6b063e0f7749bdb715a8c45ac4303396fea6c15aec97d302b7b2101",
+    "amostras/S1/tabelas/diagnosticos_identificacao.json": "3e1f29c6195de5eaa708679e2c629cb64f24e8b12bcc88b86b21db593b3ede7c",
+    "amostras/S1/tabelas/populacao_eventos_pesos.csv": "2fe74954add969320abca46db84eafd1c5cef9804204b30ee84e2c307e922298"
+  },
+  "manifesto_rodada_S1_chaves": [
+    "amostras",
+    "caracter",
+    "codigo",
+    "congelamento",
+    "gerado_em",
+    "populacao_principal",
+    "tabelas",
+    "testes",
+    "versao"
+  ]
+}

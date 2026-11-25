@@ -1,0 +1,12 @@
+﻿regime,regra,eventos,uasgs,cnpjs,adocoes,abandonos
+inequívoco (principal),"principal: histórico de modo + Y(t−1,t−2) + ≥2 de 4 formação",9,9,8,8,1
+inequívoco (principal),"histórico de modo + Y(t−1,t−2), sem formação",18,18,16,14,4
+inequívoco (principal),histórico de modo + Y(t−1),45,45,37,33,12
+inequívoco (principal),"sem exigir histórico de modo + Y(t−1,t−2) + ≥2 formação",17,16,12,13,4
+inequívoco (principal),"sem exigir histórico de modo + Y(t−1,t−2)",40,38,29,24,16
+inequívoco (principal),sem exigir histórico de modo + Y(t−1),94,88,61,56,38
+inequívoco (principal),somente histórico de modo compatível,127,127,94,71,56
+inequívoco (principal),todos os eventos inequívocos na janela,309,259,166,163,146
+regra anterior,"regra anterior (maioria ≥ 0,5, persistência 2): todos na janela",119,119,92,74,45
+regra anterior,"regra anterior + Y(t−1,t−2) + ≥2 formação",25,25,23,14,11
+regra anterior,regra anterior + Y(t−1),56,56,45,38,18

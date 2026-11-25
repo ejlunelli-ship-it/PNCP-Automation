@@ -1,0 +1,18 @@
+﻿unidade,causa,unidade_trimestres,fracao_do_total,fracao_dos_sem_indice,compras_AAF,unidades,itens_S1_licitados,recupera_ref_produto_semestre,recupera_ref_produto_ano,teria_indice_S1S2,teria_indice_P1,teria_indice_cesta
+UASG,0_com_indice,17445,0.5258953334,,209977,3889,673256,,,,,
+UASG,1_sem_item_de_produto_S1,13905,0.4191788255,0.88414828,40435,4247,0,0,0,285,802,2700
+UASG,2_itens_S1_so_fora_de_A_AF_ou_de_menor_preco,222,0.0066923912,0.0141158517,962,185,3372,0,0,10,17,48
+UASG,3a_sem_homologacao_em_andamento,354,0.0106716508,0.0225090609,2978,209,7783,0,0,2,15,41
+UASG,3b_sem_homologacao_fracassado_deserto,387,0.0116664657,0.0246073631,2056,357,1633,0,0,18,73,207
+UASG,3c_sem_homologacao_anulado_cancelado,309,0.009315085,0.0196477396,1165,290,2526,0,0,7,26,95
+UASG,5_sem_referencia_externa,368,0.0110936935,0.0233992497,1964,349,1444,182,285,22,74,198
+UASG,6_valor_extremo_fora_de_ln10,182,0.0054865549,0.011572455,1360,168,639,182,182,10,40,101
+CNPJ (órgão),0_com_indice,8739,0.5585096185,,232353,2149,679519,,,,,
+CNPJ (órgão),1_sem_item_de_produto_S1,5916,0.378091647,0.8563983787,20911,2069,0,0,0,125,327,1274
+CNPJ (órgão),2_itens_S1_so_fora_de_A_AF_ou_de_menor_preco,104,0.0066466415,0.0150550087,739,83,1695,0,0,6,9,28
+CNPJ (órgão),3a_sem_homologacao_em_andamento,249,0.0159135937,0.036045165,2464,134,6714,0,0,1,9,26
+CNPJ (órgão),3b_sem_homologacao_fracassado_deserto,219,0.0139962932,0.0317023741,1506,200,742,0,0,14,42,121
+CNPJ (órgão),3c_sem_homologacao_anulado_cancelado,157,0.0100338723,0.0227272727,781,150,1138,0,0,4,11,54
+CNPJ (órgão),5_sem_referencia_externa,164,0.0104812424,0.0237405906,1254,158,1029,82,126,11,39,103
+CNPJ (órgão),6_valor_extremo_fora_de_ln10,99,0.0063270915,0.0143312102,889,87,411,99,99,6,21,54
+UF (estado),0_com_indice,324,1.0,,260897,27,691770,,,,,

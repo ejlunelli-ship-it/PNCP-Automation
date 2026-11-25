@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="380" font-family="Segoe UI, Arial" font-size="12">
+<rect width="100%" height="100%" fill="white"/>
+<text x="380.0" y="22" text-anchor="middle" font-size="15" font-weight="600">Placebo reservado t−2→t−1 (escala AF − A, lp, IC95)</text>
+<line x1="70" x2="740" y1="99.0" y2="99.0" stroke="#888" stroke-dasharray="4 3"/>
+<line x1="70" x2="70" y1="48" y2="310" stroke="#333"/>
+<text x="64" y="314.0" text-anchor="end" fill="#444">-129.1</text>
+<line x1="67" x2="70" y1="310.0" y2="310.0" stroke="#333"/>
+<text x="64" y="261.6" text-anchor="end" fill="#444">-97.1</text>
+<line x1="67" x2="70" y1="257.6" y2="257.6" stroke="#333"/>
+<text x="64" y="209.2" text-anchor="end" fill="#444">-65.0</text>
+<line x1="67" x2="70" y1="205.2" y2="205.2" stroke="#333"/>
+<text x="64" y="156.8" text-anchor="end" fill="#444">-32.9</text>
+<line x1="67" x2="70" y1="152.8" y2="152.8" stroke="#333"/>
+<text x="64" y="104.4" text-anchor="end" fill="#444">-0.9</text>
+<line x1="67" x2="70" y1="100.4" y2="100.4" stroke="#333"/>
+<text x="64" y="52.0" text-anchor="end" fill="#444">31.2</text>
+<line x1="67" x2="70" y1="48.0" y2="48.0" stroke="#333"/>
+<text x="18" y="179.0" transform="rotate(-90 18 179.0)" text-anchor="middle">log-pontos</text>
+<text x="107.2" y="328" text-anchor="middle" fill="#333">principal/M0</text>
+<text x="181.7" y="328" text-anchor="middle" fill="#333">principal/M0_k1</text>
+<text x="256.1" y="328" text-anchor="middle" fill="#333">principal/M0_k3</text>
+<text x="330.6" y="328" text-anchor="middle" fill="#333">principal/M1</text>
+<text x="405.0" y="328" text-anchor="middle" fill="#333">principal/PS</text>
+<text x="479.4" y="328" text-anchor="middle" fill="#333">principal/PSM</text>
+<text x="553.9" y="328" text-anchor="middle" fill="#333">curta/M0</text>
+<text x="628.3" y="328" text-anchor="middle" fill="#333">S1S2/M0</text>
+<text x="702.8" y="328" text-anchor="middle" fill="#333">dCDH S1 (l = −1)</text>
+<line x1="107.2" x2="107.2" y1="291.9" y2="72.5" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="107.2" cy="182.2" r="4" fill="#2b6cb0"/>
+<line x1="181.7" x2="181.7" y1="237.3" y2="88.2" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="181.7" cy="162.7" r="4" fill="#2b6cb0"/>
+<line x1="256.1" x2="256.1" y1="206.5" y2="80.4" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="256.1" cy="143.5" r="4" fill="#2b6cb0"/>
+<line x1="330.6" x2="330.6" y1="203.4" y2="84.7" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="330.6" cy="144.1" r="4" fill="#2b6cb0"/>
+<line x1="405.0" x2="405.0" y1="204.8" y2="81.7" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="405.0" cy="143.2" r="4" fill="#2b6cb0"/>
+<line x1="479.4" x2="479.4" y1="204.8" y2="81.7" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="479.4" cy="143.2" r="4" fill="#2b6cb0"/>
+<line x1="553.9" x2="553.9" y1="210.2" y2="66.1" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="553.9" cy="138.1" r="4" fill="#2b6cb0"/>
+<line x1="628.3" x2="628.3" y1="289.1" y2="66.6" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="628.3" cy="177.9" r="4" fill="#2b6cb0"/>
+<line x1="702.8" x2="702.8" y1="89.6" y2="70.1" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="702.8" cy="79.9" r="4" fill="#2b6cb0"/>
+<rect x="80" y="354" width="12" height="12" fill="#2b6cb0"/><text x="98" y="364">placebo</text>
+<text x="740" y="376" text-anchor="end" font-size="10" fill="#666">populações diferentes: não é o mesmo parâmetro</text>
+</svg>

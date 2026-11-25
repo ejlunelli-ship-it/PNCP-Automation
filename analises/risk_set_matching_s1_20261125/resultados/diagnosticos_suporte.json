@@ -1,0 +1,48 @@
+{
+  "gerado_em": "2026-11-25T18:33:19",
+  "por_unidade": {
+    "uasg": {
+      "unidade_trimestres": 33172,
+      "com_indice": 17445,
+      "fracao_sem_indice": 0.4741046665862776,
+      "com_indice_ref_semestre": 17809,
+      "com_indice_ref_ano": 17912,
+      "com_indice_S1S2": 17799,
+      "com_indice_P1": 18492,
+      "com_indice_cesta": 20835
+    },
+    "cnpj": {
+      "unidade_trimestres": 15647,
+      "com_indice": 8739,
+      "fracao_sem_indice": 0.44149038154278775,
+      "com_indice_ref_semestre": 8920,
+      "com_indice_ref_ano": 8964,
+      "com_indice_S1S2": 8906,
+      "com_indice_P1": 9197,
+      "com_indice_cesta": 10399
+    },
+    "uf": {
+      "unidade_trimestres": 324,
+      "com_indice": 324,
+      "fracao_sem_indice": 0.0,
+      "com_indice_ref_semestre": 324,
+      "com_indice_ref_ano": 324,
+      "com_indice_S1S2": 324,
+      "com_indice_P1": 324,
+      "com_indice_cesta": 324
+    }
+  },
+  "preco_alternativo": {
+    "itens_homologados_sem_preco": 3,
+    "com_valor_alternativo_no_banco": 0
+  },
+  "eventos_com_t-2_e_t-1_por_fonte": {
+    "atual_A1_trimestre": 40,
+    "ref_produto_semestre": 41,
+    "ref_produto_ano": 41,
+    "cesta_S1S2": 41,
+    "cesta_P1": 46,
+    "cesta_candidata": 65,
+    "_nota": "eventos (dos 309 da janela) com índice em t0−2 E t0−1; só disponibilidade, sem as demais exigências do desenho"
+  }
+}

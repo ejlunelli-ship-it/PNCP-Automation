@@ -1,0 +1,9 @@
+﻿desenho,metodo,eventos,pares,controles_distintos,cnpjs_controle_distintos,reuso_max,reuso_medio,controles_usados_em_mais_de_um_evento,n_efetivo_controles,n_efetivo_cnpjs_controle,n_efetivo_cnpjs_tratados,share_top1_cnpj_tratado,share_top5_cnpj_tratado,controles_por_evento_medio
+principal,M0,4,20,10,10,2,2.0,10,10.0,10.0,4.0,0.25,1.0,5.0
+principal,M0_k1,4,4,4,4,1,1.0,0,4.0,4.0,4.0,0.25,1.0,1.0
+principal,M0_k3,4,12,8,8,2,1.5,4,7.2,7.2,4.0,0.25,1.0,3.0
+principal,M1,4,20,11,11,2,1.8181818182,9,10.5263157895,10.5263157895,4.0,0.25,1.0,5.0
+principal,PS,4,18,9,9,2,2.0,9,8.8888888889,8.8888888889,4.0,0.25,1.0,4.5
+principal,PSM,4,18,9,9,2,2.0,9,8.8888888889,8.8888888889,4.0,0.25,1.0,4.5
+curta,M0,2,10,6,6,2,1.6666666667,4,5.5555555556,5.5555555556,2.0,0.5,1.0,5.0
+S1S2,M0,4,20,11,11,2,1.8181818182,9,10.5263157895,10.5263157895,4.0,0.25,1.0,5.0

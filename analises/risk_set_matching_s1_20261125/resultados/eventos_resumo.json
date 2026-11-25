@@ -1,0 +1,62 @@
+{
+  "uasg_trimestres_observados": 42436,
+  "uasg_trimestres_A": 24709,
+  "uasg_trimestres_AF": 13329,
+  "uasg_trimestres_mistos": 4398,
+  "fracao_mistos": 0.10363842020925629,
+  "compras_em_trimestres_mistos": 74583,
+  "compras_total": 325595,
+  "eventos_inequivocos_todos": 612,
+  "por_direcao": {
+    "A->AF": 340,
+    "AF->A": 272
+  },
+  "por_persistencia": {
+    "sem_compras_em_t0+1": 193,
+    "persistente": 179,
+    "revertida": 99,
+    "misto_em_t0+1": 82,
+    "fora_dos_dados": 59
+  },
+  "uasgs_com_evento": 465,
+  "cnpjs_com_evento": 251,
+  "uasgs_com_mais_de_um_evento": 120,
+  "trocas_por_maioria_perdidas_por_trimestre_misto": 1164,
+  "perdas_misto_por_trimestre": {
+    "2023T2": 8,
+    "2023T3": 27,
+    "2023T4": 39,
+    "2024T1": 54,
+    "2024T2": 75,
+    "2024T3": 96,
+    "2024T4": 96,
+    "2025T1": 85,
+    "2025T2": 96,
+    "2025T3": 100,
+    "2025T4": 92,
+    "2026T1": 71,
+    "2026T2": 80,
+    "2026T3": 140,
+    "2026T4": 105
+  },
+  "criterio": "A = todas as compras A/AF eletrônicas da UASG no trimestre em Aberto; AF = todas em Aberto-Fechado; misto = ambos (não classificado). Sem compras = não observado.",
+  "comparacao_regra_anterior": {
+    "trocas_regra_anterior": 317,
+    "por_direcao": {
+      "A->AF": 172,
+      "AF->A": 145
+    },
+    "tipos_regra_anterior": {
+      "nunca_troca": 4308,
+      "irregular": 610,
+      "troca": 317,
+      "troca_sem_pre_adjacente": 120
+    },
+    "tambem_eventos_inequivocos": 92,
+    "motivos": {
+      "trimestre misto em t0-1 ou t0": 225,
+      "mesmo evento": 92
+    },
+    "painel_regra_anterior": "2023T1–2026T1"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "gerado_em": "2026-11-25T17:48:37",
+  "pares_congelados.parquet": "941a910aad718dceebd29daf2e31bbf1ceca6b4acf638dec6c050b59e2a9099e",
+  "pares_sha256_conteudo": "a37f3a5875a65b22cd2f2d924b6a78827380e13fbdbba604c41ec9498d493eef",
+  "protocolo_congelado.json": "df402d266bf994f2c15cf00cb5e9c16868964e3aa7536f147ff48be4fbb0ebca",
+  "tabelas_fase_I": {
+    "viabilidade_regras_alternativas.csv": "3c1f01b5d92ffbf983e9b07fbd4e2a2cca1fb7f8b946cedf8502288257d716bd",
+    "funil_suporte.csv": "c79196e2f489b988b4102ab516e1a64212de571c3606591456ee3e7e192f788f",
+    "balanceamento.csv": "bc1691f129d15253e94a046cf54510922ad8e4fdf2a560c2405f1267844a632e",
+    "balanceamento_por_trimestre_M0.csv": "ee5cfc431eee208b7ac39d474a890db049905490cc3410535f9ee0a1b7d7929f",
+    "placebos_reservados.csv": "7bf8b85bcbcce1594775e66fa7a403d07efee30cb41c5cecc0ed4a4973d680bd",
+    "eventos_descartados_e_mantidos.csv": "e42a7c557792c3189e106ae9d12215646a0c7e50854f0860f72f07a25d8dd1a2",
+    "conjuntos_risco.csv": "f0e5bb23b8f6bae970e094a137ed926cfb73e2462fc06811094a1ccbd3f0434a",
+    "concentracao_controles.csv": "19b5317668727fd8043741d5cbd466381d6e4c7f19dc925aa1b5ad3e865ac2d4",
+    "propensao_diagnosticos.csv": "2c3545d4ceef9db485ba531d0b47ce31db9c3023d1cec4839d11fe4b49e90b4b",
+    "regressao_media.csv": "e8ce612592d59bfaf31b8a770a3708ecaf60617447eaee303aa9d8260acd1329"
+  }
+}

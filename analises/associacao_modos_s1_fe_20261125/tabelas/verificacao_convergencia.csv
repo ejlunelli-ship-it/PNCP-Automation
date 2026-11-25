@@ -1,0 +1,4 @@
+﻿modelo,beta_lsmr_map,beta_map,diferenca,iteracoes_map,convergiu_map,max_media_residual_map,max_media_residual_lsmr
+M1,-4.6478623562,-4.6478623562,0.0,3998,1,1e-09,8e-10
+M2,-4.9636150874,-4.9636150874,-0.0,8815,1,1e-09,1e-09
+M4,-4.2376655064,-4.2376655064,-0.0,2988,1,1e-09,1e-09

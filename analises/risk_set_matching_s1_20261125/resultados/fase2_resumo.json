@@ -1,0 +1,34 @@
+{
+  "estimado_em": "2026-11-25T17:58:49",
+  "protocolo": "2026-11-25T17:48:37",
+  "declaracao_suporte": "SUPORTE INSUFICIENTE pelos critérios predefinidos: estimativas da Fase II são apenas descritivas",
+  "perdas_composicao": {
+    "R9": {
+      "eventos": 4,
+      "tratada_sem_suporte": 4,
+      "sem_controle_com_suporte": 0
+    },
+    "R10": {
+      "eventos": 4,
+      "tratada_sem_suporte": 4,
+      "sem_controle_com_suporte": 0
+    }
+  },
+  "influencia": {
+    "cnpj": {
+      "base": 16.210913283001524,
+      "min": -0.3236622781539076,
+      "max": 35.39736247341966,
+      "ep_jackknife": 33.9243404823951
+    },
+    "uasg": {
+      "base": 16.210913283001524,
+      "min": -0.3236622781539076,
+      "max": 35.39736247341966,
+      "ep_jackknife": 33.924340482395095
+    }
+  },
+  "eventos_comuns_dcdh": [],
+  "controles_censurados_t0+1": 10,
+  "pares_M0": 20
+}

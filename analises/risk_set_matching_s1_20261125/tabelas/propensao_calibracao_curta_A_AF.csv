@@ -1,0 +1,11 @@
+﻿desenho,direcao,decil,n,p_medio,taxa_observada
+curta,A->AF,0,282,0.0,0.0
+curta,A->AF,1,281,0.0,0.0
+curta,A->AF,2,281,0.0,0.0
+curta,A->AF,3,281,0.0,0.0
+curta,A->AF,4,282,5.152e-06,0.0
+curta,A->AF,5,281,4.52864e-05,0.0
+curta,A->AF,6,281,0.0001411611,0.0
+curta,A->AF,7,281,0.0003998231,0.0
+curta,A->AF,8,281,0.0013656496,0.0
+curta,A->AF,9,282,0.0228726242,0.024822695

@@ -1,0 +1,38 @@
+{
+  "S1": {
+    "amostra": "S1",
+    "unidades_regime": 5538,
+    "trimestres_regime": "2023T1–2026T4",
+    "trimestres_preco": "2023T2–2026T1",
+    "itens_com_indice": 502993,
+    "compras_com_indice": 59069,
+    "produtos_com_indice": 3053,
+    "uasgs_com_indice": 3889,
+    "cnpjs_com_indice": 2149,
+    "itens_amostra": 708964,
+    "compras_amostra": 74167,
+    "uasg_trimestres_observados": 42436,
+    "uasg_trimestres_mistos": 4398,
+    "compras_regime": 325595,
+    "compras_atividade_pncp": 325751,
+    "itens_atividade_pncp": 6319435
+  },
+  "S1S2": {
+    "amostra": "S1S2",
+    "unidades_regime": 5538,
+    "trimestres_regime": "2023T1–2026T4",
+    "trimestres_preco": "2023T2–2026T1",
+    "itens_com_indice": 535963,
+    "compras_com_indice": 60961,
+    "produtos_com_indice": 3159,
+    "uasgs_com_indice": 3920,
+    "cnpjs_com_indice": 2160,
+    "itens_amostra": 752827,
+    "compras_amostra": 76371,
+    "uasg_trimestres_observados": 42436,
+    "uasg_trimestres_mistos": 4398,
+    "compras_regime": 325595,
+    "compras_atividade_pncp": 325751,
+    "itens_atividade_pncp": 6319435
+  }
+}

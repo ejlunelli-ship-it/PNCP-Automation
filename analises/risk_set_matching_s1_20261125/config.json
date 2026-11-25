@@ -1,0 +1,84 @@
+{
+  "_descricao": "Risk-set matching por evento + DiD (peso igual por evento) na cesta S1 (validação automática de catálogo). Parâmetros fixados ANTES de qualquer acesso a desfechos pós-tratamento; o hash SHA-256 deste arquivo entra em protocolo_congelado.json. Nada aqui foi escolhido a partir de resultados.",
+  "versao": "1.0.0",
+  "semente": 20261125,
+  "fontes": {
+    "pncp_v2_caminhos_candidatos": ["dados/pncp_v2.db", "D:/pncp_v2.db"],
+    "pncp_v2_impressao_esperada": {"tamanho_bytes": 18242981888, "sha256_inicio_fim": "e0a29c420098bbbd0e49876e700a484f2cdd7154330f0656b042b08d7ad9f88c",
+                                   "_nota": "impressão digital registrada pelo estudo efeito_modos_cesta_padronizada_20261124 (registro_execucao.json)"},
+    "estudo_original": "analises/efeito_modos_cesta_padronizada_20261124",
+    "rodada_S1": "analises/efeito_modos_cesta_auto_S1_20261125",
+    "validacao_automatica": "analises/validacao_tecnica_cesta_20261125/saidas/auto_P1_20261125",
+    "cesta": "analises/cesta_padronizada_20261124",
+    "dados_S1": "D:/efeito_modos_auto_S1/S1",
+    "dados_S1S2": "D:/efeito_modos_auto_S1/S1S2",
+    "dados_cesta": "D:/efeito_modos_trabalho",
+    "contagens_S1_esperadas": {"produtos": 3065, "compras": 74167, "itens": 708964, "uasgs": 4141}
+  },
+  "trabalho": "D:/risk_set_matching_s1_trabalho",
+  "periodo": {
+    "_nota": "Trimestre de abertura (ano*4 + trimestre-1). Modos observados até 2026T4; preços com CATMAT só até 17/04/2026: 2026T2 é incompleto (censura da fonte) e fica fora dos desfechos; 2026T3–T4 têm compras mas não têm preços S1 (não são 'trimestres sem compras'). 2023T1 não tem preços homologados utilizáveis.",
+    "regime_primeiro": "2023T1",
+    "regime_ultimo": "2026T4",
+    "preco_primeiro": "2023T2",
+    "preco_ultimo": "2026T1",
+    "trimestres_preco_incompletos": ["2026T2"]
+  },
+  "regime": {
+    "principal": "inequivoco",
+    "_principal_nota": "A = todas as compras A/AF eletrônicas da UASG no trimestre em Aberto; AF = todas em Aberto-Fechado; misto = ambos (não classificado). Sem compras = não observado.",
+    "regra_anterior": {"limiar_af": 0.5, "persistencia_trimestres": 2, "_nota": "reproduzida só para comparação (estudo anterior)"}
+  },
+  "desenho": {
+    "formacao": [-6, -5, -4, -3],
+    "falsificacao": [-2, -1],
+    "horizontes": [0, 1],
+    "min_trimestres_formacao_com_preco": 2,
+    "_completude_nota": "Regra idêntica para tratadas e controles: índice observado em t-1 e t-2 (obrigatórios) e em pelo menos 2 dos 4 trimestres de formação. Nenhum dado posterior a t0-1 é usado no desenho (nem disponibilidade).",
+    "historico_modo": "nos trimestres observados de t-6 a t-2 a UASG só pode estar no regime inequívoco de origem (sem trimestre misto ou no destino); t-1 deve ser observado e inequívoco na origem",
+    "controle_em_t0": "observado em t0 e inequívoco no regime de origem (modo, não preço)",
+    "excluir_mesmo_cnpj": true,
+    "exato": ["esfera"],
+    "janela_curta": {"formacao": [-4, -3], "falsificacao": [-2, -1], "min_trimestres_formacao_com_preco": 1}
+  },
+  "matching": {
+    "k_max": 5,
+    "k_robustez": [1, 3],
+    "reposicao_entre_eventos": true,
+    "regularizacao_mahalanobis": 0.01,
+    "caliper_mahalanobis_quantil_chi2": 0.95,
+    "_caliper_nota": "controle aceito se d^2/2 <= quantil 0,95 da qui-quadrado com k graus (k = nº de covariáveis não constantes), isto é, a diferença é plausível entre duas extrações da mesma distribuição",
+    "razao_escala_max": 3.0,
+    "_escala_nota": "itens licitados (todas as compras A/AF eletrônicas) de t-6 a t-1 da controle entre 1/3 e 3 vezes os da tratada",
+    "caliper_ps_dp_logit": 0.2,
+    "ps_penalidade_l2": 1.0,
+    "balanceamento_evento_max_media_abs_dif_padronizada": 0.5,
+    "smd_referencia": 0.10,
+    "classes_catmat_top": 10,
+    "suporte_minimo": {"eventos": 30, "n_efetivo_cnpjs_tratados": 10,
+                       "_nota": "abaixo disso o desenho é declarado sem suporte suficiente ANTES da Fase II (as estimativas, se calculadas, são só descritivas)"}
+  },
+  "inferencia": {
+    "cluster": "orgao_cnpj",
+    "wcr_B": 9999,
+    "wcr_pesos": "webb",
+    "margem_equivalencia_lp": 5.0,
+    "_margem_nota": "±5 log-pontos (≈ ±5%): ordem de grandeza da associação condicional E3 do estudo anterior; registrada antes da estimação",
+    "alfa": 0.05,
+    "poder": 0.80,
+    "holm_P": ["agregado", "adocao", "abandono_AF"]
+  },
+  "composicao": {
+    "C2_cobertura_min": 0.5,
+    "_C2_nota": "cesta de classes CATMAT fixada no pré (t-6..t-1) da própria UASG; em cada período a média do índice por classe é reponderada pelas participações pré; exige que as classes observadas em t-1 E no período cubram >= 50% do peso pré",
+    "C3_pre": [-2, -1],
+    "_C3_nota": "mesmo produto S1 (mesma unidade de fornecimento) comprado em t-2..t-1 e no horizonte; Y por produto = média dos itens"
+  },
+  "influencia": {"excluir_top_cnpjs": [1, 3]},
+  "referencia": {
+    "principal": "y_A1",
+    "original_cesta": "y_A1 do estudo original (cesta candidata, D:/efeito_modos_trabalho/indices.pkl)",
+    "estaveis_global": "y_EST_A1",
+    "estaveis_local": "A1 só com UASGs comparadoras inequívocas e sem troca entre t-1 e t (regime local)"
+  }
+}

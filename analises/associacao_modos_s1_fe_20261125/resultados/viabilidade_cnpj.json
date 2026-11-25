@@ -1,0 +1,89 @@
+{
+  "periodo": "2023T2–2026T1",
+  "cnpjs_com_compras_AAF": 3032,
+  "cobertura_precos_S1": {
+    ">= 1 trimestres": 2192,
+    ">= 2 trimestres": 1702,
+    ">= 4 trimestres": 1023,
+    ">= 6 trimestres": 653,
+    ">= 8 trimestres": 363,
+    ">= 10 trimestres": 133,
+    ">= 12 trimestres": 31,
+    ">= 4 trimestres consecutivos": 707,
+    ">= 6 trimestres consecutivos": 463,
+    ">= 8 trimestres consecutivos": 303,
+    "cnpjs_com_preco_S1": 2192
+  },
+  "variacao_tratamento": {
+    "cnpjs_com_4_trimestres_consecutivos_com_>=3_compras": 955,
+    "eventos_|Δ|>=0.5": 54,
+    "persistentes": 49,
+    "por_direcao": {
+      "redução AF": 28,
+      "aumento AF": 26
+    },
+    "eventos_|Δ|>=0.3": 108,
+    "persistentes_sens": 90
+  },
+  "comparadores_estaveis": {
+    "cnpjs_estaveis": 627,
+    "por_nivel_AF": {
+      "0–10%": 427,
+      "10–30%": 2,
+      "30–70%": 5,
+      "70–90%": 0,
+      "90–100%": 193
+    }
+  },
+  "composicao": {
+    "eventos": 49,
+    "mediana_fracao_dentro_uasgs": 1.0,
+    "eventos_majoritariamente_dentro (>50%)": 42,
+    "eventos_com_uma_so_uasg_pre": 39,
+    "soma_dentro": 26.901881593142157,
+    "soma_composicao": 3.4024846579236825,
+    "soma_entrada_saida": 0.948440672507548
+  },
+  "produtos": {
+    "eventos_persistentes": 49,
+    "com_>=1_produto_comum": 16,
+    "com_>=5": 9,
+    "com_>=10": 6,
+    "mediana_produtos_comuns": 0.0
+  },
+  "concentracao": {
+    "cnpjs_com_produto_comum": 16,
+    "n_efetivo_cnpjs_por_obs_comuns": 6.600499517511494,
+    "maior_cnpj": "MUNICIPIO DE FLEXEIRAS",
+    "share_maior": 0.24926686217008798,
+    "com_comparador_e_produto_comum": 16
+  },
+  "pre_tendencias": {
+    "com_precos_t-4_t-3": 8,
+    "com_precos_t-4_a_t+1": 6,
+    "com_produto_comum_falsificacao_e_pre": 9,
+    "modo_estavel_antes": 29,
+    "todos_os_requisitos": 3
+  },
+  "cobertura_temporal": {
+    "fracao_itens_com_catmat_por_trimestre": {
+      "2022T4": 0.7255,
+      "2023T1": 0.961,
+      "2023T2": 0.969,
+      "2023T3": 0.9739,
+      "2023T4": 0.9822,
+      "2024T1": 0.9836,
+      "2024T2": 0.9746,
+      "2024T3": 0.9656,
+      "2024T4": 0.9637,
+      "2025T1": 0.9643,
+      "2025T2": 0.9585,
+      "2025T3": 0.9508,
+      "2025T4": 0.9222,
+      "2026T1": 0.8636,
+      "2026T2": 0.2079,
+      "2026T3": 0.0043,
+      "2026T4": 0.0021
+    }
+  }
+}

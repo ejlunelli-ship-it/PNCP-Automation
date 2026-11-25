@@ -1,0 +1,102 @@
+{
+  "congelado_em": "2026-11-25T17:48:37",
+  "fase": "I (desenho) concluída; nenhum desfecho com t >= t0 foi acessado",
+  "config_sha256": "734ab9b6ca40b13d72745795d39736f4e1ca6c8e00f6102e8ba0cb75f080f312",
+  "codigo_sha256": {
+    "__init__.py": "cf485b640c6270575449145686b3625d81e239a85282c8c5c2c9f0216d086dff",
+    "comum.py": "366486827bd4227ea6733abc71699b51092d060c9b7f3bdd68c685437b9aa3d4",
+    "construir_covariaveis.py": "785404fbfccd972340fa07f777dfa71d723daa0406d6c9b23610e49f644e43e6",
+    "construir_painel.py": "dae0e5e130d4ee7051518222a972c31eb6c49342e2ee9e3bf1e04f2bbdf91eac",
+    "construir_risk_sets.py": "17b11fde57f1985b9d0b1f54ea5c01c079e3e1ee17d6c3b5afc1fcffc6d7a2d2",
+    "desenho.py": "9cf5ca8bcd78c24a4e1a90e6e35a4ef029094a68e478b200130e74d7436f1230",
+    "diagnosticar_balanceamento.py": "ab58d850b5dda4ed281039a792b645414d88f51d4673fbbe8a767e255829052d",
+    "estimar_did.py": "8eae4132bf16668c56758fa5754bbdd7ead110d3617400f885cad88af6bea2d4",
+    "estimar_propensao.py": "59514c59228c34098fc8641c4b7ce8979b6f5c114b1bb8e445ae442194a3fdae",
+    "executar_placebos.py": "7efe7b9ee63aec4ea74b7b3a162a6574f7e600edd9e5a549382c87b66b40624d",
+    "fase2.py": "00c36c106eca421f1a11599b0ed600596bb48fd7631d7a31a45790cfcb0d6db4",
+    "identificar_eventos.py": "584bc3e0632842713eb4cc342a7ed80677787d68abe5e0ad7d4480c4ab575fb8",
+    "inferencia.py": "c49d01ab3183bd3101b5f9c2acd71deaf4f8eef9e6fbf92d9b570cac005773dd",
+    "pipeline.py": "63d7078aa3b51d5d9a2fb15d13e3168305d5c2a5e50d1573020701372b972afb",
+    "realizar_matching.py": "df6ffa0ad0629b4f47106b5ab03cd4a16cf4711ae8eebd385889bd65ca1a782b",
+    "robustez.py": "8f653080f266b3aed7bb49f54869a59551fef0128800dd0782e3e7c0cee25ab1",
+    "testar_composicao.py": "9dd06a615fd75342c9e7380c0776b7fe2953279526303d8e3078d8dc1230a3f6",
+    "verificar_fontes.py": "ac3601bbba5f4a9d3df564f51e30b9a2099c3b589ddb4a7f39622dcd9a73193f",
+    "config.json": "734ab9b6ca40b13d72745795d39736f4e1ca6c8e00f6102e8ba0cb75f080f312",
+    "executar.py": "3e7bdd18ffaffd0fbd4b185a38821a74f37c0028b120372f24ae092033337eeb"
+  },
+  "fontes_sha256": "70ad0eb46b8e051f616bb845cca9da3ee22ab681eca4a4d5e3477460598c7984",
+  "pares_sha256_conteudo": "a37f3a5875a65b22cd2f2d924b6a78827380e13fbdbba604c41ec9498d493eef",
+  "pares_linhas": 161,
+  "desenhos": [
+    "principal",
+    "curta",
+    "S1S2"
+  ],
+  "metodos": [
+    "S1S2/M0",
+    "curta/M0",
+    "principal/M0",
+    "principal/M0_k1",
+    "principal/M0_k3",
+    "principal/M1",
+    "principal/PS",
+    "principal/PSM"
+  ],
+  "especificacao_principal": "desenho principal, M0, pares com balanceamento de evento satisfatório, h = 0, peso igual por evento, índice C1 (compra-média), referência A1 da S1",
+  "robustez_predefinida": [
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R6",
+    "R7",
+    "R8",
+    "R9",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17"
+  ],
+  "diagnostico_desenho": {
+    "densidade_indice": {
+      "uasg_trimestres_com_compras_A_AF": 33172,
+      "com_indice_S1": 17445,
+      "fracao_com_indice": 0.5258953334137224
+    },
+    "eventos_principal_M0": 4,
+    "n_efetivo_cnpjs_tratados": 4.0,
+    "suporte_suficiente": false,
+    "covariaveis_M0_com_smd_depois_maior_0_10": [
+      "log_compras",
+      "log_itens",
+      "freq_trimestral",
+      "log_itens_por_compra",
+      "log_valor_medio_compra",
+      "var_log_itens",
+      "log_itens_s1",
+      "recorrencia_s1",
+      "hhi_classes",
+      "srp",
+      "sigilo",
+      "homologacao",
+      "fracasso",
+      "trimestres_no_regime"
+    ],
+    "smd_abs_max_depois_M0": 0.8229422455775318,
+    "placebo_reservado_M0": {
+      "beta_lp": -50.947427516261115,
+      "ic95_inf": -118.07555356550797,
+      "ic95_sup": 16.180698532985744,
+      "p_t": 0.1250438356064563,
+      "p_wcr_webb": 0.12101210121012101,
+      "p_tost": 0.9184827682970704,
+      "mde_80": 94.16593817423828
+    }
+  },
+  "declaracao": "SUPORTE INSUFICIENTE pelos critérios predefinidos: estimativas da Fase II são apenas descritivas"
+}

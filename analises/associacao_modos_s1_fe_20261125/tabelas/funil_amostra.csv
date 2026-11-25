@@ -1,0 +1,10 @@
+﻿etapa,criterio,itens,compras,produtos,uasgs,cnpjs,ufs,observacoes
+0_itens_S1,itens licitados dos 3.065 produtos S1,708964,74167,3065,4141,2307,27,
+1_compras_gov_pregao_eletronico,"Compras.gov.br (dados abertos), Pregão Eletrônico — conferido no banco",708964,74167,3065,4141,2307,27,
+2_modo_A_ou_AF,modo Aberto ou Aberto-Fechado (igual ao da compra no banco),704383,73634,3065,4136,2303,27,
+3_menor_preco,critério menor preço,698380,72730,3065,4107,2287,27,
+4_data_abertura_valida,data de abertura válida (trimestre),698380,72730,3065,4107,2287,27,
+5_homologado,item homologado,556713,63633,3065,3971,2203,27,
+6_preco_positivo,preço unitário homologado positivo,556710,63633,3065,3971,2203,27,
+7_produto_S1,produto S1 (nenhum S2),556710,63633,3065,3971,2203,27,
+8_compra_x_produto,agregação compra × produto (itens duplicados ponderados pela quantidade),556710,63633,3065,3971,2203,27,485369.0
