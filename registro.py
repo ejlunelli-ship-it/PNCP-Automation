@@ -18,11 +18,15 @@ aqui, em registro/compras/<AAAA-MM>.csv: quem não tem o dados/pncp.db (16 GB) u
 Modo de disputa (--modo): o padrão é aberto-fechado. Com --modo fechado-aberto vale a mesma seleção,
 para os pregões Fechado-Aberto, com pastas próprias: registro/fechado-aberto_<AAAA-MM>/,
 registro/compras_fechado-aberto/<AAAA-MM>.csv e dados/filtrados/fechado-aberto_<AAAA-MM>/.
+Com --modo aberto, idem para os pregões Aberto, mas só Pregão Eletrônico, com todos os desfechos (não só
+homologados) e o mês da publicação da compra (TODOS_DESFECHOS, SELECAO_TODOS): pastas
+registro/aberto_<AAAA-MM>/, registro/compras_aberto/ e dados/filtrados/aberto_<AAAA-MM>/.
 
 Uso: python registro.py migrar [AAAA-MM ...]   passa os motivos.csv/manual.csv antigos de dados/ para
                                                registro/ (sem mês, todos)
      python registro.py compras                regera registro/compras/ a partir do dados/pncp.db
      python registro.py compras --modo fechado-aberto   idem, em registro/compras_fechado-aberto/
+     python registro.py compras --modo aberto           idem, em registro/compras_aberto/ (eletrônico, todos os desfechos)
 """
 import csv
 import hashlib
@@ -42,7 +46,10 @@ REGISTRO = Path(os.environ.get("PNCP_REGISTRO") or Path(__file__).parent / "regi
 COLUNAS = ["numeroControlePNCP", "idCompra", "usuario", "data_hora", "passada", "situacao", "motivo",
            "itens_cobertos", "itens", "sha256", "publicados", "candidatos", "outros_guardados", "erros"]
 # modo de disputa da amostra: prefixo das pastas -> valor de compras.modo_disputa no pncp.db
-MODOS = {"aberto-fechado": "Aberto-Fechado", "fechado-aberto": "Fechado-Aberto"}
+MODOS = {"aberto-fechado": "Aberto-Fechado", "fechado-aberto": "Fechado-Aberto", "aberto": "Aberto"}
+# modos baixados com todos os desfechos (não só homologados), só Pregão Eletrônico, com o mês da publicação
+# da compra. O AF e o FA foram baixados só com homologados, pelo mês do resultado, sem filtrar a modalidade.
+TODOS_DESFECHOS = {"aberto"}
 MODO = "aberto-fechado"
 CAMPOS_COMPRA = ["numeroControlePNCP", "idCompra", "numeroCompra", "anoCompraPncp", "objetoCompra",
                  "dataPublicacaoPncp", "dataAberturaPropostaPncp", "orgaoEntidadeCnpj"]
@@ -58,6 +65,28 @@ WHERE i.registro_principal = 1 AND i.homologado = 1 AND c.modo_disputa = ?
   AND c.id_compra IS NOT NULL AND i.data_resultado LIKE ?
 ORDER BY 2
 """
+
+# Todos os desfechos: compra eletrônica com ao menos um item já decidido (homologado, fracassado, deserto,
+# anulado/revogado/cancelado); fica de fora a compra cujos itens estão todos "Em andamento", sem termo ainda.
+# Mês = data de publicação no PNCP, a única data que toda compra tem (item não homologado não tem resultado).
+SELECAO_TODOS = """
+SELECT DISTINCT substr(c.data_publicacao, 1, 7) AS mes,
+       c.numero_controle_pncp AS numeroControlePNCP, c.id_compra AS idCompra,
+       c.numero_compra AS numeroCompra, c.ano_compra AS anoCompraPncp, c.objeto_compra AS objetoCompra,
+       c.data_publicacao AS dataPublicacaoPncp, c.data_abertura_proposta AS dataAberturaPropostaPncp,
+       c.orgao_cnpj AS orgaoEntidadeCnpj
+FROM compras c
+WHERE c.modo_disputa = ? AND c.id_compra IS NOT NULL AND c.data_publicacao LIKE ?
+  AND c.modalidade_nome = 'Pregão - Eletrônico'
+  AND EXISTS (SELECT 1 FROM itens i WHERE i.numero_controle_pncp = c.numero_controle_pncp
+              AND i.registro_principal = 1 AND i.situacao_item <> 'Em andamento')
+ORDER BY 2
+"""
+
+
+def _consulta(padrao_mes):
+    """(sql, parâmetros) da seleção do modo atual para os meses que casam com o LIKE `padrao_mes`."""
+    return (SELECAO_TODOS if MODO in TODOS_DESFECHOS else SELECAO), (MODOS[MODO], padrao_mes)
 RE_ITEM = re.compile(r"-item-(\d+)\.pdf$", re.I)
 GIT = ["git", r"C:\Program Files\Git\cmd\git.exe"]
 _usuario = None
@@ -167,7 +196,7 @@ def compras_do_mes(mes):
     """Compras do modo com item homologado no mês: do dados/pncp.db ou, sem ele, de registro/compras[_<modo>]/."""
     con = _banco()
     if con is not None:
-        linhas = [{k: r[k] for k in CAMPOS_COMPRA} for r in con.execute(SELECAO, (MODOS[MODO], f"{mes}%"))]
+        linhas = [{k: r[k] for k in CAMPOS_COMPRA} for r in con.execute(*_consulta(f"{mes}%"))]
         con.close()
         return linhas
     arquivo = pasta_compras() / f"{mes}.csv"
@@ -185,7 +214,7 @@ def exportar_compras():
     if con is None:
         sys.exit("Sem dados/pncp.db.")
     por_mes = {}
-    for r in con.execute(SELECAO, (MODOS[MODO], "%")):
+    for r in con.execute(*_consulta("%")):
         if r["mes"]:
             linha = {k: r[k] for k in CAMPOS_COMPRA}
             linha["objetoCompra"] = " ".join((linha["objetoCompra"] or "").split())[:TAMANHO_OBJETO]

@@ -11,6 +11,7 @@
 | [07-metodologia-de-extracao.md](07-metodologia-de-extracao.md) | Metodologia de ponta a ponta, dos dados brutos à extração dos PDFs, com histórico de mudanças |
 | [08-testes-medias-precos.md](08-testes-medias-precos.md) | Testes mensais e anuais por sigilo: amostras, resultados, inferência, limitações e reprodução |
 | [09-download-fechado-aberto.md](09-download-fechado-aberto.md) | Amostra Fechado-Aberto (2023-04 a 2026-10) e passo a passo do download em outras máquinas (`--modo fechado-aberto`) |
+| [10-download-aberto.md](10-download-aberto.md) | Amostra Aberto (todos os desfechos, só eletrônico, 2022-11 a 2026-10) e passo a passo do download (`--modo aberto --crescente`) |
 
 O `README.md` da raiz é o manual de uso (comandos e opções). Estes documentos explicam o **porquê**
 e guardam o que foi descoberto investigando as fontes, para não ser redescoberto.

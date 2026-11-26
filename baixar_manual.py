@@ -22,11 +22,13 @@ Compras puladas ou sem zip não são reabertas, salvo com --repetir.
 
 Uso: python baixar_manual.py [--de 2026-10] [--ate 2025-11] [--parte k/n] [--repetir]
                              [--auto [--intervalo 20-60] [--max-falhas 3]] [--navegador chrome|edge|firefox]
-                             [--modo aberto-fechado|fechado-aberto]
+                             [--modo aberto-fechado|fechado-aberto|aberto] [--crescente]
 
 --modo fechado-aberto: baixa os pregões Fechado-Aberto (mesma seleção), com registro em
 registro/fechado-aberto_<mês>/, lista em registro/compras_fechado-aberto/ e PDFs em
 dados/filtrados/fechado-aberto_<mês>/relatorios/. O padrão é aberto-fechado.
+--modo aberto: idem para os pregões Aberto, só Pregão Eletrônico (pastas aberto_<mês>).
+--crescente: do mês mais antigo (--de) ao mais recente (--ate), ex.: --de 2022-11 --ate 2026-10.
 
 Meses em paralelo: um terminal por mês, cada um com --navegador diferente (e o userscript instalado em
 cada navegador). Todos vigiam a pasta Downloads, mas cada um só pega os arquivos das próprias compras.
@@ -142,6 +144,14 @@ def meses_decrescentes(de, ate):
     while f"{ano}-{mes:02d}" >= ate:
         yield f"{ano}-{mes:02d}"
         ano, mes = (ano, mes - 1) if mes > 1 else (ano - 1, 12)
+
+
+def meses_crescentes(de, ate):
+    """De --de (o mais antigo) até --ate (o mais recente)."""
+    ano, mes = map(int, de.split("-"))
+    while f"{ano}-{mes:02d}" <= ate:
+        yield f"{ano}-{mes:02d}"
+        ano, mes = (ano, mes + 1) if mes < 12 else (ano + 1, 1)
 
 
 def intervalo(texto):
@@ -295,8 +305,10 @@ def confirmar_continuacao(falhas):
 def main():
     sys.stdout.reconfigure(encoding="utf-8", line_buffering=True)
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--de", default="2026-10", help="primeiro mês (o mais recente)")
-    p.add_argument("--ate", default="2025-11", help="último mês (o mais antigo)")
+    p.add_argument("--de", default="2026-10", help="primeiro mês (o mais recente; com --crescente, o mais antigo)")
+    p.add_argument("--ate", default="2025-11", help="último mês (o mais antigo; com --crescente, o mais recente)")
+    p.add_argument("--crescente", action="store_true",
+                   help="anda do mês mais antigo (--de) para o mais recente (--ate), e na ordem crescente das compras")
     p.add_argument("--parte", type=parte, metavar="k/n", help="só a parte k de n das compras (divisão entre usuários)")
     p.add_argument("--repetir", action="store_true", help="reabre compras puladas ou sem zip em rodadas anteriores")
     p.add_argument("--motivo", metavar="TEXTO",
@@ -316,6 +328,8 @@ def main():
                    help="modo de disputa das compras (padrão aberto-fechado); muda as pastas do registro e dos PDFs")
     args = p.parse_args()
     usar_modo(args.modo)
+    if (args.de > args.ate) if args.crescente else (args.de < args.ate):
+        p.error("com --crescente, --de é o mês mais antigo; sem ele, o mais recente")
     if args.motivo and not args.repetir:
         p.error("--motivo só vale junto com --repetir")
     if args.abas < 1 or (args.abas > 1 and not args.auto):
@@ -334,9 +348,13 @@ def main():
 
 
 def pendentes(args, historico):
-    """(mês, i, total, compra) na ordem do download: meses do mais recente ao mais antigo."""
-    for mes in meses_decrescentes(args.de, args.ate):
-        compras = [c for c in reversed(compras_do_mes(mes)) if na_parte(c["numeroControlePNCP"], args.parte)]
+    """(mês, i, total, compra) na ordem do download: meses do mais recente ao mais antigo (ou o contrário,
+    com --crescente)."""
+    meses = meses_crescentes(args.de, args.ate) if args.crescente else meses_decrescentes(args.de, args.ate)
+    for mes in meses:
+        todas = compras_do_mes(mes)
+        compras = [c for c in (todas if args.crescente else reversed(todas))
+                   if na_parte(c["numeroControlePNCP"], args.parte)]
         if args.motivo:
             ultimo = historico.atualizar().ultimo_motivo
             compras = [c for c in compras if ultimo.get(c["numeroControlePNCP"]) == args.motivo]
