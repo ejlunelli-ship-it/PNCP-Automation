@@ -1,0 +1,29 @@
+extracao: itens 643694 por banco {'aberto-fechado_2025-12_a_2026-07.db': 225471, 'aberto-fechado_2026-03_04_08.db': 145929, 'aberto-fechado_2024-11_a_2024-12.db': 99326, 'junho2025.db': 89566, 'aberto-fechado_2026-09_a_2026-10.db': 83402}
+OK com licitantes >= 1 621672 sem repetidos 593749 meses ['2024-11', '2024-12', '2025-06', '2025-07', '2025-12', '2026-01', '2026-03', '2026-04', '2026-05', '2026-06', '2026-07', '2026-08', '2026-09', '2026-10']
+ligados ao pncp.db 578243 (97.4%) compras 32510 id_compra repetidos fora 17
+amostra 578243 itens 32510 compras 1167 CNPJs 2112 UASGs
+   srp   itens  compras  cnpjs  media    dp  mediana  p25   p75  pct_1_licitante  pct_servico  pct_sigiloso
+0  0.0  100772    15900    945   8.87  8.50      6.0  3.0  11.0             6.72        10.92         33.23
+1  1.0  477471    16610    760   8.06  6.74      6.0  3.0  11.0             7.33         4.19         18.07
+licitantes S1 -0.807 IC -1.643 0.029 p 0.0584 n 578243
+licitantes S2 -0.615 IC -1.12 -0.11 p 0.0171 n 578242
+licitantes S3 -0.549 IC -1.218 0.121 p 0.1082 n 577958
+licitantes S4 0.23 IC -0.675 1.134 p 0.6183 n 121125
+ln_lic S1 -5.064 IC -14.653 4.526 p 0.3004 n 578243
+ln_lic S2 -6.134 IC -12.431 0.163 p 0.0562 n 578242
+ln_lic S3 -4.868 IC -12.146 2.409 p 0.1896 n 577958
+ln_lic S4 12.743 IC -2.565 28.05 p 0.1026 n 121125
+compra licitantes -1.532 p 0.0046 n 31921
+compra ln_lic -14.323 p 0.0036 n 31921
+    nivel    desfecho espec     coef  ic95_inf  ic95_sup       p  p_holm       n  g_cnpj  g_cat   media_y
+0    item  licitantes    S1  -0.8073   -1.6434    0.0289  0.0584     NaN  578243    1167  91306    8.1995
+1    item  licitantes    S2  -0.6149   -1.1203   -0.1095  0.0171     NaN  578242    1167  91306    8.1995
+2    item  licitantes    S3  -0.5487   -1.2182    0.1209  0.1082  0.2163  577958    1017  91168    8.1945
+3    item  licitantes    S4   0.2296   -0.6748    1.1339  0.6183     NaN  121125     605  22797    9.2822
+4    item      ln_lic    S1  -5.0636  -14.6531    4.5259  0.3004     NaN  578243    1167  91306  177.4691
+5    item      ln_lic    S2  -6.1340  -12.4309    0.1629  0.0562     NaN  578242    1167  91306  177.4692
+6    item      ln_lic    S3  -4.8684  -12.1462    2.4095  0.1896  0.2163  577958    1017  91168  177.4324
+7    item      ln_lic    S4  12.7426   -2.5652   28.0504  0.1026     NaN  121125     605  22797  189.3970
+8  compra  licitantes    S3  -1.5315   -2.5888   -0.4743  0.0046     NaN   31921     858    858   10.9030
+9  compra      ln_lic    S3 -14.3226  -23.9430   -4.7023  0.0036     NaN   31921     858    858  197.4166
+fim em 155s

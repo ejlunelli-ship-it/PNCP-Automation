@@ -1,0 +1,9 @@
+extraidos 4255942 116s
+sem n_itens 0
+mediana: celulas 1667450 elegiveis 50076 itens com M 768226 45s
+['extrair'] fim em 185s
+  modo_c    itens  pct_sigiloso  pct_servico  D_media  L_media  compras  cnpjs
+0      A  2607092         20.83        12.29    28.83   -19.91   149176   2309
+1     AF  1627035         19.12        13.89    32.19   -46.45    89146   1422
+2     FA    21815         29.60        11.92    27.13   -55.17     1332    161
+['desc'] fim em 14s
