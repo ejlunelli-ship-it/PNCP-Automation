@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PNCP-Automation: Todos os relatórios e termos
 // @namespace    pncp-automation
-// @version      1.3
+// @version      1.4
 // @description  Clica em Downloads > "Todos os relatórios e termos" nas compras abertas por `baixar_manual.py --auto`.
 // @match        https://cnetmobile.estaleiro.serpro.gov.br/comprasnet-web/*
 // @run-at       document-start
@@ -19,7 +19,9 @@
 // - sem zip: baixa um aviso pncp-auto-<idCompra>-<motivo>.txt e fecha a aba. Motivos: sem-opcao
 //   (o menu não tem "Todos os relatórios e termos"), sem-botao (a página não mostra o botão de
 //   downloads), acesso-nao-autorizado, compra-nao-encontrada, erro-download (o site avisou que não
-//   conseguiu baixar).
+//   conseguiu baixar), compra-anulada / compra-revogada / compra-cancelada / sem-propostas ("não houve
+//   registro de proposta") (1.4: a página mostra a situação e não tem o botão; avisa em SITUACAO ms,
+//   sem esperar SEM_BOTAO).
 (function () {
   'use strict';
 
@@ -30,6 +32,12 @@
   const PASSO = 150;              // ms entre verificações (1.3: era 500)
   const SEM_BOTAO = 90 * 1000;    // sem o botão depois disso (e sem desafio na tela): desiste
   const SEM_ARQUIVO = 3 * 60 * 1000;  // depois do clique, sem download nem erro: deixa a aba aberta
+  const SITUACAO = 1500;          // 1.4: "compra anulada/revogada/cancelada" sem o botão por esse tempo: avisa
+  const SITUACAO_SEM_ZIP = /compra (anulada|revogada|cancelada)|não houve registro de (proposta)/;
+  const situacaoSemZip = (texto) => {
+    const m = texto.match(SITUACAO_SEM_ZIP);
+    return m ? (m[1] ? `compra-${m[1]}` : 'sem-propostas') : null;
+  };
 
   // A URL é lida logo no início, antes de o Angular reescrevê-la; a sessionStorage é da aba.
   const params = new URLSearchParams(location.search);
@@ -136,6 +144,7 @@
   let estado = 'botao';
   let desde = inicio;
   let cliquesNoBotao = 0;
+  let situacaoDesde = 0;
 
   function passo() {
     if (encerrado) return;
@@ -154,6 +163,13 @@
         estado = 'menu';
         desde = agora;
         if (!desafio) titulo('abrindo o menu');
+      } else if (!desafio && !situacaoDesde
+                 && situacaoSemZip(normalizar(document.body.innerText))) {
+        situacaoDesde = agora;
+      } else if (!desafio && situacaoDesde && agora - situacaoDesde > SITUACAO) {
+        const situacao = situacaoSemZip(normalizar(document.body.innerText));
+        if (situacao) return avisar(situacao);
+        situacaoDesde = 0;
       } else if (!desafio && agora - inicio > SEM_BOTAO) {
         return avisar('sem-botao');
       }

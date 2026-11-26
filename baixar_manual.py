@@ -72,7 +72,18 @@ MOTIVOS_AUTO = {
     "acesso-nao-autorizado": "acesso não autorizado no site",
     "compra-nao-encontrada": "compra não encontrada no site",
     "erro-download": "erro do site no download",
+    "compra-anulada": "compra anulada no site",
+    "compra-revogada": "compra revogada no site",
+    "compra-cancelada": "compra cancelada no site",
+    "sem-propostas": "compra sem propostas no site",
 }
+# situação da compra no texto da página (o aviso traz o texto): sem zip por definição, passa à próxima
+SITUACAO_SEM_ZIP = [
+    (re.compile(r"\bcompra anulada\b"), "compra-anulada"),
+    (re.compile(r"\bcompra revogada\b"), "compra-revogada"),
+    (re.compile(r"\bcompra cancelada\b"), "compra-cancelada"),
+    (re.compile(r"não houve registro de proposta"), "sem-propostas"),
+]
 # --navegador: onde cada um costuma ficar no Windows (o primeiro que existir)
 NAVEGADORES = {
     "chrome": [r"C:\Program Files\Google\Chrome\Application\chrome.exe",
@@ -197,6 +208,14 @@ def motivo_do_aviso(arq):
     nome = arq.stem.split(" (")[0]
     for codigo, motivo in MOTIVOS_AUTO.items():
         if nome.endswith("-" + codigo):
+            if codigo == "sem-botao":  # userscript < 1.4: a situação só aparece no texto da página
+                try:
+                    texto = arq.read_text(encoding="utf-8", errors="replace").split("texto da página:", 1)[-1]
+                except OSError:
+                    texto = ""
+                for padrao, situacao in SITUACAO_SEM_ZIP:
+                    if padrao.search(texto.lower()):
+                        return MOTIVOS_AUTO[situacao]
             return motivo
     return "aviso desconhecido do userscript"
 

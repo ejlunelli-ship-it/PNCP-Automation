@@ -53,3 +53,12 @@ git push
 Com duas máquinas, combinem antes quem pega cada faixa de meses (`--de`/`--ate`) ou usem `--parte k/n` com
 `n` igual ao total de janelas das duas máquinas (ex.: 6, três em cada). O que já foi resolvido, por qualquer
 usuário, é pulado depois do `git pull`. No fim, repetir só `--repetir --motivo "zip não recebido"`.
+
+## 4. Compras anuladas, revogadas ou sem propostas (desde 26/11/2026)
+
+Quando a página da compra mostra "Compra anulada", "Compra revogada", "Compra cancelada" ou "Não houve registro de
+proposta" e não tem o botão de downloads, a compra fica no registro com o motivo `compra anulada no site` (etc.) e o
+script passa à seguinte, sem esperar. Atualize o userscript para a **1.4** no Tampermonkey de cada navegador para
+isso valer em 1,5 s (com a 1.3 o motivo é o mesmo, mas a aba espera 90 s). Para acelerar, `--abas 2` por processo.
+Essas compras não são repetidas; `--repetir --motivo "sem botão de downloads no site"` só reabre as que não mostram
+nenhuma dessas situações (ex.: contratação homologada sem o botão).

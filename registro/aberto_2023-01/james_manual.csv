@@ -1,0 +1,9 @@
+numeroControlePNCP,idCompra,usuario,data_hora,passada,situacao,motivo,itens_cobertos,itens,sha256,publicados,candidatos,outros_guardados,erros
+00394684000153-1-000002/2023,92516405000452023,james,2026-11-26T18:22:24,manual,,sem botão de downloads no site,0,,,,,0,
+00394684000153-1-000132/2022,92516405000482022,james,2026-11-26T18:23:56,manual,,sem botão de downloads no site,0,,,,,0,
+13937032000160-1-000007/2023,92766105000012023,james,2026-11-26T18:25:27,manual,,sem botão de downloads no site,0,,,,,0,
+15126437000143-1-000053/2023,15590105000012023,james,2026-11-26T18:26:59,manual,,sem botão de downloads no site,0,,,,,0,
+00394684000153-1-000131/2022,92516405000682022,james,2026-11-26T18:37:20,manual,,compra revogada no site,0,,,,,0,
+06186786000160-1-000001/2022,92971405000022022,james,2026-11-26T18:39:06,manual,,zip não recebido,0,,,,,0,
+15126437000143-1-000054/2023,15590905000062023,james,2026-11-26T18:39:18,manual,,compra revogada no site,0,,,,,0,
+87252045000131-1-000018/2023,92872405000012023,james,2026-11-26T18:41:19,manual,,compra anulada no site,0,,,,,0,
