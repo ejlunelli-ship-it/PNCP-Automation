@@ -50,6 +50,11 @@ git commit -m "Downloads manuais (auto) Aberto"
 git push
 ```
 
+**Mesmo mês, três navegadores (desde 28/11/2026):** acrescente `--redividir` e rode um mês por vez (`--de M --ate M`).
+Com ele a divisão por `--parte` deixa de ser por hash: cada compra é reservada antes de abrir (`dados/reservas/`), e
+quem termina antes ajuda a terminar o mês. Só passe ao mês seguinte quando as três partes acabarem. Use 1 aba por
+navegador (`--abas 1`) em máquinas de 8 GB; os navegadores acumulam memória e convém reiniciá-los a cada 2 horas.
+
 Com duas máquinas, combinem antes quem pega cada faixa de meses (`--de`/`--ate`) ou usem `--parte k/n` com
 `n` igual ao total de janelas das duas máquinas (ex.: 6, três em cada). O que já foi resolvido, por qualquer
 usuário, é pulado depois do `git pull`. No fim, repetir só `--repetir --motivo "zip não recebido"`.

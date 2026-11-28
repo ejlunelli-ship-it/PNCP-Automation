@@ -328,6 +328,8 @@ def main():
     p.add_argument("--ate", default="2025-11", help="último mês (o mais antigo; com --crescente, o mais recente)")
     p.add_argument("--crescente", action="store_true",
                    help="anda do mês mais antigo (--de) para o mais recente (--ate), e na ordem crescente das compras")
+    p.add_argument("--redividir", action="store_true",
+                   help="com --parte, todas as partes percorrem as pendentes e reservam cada compra antes de abrir (quem termina antes ajuda)")
     p.add_argument("--parte", type=parte, metavar="k/n", help="só a parte k de n das compras (divisão entre usuários)")
     p.add_argument("--repetir", action="store_true", help="reabre compras puladas ou sem zip em rodadas anteriores")
     p.add_argument("--motivo", metavar="TEXTO",
@@ -366,14 +368,54 @@ def main():
         baixar(args, abrir, fila)
 
 
+RESERVAS = DADOS / "reservas"
+VALIDADE_RESERVA = 30 * 60  # s; reserva de processo que caiu deixa de valer
+
+
+def limpar_reservas(parte):
+    """Ao iniciar: apaga as reservas da própria parte (de uma execução que caiu)."""
+    RESERVAS.mkdir(parents=True, exist_ok=True)
+    for f in RESERVAS.glob("*"):
+        try:
+            if f.read_text(errors="replace").strip() == str(parte):
+                f.unlink()
+        except OSError:
+            pass
+
+
+def reservar(controle, parte):
+    """Reserva a compra para esta parte (criação atômica). False se outra parte já a reservou há pouco."""
+    f = RESERVAS / controle.replace("/", "_")
+    for _ in range(2):
+        try:
+            with open(f, "x") as h:
+                h.write(str(parte))
+            return True
+        except FileExistsError:
+            try:
+                if time.time() - f.stat().st_mtime < VALIDADE_RESERVA:
+                    return False
+                f.unlink()
+            except OSError:
+                return False
+    return False
+
+
 def pendentes(args, historico):
     """(mês, i, total, compra) na ordem do download: meses do mais recente ao mais antigo (ou o contrário,
     com --crescente)."""
     meses = meses_crescentes(args.de, args.ate) if args.crescente else meses_decrescentes(args.de, args.ate)
     for mes in meses:
         todas = compras_do_mes(mes)
-        compras = [c for c in (todas if args.crescente else reversed(todas))
-                   if na_parte(c["numeroControlePNCP"], args.parte)]
+        compras = list(todas if args.crescente else reversed(todas))
+        if args.redividir:
+            # sem hash: todas as partes percorrem as pendentes e cada compra é reservada (reservar) antes de abrir,
+            # então quem termina antes continua ajudando no mesmo mês
+            historico.atualizar()
+            compras = [c for c in compras if c["numeroControlePNCP"] not in historico.completas
+                       and (args.repetir or c["numeroControlePNCP"] not in historico.manuais)]
+        else:
+            compras = [c for c in compras if na_parte(c["numeroControlePNCP"], args.parte)]
         if args.motivo:
             ultimo = historico.atualizar().ultimo_motivo
             compras = [c for c in compras if ultimo.get(c["numeroControlePNCP"]) == args.motivo]
@@ -387,6 +429,8 @@ def baixar(args, abrir, fila):
 
     Com --abas 1 é o laço de sempre: abre, espera o zip, anota, abre a próxima."""
     historico = Historico()
+    if args.redividir:
+        limpar_reservas(args.parte[0] if args.parte else 0)
     fonte = pendentes(args, historico)
     voando = []  # em ordem de abertura
     esgotou = False
@@ -425,6 +469,8 @@ def baixar(args, abrir, fila):
                 # o site responde "compra não encontrada"; não vale abrir
                 print(f"[{mes} {i}/{n}] {c['idCompra']!r}: idCompra inválido, pulando")
                 anotar_manual(mes, {**linha, "motivo": "idCompra inválido"})
+                continue
+            if args.redividir and not reservar(controle, args.parte[0] if args.parte else 0):
                 continue
             print(f"[{mes} {i}/{n}] {c['idCompra']} - {(c['objetoCompra'] or '')[:60]}")
             url = URL_COMPRA.format(c["idCompra"])
